@@ -1,36 +1,47 @@
+"use client";
 
-'use client';
-
-import React from 'react';
+import { useEffect, useRef } from "react";
 
 interface VideoBackgroundProps {
-  src: string;
-  className?: string;
+  videoSrc?: string; // Opcionális: ha másik oldalra mást akarsz
+  overlayOpacity?: number; // Sötétítés erőssége
 }
 
-/**
- * Renders a full-screen, looping video as a background with a dark overlay.
- * This component is designed to create an immersive and dynamic visual atmosphere.
- *
- * @param {VideoBackgroundProps} props - The component props.
- * @param {string} props.src - The URL of the video file to be used as the background.
- * @param {string} [props.className=''] - Additional Tailwind CSS classes to apply to the container div.
- * @returns {JSX.Element} The rendered video background component.
- */
-const VideoBackground: React.FC<VideoBackgroundProps> = ({ src, className }) => {
+export default function VideoBackground({ 
+  videoSrc = "https://res.cloudinary.com/dbrwg0av5/video/upload/v1765516398/0_rgswdr.mp4", // Az alapértelmezett hős videód
+  overlayOpacity = 0.5 
+}: VideoBackgroundProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Biztosítjuk, hogy a videó automatikusan elinduljon (böngésző policy miatt)
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.log("Autoplay prevented by browser:", error);
+      });
+    }
+  }, []);
+
   return (
-    <div className={`absolute inset-0 overflow-hidden ${className}`}>
+    <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
+      {/* Sötétítő réteg (Overlay) a szöveg olvashatósága miatt */}
+      <div 
+        className="absolute inset-0 bg-black pointer-events-none"
+        style={{ opacity: overlayOpacity }} 
+      />
+
       <video
-        className="absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2"
-        src={src}
+        ref={videoRef}
+        className="w-full h-full object-cover"
         autoPlay
         loop
         muted
-        playsInline
-      />
-      <div className="absolute inset-0 bg-black opacity-50"></div> {/* Sötét overlay */}
+        playsInline // Fontos mobilra!
+        preload="auto"
+      >
+        <source src={videoSrc} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
   );
-};
-
-export default VideoBackground;
+}
