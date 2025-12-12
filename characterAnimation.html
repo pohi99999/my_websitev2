@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karakter-szintű Szöveg Animáció</title>
+  <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      background-color: #111;
+      color: #eee;
+    }
+    .section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .animated-text {
+      font-size: 4rem;
+      font-weight: bold;
+      line-height: 1.2;
+      /* A szülő konténer elrejti a karaktereket, amíg be nem úsznak */
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    .animated-text .char {
+      /* A transzformációkhoz szükséges */
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section">
+    <h1>Görgess lefelé az animációhoz!</h1>
+  </div>
+
+  <div class="section">
+    <p class="animated-text">Ez egy karakter-szintű animáció.</p>
+  </div>
+
+  <div class="section">
+    <h1>Animáció vége.</h1>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. GSAP Plugin regisztrálása
+      gsap.registerPlugin(ScrollTrigger);
+
+      // 2. Karakterek szétválasztása
+      const textElement = document.querySelector(".animated-text");
+      const text = textElement.textContent;
+      textElement.innerHTML = ' '; // Eredeti szöveg törlése
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const span = document.createElement('span');
+        span.className = 'char';
+        // A szóközöket is meg kell jeleníteni
+        span.innerHTML = char === ' ' ? '&nbsp;' : char;
+        textElement.appendChild(span);
+      }
+
+      // 3. GSAP animáció létrehozása
+      gsap.from(".animated-text .char", { // A .char class-szal ellátott spant célozzuk
+        // ScrollTrigger beállítások
+        scrollTrigger: {
+          trigger: ".animated-text",
+          start: "top 80%", // 4. Az animáció akkor indul, ha a szöveg eléri a viewport 80%-át
+          end: "bottom 20%",
+          scrub: false, // Nem szinkronizáljuk a görgetéssel, csak egyszer fusson le
+          markers: true, // Hibakeresési jelzők
+          toggleActions: "play none none none" // Lejátszás, ha beér; semmi más eseményre
+        },
+        // Animációs tulajdonságok
+        opacity: 0, // Kezdeti állapot: átlátszó
+        y: 50,      // Kezdeti állapot: 50px-szel lejjebb
+        // 5. Stagger effekt a lépcsőzetes megjelenéshez
+        stagger: 0.05, // Minden karakter 0.05s késleltetéssel indul
+        duration: 0.5, // Egy karakter animációjának hossza
+        ease: "power2.out" // Finomítás
+      });
+    });
+  </script>
+
+</body>
+</html>

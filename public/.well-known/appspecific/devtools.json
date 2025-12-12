@@ -1,0 +1,8 @@
+{
+  "workspaces": [
+    {
+      "path": "/",
+      "name": "my_website"
+    }
+  ]
+}

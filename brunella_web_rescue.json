@@ -1,0 +1,1485 @@
+{
+  "structure": [
+    {
+      "path": ".",
+      "files": [
+        ".env",
+        ".env.local",
+        ".eslintrc.json",
+        ".gemini",
+        ".gitignore",
+        "1.jpg",
+        "1.mp4",
+        "2.jpg",
+        "2.mp4",
+        "3.jpg",
+        "adaptiveAnimation.html",
+        "Ads.txt",
+        "agent_diag.py",
+        "brunella_diag_report.json",
+        "brunella_scout.py",
+        "brunella_status_report.json",
+        "characterAnimation.html",
+        "CHECKLIST.md",
+        "data-202511735220.json",
+        "deploy-build.sh",
+        "desktop.ini",
+        "eslint.config.mjs",
+        "example.js",
+        "GEMINI.md",
+        "gh_2.83.1_windows_amd64.msi",
+        "gltfLoader.js",
+        "google-chrome-stable_current_amd64.deb",
+        "GoogleCloudSDKInstaller.exe",
+        "main.js",
+        "mainWithScroll.js",
+        "netlify.toml",
+        "next-env.d.ts",
+        "package-lock.json",
+        "package.json",
+        "parallax.html",
+        "pohanka.company (DNS Records).csv",
+        "postcss.config.mjs",
+        "ppp.jpg",
+        "ppp.mp4",
+        "ppp2.mp4",
+        "ppp4.jpg",
+        "ppp4.mp4",
+        "PROJECT_SUMMARY.md",
+        "push.log",
+        "qrcode_drive.google.com.png",
+        "QUICK_REFERENCE.md",
+        "README.md",
+        "README_ThreeJS_Project.md",
+        "scrollAnimations.js",
+        "tailwind.config.ts",
+        "tsconfig.json",
+        "tsconfig.tsbuildinfo",
+        "vite.config.js",
+        "Weboldal_V5_Gemini_CLI_Utasitas.md",
+        "WORLDQUANT_MODERNIZATION.md"
+      ]
+    },
+    {
+      "path": ".genkit",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".genkit\\runtimes",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".genkit\\servers",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".genkit\\traces",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".genkit\\traces_idx",
+      "files": [
+        "desktop.ini",
+        "genkit.metadata"
+      ]
+    },
+    {
+      "path": ".github",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".github\\workflows",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".netlify",
+      "files": [
+        "desktop.ini",
+        "netlify.toml",
+        "state.json"
+      ]
+    },
+    {
+      "path": ".netlify\\deploy",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".netlify\\deploy\\v1",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".netlify\\deploy\\v1\\blobs",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".netlify\\deploy\\v1\\blobs\\deploy",
+      "files": [
+        "desktop.ini",
+        "L2Jsb2c",
+        "L2luZGV4",
+        "L2thcGNzb2xhdA",
+        "L3BvcnRmb2xpbw",
+        "L3JvbHVuaw",
+        "L3N6b2xnYWx0YXRhc29r",
+        "L3Rlcm1la2Vr",
+        "L3Rlcm1la2VrL2JydW5lbGxhLWFnZW50cw",
+        "L3Rlcm1la2VrL3BvaGktYWktcHJv",
+        "LzQwNA",
+        "NDA0Lmh0bWw",
+        "NTAwLmh0bWw"
+      ]
+    },
+    {
+      "path": ".netlify\\edge-functions",
+      "files": [
+        "desktop.ini",
+        "manifest.json"
+      ]
+    },
+    {
+      "path": ".netlify\\functions",
+      "files": [
+        "desktop.ini",
+        "manifest.json",
+        "___netlify-server-handler.zip"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler",
+      "files": [
+        ".env",
+        ".env.local",
+        "desktop.ini",
+        "package.json",
+        "run-config.json",
+        "server.js",
+        "___netlify-server-handler.json",
+        "___netlify-server-handler.mjs"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify",
+      "files": [
+        "desktop.ini",
+        "package.json"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify\\dist",
+      "files": [
+        "desktop.ini",
+        "index.js"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify\\dist\\build",
+      "files": [
+        "advanced-api-routes.js",
+        "cache.js",
+        "desktop.ini",
+        "image-cdn.js",
+        "plugin-context.js",
+        "skew-protection.js",
+        "verification.js"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify\\dist\\build\\content",
+      "files": [
+        "desktop.ini",
+        "prerendered.js",
+        "server.js",
+        "static.js"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify\\dist\\build\\content\\next-shims",
+      "files": [
+        "desktop.ini",
+        "telemetry-storage.cjs"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify\\dist\\build\\functions",
+      "files": [
+        "desktop.ini",
+        "edge.js",
+        "server.js"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify\\dist\\build\\templates",
+      "files": [
+        "desktop.ini",
+        "handler-monorepo.tmpl.js",
+        "handler.tmpl.js"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify\\dist\\esm-chunks",
+      "files": [
+        "chunk-5V5HA6YA.js",
+        "chunk-6BT4RYQJ.js",
+        "chunk-TVEBGDAB.js",
+        "chunk-YUXQHOYO.js",
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify\\dist\\run",
+      "files": [
+        "config.js",
+        "constants.js",
+        "desktop.ini",
+        "headers.js",
+        "next.cjs",
+        "revalidate.js"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify\\dist\\run\\handlers",
+      "files": [
+        "cache.cjs",
+        "desktop.ini",
+        "request-context.cjs",
+        "server.js",
+        "tags-handler.cjs",
+        "tracer.cjs",
+        "use-cache-handler.js",
+        "wait-until.cjs"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify\\dist\\run\\storage",
+      "files": [
+        "desktop.ini",
+        "regional-blob-store.cjs",
+        "request-scoped-in-memory-cache.cjs",
+        "storage.cjs"
+      ]
+    },
+    {
+      "path": ".netlify\\functions-internal\\___netlify-server-handler\\.netlify\\dist\\shared",
+      "files": [
+        "blob-types.cjs",
+        "blobkey.js",
+        "cache-types.cjs",
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".netlify\\plugins",
+      "files": [
+        "desktop.ini",
+        "package-lock.json",
+        "package.json"
+      ]
+    },
+    {
+      "path": ".netlify\\static",
+      "files": [
+        "0.mp4",
+        "1.mp4",
+        "2.mp4",
+        "3.mp4",
+        "4.mp4",
+        "5.mp4",
+        "6.mp4",
+        "desktop.ini",
+        "robots.txt",
+        "sitemap.xml"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\.well-known",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\.well-known\\appspecific",
+      "files": [
+        "desktop.ini",
+        "devtools.json"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks",
+      "files": [
+        "117-8c3a2d9831cf998a.js",
+        "584-005e1e1ffd41422d.js",
+        "639-d73f513789c0d564.js",
+        "956-9df2c53721e5f1ae.js",
+        "c15bf2b0-3fa3c123f635ab8d.js",
+        "desktop.ini",
+        "fd9d1056-6922f449a204c2cc.js",
+        "framework-f66176bb897dc684.js",
+        "main-6d4d90f7a7c411ec.js",
+        "main-app-25045861ee681672.js",
+        "polyfills-42372ed130431b0a.js",
+        "webpack-df9508188de4c63c.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app",
+      "files": [
+        "desktop.ini",
+        "layout-89761329dce27cbb.js",
+        "page-3ee94954d810a8e7.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app\\blog",
+      "files": [
+        "desktop.ini",
+        "page-d0d4760d6662ab1e.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app\\blog\\[slug]",
+      "files": [
+        "desktop.ini",
+        "page-c5e2503aff81ec35.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app\\kapcsolat",
+      "files": [
+        "desktop.ini",
+        "page-56470e6a11921ecd.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app\\portfolio",
+      "files": [
+        "desktop.ini",
+        "page-cf59c7521c1d7d4c.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app\\portfolio\\[id]",
+      "files": [
+        "desktop.ini",
+        "page-e83cae953d73e01a.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app\\rolunk",
+      "files": [
+        "desktop.ini",
+        "page-3e2048601f8ca828.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app\\szolgaltatasok",
+      "files": [
+        "desktop.ini",
+        "page-95ea0e83520e5fe8.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app\\termekek",
+      "files": [
+        "desktop.ini",
+        "layout-20b9758853cfe9cd.js",
+        "page-73277947adee6c91.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app\\termekek\\brunella-agents",
+      "files": [
+        "desktop.ini",
+        "page-adbf7682c8e064bb.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app\\termekek\\pohi-ai-pro",
+      "files": [
+        "desktop.ini",
+        "page-62979d364ccad059.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\app\\_not-found",
+      "files": [
+        "desktop.ini",
+        "page-98467b0ee1cfb9b0.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\chunks\\pages",
+      "files": [
+        "desktop.ini",
+        "_app-72b849fbd24ac258.js",
+        "_error-7ba65e1336b92748.js"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\css",
+      "files": [
+        "desktop.ini",
+        "e013926b4ea5559c.css"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\media",
+      "files": [
+        "19cfc7226ec3afaa-s.woff2",
+        "21350d82a1f187e9-s.woff2",
+        "8e9860b6e62d6359-s.woff2",
+        "ba9851c3c22cd980-s.woff2",
+        "c5fe6dc8356a8c31-s.woff2",
+        "desktop.ini",
+        "df0a9ae256c0569c-s.woff2",
+        "e4af272ccee01ff0-s.p.woff2"
+      ]
+    },
+    {
+      "path": ".netlify\\static\\_next\\static\\S4-XPe3nVJf4dNVmBrwmE",
+      "files": [
+        "desktop.ini",
+        "_buildManifest.js",
+        "_ssgManifest.js"
+      ]
+    },
+    {
+      "path": ".netlify\\v1",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".netlify\\v1\\functions",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".snapshots",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".swc",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".swc\\plugins",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".swc\\plugins\\v7_windows_x86_64_0.106.15",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".tmp.drivedownload",
+      "files": []
+    },
+    {
+      "path": ".tmp.driveupload",
+      "files": [
+        "1994723",
+        "1994773",
+        "1994787",
+        "1994791",
+        "1994873",
+        "1994877",
+        "1994879",
+        "1994881",
+        "1994883",
+        "1994885",
+        "1994887",
+        "1994891",
+        "1994905",
+        "1995695",
+        "1995697",
+        "2073611",
+        "2073617",
+        "2073619",
+        "2073625",
+        "2073633",
+        "2073635",
+        "2073643",
+        "2073653",
+        "2073655",
+        "2073665",
+        "2073669",
+        "2073673",
+        "2073677",
+        "2073681",
+        "2073683",
+        "2073685",
+        "2073687",
+        "2073689",
+        "2073697",
+        "2073699",
+        "2073701",
+        "2073705",
+        "2073707",
+        "2073711",
+        "2073721",
+        "2073723",
+        "2073739",
+        "2073745",
+        "2073773",
+        "2073775",
+        "2073777",
+        "2073779",
+        "2073781",
+        "2073783",
+        "2073785",
+        "2073789",
+        "2073793",
+        "2073797",
+        "2073803",
+        "2073933",
+        "2074005",
+        "2190941",
+        "2196933",
+        "2202913",
+        "2203763",
+        "2207349",
+        "2249271",
+        "2249273",
+        "2251162",
+        "2251368",
+        "2273131",
+        "2273133",
+        "2273135",
+        "2273137",
+        "2273143",
+        "2273145",
+        "2273149",
+        "2273151",
+        "2273155",
+        "2273159",
+        "2273161",
+        "2273163",
+        "2273175",
+        "2273179",
+        "2273181",
+        "2273183",
+        "2273187",
+        "2273189",
+        "2273193",
+        "2273195",
+        "2273199",
+        "2273201",
+        "2273205",
+        "2273207",
+        "2273209",
+        "2273211",
+        "2273215",
+        "2273217",
+        "2273221",
+        "2273223",
+        "2273239",
+        "2273255",
+        "2273317",
+        "2273325",
+        "2273453",
+        "2273455",
+        "2273457",
+        "2273459",
+        "2273461",
+        "2273463",
+        "2273465",
+        "2273467",
+        "2273469",
+        "2273471",
+        "2273473",
+        "2273475",
+        "2273477",
+        "2273479",
+        "2273481",
+        "2273483",
+        "2273487",
+        "2273489",
+        "2273491",
+        "2273507",
+        "2273509",
+        "2273513",
+        "2273517",
+        "2273519",
+        "2273521",
+        "2273523",
+        "2273529",
+        "2273531",
+        "2273533",
+        "2273537",
+        "2273539",
+        "2273545",
+        "2273549",
+        "2273551",
+        "2273553",
+        "2273555",
+        "2273559",
+        "2273561",
+        "2273565",
+        "2273569",
+        "2273571",
+        "2273579",
+        "2273583",
+        "2273585",
+        "2273591",
+        "2273593",
+        "2273595",
+        "2273597",
+        "2273650",
+        "2273677",
+        "2273683",
+        "2273685",
+        "2273703",
+        "2273715",
+        "2273717",
+        "2273719",
+        "2273721",
+        "2273723",
+        "2273725",
+        "2273727",
+        "2273729",
+        "2273733",
+        "2273741",
+        "2273751",
+        "2273753",
+        "2273755",
+        "2273757",
+        "2273759",
+        "2273761",
+        "2273763",
+        "2273769",
+        "2273777",
+        "2273781",
+        "2273787",
+        "2273795",
+        "2273797",
+        "2273799",
+        "2273801",
+        "2273803",
+        "2273805",
+        "2273807",
+        "2273809",
+        "2273813",
+        "2273821",
+        "2273823",
+        "2273825",
+        "2273827",
+        "2273833",
+        "2273835",
+        "2273839",
+        "2273841",
+        "2273843",
+        "2273845",
+        "2273851",
+        "2273857",
+        "2273859",
+        "2273861",
+        "2273869",
+        "2273871",
+        "2273873",
+        "2273875",
+        "2273885",
+        "2273889",
+        "2273897",
+        "2273899",
+        "2273903",
+        "2273907",
+        "2273909",
+        "2273911",
+        "2273913",
+        "2273915",
+        "2273919",
+        "2273921",
+        "2273923",
+        "2273925",
+        "2273929",
+        "2273931",
+        "2273933",
+        "2273935",
+        "2273937",
+        "2273939",
+        "2273941",
+        "2273949",
+        "2273959",
+        "2273961",
+        "2273971",
+        "2273973",
+        "2273975",
+        "2273977",
+        "2273979",
+        "2273981",
+        "2273991",
+        "2273995",
+        "2274001",
+        "2274003",
+        "2274005",
+        "2274009",
+        "2274013",
+        "2274015",
+        "2274021",
+        "2274023",
+        "2274025",
+        "2274033",
+        "2274039",
+        "2274043",
+        "2274045",
+        "2274047",
+        "2274049",
+        "2274051",
+        "2274053",
+        "2274055",
+        "2274057",
+        "2274059",
+        "2274069",
+        "2274073",
+        "2274079",
+        "2274083",
+        "2274085",
+        "2274097",
+        "2274107",
+        "2274109",
+        "2274111",
+        "2274113",
+        "2274115",
+        "2274117",
+        "2274119",
+        "2274121",
+        "2274123",
+        "2274135",
+        "2274137",
+        "2274143",
+        "2274145",
+        "2274147",
+        "2274149",
+        "2274151",
+        "2274153",
+        "2274155",
+        "2274157",
+        "2274159",
+        "2274161",
+        "2274167",
+        "2274171",
+        "2274181",
+        "2274185",
+        "2274187",
+        "2274189",
+        "2274191",
+        "2274193",
+        "2274195",
+        "2274199",
+        "2274201",
+        "2274203",
+        "2274205",
+        "2274207",
+        "2274209",
+        "2274211",
+        "2274213",
+        "2274215",
+        "2274225",
+        "2274229",
+        "2274231",
+        "2274233",
+        "2274237",
+        "2274239",
+        "2274243",
+        "2274249",
+        "2274251",
+        "2274253",
+        "2274255",
+        "2274257",
+        "2274263",
+        "2274265",
+        "2274267",
+        "2274271",
+        "2274273",
+        "2274275",
+        "2274283",
+        "2274287",
+        "2274289",
+        "2274291",
+        "2274297",
+        "2274299",
+        "2274301",
+        "2274305",
+        "2274307",
+        "2274311",
+        "2274317",
+        "2274321",
+        "2274323",
+        "2274327",
+        "2274331",
+        "2274337",
+        "2274339",
+        "2274343",
+        "2274345",
+        "2274351",
+        "2274353",
+        "2274355",
+        "2274357",
+        "2274359",
+        "2274363",
+        "2274369",
+        "2274375",
+        "2274377",
+        "2274383",
+        "2274385",
+        "2274389",
+        "2274391",
+        "2274393",
+        "2274395",
+        "2274401",
+        "2274403",
+        "2274409",
+        "2274411",
+        "2274413",
+        "2274415",
+        "2274417",
+        "2274419",
+        "2274423",
+        "2274425",
+        "2274427",
+        "2274437",
+        "2274439",
+        "2274445",
+        "2274447",
+        "2274451",
+        "2274453",
+        "2274455",
+        "2274457",
+        "2274459",
+        "2274461",
+        "2274463",
+        "2274469",
+        "2274473",
+        "2274520",
+        "2274522",
+        "2274524",
+        "2274526"
+      ]
+    },
+    {
+      "path": ".vs",
+      "files": [
+        "CMakeWorkspaceSettings.json",
+        "desktop.ini",
+        "ProjectSettings.json",
+        "slnx.sqlite",
+        "VSWorkspaceState.json"
+      ]
+    },
+    {
+      "path": ".vs\\my_website",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".vs\\my_website\\CopilotIndices",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".vs\\my_website\\CopilotIndices\\17.14.1518.61961",
+      "files": [
+        "CodeChunks.db",
+        "desktop.ini",
+        "SemanticSymbols.db"
+      ]
+    },
+    {
+      "path": ".vs\\my_website\\CopilotIndices\\18.0.912.14514",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".vs\\my_website\\FileContentIndex",
+      "files": [
+        "80464e27-a37a-4296-929d-486ff0f76dfa.vsidx",
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".vs\\my_website\\v17",
+      "files": [
+        ".wsuo",
+        "desktop.ini",
+        "DocumentLayout.json"
+      ]
+    },
+    {
+      "path": ".vs\\my_website.slnx",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".vs\\my_website.slnx\\config",
+      "files": [
+        "applicationhost.config",
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".vs\\my_website.slnx\\copilot-chat",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".vs\\my_website.slnx\\copilot-chat\\e03c9ab8",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".vs\\my_website.slnx\\copilot-chat\\e03c9ab8\\sessions",
+      "files": [
+        "99f50273-4f79-4ef8-8836-bb5f25e69aed",
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".vs\\my_website.slnx\\FileContentIndex",
+      "files": [
+        "733ea33a-e86e-4340-bee7-c981ac662e2e.vsidx",
+        "920503b0-9d13-45c1-b300-f5c144af223c.vsidx",
+        "9de081ca-a8eb-44d9-aea4-4510d205370e.vsidx",
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": ".vs\\my_website.slnx\\v18",
+      "files": [
+        ".wsuo",
+        "desktop.ini",
+        "DocumentLayout.backup.json",
+        "DocumentLayout.json"
+      ]
+    },
+    {
+      "path": ".vscode",
+      "files": [
+        "desktop.ini",
+        "extensions.json"
+      ]
+    },
+    {
+      "path": "app",
+      "files": [
+        "desktop.ini",
+        "globals.css",
+        "layout.tsx",
+        "page.jsx"
+      ]
+    },
+    {
+      "path": "app\\api",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "app\\api\\revalidate",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "app\\blog",
+      "files": [
+        "desktop.ini",
+        "page.jsx"
+      ]
+    },
+    {
+      "path": "app\\blog\\[slug]",
+      "files": [
+        "desktop.ini",
+        "page.jsx"
+      ]
+    },
+    {
+      "path": "app\\components",
+      "files": [
+        "AudioReactiveVisualize.tsx",
+        "desktop.ini",
+        "Footer.tsx",
+        "GeometricAnimation.tsx",
+        "GsapFadeIn.tsx",
+        "Header.tsx",
+        "HeroParticles.tsx",
+        "LenisProvider.tsx",
+        "NeonText.tsx",
+        "PageTransitionProvider.tsx",
+        "ParticleBackground.tsx",
+        "SequentialVideoBackground.tsx",
+        "SpotlightCard.tsx",
+        "ThreeDScene.tsx",
+        "VideoBackground.tsx",
+        "WorldQuantButton.tsx",
+        "_AudioReactive.tsx"
+      ]
+    },
+    {
+      "path": "app\\kapcsolat",
+      "files": [
+        "desktop.ini",
+        "page.jsx"
+      ]
+    },
+    {
+      "path": "app\\portfolio",
+      "files": [
+        "desktop.ini",
+        "page.jsx"
+      ]
+    },
+    {
+      "path": "app\\portfolio\\[id]",
+      "files": [
+        "desktop.ini",
+        "page.jsx"
+      ]
+    },
+    {
+      "path": "app\\rolunk",
+      "files": [
+        "desktop.ini",
+        "page.jsx"
+      ]
+    },
+    {
+      "path": "app\\szolgaltatasok",
+      "files": [
+        "desktop.ini",
+        "page.jsx"
+      ]
+    },
+    {
+      "path": "app\\termekek",
+      "files": [
+        "desktop.ini",
+        "layout.tsx",
+        "page.jsx"
+      ]
+    },
+    {
+      "path": "app\\termekek\\brunella-agents",
+      "files": [
+        "desktop.ini",
+        "page.jsx"
+      ]
+    },
+    {
+      "path": "app\\termekek\\components",
+      "files": [
+        "desktop.ini",
+        "Footer.tsx",
+        "Navbar.tsx"
+      ]
+    },
+    {
+      "path": "app\\termekek\\p-very-work",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "app\\termekek\\pohi-ai-pro",
+      "files": [
+        "desktop.ini",
+        "page.jsx"
+      ]
+    },
+    {
+      "path": "components",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\.idea",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\.idea\\inspectionProfiles",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\.readmes",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\.readmes\\intellij",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\.readmes\\intellij\\img",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\.readmes\\theia",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\.readmes\\theia\\img",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\.readmes\\vscode",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\.snapshots",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\.vscode",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\img",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\kubernetes-manifests",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\src",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\src\\static",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\src\\templates",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-1\\tests",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\.idea",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\.idea\\inspectionProfiles",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\.readmes",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\.readmes\\intellij",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\.readmes\\intellij\\img",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\.readmes\\theia",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\.readmes\\theia\\img",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\.readmes\\vscode",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\.snapshots",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\.vscode",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\img",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\kubernetes-manifests",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\src",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\src\\static",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\src\\templates",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "hello-world-2\\tests",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "lib",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "public",
+      "files": [
+        "0.mp4",
+        "1.mp4",
+        "2.mp4",
+        "3.mp4",
+        "4.mp4",
+        "5.mp4",
+        "6.mp4",
+        "desktop.ini",
+        "robots.txt",
+        "sitemap.xml"
+      ]
+    },
+    {
+      "path": "public\\.well-known",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "public\\.well-known\\appspecific",
+      "files": [
+        "desktop.ini",
+        "devtools.json"
+      ]
+    },
+    {
+      "path": "scripts",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "test-results",
+      "files": [
+        ".last-run.json",
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "test-results\\ResponsiveTest-Reszponz\u00edv-n\u00e9zetek-Desktop-n\u00e9zet",
+      "files": [
+        "desktop-home-actual.png",
+        "desktop-home-diff.png",
+        "desktop-home-expected.png",
+        "desktop.ini",
+        "error-context.md"
+      ]
+    },
+    {
+      "path": "test-results\\ResponsiveTest-Reszponz\u00edv-n\u00e9zetek-Mobil-n\u00e9zet-iPhone-12-",
+      "files": [
+        "desktop.ini",
+        "error-context.md",
+        "mobile-home-actual.png",
+        "mobile-home-diff.png",
+        "mobile-home-expected.png"
+      ]
+    },
+    {
+      "path": "test-results\\ResponsiveTest-Reszponz\u00edv-n\u00e9zetek-Tablet-n\u00e9zet-iPad-",
+      "files": [
+        "desktop.ini",
+        "error-context.md",
+        "tablet-home-actual.png",
+        "tablet-home-diff.png",
+        "tablet-home-expected.png"
+      ]
+    },
+    {
+      "path": "__tests__",
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    {
+      "path": "__tests__\\ResponsiveTest.spec.ts-snapshots",
+      "files": [
+        "desktop.ini"
+      ]
+    }
+  ],
+  "gitignore_content": "node_modules/\n.next/\n.env.local\n.env.development.local\n.env.test.local\n.env.production.local\n.vercel\n*.log\n*.deb\n*.msi\n*.mp4\ngh_*.msi\ngoogle-chrome-stable_*\n.tmp.driveupload\n.tmp.drivedownload\nmy_website/\ntest-results/\n\n# Local Netlify folder\n.netlify\n",
+  "package_json": {
+    "name": "ai-weboldal",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint"
+    },
+    "dependencies": {
+      "@tsparticles/slim": "^3.9.1",
+      "autoprefixer": "^10.4.21",
+      "framer-motion": "^12.23.24",
+      "gsap": "^3.13.0",
+      "lenis": "^1.3.14",
+      "lucide-react": "^0.552.0",
+      "next": "^14.2.33",
+      "react": "^18",
+      "react-dom": "^18",
+      "react-particles": "^2.12.2",
+      "three": "^0.165.0"
+    },
+    "devDependencies": {
+      "@netlify/plugin-nextjs": "^5.14.7",
+      "@types/node": "^20",
+      "@types/react": "^18",
+      "@types/react-dom": "^18",
+      "@typescript-eslint/eslint-plugin": "^8.46.2",
+      "@typescript-eslint/parser": "^8.46.2",
+      "eslint": "^8",
+      "eslint-config-next": "14.2.4",
+      "eslint-config-prettier": "^10.1.8",
+      "postcss": "^8",
+      "tailwindcss": "^3.4.1",
+      "typescript": "^5"
+    }
+  },
+  "suspicious_large_dirs": [
+    ".\\node_modules",
+    ".\\.next",
+    ".\\.netlify\\functions-internal\\___netlify-server-handler\\node_modules",
+    ".\\.netlify\\functions-internal\\___netlify-server-handler\\.next",
+    ".\\.netlify\\plugins\\node_modules"
+  ]
+}

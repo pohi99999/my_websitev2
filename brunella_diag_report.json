@@ -1,0 +1,171 @@
+{
+  ".": [
+    ".eslintrc.json",
+    "CHECKLIST.md",
+    "data-202511735220.json",
+    "example.js",
+    "GEMINI.md",
+    "gltfLoader.js",
+    "main.js",
+    "mainWithScroll.js",
+    "next-env.d.ts",
+    "package-lock.json",
+    "package.json",
+    "PROJECT_SUMMARY.md",
+    "QUICK_REFERENCE.md",
+    "README.md",
+    "README_ThreeJS_Project.md",
+    "scrollAnimations.js",
+    "tailwind.config.ts",
+    "tsconfig.json",
+    "vite.config.js",
+    "Weboldal_V5_Gemini_CLI_Utasitas.md",
+    "WORLDQUANT_MODERNIZATION.md"
+  ],
+  ".netlify": [
+    "state.json"
+  ],
+  ".netlify\\edge-functions": [
+    "manifest.json"
+  ],
+  ".netlify\\functions": [
+    "manifest.json"
+  ],
+  ".netlify\\functions-internal\\___netlify-server-handler": [
+    "package.json",
+    "run-config.json",
+    "server.js",
+    "___netlify-server-handler.json"
+  ],
+  ".netlify\\functions-internal\\___netlify-server-handler\\.netlify": [
+    "package.json"
+  ],
+  ".netlify\\plugins": [
+    "package-lock.json",
+    "package.json"
+  ],
+  ".netlify\\static\\.well-known\\appspecific": [
+    "devtools.json"
+  ],
+  ".netlify\\static\\_next\\static\\chunks": [
+    "117-8c3a2d9831cf998a.js",
+    "584-005e1e1ffd41422d.js",
+    "639-d73f513789c0d564.js",
+    "956-9df2c53721e5f1ae.js",
+    "c15bf2b0-3fa3c123f635ab8d.js",
+    "fd9d1056-6922f449a204c2cc.js",
+    "framework-f66176bb897dc684.js",
+    "main-6d4d90f7a7c411ec.js",
+    "main-app-25045861ee681672.js",
+    "polyfills-42372ed130431b0a.js",
+    "webpack-df9508188de4c63c.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app": [
+    "layout-89761329dce27cbb.js",
+    "page-3ee94954d810a8e7.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app\\blog": [
+    "page-d0d4760d6662ab1e.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app\\blog\\[slug]": [
+    "page-c5e2503aff81ec35.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app\\kapcsolat": [
+    "page-56470e6a11921ecd.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app\\portfolio": [
+    "page-cf59c7521c1d7d4c.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app\\portfolio\\[id]": [
+    "page-e83cae953d73e01a.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app\\rolunk": [
+    "page-3e2048601f8ca828.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app\\szolgaltatasok": [
+    "page-95ea0e83520e5fe8.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app\\termekek": [
+    "layout-20b9758853cfe9cd.js",
+    "page-73277947adee6c91.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app\\termekek\\brunella-agents": [
+    "page-adbf7682c8e064bb.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app\\termekek\\pohi-ai-pro": [
+    "page-62979d364ccad059.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\app\\_not-found": [
+    "page-98467b0ee1cfb9b0.js"
+  ],
+  ".netlify\\static\\_next\\static\\chunks\\pages": [
+    "_app-72b849fbd24ac258.js",
+    "_error-7ba65e1336b92748.js"
+  ],
+  ".netlify\\static\\_next\\static\\css": [
+    "e013926b4ea5559c.css"
+  ],
+  ".netlify\\static\\_next\\static\\S4-XPe3nVJf4dNVmBrwmE": [
+    "_buildManifest.js",
+    "_ssgManifest.js"
+  ],
+  ".vs": [
+    "CMakeWorkspaceSettings.json",
+    "ProjectSettings.json",
+    "VSWorkspaceState.json"
+  ],
+  ".vs\\my_website\\v17": [
+    "DocumentLayout.json"
+  ],
+  ".vs\\my_website.slnx\\v18": [
+    "DocumentLayout.backup.json",
+    "DocumentLayout.json"
+  ],
+  ".vscode": [
+    "extensions.json"
+  ],
+  "app": [
+    "globals.css",
+    "layout.tsx"
+  ],
+  "app\\components": [
+    "AudioReactiveVisualize.tsx",
+    "Footer.tsx",
+    "GeometricAnimation.tsx",
+    "GsapFadeIn.tsx",
+    "Header.tsx",
+    "HeroParticles.tsx",
+    "LenisProvider.tsx",
+    "NeonText.tsx",
+    "PageTransitionProvider.tsx",
+    "ParticleBackground.tsx",
+    "SequentialVideoBackground.tsx",
+    "SpotlightCard.tsx",
+    "ThreeDScene.tsx",
+    "VideoBackground.tsx",
+    "WorldQuantButton.tsx",
+    "_AudioReactive.tsx"
+  ],
+  "app\\termekek": [
+    "layout.tsx"
+  ],
+  "app\\termekek\\components": [
+    "Footer.tsx",
+    "Navbar.tsx"
+  ],
+  "public\\.well-known\\appspecific": [
+    "devtools.json"
+  ],
+  "test-results": [
+    ".last-run.json"
+  ],
+  "test-results\\ResponsiveTest-Reszponz\u00edv-n\u00e9zetek-Desktop-n\u00e9zet": [
+    "error-context.md"
+  ],
+  "test-results\\ResponsiveTest-Reszponz\u00edv-n\u00e9zetek-Mobil-n\u00e9zet-iPhone-12-": [
+    "error-context.md"
+  ],
+  "test-results\\ResponsiveTest-Reszponz\u00edv-n\u00e9zetek-Tablet-n\u00e9zet-iPad-": [
+    "error-context.md"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "allowFileModifications": true,
+  "allowScriptExecution": true,
+  "allowPackageJsonChanges": true,
+  "allowDevDependenciesInstall": true
+}

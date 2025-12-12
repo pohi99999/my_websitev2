@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Layer Parallax Effekt</title>
+  <style>
+    /* Alap stílusok a jobb megjelenésért */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #1a1a1a;
+      color: white;
+    }
+
+    /* A parallax konténer, ami a rétegeket tartalmazza */
+    #parallax-container {
+      position: relative; /* A belső absolute pozicionáláshoz szükséges */
+      height: 100vh; /* A viewport magasságát veszi fel */
+      overflow: hidden; /* A kilógó részeket elrejti */
+    }
+
+    /* 1. A 3 különböző réteg közös stílusai */
+    .parallax-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    /* 2. Rétegek egyedi stílusai és z-index beállítása */
+    #background-layer {
+      background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2070');
+      background-size: cover;
+      background-position: center;
+      z-index: 1; /* Leghátsó réteg */
+    }
+
+    #middle-layer {
+      background-color: rgba(255, 99, 71, 0.3); /* Áttetsző piros a láthatóságért */
+      z-index: 2; /* Középső réteg */
+    }
+
+    #foreground-layer {
+      background-color: rgba(0, 255, 157, 0.3); /* Áttetsző zöld a láthatóságért */
+      z-index: 3; /* Legfelső réteg */
+    }
+
+    /* Extra tartalom a görgetés biztosításához */
+    .content-section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      padding: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="parallax-container">
+    <div class="parallax-layer" id="background-layer"><span>Háttér</span></div>
+    <div class="parallax-layer" id="middle-layer"><span>Középső</span></div>
+    <div class="parallax-layer" id="foreground-layer"><span>Előtér</span></div>
+  </div>
+
+  <div class="content-section">
+    <p>Görgess lefelé, hogy lásd a parallax effektet.<br>A különböző rétegek (háttér, középső, előtér) eltérő sebességgel mozognak, ami mélységérzetet kelt.</p>
+  </div>
+
+  <script>
+    // 3. JavaScript scroll event listener implementálása
+    document.addEventListener('DOMContentLoaded', () => {
+      const backgroundLayer = document.getElementById('background-layer');
+      const middleLayer = document.getElementById('middle-layer');
+      const foregroundLayer = document.getElementById('foreground-layer');
+
+      // Sebesség-szorzók
+      const bgSpeed = 0.3;
+      const midSpeed = 0.5;
+      const fgSpeed = 0.8;
+
+      let ticking = false; // Optimalizáláshoz, hogy ne fusson túl gyakran a scroll esemény
+
+      function updateParallax() {
+        const scrollY = window.scrollY;
+
+        // 4. transform: translateY() használata a performáns animációhoz
+        // A háttér mozog a leglassabban, az előtér a leggyorsabban
+        if (backgroundLayer) {
+          backgroundLayer.style.transform = `translateY(${scrollY * bgSpeed}px)`;
+        }
+        if (middleLayer) {
+          middleLayer.style.transform = `translateY(${scrollY * midSpeed}px)`;
+        }
+        if (foregroundLayer) {
+          foregroundLayer.style.transform = `translateY(${scrollY * fgSpeed}px)`;
+        }
+
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
