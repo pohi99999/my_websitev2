@@ -3,8 +3,7 @@ import VideoBackground from "../components/VideoBackground";
 export default function RolunkPage() {
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center">
-      {/* Rólunk oldal Videója */}
-      <VideoBackground videoSrc="https://res.cloudinary.com/dbrwg0av5/video/upload/v1765516842/3_vk14r3.mp4" />
+      <VideoBackground videoSrc="/about.mp4" />
 
       <div className="relative z-10 container mx-auto px-4 py-20 text-white">
         <h1 className="text-5xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">

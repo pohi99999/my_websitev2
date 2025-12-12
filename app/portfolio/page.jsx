@@ -8,7 +8,7 @@ export default function PortfolioPage() {
 
       <div className="relative z-10 container mx-auto px-4 py-20 text-white">
         <h1 className="text-5xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-          Portfólió
+      <VideoBackground videoSrc="/portfolio.mp4" />
         </h1>
         
         {/* Itt lesznek a kártyák */}
