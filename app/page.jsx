@@ -1,3 +1,57 @@
+import VideoBackground from "../components/VideoBackground";
+import Link from "next/link";
+import { Bot, ShoppingBag, BrainCircuit, ArrowRight } from "lucide-react";
+
+export default function TermekekPage() {
+  return (
+    <main className="relative min-h-screen flex flex-col items-center justify-center">
+      {/* Termékek oldal Videója */}
+      <VideoBackground videoSrc="https://res.cloudinary.com/dbrwg0av5/video/upload/v1765517798/2_ulnaws.mp4" />
+
+      <div className="relative z-10 container mx-auto px-4 py-20 text-white">
+        <h1 className="text-5xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+          Termékeink & Megoldásaink
+        </h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+          
+          {/* Termék 1: BAS */}
+          <div className="glass-panel p-8 rounded-2xl border border-white/10 hover:border-blue-500/50 transition-all duration-300 backdrop-blur-md bg-black/40 flex flex-col group">
+            <div className="flex items-center mb-6">
+              <div className="p-4 bg-blue-500/20 rounded-full text-blue-400 mr-4 group-hover:rotate-12 transition-transform">
+                <BrainCircuit size={32} />
+              </div>
+              <h2 className="text-3xl font-bold">BAS System</h2>
+            </div>
+            <p className="text-gray-300 mb-6 flex-grow">
+              A Brunella Agent System: Az első valódi AI Operációs Rendszer vállalkozásoknak. Nem csak egy chatbot, hanem egy teljes digitális munkaerő, ami lát, hall és cselekszik helyetted.
+            </p>
+            <Link href="/termekek/brunella-agents" className="inline-flex items-center text-blue-400 font-bold hover:text-blue-300 transition-colors">
+              Részletek <ArrowRight className="ml-2" size={20} />
+            </Link>
+          </div>
+
+          {/* Termék 2: Pohi AI Pro */}
+          <div className="glass-panel p-8 rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all duration-300 backdrop-blur-md bg-black/40 flex flex-col group">
+            <div className="flex items-center mb-6">
+              <div className="p-4 bg-purple-500/20 rounded-full text-purple-400 mr-4 group-hover:rotate-12 transition-transform">
+                <Bot size={32} />
+              </div>
+              <h2 className="text-3xl font-bold">Pohi AI Pro</h2>
+            </div>
+            <p className="text-gray-300 mb-6 flex-grow">
+              Automatizált kereskedelmi platform és intelligens asszisztens, amely összeköti a gyártókat a vevőkkel. Piackutatás, lead generálás és üzletkötés robotpilótán.
+            </p>
+            <Link href="/termekek/pohi-ai-pro" className="inline-flex items-center text-purple-400 font-bold hover:text-purple-300 transition-colors">
+              Részletek <ArrowRight className="ml-2" size={20} />
+            </Link>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  );
+}
 "use client";
 
 import React, { useEffect, useRef } from "react";
