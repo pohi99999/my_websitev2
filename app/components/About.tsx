@@ -1,35 +1,7 @@
-'use client';
+"use client";
 
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-
-type AccordionItemProps = {
-  title: string;
-  isOpen: boolean;
-  onClick: () => void;
-  children: ReactNode;
-};
-
-const AccordionItem = ({ title, isOpen, onClick, children }: AccordionItemProps) => (
-  <div className="border border-slate-800 rounded-xl bg-slate-900/50 overflow-hidden">
-    <button
-      onClick={onClick}
-      className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-slate-800 transition-colors"
-      type="button"
-    >
-      <span className="text-xl font-semibold text-white">{title}</span>
-      {isOpen ? <ChevronUp className="text-blue-400" /> : <ChevronDown className="text-slate-500" />}
-    </button>
-
-    <div
-      className={`transition-all duration-300 ease-in-out ${
-        isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-      }`}
-    >
-      <div className="px-6 pb-6 pt-2 text-slate-400 leading-relaxed">{children}</div>
-    </div>
-  </div>
-);
 
 const About = () => {
   const [openSection, setOpenSection] = useState<string | null>('values');
@@ -56,9 +28,7 @@ const About = () => {
                 Munkánk során a legmodernebb technológiákat ötvözzük a mély iparági ismeretekkel.
               </p>
               <p>
-                Nem csak szoftvert fejlesztünk, hanem a Mesterséges Intelligencia Google támogatásának köszönhetően
-                a legújabb modellek állnak rendelkezésünkre. Ezeket okosan beépítve nem csak gazdaságosabb működést érünk el,
-                hanem visszaadjuk a legértékesebbet: az <strong>IDŐT</strong>.
+                Nem csak szoftvert fejlesztünk, programokat, alkalmazásokat, applikációkat készítünk, hanem a Mesterséges Intelligencia Google támogatásának köszönhetően, az Ők általuk kifejlesztett legújabb technológiájú modellek állnak a rendelkezésünkre, melyeket ha okosan beleépítjük a vállalkozás ökoszisztémájába, olyan hatékonyságot érhetünk el amivel nem csak esélyünk van egy gazdaságosabb működést elérni, hanem a legértékesebb dolgot is mellé kapjuk, ami nem más mint a manapság mindennél értékesebb dolog, az <strong>IDŐ..!</strong>
               </p>
             </AccordionItem>
 
@@ -69,13 +39,13 @@ const About = () => {
               onClick={() => toggleSection('vision')}
             >
               <p className="mb-4">
-                Hiszünk a technológia erejében. Képzeld el, mennyire felgyorsult a világ – az információ sebessége kulcskérdés.
-                Ki szerzi meg előbb a piacot? Ki tudja vírusként terjeszteni a terméket? Ki látja előre az árfolyamokat?
+                Hiszünk a technológia erejében, hogy jobbá tegye a vállalkozások mindennapjait és új távlatokat nyisson a növekedésben. Folyamatosan kutatjuk az innovatív megoldásokat, hogy ügyfeleink mindig a piaci verseny élvonalában maradhassanak.
+              </p>
+              <p className="mb-4">
+                Képzeljétek el, hogy mennyire felgyorsult körülöttünk az idő, mindenki rohan, az információ sebessége manapság kulcskérdés az élet minden területén. Igaz ez az üzleti életre is: ki tud előbb megszerezni egy piacot? Ki tudja először vírusként elterjeszteni a terméket, amit értékesíteni szeretne? Ki tudja meg először mikor, mire érdemes pályázni? Mennyi lesz a Ft/Euro árfolyam várható alakulása? Mi a fogyasztók viselkedése, érdeklődése jelenleg stb...?
               </p>
               <p>
-                Mi képesek vagyunk rá, hogy ezeket az elképesztő adatokat és előrejelzéseket beépítsük a stratégiádba,
-                hogy a kitűzött céljaidat gyorsabban elérhesd. Folyamatosan kutatjuk az innovatív megoldásokat,
-                hogy ügyfeleink mindig az élvonalban maradjanak.
+                Mi képesek leszünk rá, hogy ezeket és még elképesztőbb dolgokat beleépítsük a stratégiánkba, hogy a kitűzött rövid, és hosszútávú céljaid elérésében segítséget nyújtsunk.
               </p>
             </AccordionItem>
 
@@ -86,13 +56,11 @@ const About = () => {
               onClick={() => toggleSection('team')}
             >
               <p className="mb-4">
-                Minden projektet partnerségként kezelünk. Szakértő csapatunk tagjai több éves tapasztalattal rendelkeznek
-                könyviteli, pályázatírási, pénzügyi és vámügyintézési területeken.
+                Elkötelezettek vagyunk ügyfeleink sikere mellett. Minden projektet partnerségként kezelünk, szorosan együttműködve a legjobb eredmények elérése érdekében, biztosítva az átláthatóságot és a kölcsönös bizalmat.
               </p>
+              <h4 className="text-white font-semibold mb-2">Szakértő csapatunk:</h4>
               <p>
-                Komplett kapcsolatrendszerünk van az iparkamarával és hatóságokkal.
-                Elemző és piackutató módszerünk egyedülálló, logisztikai hálózatunk pedig lefedi
-                a hazai és nemzetközi szállítmányozást is.
+                Szakértő csapatunk tagjai több éves tapasztalattal rendelkeznek a könyviteli, pályázatírási, finanszírozási, pénzügyi, vám ügyintézés, munkavédelmi, munkaügyi engedélyezés területén, komplett engedélyezési kapcsolat rendszerünk van kiépítve az iparkamarával és a növényegészségügyi hivatallal egyaránt. Elemző, és piackutató módszerünk egyedülálló az országban. Kereskedelmi és logisztikai kapcsolatunk van hazai, és nemzetközi fuvarozó cégekkel és hajózási szállítási szolgáltatókkal.
               </p>
             </AccordionItem>
           </div>
@@ -101,5 +69,26 @@ const About = () => {
     </section>
   );
 };
+
+// Segédkomponens az Accordionhoz
+const AccordionItem = ({ title, isOpen, onClick, children }: any) => (
+  <div className="border border-slate-800 rounded-xl bg-slate-900/50 overflow-hidden">
+    <button
+      onClick={onClick}
+      className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-slate-800 transition-colors"
+    >
+      <span className="text-xl font-semibold text-white">{title}</span>
+      {isOpen ? <ChevronUp className="text-blue-400" /> : <ChevronDown className="text-slate-500" />}
+    </button>
+
+    <div
+      className={`transition-all duration-300 ease-in-out ${
+        isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
+      }`}
+    >
+      <div className="px-6 pb-6 pt-2 text-slate-400 leading-relaxed text-justify">{children}</div>
+    </div>
+  </div>
+);
 
 export default About;

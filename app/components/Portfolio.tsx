@@ -1,11 +1,16 @@
-import React from 'react';
-import { ArrowRight, Award, TrendingUp } from 'lucide-react';
+"use client";
+
+import React, { useState } from 'react';
+import { ArrowRight, Award, TrendingUp, X } from 'lucide-react';
 
 const Portfolio = () => {
+  // Állapot a kiválasztott kép tárolására (Lightboxhoz)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   const badges = Array.from({ length: 12 }, (_, i) => ({
     id: i + 1,
     src: `/images/google-dev-badge${i + 1}.png`,
-    alt: `Google Developer Certification ${i + 1}`,
+    alt: `Google Developer Certification ${i + 1}`
   }));
 
   return (
@@ -49,9 +54,9 @@ const Portfolio = () => {
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Pohi AI Pro</h3>
               <p className="text-slate-400 mb-6 text-sm leading-relaxed">
-                Egyedi fejlesztésű portálrendszer, amely összefésüli a vevői rendelésállományt a gyártói készletnyilvántartással.
-                <br /><span className="text-purple-400 block mt-2">Jelenleg fejlesztés és tesztelés alatt:</span>
-                MI vezérelt automatizálás bevezetése a gyorsabb és átláthatóbb működésért.
+                Egyedi fejlesztésű, teljes portál rendszer amely egy vevői adatbázis és annak rendelés állományát valamint a gyártok készletnyilvántartását összefésüli és kezeli a vevői igényekkel, fuvarszervezéssel egybe hangolva.
+                <br /><br />
+                <span className="text-purple-400 font-medium">Még fejlesztés alatt:</span> tesztelés a Mesterséges Intelligencia által vezérelt automatizálása bevezetése a gyorsabb és átláthatóbb nyilvántartás érdekében.
               </p>
               <a href="#" className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium transition-colors">
                 Részletek <ArrowRight className="ml-2 w-4 h-4" />
@@ -76,7 +81,7 @@ const Portfolio = () => {
           </div>
         </div>
 
-        {/* Eredmények és Tanúsítványok (ÚJ 12 ELEMES RÁCS) */}
+        {/* Eredmények és Tanúsítványok (Kattintható Badge-ek) */}
         <div className="border-t border-slate-800 pt-16">
           <h3 className="text-center text-2xl font-bold text-white mb-4">Minősítéseink és Eredményeink</h3>
           <p className="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
@@ -87,7 +92,8 @@ const Portfolio = () => {
             {badges.map((badge) => (
               <div
                 key={badge.id}
-                className="p-4 bg-slate-800/30 rounded-xl hover:bg-slate-800/60 transition-all duration-300 group flex items-center justify-center h-32 border border-transparent hover:border-slate-700"
+                onClick={() => setSelectedImage(badge.src)}
+                className="cursor-pointer p-4 bg-slate-800/30 rounded-xl hover:bg-slate-800/60 transition-all duration-300 group flex items-center justify-center h-32 border border-transparent hover:border-slate-700"
               >
                 <img
                   src={badge.src}
@@ -111,6 +117,27 @@ const Portfolio = () => {
           </div>
         </div>
       </div>
+
+      {/* Lightbox / Modal Overlay */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+            onClick={() => setSelectedImage(null)}
+          >
+            <X size={48} />
+          </button>
+          <img
+            src={selectedImage}
+            alt="Tanúsítvány nagyítva"
+            className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl scale-100 transition-transform"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
   );
 };
