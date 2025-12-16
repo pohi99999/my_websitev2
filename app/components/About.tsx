@@ -11,8 +11,24 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-24 bg-slate-950">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-24 bg-slate-950 relative overflow-hidden">
+      {/* Background video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="/contact.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-white mb-12 text-center">Rólunk</h2>
 

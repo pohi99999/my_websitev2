@@ -4,8 +4,21 @@ import { ArrowRight } from 'lucide-react';
 const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center bg-slate-950 overflow-hidden pt-20">
-      {/* Háttér effekt */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/hero-bg.jpg')] bg-cover bg-center opacity-20"></div>
+      {/* Background video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="/home.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
       
       <div className="container mx-auto px-4 relative z-10 text-center">
         {/* Főcím */}
@@ -18,7 +31,7 @@ const Hero = () => {
         
         {/* Alcím (A mondat folytatása) */}
         <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
-          ...az ember kapcsolata az elkövetkező időszak kulcsa a sikerhez.
+          az ember kapcsolata az elkövetkező időszak kulcsa a sikerhez.
         </p>
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-6">
