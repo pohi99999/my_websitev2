@@ -16,6 +16,10 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-white mb-12 text-center">Rólunk</h2>
 
+          <p className="text-slate-300 text-lg leading-relaxed text-center mb-10">
+            Hiszünk abban, hogy az Alkotók ideje jött el, ahol a technológia az ecset, Te vagy a Művész, és a siker a Te Alkotásod! Cégünk küldetése, hogy a Művészt inspirációval, ötletekkel és megoldásokkal vértezze fel, hogy mesterműve valóban sikeres legyen. Ha felkeltettük érdeklődésedet, tanulmányozd tovább weboldalunkat! Folyamatosan bővíteni fogjuk hasznos tartalmakkal, esettanulmányokkal, bemutatókkal és egyéb érdekességekkel, amelyekkel foglalkozunk.
+          </p>
+
           <div className="space-y-4">
             {/* 1. Értékek és Filozófia */}
             <AccordionItem
