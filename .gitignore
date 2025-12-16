@@ -7,6 +7,9 @@ test-results/
 *.mp4
 *.mov
 *.avi
+!public/**/*.mp4
+!public/**/*.mov
+!public/**/*.avi
 dist/
 build/
 .env
