@@ -11,12 +11,12 @@ const Hero = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/hero-bg.jpg')] bg-cover bg-center opacity-20"></div>
 
       <div className="container mx-auto px-4 relative z-10 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
-          <span className="text-white">a Jövő Elkezdődött.</span>{' '}
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+        <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight max-w-6xl mx-auto">
+          <span className="block text-white">a Jövő Elkezdődött.</span>
+          <span className="block bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Innováció és Mesterséges Intelligencia
-          </span>{' '}
-          <span className="text-slate-300">
+          </span>
+          <span className="block text-slate-300 text-2xl md:text-4xl font-semibold mt-4">
             az ember kapcsolata az elkövetkező időszak kulcsa a sikerhez
           </span>
         </h1>
