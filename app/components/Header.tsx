@@ -38,19 +38,13 @@ export default function Header() {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between relative">
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group relative z-50">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-neon-green to-electric-blue blur-lg opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative w-10 h-10 rounded-xl bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center overflow-hidden group-hover:border-neon-green/50 transition-colors duration-300">
-                <span className="text-xl font-bold bg-gradient-to-r from-neon-green to-electric-blue bg-clip-text text-transparent">
-                  P
-                </span>
-              </div>
-            </div>
-            <span className="text-xl font-bold tracking-wide text-white group-hover:text-neon-green transition-colors duration-300">
-              Pohánka
-            </span>
+          {/* Logo (image) */}
+          <Link href="/" className="flex items-center group relative z-50">
+            <img
+              src="/images/logo.png"
+              alt="Pohánka és Társa Logo"
+              className="h-10 md:h-12 w-auto object-contain hover:opacity-90 transition-opacity"
+            />
           </Link>
 
           {/* Desktop Navigation */}
