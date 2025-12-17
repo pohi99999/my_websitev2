@@ -12,10 +12,11 @@ export const metadata = {
     title: "Termékek | Pohánka AI",
     description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára.",
     url: "/termekek",
-    images: [{ url: "/images/logo.png", alt: "Pohánka és Társa Kft. – logó" }]
+    type: "website",
+    locale: "hu_HU"
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Termékek | Pohánka AI",
     description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára."
   }

@@ -151,11 +151,10 @@ export async function generateMetadata({ params }) {
       description,
       url,
       type: 'article',
-      locale: 'hu_HU',
-      images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }]
+      locale: 'hu_HU'
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title,
       description
     }
@@ -181,6 +180,71 @@ export default function ProjectDetailPage({ params }) {
 
   return (
     <div className="min-h-screen bg-transparent text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify((() => {
+            const canonicalUrl = `https://pohanka.vercel.app/portfolio/${params.id}`;
+
+            const caseStudy = {
+              '@context': 'https://schema.org',
+              '@type': 'CaseStudy',
+              headline: project.title,
+              name: project.title,
+              description: project.description || 'Portfólió esettanulmány a Pohánka AI-tól.',
+              url: canonicalUrl,
+              mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': canonicalUrl
+              },
+              inLanguage: 'hu-HU',
+              author: {
+                '@type': 'Organization',
+                name: 'Pohánka és Társa Kft.',
+                url: 'https://pohanka.vercel.app'
+              },
+              publisher: {
+                '@type': 'Organization',
+                name: 'Pohánka és Társa Kft.',
+                url: 'https://pohanka.vercel.app',
+                logo: {
+                  '@type': 'ImageObject',
+                  url: 'https://pohanka.vercel.app/images/logo.png'
+                }
+              },
+              about: project.industry ? [{ '@type': 'Thing', name: project.industry }] : undefined,
+              keywords: Array.isArray(project.technologies) ? project.technologies.join(', ') : undefined
+            };
+
+            const breadcrumbList = {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Főoldal',
+                  item: 'https://pohanka.vercel.app/'
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: 'Portfólió',
+                  item: 'https://pohanka.vercel.app/portfolio'
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
+                  name: project.title,
+                  item: canonicalUrl
+                }
+              ]
+            };
+
+            return [caseStudy, breadcrumbList];
+          })())
+        }}
+      />
       {/* Hero */}
       <section className="relative py-12 px-6 pt-24">
         <div className="max-w-5xl mx-auto">

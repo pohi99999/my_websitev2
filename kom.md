@@ -297,6 +297,55 @@ Ellenőrzés:
 - `npm run lint` → csak meglévő warningok
 - `npm run build` → sikeres
 
+## 32) 2025-12-17 – “Perfect site” alapcsomag #1: reduced-motion + security headerek + OG képek + schema
+
+Fókusz: Web Vitals / UX alapok (reduced motion), biztonsági válaszheaderek, és “rich share”/schema alapok bővítése.
+
+### 32.1 Reduced motion / perf UX
+
+Fájlok:
+- `app/components/LenisProvider.tsx`
+- `app/components/VideoBackground.tsx`
+- `app/globals.css`
+
+- `prefers-reduced-motion: reduce` és `save-data` esetén a Lenis smooth scroll nem indul el.
+- A `VideoBackground` reduced motion esetén statikus háttérre esik vissza (nem autoplay-ol videót).
+- Globális CSS reduced-motion szabály: kikapcsolja a `scroll-behavior: smooth`-ot és minimalizálja animáció/transition időket.
+
+### 32.2 Security response headerek
+
+Fájl:
+- `next.config.js`
+
+- `headers()` beállítva alap security headerekkel (`nosniff`, `referrer-policy`, `permissions-policy`, `x-frame-options`).
+- `Strict-Transport-Security` csak production-ben.
+- `poweredByHeader: false`.
+
+### 32.3 OG/Twitter share képek (route-ok)
+
+Fájlok:
+- `app/opengraph-image.tsx`, `app/twitter-image.tsx`
+- `app/blog/opengraph-image.tsx`, `app/blog/twitter-image.tsx`
+- `app/portfolio/opengraph-image.tsx`, `app/portfolio/twitter-image.tsx`
+- `app/termekek/opengraph-image.tsx`, `app/termekek/twitter-image.tsx`
+
+- Kulcs oldalakra egységes, modern OG/Twitter preview képek kerültek.
+- A listing oldalak metadata-jából kikerült a hardcoded logo `openGraph.images`, hogy a route alapú OG képek érvényesüljenek.
+
+### 32.4 Structured data (JSON-LD)
+
+Fájlok:
+- `app/blog/[slug]/page.jsx`
+- `app/portfolio/[id]/page.jsx`
+
+- Blog poszt oldalon: `BlogPosting` + `BreadcrumbList`.
+- Portfólió detail oldalon: `CaseStudy` + `BreadcrumbList`.
+- A dinamikus oldalak `generateMetadata`-ja Twitteren `summary_large_image` kártyára váltott.
+
+Ellenőrzés:
+- `npm run lint` → OK (TypeScript verzió warning: `@typescript-eslint` támogatási tartomány)
+- `npm run build` → sikeres (edge runtime figyelmeztetés: edge oldalak statikus generálást tiltják)
+
 ## 32) 2025-12-17 – Launch SEO/OG + sitemap/robots + jogi oldalak + 404 + `next/image`
 
 Fájlok:

@@ -10,10 +10,11 @@ export const metadata = {
     title: "Portfólió | Pohánka AI",
     description: "Kiemelt projektek és esettanulmányok – AI, automatizálás, webfejlesztés és üzleti rendszerek.",
     url: "/portfolio",
-    images: [{ url: "/images/logo.png", alt: "Pohánka és Társa Kft. – logó" }]
+    type: "website",
+    locale: "hu_HU"
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Portfólió | Pohánka AI",
     description: "Kiemelt projektek és esettanulmányok – AI, automatizálás, webfejlesztés és üzleti rendszerek."
   }

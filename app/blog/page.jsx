@@ -14,10 +14,11 @@ export const metadata = {
     description:
       'Cikkek és white paper anyagok AI ügynökökről, automatizálásról, technológiáról és a Brunella Agent System működéséről.',
     url: '/blog',
-    images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }]
+    type: 'website',
+    locale: 'hu_HU'
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Blog & Tudástár | Pohánka AI',
     description:
       'Cikkek és white paper anyagok AI ügynökökről, automatizálásról, technológiáról és a Brunella Agent System működéséről.'

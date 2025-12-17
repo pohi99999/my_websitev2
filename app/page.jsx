@@ -11,7 +11,15 @@ export const metadata = {
     title: 'Pohánka és Társa Kft. | AI Ügynökség & Szoftverfejlesztés',
     description:
       'Innovatív AI megoldások, Brunella Agent System és egyedi szoftverfejlesztés KKV-k számára. Automatizálja üzleti folyamatait velünk.',
-    images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }]
+    url: '/',
+    type: 'website',
+    locale: 'hu_HU'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Pohánka és Társa Kft. | AI Ügynökség & Szoftverfejlesztés',
+    description:
+      'Innovatív AI megoldások, Brunella Agent System és egyedi szoftverfejlesztés KKV-k számára. Automatizálja üzleti folyamatait velünk.'
   }
 };
 

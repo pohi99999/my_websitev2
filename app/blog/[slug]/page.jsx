@@ -383,6 +383,62 @@ const blogPosts = {
   },
 };
 
+function toIsoDate(huDate) {
+  if (!huDate) return undefined;
+
+  const normalized = String(huDate).replace(/\s+/g, ' ').trim();
+  const match = normalized.match(/^(\d{4})\.\s*([A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]+)\.?\s*(\d{1,2})\.?$/);
+  if (!match) return undefined;
+
+  const [, year, rawMonth, rawDay] = match;
+  const monthKey = rawMonth.toLowerCase().replace(/\./g, '');
+  const months = {
+    'január': '01',
+    jan: '01',
+    'február': '02',
+    feb: '02',
+    'március': '03',
+    marc: '03',
+    marcius: '03',
+    'április': '04',
+    apr: '04',
+    aprilis: '04',
+    'május': '05',
+    maj: '05',
+    majus: '05',
+    'június': '06',
+    jun: '06',
+    junius: '06',
+    'július': '07',
+    jul: '07',
+    julius: '07',
+    'augusztus': '08',
+    aug: '08',
+    'szeptember': '09',
+    szep: '09',
+    'október': '10',
+    okt: '10',
+    oktober: '10',
+    'november': '11',
+    nov: '11',
+    'december': '12',
+    dec: '12'
+  };
+
+  const month = months[monthKey];
+  if (!month) return undefined;
+
+  const day = String(rawDay).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function toDurationMinutes(readTime) {
+  if (!readTime) return undefined;
+  const match = String(readTime).match(/(\d+)/);
+  if (!match) return undefined;
+  return `PT${match[1]}M`;
+}
+
 export async function generateMetadata({ params }) {
   const post = blogPosts?.[params?.slug];
 
@@ -408,11 +464,10 @@ export async function generateMetadata({ params }) {
       description,
       url,
       type: 'article',
-      locale: 'hu_HU',
-      images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }]
+      locale: 'hu_HU'
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title,
       description
     }
@@ -438,6 +493,73 @@ export default function BlogPostPage({ params }) {
 
   return (
     <div className="min-h-screen bg-transparent text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify((() => {
+            const canonicalUrl = `https://pohanka.vercel.app/blog/${params.slug}`;
+            const isoDate = toIsoDate(post.date);
+            const duration = toDurationMinutes(post.readTime);
+
+            const blogPosting = {
+              '@context': 'https://schema.org',
+              '@type': 'BlogPosting',
+              headline: post.title,
+              description: post.excerpt || 'Blog bejegyzés a Pohánka AI tudástárból.',
+              url: canonicalUrl,
+              mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': canonicalUrl
+              },
+              inLanguage: 'hu-HU',
+              author: {
+                '@type': 'Person',
+                name: post.author || 'Pohánka és Társa Kft.'
+              },
+              publisher: {
+                '@type': 'Organization',
+                name: 'Pohánka és Társa Kft.',
+                url: 'https://pohanka.vercel.app',
+                logo: {
+                  '@type': 'ImageObject',
+                  url: 'https://pohanka.vercel.app/images/logo.png'
+                }
+              },
+              articleSection: post.category || undefined,
+              timeRequired: duration
+            };
+
+            if (isoDate) blogPosting.datePublished = isoDate;
+
+            const breadcrumbList = {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Főoldal',
+                  item: 'https://pohanka.vercel.app/'
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: 'Blog',
+                  item: 'https://pohanka.vercel.app/blog'
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
+                  name: post.title,
+                  item: canonicalUrl
+                }
+              ]
+            };
+
+            return [blogPosting, breadcrumbList];
+          })())
+        }}
+      />
       {/* Hero Section */}
       <section className="relative py-12 px-6 pt-24">
         <div className="max-w-4xl mx-auto">
