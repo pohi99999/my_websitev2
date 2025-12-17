@@ -373,6 +373,15 @@ Vercel Environment Variables (Upstash):
 - `UPSTASH_REDIS_REST_URL`
 - `UPSTASH_REDIS_REST_TOKEN`
 
+## 33.3 – SEO finomhangolás: canonical + Brunella OG/Twitter kép
+
+- Javítás: a globális layoutban korábban fixen `https://pohanka.vercel.app/` volt beállítva canonical-ként minden oldalra, ez SEO szempontból hibás volt.
+- Megoldás: a hardcoded canonical törölve a layoutból, és a fontos oldalak per-page canonical-t kaptak a Next.js `metadata`-n keresztül:
+  - Home: `/`
+  - Fogalomtár: `/fogalomtar`
+  - Brunella Agents: `/termekek/brunella-agents`
+- Brunella Agents kapott `twitter:card` beállítást és automatikus OG/Twitter preview képeket (Next.js `opengraph-image.tsx` / `twitter-image.tsx`).
+
 ## 20) 2025-12-17 – Brunella Agents: 3. interaktív demó (Business Workflow)
 
 Fájl:

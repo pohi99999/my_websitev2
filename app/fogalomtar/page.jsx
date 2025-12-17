@@ -4,6 +4,9 @@ export const metadata = {
   title: 'Fogalomtár (AI & Tech)',
   description:
     'Kereshető AI és technológiai fogalomtár a Brunella Agent System és a modern mesterséges intelligencia kulcsfogalmaival.',
+  alternates: {
+    canonical: '/fogalomtar'
+  },
   openGraph: {
     title: 'AI és Technológiai Fogalomtár | Pohánka AI',
     description:

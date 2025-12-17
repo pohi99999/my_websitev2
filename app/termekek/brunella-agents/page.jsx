@@ -15,12 +15,22 @@ export const metadata = {
   title: 'Brunella Agent System',
   description:
     'Brunella Agent System: autonóm AI ügynökök KKV-k számára. Automatizálás, monitorozás, üzleti workflow-k és human-in-the-loop kontroll egy rendszerben.',
+  alternates: {
+    canonical: '/termekek/brunella-agents'
+  },
   openGraph: {
     title: 'Brunella Agent System',
     description:
       'Brunella Agent System: autonóm AI ügynökök KKV-k számára. Automatizálás, monitorozás, üzleti workflow-k és human-in-the-loop kontroll egy rendszerben.',
+    url: '/termekek/brunella-agents',
     type: 'website',
     locale: 'hu_HU'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Brunella Agent System',
+    description:
+      'Brunella Agent System: autonóm AI ügynökök KKV-k számára. Automatizálás, monitorozás, üzleti workflow-k és human-in-the-loop kontroll egy rendszerben.'
   }
 };
 
