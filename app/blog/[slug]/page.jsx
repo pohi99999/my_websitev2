@@ -41,8 +41,8 @@ const blogPosts = {
       A jövő nem a titokzatos algoritmusoké, hanem az átlátható, elszámoltatható és etikus rendszereké. Ez a **Glass Box** forradalom.
     `,
     relatedPosts: [
-      { slug: 'az-ido-a-legertekesebb-valuta', title: 'Az IDŐ: A Legértékesebb Valuta' },
-      { slug: 'brunella-agent-system-mukodese', title: 'Így működik a BAS' },
+      { slug: 'az-ido-a-legertekesebb-valuta' },
+      { slug: 'brunella-agent-system-mukodese' }
     ],
   },
   'brunella-mi-csapatvezeto': {
@@ -95,8 +95,8 @@ const blogPosts = {
       Ez az "ember–MI szuperügynökség" korszaka. A valódi forradalom abban rejlik, hogy megtanulunk egyre komplexebb, specializált MI ágensekből álló csapatokat felépíteni és menedzselni. A Pohánka És Társa Kft. ebben a partnere.
     `,
     relatedPosts: [
-      { slug: 'brunella-agent-system-mukodese', title: 'Hogyan működik a BAS?' },
-      { slug: 'fekete-doboz-vege-glass-box', title: 'Glass Box Filozófia' },
+      { slug: 'brunella-agent-system-mukodese' },
+      { slug: 'fekete-doboz-vege-glass-box' }
     ],
   },
   'digitalis-lenyomat-anatomiaja': {
@@ -177,8 +177,8 @@ const blogPosts = {
       Ez a "Digitális Lenye-mat" a közös munkánk alapköve. Bármikor, amikor új feladatot adsz, ehhez nyúlok vissza, hogy a kontextusodnak legmegfelelőbb megoldást kínáljam.
     `,
     relatedPosts: [
-      { slug: 'brunella-mi-csapatvezeto', title: 'Brunella: Az MI Csapatvezető' },
-      { slug: 'fekete-doboz-vege-glass-box', title: 'Glass Box Filozófia' },
+      { slug: 'brunella-mi-csapatvezeto' },
+      { slug: 'fekete-doboz-vege-glass-box' }
     ],
   },
   'bevezeto-a-mesterseges-intelligencia-vilagaba': {
@@ -243,8 +243,8 @@ const blogPosts = {
       A közös siker receptje: **Emberi Kreativitás + Gépi Adatfeldolgozás = Határtalan Lehetőségek.**
     `,
     relatedPosts: [
-      { slug: 'digitalis-lenyomat-anatomiaja', title: 'A Digitális Lenye-mat' },
-      { slug: 'fekete-doboz-vege-glass-box', title: 'Miért félünk az AI-tól?' },
+      { slug: 'digitalis-lenyomat-anatomiaja' },
+      { slug: 'fekete-doboz-vege-glass-box' }
     ],
   },
   'brunella-strategiai-white-paper': {
@@ -299,8 +299,8 @@ const blogPosts = {
       A jövő nem a gépek uralma, hanem a szimbiózis. A BAS fejlesztésével nem az emberi munka kiváltása a cél, hanem annak "szupererővel" való felruházása. Ez a dokumentum a térkép, amely elvezet minket a **Jövő Szervezetéhez**.
     `,
     relatedPosts: [
-      { slug: 'brunella-mi-csapatvezeto', title: 'Brunella: Az MI Csapatvezető' },
-      { slug: 'bevezeto-a-mesterseges-intelligencia-vilagaba', title: 'Bevezető az MI Világába' },
+      { slug: 'brunella-mi-csapatvezeto' },
+      { slug: 'bevezeto-a-mesterseges-intelligencia-vilagaba' }
     ],
   },
   'az-ido-a-legertekesebb-valuta': {
@@ -339,8 +339,8 @@ const blogPosts = {
       A technológia az ecset, Te vagy a Művész, és a siker a Te Alkotásod. Mi csak biztosítjuk, hogy legyen időd megfesteni a mesterművet.
     `,
     relatedPosts: [
-      { slug: 'fekete-doboz-vege-glass-box', title: 'A Glass Box Filozófia' },
-      { slug: 'brunella-agent-system-mukodese', title: 'Technológiai Háttér' },
+      { slug: 'fekete-doboz-vege-glass-box' },
+      { slug: 'brunella-agent-system-mukodese' }
     ],
   },
   'brunella-agent-system-mukodese': {
@@ -378,8 +378,8 @@ const blogPosts = {
       Ez a struktúra teszi lehetővé, hogy a BAS olyan feladatokat is megoldjon, amelyekbe a hagyományos nyelvi modellek (LLM-ek) beletörnének.
     `,
     relatedPosts: [
-      { slug: 'fekete-doboz-vege-glass-box', title: 'Átláthatóság az AI-ban' },
-      { slug: 'az-ido-a-legertekesebb-valuta', title: 'Hatékonyság és Idő' },
+      { slug: 'fekete-doboz-vege-glass-box' },
+      { slug: 'az-ido-a-legertekesebb-valuta' }
     ],
   },
 };
@@ -701,7 +701,9 @@ export default function BlogPostPage({ params }) {
             {post.relatedPosts.map((relatedPost, idx) => (
               <GsapFadeIn key={idx} delay={0.5 + idx * 0.1}>
                 <SpotlightCard className="p-8 h-full flex flex-col justify-between hover:border-blue-500/50 transition-colors">
-                  <h3 className="text-xl font-bold mb-4">{getBlogPostMeta(relatedPost.slug)?.title ?? relatedPost.title}</h3>
+                  <h3 className="text-xl font-bold mb-4">
+                    {getBlogPostMeta(relatedPost.slug)?.title ?? relatedPost.title ?? relatedPost.slug}
+                  </h3>
                   <Link
                     href={`/blog/${relatedPost.slug}`}
                     className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium group"

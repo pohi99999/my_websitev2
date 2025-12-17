@@ -403,6 +403,20 @@ Ellenőrzés:
 - `npm run lint` → OK
 - `npm run build` → sikeres
 
+## 36) 2025-12-17 – Blog: relatedPosts title duplikáció megszüntetése
+
+Fókusz: a kapcsolódó cikkek listában ne legyen külön `title` hardcode-olva; a cím mindig a shared meta modulból jöjjön.
+
+Fájl:
+- `app/blog/[slug]/page.jsx`
+
+- A `relatedPosts` elemekből kikerültek a `title` mezők (csak `slug` maradt).
+- Renderelésnél a `getBlogPostMeta(slug)?.title` az elsődleges (fallback: korábbi title → slug).
+
+Ellenőrzés:
+- `npm run lint` → OK
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – Launch SEO/OG + sitemap/robots + jogi oldalak + 404 + `next/image`
 
 Fájlok:
