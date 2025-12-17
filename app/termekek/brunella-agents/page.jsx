@@ -116,7 +116,7 @@ export default function BrunellaAgentsPage() {
     <div className="relative min-h-screen bg-transparent text-white overflow-hidden">
       {/* YouTube background */}
       <iframe
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="fixed inset-0 w-full h-full object-cover pointer-events-none"
         src="https://www.youtube.com/embed/9h0tFmAlnIQ?autoplay=1&mute=1&controls=0&loop=1&playlist=9h0tFmAlnIQ&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
         title="Brunella Agent System Background"
         frameBorder="0"
@@ -125,7 +125,7 @@ export default function BrunellaAgentsPage() {
         aria-hidden="true"
         tabIndex={-1}
       />
-      <div className="absolute inset-0 bg-black/70" aria-hidden="true" />
+      <div className="fixed inset-0 bg-black/70" aria-hidden="true" />
 
       <div className="relative z-10">
         {/* Hero Section */}
