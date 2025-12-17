@@ -18,7 +18,7 @@ import AszfPage from '../../aszf/page';
 import BrunellaAgentsPage from '../../termekek/brunella-agents/page';
 import PohiAiProPage from '../../termekek/pohi-ai-pro/page';
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
 const SITE_URL = 'https://pohanka.vercel.app';
 

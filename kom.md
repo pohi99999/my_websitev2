@@ -383,6 +383,22 @@ Ellenőrzés:
 - `npm run lint` → sikeres
 - `npm run build` → sikeres
 
+## 38) 2025-12-17 – /en SSR nyelv fix: statikus cache kikapcsolása (force-dynamic)
+
+Fájl:
+- `app/en/[[...slug]]/page.tsx`
+
+Probléma (live validáció során):
+- Az `/en/...` oldalak HTML-je első kérésre is `lang="hu"`-val érkezett, még akkor is, amikor a middleware már `site-language=en` cookie-t állított.
+- A válaszfejlécek alapján ez **statikusan cache-elt** HTML volt (`X-Vercel-Cache: HIT`), így a request-alapú nyelvdetektálás (cookie/header) nem tudta befolyásolni az SSR-t.
+
+Javítás:
+- Az `/en` catch-all route kényszerített statikus renderje (`force-static`) átállítva **dinamikusra** (`force-dynamic`).
+- Ezzel az `/en/...` SSR már request-alapú, így a middleware által beállított nyelv (cookie + `x-site-language` header) ténylegesen érvényesülhet az első rendernél is.
+
+Ellenőrzés:
+- `npm run build` → sikeres (az `/en/[[...slug]]` route `ƒ (Dynamic)`)
+
 ## 32) 2025-12-17 – OG képek brand template + Markdown render pipeline + Web Vitals (JS split)
 
 Fájlok / újdonságok:
