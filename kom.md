@@ -362,6 +362,24 @@ Ellenőrzés:
 - `npm run lint` → sikeres
 - `npm run build` → sikeres (middleware és `/en/[[...slug]]` route generálódik)
 
+## 37) 2025-12-17 – /en SEO “profi”: metadata + canonical + hreflang
+
+Fájl:
+- `app/en/[[...slug]]/page.tsx`
+
+- Bevezetve a `generateMetadata` az `/en/[[...slug]]` catch-all route-hoz.
+- Oldalankénti (route-alapú) EN title/description mapping (pl. `/en`, `/en/termekek`, `/en/blog`, `/en/portfolio`, `/en/kapcsolat`, stb.).
+- SEO:
+  - `alternates.canonical`: EN oldalaknál a kanonikus URL `/en/...`
+  - `alternates.languages`: `hu` (no-prefix) + `en` (`/en/...`) → hreflang támogatás
+- Social preview:
+  - OpenGraph + Twitter meta beállítva (title/description + `metadataBase`)
+  - OG image: `public/images/logo.png`
+
+Ellenőrzés:
+- `npm run lint` → sikeres
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – OG képek brand template + Markdown render pipeline + Web Vitals (JS split)
 
 Fájlok / újdonságok:
