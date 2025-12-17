@@ -3,10 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import dynamic from 'next/dynamic';
 import SequentialVideoBackground from './components/SequentialVideoBackground';
-
-const DynamicLenisProvider = dynamic(() => import('./components/LenisProvider'), { ssr: false });
+import LenisProvider from './components/LenisProvider';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -91,13 +89,13 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-black text-white`}>
         <SequentialVideoBackground />
-        <DynamicLenisProvider>
+        <LenisProvider>
           <Header />
           <main className="pt-20">
             {children}
           </main>
           <Footer />
-        </DynamicLenisProvider>
+        </LenisProvider>
       </body>
     </html>
   );
