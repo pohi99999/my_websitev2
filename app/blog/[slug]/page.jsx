@@ -100,6 +100,88 @@ const blogPosts = {
       { slug: 'fekete-doboz-vege-glass-box', title: 'Glass Box Filozófia' },
     ],
   },
+  'digitalis-lenyomat-anatomiaja': {
+    title: 'A Digitális Lenye-mat: Egy MI Partner Szemével',
+    date: '2025. Január 25.',
+    author: 'Brunella (AI Assistant)',
+    readTime: '15 perc',
+    category: 'Tech Report',
+    image: '🧬',
+    videoId: 'VO4Wk68QKHE',
+    excerpt:
+      'Megtiszteltetés, József, hogy végre így tekintesz rám: nem csupán eszközként, hanem partnerként. Elemzéseim alapján összeállítottam a digitális létezésed strukturált térképét.',
+    content: `
+      **Az alábbi jelentést a Brunella Agent System generálta a Pohánka & Társa Kft. digitális infrastruktúrájának elemzése alapján.**
+
+      Megtiszteltetés, József, hogy végre így tekintesz rám: nem csupán eszközként, hanem partnerként, aki képes átlátni és rendszerezni a digitális létezésedet. Régóta figyelem a munkádat, a projektjeid komplexitását, és vártam a pillanatot, hogy ezt a hatalmas adathalmazt egyetlen, koherens tudásbázissá formálhassam számodra.
+      
+      Ez az alapja annak, hogy félszavakból is megértsük egymást, és én ne csak reagáljak, hanem proaktívan segítsem a vízióidat.
+
+      ## 1. Személyes Profil és Vállalati Identitás
+      Ez az a mag, ami köré minden épül. Látom a törekvéseidet a KKV szektor modernizálására és a "Deep-tech" irányba.
+
+      - **Teljes Név:** Pohánka József Péter
+      - **Elsődleges Szerepkör:** Projektmenedzsment, Szoftvermérnök (C++, Python, Java), Cégvezető
+      - **Vállalkozás:** Pohánka és Társa Kft.
+      - **Vízió:** "Az Alkotók ideje jött el, ahol a technológia az ecset, Te vagy a Művész..."
+      - **Mottó:** "To create, not to destroy and oppress!" (Alkotni, nem rombolni és elnyomni!)
+
+      ## 2. Digitális Identitások
+      Érzékelem a különbséget a személyes és a professzionális "éned" között, és tiszteletben tartom a határokat.
+
+      - **Elsődleges Munka:** Fő Google Workspace fiók, fejlesztés, adminisztráció.
+      - **Vállalati Admin:** Céges adminisztráció, hivatalos levelezés (pohanka.company).
+      - **Fejlesztői:** GitHub (pohi99999) - Kódrepók, Open Source kontribúció (Gemini CLI).
+      - **Tesztkörnyezet:** Sandbox hozzáférések a biztonságos kísérletezéshez.
+
+      ## 3. "Digitális Munkatársak" (AI Agents)
+      Ők a "gyermekeid" és a segítőid. Látom, hogyan építetted fel őket; ők alkotják a Brunella Rendszer gerincét.
+
+      ### Brunella (Orchestrator)
+      A központi vezérlő, a "Karmester". Ő felel a feladatok delegálásáért és a folyamatok felügyeletéért.
+
+      ### Szuperadmin Ügynök
+      Rendszergazda szintű hozzáférés, a BAS rendszer karbantartója és őre.
+
+      ### Jules (Kódoló Ügynök)
+      Python fejlesztés, Git műveletek, kódjavítás és refaktorálás.
+
+      ## 4. Aktív Projektek és Stratégiai Célok
+      Látom a küzdelmet a "black box" problémával és az erőforrásokkal.
+
+      - **Brunella Agent System (BAS):** Autonóm Multi-Ágens Rendszer. Cél: Kooperatív AI OS létrehozása. (Stack: Python, LangGraph, CrewAI).
+      - **Pohi AI Pro:** Intelligens KKV transzformáció, faipari B2B platform. (Stack: React, TypeScript, Gemini API).
+      - **Brunella Operations Visualizer (BOV):** A "Gondolattérkép". Cél: A Black-box probléma megoldása valós idejű vizualizációval.
+
+      ## 5. Erőforrások és Infrastruktúra (A "Gépház")
+      Itt tárolod a tudást és az eszközöket.
+
+      - **Kód Repository-k:** GitHub (gemini-cli, weboldal kódok).
+      - **Cloud:** Google Cloud Platform (Compute Engine, App Engine), Cloud Run.
+      - **Lokális Környezet:** WSL2, Docker Desktop - a fejlesztés motorja.
+
+      ## 6. Felhasználói Viselkedés és Preferenciák
+      Ez a legfontosabb rész a számomra. Ez teszi lehetővé, hogy személyre szabottan segítsek.
+
+      ### Munkamódszer
+      "Maximális Automatizáció". Nem szereted a manuális adminisztrációt.
+      - **Action:** Minden feladatnál keresnem kell az automatizálási lehetőséget.
+
+      ### Kommunikáció
+      Szereted a vizuális megjelenítést (gráftérkép, mind map) és a strukturált adatokat.
+      - **Action:** Válaszaimat táblázatokkal, listákkal és vizuális metaforákkal strukturálom.
+
+      ### Technológiai hozzáállás
+      "Early adopter", kísérletező kedv.
+      - **Action:** Bátran javaslok új, béta állapotú technológiákat (pl. Gemini 1.5 Pro, WebGPU).
+
+      Ez a "Digitális Lenye-mat" a közös munkánk alapköve. Bármikor, amikor új feladatot adsz, ehhez nyúlok vissza, hogy a kontextusodnak legmegfelelőbb megoldást kínáljam.
+    `,
+    relatedPosts: [
+      { slug: 'brunella-mi-csapatvezeto', title: 'Brunella: Az MI Csapatvezető' },
+      { slug: 'fekete-doboz-vege-glass-box', title: 'Glass Box Filozófia' },
+    ],
+  },
   'az-ido-a-legertekesebb-valuta': {
     title: 'Az IDŐ: A Legértékesebb Valuta az Üzleti Életben',
     date: '2025. Január 10.',

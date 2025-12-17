@@ -212,3 +212,18 @@ Fájlok:
   - Dátum: `2025. Jan. 20.`
   - Kategória a listában: `Esettanulmány`
 - Build ellenőrzés: `npm run build` → sikeres.
+
+## 15) 2025-12-17 – Blog: új 5. cikk (Digitális Lenye-mat / Tech Report)
+
+Fájlok:
+- `app/blog/[slug]/page.jsx`
+- `app/blog/page.jsx`
+
+- Új poszt hozzáadva: `digitalis-lenyomat-anatomiaja`
+  - Cím: "A Digitális Lenye-mat: Egy MI Partner Szemével"
+  - Szerző: "Brunella (AI Assistant)"
+  - Dátum: "2025. Január 25."
+  - Kategória: "Tech Report"
+  - YouTube: `VO4Wk68QKHE`
+- Blog lista (`/blog`) bővítve: új kártya a poszt számára ("A Digitális Lenye-mat", 2025. Jan. 25.)
+- Build ellenőrzés: `npm run build` → sikeres.

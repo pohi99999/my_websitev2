@@ -5,6 +5,15 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react';
 
 const posts = [
   {
+    slug: 'digitalis-lenyomat-anatomiaja',
+    date: '2025. Jan. 25.',
+    readTime: '15 perc',
+    title: 'A Digitális Lenye-mat',
+    excerpt:
+      'Hogyan látja az MI a felhasználóját? Egy strukturált "Digitális Iker" anatómiája és a Pohánka-Protokoll.',
+    category: 'Tech Report',
+  },
+  {
     slug: 'brunella-mi-csapatvezeto',
     date: '2025. Jan. 20.',
     readTime: '12 perc',
