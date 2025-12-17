@@ -389,6 +389,20 @@ Ellenőrzés:
 - `npm run lint` → OK (TypeScript verzió warning: `@typescript-eslint` támogatási tartomány)
 - `npm run build` → sikeres
 
+## 35) 2025-12-17 – Blog detail: shared meta használata (1 forrás mindenhol)
+
+Fókusz: a blog részletes oldal (`/blog/[slug]`) se tartson duplikált title/dátum/kategória/author/readTime/excerpt adatot, hanem a közös meta modul legyen az egyetlen forrás.
+
+Fájl:
+- `app/blog/[slug]/page.jsx`
+
+- A `generateMetadata` és az oldal UI + JSON-LD a `getBlogPostMeta(slug)` alapján tölti a meta mezőket.
+- Kapcsolódó cikkek címében is a meta az elsődleges (fallback a korábbi title-re).
+
+Ellenőrzés:
+- `npm run lint` → OK
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – Launch SEO/OG + sitemap/robots + jogi oldalak + 404 + `next/image`
 
 Fájlok:

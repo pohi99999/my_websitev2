@@ -3,6 +3,7 @@ import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
 import { ArrowLeft, Calendar, Clock, User, Share2, ArrowRight } from 'lucide-react';
+import { getBlogPostMeta } from '../blogPosts.meta';
 
 // Valós Blog Tartalmak
 const blogPosts = {
@@ -440,18 +441,19 @@ function toDurationMinutes(readTime) {
 }
 
 export async function generateMetadata({ params }) {
-  const post = blogPosts?.[params?.slug];
+  const slug = params?.slug ?? '';
+  const postMeta = getBlogPostMeta(slug);
 
-  if (!post) {
+  if (!postMeta) {
     return {
       title: 'Blog',
       alternates: { canonical: '/blog' }
     };
   }
 
-  const title = post.title;
-  const description = post.excerpt || 'Blog bejegyzés a Pohánka AI tudástárból.';
-  const url = `/blog/${params.slug}`;
+  const title = postMeta.title;
+  const description = postMeta.excerpt || 'Blog bejegyzés a Pohánka AI tudástárból.';
+  const url = `/blog/${slug}`;
 
   return {
     title,
@@ -475,7 +477,10 @@ export async function generateMetadata({ params }) {
 }
 
 export default function BlogPostPage({ params }) {
-  const post = blogPosts[params.slug];
+  const slug = params?.slug ?? '';
+  const postContent = blogPosts?.[slug];
+  const postMeta = getBlogPostMeta(slug);
+  const post = postContent && postMeta ? { ...postContent, ...postMeta } : undefined;
 
   if (!post) {
     return (
@@ -497,7 +502,7 @@ export default function BlogPostPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify((() => {
-            const canonicalUrl = `https://pohanka.vercel.app/blog/${params.slug}`;
+            const canonicalUrl = `https://pohanka.vercel.app/blog/${slug}`;
             const isoDate = toIsoDate(post.date);
             const duration = toDurationMinutes(post.readTime);
 
@@ -696,7 +701,7 @@ export default function BlogPostPage({ params }) {
             {post.relatedPosts.map((relatedPost, idx) => (
               <GsapFadeIn key={idx} delay={0.5 + idx * 0.1}>
                 <SpotlightCard className="p-8 h-full flex flex-col justify-between hover:border-blue-500/50 transition-colors">
-                  <h3 className="text-xl font-bold mb-4">{relatedPost.title}</h3>
+                  <h3 className="text-xl font-bold mb-4">{getBlogPostMeta(relatedPost.slug)?.title ?? relatedPost.title}</h3>
                   <Link
                     href={`/blog/${relatedPost.slug}`}
                     className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium group"
