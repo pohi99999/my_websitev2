@@ -363,6 +363,15 @@ Fájlok:
 - `POST /api/contact` kapott IP-alapú rate limitet (fix ablak): 2 kérés / 2 perc / IP.
 - Túl sok kérés esetén `429` + `Retry-After` fejléc.
 
+### 33.2 Globális (serverless-biztos) rate limit: Upstash Redis
+
+- Az `/api/contact` rate limit Upstash Redis-szel is működik, így több Vercel instance között is egységes.
+- Ha nincs beállítva Upstash (hiányzó env), automatikusan visszaesik a korábbi in-memory limiterre (best-effort).
+
+Vercel Environment Variables (Upstash):
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
+
 ## 20) 2025-12-17 – Brunella Agents: 3. interaktív demó (Business Workflow)
 
 Fájl:

@@ -1,11 +1,25 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { Redis } from '@upstash/redis';
+import { Ratelimit } from '@upstash/ratelimit';
 
 type RateWindow = { count: number; resetAtMs: number };
 
 const RATE_LIMIT_WINDOW_MS = 2 * 60 * 1000; // 2 perc
 const RATE_LIMIT_MAX = 2; // 2 kérés / 2 perc / IP
 const rateMemory = new Map<string, RateWindow>();
+
+const upstashUrl = process.env.UPSTASH_REDIS_REST_URL;
+const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+const upstashRatelimit =
+  upstashUrl && upstashToken
+    ? new Ratelimit({
+        redis: new Redis({ url: upstashUrl, token: upstashToken }),
+        limiter: Ratelimit.fixedWindow(RATE_LIMIT_MAX, `${Math.ceil(RATE_LIMIT_WINDOW_MS / 1000)} s`),
+        prefix: 'contact'
+      })
+    : null;
 
 function asNonEmptyString(value: unknown): string | null {
   if (typeof value !== 'string') return null;
@@ -45,10 +59,23 @@ function checkRateLimit(key: string): { ok: true } | { ok: false; retryAfterSec:
   return { ok: true };
 }
 
+async function checkRateLimitGlobal(key: string): Promise<{ ok: true } | { ok: false; retryAfterSec: number }> {
+  if (!upstashRatelimit) {
+    return checkRateLimit(key);
+  }
+
+  const result = await upstashRatelimit.limit(key);
+  if (result.success) return { ok: true };
+
+  const resetMs = typeof result.reset === 'number' ? result.reset : Date.now() + RATE_LIMIT_WINDOW_MS;
+  const retryAfterSec = Math.max(1, Math.ceil((resetMs - Date.now()) / 1000));
+  return { ok: false, retryAfterSec };
+}
+
 export async function POST(req: Request) {
   try {
     const clientIp = getClientIp(req);
-    const limited = checkRateLimit(`contact:${clientIp}`);
+    const limited = await checkRateLimitGlobal(`contact:${clientIp}`);
     if (limited.ok === false) {
       return NextResponse.json(
         { ok: false, error: 'Too many requests. Please try again shortly.' },
