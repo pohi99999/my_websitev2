@@ -13,6 +13,7 @@ const Hero = () => {
         playsInline
         preload="metadata"
         aria-hidden="true"
+        tabIndex={-1}
       >
         <source src="/home.mp4" type="video/mp4" />
       </video>
@@ -24,8 +25,13 @@ const Hero = () => {
         {/* Főcím */}
         <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
           <span className="text-white block mb-2">A Jövő Elkezdődött...</span>
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            Az ember és a Mesterséges Intelligencia
+          <span className="relative inline-block">
+            <span className="absolute inset-0 text-white" aria-hidden="true">
+              Az ember és a Mesterséges Intelligencia
+            </span>
+            <span className="relative bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              Az ember és a Mesterséges Intelligencia
+            </span>
           </span>
         </h1>
         
