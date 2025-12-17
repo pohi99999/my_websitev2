@@ -121,3 +121,9 @@ Fájl: `app/termekek/brunella-agents/page.jsx`
   - Tartalom a videó felett: `relative z-10`
 - Build ellenőrzés: `npm run build` → sikeres.
 - Commit: `7ca3f5a` (main)
+
+### 9.1 Kiegészítő korrekció (scroll közben végig látszódjon)
+
+- Probléma: a háttér csak a lap egy részén volt „jól látható”, felül túl sötét/fekete hatású volt.
+- Javítás: a háttér `iframe` + overlay pozíciója `absolute` helyett `fixed inset-0` lett, így a videó a teljes oldal görgetése alatt végig a viewport mögött marad.
+- Commit: `7065745` (main)
