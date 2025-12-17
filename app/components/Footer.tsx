@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Linkedin, Facebook } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Facebook, Github, Twitter, Youtube, Code2 } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -51,12 +51,60 @@ const Footer = () => {
             <div className="text-slate-400">
               <p className="font-medium text-white">Pohánka József Péter</p>
               <p className="text-sm mb-4">CEO &amp; Lead Developer</p>
-              <div className="flex space-x-4">
-                <a href="#" className="p-2 bg-slate-800 rounded-full hover:bg-blue-600 transition-colors" aria-label="LinkedIn">
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="https://www.linkedin.com/in/pohi99999/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 bg-slate-800 rounded-full hover:bg-blue-600 transition-colors"
+                  aria-label="LinkedIn"
+                >
                   <Linkedin className="w-5 h-5" />
                 </a>
-                <a href="#" className="p-2 bg-slate-800 rounded-full hover:bg-blue-600 transition-colors" aria-label="Facebook">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61576881120445"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 bg-slate-800 rounded-full hover:bg-blue-600 transition-colors"
+                  aria-label="Facebook"
+                >
                   <Facebook className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://github.com/pohi99999"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 bg-slate-800 rounded-full hover:bg-blue-600 transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://x.com/pohanka_peter"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 bg-slate-800 rounded-full hover:bg-blue-600 transition-colors"
+                  aria-label="X (Twitter)"
+                >
+                  <Twitter className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://g.dev/PohankaPeter"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 bg-slate-800 rounded-full hover:bg-blue-600 transition-colors"
+                  aria-label="Google Developer"
+                >
+                  <Code2 className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.youtube.com/@J%C3%B3zsefP%C3%A9terPoh%C3%A1nka"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 bg-slate-800 rounded-full hover:bg-blue-600 transition-colors"
+                  aria-label="YouTube"
+                >
+                  <Youtube className="w-5 h-5" />
                 </a>
               </div>
             </div>

@@ -22,7 +22,7 @@ export default function KapcsolatPage() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Email</p>
-                  <p className="text-lg font-semibold">hello@pohanka.company</p>
+                  <p className="text-lg font-semibold">peterpohankapersonal@gmail.com</p>
                 </div>
               </div>
 
@@ -32,7 +32,7 @@ export default function KapcsolatPage() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Telefon</p>
-                  <p className="text-lg font-semibold">+36 30 123 4567</p>
+                  <p className="text-lg font-semibold">+36 30 244 6779</p>
                 </div>
               </div>
 
@@ -42,7 +42,7 @@ export default function KapcsolatPage() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Iroda</p>
-                  <p className="text-lg font-semibold">Zalaegerszeg, Hungary</p>
+                  <p className="text-lg font-semibold">8900 Zalaegerszeg, Magyarország</p>
                 </div>
               </div>
             </div>
