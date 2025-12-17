@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
@@ -41,12 +42,12 @@ const Hero = () => {
         </p>
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-          <a
+          <Link
             href="/termekek/brunella-agents"
             className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all transform hover:scale-105 flex items-center shadow-lg shadow-blue-900/50"
           >
             Brunella Agent System <ArrowRight className="ml-2 w-5 h-5" />
-          </a>
+          </Link>
           <a href="#contact" className="px-8 py-4 bg-transparent border border-slate-600 hover:border-white text-white rounded-full font-semibold transition-all hover:bg-slate-800">
             Kapcsolat
           </a>

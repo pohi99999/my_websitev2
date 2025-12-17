@@ -353,3 +353,16 @@ Fájl:
 
 - A fő Hero CTA gomb célja átállítva a Brunella termékoldalra: `/termekek/brunella-agents`.
 - A gomb szövege: "Brunella Agent System" (nyíl ikon megtartva).
+
+## 24) 2025-12-17 – Finomhangolás: deploy check + Link + mobil/perf
+
+Fájlok:
+- `app/components/Hero.tsx`
+- `app/termekek/brunella-agents/page.jsx`
+
+- Vercel deploy státusz ellenőrzés GitHub commit status alapján: **success** ("Deployment has completed").
+- Home Hero CTA átállítva `next/link` használatára (SPA navigáció) a Brunella Agents oldalra.
+- Agent Network Graph demó finomítva:
+  - Mobilon négyzetes vászon (`aspect-square`), kevesebb torzítás.
+  - Tooltip pozíció clampelve nagy képernyőn, mobilon fixebb elhelyezés.
+  - `prefers-reduced-motion` támogatás: folyamatos animációk visszafogása, ha a felhasználó ezt kéri.

@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowLeft,
   CheckCircle,
@@ -1016,6 +1016,22 @@ function BusinessLogicDemo() {
 
 function AgentNetworkDemo() {
   const [hovered, setHovered] = useState(null);
+  const shouldReduceMotion = useReducedMotion();
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 639px)');
+    const apply = () => setIsSmallScreen(media.matches);
+    apply();
+
+    if (typeof media.addEventListener === 'function') {
+      media.addEventListener('change', apply);
+      return () => media.removeEventListener('change', apply);
+    }
+
+    media.addListener(apply);
+    return () => media.removeListener(apply);
+  }, []);
 
   const agents = useMemo(
     () => [
@@ -1107,6 +1123,17 @@ function AgentNetworkDemo() {
 
   const hoveredAgent = hovered ? positionedAgents.find((a) => a.id === hovered) : null;
 
+  const tooltipStyle = useMemo(() => {
+    if (!hoveredAgent) return undefined;
+    if (isSmallScreen) {
+      return { left: '50%', top: '84%' };
+    }
+
+    const clampedY = Math.max(12, Math.min(88, hoveredAgent.y - 10));
+    const clampedX = Math.max(12, Math.min(88, hoveredAgent.x));
+    return { left: `${clampedX}%`, top: `${clampedY}%` };
+  }, [hoveredAgent, isSmallScreen]);
+
   return (
     <section className="py-24 px-6 bg-white/5">
       <div className="max-w-7xl mx-auto">
@@ -1134,7 +1161,7 @@ function AgentNetworkDemo() {
             </div>
 
             <div className="p-6 sm:p-8 bg-black/35">
-              <div className="relative w-full aspect-[16/9] rounded-2xl border border-white/10 bg-black/30 overflow-hidden">
+              <div className="relative w-full aspect-square sm:aspect-[16/9] rounded-2xl border border-white/10 bg-black/30 overflow-hidden">
                 <div className="absolute inset-0 opacity-80 bg-[radial-gradient(circle_at_30%_20%,rgba(168,85,247,0.22),transparent_55%),radial-gradient(circle_at_70%_75%,rgba(59,130,246,0.18),transparent_55%),radial-gradient(circle_at_40%_80%,rgba(34,211,238,0.12),transparent_55%)]" />
 
                 <motion.div
@@ -1183,17 +1210,25 @@ function AgentNetworkDemo() {
                         r="0.65"
                         fill="rgba(34,211,238,0.95)"
                         filter="url(#softGlow)"
-                        animate={{
-                          cx: ['50', String(a.x), '50'],
-                          cy: ['50', String(a.y), '50'],
-                          opacity: [0.35, 1, 0.35]
-                        }}
-                        transition={{
-                          duration: 2.8 + (idx % 3) * 0.5,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                          delay: idx * 0.12
-                        }}
+                        animate={
+                          shouldReduceMotion
+                            ? { cx: String(a.x), cy: String(a.y), opacity: 0.7 }
+                            : {
+                                cx: ['50', String(a.x), '50'],
+                                cy: ['50', String(a.y), '50'],
+                                opacity: [0.35, 1, 0.35]
+                              }
+                        }
+                        transition={
+                          shouldReduceMotion
+                            ? { duration: 0 }
+                            : {
+                                duration: 2.8 + (idx % 3) * 0.5,
+                                repeat: Infinity,
+                                ease: 'easeInOut',
+                                delay: idx * 0.12
+                              }
+                        }
                       />
                     </g>
                   ))}
@@ -1202,15 +1237,21 @@ function AgentNetworkDemo() {
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                   <motion.div
                     className="relative h-28 w-28 sm:h-32 sm:w-32 rounded-full border border-purple-400/40 bg-gradient-to-b from-white/10 to-black/30 backdrop-blur-md shadow-[0_0_34px_rgba(168,85,247,0.28)]"
-                    animate={{
-                      scale: [1, 1.05, 1],
-                      boxShadow: [
-                        '0 0 34px rgba(168,85,247,0.28)',
-                        '0 0 54px rgba(59,130,246,0.32)',
-                        '0 0 34px rgba(168,85,247,0.28)'
-                      ]
-                    }}
-                    transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+                    animate={
+                      shouldReduceMotion
+                        ? { scale: 1, boxShadow: '0 0 34px rgba(168,85,247,0.28)' }
+                        : {
+                            scale: [1, 1.05, 1],
+                            boxShadow: [
+                              '0 0 34px rgba(168,85,247,0.28)',
+                              '0 0 54px rgba(59,130,246,0.32)',
+                              '0 0 34px rgba(168,85,247,0.28)'
+                            ]
+                          }
+                    }
+                    transition={
+                      shouldReduceMotion ? { duration: 0 } : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' }
+                    }
                   >
                     <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_35%_30%,rgba(59,130,246,0.32),transparent_60%),radial-gradient(circle_at_60%_70%,rgba(168,85,247,0.24),transparent_62%)]" />
                     <div className="relative h-full w-full flex flex-col items-center justify-center text-center px-3">
@@ -1267,7 +1308,7 @@ function AgentNetworkDemo() {
                     <motion.div
                       key={hoveredAgent.id}
                       className="absolute z-20 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                      style={{ left: `${hoveredAgent.x}%`, top: `${hoveredAgent.y - 10}%` }}
+                      style={tooltipStyle}
                       initial={{ opacity: 0, y: 6, scale: 0.98 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 6, scale: 0.98 }}
