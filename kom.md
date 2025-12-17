@@ -127,3 +127,15 @@ Fájl: `app/termekek/brunella-agents/page.jsx`
 - Probléma: a háttér csak a lap egy részén volt „jól látható”, felül túl sötét/fekete hatású volt.
 - Javítás: a háttér `iframe` + overlay pozíciója `absolute` helyett `fixed inset-0` lett, így a videó a teljes oldal görgetése alatt végig a viewport mögött marad.
 - Commit: `7065745` (main)
+
+### 9.2 „Teljes kitöltés” (black frame/border eltüntetése)
+
+- Probléma: YouTube `iframe` esetén a sima `w-full h-full` gyakran letterbox-ot (fekete keretet) eredményez, mert az `iframe` nem ugyanúgy kezeli az `object-fit: cover`-t, mint egy natív `<video>`.
+- Javítás: 16:9 „cover” technika oversized, középre igazított `iframe`-fel:
+  - Wrapper: `fixed inset-0 overflow-hidden pointer-events-none`
+  - Iframe (középre + túlméretezve): `min-w-[100vw] min-h-[56.25vw] w-[177.78vh] h-[100vh]`
+  - Overlay: `fixed inset-0 bg-black/70` a videó felett, a tartalom alatt
+- Commit: `2006c5b` (main)
+
+Live ellenőrzés:
+- A Vercel által kiszolgált HTML már tartalmazza a „full-bleed” classokat, tehát a legfrissebb verzió kint van.
