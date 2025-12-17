@@ -10,6 +10,7 @@ import AgentTerminalSection from './components/AgentTerminalSection';
 import BusinessLogicDemo from './components/BusinessLogicDemo';
 import OCRDemoSection from './components/OCRDemoSection';
 import SafetyControlSection from './components/SafetyControlSection';
+import DocumentationSection from './components/DocumentationSection';
 
 export const metadata = {
   title: 'Brunella Agent System',
@@ -385,6 +386,8 @@ export default function BrunellaAgentsPage() {
             </GsapFadeIn>
           </div>
         </section>
+
+        <DocumentationSection />
       </div>
     </div>
   );

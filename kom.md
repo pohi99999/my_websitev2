@@ -297,6 +297,22 @@ Ellenőrzés:
 - `npm run lint` → csak meglévő warningok
 - `npm run build` → sikeres
 
+## 32) 2025-12-17 – Brunella Agents: “Rendszer dokumentációja” letöltő kártya
+
+Fájlok:
+- `app/termekek/brunella-agents/components/DocumentationSection.jsx`
+- `app/termekek/brunella-agents/page.jsx`
+
+- Új, centered szekció került a Brunella Agents oldal legaljára: egy darab széles `SpotlightCard`.
+- Tartalom:
+  - Ikon: `FileText` (lucide-react)
+  - Cím: “Rendszer dokumentációja”
+  - Leírás: “Töltse le a részletes technikai specifikációt és a BAS működési kézikönyvét.”
+  - Link: Google Drive dokumentum (új fülön nyílik, `target="_blank"` + `rel="noopener noreferrer"`)
+
+Ellenőrzés:
+- `npm run build` → sikeres
+
 ## 34) 2025-12-17 – i18n alap (HU/EN) + nyelvváltó
 
 Fájlok:
