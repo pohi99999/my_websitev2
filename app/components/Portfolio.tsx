@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { ArrowRight, Award, TrendingUp, X } from 'lucide-react';
 
 const Portfolio = () => {
@@ -111,11 +112,13 @@ const Portfolio = () => {
                 onClick={() => setSelectedImage(badge.src)}
                 className="cursor-pointer p-4 bg-slate-800/30 rounded-xl hover:bg-slate-800/60 transition-all duration-300 group flex items-center justify-center h-32 border border-transparent hover:border-slate-700"
               >
-                <img
+                <Image
                   src={badge.src}
                   alt={badge.alt}
+                  width={220}
+                  height={140}
+                  sizes="(max-width: 640px) 40vw, (max-width: 1024px) 20vw, 12vw"
                   className="max-h-20 w-auto object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
-                  loading="lazy"
                 />
               </div>
             ))}
@@ -146,9 +149,12 @@ const Portfolio = () => {
           >
             <X size={48} />
           </button>
-          <img
+          <Image
             src={selectedImage}
             alt="Tanúsítvány nagyítva"
+            width={1600}
+            height={1100}
+            sizes="90vw"
             className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl scale-100 transition-transform"
             onClick={(e) => e.stopPropagation()}
           />

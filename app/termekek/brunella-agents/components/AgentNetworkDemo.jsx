@@ -128,6 +128,8 @@ export default function AgentNetworkDemo() {
 
   const hoveredAgent = hovered ? positionedAgents.find((a) => a.id === hovered) : null;
 
+  const reduceAnimations = shouldReduceMotion || isSmallScreen;
+
   const tooltipStyle = useMemo(() => {
     if (!hoveredAgent) return undefined;
     if (isSmallScreen) {
@@ -176,8 +178,8 @@ export default function AgentNetworkDemo() {
                       'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
                     backgroundSize: '42px 42px'
                   }}
-                  animate={{ opacity: [0.1, 0.18, 0.1] }}
-                  transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+                  animate={reduceAnimations ? { opacity: 0.12 } : { opacity: [0.1, 0.18, 0.1] }}
+                  transition={reduceAnimations ? { duration: 0 } : { duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
                 />
 
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
@@ -216,7 +218,7 @@ export default function AgentNetworkDemo() {
                         fill="rgba(34,211,238,0.95)"
                         filter="url(#softGlow)"
                         animate={
-                          shouldReduceMotion
+                          reduceAnimations
                             ? { cx: String(a.x), cy: String(a.y), opacity: 0.7 }
                             : {
                                 cx: ['50', String(a.x), '50'],
@@ -225,7 +227,7 @@ export default function AgentNetworkDemo() {
                               }
                         }
                         transition={
-                          shouldReduceMotion
+                          reduceAnimations
                             ? { duration: 0 }
                             : {
                                 duration: 2.8 + (idx % 3) * 0.5,
@@ -243,7 +245,7 @@ export default function AgentNetworkDemo() {
                   <motion.div
                     className="relative h-28 w-28 sm:h-32 sm:w-32 rounded-full border border-purple-400/40 bg-gradient-to-b from-white/10 to-black/30 backdrop-blur-md shadow-[0_0_34px_rgba(168,85,247,0.28)]"
                     animate={
-                      shouldReduceMotion
+                      reduceAnimations
                         ? { scale: 1, boxShadow: '0 0 34px rgba(168,85,247,0.28)' }
                         : {
                             scale: [1, 1.05, 1],
@@ -255,7 +257,7 @@ export default function AgentNetworkDemo() {
                           }
                     }
                     transition={
-                      shouldReduceMotion ? { duration: 0 } : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' }
+                      reduceAnimations ? { duration: 0 } : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' }
                     }
                   >
                     <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_35%_30%,rgba(59,130,246,0.32),transparent_60%),radial-gradient(circle_at_60%_70%,rgba(168,85,247,0.24),transparent_62%)]" />

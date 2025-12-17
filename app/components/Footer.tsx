@@ -114,8 +114,9 @@ const Footer = () => {
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
           <p>© 2025 Pohánka és Társa Kft. Minden jog fenntartva.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">Adatvédelmi irányelvek</a>
-            <a href="#" className="hover:text-white transition-colors">ÁSZF</a>
+            <a href="/impresszum" className="hover:text-white transition-colors">Impresszum</a>
+            <a href="/adatvedelmi-nyilatkozat" className="hover:text-white transition-colors">Adatvédelmi nyilatkozat</a>
+            <a href="/aszf" className="hover:text-white transition-colors">ÁSZF</a>
           </div>
         </div>
       </div>

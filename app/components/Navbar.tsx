@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -24,13 +26,16 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* LOGO CSERE */}
-          <a href="/" className="flex items-center">
-            <img
+          <Link href="/" className="flex items-center">
+            <Image
               src="/images/logo.png"
               alt="Pohánka és Társa Logo"
+              width={240}
+              height={96}
+              priority
               className="h-10 md:h-12 w-auto object-contain hover:opacity-90 transition-opacity"
             />
-          </a>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">

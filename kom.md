@@ -297,6 +297,50 @@ Ellenőrzés:
 - `npm run lint` → csak meglévő warningok
 - `npm run build` → sikeres
 
+## 32) 2025-12-17 – Launch SEO/OG + sitemap/robots + jogi oldalak + 404 + `next/image`
+
+Fájlok:
+- `app/layout.tsx`
+- `app/page.jsx`
+- `app/fogalomtar/page.jsx`
+- `app/fogalomtar/GlossaryClient.jsx`
+- `app/not-found.tsx`
+- `app/impresszum/page.tsx`
+- `app/adatvedelmi-nyilatkozat/page.tsx`
+- `app/aszf/page.tsx`
+- `app/components/Footer.tsx`
+- `app/components/Header.tsx`
+- `app/components/Navbar.tsx`
+- `app/components/Portfolio.tsx`
+- `app/termekek/brunella-agents/components/AgentNetworkDemo.jsx`
+- `public/robots.txt`
+- `public/sitemap.xml`
+
+### 32.1 Globális SEO/OG és schema rendbetétel
+- `metadataBase` beállítva: `https://pohanka.vercel.app`
+- Globális Open Graph kapott alap `images`-t (`/images/logo.png`) + `url`
+- Canonical link frissítve: `https://pohanka.vercel.app`
+- JSON-LD schema placeholder adatok cserélve valós elérhetőségre (telefon, email, social linkek, logo útvonal)
+
+### 32.2 Per-page metadata: Home + Fogalomtár
+- Home (`/`) kapott saját title/description/OG-t.
+- Fogalomtár route szerver komponens lett (kliens UI külön `GlossaryClient.jsx`-ben), így per-page metadata exportolható.
+
+### 32.3 Sitemap/robots frissítés (launch)
+- `robots.txt` sitemap URL: `https://pohanka.vercel.app/sitemap.xml`
+- `sitemap.xml` domain egységesítve `pohanka.vercel.app`-re
+- Blog slugok frissítve a jelenlegi posztokra
+- Hozzáadva: `/fogalomtar`, `/impresszum`, `/adatvedelmi-nyilatkozat`, `/aszf`
+
+### 32.4 Jogi oldalak + egyedi 404
+- Új oldalak: Impresszum, Adatvédelmi nyilatkozat, ÁSZF
+- Új `app/not-found.tsx` egyedi 404 oldal
+- Footer jogi linkek már nem `#`, hanem valós route-okra mutatnak
+
+### 32.5 Teljesítmény + mobil
+- `<img>` → `next/image`: Header + Navbar logó, Portfolio badge + lightbox
+- Brunella Agent Network Graph: mobilon is visszafogott animáció (perf)
+
 ## 20) 2025-12-17 – Brunella Agents: 3. interaktív demó (Business Workflow)
 
 Fájl:

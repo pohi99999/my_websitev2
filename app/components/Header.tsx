@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -40,9 +41,12 @@ export default function Header() {
 
           {/* Logo (image) */}
           <Link href="/" className="flex items-center group relative z-50">
-            <img
+            <Image
               src="/images/logo.png"
               alt="Pohánka és Társa Logo"
+              width={240}
+              height={96}
+              priority
               className="h-10 md:h-12 w-auto object-contain hover:opacity-90 transition-opacity"
             />
           </Link>

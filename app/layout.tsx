@@ -9,6 +9,7 @@ import LenisProvider from './components/LenisProvider';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pohanka.vercel.app'),
   title: {
     template: '%s | Pohánka AI',
     default: 'Pohánka és Társa Kft. | AI Ügynökség & Szoftverfejlesztés'
@@ -23,7 +24,14 @@ export const metadata: Metadata = {
     description:
       'Innovatív AI megoldások, Brunella Agent System és egyedi szoftverfejlesztés KKV-k számára. Automatizálja üzleti folyamatait velünk.',
     type: 'website',
-    locale: 'hu_HU'
+    locale: 'hu_HU',
+    url: 'https://pohanka.vercel.app',
+    images: [
+      {
+        url: '/images/logo.png',
+        alt: 'Pohánka és Társa Kft. – logó'
+      }
+    ]
   },
 };
 
@@ -39,7 +47,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#00ff9d" />
-        <link rel="canonical" href="https://pohanka.company" />
+        <link rel="canonical" href="https://pohanka.vercel.app" />
         
         {/* Organization Schema */}
         <script
@@ -50,24 +58,26 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Pohánka és Társa Kft.",
               description: "Szoftverfejlesztés és AI megoldások",
-              url: "https://pohanka.company",
-              logo: "https://pohanka.company/logo.png",
+              url: "https://pohanka.vercel.app",
+              logo: "https://pohanka.vercel.app/images/logo.png",
               contact: {
                 "@type": "ContactPoint",
                 contactType: "Customer Support",
-                telephone: "+36-1-xxx-xxxx",
-                email: "info@pohanka.company"
+                telephone: "+36 30 244 6779",
+                email: "peterpohankapersonal@gmail.com"
               },
               sameAs: [
-                "https://www.facebook.com/pohanka",
-                "https://www.linkedin.com/company/pohanka",
-                "https://twitter.com/pohanka"
+                "https://www.linkedin.com/in/pohi99999/",
+                "https://www.facebook.com/profile.php?id=61576881120445",
+                "https://github.com/pohi99999",
+                "https://x.com/pohanka_peter",
+                "https://g.dev/PohankaPeter",
+                "https://www.youtube.com/@J%C3%B3zsefP%C3%A9terPoh%C3%A1nka"
               ],
               address: {
                 "@type": "PostalAddress",
                 addressCountry: "HU",
-                addressLocality: "Budapest",
-                streetAddress: "Pohánka utca 1."
+                addressLocality: "Zalaegerszeg"
               }
             })
           }}
@@ -81,12 +91,12 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "Pohánka és Társa Kft.",
-              image: "https://pohanka.company/logo.png",
-              telephone: "+36-1-xxx-xxxx",
+              image: "https://pohanka.vercel.app/images/logo.png",
+              telephone: "+36 30 244 6779",
               address: {
                 "@type": "PostalAddress",
                 addressCountry: "HU",
-                addressLocality: "Budapest"
+                addressLocality: "Zalaegerszeg"
               }
             })
           }}
