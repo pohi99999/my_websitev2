@@ -327,3 +327,21 @@ Fájl:
   - "LinkedIn Poszt Generálás"
 - Step 4 modál előnézet realisztikusabb megjelenéssel (Gmail compose / PowerPoint slide preview / LinkedIn poszt preview) és typewriter effekttel.
 - Typewriter hook javítva: text váltáskor is korrektül újraindul a gépelés (choice csere esetén).
+
+## 22) 2025-12-17 – Brunella Agents: 4. demó (Agent Network Graph)
+
+Fájl:
+- `app/termekek/brunella-agents/page.jsx`
+
+- Új `AgentNetworkDemo` szekció hozzáadva a `BusinessLogicDemo` alá, a Features rész elé: "A Brunella Ügynök Hálózat".
+- Star-topology vizualizáció:
+  - Középen: "Brunella (Orchestrator)" nagy, pulzáló csomópont neon (purple/blue) stílusban.
+  - Körben: 9 specialista ügynök (Kutató, Önjavító, Elemző, Vizuális, Biztonság, Média, Kódoló, Email, Dokumentum).
+- Framer Motion animációk:
+  - Kapcsolati vonalak "kirajzolása" (motion line).
+  - "Data packet" pontok oda-vissza mozgással a vonalakon, valós idejű kommunikáció érzetéhez.
+- Hover/focus tooltip: csomópontra állva megjelenik az adott ügynök szerep-leírása.
+
+Ellenőrzés:
+- `npm run lint` → csak meglévő warningok
+- `npm run build` → sikeres
