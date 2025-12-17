@@ -5,6 +5,15 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react';
 
 const posts = [
   {
+    slug: 'brunella-mi-csapatvezeto',
+    date: '2025. Jan. 20.',
+    readTime: '12 perc',
+    title: 'Brunella: Az MI csapatvezető és a jövő szervezete',
+    excerpt:
+      'Felejtse el a reaktív asszisztenseket! A Brunella egy paradigmaváltás: belső monológ, önkorrekció és "Gondolatfa" alapú döntéshozatal a Google Gemini 2.5 erejével.',
+    category: 'Esettanulmány',
+  },
+  {
     slug: 'fekete-doboz-vege-glass-box',
     date: '2025. Jan. 15.',
     readTime: '6 perc',

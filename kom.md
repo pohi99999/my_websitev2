@@ -197,3 +197,18 @@ Fájl:
 - `fekete-doboz-vege-glass-box` videó cserélve: `IbPvzLXlO6Y` (Glass Box magyarázó)
 - `brunella-agent-system-mukodese` videó cserélve: `VO4Wk68QKHE` (Under the Hood deep dive)
 - `az-ido-a-legertekesebb-valuta` maradt: `9h0tFmAlnIQ`
+
+## 14) 2025-12-17 – Blog: új 4. cikk (Brunella MI csapatvezető)
+
+Fájlok:
+- `app/blog/[slug]/page.jsx`
+- `app/blog/page.jsx`
+
+- Új poszt hozzáadva: `brunella-mi-csapatvezeto`
+  - Cím: "Brunella: Az MI csapatvezető és a jövő szervezete"
+  - YouTube: `VO4Wk68QKHE`
+  - Kategória a részletes oldalon: `Esettanulmány & Tech`
+- Blog lista (`/blog`) bővítve: új kártya a poszt számára
+  - Dátum: `2025. Jan. 20.`
+  - Kategória a listában: `Esettanulmány`
+- Build ellenőrzés: `npm run build` → sikeres.

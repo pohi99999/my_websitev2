@@ -46,6 +46,60 @@ const blogPosts = {
       { slug: 'brunella-agent-system-mukodese', title: 'Így működik a BAS' },
     ],
   },
+  'brunella-mi-csapatvezeto': {
+    title: 'Brunella: Az MI csapatvezető és a jövő szervezete',
+    date: '2025. Január 20.',
+    author: 'Pohánka József Péter',
+    readTime: '12 perc',
+    category: 'Esettanulmány & Tech',
+    image: '🧠',
+    videoId: 'VO4Wk68QKHE',
+    excerpt:
+      'Felejtse el a reaktív asszisztenseket! A Brunella egy paradigmaváltás: belső monológ, önkorrekció és "Gondolatfa" alapú döntéshozatal a Google Gemini 2.5 erejével.',
+    content: `
+      A Pohánka És Társa Kft. büszkén mutatja be a jövő vezető erejét: a **Brunella Agent System**-et és annak egyik legkiemelkedőbb gyakorlati megtestesülését, a **Pohi AI Pro**-t! Ez nem csupán egy technológiai ugrás, hanem egy valóságos forradalom a szervezetirányításban.
+
+      ## A Jövő MI Csapatvezetője
+
+      Felejtse el a reaktív asszisztenseket! A Brunella Agents System egy paradigmaváltást hoz el: nem parancsokat hajt végre, hanem proaktívan, önállóan valósítja meg a komplex célokat.
+      
+      Képzeljen el egy digitális projektmenedzsert, aki a legbonyolultabb feladatokat is átlátja, részfeladatokra bontja, és delegálja a megfelelő digitális szakértőknek.
+
+      ## Miben rejlik a Brunella hihetetlen ereje?
+
+      ### 1. ReAct (Reason and Act) – A Belső Monológ
+      A Brunella nem azonnal cselekszik, hanem "gondolkodik, mielőtt cselekszik". Ez a belső monológ segíti a hibák kiszűrését és növeli a megbízhatóságot.
+
+      ### 2. Reflexió – Az Örökké Tanuló Vezető
+      Akárcsak egy tapasztalt csapatvezető, a Brunella is képes tanulni a saját hibáiból, és azonnal, menet közben korrigálni a stratégiáját.
+
+      ### 3. Gondolatfa (Tree-of-Thought)
+      Komplex problémák esetén nem egyetlen úton indul el, hanem párhuzamosan több lehetséges megoldási útvonalat is feltár. Ezzel kreatívabb és hatékonyabb döntéseket hoz.
+
+      ### 4. Alkotmányos MI (Constitutional AI)
+      Egy belső "alkotmány" garantálja, hogy a rendszer mindig segítőkész, etikus és ártalmatlan maradjon.
+
+      ## Technológiai Háttér
+
+      A Brunella a **Google élvonalbeli Gemini 2.5 Deep Think** modelljeit használja, amelyek multimodális képességeket biztosítanak (szöveg, kód, kép, hang, videó). A rendszer nyílt forráskódú keretrendszerekre, például a **CrewAI** és a **LangGraph**-ra épül, amelyek a digitális idegrendszerét alkotják.
+
+      ## Pohi AI Pro: A Brunella Ereje a Gyakorlatban
+
+      A Brunella erejének egyik legizgalmasabb gyakorlati alkalmazása a **Pohi AI Pro** platform. Ez a megoldás a nemzetközi faipari nyersanyag-kereskedelmet és logisztikát forradalmasítja:
+
+      - **Párosítási problémák megoldása:** Az ügyféligények és a gyártói készletek MI-alapú összekapcsolása.
+      - **Logisztikai optimalizálás:** Automatikus kamionfeltöltés és útvonaltervezés.
+      - **Központosított kommunikáció:** A széttöredezett kommunikáció megszüntetése egy közös ökoszisztémában.
+
+      ## Az Ember-MI Szuperügynökség
+
+      Ez az "ember–MI szuperügynökség" korszaka. A valódi forradalom abban rejlik, hogy megtanulunk egyre komplexebb, specializált MI ágensekből álló csapatokat felépíteni és menedzselni. A Pohánka És Társa Kft. ebben a partnere.
+    `,
+    relatedPosts: [
+      { slug: 'brunella-agent-system-mukodese', title: 'Hogyan működik a BAS?' },
+      { slug: 'fekete-doboz-vege-glass-box', title: 'Glass Box Filozófia' },
+    ],
+  },
   'az-ido-a-legertekesebb-valuta': {
     title: 'Az IDŐ: A Legértékesebb Valuta az Üzleti Életben',
     date: '2025. Január 10.',
