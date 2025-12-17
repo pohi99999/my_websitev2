@@ -241,3 +241,18 @@ Fájlok:
   - Video: `null` (jelenleg emoji cover: 🎓)
 - Blog lista (`/blog`) bővítve: új kártya ("Bevezető az MI Világába", 2025. Feb. 01., kategória: "Oktatás")
 - Build ellenőrzés: `npm run build` → sikeres.
+
+## 17) 2025-12-17 – Blog: „Crown Jewel” White Paper (Brunella-Dosszié)
+
+Fájlok:
+- `app/blog/[slug]/page.jsx`
+- `app/blog/page.jsx`
+
+- Új poszt hozzáadva: `brunella-strategiai-white-paper`
+  - Cím: "A Brunella-Dosszié: Stratégia, Technológia és a Jövő Ügynökei"
+  - Dátum: "2025. Február 10."
+  - Kategória: "White Paper"
+  - Olvasási idő: "20 perc"
+  - YouTube: `VO4Wk68QKHE`
+- Blog lista (`/blog`) bővítve: új kártya ("A Brunella-Dosszié (White Paper)", 2025. Feb. 10.)
+- Build ellenőrzés: `npm run build` → sikeres.

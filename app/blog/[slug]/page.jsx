@@ -248,6 +248,62 @@ const blogPosts = {
       { slug: 'fekete-doboz-vege-glass-box', title: 'Miért félünk az AI-tól?' },
     ],
   },
+  'brunella-strategiai-white-paper': {
+    title: 'A Brunella-Dosszié: Stratégia, Technológia és a Jövő Ügynökei',
+    date: '2025. Február 10.',
+    author: 'Pohánka József Péter',
+    readTime: '20 perc',
+    category: 'White Paper',
+    image: '📑',
+    videoId: 'VO4Wk68QKHE',
+    excerpt:
+      'Ez nem egy blogbejegyzés. Ez a teljes stratégiai jelentés kivonata. A projekt alapú működéstől az AI Ügynök Rendszerekig: helyzetértékelés, TRL 4 prototípus és a jövő ütemterve.',
+    content: `
+      **Ez a bejegyzés a "BAS Rendszer Teljes Dokumentációja" c. stratégiai jelentés alapján készült.**
+
+      Az autonóm mesterséges intelligencia (AI) ügynökrendszerek piaca exponenciális növekedés előtt áll. Ebben a dinamikus környezetben a hosszú távú versenyképesség biztosítása proaktív és termékközpontú stratégiaváltást igényel.
+      
+      Ez a jelentés felméri a kiinduló helyzetet, azonosítja a kritikus korlátokat, és lefekteti a jövőbeli növekedés alapjait.
+
+      ## 1. Stratégiai Célkitűzés: A Váltás
+
+      A jelenlegi, projektalapú megközelítés helyett egy olyan működési modellre van szükség, amely skálázható, magas hozzáadott értékű szolgáltatások "sorozatgyártására" képes.
+
+      **A Cél:** A Pohánka és Társa Kft. átalakítása egy AI-vezérelt termékfejlesztő központtá, ahol a Brunella Agent System (BAS) nem csak egy eszköz, hanem a működés alapja.
+
+      ## 2. A "Termelékenység Forradalma": Mik azok az AI Ügynökök?
+
+      Az AI ügynökök (Agents) többek, mint egyszerű chatbotok. Ezek **proaktív, autonóm rendszerek**, amelyek képesek több lépésből álló feladatokat megtervezni és végrehajtani.
+
+      ### A 4 Lépéses Döntési Folyamat:
+      1.  **Cél megértése:** Az ügynök értelmezi a felhasználó szándékát.
+      2.  **Stratégia tervezése:** Felbontja a feladatot lépésekre (Reasoning).
+      3.  **Végrehajtás:** Eszközöket használ (böngészés, kódolás, API hívás).
+      4.  **Ellenőrzés (Reflexió):** Kiértékeli az eredményt, és ha kell, javít.
+
+      ### Miért jelentenek áttörést?
+      - **Autonómia:** Emberi beavatkozás nélkül cselekszenek a célok elérése érdekében.
+      - **Nagyobb specializáció:** Külön "szakértő" ügynökök (Coder, Researcher, Analyst) dolgoznak együtt.
+      - **Fokozott megbízhatóság:** A belső monológ és a hibajavítás csökkenti a hallucinációt.
+
+      ## 3. A Brunella Ügynökrendszer (BAS) Jelenlegi Állapota
+
+      A Brunella Agent System jelenleg egy fejlett, **prototípus fázisban lévő (TRL 4)** rendszer. Jelentős potenciállal bír, de a "Laboratóriumi" környezetből a "Valós Piacra" lépéshez technikai stabilizációra van szükség.
+
+      **Azonosított kihívások:**
+      - Skálázhatóság biztosítása.
+      - A "Black Box" jelleg megszüntetése (Glass Box átállás).
+      - Felhasználói felület (UI) egyszerűsítése a nem technikai felhasználók számára.
+
+      ## 4. Konklúzió: Az Ember-AI Szuperügynökség
+
+      A jövő nem a gépek uralma, hanem a szimbiózis. A BAS fejlesztésével nem az emberi munka kiváltása a cél, hanem annak "szupererővel" való felruházása. Ez a dokumentum a térkép, amely elvezet minket a **Jövő Szervezetéhez**.
+    `,
+    relatedPosts: [
+      { slug: 'brunella-mi-csapatvezeto', title: 'Brunella: Az MI Csapatvezető' },
+      { slug: 'bevezeto-a-mesterseges-intelligencia-vilagaba', title: 'Bevezető az MI Világába' },
+    ],
+  },
   'az-ido-a-legertekesebb-valuta': {
     title: 'Az IDŐ: A Legértékesebb Valuta az Üzleti Életben',
     date: '2025. Január 10.',

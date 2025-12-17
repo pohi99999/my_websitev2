@@ -5,6 +5,14 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react';
 
 const posts = [
   {
+    slug: 'brunella-strategiai-white-paper',
+    date: '2025. Feb. 10.',
+    readTime: '20 perc',
+    title: 'A Brunella-Dosszié (White Paper)',
+    excerpt: 'A teljes stratégiai dokumentáció. Projektből termék, TRL 4 prototípus és az AI Ügynökök forradalma.',
+    category: 'White Paper',
+  },
+  {
     slug: 'bevezeto-a-mesterseges-intelligencia-vilagaba',
     date: '2025. Feb. 01.',
     readTime: '10 perc',
