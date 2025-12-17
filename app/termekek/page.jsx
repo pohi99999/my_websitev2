@@ -1,6 +1,7 @@
 import VideoBackground from "../components/VideoBackground";
 import Link from "next/link";
 import { Bot, BrainCircuit, ArrowRight } from "lucide-react";
+import VideoShowcase from "./components/VideoShowcase";
 
 export const metadata = {
   title: "Termékek",
@@ -87,6 +88,22 @@ export default function TermekekPage() {
             </Link>
           </div>
         </div>
+
+        <VideoShowcase />
+
+        <section className="mt-20">
+          <div className="max-w-4xl mx-auto">
+            <div className="glass-panel p-10 rounded-2xl border border-white/10 backdrop-blur-md bg-black/40 text-center">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Nincs megfelelő megoldás?</h2>
+              <p className="text-gray-300 mb-8 leading-relaxed">
+                Írja le pár mondatban a folyamatait, és javaslunk egy konkrét AI automatizálási tervet (gyors ROI fókusz, biztonságos bevezetés).
+              </p>
+              <Link href="/kapcsolat" className="btn-primary inline-flex items-center gap-2">
+                Kérjen konzultációt <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   );

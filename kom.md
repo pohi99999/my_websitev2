@@ -333,6 +333,21 @@ Ellenőrzés:
 - `npm run lint` → sikeres (TS eslint figyelmeztetés: TS 5.9.x nem „officially supported” az eslint parser szerint)
 - `npm run build` → sikeres
 
+## 33) 2025-12-17 – Termékek oldal: Video Showcase (YouTube) szekció
+
+Fájlok:
+- `app/termekek/components/VideoShowcase.jsx`
+- `app/termekek/page.jsx`
+
+- Új szekció hozzáadva a Termékek oldalra: **„AI a Gyakorlatban”**.
+- 3 db YouTube videó kártya responsive gridben (lazy iframe betöltéssel).
+- Stílus: sötét / glassmorphism (SpotlightCard) egységes a site designnal.
+- A Termék grid után került be, és a végére bekerült a hivatkozott CTA blokk: **„Nincs megfelelő megoldás?”** (kapcsolat oldalra mutató gombbal).
+
+Ellenőrzés:
+- `npm run lint` → sikeres
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – “Perfect site” alapcsomag #1: reduced-motion + security headerek + OG képek + schema
 
 Fókusz: Web Vitals / UX alapok (reduced motion), biztonsági válaszheaderek, és “rich share”/schema alapok bővítése.
