@@ -1,7 +1,48 @@
+"use client";
+
 import VideoBackground from "../components/VideoBackground";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useState } from "react";
 
 export default function KapcsolatPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
+  const [status, setStatus] = useState({ state: "idle", message: "" });
+
+  const isSending = status.state === "sending";
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    setStatus({ state: "sending", message: "Küldés folyamatban…" });
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message, website })
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error || "Nem sikerült elküldeni az üzenetet.");
+      }
+
+      setStatus({ state: "success", message: "Köszönjük! Az üzenet elküldve." });
+      setName("");
+      setEmail("");
+      setMessage("");
+      setWebsite("");
+    } catch (err) {
+      setStatus({
+        state: "error",
+        message:
+          "Nem sikerült elküldeni. Írj közvetlenül: peterpohankapersonal@gmail.com (vagy próbáld újra pár perc múlva)."
+      });
+    }
+  }
+
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center">
       <VideoBackground videoSrc="/contact.mp4" />
@@ -50,11 +91,27 @@ export default function KapcsolatPage() {
 
           <div className="glass-panel p-8 rounded-2xl backdrop-blur-md bg-black/40 border border-white/10">
             <h2 className="text-2xl font-bold mb-6">Írj nekünk</h2>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={onSubmit}>
+              {/* Honeypot (spam védelem) */}
+              <div className="hidden" aria-hidden="true">
+                <label className="block text-sm text-gray-400 mb-1">Weboldal</label>
+                <input
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white"
+                />
+              </div>
+
               <div>
                 <label className="block text-sm text-gray-400 mb-1">Név</label>
                 <input
                   type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 focus:outline-none transition-colors"
                   placeholder="Az Ön neve"
                 />
@@ -63,6 +120,9 @@ export default function KapcsolatPage() {
                 <label className="block text-sm text-gray-400 mb-1">Email</label>
                 <input
                   type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 focus:outline-none transition-colors"
                   placeholder="email@cim.hu"
                 />
@@ -70,15 +130,38 @@ export default function KapcsolatPage() {
               <div>
                 <label className="block text-sm text-gray-400 mb-1">Üzenet</label>
                 <textarea
+                  required
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 focus:outline-none transition-colors h-32"
                   placeholder="Miben segíthetünk?"
                 ></textarea>
               </div>
+
+              {status.state !== "idle" && (
+                <div
+                  className={
+                    "rounded-lg border px-4 py-3 text-sm " +
+                    (status.state === "success"
+                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-200"
+                      : status.state === "error"
+                        ? "border-red-500/30 bg-red-500/10 text-red-200"
+                        : "border-white/10 bg-white/5 text-gray-200")
+                  }
+                >
+                  {status.message}
+                </div>
+              )}
+
               <button
-                type="button"
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 rounded-lg hover:opacity-90 transition-opacity"
+                type="submit"
+                disabled={isSending}
+                className={
+                  "w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 rounded-lg transition-opacity " +
+                  (isSending ? "opacity-70 cursor-not-allowed" : "hover:opacity-90")
+                }
               >
-                Üzenet Küldése
+                {isSending ? "Küldés…" : "Üzenet Küldése"}
               </button>
             </form>
           </div>

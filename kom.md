@@ -341,6 +341,24 @@ Fájlok:
 - `<img>` → `next/image`: Header + Navbar logó, Portfolio badge + lightbox
 - Brunella Agent Network Graph: mobilon is visszafogott animáció (perf)
 
+## 33) 2025-12-17 – Kapcsolat űrlap: tényleges küldés API-n keresztül
+
+Fájlok:
+- `app/kapcsolat/page.jsx`
+- `app/api/contact/route.ts`
+
+- A Kapcsolat oldali űrlap már nem csak UI: `POST /api/contact` hívással ténylegesen elküldi az üzenetet.
+- Backend: Next.js Route Handler + Nodemailer SMTP-vel.
+- Alap spam védelem: honeypot mező (`website`).
+
+### Vercel Environment Variables (szükséges)
+- `SMTP_HOST`
+- `SMTP_PORT` (pl. 465 vagy 587)
+- `SMTP_USER`
+- `SMTP_PASS`
+- (opcionális) `CONTACT_TO` (alapértelmezett: `peterpohankapersonal@gmail.com`)
+- (opcionális) `CONTACT_FROM` (külön feladó cím, ha a szolgáltató megköveteli)
+
 ## 20) 2025-12-17 – Brunella Agents: 3. interaktív demó (Business Workflow)
 
 Fájl:
