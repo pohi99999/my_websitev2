@@ -139,3 +139,15 @@ Fájl: `app/termekek/brunella-agents/page.jsx`
 
 Live ellenőrzés:
 - A Vercel által kiszolgált HTML már tartalmazza a „full-bleed” classokat, tehát a legfrissebb verzió kint van.
+
+## 10) 2025-12-17 – Pohi AI Pro: YouTube háttér (full-screen iframe)
+
+Fájl: `app/termekek/pohi-ai-pro/page.jsx`
+
+- A Pohi AI Pro oldal háttere lecserélve full-screen YouTube embedre (ID: `7sI8Y_TYnGw`).
+- Követelmények szerint:
+  - `iframe` class: `absolute inset-0 w-full h-full object-cover pointer-events-none`
+  - URL paraméterek: `autoplay=1&mute=1&controls=0&loop=1&playlist=7sI8Y_TYnGw&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1`
+  - Sötét overlay: `bg-black/70`
+  - Tartalom a videó felett: `relative z-10` wrapperben, a meglévő szöveg változatlanul megtartva.
+- Build ellenőrzés: `npm run build` → sikeres.
