@@ -1,5 +1,7 @@
 # Kommunikációs napló (utóbbi ~8 óra)
 
+<!-- frissítés: 2025-12-17 -->
+
 Cél: a háttérvideók javítása és a kért szövegfrissítések élesítése úgy, hogy minden a GitHub `main` ágról menjen Vercel deployra.
 
 ## 1) Kért módosítások (3 komponens)
