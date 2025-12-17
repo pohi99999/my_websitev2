@@ -6,11 +6,14 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,12 +24,12 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { label: 'Kezdőoldal', href: '/' },
-    { label: 'Szolgáltatások', href: '/szolgaltatasok' },
-    { label: 'Termékek', href: '/termekek' },
-    { label: 'Portfólió', href: '/portfolio' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Rólunk', href: '/rolunk' },
+    { label: t('navbar.home'), href: '/' },
+    { label: t('navbar.services'), href: '/szolgaltatasok' },
+    { label: t('navbar.products'), href: '/termekek' },
+    { label: t('navbar.portfolio'), href: '/portfolio' },
+    { label: t('navbar.blog'), href: '/blog' },
+    { label: t('navbar.about'), href: '/rolunk' },
   ];
 
   return (
@@ -79,8 +82,9 @@ export default function Header() {
             })}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+          {/* CTA + Language */}
+          <div className="hidden lg:flex items-center gap-3">
+            <LanguageSwitcher />
             <Link href="/kapcsolat">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -91,7 +95,7 @@ export default function Header() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
 
                 <span className="relative flex items-center space-x-2 text-sm font-bold text-neon-green group-hover:text-white transition-colors duration-300">
-                  <span>Kapcsolat</span>
+                  <span>{t('navbar.contact')}</span>
                   <ChevronRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
               </motion.button>
@@ -119,6 +123,9 @@ export default function Header() {
             className="fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl pt-24 px-6 lg:hidden"
           >
             <div className="flex flex-col space-y-4">
+              <div className="pb-4">
+                <LanguageSwitcher />
+              </div>
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.href}
@@ -147,7 +154,7 @@ export default function Header() {
                   onClick={() => setIsMenuOpen(false)}
                   className="block w-full py-4 rounded-xl bg-gradient-to-r from-neon-green to-electric-blue text-black font-bold text-center text-lg"
                 >
-                  Kapcsolat
+                  {t('navbar.contact')}
                 </Link>
               </motion.div>
             </div>

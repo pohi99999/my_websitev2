@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SequentialVideoBackground from './components/SequentialVideoBackground';
 import LenisProvider from './components/LenisProvider';
+import { LanguageProvider } from './context/LanguageContext';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' });
 
@@ -103,13 +104,15 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${inter.className} bg-black text-white`}>
         <SequentialVideoBackground />
-        <LenisProvider>
-          <Header />
-          <main className="pt-20">
-            {children}
-          </main>
-          <Footer />
-        </LenisProvider>
+        <LanguageProvider>
+          <LenisProvider>
+            <Header />
+            <main className="pt-20">
+              {children}
+            </main>
+            <Footer />
+          </LenisProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -297,6 +297,30 @@ Ellenőrzés:
 - `npm run lint` → csak meglévő warningok
 - `npm run build` → sikeres
 
+## 34) 2025-12-17 – i18n alap (HU/EN) + nyelvváltó
+
+Fájlok:
+- `app/locales/hu.js`
+- `app/locales/en.js`
+- `app/context/LanguageContext.jsx`
+- `app/components/LanguageSwitcher.tsx`
+- `app/layout.tsx`
+- `app/components/Header.tsx`
+- `app/components/Navbar.tsx`
+- `app/components/Hero.tsx`
+
+- Létrejött a fordítási infrastruktúra HU/EN támogatással.
+- `LanguageContext` biztosítja: aktuális nyelv (`hu`/`en`), `t(key)` lookup, és localStorage perzisztencia (`site-language`).
+- Új glassmorphism stílusú nyelvváltó gomb: `LanguageSwitcher` (lucide `Globe` ikon).
+- Integráció:
+  - Root layout a teljes appot `LanguageProvider`-be csomagolja.
+  - Headerben a nyelvváltó a CTA mellett, mobil menüben is elérhető.
+  - Hero demo: headline + subheadline (és CTA label-ek) `t()`-ről jönnek.
+
+Ellenőrzés:
+- `npm run lint` → sikeres
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – OG képek brand template + Markdown render pipeline + Web Vitals (JS split)
 
 Fájlok / újdonságok:

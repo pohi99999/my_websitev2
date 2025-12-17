@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,11 +39,12 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             <NavLink href="#home">Főoldal</NavLink>
             <NavLink href="#portfolio">Portfólió</NavLink>
             <NavLink href="#about">Rólunk</NavLink>
             <NavLink href="#contact">Kapcsolat</NavLink>
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
@@ -55,6 +57,9 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl">
             <div className="flex flex-col p-4 space-y-4">
+              <div className="pb-2">
+                <LanguageSwitcher />
+              </div>
               <MobileNavLink href="#home" onClick={() => setIsOpen(false)}>
                 Főoldal
               </MobileNavLink>
