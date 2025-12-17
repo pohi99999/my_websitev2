@@ -9,6 +9,7 @@ import AgentNetworkDemo from './components/AgentNetworkDemo';
 import AgentTerminalSection from './components/AgentTerminalSection';
 import BusinessLogicDemo from './components/BusinessLogicDemo';
 import OCRDemoSection from './components/OCRDemoSection';
+import SpreadsheetDemoSection from './components/SpreadsheetDemoSection';
 import SafetyControlSection from './components/SafetyControlSection';
 import DocumentationSection from './components/DocumentationSection';
 
@@ -174,6 +175,7 @@ export default function BrunellaAgentsPage() {
 
         {/* Interactive Demos (below Hero, before Features) */}
         <OCRDemoSection />
+        <SpreadsheetDemoSection />
         <AgentTerminalSection />
         <BusinessLogicDemo />
         <AgentNetworkDemo />

@@ -297,6 +297,19 @@ Ellenőrzés:
 - `npm run lint` → csak meglévő warningok
 - `npm run build` → sikeres
 
+## 32) 2025-12-17 – Brunella Agents: Office Automation (Spreadsheet) interaktív demo
+
+Fájlok:
+- `app/termekek/brunella-agents/components/SpreadsheetDemoSection.jsx`
+- `app/termekek/brunella-agents/page.jsx`
+
+- Új „Spreadsheet” (Gemini-in-Sheets jellegű) demó szekció készült glassmorphism stílusban.
+- Interaktív animáció: soronkénti „Scanning” shimmer + cellánkénti gépelés (`Generating...` → előrejelzés), `prefers-reduced-motion` kompatibilitással.
+- Elhelyezés az oldalon: Hero után a demók sorrendje most `OCRDemoSection → SpreadsheetDemoSection → AgentTerminalSection → ...`.
+
+Ellenőrzés:
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – Brunella Agents: “Rendszer dokumentációja” letöltő kártya
 
 Fájlok:
