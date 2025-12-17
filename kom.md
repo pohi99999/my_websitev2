@@ -256,3 +256,18 @@ Fájlok:
   - YouTube: `VO4Wk68QKHE`
 - Blog lista (`/blog`) bővítve: új kártya ("A Brunella-Dosszié (White Paper)", 2025. Feb. 10.)
 - Build ellenőrzés: `npm run build` → sikeres.
+
+## 18) 2025-12-17 – Új oldal: Fogalomtár (kereshető glossary)
+
+Fájl:
+- `app/fogalomtar/page.jsx`
+
+- Új Glossary/Fogalomtár oldal létrehozva a Blog sötét, modern (glassmorphism) stílusában.
+- Keresőmező a tetején: azonnali szűrés a fogalmak és definíciók között.
+- Reszponzív grid (1 oszlop mobilon, 2 oszlop desktopon) kártyákkal: fogalom + definíció.
+- Használt ikonok: `lucide-react` (`Search`, `BookOpen`, `ArrowLeft`).
+
+### 18.1 Repo „tisztítás” (helyi, nem kívánt módosítások eldobása)
+
+- A munkakönyvtárban maradt, véletlenül módosult oldalak vissza lettek állítva (`git restore`), így a `main` ág tiszta állapotban maradt.
+- Lint futtatva: `npm run lint` → nem volt blokkoló hiba (csak meglévő warningok).
