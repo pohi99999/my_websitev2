@@ -379,3 +379,37 @@ Fájl:
   - **Adatvédelem** (`EyeOff`): érzékeny adatok maszkolása (***), elkülönített kezelés.
   - **Alkotmányos AI** (`Scale`): beépített etikai keretek.
 - A11y/perf: `prefers-reduced-motion` figyelembe véve a középső animációnál.
+
+## 26) 2025-12-17 – Refaktor: Brunella Agents demók kiszervezése + közös typewriter hook
+
+Fájlok:
+- `app/hooks/useTypewriter.js`
+- `app/termekek/brunella-agents/page.jsx`
+- `app/termekek/brunella-agents/components/AgentTerminalSection.jsx`
+- `app/termekek/brunella-agents/components/OCRDemoSection.jsx`
+- `app/termekek/brunella-agents/components/BusinessLogicDemo.jsx`
+- `app/termekek/brunella-agents/components/AgentNetworkDemo.jsx`
+- `app/termekek/brunella-agents/components/SafetyControlSection.jsx`
+
+- A túl nagy `page.jsx` karbantarthatósága miatt a demó szekciók külön komponens fájlokba lettek bontva.
+- Új közös hook fájl készült: `useLoopingTypewriter` és `useTypewriterOnce` exporttal.
+- A `page.jsx` most már csak importokat + a render sorrendet tartalmazza (Hero után: OCR → Terminal → Business → Network → Safety → Features).
+
+## 27) 2025-12-17 – Hotfix: Brunella Agents `page.jsx` duplikált tartalom törlése
+
+Fájl:
+- `app/termekek/brunella-agents/page.jsx`
+
+- Javítva a lintet blokkoló hiba: a fájl alján véletlenül benne maradt a régi oldal egy teljes, duplikált blokkja (második `'use client'` + importok + komponens definíciók).
+- A duplikált rész eltávolítva, a `page.jsx` ismét tiszta „import + layout + render” fájl.
+
+## 28) 2025-12-17 – Hotfix: Brunella Agents `page.jsx` végleges tisztítás (2. return törlése)
+
+Fájl:
+- `app/termekek/brunella-agents/page.jsx`
+
+- A komponens lezárása után beragadt egy teljes, duplikált „régi oldal” blokk (ismételt `features/useCases/plans` + második `return`).
+- A duplikált rész teljesen eltávolítva; megszűnt a `return outside of function` parsing error.
+- Ellenőrzés:
+  - `npm run lint` → csak meglévő `<img>` warningok
+  - `npm run build` → sikeres
