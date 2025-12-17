@@ -1,7 +1,5 @@
 # Kommunikációs napló (utóbbi ~8 óra)
 
-<!-- frissítés: 2025-12-17 -->
-
 Cél: a háttérvideók javítása és a kért szövegfrissítések élesítése úgy, hogy minden a GitHub `main` ágról menjen Vercel deployra.
 
 ## 1) Kért módosítások (3 komponens)
@@ -79,7 +77,32 @@ Felmerült igény: ne módosítsuk a `.gitignore`-t, hanem `git add --force`-sza
 - A 3 videó **továbbra is** a repo része és a Vercelen elérhető, mert már bekerültek trackelve a Git-be korábban.
 - A Vercel státusz újra ellenőrizve a legfrissebb `main` commiton: **Deployment has completed**.
 
-## 7) Quick ellenőrzőlista (ha bármi furcsaság van)
+## 7) 2025-12-17 – Hero szöveg frissülés/stabilitás javítás
+
+Tünet:
+- A Kezdőoldal Hero főcímében a frissített szöveg betöltéskor röviden megjelent, majd eltűnt.
+  Ez a gyakorlatban úgy hatott, mintha a régebbi verzió „visszajönne”.
+
+### 7.1 Layout SSR/hydration stabilizálás
+Fájl: `app/layout.tsx`
+
+- Korábban a `LenisProvider` dinamikus importtal volt betöltve `ssr: false`-szal.
+  Ez a teljes fa renderelését könnyen CSR irányba tolhatta (bailout/hydration anomália).
+- Javítás: a `LenisProvider` közvetlen importtal lett használva a layoutban.
+- Eredmény: stabilabb első render és eltűnt a „Bailout to client-side rendering” jellegű kimenet.
+
+### 7.2 Gradiens sor „eltűnésének” kivédése
+Fájl: `app/components/Hero.tsx`
+
+- A gradiens szöveg (`bg-clip-text` + `text-transparent`) bizonyos környezetben láthatatlanná válhat.
+- Javítás: a gradiens szöveg alá került egy fehér fallback réteg ugyanazzal a szöveggel.
+  Így ha a gradiens renderelés hibázik, a sor akkor is olvasható marad.
+- Plusz: a háttérvideó kapott `tabIndex={-1}`-et, hogy `aria-hidden="true"` mellett se legyen fókuszolható (a11y).
+
+Állapot:
+- A javítások a GitHub `main` ágon vannak, és Vercelre ki vannak deployolva.
+
+## 8) Quick ellenőrzőlista (ha bármi furcsaság van)
 
 - Hard refresh: `Ctrl+Shift+R`
 - Video URL teszt:
