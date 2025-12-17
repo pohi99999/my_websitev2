@@ -423,3 +423,15 @@ Fájl:
 - Ellenőrzés:
   - `npx next lint --file app/fogalomtar/page.jsx` → OK
   - `npm run build` → sikeres (csak meglévő `<img>` warningok)
+
+## 30) 2025-12-17 – Brunella Agents: statikus adatok kiszervezése külön fájlba
+
+Fájlok:
+- `app/termekek/brunella-agents/brunella.data.js`
+- `app/termekek/brunella-agents/page.jsx`
+
+- A `features`, `useCases`, `plans` tömbök kikerültek a `page.jsx`-ből egy külön `brunella.data.js` fájlba (named exportokkal).
+- A data fájl tartalmazza a szükséges `lucide-react` ikon importokat (JSX ikonokhoz), így a page komponens tisztább és rövidebb lett.
+- Ellenőrzés:
+  - `npm run lint` → csak meglévő `<img>` warningok
+  - `npm run build` → sikeres

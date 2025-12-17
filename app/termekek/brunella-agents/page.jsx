@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
-import { ArrowLeft, BarChart3, Bot, Brain, CheckCircle, Gauge, Link2, Zap } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+
+import { CheckCircle, features, plans, useCases } from './brunella.data';
 
 import AgentNetworkDemo from './components/AgentNetworkDemo';
 import AgentTerminalSection from './components/AgentTerminalSection';
@@ -13,111 +14,6 @@ import OCRDemoSection from './components/OCRDemoSection';
 import SafetyControlSection from './components/SafetyControlSection';
 
 export default function BrunellaAgentsPage() {
-  const features = [
-    {
-      icon: <Brain className="w-8 h-8" />,
-      title: 'Autonóm Ágensek',
-      description: 'Önállóan működő mesterséges intelligencia ügynökök.'
-    },
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: 'Valós Idejű Döntéshozatal',
-      description: 'Azonnali reagálás és intelligens válaszadás.'
-    },
-    {
-      icon: <Gauge className="w-8 h-8" />,
-      title: 'Teljesítményelemzés',
-      description: 'Részletes elemzés és hatékonyság nyomon követése.'
-    },
-    {
-      icon: <Link2 className="w-8 h-8" />,
-      title: 'API Integráció',
-      description: 'Zökkenőmentes csatlakozás külső rendszerekhez.'
-    },
-    {
-      icon: <Bot className="w-8 h-8" />,
-      title: 'Ügynök Framework',
-      description: 'Fejlesztőbarát framework az egyéni ágensek kódolásához.'
-    },
-    {
-      icon: <BarChart3 className="w-8 h-8" />,
-      title: 'Monitorozás & Analytics',
-      description: 'Teljes ellenőrzés és adatelemzés a felhőben.'
-    }
-  ];
-
-  const useCases = [
-    {
-      title: 'Üzleti Folyamatok Automatizálása',
-      description: 'Böngészést, adatgyűjtést és műveletek automatizálása végig a munkafolyamatokon.'
-    },
-    {
-      title: 'Ügyfélszolgálat Automatizáció',
-      description: 'Intelligens chatbotok, amely képes összetett feladatok megoldására.'
-    },
-    {
-      title: 'Adatgyűjtés és Keresés',
-      description: 'Webes adatgyűjtés, versenytárs monitorozás és piacelemzés.'
-    },
-    {
-      title: 'Prediktív Karbantartás',
-      description: 'Gépipar és logisztika: előrejelzések alapján karbantartási ütemezés.'
-    },
-    {
-      title: 'Személyre Szabott Marketing',
-      description: 'Ügyfélsegmentáció és kampányoptimalizálás automatikusan.'
-    },
-    {
-      title: 'Kutatás és Fejlesztés',
-      description: 'Automatikus kutatás, adatbázis-keresés és dokumentumfeldolgozás.'
-    }
-  ];
-
-  const plans = [
-    {
-      name: 'Team',
-      price: '$299',
-      period: '/hó',
-      description: 'Kis csapatoknak és startupoknak',
-      features: [
-        '5 egyéni ágensek',
-        'Korlátlan API hívások',
-        'Email és chat támogatás',
-        'Alapvető analytics',
-        'Közösségi fórum hozzáférés'
-      ]
-    },
-    {
-      name: 'Business',
-      price: '$999',
-      period: '/hó',
-      description: 'Középnagy vállalatok',
-      features: [
-        '50+ ügynökök',
-        'Korlátlan API hívások',
-        'Prioritás támogatás',
-        'Fejlett analytics és reporting',
-        'Testreszabott ágensek fejlesztése',
-        'Dedikált account manager'
-      ],
-      popular: true
-    },
-    {
-      name: 'Enterprise',
-      price: 'Egyedi',
-      period: '',
-      description: 'Nagyvállalati megoldások',
-      features: [
-        'Korlátlan ügynökök',
-        'Dedikált szerver/felhő',
-        '24/7 telefonos támogatás',
-        'On-premise lehetőség',
-        'Custom AI modellek',
-        'SLA garancia'
-      ]
-    }
-  ];
-
   return (
     <div className="relative min-h-screen bg-transparent text-white overflow-hidden">
       {/* YouTube background (true full-bleed cover) */}
