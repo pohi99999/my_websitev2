@@ -151,3 +151,11 @@ Fájl: `app/termekek/pohi-ai-pro/page.jsx`
   - Sötét overlay: `bg-black/70`
   - Tartalom a videó felett: `relative z-10` wrapperben, a meglévő szöveg változatlanul megtartva.
 - Build ellenőrzés: `npm run build` → sikeres.
+
+### 10.1 Kiegészítő korrekció (scroll közben végig látszódjon)
+
+- Probléma: a háttér videó csak a lap elején volt látható, görgetésnél a többi rész fekete maradt.
+- Javítás: a háttér `iframe` + overlay `fixed inset-0` lett, és a Brunella-mintára „full-bleed cover” technikát kapott:
+  - Wrapper: `fixed inset-0 overflow-hidden pointer-events-none`
+  - Iframe (középre + túlméretezve): `min-w-[100vw] min-h-[56.25vw] w-[177.78vh] h-[100vh]`
+  - Overlay: `fixed inset-0 bg-black/70`

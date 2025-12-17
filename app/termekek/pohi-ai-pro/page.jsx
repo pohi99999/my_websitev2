@@ -111,18 +111,19 @@ export default function PohiAIProPage() {
 
   return (
     <div className="relative min-h-screen bg-transparent text-white overflow-hidden">
-      {/* YouTube background */}
-      <iframe
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        src="https://www.youtube.com/embed/7sI8Y_TYnGw?autoplay=1&mute=1&controls=0&loop=1&playlist=7sI8Y_TYnGw&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
-        title="Pohi AI Pro Background"
-        frameBorder="0"
-        allow="autoplay; encrypted-media"
-        allowFullScreen
-        tabIndex={-1}
-        aria-hidden="true"
-      />
-      <div className="absolute inset-0 bg-black/70" aria-hidden="true" />
+      {/* YouTube background (fixed + full-bleed cover) */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <iframe
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[100vw] min-h-[56.25vw] w-[177.78vh] h-[100vh]"
+          src="https://www.youtube.com/embed/7sI8Y_TYnGw?autoplay=1&mute=1&controls=0&loop=1&playlist=7sI8Y_TYnGw&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
+          title="Pohi AI Pro Background"
+          frameBorder="0"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          tabIndex={-1}
+        />
+      </div>
+      <div className="fixed inset-0 z-[1] bg-black/70" aria-hidden="true" />
 
       <div className="relative z-10">
         {/* Hero Section */}
