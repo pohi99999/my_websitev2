@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
@@ -12,6 +10,19 @@ import AgentTerminalSection from './components/AgentTerminalSection';
 import BusinessLogicDemo from './components/BusinessLogicDemo';
 import OCRDemoSection from './components/OCRDemoSection';
 import SafetyControlSection from './components/SafetyControlSection';
+
+export const metadata = {
+  title: 'Brunella Agent System',
+  description:
+    'Brunella Agent System: autonóm AI ügynökök KKV-k számára. Automatizálás, monitorozás, üzleti workflow-k és human-in-the-loop kontroll egy rendszerben.',
+  openGraph: {
+    title: 'Brunella Agent System',
+    description:
+      'Brunella Agent System: autonóm AI ügynökök KKV-k számára. Automatizálás, monitorozás, üzleti workflow-k és human-in-the-loop kontroll egy rendszerben.',
+    type: 'website',
+    locale: 'hu_HU'
+  }
+};
 
 export default function BrunellaAgentsPage() {
   return (

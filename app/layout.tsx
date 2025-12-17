@@ -9,16 +9,21 @@ import LenisProvider from './components/LenisProvider';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pohánka és Társa Kft. | Szoftverfejlesztés és AI Megoldások",
-  description: "Innovatív szoftverfejlesztés, mesterséges intelligencia és felhő infrastruktúra megoldások. 15 év tapasztalat, 100+ elégedett ügyfél.",
+  title: {
+    template: '%s | Pohánka AI',
+    default: 'Pohánka és Társa Kft. | AI Ügynökség & Szoftverfejlesztés'
+  },
+  description:
+    'Innovatív AI megoldások, Brunella Agent System és egyedi szoftverfejlesztés KKV-k számára. Automatizálja üzleti folyamatait velünk.',
   keywords: "szoftverfejlesztés, AI, mesterséges intelligencia, felhő, cloud, webfejlesztés, Budapest",
   creator: "Pohánka Péter",
   publisher: "Pohánka és Társa Kft.",
   openGraph: {
-    title: "Pohánka és Társa Kft. | Digitális Transzformáció",
-    description: "Innovatív szoftverfejlesztés és AI megoldások a jövő vállalkozásai számára.",
-    url: "https://pohanka.company",
-    type: "website",
+    title: 'Pohánka és Társa Kft. | AI Ügynökség & Szoftverfejlesztés',
+    description:
+      'Innovatív AI megoldások, Brunella Agent System és egyedi szoftverfejlesztés KKV-k számára. Automatizálja üzleti folyamatait velünk.',
+    type: 'website',
+    locale: 'hu_HU'
   },
 };
 

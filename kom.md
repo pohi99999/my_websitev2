@@ -435,3 +435,19 @@ Fájlok:
 - Ellenőrzés:
   - `npm run lint` → csak meglévő `<img>` warningok
   - `npm run build` → sikeres
+
+## 31) 2025-12-17 – SEO: globális metadata + Brunella Agents oldal metadata
+
+Fájlok:
+- `app/layout.tsx`
+- `app/termekek/brunella-agents/page.jsx`
+
+- Globális metadata frissítve a launch szövegekre:
+  - Title: `template: '%s | Pohánka AI'`, default: `Pohánka és Társa Kft. | AI Ügynökség & Szoftverfejlesztés`
+  - Description: KKV-k fókusz, Brunella Agent System + automatizálás
+  - Open Graph: title/description + `type: website`, `locale: hu_HU`
+- Brunella Agents oldal kivezetve `use client`-ből (outer page szerver komponens), így külön `metadata` exportot kapott.
+
+Ellenőrzés:
+- `npm run lint` → csak meglévő warningok
+- `npm run build` → sikeres
