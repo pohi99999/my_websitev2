@@ -339,6 +339,29 @@ Ellenőrzés:
 - `npm run lint` → sikeres
 - `npm run build` → sikeres
 
+## 36) 2025-12-17 – Route alapú i18n: /en alútvonal + middleware
+
+Fájlok:
+- `middleware.ts`
+- `app/en/[[...slug]]/page.tsx`
+- `app/layout.tsx`
+- `app/context/LanguageContext.jsx`
+- `app/components/LanguageSwitcher.tsx`
+- `app/components/Header.tsx`
+- `app/components/Footer.tsx`
+
+- Bevezetve a route-alapú angol (EN) útvonal: minden angol oldal `/en/...` alatt érhető el.
+- `middleware.ts`:
+  - `site-language` cookie állítása útvonal alapján (`/en` → `en`, egyéb → `hu`)
+  - opcionális `/hu/...` útvonalak 308 redirectje a kanonikus HU URL-ekre (no-prefix)
+- Root layout most cookie alapján állítja a HTML `lang` attribútumot és a `LanguageProvider initialLanguage` értékét.
+- A `LanguageSwitcher` nyelvváltáskor nem csak a szöveget váltja, hanem az útvonalat is (HU no-prefix ↔ EN `/en`).
+- Header + Footer linkek EN módban automatikusan `/en` prefixet kapnak, így a navigáció EN alatt is EN marad.
+
+Ellenőrzés:
+- `npm run lint` → sikeres
+- `npm run build` → sikeres (middleware és `/en/[[...slug]]` route generálódik)
+
 ## 32) 2025-12-17 – OG képek brand template + Markdown render pipeline + Web Vitals (JS split)
 
 Fájlok / újdonságok:

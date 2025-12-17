@@ -5,7 +5,13 @@ import { Mail, Phone, MapPin, Linkedin, Facebook, Github, Twitter, Youtube, Code
 import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const withLang = (href: string) => {
+    if (language !== 'en') return href;
+    if (href === '/') return '/en';
+    return href.startsWith('/') ? `/en${href}` : href;
+  };
 
   return (
     <footer className="bg-slate-900 text-white pt-16 pb-8 border-t border-slate-800">
@@ -25,9 +31,9 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-6 text-blue-400">{t('footer.sections.solutions')}</h4>
             <ul className="space-y-3">
-              <li><a href="/termekek/brunella-agents" className="text-slate-400 hover:text-white transition-colors">{t('footer.solutions.brunella')}</a></li>
-              <li><a href="/termekek/pohi-ai-pro" className="text-slate-400 hover:text-white transition-colors">{t('footer.solutions.pohi')}</a></li>
-              <li><a href="/szolgaltatasok" className="text-slate-400 hover:text-white transition-colors">{t('footer.solutions.customDev')}</a></li>
+              <li><a href={withLang('/termekek/brunella-agents')} className="text-slate-400 hover:text-white transition-colors">{t('footer.solutions.brunella')}</a></li>
+              <li><a href={withLang('/termekek/pohi-ai-pro')} className="text-slate-400 hover:text-white transition-colors">{t('footer.solutions.pohi')}</a></li>
+              <li><a href={withLang('/szolgaltatasok')} className="text-slate-400 hover:text-white transition-colors">{t('footer.solutions.customDev')}</a></li>
             </ul>
           </div>
 
@@ -119,9 +125,9 @@ const Footer = () => {
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
           <p>© 2025 {t('footer.companyName')} {t('footer.legal.rights')}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="/impresszum" className="hover:text-white transition-colors">{t('footer.legal.imprint')}</a>
-            <a href="/adatvedelmi-nyilatkozat" className="hover:text-white transition-colors">{t('footer.legal.privacy')}</a>
-            <a href="/aszf" className="hover:text-white transition-colors">{t('footer.legal.terms')}</a>
+            <a href={withLang('/impresszum')} className="hover:text-white transition-colors">{t('footer.legal.imprint')}</a>
+            <a href={withLang('/adatvedelmi-nyilatkozat')} className="hover:text-white transition-colors">{t('footer.legal.privacy')}</a>
+            <a href={withLang('/aszf')} className="hover:text-white transition-colors">{t('footer.legal.terms')}</a>
           </div>
         </div>
       </div>

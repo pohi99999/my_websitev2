@@ -22,16 +22,23 @@ function getNestedValue(obj, path) {
 
 const LanguageContext = createContext({
   language: 'hu',
-  setLanguage: () => {},
+  setLanguage: (_lang) => {},
   toggleLanguage: () => {},
   t: (key) => key,
 });
 
-export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState('hu');
+export function LanguageProvider({ children, initialLanguage = 'hu' }) {
+  const [language, setLanguage] = useState(isSupportedLanguage(initialLanguage) ? initialLanguage : 'hu');
 
   useEffect(() => {
     try {
+      // Route-driven language should win over previously stored preference.
+      if (isSupportedLanguage(initialLanguage)) {
+        setLanguage(initialLanguage);
+        window.localStorage.setItem(STORAGE_KEY, initialLanguage);
+        return;
+      }
+
       const stored = window.localStorage.getItem(STORAGE_KEY);
       if (isSupportedLanguage(stored)) {
         setLanguage(stored);
@@ -43,7 +50,7 @@ export function LanguageProvider({ children }) {
     } catch {
       // no-op
     }
-  }, []);
+  }, [initialLanguage]);
 
   useEffect(() => {
     try {

@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import SequentialVideoBackground from './components/SequentialVideoBackground';
 import LenisProvider from './components/LenisProvider';
 import { LanguageProvider } from './context/LanguageContext';
+import { cookies } from 'next/headers';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' });
 
@@ -41,8 +42,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = cookies();
+  const langCookie = cookieStore.get('site-language')?.value;
+  const initialLanguage = langCookie === 'en' ? 'en' : 'hu';
+
   return (
-    <html lang="hu">
+    <html lang={initialLanguage}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -104,7 +109,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${inter.className} bg-black text-white`}>
         <SequentialVideoBackground />
-        <LanguageProvider>
+        <LanguageProvider initialLanguage={initialLanguage}>
           <LenisProvider>
             <Header />
             <main className="pt-20">

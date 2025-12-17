@@ -13,7 +13,13 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const withLang = (href: string) => {
+    if (language !== 'en') return href;
+    if (href === '/') return '/en';
+    return href.startsWith('/') ? `/en${href}` : href;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,12 +30,12 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { label: t('navbar.home'), href: '/' },
-    { label: t('navbar.services'), href: '/szolgaltatasok' },
-    { label: t('navbar.products'), href: '/termekek' },
-    { label: t('navbar.portfolio'), href: '/portfolio' },
-    { label: t('navbar.blog'), href: '/blog' },
-    { label: t('navbar.about'), href: '/rolunk' },
+    { label: t('navbar.home'), href: withLang('/') },
+    { label: t('navbar.services'), href: withLang('/szolgaltatasok') },
+    { label: t('navbar.products'), href: withLang('/termekek') },
+    { label: t('navbar.portfolio'), href: withLang('/portfolio') },
+    { label: t('navbar.blog'), href: withLang('/blog') },
+    { label: t('navbar.about'), href: withLang('/rolunk') },
   ];
 
   return (
@@ -85,7 +91,7 @@ export default function Header() {
           {/* CTA + Language */}
           <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher />
-            <Link href="/kapcsolat">
+            <Link href={withLang('/kapcsolat')}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -150,7 +156,7 @@ export default function Header() {
                 className="pt-8"
               >
                 <Link
-                  href="/kapcsolat"
+                  href={withLang('/kapcsolat')}
                   onClick={() => setIsMenuOpen(false)}
                   className="block w-full py-4 rounded-xl bg-gradient-to-r from-neon-green to-electric-blue text-black font-bold text-center text-lg"
                 >
