@@ -346,6 +346,29 @@ Ellenőrzés:
 - `npm run lint` → OK (TypeScript verzió warning: `@typescript-eslint` támogatási tartomány)
 - `npm run build` → sikeres (edge runtime figyelmeztetés: edge oldalak statikus generálást tiltják)
 
+## 33) 2025-12-17 – OG/Twitter: dinamikus share képek + apró Web Vitals finomhangolás
+
+### 33.1 Dinamikus OG/Twitter képek a detail oldalakra
+
+Fájlok:
+- `app/blog/[slug]/opengraph-image.tsx`
+- `app/blog/[slug]/twitter-image.tsx`
+- `app/portfolio/[id]/opengraph-image.tsx`
+- `app/portfolio/[id]/twitter-image.tsx`
+
+- Blog és portfólió részletes oldalak share preview-ja most már a konkrét cikk/projekt címével generálódik (Edge `ImageResponse`).
+
+### 33.2 Web Vitals: embed optimalizáció
+
+Fájl:
+- `app/blog/[slug]/page.jsx`
+
+- A beágyazott YouTube iframe `loading="lazy"`-t kapott (a hero után jön, így nem akadályozza az első render-t).
+
+Ellenőrzés:
+- `npm run lint` → OK (TypeScript verzió warning: `@typescript-eslint` támogatási tartomány)
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – Launch SEO/OG + sitemap/robots + jogi oldalak + 404 + `next/image`
 
 Fájlok:

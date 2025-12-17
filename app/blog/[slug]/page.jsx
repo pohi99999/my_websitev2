@@ -609,6 +609,7 @@ export default function BlogPostPage({ params }) {
                     src={`https://www.youtube.com/embed/${post.videoId}?rel=0&modestbranding=1`}
                     title={post.title}
                     frameBorder="0"
+                    loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
