@@ -31,26 +31,39 @@ export default function SpreadsheetDemoSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-120px' });
 
+  const moneyFormatter = useMemo(() => {
+    const locale = language === 'en' ? 'en-GB' : 'hu-HU';
+    const currency = language === 'en' ? 'EUR' : 'HUF';
+
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency,
+      maximumFractionDigits: 0
+    });
+  }, [language]);
+
+  const formatMoney = useCallback((value) => moneyFormatter.format(value), [moneyFormatter]);
+
   const rows = useMemo(
     () => [
       {
         name: language === 'en' ? 'Brunella BAS – Setup Pack' : 'Brunella BAS – Bevezető csomag',
-        q3: '€42,300',
-        q4: '€48,750',
+        q3: 42300,
+        q4: 48750,
         finalText: language === 'en' ? '+15% Growth' : '+15% növekedés',
         status: 'positive'
       },
       {
         name: language === 'en' ? 'Pohi AI Pro – License' : 'Pohi AI Pro – Licenc',
-        q3: '€19,800',
-        q4: '€19,600',
+        q3: 19800,
+        q4: 19600,
         finalText: language === 'en' ? 'Stable' : 'Stabil',
         status: 'neutral'
       },
       {
         name: language === 'en' ? 'Automation Consulting (SME)' : 'Automatizálási tanácsadás (KKV)',
-        q3: '€31,400',
-        q4: '€29,800',
+        q3: 31400,
+        q4: 29800,
         finalText: language === 'en' ? '-5% Decline' : '-5% csökkenés',
         status: 'negative'
       }
@@ -146,7 +159,7 @@ export default function SpreadsheetDemoSection() {
                   <span className="w-3 h-3 rounded-full bg-yellow-400/70" />
                   <span className="w-3 h-3 rounded-full bg-green-400/70" />
                 </div>
-                <div className="text-sm text-gray-300">Q4_forecast.sheet</div>
+                <div className="text-sm text-gray-300">{t('brunellaAgents.spreadsheetDemo.filename')}</div>
               </div>
               <div className="flex items-center gap-2 text-xs text-gray-400">
                 <TrendingUp className="w-4 h-4" /> {t('brunellaAgents.spreadsheetDemo.aiFill')}
@@ -218,8 +231,8 @@ export default function SpreadsheetDemoSection() {
                         <div className="relative z-10 text-sm text-gray-200 font-semibold truncate">
                           {row.name}
                         </div>
-                        <div className="relative z-10 text-sm text-gray-200 text-right tabular-nums">{row.q3}</div>
-                        <div className="relative z-10 text-sm text-gray-200 text-right tabular-nums">{row.q4}</div>
+                        <div className="relative z-10 text-sm text-gray-200 text-right tabular-nums">{formatMoney(row.q3)}</div>
+                        <div className="relative z-10 text-sm text-gray-200 text-right tabular-nums">{formatMoney(row.q4)}</div>
 
                         <div className="relative z-10 text-right">
                           <div className="relative inline-flex items-center justify-end min-h-[24px]">

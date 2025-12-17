@@ -324,6 +324,21 @@ Fájlok:
 Ellenőrzés:
 - `npm run build` → sikeres
 
+## 34) 2025-12-18 – Brunella Agents: Spreadsheet demo fájlnév + pénznem nyelvfüggően
+
+Fájlok:
+- `app/termekek/brunella-agents/components/SpreadsheetDemoSection.jsx`
+- `app/locales/hu.js`
+- `app/locales/en.js`
+
+- A fejléc fájlnév felirat nyelvfüggő lett (`Q4_elorejelzes.sheet` / `Q4_forecast.sheet`).
+- A Q3/Q4 értékek már számokból renderelődnek `Intl.NumberFormat`-tal:
+  - HU: `HUF` formázás (pl. „42 300 Ft”)
+  - EN: `EUR` formázás (pl. „€42,300”)
+
+Ellenőrzés:
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – Brunella Agents: “Rendszer dokumentációja” letöltő kártya
 
 Fájlok:

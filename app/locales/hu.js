@@ -67,6 +67,7 @@ const hu = {
       title: 'Táblázat elemzés (Gemini-stílus)',
       subtitle:
         'Brunella automatikusan kitölti, ellenőrzi és előrejelzi a táblázat celláit — adatbevitel helyett döntéstámogatás.',
+      filename: 'Q4_elorejelzes.sheet',
       aiFill: 'AI-kitöltés',
       connected: 'Brunella Analyst kapcsolódva',
       generating: 'Generálás...',

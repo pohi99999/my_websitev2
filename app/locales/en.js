@@ -67,6 +67,7 @@ const en = {
       title: 'Spreadsheet analysis (Gemini-style)',
       subtitle:
         'Brunella automatically fills, checks, and forecasts spreadsheet cells — decision support instead of data entry.',
+      filename: 'Q4_forecast.sheet',
       aiFill: 'AI-assisted fill',
       connected: 'Brunella Analyst connected',
       generating: 'Generating...',
