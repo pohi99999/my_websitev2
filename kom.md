@@ -345,3 +345,11 @@ Fájl:
 Ellenőrzés:
 - `npm run lint` → csak meglévő warningok
 - `npm run build` → sikeres
+
+## 23) 2025-12-17 – Home Hero CTA: Brunella Agents link
+
+Fájl:
+- `app/components/Hero.tsx`
+
+- A fő Hero CTA gomb célja átállítva a Brunella termékoldalra: `/termekek/brunella-agents`.
+- A gomb szövege: "Brunella Agent System" (nyíl ikon megtartva).
