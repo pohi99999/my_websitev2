@@ -61,6 +61,29 @@ const hu = {
       },
     },
   },
+  brunellaAgents: {
+    spreadsheetDemo: {
+      badge: 'Irodai Automatizáció',
+      title: 'Táblázat elemzés (Gemini-stílus)',
+      subtitle:
+        'Brunella automatikusan kitölti, ellenőrzi és előrejelzi a táblázat celláit — adatbevitel helyett döntéstámogatás.',
+      aiFill: 'AI-kitöltés',
+      connected: 'Brunella Analyst kapcsolódva',
+      generating: 'Generálás...',
+      columns: {
+        product: 'Termék',
+        q3: 'Q3 árbevétel',
+        q4: 'Q4 árbevétel',
+        prediction: 'AI előrejelzés',
+      },
+      note: 'Példa: Brunella felismeri a trendet és kitölti az előrejelzést.',
+      state: {
+        idle: 'Készen áll',
+        running: 'Szkennelés…',
+        done: 'Elemzés kész',
+      },
+    },
+  },
 };
 
 export default hu;

@@ -310,6 +310,20 @@ Fájlok:
 Ellenőrzés:
 - `npm run build` → sikeres
 
+## 33) 2025-12-18 – Brunella Agents: Spreadsheet demo kétnyelvűsítés (HU/EN)
+
+Fájlok:
+- `app/termekek/brunella-agents/components/SpreadsheetDemoSection.jsx`
+- `app/locales/hu.js`
+- `app/locales/en.js`
+
+- A Spreadsheet demo feliratai és státuszai `LanguageContext`-ből jönnek (`t(...)`), így a nyelvváltás automatikusan HU/EN.
+- Új fordítási kulcsok: `brunellaAgents.spreadsheetDemo.*`.
+- A demo sorok (terméknevek + előrejelzés szövegek) is nyelvfüggők.
+
+Ellenőrzés:
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – Brunella Agents: “Rendszer dokumentációja” letöltő kártya
 
 Fájlok:

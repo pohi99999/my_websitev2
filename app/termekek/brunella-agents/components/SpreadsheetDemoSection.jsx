@@ -6,6 +6,7 @@ import { AlertCircle, Table, TrendingUp } from 'lucide-react';
 
 import GsapFadeIn from '../../../components/GsapFadeIn';
 import SpotlightCard from '../../../components/SpotlightCard';
+import { useLanguage } from '../../../context/LanguageContext';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -25,6 +26,7 @@ function statusClass(status) {
 }
 
 export default function SpreadsheetDemoSection() {
+  const { language, t } = useLanguage();
   const prefersReducedMotion = useReducedMotion();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-120px' });
@@ -32,28 +34,28 @@ export default function SpreadsheetDemoSection() {
   const rows = useMemo(
     () => [
       {
-        name: 'Brunella BAS – Setup Pack',
+        name: language === 'en' ? 'Brunella BAS – Setup Pack' : 'Brunella BAS – Bevezető csomag',
         q3: '€42,300',
         q4: '€48,750',
-        finalText: '+15% Growth',
+        finalText: language === 'en' ? '+15% Growth' : '+15% növekedés',
         status: 'positive'
       },
       {
-        name: 'Pohi AI Pro – License',
+        name: language === 'en' ? 'Pohi AI Pro – License' : 'Pohi AI Pro – Licenc',
         q3: '€19,800',
         q4: '€19,600',
-        finalText: 'Stable',
+        finalText: language === 'en' ? 'Stable' : 'Stabil',
         status: 'neutral'
       },
       {
-        name: 'Automation Consulting (SME)',
+        name: language === 'en' ? 'Automation Consulting (SME)' : 'Automatizálási tanácsadás (KKV)',
         q3: '€31,400',
         q4: '€29,800',
-        finalText: '-5% Decline',
+        finalText: language === 'en' ? '-5% Decline' : '-5% csökkenés',
         status: 'negative'
       }
     ],
-    []
+    [language]
   );
 
   const [runState, setRunState] = useState('idle'); // idle | running | done
@@ -95,7 +97,7 @@ export default function SpreadsheetDemoSection() {
           continue;
         }
 
-        await typeIntoRow(i, 'Generating...', 'generating');
+        await typeIntoRow(i, t('brunellaAgents.spreadsheetDemo.generating'), 'generating');
         await delay(250);
 
         setPredictions((prev) => {
@@ -117,7 +119,7 @@ export default function SpreadsheetDemoSection() {
     return () => {
       cancelled = true;
     };
-  }, [inView, prefersReducedMotion, rows]);
+  }, [inView, prefersReducedMotion, rows, t]);
 
   const showBadge = runState === 'running' && activeRow >= 0;
 
@@ -128,12 +130,10 @@ export default function SpreadsheetDemoSection() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 text-purple-200 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-4">
               <Table className="w-4 h-4" />
-              <span className="text-sm font-semibold">Office Automation</span>
+              <span className="text-sm font-semibold">{t('brunellaAgents.spreadsheetDemo.badge')}</span>
             </div>
-            <h2 className="section-title">Táblázat Elemzés (Gemini-stílus)</h2>
-            <p className="section-subtitle">
-              Brunella automatikusan kitölti, ellenőrzi és előrejelzi a táblázat celláit — adatbevitel helyett döntéstámogatás.
-            </p>
+            <h2 className="section-title">{t('brunellaAgents.spreadsheetDemo.title')}</h2>
+            <p className="section-subtitle">{t('brunellaAgents.spreadsheetDemo.subtitle')}</p>
           </div>
         </GsapFadeIn>
 
@@ -149,7 +149,7 @@ export default function SpreadsheetDemoSection() {
                 <div className="text-sm text-gray-300">Q4_forecast.sheet</div>
               </div>
               <div className="flex items-center gap-2 text-xs text-gray-400">
-                <TrendingUp className="w-4 h-4" /> AI-assisted fill
+                <TrendingUp className="w-4 h-4" /> {t('brunellaAgents.spreadsheetDemo.aiFill')}
               </div>
             </div>
 
@@ -167,17 +167,17 @@ export default function SpreadsheetDemoSection() {
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300/60" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-300" />
                     </span>
-                    Brunella Analyst connected
+                    {t('brunellaAgents.spreadsheetDemo.connected')}
                   </motion.div>
                 )}
               </AnimatePresence>
 
               <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 overflow-hidden">
                 <div className="grid grid-cols-4 gap-3 px-4 py-3 text-[11px] uppercase tracking-widest text-gray-300 bg-black/25 border-b border-white/10">
-                  <div className="truncate">Product Name</div>
-                  <div className="text-right">Q3 Sales</div>
-                  <div className="text-right">Q4 Sales</div>
-                  <div className="text-right">AI Prediction</div>
+                  <div className="truncate">{t('brunellaAgents.spreadsheetDemo.columns.product')}</div>
+                  <div className="text-right">{t('brunellaAgents.spreadsheetDemo.columns.q3')}</div>
+                  <div className="text-right">{t('brunellaAgents.spreadsheetDemo.columns.q4')}</div>
+                  <div className="text-right">{t('brunellaAgents.spreadsheetDemo.columns.prediction')}</div>
                 </div>
 
                 <div className="divide-y divide-white/10">
@@ -259,12 +259,14 @@ export default function SpreadsheetDemoSection() {
               <div className="mt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm">
                 <div className="flex items-center gap-2 text-gray-300">
                   <AlertCircle className="w-4 h-4 text-purple-200" />
-                  <span>
-                    Példa: Brunella felismeri a trendet és kitölti az előrejelzést.
-                  </span>
+                  <span>{t('brunellaAgents.spreadsheetDemo.note')}</span>
                 </div>
                 <div className="text-xs text-gray-400">
-                  {runState === 'done' ? 'Analysis complete' : runState === 'running' ? 'Scanning…' : 'Ready'}
+                  {runState === 'done'
+                    ? t('brunellaAgents.spreadsheetDemo.state.done')
+                    : runState === 'running'
+                      ? t('brunellaAgents.spreadsheetDemo.state.running')
+                      : t('brunellaAgents.spreadsheetDemo.state.idle')}
                 </div>
               </div>
             </div>

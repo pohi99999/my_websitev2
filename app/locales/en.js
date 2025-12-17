@@ -61,6 +61,29 @@ const en = {
       },
     },
   },
+  brunellaAgents: {
+    spreadsheetDemo: {
+      badge: 'Office Automation',
+      title: 'Spreadsheet analysis (Gemini-style)',
+      subtitle:
+        'Brunella automatically fills, checks, and forecasts spreadsheet cells — decision support instead of data entry.',
+      aiFill: 'AI-assisted fill',
+      connected: 'Brunella Analyst connected',
+      generating: 'Generating...',
+      columns: {
+        product: 'Product',
+        q3: 'Q3 Sales',
+        q4: 'Q4 Sales',
+        prediction: 'AI Prediction',
+      },
+      note: 'Example: Brunella detects the trend and fills the forecast.',
+      state: {
+        idle: 'Ready',
+        running: 'Scanning…',
+        done: 'Analysis complete',
+      },
+    },
+  },
 };
 
 export default en;
