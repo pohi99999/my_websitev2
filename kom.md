@@ -312,3 +312,18 @@ Fájl:
 Ellenőrzés:
 - `npm run lint` → csak meglévő warningok
 - `npm run build` → sikeres
+
+## 21) 2025-12-17 – Brunella Agents: Business Workflow demó finomhangolás (Valós Üzleti Szituációk)
+
+Fájl:
+- `app/termekek/brunella-agents/page.jsx`
+
+- A demó lépései a specifikációhoz igazítva: "Market Research (Kutatás)" → "Data Processing (Feldolgozás)" → "Strategic Options (Brunella)" → "Execution (Végrehajtás)".
+- Step 1-ben a radar mellé feliratozott, lebegő datapoint chipek kerültek (pl. "Competitor Price: €50", "Trend: Rising").
+- Step 2-ben a datapointok animáltan összeolvadnak a központi Insight/Summary kártyába.
+- Step 3 gombok magyar címkékkel:
+  - "Email Kampány Indítása"
+  - "Stratégiai Prezentáció"
+  - "LinkedIn Poszt Generálás"
+- Step 4 modál előnézet realisztikusabb megjelenéssel (Gmail compose / PowerPoint slide preview / LinkedIn poszt preview) és typewriter effekttel.
+- Typewriter hook javítva: text váltáskor is korrektül újraindul a gépelés (choice csere esetén).

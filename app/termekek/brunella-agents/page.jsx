@@ -75,10 +75,16 @@ function useTypewriterOnce({ text, speedMs = 14, enabled = true }) {
     if (!enabled) {
       setValue('');
       idxRef.current = 0;
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
       return;
     }
 
     let cancelled = false;
+
+    // reset when enabled or when text changes
+    setValue('');
+    idxRef.current = 0;
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
     const tick = () => {
       if (cancelled) return;
@@ -442,25 +448,38 @@ function BusinessLogicDemo() {
   const [open, setOpen] = useState(false);
   const [choice, setChoice] = useState(null);
 
+  const dataPoints = useMemo(
+    () => [
+      { label: 'Competitor Price: €50', top: '20%', left: '26%' },
+      { label: 'Trend: Rising', top: '34%', left: '62%' },
+      { label: 'CPC: -12%', top: '56%', left: '46%' },
+      { label: 'Segment: SMB', top: '70%', left: '30%' },
+      { label: 'Demand: High', top: '28%', left: '52%' }
+    ],
+    []
+  );
+
   const artifacts = useMemo(
     () => ({
       email: {
-        title: 'Email Campaign Draft',
-        subtitle: 'Target: warm leads • Tone: professional • CTA: Book a demo',
+        title: 'Gmail – Új üzenet',
+        subtitle: 'Kampány: Q3 • Hangnem: professzionális • CTA: demó időpont',
+        to: '{Címzett}',
+        subject: 'Q3 piaci jelzés: készen állsz egy gyors stratégiára?',
         body:
-          'Subject: Q3 market shift detected — want a 15-min strategy call?\n\nHi {FirstName},\n\nOur Brunella Agents just analyzed Q3 competitor pricing across 5 key players. We detected an average 5% price drop and a clear shift toward bundle-based offers.\n\nHere is a quick, actionable recommendation:\n- Keep list prices stable, introduce a limited-time bundle\n- Emphasize ROI and implementation speed\n- Offer a “migration + onboarding” bonus through end of month\n\nIf you want, I can generate a tailored plan for your exact segment in 15 minutes.\n\nBest,\nPohánka & Társa\n\nPS: Reply with “Q3” and I’ll send the full report.'
+          'Szia {Keresztnév}!\n\nA Brunella Agents a Q3-as piaci adatokat elemezte (5 versenytárs, árak és ajánlatok). A rendszer egyértelmű jelzést talált: átlagosan ~5% árcsökkenés + erősödő csomagajánlatok.\n\nJavaslat (következő 14 nap):\n• Tartsd a listaárat, indíts limitált bundle kampányt\n• Üzenet: ROI + gyors bevezetés + átláthatóság\n• Ajánlat: onboarding bónusz hónap végéig\n\nHa szeretnéd, 15 perc alatt összeállítok egy célcsoport-specifikus playbookot és 3 kreatív variánst.\n\nÜdv,\nPohánka & Társa\n\nUi.: Válaszolj annyit: „Q3”, és küldöm a részletes riportot.'
+      },
+      presentation: {
+        title: 'PowerPoint – Slide Preview',
+        subtitle: '1 oldalas stratégiai összefoglaló • vezetői fókusz',
+        body:
+          'Cím: Q3 piaci lehetőség – gyors döntési javaslat\n\n1) Jelzés\n- Versenytársak: átlag -5% ármozgás\n- Csomagajánlatok és limitált akciók erősödnek\n\n2) Hatás\n- Inbound: árérzékenység nő\n- Churn kockázat: price-only szegmensek\n\n3) Ajánlott lépések (14 nap)\n- Bundle + onboarding bónusz\n- Üzenet: ROI, gyors bevezetés, „Glass Box” transzparencia\n- 3 kreatív A/B teszt LinkedIn-en\n\n4) Output\n- Kampány assetek + sales enablement összegzés\n- Heti monitorozás automatizálva'
       },
       linkedin: {
-        title: 'LinkedIn Ad Preview',
-        subtitle: 'Format: Single image • Goal: lead gen • Hook: competitor drop',
+        title: 'LinkedIn – Poszt előnézet',
+        subtitle: 'Cél: lead gen • Hook: piaci jelzés • CTA: komment + DM',
         body:
-          'Headline: Competitors dropped prices by 5% — don\'t panic. Out-execute.\n\nPrimary text:\nQ3 market signal detected: pricing down ~5% across top competitors.\n\nBrunella Agents turns this into action:\n✅ scan competitor offers\n✅ summarize positioning changes\n✅ generate an optimized campaign plan\n\nWant the full Q3 pricing map + playbook?\nComment “PLAYBOOK” and we\'ll DM you.\n\nCTA: Learn more'
-      },
-      report: {
-        title: 'Management Report (Executive Summary)',
-        subtitle: 'Audience: leadership • Length: 1 page • Focus: decisions',
-        body:
-          'Q3 COMPETITOR PRICING — EXECUTIVE SUMMARY\n\n1) Signal\n- Top 5 competitors: average -5% price movement\n- Increased bundling and limited-time offers\n\n2) Impact\n- Higher price sensitivity in inbound leads\n- Increased churn risk for price-only segments\n\n3) Recommended decisions (next 14 days)\n- Protect premium tier; introduce bundle with onboarding\n- Adjust messaging: ROI + speed + transparency (Glass Box)\n- Launch targeted LinkedIn campaign; test 3 creatives\n\n4) Output\n- Campaign assets generated\n- Sales enablement summary produced\n- Monitoring automation scheduled (weekly)'
+          'Q3 piaci jelzés: a top versenytársak átlagosan ~5%-kal csökkentettek árat.\n\nA kérdés nem az, hogy olcsóbb leszel-e — hanem hogy gyorsabban tudsz-e végrehajtani.\n\nA Brunella Agents ezt csinálja helyetted:\n✅ versenytárs ajánlatok scan\n✅ trendek és pozicionálás összegzés\n✅ kampány és üzenetek generálása\n\nKéred a Q3 ár-térképet + playbookot?\nKomment: „PLAYBOOK” és küldjük DM-ben.'
       }
     }),
     []
@@ -568,7 +587,7 @@ function BusinessLogicDemo() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.45 }}
           >
-            <FlowCard step={1} title="Research" icon={Scan} tone="from-emerald-500/25 to-cyan-500/20">
+            <FlowCard step={1} title="Market Research (Kutatás)" icon={Scan} tone="from-emerald-500/25 to-cyan-500/20">
               <div className="flex items-center justify-between mb-4">
                 <div className="text-sm text-gray-300">Market Data Points</div>
                 <div className="text-xs text-gray-400">Live scan</div>
@@ -605,10 +624,25 @@ function BusinessLogicDemo() {
                     transition={{ duration: 1.6, repeat: Infinity, delay: idx * 0.15 }}
                   />
                 ))}
+
+                {dataPoints.map((p, idx) => (
+                  <motion.div
+                    key={p.label}
+                    className="absolute"
+                    style={{ top: p.top, left: p.left }}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: [0.2, 1, 0.6, 1], y: [6, 0, 2, 0] }}
+                    transition={{ duration: 2.4, repeat: Infinity, delay: 0.2 + idx * 0.18, ease: 'easeInOut' }}
+                  >
+                    <div className="px-2.5 py-1 rounded-full border border-white/10 bg-black/35 backdrop-blur text-[11px] text-emerald-100 whitespace-nowrap">
+                      {p.label}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
 
               <div className="mt-4 text-xs text-gray-400">
-                Talált pontok: <span className="text-emerald-200 font-semibold">5</span>
+                Talált pontok: <span className="text-emerald-200 font-semibold">{dataPoints.length}</span>
               </div>
             </FlowCard>
           </motion.div>
@@ -622,7 +656,7 @@ function BusinessLogicDemo() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.45, delay: 0.05 }}
           >
-            <FlowCard step={2} title="Process" icon={FileText} tone="from-cyan-500/20 to-blue-500/20">
+            <FlowCard step={2} title="Data Processing (Feldolgozás)" icon={FileText} tone="from-cyan-500/20 to-blue-500/20">
               <div className="flex items-center justify-between mb-4">
                 <div className="text-sm text-gray-300">Merging signals</div>
                 <div className="text-xs text-gray-400">Analysis pipeline</div>
@@ -650,14 +684,18 @@ function BusinessLogicDemo() {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                     >
-                      {dotPositions.map((p, idx) => (
+                      {dataPoints.map((p, idx) => (
                         <motion.div
-                          key={idx}
-                          className="absolute w-2.5 h-2.5 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(34,211,238,0.7)]"
+                          key={p.label}
+                          className="absolute"
                           style={{ top: p.top, left: p.left }}
-                          animate={{ top: '50%', left: '50%', x: '-50%', y: '-50%', opacity: [1, 0.4, 0.9] }}
-                          transition={{ duration: 1.2, delay: idx * 0.08, ease: 'easeInOut' }}
-                        />
+                          animate={{ top: '50%', left: '50%', x: '-50%', y: '-50%', opacity: [1, 0.35, 0.9] }}
+                          transition={{ duration: 1.15, delay: idx * 0.09, ease: 'easeInOut' }}
+                        >
+                          <div className="px-2.5 py-1 rounded-full border border-white/10 bg-black/35 backdrop-blur text-[11px] text-cyan-100 whitespace-nowrap shadow-[0_0_18px_rgba(34,211,238,0.18)]">
+                            {p.label}
+                          </div>
+                        </motion.div>
                       ))}
 
                       <motion.div
@@ -668,8 +706,8 @@ function BusinessLogicDemo() {
                       >
                         <div className="rounded-xl border border-white/10 bg-white/5 p-4">
                           <div className="text-xs text-gray-400">Summary</div>
-                          <div className="text-lg font-bold text-white">Q3 Pricing Trend</div>
-                          <div className="text-sm text-gray-300 mt-1">Detected: average -5% competitor drop</div>
+                          <div className="text-lg font-bold text-white">Piaci lehetőség Q3-ban</div>
+                          <div className="text-sm text-gray-300 mt-1">Összegzés: versenytárs árak ~-5%, kereslet magas</div>
                           <div className="mt-3 h-2 rounded-full bg-white/10 overflow-hidden">
                             <motion.div
                               className="h-full bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400"
@@ -700,7 +738,7 @@ function BusinessLogicDemo() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.45, delay: 0.1 }}
           >
-            <FlowCard step={3} title="Decision" icon={Bot} tone="from-purple-500/22 to-pink-500/18">
+            <FlowCard step={3} title="Strategic Options (Brunella)" icon={Bot} tone="from-purple-500/22 to-pink-500/18">
               <div className="flex items-center justify-between mb-4">
                 <div className="text-sm text-gray-300">Brunella ajánlás</div>
                 <div className="text-xs text-gray-400">Choose output</div>
@@ -735,7 +773,21 @@ function BusinessLogicDemo() {
                       >
                         <div className="flex items-center gap-3">
                           <Mail className="w-5 h-5 text-emerald-200" />
-                          <span className="font-semibold text-white">Email Campaign 📧</span>
+                          <span className="font-semibold text-white">Email Kampány Indítása</span>
+                        </div>
+                        <span className="text-xs text-gray-400">Generate</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="w-full rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors px-4 py-3 flex items-center justify-between"
+                        onClick={() => {
+                          setChoice('presentation');
+                          setOpen(true);
+                        }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <BarChart3 className="w-5 h-5 text-blue-200" />
+                          <span className="font-semibold text-white">Stratégiai Prezentáció</span>
                         </div>
                         <span className="text-xs text-gray-400">Generate</span>
                       </button>
@@ -748,22 +800,8 @@ function BusinessLogicDemo() {
                         }}
                       >
                         <div className="flex items-center gap-3">
-                          <Rocket className="w-5 h-5 text-blue-200" />
-                          <span className="font-semibold text-white">LinkedIn Ad 🚀</span>
-                        </div>
-                        <span className="text-xs text-gray-400">Generate</span>
-                      </button>
-                      <button
-                        type="button"
-                        className="w-full rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors px-4 py-3 flex items-center justify-between"
-                        onClick={() => {
-                          setChoice('report');
-                          setOpen(true);
-                        }}
-                      >
-                        <div className="flex items-center gap-3">
-                          <BarChart3 className="w-5 h-5 text-purple-200" />
-                          <span className="font-semibold text-white">Management Report 📊</span>
+                          <Rocket className="w-5 h-5 text-purple-200" />
+                          <span className="font-semibold text-white">LinkedIn Poszt Generálás</span>
                         </div>
                         <span className="text-xs text-gray-400">Generate</span>
                       </button>
@@ -787,10 +825,10 @@ function BusinessLogicDemo() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.45, delay: 0.15 }}
           >
-            <FlowCard step={4} title="Result" icon={Terminal} tone="from-pink-500/18 to-purple-500/18">
+            <FlowCard step={4} title="Execution (Végrehajtás)" icon={Terminal} tone="from-pink-500/18 to-purple-500/18">
               <div className="rounded-2xl border border-white/10 bg-black/25 p-5">
                 <div className="text-sm text-gray-200 font-semibold">Generated Artifact</div>
-                <div className="text-xs text-gray-400 mt-1">Preview in modal (typewriter)</div>
+                <div className="text-xs text-gray-400 mt-1">Real-time előnézet modálban (typewriter)</div>
                 <div className="mt-4 flex items-center justify-between">
                   <div className="text-xs text-gray-400">Status</div>
                   <div className="text-xs font-semibold text-emerald-200">Ready</div>
@@ -853,18 +891,94 @@ function BusinessLogicDemo() {
                   </div>
 
                   <div className="p-6 sm:p-8 bg-black/35">
-                    <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-5">
-                      <pre className="whitespace-pre-wrap font-mono text-sm text-gray-200 leading-relaxed min-h-[260px]">
-                        {typedBody}
-                        <motion.span
-                          className="inline-block w-[10px] ml-1 text-cyan-200"
-                          animate={{ opacity: [0, 1, 0] }}
-                          transition={{ duration: 0.85, repeat: Infinity }}
-                        >
-                          ▍
-                        </motion.span>
-                      </pre>
-                    </div>
+                    {choice === 'email' ? (
+                      <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md overflow-hidden">
+                        <div className="px-4 py-3 border-b border-white/10 bg-black/20 flex items-center justify-between">
+                          <div className="text-xs text-gray-300">Gmail • Compose</div>
+                          <div className="text-[11px] text-gray-400">Draft</div>
+                        </div>
+                        <div className="p-5 space-y-3">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div className="rounded-lg border border-white/10 bg-black/20 px-3 py-2">
+                              <div className="text-[11px] text-gray-400">To</div>
+                              <div className="text-sm text-gray-200 font-medium">{activeArtifact.to}</div>
+                            </div>
+                            <div className="rounded-lg border border-white/10 bg-black/20 px-3 py-2">
+                              <div className="text-[11px] text-gray-400">Subject</div>
+                              <div className="text-sm text-gray-200 font-medium">{activeArtifact.subject}</div>
+                            </div>
+                          </div>
+                          <div className="rounded-xl border border-white/10 bg-black/20 p-4 min-h-[260px]">
+                            <pre className="whitespace-pre-wrap font-mono text-sm text-gray-200 leading-relaxed">
+                              {typedBody}
+                              <motion.span
+                                className="inline-block w-[10px] ml-1 text-cyan-200"
+                                animate={{ opacity: [0, 1, 0] }}
+                                transition={{ duration: 0.85, repeat: Infinity }}
+                              >
+                                ▍
+                              </motion.span>
+                            </pre>
+                          </div>
+                        </div>
+                      </div>
+                    ) : choice === 'presentation' ? (
+                      <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md overflow-hidden">
+                        <div className="px-4 py-3 border-b border-white/10 bg-black/20 flex items-center justify-between">
+                          <div className="text-xs text-gray-300">PowerPoint • Slide Preview</div>
+                          <div className="text-[11px] text-gray-400">1 / 1</div>
+                        </div>
+                        <div className="p-5">
+                          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                            <div className="aspect-[16/9] rounded-lg border border-white/10 bg-gradient-to-br from-white/10 to-black/20 p-5 overflow-hidden">
+                              <div className="text-sm font-bold text-white mb-3">Q3 piaci lehetőség – javaslat</div>
+                              <div className="text-xs text-gray-200 whitespace-pre-wrap leading-relaxed">
+                                {typedBody}
+                                <motion.span
+                                  className="inline-block w-[10px] ml-1 text-cyan-200"
+                                  animate={{ opacity: [0, 1, 0] }}
+                                  transition={{ duration: 0.85, repeat: Infinity }}
+                                >
+                                  ▍
+                                </motion.span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md overflow-hidden">
+                        <div className="px-4 py-3 border-b border-white/10 bg-black/20 flex items-center justify-between">
+                          <div className="text-xs text-gray-300">LinkedIn • Post</div>
+                          <div className="text-[11px] text-gray-400">Preview</div>
+                        </div>
+                        <div className="p-5">
+                          <div className="rounded-xl border border-white/10 bg-black/20 p-4">
+                            <div className="flex items-center gap-3 mb-4">
+                              <div className="h-9 w-9 rounded-full bg-gradient-to-br from-blue-400/60 to-purple-400/50 border border-white/10" />
+                              <div>
+                                <div className="text-sm font-semibold text-white">Brunella Agents</div>
+                                <div className="text-[11px] text-gray-400">Sponsored • 1m</div>
+                              </div>
+                            </div>
+                            <div className="text-sm text-gray-200 whitespace-pre-wrap leading-relaxed min-h-[260px]">
+                              {typedBody}
+                              <motion.span
+                                className="inline-block w-[10px] ml-1 text-cyan-200"
+                                animate={{ opacity: [0, 1, 0] }}
+                                transition={{ duration: 0.85, repeat: Infinity }}
+                              >
+                                ▍
+                              </motion.span>
+                            </div>
+                            <div className="mt-4 flex items-center justify-between text-[11px] text-gray-400">
+                              <div>Like • Comment • Repost</div>
+                              <div>Send</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
                     <div className="mt-5 flex items-center justify-between">
                       <div className="text-xs text-gray-400">Press ESC to close</div>
