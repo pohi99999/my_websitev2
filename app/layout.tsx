@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import SequentialVideoBackground from './components/SequentialVideoBackground';
 import LenisProvider from './components/LenisProvider';
 import { LanguageProvider } from './context/LanguageContext';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' });
 
@@ -44,7 +44,8 @@ export default function RootLayout({
 }>) {
   const cookieStore = cookies();
   const langCookie = cookieStore.get('site-language')?.value;
-  const initialLanguage = langCookie === 'en' ? 'en' : 'hu';
+  const headerLang = headers().get('x-site-language');
+  const initialLanguage = headerLang === 'en' || langCookie === 'en' ? 'en' : 'hu';
 
   return (
     <html lang={initialLanguage}>

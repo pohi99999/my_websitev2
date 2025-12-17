@@ -376,6 +376,9 @@ Fájl:
   - OpenGraph + Twitter meta beállítva (title/description + `metadataBase`)
   - OG image: `public/images/logo.png`
 
+- i18n hardening:
+  - Middleware most `x-site-language` request headert is továbbít, amit a RootLayout preferál, így az `/en/...` oldalak **első betöltésre** is EN nyelvvel renderelnek (HTML `lang` + `LanguageProvider initialLanguage`).
+
 Ellenőrzés:
 - `npm run lint` → sikeres
 - `npm run build` → sikeres

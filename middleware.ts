@@ -31,8 +31,16 @@ export function middleware(req: NextRequest) {
   }
 
   const isEn = pathname === '/en' || pathname.startsWith('/en/');
-  const res = NextResponse.next();
-  res.cookies.set('site-language', isEn ? 'en' : 'hu', { path: '/', sameSite: 'lax' });
+  const lang = isEn ? 'en' : 'hu';
+  const requestHeaders = new Headers(req.headers);
+  requestHeaders.set('x-site-language', lang);
+
+  const res = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
+  res.cookies.set('site-language', lang, { path: '/', sameSite: 'lax' });
   return res;
 }
 
