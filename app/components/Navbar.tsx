@@ -5,10 +5,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,10 +42,10 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <NavLink href="#home">Főoldal</NavLink>
-            <NavLink href="#portfolio">Portfólió</NavLink>
-            <NavLink href="#about">Rólunk</NavLink>
-            <NavLink href="#contact">Kapcsolat</NavLink>
+            <NavLink href="#home">{t('navbar.home')}</NavLink>
+            <NavLink href="#portfolio">{t('navbar.portfolio')}</NavLink>
+            <NavLink href="#about">{t('navbar.about')}</NavLink>
+            <NavLink href="#contact">{t('navbar.contact')}</NavLink>
             <LanguageSwitcher />
           </div>
 
@@ -61,16 +63,16 @@ const Navbar = () => {
                 <LanguageSwitcher />
               </div>
               <MobileNavLink href="#home" onClick={() => setIsOpen(false)}>
-                Főoldal
+                {t('navbar.home')}
               </MobileNavLink>
               <MobileNavLink href="#portfolio" onClick={() => setIsOpen(false)}>
-                Portfólió
+                {t('navbar.portfolio')}
               </MobileNavLink>
               <MobileNavLink href="#about" onClick={() => setIsOpen(false)}>
-                Rólunk
+                {t('navbar.about')}
               </MobileNavLink>
               <MobileNavLink href="#contact" onClick={() => setIsOpen(false)}>
-                Kapcsolat
+                {t('navbar.contact')}
               </MobileNavLink>
             </div>
           </div>

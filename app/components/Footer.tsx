@@ -1,7 +1,12 @@
+"use client";
+
 import React from 'react';
 import { Mail, Phone, MapPin, Linkedin, Facebook, Github, Twitter, Youtube, Code2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-slate-900 text-white pt-16 pb-8 border-t border-slate-800">
       <div className="container mx-auto px-4">
@@ -9,26 +14,26 @@ const Footer = () => {
           {/* Céginfó */}
           <div className="space-y-4">
             <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Pohánka &amp; Társa
+              {t('footer.companyName')}
             </h3>
             <p className="text-slate-400 leading-relaxed">
-              A jövő elkezdődött. Innováció és Mesterséges Intelligencia – az ember kapcsolata az elkövetkező időszak kulcsa a sikerhez.
+              {t('footer.tagline')}
             </p>
           </div>
 
           {/* Megoldások (Frissítve!) */}
           <div>
-            <h4 className="font-semibold text-lg mb-6 text-blue-400">Megoldások</h4>
+            <h4 className="font-semibold text-lg mb-6 text-blue-400">{t('footer.sections.solutions')}</h4>
             <ul className="space-y-3">
-              <li><a href="/termekek/brunella-agents" className="text-slate-400 hover:text-white transition-colors">Brunella Agent System</a></li>
-              <li><a href="/termekek/pohi-ai-pro" className="text-slate-400 hover:text-white transition-colors">Pohi AI Pro</a></li>
-              <li><a href="/szolgaltatasok" className="text-slate-400 hover:text-white transition-colors">Egyedi fejlesztések</a></li>
+              <li><a href="/termekek/brunella-agents" className="text-slate-400 hover:text-white transition-colors">{t('footer.solutions.brunella')}</a></li>
+              <li><a href="/termekek/pohi-ai-pro" className="text-slate-400 hover:text-white transition-colors">{t('footer.solutions.pohi')}</a></li>
+              <li><a href="/szolgaltatasok" className="text-slate-400 hover:text-white transition-colors">{t('footer.solutions.customDev')}</a></li>
             </ul>
           </div>
 
           {/* Kapcsolat (Frissítve!) */}
           <div>
-            <h4 className="font-semibold text-lg mb-6 text-blue-400">Kapcsolat</h4>
+            <h4 className="font-semibold text-lg mb-6 text-blue-400">{t('footer.sections.contact')}</h4>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 text-slate-400">
                 <MapPin className="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" />
@@ -47,10 +52,10 @@ const Footer = () => {
 
           {/* Vezető */}
           <div>
-            <h4 className="font-semibold text-lg mb-6 text-blue-400">Vezetés</h4>
+            <h4 className="font-semibold text-lg mb-6 text-blue-400">{t('footer.sections.leadership')}</h4>
             <div className="text-slate-400">
-              <p className="font-medium text-white">Pohánka József Péter</p>
-              <p className="text-sm mb-4">CEO &amp; Lead Developer</p>
+              <p className="font-medium text-white">{t('footer.leadership.name')}</p>
+              <p className="text-sm mb-4">{t('footer.leadership.title')}</p>
               <div className="flex flex-wrap gap-4">
                 <a
                   href="https://www.linkedin.com/in/pohi99999/"
@@ -112,11 +117,11 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
-          <p>© 2025 Pohánka és Társa Kft. Minden jog fenntartva.</p>
+          <p>© 2025 {t('footer.companyName')} {t('footer.legal.rights')}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="/impresszum" className="hover:text-white transition-colors">Impresszum</a>
-            <a href="/adatvedelmi-nyilatkozat" className="hover:text-white transition-colors">Adatvédelmi nyilatkozat</a>
-            <a href="/aszf" className="hover:text-white transition-colors">ÁSZF</a>
+            <a href="/impresszum" className="hover:text-white transition-colors">{t('footer.legal.imprint')}</a>
+            <a href="/adatvedelmi-nyilatkozat" className="hover:text-white transition-colors">{t('footer.legal.privacy')}</a>
+            <a href="/aszf" className="hover:text-white transition-colors">{t('footer.legal.terms')}</a>
           </div>
         </div>
       </div>

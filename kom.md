@@ -321,6 +321,24 @@ Ellenőrzés:
 - `npm run lint` → sikeres
 - `npm run build` → sikeres
 
+## 35) 2025-12-17 – i18n bővítés: Footer + Termékek VideoShowcase
+
+Fájlok:
+- `app/locales/hu.js`
+- `app/locales/en.js`
+- `app/components/Footer.tsx`
+- `app/components/Navbar.tsx`
+- `app/termekek/components/VideoShowcase.jsx`
+
+- Bővültek a fordítási kulcsok egységes struktúrával: `footer.*` és `products.videoShowcase.*`.
+- A Footer szekciócímei, tagline és jogi linkek szövegei `t()`-ről jönnek (HU/EN).
+- A Termékek oldali VideoShowcase szekció címe/leírása és kártya szövegei is fordíthatók.
+- A (one-page) `Navbar` demo komponens linkjei is `t('navbar.*')` alapján jelennek meg.
+
+Ellenőrzés:
+- `npm run lint` → sikeres
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – OG képek brand template + Markdown render pipeline + Web Vitals (JS split)
 
 Fájlok / újdonságok:
