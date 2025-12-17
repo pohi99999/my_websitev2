@@ -15,7 +15,7 @@ const blogPosts = {
     readTime: '6 perc',
     category: 'Filozófia & Tech',
     image: '🔮',
-    videoId: '7sI8Y_TYnGw',
+    videoId: 'IbPvzLXlO6Y',
     excerpt:
       'Miért félünk az AI-tól? Mert nem értjük. A "Glass Box" megközelítésünk lényege, hogy a rendszer ne csak döntsön, hanem meg is mutassa, HOGYAN döntött.',
     content: `
@@ -93,7 +93,7 @@ const blogPosts = {
     author: 'Fejlesztői Csapat',
     readTime: '8 perc',
     image: '🤖',
-    videoId: '7sI8Y_TYnGw',
+    videoId: 'VO4Wk68QKHE',
     excerpt: 'Multi-Agent architektúra, LangGraph és CrewAI. Egy technikai mélyfúrás a rendszer lelkébe.',
     content: `
       A Brunella Agent System (BAS) nem egy egyszerű chatbot. Ez egy hierarchikus, több-ügynökös (Multi-Agent) rendszer, amelyet arra terveztünk, hogy komplex, többlépcsős feladatokat oldjon meg autonóm módon.

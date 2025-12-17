@@ -188,3 +188,12 @@ Fájlok:
   - ha van `videoId`, akkor a „Featured Video” szekcióban `iframe` jelenik meg.
 - A blog lista oldal (`/blog`) refaktorálva: `posts` tömb + `.map()` renderelés a kártyákhoz.
 - Build ellenőrzés: `npm run build` → sikeres.
+
+## 13) 2025-12-17 – Blog: YouTube videók finomhangolása (2 poszt)
+
+Fájl:
+- `app/blog/[slug]/page.jsx`
+
+- `fekete-doboz-vege-glass-box` videó cserélve: `IbPvzLXlO6Y` (Glass Box magyarázó)
+- `brunella-agent-system-mukodese` videó cserélve: `VO4Wk68QKHE` (Under the Hood deep dive)
+- `az-ido-a-legertekesebb-valuta` maradt: `9h0tFmAlnIQ`
