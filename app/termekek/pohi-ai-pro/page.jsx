@@ -1,10 +1,30 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
 import { ArrowLeft, CheckCircle, Zap, Layers, Code, Database, Shield, Cpu } from 'lucide-react';
+
+export const metadata = {
+  title: 'Pohi AI Pro',
+  description:
+    'Pohi AI Pro: egyedi, fejlett portál és automatizációs rendszer – vevői adatbázis, rendelésállomány és készletkezelés összefésülése AI támogatással.',
+  alternates: {
+    canonical: '/termekek/pohi-ai-pro'
+  },
+  openGraph: {
+    title: 'Pohi AI Pro',
+    description:
+      'Pohi AI Pro: egyedi, fejlett portál és automatizációs rendszer – vevői adatbázis, rendelésállomány és készletkezelés összefésülése AI támogatással.',
+    url: '/termekek/pohi-ai-pro',
+    images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }]
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Pohi AI Pro',
+    description:
+      'Pohi AI Pro: egyedi, fejlett portál és automatizációs rendszer – vevői adatbázis, rendelésállomány és készletkezelés összefésülése AI támogatással.'
+  }
+};
 
 export default function PohiAIProPage() {
   const features = [

@@ -382,6 +382,16 @@ Vercel Environment Variables (Upstash):
   - Brunella Agents: `/termekek/brunella-agents`
 - Brunella Agents kapott `twitter:card` beállítást és automatikus OG/Twitter preview képeket (Next.js `opengraph-image.tsx` / `twitter-image.tsx`).
 
+## 33.4 – SEO “pro” csomag: canonical rollout + structured data
+
+- Per-page canonical hozzáadva a fő oldalakhoz (`/kapcsolat`, `/termekek`, `/szolgaltatasok`, `/rolunk`, `/portfolio`, `/blog`) a Next.js `metadata.alternates.canonical` segítségével.
+- Dinamikus oldalaknál is korrekt canonical:
+  - Blog cikk: `/blog/[slug]` → `generateMetadata` alapján
+  - Portfólió projekt: `/portfolio/[id]` → `generateMetadata` alapján
+- SEO-blokkoló `use client` eltávolítva ahol nem volt rá szükség (Blog cikk, Portfólió részletező, Pohi AI Pro), így a metadata ismét biztosan működik.
+- Kapcsolat oldal refaktor: a `page.jsx` szerver komponens lett metadata-val, a kliens űrlap logika külön `KapcsolatClient.jsx`-be került.
+- Brunella Agents kapott JSON-LD sémát (Product + SoftwareApplication + BreadcrumbList) a jobb indexeléshez.
+
 ## 20) 2025-12-17 – Brunella Agents: 3. interaktív demó (Business Workflow)
 
 Fájl:

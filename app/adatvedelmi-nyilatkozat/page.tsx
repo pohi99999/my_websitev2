@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Adatvédelmi nyilatkozat',
-  description: 'Adatvédelmi tájékoztató a Pohánka és Társa Kft. weboldalához.'
+  description: 'Adatvédelmi tájékoztató a Pohánka és Társa Kft. weboldalához.',
+  alternates: {
+    canonical: '/adatvedelmi-nyilatkozat'
+  }
 };
 
 export default function AdatvedelmiPage() {

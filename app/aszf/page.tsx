@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'ÁSZF',
-  description: 'Általános Szerződési Feltételek (ÁSZF) – Pohánka és Társa Kft.'
+  description: 'Általános Szerződési Feltételek (ÁSZF) – Pohánka és Társa Kft.',
+  alternates: {
+    canonical: '/aszf'
+  }
 };
 
 export default function AszfPage() {

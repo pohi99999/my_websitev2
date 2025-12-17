@@ -35,8 +35,105 @@ export const metadata = {
 };
 
 export default function BrunellaAgentsPage() {
+  const brunellaJsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: 'Brunella Agent System',
+      description:
+        'Autonóm AI ügynökök KKV-k számára. Automatizálás, monitorozás, üzleti workflow-k és human-in-the-loop kontroll egy rendszerben.',
+      brand: {
+        '@type': 'Organization',
+        name: 'Pohánka és Társa Kft.'
+      },
+      url: 'https://pohanka.vercel.app/termekek/brunella-agents',
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Team',
+          price: '299',
+          priceCurrency: 'USD',
+          priceSpecification: {
+            '@type': 'UnitPriceSpecification',
+            price: '299',
+            priceCurrency: 'USD',
+            unitText: 'MONTH'
+          },
+          url: 'https://pohanka.vercel.app/kapcsolat',
+          availability: 'https://schema.org/InStock'
+        },
+        {
+          '@type': 'Offer',
+          name: 'Business',
+          price: '999',
+          priceCurrency: 'USD',
+          priceSpecification: {
+            '@type': 'UnitPriceSpecification',
+            price: '999',
+            priceCurrency: 'USD',
+            unitText: 'MONTH'
+          },
+          url: 'https://pohanka.vercel.app/kapcsolat',
+          availability: 'https://schema.org/InStock'
+        },
+        {
+          '@type': 'Offer',
+          name: 'Enterprise',
+          price: '0',
+          priceCurrency: 'USD',
+          description: 'Egyedi árazás',
+          url: 'https://pohanka.vercel.app/kapcsolat',
+          availability: 'https://schema.org/InStock'
+        }
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'Brunella Agent System',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      url: 'https://pohanka.vercel.app/termekek/brunella-agents',
+      description:
+        'Autonóm AI ügynökök KKV-k számára. Automatizálás, monitorozás, üzleti workflow-k és human-in-the-loop kontroll egy rendszerben.',
+      publisher: {
+        '@type': 'Organization',
+        name: 'Pohánka és Társa Kft.',
+        url: 'https://pohanka.vercel.app'
+      }
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Főoldal',
+          item: 'https://pohanka.vercel.app/'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Termékek',
+          item: 'https://pohanka.vercel.app/termekek'
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Brunella Agent System',
+          item: 'https://pohanka.vercel.app/termekek/brunella-agents'
+        }
+      ]
+    }
+  ];
+
   return (
     <div className="relative min-h-screen bg-transparent text-white overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(brunellaJsonLd) }}
+      />
       {/* YouTube background (true full-bleed cover) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <iframe

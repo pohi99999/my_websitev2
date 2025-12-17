@@ -3,6 +3,27 @@ import Link from 'next/link';
 import VideoBackground from '../components/VideoBackground';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 
+export const metadata = {
+  title: 'Blog & Tudástár',
+  description: 'Cikkek és white paper anyagok AI ügynökökről, automatizálásról, technológiáról és a Brunella Agent System működéséről.',
+  alternates: {
+    canonical: '/blog'
+  },
+  openGraph: {
+    title: 'Blog & Tudástár | Pohánka AI',
+    description:
+      'Cikkek és white paper anyagok AI ügynökökről, automatizálásról, technológiáról és a Brunella Agent System működéséről.',
+    url: '/blog',
+    images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }]
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Blog & Tudástár | Pohánka AI',
+    description:
+      'Cikkek és white paper anyagok AI ügynökökről, automatizálásról, technológiáról és a Brunella Agent System működéséről.'
+  }
+};
+
 const posts = [
   {
     slug: 'brunella-strategiai-white-paper',

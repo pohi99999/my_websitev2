@@ -2,6 +2,25 @@ import VideoBackground from "../components/VideoBackground";
 import Link from "next/link";
 import { Bot, BrainCircuit, ArrowRight } from "lucide-react";
 
+export const metadata = {
+  title: "Termékek",
+  description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára.",
+  alternates: {
+    canonical: "/termekek"
+  },
+  openGraph: {
+    title: "Termékek | Pohánka AI",
+    description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára.",
+    url: "/termekek",
+    images: [{ url: "/images/logo.png", alt: "Pohánka és Társa Kft. – logó" }]
+  },
+  twitter: {
+    card: "summary",
+    title: "Termékek | Pohánka AI",
+    description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára."
+  }
+};
+
 export default function TermekekPage() {
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center">

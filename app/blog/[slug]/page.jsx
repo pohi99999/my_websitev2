@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
@@ -384,6 +382,42 @@ const blogPosts = {
     ],
   },
 };
+
+export async function generateMetadata({ params }) {
+  const post = blogPosts?.[params?.slug];
+
+  if (!post) {
+    return {
+      title: 'Blog',
+      alternates: { canonical: '/blog' }
+    };
+  }
+
+  const title = post.title;
+  const description = post.excerpt || 'Blog bejegyzés a Pohánka AI tudástárból.';
+  const url = `/blog/${params.slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: 'article',
+      locale: 'hu_HU',
+      images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }]
+    },
+    twitter: {
+      card: 'summary',
+      title,
+      description
+    }
+  };
+}
 
 export default function BlogPostPage({ params }) {
   const post = blogPosts[params.slug];

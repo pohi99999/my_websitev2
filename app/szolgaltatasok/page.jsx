@@ -1,6 +1,27 @@
 import VideoBackground from "../components/VideoBackground";
 import { Cpu, Globe, Zap } from "lucide-react";
 
+export const metadata = {
+  title: "Szolgáltatások",
+  description: "Webfejlesztés, AI integráció és digitális transzformáció – modern megoldások Next.js és AI ágensek alapokon.",
+  alternates: {
+    canonical: "/szolgaltatasok"
+  },
+  openGraph: {
+    title: "Szolgáltatások | Pohánka AI",
+    description:
+      "Webfejlesztés, AI integráció és digitális transzformáció – modern megoldások Next.js és AI ágensek alapokon.",
+    url: "/szolgaltatasok",
+    images: [{ url: "/images/logo.png", alt: "Pohánka és Társa Kft. – logó" }]
+  },
+  twitter: {
+    card: "summary",
+    title: "Szolgáltatások | Pohánka AI",
+    description:
+      "Webfejlesztés, AI integráció és digitális transzformáció – modern megoldások Next.js és AI ágensek alapokon."
+  }
+};
+
 export default function SzolgaltatasokPage() {
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center">
