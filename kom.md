@@ -159,3 +159,17 @@ Fájl: `app/termekek/pohi-ai-pro/page.jsx`
   - Wrapper: `fixed inset-0 overflow-hidden pointer-events-none`
   - Iframe (középre + túlméretezve): `min-w-[100vw] min-h-[56.25vw] w-[177.78vh] h-[100vh]`
   - Overlay: `fixed inset-0 bg-black/70`
+
+## 11) 2025-12-17 – Kapcsolat + Footer: valós elérhetőségek és social linkek
+
+Fájlok:
+- `app/kapcsolat/page.jsx`
+- `app/components/Footer.tsx`
+
+- Kapcsolat oldalon a placeholder adatok lecserélve a valós adatokra:
+  - Email: `peterpohankapersonal@gmail.com`
+  - Telefon: `+36 30 244 6779`
+  - Cím: `8900 Zalaegerszeg, Magyarország`
+- Footer „Vezetés” rész bővítve 6 social ikonnal + valós linkekkel:
+  - Facebook, LinkedIn, GitHub, X (Twitter), Google Developer (`Code2`), YouTube
+  - `lucide-react` ikon importok kiegészítve: `Github`, `Twitter`, `Youtube`, `Code2`
