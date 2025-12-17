@@ -6,148 +6,123 @@ import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
 import { ArrowLeft, Calendar, Clock, User, Share2, ArrowRight } from 'lucide-react';
 
+// Valós Blog Tartalmak
 const blogPosts = {
-  'ai-revolucio-uzleti-vilagban': {
-    title: 'Az AI Revolució az Üzleti Világban',
-    date: '2024. január 15.',
-    author: 'Dr. Nagy László',
-    readTime: '5 perc',
-    category: 'Technológia',
-    image: '🤖',
-    excerpt: 'Hogyan változtatja meg a mesterséges intelligencia az üzleti folyamatokat?',
-    content: `
-      A mesterséges intelligencia már nem csak a sci-fi filmekből ismert dolog. Az AI technológiák beépültek az üzleti világba, és radikálisan megváltoztatják a munka módját.
-
-      ## Az AI Hatása az Üzletre
-
-      Az elmúlt öt évben az AI adoption exponenciálisan nőtt. A vállalatok rájöttek, hogy az AI-alapú megoldások:
-      
-      - **Költségeket csökkentik**: Automatizáció révén 30-40% költségmegtakarítás érhető el
-      - **Termelékenységet növelik**: Alkalmazottak több időt tölthetnek kreativ feladatokon
-      - **Jobb döntéseket hoznak**: Adatelemzés alapján megalapozottabb stratégiák
-
-      ## Gyakorlati Alkalmazások
-
-      ### 1. Ügyfélszolgálat Automatizálása
-      Chatbotok képesek 24/7 támogatást nyújtani, megválaszolva az ügyfelek 80%-ának kérdéseit anélkül, hogy emberi beavatkozásra lenne szükség.
-
-      ### 2. Előrejelzések és Analitika
-      Machine Learning modellek képesek megjósolni az ügyfelek viselkedését, piaci trendeket, és így segíthetnek jobb üzleti döntésekben.
-
-      ### 3. Dokumentum Feldolgozás
-      Az NLP technológiák automatikusan feldolgozhatnak szerződéseket, számlákat, és egyéb üzleti dokumentumokat.
-
-      ## A Jövő
-
-      Az AI nem az alkalmazottaknak az ellensége, hanem a partnere. A sikeres vállalatok azok lesznek, amelyek képesek az AI-t és az emberi kreativitást kombinálni.
-
-      Az AI implementálásában a kulcs az, hogy szervezetiek legyenek a folyamatok, képezzük az alkalmazottakat, és fokozatosan vezetjük be az új technológiákat.
-    `,
-    relatedPosts: [
-      { slug: 'felhoalapi-infrastruktura', title: 'Felhő Alapú Infrastruktúra' },
-      { slug: 'digitalis-transzformacio-elso-lepesek', title: 'Digitális Transzformáció' },
-    ],
-  },
-  'felhoalapi-infrastruktura': {
-    title: 'Felhő Alapú Infrastruktúra: Előnyök és Lehetőségek',
-    date: '2024. január 10.',
-    author: 'Szákó Péter',
-    readTime: '7 perc',
-    category: 'Cloud Computing',
-    image: '☁️',
-    excerpt: 'Miért kell az Ön cégének felhő infrastruktúrára váltania?',
-    content: `
-      A felhő infrastruktúra már nem opcionális a modern vállalatok számára. Ez a technológia megváltoztatja az IT infrastruktúra működésének módját.
-
-      ## Mit Jelent a Felhő?
-
-      A felhő infrastruktúra azt jelenti, hogy az Ön adatai és alkalmazásai nem a saját szervereimen futnak, hanem egy megbízható szolgáltató (AWS, Azure, Google Cloud) infrastruktúráján.
-
-      ## Fő Előnyei
-
-      ### Költséghatékonyság
-      - Nem kell saját szervert vásárolni és karbantartani
-      - Pay-as-you-go modell: csak azt fizeti, amit használ
-      - Teszthez sem kell külön hardver
-
-      ### Skalázhatóság
-      - Másodpercek alatt nőhet vagy csökkenhet az erőforrások
-      - Automatikus terheléselosztás
-      - Világszintű rendelkezésre állás
-
-      ### Biztonság
-      - Professzionális biztonságkezelés
-      - Automatikus biztonsági mentések
-      - ISO 27001, SOC 2 compliance
-
-      ## Hogyan Kezdjen Hozzá?
-
-      Az átmenet a helyi infrastruktúráról a felhőre fokozatosan történhet:
-      
-      1. Pilotprojekt indítása egy kisebb alkalmazással
-      2. Csapatképzés a felhő szolgáltatások használatáról
-      3. Fokozatos migrálás az összes alkalmazásra
-
-      ## Konklúzió
-
-      A felhő infrastruktúra nemcsak egy technológiai trend, hanem az üzleti siker kulcsa a digitális korban.
-    `,
-    relatedPosts: [
-      { slug: 'ai-revolucio-uzleti-vilagban', title: 'Az AI Revolució' },
-      { slug: 'digitalis-transzformacio-elso-lepesek', title: 'Digitális Transzformáció' },
-    ],
-  },
-  'digitalis-transzformacio-elso-lepesek': {
-    title: 'Digitális Transzformáció: Első Lépések',
-    date: '2024. január 5.',
-    category: 'Stratégia',
-    image: '💡',
-    author: 'Kovács Zsuzsanna',
+  'fekete-doboz-vege-glass-box': {
+    title: 'A "Fekete Doboz" Korszak Vége: Miért az Átláthatóság (Glass Box) a Jövő?',
+    date: '2025. Január 15.',
+    author: 'Pohánka József Péter',
     readTime: '6 perc',
-    excerpt: 'Útmutató a digitális transzformációhoz: mit kell tudni és hogyan kezdjen hozzá?',
+    category: 'Filozófia & Tech',
+    image: '🔮',
+    videoId: '7sI8Y_TYnGw',
+    excerpt:
+      'Miért félünk az AI-tól? Mert nem értjük. A "Glass Box" megközelítésünk lényege, hogy a rendszer ne csak döntsön, hanem meg is mutassa, HOGYAN döntött.',
     content: `
-      A digitális transzformáció már nem luxus, hanem szükségszerűség. De hogyan kezdjen hozzá?
+      A mesterséges intelligencia fejlesztésének legnagyobb gátja ma nem a technológia, hanem a **bizalom**. A hagyományos AI modellek úgynevezett "Black Box" (Fekete Doboz) rendszerként működnek: betápláljuk az adatot, és kijön az eredmény. De mi történt közben? Senki sem tudja pontosan.
 
-      ## Mi a Digitális Transzformáció?
+      ## A "Fekete Doboz" Probléma
 
-      A digitális transzformáció az üzleti folyamatok, kultúra és technológia alapvető átalakítása digitális technológiák alkalmazásával.
+      Üzleti környezetben a "mert az AI ezt mondta" nem elfogadható érv. Ha egy AI döntést hoz egy hitelkérelemről, egy gyártási folyamatról vagy egy marketing stratégiáról, a vezetőknek érteniük kell az okokat.
 
-      ## Első Lépések
+      - **Ellenőrizhetetlenség:** Ha hiba történik, nem tudjuk visszakövetni az okát.
+      - **Bizalmatlanság:** Az emberek nem bíznak abban, amit nem látnak át.
+      - **Jogi kockázatok:** A GDPR és az új AI szabályozások megkövetelik a magyarázhatóságot.
 
-      ### 1. Felmérés és Tervezés
-      - Mérje fel az Ön szervezet jelenlegi digitális érettségét
-      - Szimmetrikus meg a célokat és KPI-ket
-      - Külső tanácsadóktól kérjen segítséget
+      ## A Megoldás: Glass Box (Üvegdoboz)
 
-      ### 2. Szervezeti Kultúra
-      - Legyen nyitott az innováció felé
-      - Képezze a csapatot
-      - Jutalmazzon digitális gondolkodásmódot
+      A **Brunella Agent System (BAS)** fejlesztésekor a legfontosabb alapelvünk az átláthatóság volt. Mi nem csak egy eredményt adunk. Mi egy ablakot nyitunk a "gépházra".
 
-      ### 3. Technológiai Implementáció
-      - Válassza ki a megfelelő eszközöket és platformokat
-      - Kezdjen pilotprojekttel
-      - Fokozatosan bővítsen
+      ### Mit jelent ez a gyakorlatban?
 
-      ### 4. Folyamatos Fejlődés
-      - Mérje a sikereket
-      - Tanuljon a kudarcokból
-      - Adaptálódjon az új körülményekhez
+      1. **Valós idejű vizualizáció:** A BOV (Brunella Operations Visualizer) segítségével Ön élőben látja, ahogy az ügynökök "gondolkodnak", kutatnak és kommunikálnak egymással.
+      2. **Visszakövethetőség:** Minden döntési pont, minden logikai lépés rögzítésre kerül. Bármikor "visszatekerheti az időt" (Time Travel), hogy megnézze, miért döntött így a rendszer.
+      3. **Ember-Gép Együttműködés:** Nem helyettesíteni akarjuk az embert, hanem szuperképességekkel felruházni. Ön a Kapitány, az AI pedig a legjobb Navigátor.
 
-      ## Gyakori Hibák
-
-      - Túl ambiciózus célok kitűzése
-      - A szervezeti kultúra figyelmen kívül hagyása
-      - Nem elegendő szervezeti támogatás
-      - Gyors váltás technológiára
-
-      ## Konklúzió
-
-      A digitális transzformáció egy folyamat, nem egy projekt. Az a vállalat nyeri meg, amely rugalmas, tanul, és folyamatosan fejlődik.
+      A jövő nem a titokzatos algoritmusoké, hanem az átlátható, elszámoltatható és etikus rendszereké. Ez a **Glass Box** forradalom.
     `,
     relatedPosts: [
-      { slug: 'ai-revolucio-uzleti-vilagban', title: 'Az AI Revolució' },
-      { slug: 'felhoalapi-infrastruktura', title: 'Felhő Infrastruktúra' },
+      { slug: 'az-ido-a-legertekesebb-valuta', title: 'Az IDŐ: A Legértékesebb Valuta' },
+      { slug: 'brunella-agent-system-mukodese', title: 'Így működik a BAS' },
+    ],
+  },
+  'az-ido-a-legertekesebb-valuta': {
+    title: 'Az IDŐ: A Legértékesebb Valuta az Üzleti Életben',
+    date: '2025. Január 10.',
+    author: 'Pohánka József Péter',
+    readTime: '4 perc',
+    category: 'Vízió',
+    image: '⏳',
+    videoId: '9h0tFmAlnIQ',
+    excerpt: 'Nem pénzből van kevés, hanem időből. Hogyan adhat vissza az AI a legfontosabb erőforrásunkból?',
+    content: `
+      Képzelje el, mennyire felgyorsult körülöttünk a világ. Mindenki rohan. Az információ sebessége manapság nem csak előny, hanem a túlélés záloga.
+
+      ## A Sebesség Kényszere
+
+      Igaz ez az üzleti élet minden területére:
+      - Ki tudja előbb megszerezni a piacot?
+      - Ki tudja vírusként elterjeszteni a terméket?
+      - Ki látja meg először a pályázati lehetőséget?
+      - Ki reagál leggyorsabban az árfolyamváltozásra?
+
+      A hagyományos módszerekkel egyszerűen lehetetlen lépést tartani ezzel a tempóval. Itt jön képbe az **IDŐ**, mint tényező.
+
+      ## Mit adunk mi valójában?
+
+      Sokan azt hiszik, szoftvert fejlesztünk. Pedig valójában **IDŐT adunk el**.
+
+      Amikor a **Pohi AI Pro** vagy a **Brunella Agent System** átvesz egy komplex kutatási feladatot, ami egy embernek 40 órába telne, és elvégzi 40 perc alatt, akkor mi nem csak hatékonyságot növeltünk.
+      
+      Mi ajándékoztunk Önnek **39 óra és 20 perc** szabadidőt. Időt, amit:
+      - Stratégiai tervezéssel tölthet.
+      - A családjára fordíthat.
+      - Alkotásra használhat.
+
+      A technológia az ecset, Te vagy a Művész, és a siker a Te Alkotásod. Mi csak biztosítjuk, hogy legyen időd megfesteni a mesterművet.
+    `,
+    relatedPosts: [
+      { slug: 'fekete-doboz-vege-glass-box', title: 'A Glass Box Filozófia' },
+      { slug: 'brunella-agent-system-mukodese', title: 'Technológiai Háttér' },
+    ],
+  },
+  'brunella-agent-system-mukodese': {
+    title: 'A "Motorháztető" Alatt: Hogyan Működik a Brunella Agent System?',
+    date: '2025. Január 05.',
+    category: 'Technológia',
+    author: 'Fejlesztői Csapat',
+    readTime: '8 perc',
+    image: '🤖',
+    videoId: '7sI8Y_TYnGw',
+    excerpt: 'Multi-Agent architektúra, LangGraph és CrewAI. Egy technikai mélyfúrás a rendszer lelkébe.',
+    content: `
+      A Brunella Agent System (BAS) nem egy egyszerű chatbot. Ez egy hierarchikus, több-ügynökös (Multi-Agent) rendszer, amelyet arra terveztünk, hogy komplex, többlépcsős feladatokat oldjon meg autonóm módon.
+
+      ## Az Architektúra
+
+      A rendszer lelke egy **Python alapú Backend**, amely a FastAPI és a LangGraph technológiákra épül.
+
+      ### 1. The Orchestrator (A Karmester)
+      A középpontban a "Brunella" főügynök áll. Ő nem végez el minden apró feladatot. Az ő dolga a megértés és a delegálás. Elemzi a felhasználó kérését, és eldönti, melyik specialista ügynökre van szükség.
+
+      ### 2. Specialista Ügynökök
+      A rendszer moduláris. Külön "szakértőink" vannak:
+      - **Research Agent:** Képes az interneten kutatni, forrásokat elemezni és összefoglalni.
+      - **Coder Agent:** Kódot ír, tesztel és debuggol.
+      - **Analyst Agent:** Adatokat elemez és trendeket figyel.
+
+      ## Intelligens Technikák
+
+      Nem csak "promptolunk". A rendszer fejlett kognitív architektúrákat használ:
+      - **ReAct (Reasoning + Acting):** Az ügynök először gondolkodik ("Mit kell tennem?"), majd cselekszik, végül értékeli az eredményt.
+      - **Reflexion:** Ha egy ügynök hibázik, képes "reflektálni" rá, és kijavítani önmagát a következő próbálkozásnál.
+      - **Tree-of-Thought:** Komplex problémáknál több lehetséges megoldási útvonalat is megvizsgál párhuzamosan.
+
+      Ez a struktúra teszi lehetővé, hogy a BAS olyan feladatokat is megoldjon, amelyekbe a hagyományos nyelvi modellek (LLM-ek) beletörnének.
+    `,
+    relatedPosts: [
+      { slug: 'fekete-doboz-vege-glass-box', title: 'Átláthatóság az AI-ban' },
+      { slug: 'az-ido-a-legertekesebb-valuta', title: 'Hatékonyság és Idő' },
     ],
   },
 };
@@ -157,7 +132,7 @@ export default function BlogPostPage({ params }) {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-dark via-dark-light to-dark text-white flex items-center justify-center px-6">
+      <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white flex items-center justify-center px-6">
         <div className="text-center">
           <h1 className="text-4xl font-bold gradient-text mb-4">404 - Poszt Nem Található</h1>
           <p className="text-gray-300 mb-8">Sajnos nem találjuk ezt a blog bejegyzést.</p>
@@ -175,29 +150,32 @@ export default function BlogPostPage({ params }) {
       <section className="relative py-12 px-6 pt-24">
         <div className="max-w-4xl mx-auto">
           <GsapFadeIn>
-            <Link href="/blog" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8 transition-colors"
+            >
               <ArrowLeft className="w-4 h-4" />
               Vissza a Bloghoz
             </Link>
 
-            <h1 className="text-5xl sm:text-6xl font-bold mb-6 gradient-text">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 gradient-text leading-tight">
               {post.title}
             </h1>
 
-            <div className="flex flex-wrap gap-4 text-gray-400 mb-8">
+            <div className="flex flex-wrap gap-6 text-gray-400 mb-8 text-sm sm:text-base">
               <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
+                <Calendar className="w-4 h-4 text-pink-500" />
                 <span>{post.date}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
+                <Clock className="w-4 h-4 text-blue-500" />
                 <span>{post.readTime} olvasás</span>
               </div>
               <div className="flex items-center gap-2">
-                <User className="w-4 h-4" />
+                <User className="w-4 h-4 text-purple-500" />
                 <span>{post.author}</span>
               </div>
-              <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm">
+              <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/20">
                 {post.category}
               </span>
             </div>
@@ -205,65 +183,93 @@ export default function BlogPostPage({ params }) {
         </div>
       </section>
 
-      {/* Featured Image */}
-      <section className="py-8 px-6">
+      {/* Featured Video or Image */}
+      <section className="py-0 px-6">
         <div className="max-w-4xl mx-auto">
           <GsapFadeIn delay={0.2}>
-            <SpotlightCard className="p-12 text-center">
-              <div className="text-8xl">{post.image}</div>
+            <SpotlightCard className="p-2 overflow-hidden bg-black/40 backdrop-blur-sm border-white/10">
+              {post.videoId ? (
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl">
+                  <iframe
+                    className="absolute inset-0 w-full h-full"
+                    src={`https://www.youtube.com/embed/${post.videoId}?rel=0&modestbranding=1`}
+                    title={post.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              ) : (
+                <div className="py-20 text-center text-8xl">{post.image}</div>
+              )}
             </SpotlightCard>
           </GsapFadeIn>
         </div>
       </section>
 
       {/* Content */}
-      <section className="py-24 px-6">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-16 px-6">
+        <div className="max-w-3xl mx-auto">
           <GsapFadeIn delay={0.3}>
-            <SpotlightCard className="p-8 sm:p-12">
+            <div className="glass-panel p-8 sm:p-12 rounded-2xl bg-black/20 border border-white/5 backdrop-blur-sm">
               <div
-                className="text-gray-300 leading-relaxed space-y-6"
+                className="text-gray-300 leading-relaxed space-y-6 text-lg blog-content"
                 dangerouslySetInnerHTML={{
                   __html: post.content
                     .split('\n\n')
                     .map((paragraph) => {
-                      if (paragraph.startsWith('##')) {
-                        return `<h2 class="text-3xl font-bold mt-8 mb-4 gradient-text">${paragraph.replace('## ', '')}</h2>`;
+                      const trimmed = paragraph.trim();
+                      if (!trimmed) return '';
+                      if (trimmed.startsWith('## ')) {
+                        return `<h2 class="text-3xl font-bold mt-12 mb-6 text-white border-l-4 border-blue-500 pl-4">${trimmed.replace('## ', '')}</h2>`;
                       }
-                      if (paragraph.startsWith('###')) {
-                        return `<h3 class="text-2xl font-bold mt-6 mb-3">${paragraph.replace('### ', '')}</h3>`;
+                      if (trimmed.startsWith('### ')) {
+                        return `<h3 class="text-2xl font-bold mt-8 mb-4 text-blue-200">${trimmed.replace('### ', '')}</h3>`;
                       }
-                      if (paragraph.startsWith('-')) {
-                        const items = paragraph.split('\n').map(item => `<li class="ml-4">${item.replace('- ', '')}</li>`).join('');
-                        return `<ul class="list-disc space-y-2">${items}</ul>`;
+                      if (trimmed.startsWith('- ')) {
+                        const items = trimmed
+                          .split('\n')
+                          .map((item) =>
+                            item.trim().startsWith('- ')
+                              ? `<li class="ml-4 mb-2 pl-2 border-l border-gray-600">${item.replace('- ', '')}</li>`
+                              : item
+                          )
+                          .join('');
+                        return `<ul class="list-none space-y-2 my-6">${items}</ul>`;
                       }
-                      return `<p>${paragraph}</p>`;
+                      const formattedText = trimmed.replace(
+                        /\*\*(.*?)\*\*/g,
+                        '<strong class="text-white font-semibold">$1</strong>'
+                      );
+                      return `<p class="mb-4 text-justify">${formattedText}</p>`;
                     })
                     .join(''),
                 }}
               />
-            </SpotlightCard>
+            </div>
           </GsapFadeIn>
         </div>
       </section>
 
       {/* Share Section */}
-      <section className="py-12 px-6">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-8 px-6">
+        <div className="max-w-3xl mx-auto">
           <GsapFadeIn delay={0.4}>
-            <SpotlightCard className="p-8 flex items-center justify-between">
-              <span className="text-gray-300">Szerette a cikket? Ossza meg:</span>
-              <button className="btn-primary flex items-center gap-2">
-                <Share2 className="w-4 h-4" />
+            <div className="flex flex-col sm:flex-row items-center justify-between p-8 rounded-2xl bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-white/10">
+              <span className="text-xl font-semibold text-white mb-4 sm:mb-0">
+                Tetszett a cikk? Ossza meg másokkal is!
+              </span>
+              <button className="btn-primary flex items-center gap-2 px-6 py-3">
+                <Share2 className="w-5 h-5" />
                 Megosztás
               </button>
-            </SpotlightCard>
+            </div>
           </GsapFadeIn>
         </div>
       </section>
 
       {/* Related Posts */}
-      <section className="py-24 px-6 bg-white/5">
+      <section className="py-24 px-6 bg-slate-900/50">
         <div className="max-w-7xl mx-auto">
           <GsapFadeIn>
             <div className="text-center mb-16">
@@ -271,40 +277,22 @@ export default function BlogPostPage({ params }) {
             </div>
           </GsapFadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {post.relatedPosts.map((relatedPost, idx) => (
               <GsapFadeIn key={idx} delay={0.5 + idx * 0.1}>
-                <SpotlightCard className="p-8 h-full">
+                <SpotlightCard className="p-8 h-full flex flex-col justify-between hover:border-blue-500/50 transition-colors">
                   <h3 className="text-xl font-bold mb-4">{relatedPost.title}</h3>
                   <Link
                     href={`/blog/${relatedPost.slug}`}
-                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
+                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium group"
                   >
-                    Olvassa el <ArrowRight className="w-4 h-4" />
+                    Olvassa el{' '}
+                    <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </SpotlightCard>
               </GsapFadeIn>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <GsapFadeIn>
-            <SpotlightCard className="p-12 sm:p-16 text-center">
-              <h2 className="text-4xl font-bold mb-6 gradient-text">
-                Szeretne Többet Megtudni?
-              </h2>
-              <p className="text-lg text-gray-300 mb-8">
-                Keresse meg csapatunkat a projektekről vagy konzultációról.
-              </p>
-              <Link href="/kapcsolat" className="btn-primary text-lg">
-                Lépjen Velünk Kapcsolatba
-              </Link>
-            </SpotlightCard>
-          </GsapFadeIn>
         </div>
       </section>
     </div>
