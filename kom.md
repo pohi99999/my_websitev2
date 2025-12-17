@@ -296,3 +296,19 @@ Fájl:
 Ellenőrzés:
 - `npm run lint` → csak meglévő warningok
 - `npm run build` → sikeres
+
+## 20) 2025-12-17 – Brunella Agents: 3. interaktív demó (Business Workflow)
+
+Fájl:
+- `app/termekek/brunella-agents/page.jsx`
+
+- Új `BusinessLogicDemo` szekció hozzáadva az Agent Terminal alá (Features elé): "Valós Üzleti Szituációk".
+- Flowchart jellegű vizuál: 4 lépés nyilakkal összekötve (Research → Process → Decision → Result).
+- Step 1 (Research): radar/scan animáció, "Market Data Points" pontok pulzálással.
+- Step 2 (Process): pontok összeolvadnak egy Summary Card-ba (AnimatePresence + motion animációk).
+- Step 3 (Decision): 3 interaktív gomb (Email 📧 / LinkedIn 🚀 / Report 📊).
+- Step 4 (Result): kattintásra "Generated Artifact" modal nyílik glassmorphism stílusban, a tartalom typewriter effekttel jelenik meg.
+
+Ellenőrzés:
+- `npm run lint` → csak meglévő warningok
+- `npm run build` → sikeres

@@ -4,8 +4,23 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
-import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle, Brain, Zap, Gauge, Link2, Bot, BarChart3, Scan, Terminal, FileText } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+  ArrowLeft,
+  CheckCircle,
+  Brain,
+  Zap,
+  Gauge,
+  Link2,
+  Bot,
+  BarChart3,
+  Scan,
+  Terminal,
+  FileText,
+  Mail,
+  Rocket,
+  X
+} from 'lucide-react';
 
 function useLoopingTypewriter({ text, speedMs = 16, pauseMs = 900, enabled = true }) {
   const [value, setValue] = useState('');
@@ -47,6 +62,41 @@ function useLoopingTypewriter({ text, speedMs = 16, pauseMs = 900, enabled = tru
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, [enabled, pauseMs, speedMs, text]);
+
+  return value;
+}
+
+function useTypewriterOnce({ text, speedMs = 14, enabled = true }) {
+  const [value, setValue] = useState('');
+  const idxRef = useRef(0);
+  const timeoutRef = useRef(null);
+
+  useEffect(() => {
+    if (!enabled) {
+      setValue('');
+      idxRef.current = 0;
+      return;
+    }
+
+    let cancelled = false;
+
+    const tick = () => {
+      if (cancelled) return;
+
+      idxRef.current += 1;
+      setValue(text.slice(0, idxRef.current));
+
+      if (idxRef.current >= text.length) return;
+      timeoutRef.current = setTimeout(tick, speedMs);
+    };
+
+    timeoutRef.current = setTimeout(tick, 150);
+
+    return () => {
+      cancelled = true;
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [enabled, speedMs, text]);
 
   return value;
 }
@@ -387,6 +437,460 @@ function OCRDemoSection() {
   );
 }
 
+function BusinessLogicDemo() {
+  const [phase, setPhase] = useState(1); // 1: research, 2: process, 3: decision
+  const [open, setOpen] = useState(false);
+  const [choice, setChoice] = useState(null);
+
+  const artifacts = useMemo(
+    () => ({
+      email: {
+        title: 'Email Campaign Draft',
+        subtitle: 'Target: warm leads • Tone: professional • CTA: Book a demo',
+        body:
+          'Subject: Q3 market shift detected — want a 15-min strategy call?\n\nHi {FirstName},\n\nOur Brunella Agents just analyzed Q3 competitor pricing across 5 key players. We detected an average 5% price drop and a clear shift toward bundle-based offers.\n\nHere is a quick, actionable recommendation:\n- Keep list prices stable, introduce a limited-time bundle\n- Emphasize ROI and implementation speed\n- Offer a “migration + onboarding” bonus through end of month\n\nIf you want, I can generate a tailored plan for your exact segment in 15 minutes.\n\nBest,\nPohánka & Társa\n\nPS: Reply with “Q3” and I’ll send the full report.'
+      },
+      linkedin: {
+        title: 'LinkedIn Ad Preview',
+        subtitle: 'Format: Single image • Goal: lead gen • Hook: competitor drop',
+        body:
+          'Headline: Competitors dropped prices by 5% — don\'t panic. Out-execute.\n\nPrimary text:\nQ3 market signal detected: pricing down ~5% across top competitors.\n\nBrunella Agents turns this into action:\n✅ scan competitor offers\n✅ summarize positioning changes\n✅ generate an optimized campaign plan\n\nWant the full Q3 pricing map + playbook?\nComment “PLAYBOOK” and we\'ll DM you.\n\nCTA: Learn more'
+      },
+      report: {
+        title: 'Management Report (Executive Summary)',
+        subtitle: 'Audience: leadership • Length: 1 page • Focus: decisions',
+        body:
+          'Q3 COMPETITOR PRICING — EXECUTIVE SUMMARY\n\n1) Signal\n- Top 5 competitors: average -5% price movement\n- Increased bundling and limited-time offers\n\n2) Impact\n- Higher price sensitivity in inbound leads\n- Increased churn risk for price-only segments\n\n3) Recommended decisions (next 14 days)\n- Protect premium tier; introduce bundle with onboarding\n- Adjust messaging: ROI + speed + transparency (Glass Box)\n- Launch targeted LinkedIn campaign; test 3 creatives\n\n4) Output\n- Campaign assets generated\n- Sales enablement summary produced\n- Monitoring automation scheduled (weekly)'
+      }
+    }),
+    []
+  );
+
+  const activeArtifact = choice ? artifacts[choice] : null;
+  const typedBody = useTypewriterOnce({ text: activeArtifact?.body ?? '', enabled: open });
+
+  useEffect(() => {
+    if (open) return;
+
+    const t1 = setTimeout(() => setPhase(2), 2600);
+    const t2 = setTimeout(() => setPhase(3), 5200);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    if (open) window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [open]);
+
+  const FlowCard = ({ step, title, icon: Icon, children, tone = 'from-blue-500/30 to-purple-500/20' }) => (
+    <SpotlightCard className="p-0 overflow-hidden">
+      <div className={`px-5 py-4 border-b border-white/10 bg-gradient-to-r ${tone}`}>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center h-9 w-9 rounded-lg bg-white/10 border border-white/10">
+            <Icon className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="text-xs text-gray-300">Step {step}</div>
+            <div className="font-bold text-white">{title}</div>
+          </div>
+        </div>
+      </div>
+      <div className="p-5 sm:p-6 bg-black/35">{children}</div>
+    </SpotlightCard>
+  );
+
+  const ArrowConnector = ({ direction = 'right' }) => {
+    const isDown = direction === 'down';
+    return (
+      <div className={`flex items-center justify-center ${isDown ? 'h-10' : 'w-10'}`} aria-hidden="true">
+        <svg
+          width={isDown ? 10 : 40}
+          height={isDown ? 40 : 10}
+          viewBox={isDown ? '0 0 10 40' : '0 0 40 10'}
+          fill="none"
+        >
+          <defs>
+            <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="rgba(255,255,255,0.55)" />
+            </marker>
+          </defs>
+          <motion.path
+            d={isDown ? 'M5 0 L5 34' : 'M0 5 L34 5'}
+            stroke="rgba(255,255,255,0.55)"
+            strokeWidth="2"
+            strokeDasharray="6 6"
+            markerEnd="url(#arrowHead)"
+            initial={{ pathLength: 0, opacity: 0.7 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          />
+        </svg>
+      </div>
+    );
+  };
+
+  const dotPositions = useMemo(
+    () => [
+      { top: '22%', left: '28%' },
+      { top: '38%', left: '64%' },
+      { top: '58%', left: '44%' },
+      { top: '70%', left: '30%' },
+      { top: '30%', left: '54%' }
+    ],
+    []
+  );
+
+  return (
+    <section className="py-24 px-6">
+      <div className="max-w-7xl mx-auto">
+        <GsapFadeIn>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 text-emerald-200 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-4">
+              <Bot className="w-4 h-4" />
+              <span className="text-sm font-semibold">Business Workflow Demo</span>
+            </div>
+            <h2 className="section-title">Valós Üzleti Szituációk</h2>
+            <p className="section-subtitle">Research → Analysis → Decision → Output egyetlen vizuális folyamatban</p>
+          </div>
+        </GsapFadeIn>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] gap-4 items-stretch">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.45 }}
+          >
+            <FlowCard step={1} title="Research" icon={Scan} tone="from-emerald-500/25 to-cyan-500/20">
+              <div className="flex items-center justify-between mb-4">
+                <div className="text-sm text-gray-300">Market Data Points</div>
+                <div className="text-xs text-gray-400">Live scan</div>
+              </div>
+
+              <div className="relative h-[200px] rounded-2xl border border-white/10 bg-black/25 overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.25),transparent_55%),radial-gradient(circle_at_70%_80%,rgba(34,211,238,0.18),transparent_55%)]" />
+
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative w-[160px] h-[160px] rounded-full border border-white/10">
+                    <div className="absolute inset-4 rounded-full border border-white/10" />
+                    <div className="absolute inset-8 rounded-full border border-white/10" />
+                    <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2" />
+                    <div className="absolute top-1/2 left-0 right-0 h-px bg-white/10 -translate-y-1/2" />
+
+                    <motion.div
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background:
+                          'conic-gradient(from 90deg, rgba(16,185,129,0.00), rgba(16,185,129,0.45), rgba(16,185,129,0.00))'
+                      }}
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 2.2, repeat: Infinity, ease: 'linear' }}
+                    />
+                  </div>
+                </div>
+
+                {dotPositions.map((p, idx) => (
+                  <motion.div
+                    key={idx}
+                    className="absolute w-2.5 h-2.5 rounded-full bg-emerald-300 shadow-[0_0_14px_rgba(16,185,129,0.7)]"
+                    style={{ top: p.top, left: p.left }}
+                    animate={{ opacity: [0.1, 1, 0.3, 1], scale: [1, 1.15, 1] }}
+                    transition={{ duration: 1.6, repeat: Infinity, delay: idx * 0.15 }}
+                  />
+                ))}
+              </div>
+
+              <div className="mt-4 text-xs text-gray-400">
+                Talált pontok: <span className="text-emerald-200 font-semibold">5</span>
+              </div>
+            </FlowCard>
+          </motion.div>
+
+          <div className="hidden lg:flex"><ArrowConnector /></div>
+          <div className="lg:hidden"><ArrowConnector direction="down" /></div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.45, delay: 0.05 }}
+          >
+            <FlowCard step={2} title="Process" icon={FileText} tone="from-cyan-500/20 to-blue-500/20">
+              <div className="flex items-center justify-between mb-4">
+                <div className="text-sm text-gray-300">Merging signals</div>
+                <div className="text-xs text-gray-400">Analysis pipeline</div>
+              </div>
+
+              <div className="relative h-[200px] rounded-2xl border border-white/10 bg-black/25 overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(56,189,248,0.22),transparent_60%),radial-gradient(circle_at_70%_70%,rgba(59,130,246,0.16),transparent_60%)]" />
+
+                <AnimatePresence mode="wait">
+                  {phase < 2 ? (
+                    <motion.div
+                      key="waiting"
+                      className="absolute inset-0 flex items-center justify-center text-sm text-gray-400"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      Waiting for data…
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="merging"
+                      className="absolute inset-0"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      {dotPositions.map((p, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="absolute w-2.5 h-2.5 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(34,211,238,0.7)]"
+                          style={{ top: p.top, left: p.left }}
+                          animate={{ top: '50%', left: '50%', x: '-50%', y: '-50%', opacity: [1, 0.4, 0.9] }}
+                          transition={{ duration: 1.2, delay: idx * 0.08, ease: 'easeInOut' }}
+                        />
+                      ))}
+
+                      <motion.div
+                        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[72%]"
+                        initial={{ scale: 0.95, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.35, duration: 0.6 }}
+                      >
+                        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                          <div className="text-xs text-gray-400">Summary</div>
+                          <div className="text-lg font-bold text-white">Q3 Pricing Trend</div>
+                          <div className="text-sm text-gray-300 mt-1">Detected: average -5% competitor drop</div>
+                          <div className="mt-3 h-2 rounded-full bg-white/10 overflow-hidden">
+                            <motion.div
+                              className="h-full bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400"
+                              initial={{ width: '0%' }}
+                              animate={{ width: '100%' }}
+                              transition={{ duration: 1.2, ease: 'easeInOut' }}
+                            />
+                          </div>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <div className="mt-4 text-xs text-gray-400">
+                Feldolgozás: <span className="text-cyan-200 font-semibold">összegzés kész</span>
+              </div>
+            </FlowCard>
+          </motion.div>
+
+          <div className="hidden lg:flex"><ArrowConnector /></div>
+          <div className="lg:hidden"><ArrowConnector direction="down" /></div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.45, delay: 0.1 }}
+          >
+            <FlowCard step={3} title="Decision" icon={Bot} tone="from-purple-500/22 to-pink-500/18">
+              <div className="flex items-center justify-between mb-4">
+                <div className="text-sm text-gray-300">Brunella ajánlás</div>
+                <div className="text-xs text-gray-400">Choose output</div>
+              </div>
+
+              <AnimatePresence mode="wait">
+                {phase < 3 ? (
+                  <motion.div
+                    key="locked"
+                    className="rounded-2xl border border-white/10 bg-black/25 p-5 text-sm text-gray-400"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                  >
+                    Brunella előkészíti a döntési opciókat…
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="actions"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                  >
+                    <div className="grid grid-cols-1 gap-3">
+                      <button
+                        type="button"
+                        className="w-full rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors px-4 py-3 flex items-center justify-between"
+                        onClick={() => {
+                          setChoice('email');
+                          setOpen(true);
+                        }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <Mail className="w-5 h-5 text-emerald-200" />
+                          <span className="font-semibold text-white">Email Campaign 📧</span>
+                        </div>
+                        <span className="text-xs text-gray-400">Generate</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="w-full rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors px-4 py-3 flex items-center justify-between"
+                        onClick={() => {
+                          setChoice('linkedin');
+                          setOpen(true);
+                        }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <Rocket className="w-5 h-5 text-blue-200" />
+                          <span className="font-semibold text-white">LinkedIn Ad 🚀</span>
+                        </div>
+                        <span className="text-xs text-gray-400">Generate</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="w-full rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors px-4 py-3 flex items-center justify-between"
+                        onClick={() => {
+                          setChoice('report');
+                          setOpen(true);
+                        }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <BarChart3 className="w-5 h-5 text-purple-200" />
+                          <span className="font-semibold text-white">Management Report 📊</span>
+                        </div>
+                        <span className="text-xs text-gray-400">Generate</span>
+                      </button>
+                    </div>
+
+                    <div className="mt-4 text-xs text-gray-400">
+                      Tipp: kattints egy outputra, és nézd a generált anyagot.
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </FlowCard>
+          </motion.div>
+
+          <div className="hidden lg:flex"><ArrowConnector /></div>
+          <div className="lg:hidden"><ArrowConnector direction="down" /></div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.45, delay: 0.15 }}
+          >
+            <FlowCard step={4} title="Result" icon={Terminal} tone="from-pink-500/18 to-purple-500/18">
+              <div className="rounded-2xl border border-white/10 bg-black/25 p-5">
+                <div className="text-sm text-gray-200 font-semibold">Generated Artifact</div>
+                <div className="text-xs text-gray-400 mt-1">Preview in modal (typewriter)</div>
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="text-xs text-gray-400">Status</div>
+                  <div className="text-xs font-semibold text-emerald-200">Ready</div>
+                </div>
+                <div className="mt-3 h-2 rounded-full bg-white/10 overflow-hidden">
+                  <motion.div
+                    className="h-full bg-gradient-to-r from-emerald-300 via-blue-400 to-purple-400"
+                    animate={{ x: ['-100%', '0%', '100%'] }}
+                    transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                    style={{ width: '100%' }}
+                  />
+                </div>
+                <div className="mt-4 text-xs text-gray-400">
+                  Válassz opciót a Step 3-ban a részletekhez.
+                </div>
+              </div>
+            </FlowCard>
+          </motion.div>
+        </div>
+
+        <AnimatePresence>
+          {open && activeArtifact && (
+            <motion.div
+              className="fixed inset-0 z-[60] flex items-center justify-center px-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              role="dialog"
+              aria-modal="true"
+            >
+              <motion.div
+                className="absolute inset-0 bg-black/70"
+                onClick={() => setOpen(false)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              />
+
+              <motion.div
+                className="relative w-full max-w-3xl"
+                initial={{ opacity: 0, y: 18, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 18, scale: 0.98 }}
+                transition={{ duration: 0.25 }}
+              >
+                <SpotlightCard className="p-0 overflow-hidden">
+                  <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-white/5">
+                    <div>
+                      <div className="text-sm font-bold text-white">{activeArtifact.title}</div>
+                      <div className="text-xs text-gray-400">{activeArtifact.subtitle}</div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setOpen(false)}
+                      className="p-2 rounded-lg border border-white/10 bg-black/20 hover:bg-black/30 transition-colors"
+                      aria-label="Close"
+                    >
+                      <X className="w-4 h-4 text-gray-200" />
+                    </button>
+                  </div>
+
+                  <div className="p-6 sm:p-8 bg-black/35">
+                    <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-5">
+                      <pre className="whitespace-pre-wrap font-mono text-sm text-gray-200 leading-relaxed min-h-[260px]">
+                        {typedBody}
+                        <motion.span
+                          className="inline-block w-[10px] ml-1 text-cyan-200"
+                          animate={{ opacity: [0, 1, 0] }}
+                          transition={{ duration: 0.85, repeat: Infinity }}
+                        >
+                          ▍
+                        </motion.span>
+                      </pre>
+                    </div>
+
+                    <div className="mt-5 flex items-center justify-between">
+                      <div className="text-xs text-gray-400">Press ESC to close</div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setOpen(false);
+                          setChoice(null);
+                          setPhase(1);
+                        }}
+                        className="btn-secondary"
+                      >
+                        Újraindítás
+                      </button>
+                    </div>
+                  </div>
+                </SpotlightCard>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
+
 export default function BrunellaAgentsPage() {
   const features = [
     {
@@ -538,6 +1042,7 @@ export default function BrunellaAgentsPage() {
         {/* Interactive Demos (below Hero, before Features) */}
         <OCRDemoSection />
         <AgentTerminalSection />
+        <BusinessLogicDemo />
 
         {/* Features Section */}
         <section className="py-24 px-6">
