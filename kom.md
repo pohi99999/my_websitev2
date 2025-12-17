@@ -108,3 +108,16 @@ Fájl: `app/components/Hero.tsx`
 - Video URL teszt:
   - `/home.mp4`, `/portfolio.mp4`, `/contact.mp4` → 200 + `video/mp4`
 - Ha mobil Safari-n autoplay gond van: `muted` + `playsInline` már be van állítva (ez volt a fontos rész).
+
+## 9) 2025-12-17 – Brunella Agents: YouTube háttér (full-screen iframe)
+
+Fájl: `app/termekek/brunella-agents/page.jsx`
+
+- A Brunella Agents oldal háttérvideója lecserélve full-screen YouTube embedre (ID: `9h0tFmAlnIQ`).
+- Követelmények szerint:
+  - `iframe` full-screen: `absolute inset-0 w-full h-full object-cover pointer-events-none`
+  - URL paraméterek: `autoplay=1&mute=1&controls=0&loop=1&playlist=9h0tFmAlnIQ&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1`
+  - Sötét overlay: `bg-black/70`
+  - Tartalom a videó felett: `relative z-10`
+- Build ellenőrzés: `npm run build` → sikeres.
+- Commit: `7ca3f5a` (main)
