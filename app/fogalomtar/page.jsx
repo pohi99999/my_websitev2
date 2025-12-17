@@ -119,7 +119,7 @@ export default function GlossaryPage() {
               <ArrowLeft className="w-4 h-4 mr-2" /> Vissza a főoldalra
             </Link>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              Al és Technológiai Fogalomtár
+              AI és Technológiai Fogalomtár
             </h1>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
               A Brunella Rendszer és a modern MI technológia legfontosabb kifejezései,

@@ -413,3 +413,13 @@ Fájl:
 - Ellenőrzés:
   - `npm run lint` → csak meglévő `<img>` warningok
   - `npm run build` → sikeres
+
+## 29) 2025-12-17 – Fogalomtár: "Al" → "AI" elírás javítása
+
+Fájl:
+- `app/fogalomtar/page.jsx`
+
+- A fejléc címében az "Al" (téves) szöveg "AI"-ra javítva.
+- Ellenőrzés:
+  - `npx next lint --file app/fogalomtar/page.jsx` → OK
+  - `npm run build` → sikeres (csak meglévő `<img>` warningok)
