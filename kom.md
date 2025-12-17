@@ -359,6 +359,10 @@ Fájlok:
 - (opcionális) `CONTACT_TO` (alapértelmezett: `peterpohankapersonal@gmail.com`)
 - (opcionális) `CONTACT_FROM` (külön feladó cím, ha a szolgáltató megköveteli)
 
+### 33.1 Extra védelem: rate limit (Gmail limit védelme)
+- `POST /api/contact` kapott IP-alapú rate limitet (fix ablak): 2 kérés / 2 perc / IP.
+- Túl sok kérés esetén `429` + `Retry-After` fejléc.
+
 ## 20) 2025-12-17 – Brunella Agents: 3. interaktív demó (Business Workflow)
 
 Fájl:

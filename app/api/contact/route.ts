@@ -1,14 +1,61 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+type RateWindow = { count: number; resetAtMs: number };
+
+const RATE_LIMIT_WINDOW_MS = 2 * 60 * 1000; // 2 perc
+const RATE_LIMIT_MAX = 2; // 2 kérés / 2 perc / IP
+const rateMemory = new Map<string, RateWindow>();
+
 function asNonEmptyString(value: unknown): string | null {
   if (typeof value !== 'string') return null;
   const trimmed = value.trim();
   return trimmed.length ? trimmed : null;
 }
 
+function getClientIp(req: Request): string {
+  const forwardedFor = req.headers.get('x-forwarded-for');
+  if (forwardedFor) {
+    const first = forwardedFor.split(',')[0]?.trim();
+    if (first) return first;
+  }
+
+  const realIp = req.headers.get('x-real-ip');
+  if (realIp) return realIp.trim();
+
+  return 'unknown';
+}
+
+function checkRateLimit(key: string): { ok: true } | { ok: false; retryAfterSec: number } {
+  const now = Date.now();
+  const existing = rateMemory.get(key);
+
+  if (!existing || now >= existing.resetAtMs) {
+    rateMemory.set(key, { count: 1, resetAtMs: now + RATE_LIMIT_WINDOW_MS });
+    return { ok: true };
+  }
+
+  if (existing.count >= RATE_LIMIT_MAX) {
+    const retryAfterSec = Math.max(1, Math.ceil((existing.resetAtMs - now) / 1000));
+    return { ok: false, retryAfterSec };
+  }
+
+  existing.count += 1;
+  rateMemory.set(key, existing);
+  return { ok: true };
+}
+
 export async function POST(req: Request) {
   try {
+    const clientIp = getClientIp(req);
+    const limited = checkRateLimit(`contact:${clientIp}`);
+    if (limited.ok === false) {
+      return NextResponse.json(
+        { ok: false, error: 'Too many requests. Please try again shortly.' },
+        { status: 429, headers: { 'Retry-After': String(limited.retryAfterSec) } }
+      );
+    }
+
     const contentType = req.headers.get('content-type') || '';
     if (!contentType.includes('application/json')) {
       return NextResponse.json({ ok: false, error: 'Invalid content-type' }, { status: 415 });
