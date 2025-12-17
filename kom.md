@@ -271,3 +271,28 @@ Fájl:
 
 - A munkakönyvtárban maradt, véletlenül módosult oldalak vissza lettek állítva (`git restore`), így a `main` ág tiszta állapotban maradt.
 - Lint futtatva: `npm run lint` → nem volt blokkoló hiba (csak meglévő warningok).
+
+## 19) 2025-12-17 – Brunella Agents: interaktív demók (OCR + Agent Collaboration)
+
+Fájl:
+- `app/termekek/brunella-agents/page.jsx`
+
+- Két új, látványos demó szekció hozzáadva a Hero alá, a Features rész elé.
+- Megtartva a globális YouTube háttér (full-bleed iframe) és az overlay réteg.
+
+### 19.1 OCRDemoSection (szkennelt dokumentum → JSON)
+
+- Split-screen felépítés:
+  - Bal oldalon: CSS-only „Invoice/Contract” dokumentum kártya.
+  - Animált „scanner line” (framer-motion) fel-le mozgással + glow.
+  - Jobb oldalon: code-window stílusú JSON kimenet typewriter effekttel, plusz apró summary chipek.
+
+### 19.2 AgentTerminalSection (3 ügynök együttműködés)
+
+- Glassmorphism „Terminal” ablak, amelyben 3 agent (Orchestrator/Researcher/Analyst) üzenetei typewriter effekttel jelennek meg.
+- Lucide ikonok használata: `Scan`, `Bot`, `Terminal`, `FileText`.
+- Automatikus loop újraindulással, hogy mindig „élőnek” hasson.
+
+Ellenőrzés:
+- `npm run lint` → csak meglévő warningok
+- `npm run build` → sikeres
