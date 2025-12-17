@@ -297,6 +297,42 @@ Ellenőrzés:
 - `npm run lint` → csak meglévő warningok
 - `npm run build` → sikeres
 
+## 32) 2025-12-17 – OG képek brand template + Markdown render pipeline + Web Vitals (JS split)
+
+Fájlok / újdonságok:
+- `app/_og/brand.tsx`, `app/_og/fonts.ts`:
+  - Egységes OG/Twitter kép template Inter betűtípussal (Edge `next/og`).
+  - Theme-ek: `core`, `blog`, `portfolio`, `products`, `brunella`.
+- OG/Twitter route-ok egységesítve a template-re:
+  - `app/opengraph-image.tsx`, `app/twitter-image.tsx`
+  - `app/blog/opengraph-image.tsx`, `app/blog/twitter-image.tsx`
+  - `app/blog/[slug]/opengraph-image.tsx`, `app/blog/[slug]/twitter-image.tsx`
+  - `app/portfolio/opengraph-image.tsx`, `app/portfolio/twitter-image.tsx`
+  - `app/portfolio/[id]/opengraph-image.tsx`, `app/portfolio/[id]/twitter-image.tsx`
+  - `app/termekek/opengraph-image.tsx`, `app/termekek/twitter-image.tsx`
+  - `app/termekek/brunella-agents/opengraph-image.tsx`, `app/termekek/brunella-agents/twitter-image.tsx`
+
+Markdown pipeline:
+- `lib/markdown.ts`:
+  - `remark/rehype` + `rehype-sanitize` + external link kezelés, cache-elt render.
+- `app/blog/[slug]/page.jsx`:
+  - A korábbi „string builder” HTML render lecserélve `renderMarkdownToHtml()`-ra.
+- `app/globals.css`:
+  - `.blog-content` tipográfia a markdown HTML-hez.
+
+Web Vitals (code split):
+- `app/components/GsapFadeIn.tsx`: GSAP/ScrollTrigger dinamikus import + reduced-motion guard.
+- `app/components/SpotlightCard.tsx`: framer-motion verzió dinamikus import, reduced-motion fallback.
+- `app/components/SpotlightCardMotion.tsx`, `app/hooks/usePrefersReducedMotion.ts`: új segédfájlok.
+
+Font preload / stabil tipó:
+- `app/layout.tsx`: Inter `next/font` változó (`--font-inter`) + `display: 'swap'`.
+- `app/globals.css`: `font-family` átállítva `var(--font-inter)` használatra.
+
+Ellenőrzés:
+- `npm run lint` → sikeres (TS eslint figyelmeztetés: TS 5.9.x nem „officially supported” az eslint parser szerint)
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – “Perfect site” alapcsomag #1: reduced-motion + security headerek + OG képek + schema
 
 Fókusz: Web Vitals / UX alapok (reduced motion), biztonsági válaszheaderek, és “rich share”/schema alapok bővítése.

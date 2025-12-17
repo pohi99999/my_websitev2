@@ -1,10 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 interface GsapFadeInProps {
   children: React.ReactNode;
@@ -22,33 +19,55 @@ const GsapFadeIn: React.FC<GsapFadeInProps> = ({
   start = "top 85%" 
 }) => {
   const el = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const element = el.current;
     if (!element) return;
 
-    const animation = gsap.fromTo(
-      element,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration,
-        delay,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: element,
-          start: start,
-          toggleActions: 'play none none none',
-        },
-      }
-    );
+    let isCancelled = false;
+    let cleanup: (() => void) | undefined;
+
+    (async () => {
+      const gsapModule = await import('gsap');
+      const scrollTriggerModule = await import('gsap/ScrollTrigger');
+      const gsap = gsapModule.gsap;
+      const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
+
+      if (isCancelled) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const animation = gsap.fromTo(
+        element,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration,
+          delay,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: element,
+            start: start,
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+
+      cleanup = () => {
+        animation.kill();
+        gsap.getTweensOf(element).forEach((tween) => tween.kill());
+      };
+    })();
 
     return () => {
-      animation.kill();
-      gsap.getTweensOf(element).forEach(tween => tween.kill());
+      isCancelled = true;
+      cleanup?.();
     };
-  }, [delay, duration, start]);
+  }, [delay, duration, start, prefersReducedMotion]);
 
   return (
     <div ref={el} className={className}>

@@ -4,6 +4,7 @@ import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
 import { ArrowLeft, Calendar, Clock, User, Share2, ArrowRight } from 'lucide-react';
 import { getBlogPostMeta } from '../blogPosts.meta';
+import { renderMarkdownToHtml } from '../../../lib/markdown';
 
 // Valós Blog Tartalmak
 const blogPosts = {
@@ -476,7 +477,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function BlogPostPage({ params }) {
+export default async function BlogPostPage({ params }) {
   const slug = params?.slug ?? '';
   const postContent = blogPosts?.[slug];
   const postMeta = getBlogPostMeta(slug);
@@ -495,6 +496,8 @@ export default function BlogPostPage({ params }) {
       </div>
     );
   }
+
+  const renderedContent = await renderMarkdownToHtml(String(post.content ?? '').trim());
 
   return (
     <div className="min-h-screen bg-transparent text-white">
@@ -635,35 +638,7 @@ export default function BlogPostPage({ params }) {
               <div
                 className="text-gray-300 leading-relaxed space-y-6 text-lg blog-content"
                 dangerouslySetInnerHTML={{
-                  __html: post.content
-                    .split('\n\n')
-                    .map((paragraph) => {
-                      const trimmed = paragraph.trim();
-                      if (!trimmed) return '';
-                      if (trimmed.startsWith('## ')) {
-                        return `<h2 class="text-3xl font-bold mt-12 mb-6 text-white border-l-4 border-blue-500 pl-4">${trimmed.replace('## ', '')}</h2>`;
-                      }
-                      if (trimmed.startsWith('### ')) {
-                        return `<h3 class="text-2xl font-bold mt-8 mb-4 text-blue-200">${trimmed.replace('### ', '')}</h3>`;
-                      }
-                      if (trimmed.startsWith('- ')) {
-                        const items = trimmed
-                          .split('\n')
-                          .map((item) =>
-                            item.trim().startsWith('- ')
-                              ? `<li class="ml-4 mb-2 pl-2 border-l border-gray-600">${item.replace('- ', '')}</li>`
-                              : item
-                          )
-                          .join('');
-                        return `<ul class="list-none space-y-2 my-6">${items}</ul>`;
-                      }
-                      const formattedText = trimmed.replace(
-                        /\*\*(.*?)\*\*/g,
-                        '<strong class="text-white font-semibold">$1</strong>'
-                      );
-                      return `<p class="mb-4 text-justify">${formattedText}</p>`;
-                    })
-                    .join(''),
+                  __html: renderedContent,
                 }}
               />
             </div>

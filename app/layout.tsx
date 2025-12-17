@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import SequentialVideoBackground from './components/SequentialVideoBackground';
 import LenisProvider from './components/LenisProvider';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pohanka.vercel.app'),
@@ -101,7 +101,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} bg-black text-white`}>
+      <body className={`${inter.variable} ${inter.className} bg-black text-white`}>
         <SequentialVideoBackground />
         <LenisProvider>
           <Header />
