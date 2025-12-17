@@ -5,6 +5,15 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react';
 
 const posts = [
   {
+    slug: 'bevezeto-a-mesterseges-intelligencia-vilagaba',
+    date: '2025. Feb. 01.',
+    readTime: '10 perc',
+    title: 'Bevezető az MI Világába',
+    excerpt:
+      'Neurális hálók, Prompt Engineering és a jövő partnersége. Hogyan működik a gép, és hogyan irányítsd profin?',
+    category: 'Oktatás',
+  },
+  {
     slug: 'digitalis-lenyomat-anatomiaja',
     date: '2025. Jan. 25.',
     readTime: '15 perc',

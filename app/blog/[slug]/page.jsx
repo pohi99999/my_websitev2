@@ -182,6 +182,72 @@ const blogPosts = {
       { slug: 'fekete-doboz-vege-glass-box', title: 'Glass Box Filozófia' },
     ],
   },
+  'bevezeto-a-mesterseges-intelligencia-vilagaba': {
+    title: 'Bevezető a Mesterséges Intelligencia Világába: Az Alapoktól a Gyakorlatig',
+    date: '2025. Február 01.',
+    author: 'Pohánka József Péter',
+    readTime: '10 perc',
+    category: 'Oktatás & Guide',
+    image: '🎓',
+    videoId: null,
+    excerpt:
+      'Neurális hálók, Prompt Engineering és a jövő partnersége. Egy átfogó útmutató arról, hogyan "gondolkodik" a gép, és hogyan irányítsd profin.',
+    content: `
+      Üdvözöljük a mesterséges intelligencia (MI) lenyűgöző világában! Napjainkban a generatív mesterséges intelligencia (GenAI) egyre nagyobb teret hódít. Ez az útmutató azért készült, hogy közérthető formában mutassa be az alapokat, és bevezessen a hatékony használat művészetébe.
+
+      ## 1. Mi is az a Mesterséges Intelligencia?
+
+      A generatív MI legegyszerűbb definíciója szerint ez egy olyan intelligencia, amely képes „dolgokat létrehozni” (create stuff). De hogyan működik?
+
+      ### Az MI „Agya”: A Neurális Hálózatok
+      A neurális hálózat ötlete az emberi agy működésén alapul. Három fő rétegből épül fel:
+      - **Bemeneti réteg (Input Layer):** A hálózat „érzékszerve”.
+      - **Rejtett réteg (Hidden Layer):** Itt történik a „varázslat”, az adatok feldolgozása.
+      - **Kimeneti réteg (Output Layer):** Itt jelenik meg a végeredmény (válasz, kép, stb.).
+
+      Fontos megérteni: az MI nem abszolútumokban, hanem **valószínűségekben** gondolkodik. Működése jobban hasonlít a kockadobásra, mint az emberi érvelésre.
+
+      ## 2. A Párbeszéd Művészete: Prompt Engineering
+
+      A prompt engineering az a tudomány, amellyel hatékony utasításokat adhatunk. Minél jobban fogalmazunk, annál jobb a válasz.
+
+      ### A Hatékony Kommunikáció 4 Alapelve:
+      
+      1.  **Szerep (Role):** Mondd meg neki, kinek képzelje magát!
+          * *Rossz:* "Írj egy hirdetést!"
+          * *Jó:* "Viselkedj úgy, mint egy senior marketingstratéga..."
+      2.  **Feladat (Task):** Legyél konkrét!
+      3.  **Formátum (Format):** Lista, táblázat vagy esszé?
+      4.  **Kontextus (Context):** Adj háttérinformációt!
+
+      ### 💡 Mesterfogás:
+      Nem vagy biztos a dolgodban? Használd ezt a **Mesterpromptot**:
+      *"Viselkedj úgy, mint egy világszínvonalú prompt mérnök! Segíts nekem megírni a legjobb utasítást ehhez a feladathoz. Kérdezz tőlem, amíg nem tiszta a cél!"*
+
+      ## 3. Az MI a Gyakorlatban
+
+      Már nem a jövő zenéje. Íme néhány valós példa:
+      - **Egészségügy:** A Manipal Hospitals 90 percről 20 percre csökkentette a dokumentációt.
+      - **Autóipar:** A Mercedes-Benz MBUX rendszere természetes beszélgetést tesz lehetővé.
+      - **Kereskedelem:** A Toolstation 10%-kal növelte az átkattintást AI keresővel.
+
+      ## 4. Emberi vs. Gépi Hibák
+
+      Az MI hibái nem csak tévesek, hanem gyakran "furcsák" (hallucinációk). Mivel nincs fizikai tapasztalata a világról, néha statisztikailag lehetséges, de a valóságban abszurd dolgokat állít (pl. "tegyünk ragasztót a pizzára").
+      
+      **Megoldás:** Ember a hurokban (Human-in-the-loop). A kritikus döntéseknél az emberi felügyelet elengedhetetlen.
+
+      ## 5. A Jövő: Partnerség
+
+      A jövő nem az ember és a gép versenyéről, hanem a partnerségükről szól. Az MI nem helyettesít, hanem kiterjeszt (augmentation).
+      
+      A közös siker receptje: **Emberi Kreativitás + Gépi Adatfeldolgozás = Határtalan Lehetőségek.**
+    `,
+    relatedPosts: [
+      { slug: 'digitalis-lenyomat-anatomiaja', title: 'A Digitális Lenye-mat' },
+      { slug: 'fekete-doboz-vege-glass-box', title: 'Miért félünk az AI-tól?' },
+    ],
+  },
   'az-ido-a-legertekesebb-valuta': {
     title: 'Az IDŐ: A Legértékesebb Valuta az Üzleti Életben',
     date: '2025. Január 10.',

@@ -227,3 +227,17 @@ Fájlok:
   - YouTube: `VO4Wk68QKHE`
 - Blog lista (`/blog`) bővítve: új kártya a poszt számára ("A Digitális Lenye-mat", 2025. Jan. 25.)
 - Build ellenőrzés: `npm run build` → sikeres.
+
+## 16) 2025-12-17 – Blog: új 6. cikk (Bevezető az MI-be / Prompt Engineering)
+
+Fájlok:
+- `app/blog/[slug]/page.jsx`
+- `app/blog/page.jsx`
+
+- Új poszt hozzáadva: `bevezeto-a-mesterseges-intelligencia-vilagaba`
+  - Cím: "Bevezető a Mesterséges Intelligencia Világába: Az Alapoktól a Gyakorlatig"
+  - Dátum: "2025. Február 01."
+  - Kategória (poszt): "Oktatás & Guide"
+  - Video: `null` (jelenleg emoji cover: 🎓)
+- Blog lista (`/blog`) bővítve: új kártya ("Bevezető az MI Világába", 2025. Feb. 01., kategória: "Oktatás")
+- Build ellenőrzés: `npm run build` → sikeres.
