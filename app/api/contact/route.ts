@@ -7,17 +7,31 @@ type RateWindow = { count: number; resetAtMs: number };
 
 const RATE_LIMIT_WINDOW_MS = 2 * 60 * 1000; // 2 perc
 const RATE_LIMIT_MAX = 2; // 2 kérés / 2 perc / IP
+const DAILY_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000; // 1 nap
+const DAILY_LIMIT_MAX = 10; // 10 email / nap (összesen)
 const rateMemory = new Map<string, RateWindow>();
 
 const upstashUrl = process.env.UPSTASH_REDIS_REST_URL;
 const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN;
 
-const upstashRatelimit =
-  upstashUrl && upstashToken
+const upstashRedis =
+  upstashUrl && upstashToken ? new Redis({ url: upstashUrl, token: upstashToken }) : null;
+
+const upstashRatelimitBurst =
+  upstashRedis
     ? new Ratelimit({
-        redis: new Redis({ url: upstashUrl, token: upstashToken }),
+        redis: upstashRedis,
         limiter: Ratelimit.fixedWindow(RATE_LIMIT_MAX, `${Math.ceil(RATE_LIMIT_WINDOW_MS / 1000)} s`),
-        prefix: 'contact'
+        prefix: 'contact:burst'
+      })
+    : null;
+
+const upstashRatelimitDaily =
+  upstashRedis
+    ? new Ratelimit({
+        redis: upstashRedis,
+        limiter: Ratelimit.fixedWindow(DAILY_LIMIT_MAX, `${Math.ceil(DAILY_LIMIT_WINDOW_MS / 1000)} s`),
+        prefix: 'contact:daily'
       })
     : null;
 
@@ -40,16 +54,20 @@ function getClientIp(req: Request): string {
   return 'unknown';
 }
 
-function checkRateLimit(key: string): { ok: true } | { ok: false; retryAfterSec: number } {
+function checkRateLimitFixed(
+  key: string,
+  windowMs: number,
+  max: number
+): { ok: true } | { ok: false; retryAfterSec: number } {
   const now = Date.now();
   const existing = rateMemory.get(key);
 
   if (!existing || now >= existing.resetAtMs) {
-    rateMemory.set(key, { count: 1, resetAtMs: now + RATE_LIMIT_WINDOW_MS });
+    rateMemory.set(key, { count: 1, resetAtMs: now + windowMs });
     return { ok: true };
   }
 
-  if (existing.count >= RATE_LIMIT_MAX) {
+  if (existing.count >= max) {
     const retryAfterSec = Math.max(1, Math.ceil((existing.resetAtMs - now) / 1000));
     return { ok: false, retryAfterSec };
   }
@@ -59,27 +77,41 @@ function checkRateLimit(key: string): { ok: true } | { ok: false; retryAfterSec:
   return { ok: true };
 }
 
-async function checkRateLimitGlobal(key: string): Promise<{ ok: true } | { ok: false; retryAfterSec: number }> {
-  if (!upstashRatelimit) {
-    return checkRateLimit(key);
+function ratelimitRetryAfterSec(reset: unknown, fallbackWindowMs: number): number {
+  const resetMs = typeof reset === 'number' ? reset : Date.now() + fallbackWindowMs;
+  return Math.max(1, Math.ceil((resetMs - Date.now()) / 1000));
+}
+
+async function checkBurstLimit(clientIp: string): Promise<{ ok: true } | { ok: false; retryAfterSec: number }> {
+  const key = `ip:${clientIp}`;
+  if (!upstashRatelimitBurst) {
+    return checkRateLimitFixed(`contact:burst:${key}`, RATE_LIMIT_WINDOW_MS, RATE_LIMIT_MAX);
   }
 
-  const result = await upstashRatelimit.limit(key);
+  const result = await upstashRatelimitBurst.limit(key);
   if (result.success) return { ok: true };
+  return { ok: false, retryAfterSec: ratelimitRetryAfterSec(result.reset, RATE_LIMIT_WINDOW_MS) };
+}
 
-  const resetMs = typeof result.reset === 'number' ? result.reset : Date.now() + RATE_LIMIT_WINDOW_MS;
-  const retryAfterSec = Math.max(1, Math.ceil((resetMs - Date.now()) / 1000));
-  return { ok: false, retryAfterSec };
+async function checkDailyLimit(): Promise<{ ok: true } | { ok: false; retryAfterSec: number }> {
+  const key = 'global';
+  if (!upstashRatelimitDaily) {
+    return checkRateLimitFixed('contact:daily:global', DAILY_LIMIT_WINDOW_MS, DAILY_LIMIT_MAX);
+  }
+
+  const result = await upstashRatelimitDaily.limit(key);
+  if (result.success) return { ok: true };
+  return { ok: false, retryAfterSec: ratelimitRetryAfterSec(result.reset, DAILY_LIMIT_WINDOW_MS) };
 }
 
 export async function POST(req: Request) {
   try {
     const clientIp = getClientIp(req);
-    const limited = await checkRateLimitGlobal(`contact:${clientIp}`);
-    if (limited.ok === false) {
+    const burstLimited = await checkBurstLimit(clientIp);
+    if (burstLimited.ok === false) {
       return NextResponse.json(
         { ok: false, error: 'Too many requests. Please try again shortly.' },
-        { status: 429, headers: { 'Retry-After': String(limited.retryAfterSec) } }
+        { status: 429, headers: { 'Retry-After': String(burstLimited.retryAfterSec) } }
       );
     }
 
@@ -110,6 +142,14 @@ export async function POST(req: Request) {
 
     if (name.length > 120 || email.length > 200 || message.length > 6000) {
       return NextResponse.json({ ok: false, error: 'Input too long' }, { status: 400 });
+    }
+
+    const dailyLimited = await checkDailyLimit();
+    if (dailyLimited.ok === false) {
+      return NextResponse.json(
+        { ok: false, error: 'Daily message limit reached. Please try again tomorrow.' },
+        { status: 429, headers: { 'Retry-After': String(dailyLimited.retryAfterSec) } }
+      );
     }
 
     const smtpHost = process.env.SMTP_HOST;

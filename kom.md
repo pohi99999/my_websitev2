@@ -366,6 +366,7 @@ Fájlok:
 ### 33.2 Globális (serverless-biztos) rate limit: Upstash Redis
 
 - Az `/api/contact` rate limit Upstash Redis-szel is működik, így több Vercel instance között is egységes.
+- Beállítás: **10 üzenet / nap (globális)** + **2 kérés / 2 perc / IP** (burst védelem).
 - Ha nincs beállítva Upstash (hiányzó env), automatikusan visszaesik a korábbi in-memory limiterre (best-effort).
 
 Vercel Environment Variables (Upstash):
