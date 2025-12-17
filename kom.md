@@ -366,3 +366,16 @@ Fájlok:
   - Mobilon négyzetes vászon (`aspect-square`), kevesebb torzítás.
   - Tooltip pozíció clampelve nagy képernyőn, mobilon fixebb elhelyezés.
   - `prefers-reduced-motion` támogatás: folyamatos animációk visszafogása, ha a felhasználó ezt kéri.
+
+## 25) 2025-12-17 – Brunella Agents: Biztonság & Kontroll (Human-in-the-loop)
+
+Fájl:
+- `app/termekek/brunella-agents/page.jsx`
+
+- Új `SafetyControlSection` szekció hozzáadva a demók után (`AgentNetworkDemo` alá), a Features rész elé.
+- Cél: “megnyugtató” bizalmi blokk – az AI nem nyomja meg a „piros gombot” a felhasználó nélkül.
+- Dizájn: sötét, megbízható (cyan/kék) hangulat, középen pajzs vizuállal, körülötte 3 pillér kártyával:
+  - **Ember a Hurokban** (`UserCheck`): kritikus döntések csak jóváhagyással.
+  - **Adatvédelem** (`EyeOff`): érzékeny adatok maszkolása (***), elkülönített kezelés.
+  - **Alkotmányos AI** (`Scale`): beépített etikai keretek.
+- A11y/perf: `prefers-reduced-motion` figyelembe véve a középső animációnál.
