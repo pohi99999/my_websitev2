@@ -1,21 +1,18 @@
 import { ImageResponse } from 'next/og';
+import { getPortfolioProjectMeta } from '../projects.meta';
 
 export const runtime = 'edge';
 export const alt = 'Portfólió esettanulmány – Pohánka AI';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-const knownProjects: Record<string, { title: string; emoji?: string }> = {
-  '1': { title: 'E-commerce AI Személyesítési Platform', emoji: '🛍️' },
-  '2': { title: 'Felhő Migrációs Projekt', emoji: '☁️' },
-  '3': { title: 'AI Chatbot Platform', emoji: '🤖' },
-};
-
 export default function OpenGraphImage({ params }: { params: { id: string } }) {
   const id = params?.id ?? '';
-  const project = knownProjects[id];
-  const title = project?.title ?? `Portfólió esettanulmány #${id || '?'}`;
-  const emoji = project?.emoji ?? '⭐';
+  const meta = getPortfolioProjectMeta(id);
+  const title = meta?.title ?? `Portfólió esettanulmány #${id || '?'}`;
+  const emoji = meta?.emoji ?? '⭐';
+  const subtitle = meta?.industry ? `Iparág: ${meta.industry}` : 'Pohánka AI · Portfólió';
+  const description = meta?.description ?? 'Eredmények, megközelítés és technológiai stack – valós üzleti hatással.';
 
   return new ImageResponse(
     (
@@ -46,13 +43,13 @@ export default function OpenGraphImage({ params }: { params: { id: string } }) {
 
         <div style={{ marginTop: 16, fontSize: 64, opacity: 0.9 }}>{emoji}</div>
 
+        <div style={{ marginTop: 10, fontSize: 24, color: 'rgba(255,255,255,0.75)' }}>{subtitle}</div>
+
         <div style={{ marginTop: 18, fontSize: 80, fontWeight: 800, letterSpacing: -2, lineHeight: 1.05 }}>
           {title}
         </div>
 
-        <div style={{ marginTop: 18, fontSize: 30, maxWidth: 980, lineHeight: 1.25, color: 'rgba(255,255,255,0.88)' }}>
-          Eredmények, megközelítés és technológiai stack – valós üzleti hatással.
-        </div>
+        <div style={{ marginTop: 18, fontSize: 30, maxWidth: 980, lineHeight: 1.25, color: 'rgba(255,255,255,0.88)' }}>{description}</div>
 
         <div style={{ marginTop: 42, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           {['Esettanulmány', 'Mérhető eredmények', 'AI', 'Automatizálás'].map((label) => (

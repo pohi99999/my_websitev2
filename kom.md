@@ -369,6 +369,26 @@ Ellenőrzés:
 - `npm run lint` → OK (TypeScript verzió warning: `@typescript-eslint` támogatási tartomány)
 - `npm run build` → sikeres
 
+## 34) 2025-12-17 – OG/SEO karbantartás: meta kiszervezés (duplikáció megszüntetése)
+
+Fókusz: a dinamikus OG képek és a blog lista ugyanabból a meta-forrásból dolgozzon (cím/dátum/kategória), ne legyen több helyen hardcode.
+
+Fájlok:
+- `app/blog/blogPosts.meta.ts`
+- `app/portfolio/projects.meta.ts`
+- `app/blog/[slug]/opengraph-image.tsx`
+- `app/blog/[slug]/twitter-image.tsx`
+- `app/portfolio/[id]/opengraph-image.tsx`
+- `app/portfolio/[id]/twitter-image.tsx`
+- `app/blog/page.jsx`
+
+- A blog és portfólió detail OG/Twitter képek meta alapján renderelnek (cím + kiegészítő subtitle).
+- A blog listing (`/blog`) posztlistája a `BLOG_POST_ORDER` + `BLOG_POST_META` alapján épül fel.
+
+Ellenőrzés:
+- `npm run lint` → OK (TypeScript verzió warning: `@typescript-eslint` támogatási tartomány)
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – Launch SEO/OG + sitemap/robots + jogi oldalak + 404 + `next/image`
 
 Fájlok:

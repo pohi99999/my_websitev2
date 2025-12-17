@@ -1,19 +1,10 @@
 import { ImageResponse } from 'next/og';
+import { getBlogPostMeta } from '../blogPosts.meta';
 
 export const runtime = 'edge';
 export const alt = 'Blog bejegyzés – Pohánka AI';
 export const size = { width: 1200, height: 600 };
 export const contentType = 'image/png';
-
-const knownTitles: Record<string, string> = {
-  'brunella-strategiai-white-paper': 'A Brunella-Dosszié (White Paper)',
-  'bevezeto-a-mesterseges-intelligencia-vilagaba': 'Bevezető az MI Világába',
-  'digitalis-lenyomat-anatomiaja': 'A Digitális Lenye-mat',
-  'brunella-mi-csapatvezeto': 'Brunella: Az MI csapatvezető',
-  'fekete-doboz-vege-glass-box': 'A "Fekete Doboz" Korszak Vége',
-  'az-ido-a-legertekesebb-valuta': 'Az IDŐ: A Legértékesebb Valuta',
-  'brunella-agent-system-mukodese': 'Hogyan működik a BAS?',
-};
 
 function titleFromSlug(slug: string) {
   const decoded = decodeURIComponent(slug || '').replace(/-/g, ' ').trim();
@@ -26,7 +17,9 @@ function titleFromSlug(slug: string) {
 
 export default function TwitterImage({ params }: { params: { slug: string } }) {
   const slug = params?.slug ?? '';
-  const title = knownTitles[slug] ?? titleFromSlug(slug);
+  const meta = getBlogPostMeta(slug);
+  const title = meta?.title ?? titleFromSlug(slug);
+  const subtitle = meta ? `${meta.category} · ${meta.date}` : 'Pohánka AI Blog';
 
   return new ImageResponse(
     (
@@ -54,6 +47,8 @@ export default function TwitterImage({ params }: { params: { slug: string } }) {
           />
           <div style={{ fontWeight: 600 }}>Pohánka AI · Blog</div>
         </div>
+
+        <div style={{ marginTop: 18, fontSize: 24, color: 'rgba(255,255,255,0.75)' }}>{subtitle}</div>
 
         <div style={{ marginTop: 26, fontSize: 78, fontWeight: 800, letterSpacing: -2, lineHeight: 1.05 }}>
           {title}
