@@ -173,3 +173,18 @@ Fájlok:
 - Footer „Vezetés” rész bővítve 6 social ikonnal + valós linkekkel:
   - Facebook, LinkedIn, GitHub, X (Twitter), Google Developer (`Code2`), YouTube
   - `lucide-react` ikon importok kiegészítve: `Github`, `Twitter`, `Youtube`, `Code2`
+
+## 12) 2025-12-17 – Blog: valós tartalom + dinamikus lista
+
+Fájlok:
+- `app/blog/[slug]/page.jsx`
+- `app/blog/page.jsx`
+
+- A Blog rész „dummy” posztjai lecserélve 3 valós BAS / Glass Box témájú cikkre:
+  - `fekete-doboz-vege-glass-box`
+  - `az-ido-a-legertekesebb-valuta`
+  - `brunella-agent-system-mukodese`
+- A részletes cikk oldalon (`/blog/[slug]`) bekerült a feltételes YouTube embed:
+  - ha van `videoId`, akkor a „Featured Video” szekcióban `iframe` jelenik meg.
+- A blog lista oldal (`/blog`) refaktorálva: `posts` tömb + `.map()` renderelés a kártyákhoz.
+- Build ellenőrzés: `npm run build` → sikeres.
