@@ -381,7 +381,10 @@ export default function BrunellaAgentsPage() {
               <SpotlightCard className="p-12 sm:p-16 text-center">
                 <h2 className="text-4xl font-bold mb-6 gradient-text">Készüljön a következő szintre</h2>
                 <p className="text-lg text-gray-300 mb-8">Egyedi Brunella Agents demó és konzultáció az Ön szükségleteire.</p>
-                <Link href="/kapcsolat" className="btn-primary text-lg">
+                <Link
+                  href="/kapcsolat"
+                  className="btn-primary text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4 h-auto whitespace-normal text-center leading-tight"
+                >
                   Demó Kérése Most
                 </Link>
               </SpotlightCard>

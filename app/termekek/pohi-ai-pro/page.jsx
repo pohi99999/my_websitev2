@@ -320,7 +320,10 @@ export default function PohiAIProPage() {
                 <p className="text-lg text-gray-300 mb-8">
                   Próbálja ki a Pohi AI Pro-t 14 napig díjmentesen. Nincs szükség bankkártyára.
                 </p>
-                <Link href="/kapcsolat" className="btn-primary text-lg">
+                <Link
+                  href="/kapcsolat"
+                  className="btn-primary text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4 h-auto whitespace-normal text-center leading-tight"
+                >
                   Ingyenes Próba Indítása
                 </Link>
               </SpotlightCard>

@@ -166,7 +166,7 @@ export default function SpreadsheetDemoSection() {
               </div>
             </div>
 
-            <div className="relative p-6 sm:p-8 bg-black/35">
+            <div className="relative p-6 sm:p-8 bg-black/35 flex flex-col min-h-[400px]">
               <AnimatePresence>
                 {showBadge && !prefersReducedMotion && (
                   <motion.div
@@ -185,91 +185,95 @@ export default function SpreadsheetDemoSection() {
                 )}
               </AnimatePresence>
 
-              <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 overflow-hidden">
-                <div className="grid grid-cols-4 gap-3 px-4 py-3 text-[11px] uppercase tracking-widest text-gray-300 bg-black/25 border-b border-white/10">
-                  <div className="truncate">{t('brunellaAgents.spreadsheetDemo.columns.product')}</div>
-                  <div className="text-right">{t('brunellaAgents.spreadsheetDemo.columns.q3')}</div>
-                  <div className="text-right">{t('brunellaAgents.spreadsheetDemo.columns.q4')}</div>
-                  <div className="text-right">{t('brunellaAgents.spreadsheetDemo.columns.prediction')}</div>
-                </div>
+              <div className="w-full overflow-x-auto pb-2">
+                <div className="min-w-[600px]">
+                  <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 overflow-hidden">
+                    <div className="grid grid-cols-4 gap-3 px-4 py-3 text-[11px] uppercase tracking-widest text-gray-300 bg-black/25 border-b border-white/10">
+                      <div className="truncate">{t('brunellaAgents.spreadsheetDemo.columns.product')}</div>
+                      <div className="text-right">{t('brunellaAgents.spreadsheetDemo.columns.q3')}</div>
+                      <div className="text-right">{t('brunellaAgents.spreadsheetDemo.columns.q4')}</div>
+                      <div className="text-right">{t('brunellaAgents.spreadsheetDemo.columns.prediction')}</div>
+                    </div>
 
-                <div className="divide-y divide-white/10">
-                  {rows.map((row, idx) => {
-                    const isActive = idx === activeRow && runState === 'running';
-                    const cell = predictions[idx];
+                    <div className="divide-y divide-white/10">
+                      {rows.map((row, idx) => {
+                        const isActive = idx === activeRow && runState === 'running';
+                        const cell = predictions[idx];
 
-                    return (
-                      <motion.div
-                        key={row.name}
-                        className={`relative grid grid-cols-4 gap-3 px-4 py-4 items-center ${
-                          isActive ? 'bg-white/5' : 'bg-transparent'
-                        }`}
-                        initial={{ opacity: 0, y: 8 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.35, delay: idx * 0.06 }}
-                      >
-                        <AnimatePresence>
-                          {runState === 'running' && !prefersReducedMotion && (
-                            <motion.div
-                              key="scan"
-                              className="absolute inset-0 pointer-events-none"
-                              initial={{ opacity: 0.0 }}
-                              animate={{ opacity: isActive ? 0.22 : 0.12 }}
-                              exit={{ opacity: 0.0 }}
-                              transition={{ duration: 0.25 }}
-                            >
-                              <motion.div
-                                className="absolute inset-y-0 -left-1/2 w-[60%] bg-gradient-to-r from-transparent via-cyan-300/25 to-transparent"
-                                animate={{ x: ['-40%', '160%'] }}
-                                transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.12 }}
-                              />
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-
-                        <div className="relative z-10 text-sm text-gray-200 font-semibold truncate">
-                          {row.name}
-                        </div>
-                        <div className="relative z-10 text-sm text-gray-200 text-right tabular-nums">{formatMoney(row.q3)}</div>
-                        <div className="relative z-10 text-sm text-gray-200 text-right tabular-nums">{formatMoney(row.q4)}</div>
-
-                        <div className="relative z-10 text-right">
-                          <div className="relative inline-flex items-center justify-end min-h-[24px]">
+                        return (
+                          <motion.div
+                            key={row.name}
+                            className={`relative grid grid-cols-4 gap-3 px-4 py-4 items-center ${
+                              isActive ? 'bg-white/5' : 'bg-transparent'
+                            }`}
+                            initial={{ opacity: 0, y: 8 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.35, delay: idx * 0.06 }}
+                          >
                             <AnimatePresence>
-                              {isActive && !prefersReducedMotion && (
+                              {runState === 'running' && !prefersReducedMotion && (
                                 <motion.div
-                                  initial={{ opacity: 0, x: -10 }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  exit={{ opacity: 0, x: 10 }}
-                                  transition={{ duration: 0.18 }}
-                                  className="absolute -left-3 top-1/2 -translate-y-1/2 h-6 w-1 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.6)]"
-                                  aria-hidden="true"
-                                />
+                                  key="scan"
+                                  className="absolute inset-0 pointer-events-none"
+                                  initial={{ opacity: 0.0 }}
+                                  animate={{ opacity: isActive ? 0.22 : 0.12 }}
+                                  exit={{ opacity: 0.0 }}
+                                  transition={{ duration: 0.25 }}
+                                >
+                                  <motion.div
+                                    className="absolute inset-y-0 -left-1/2 w-[60%] bg-gradient-to-r from-transparent via-cyan-300/25 to-transparent"
+                                    animate={{ x: ['-40%', '160%'] }}
+                                    transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.12 }}
+                                  />
+                                </motion.div>
                               )}
                             </AnimatePresence>
 
-                            <span className={`text-sm font-bold ${statusClass(cell.status)}`}>
-                              {cell.text || (runState === 'idle' ? '' : '—')}
-                              {isActive && !prefersReducedMotion && cell.status === 'generating' && (
-                                <motion.span
-                                  className="inline-block w-[10px] ml-1 text-cyan-200"
-                                  animate={{ opacity: [0, 1, 0] }}
-                                  transition={{ duration: 0.85, repeat: Infinity }}
-                                >
-                                  ▍
-                                </motion.span>
-                              )}
-                            </span>
-                          </div>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
+                            <div className="relative z-10 text-sm text-gray-200 font-semibold truncate">
+                              {row.name}
+                            </div>
+                            <div className="relative z-10 text-sm text-gray-200 text-right tabular-nums">{formatMoney(row.q3)}</div>
+                            <div className="relative z-10 text-sm text-gray-200 text-right tabular-nums">{formatMoney(row.q4)}</div>
+
+                            <div className="relative z-10 text-right">
+                              <div className="relative inline-flex items-center justify-end min-h-[24px]">
+                                <AnimatePresence>
+                                  {isActive && !prefersReducedMotion && (
+                                    <motion.div
+                                      initial={{ opacity: 0, x: -10 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: 10 }}
+                                      transition={{ duration: 0.18 }}
+                                      className="absolute -left-3 top-1/2 -translate-y-1/2 h-6 w-1 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.6)]"
+                                      aria-hidden="true"
+                                    />
+                                  )}
+                                </AnimatePresence>
+
+                                <span className={`text-sm font-bold ${statusClass(cell.status)}`}>
+                                  {cell.text || (runState === 'idle' ? '' : '—')}
+                                  {isActive && !prefersReducedMotion && cell.status === 'generating' && (
+                                    <motion.span
+                                      className="inline-block w-[10px] ml-1 text-cyan-200"
+                                      animate={{ opacity: [0, 1, 0] }}
+                                      transition={{ duration: 0.85, repeat: Infinity }}
+                                    >
+                                      ▍
+                                    </motion.span>
+                                  )}
+                                </span>
+                              </div>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div className="mt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm">
+              <div className="mt-auto pt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm">
                 <div className="flex items-center gap-2 text-gray-300">
                   <AlertCircle className="w-4 h-4 text-purple-200" />
                   <span>{t('brunellaAgents.spreadsheetDemo.note')}</span>
