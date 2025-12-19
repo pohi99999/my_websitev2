@@ -321,6 +321,20 @@ Fájl:
   - `npm run lint` → OK
   - `npm run build` → sikeres
 
+## 34) 2025-12-19 – Termékek: új showcase tartalom (2 YouTube + 1 X)
+
+Fájl:
+- `app/termekek/components/VideoShowcase.jsx`
+
+- A Termékek oldal alján lévő showcase frissítve a megadott linkekre:
+  - YouTube: `b7vWOfSKy_0`
+  - YouTube: `mbasMhYMwbk`
+  - X (tweet embed): `https://x.com/antigravity/status/1990813606217236828`
+- A YouTube elérhetőség-ellenőrzés csak a YouTube videókra fut; az X külön embedként renderelődik.
+- Ellenőrzés:
+  - `npm run lint` → OK
+  - `npm run build` → sikeres
+
 ## 39) 2025-12-19 – Pre-Launch Cleanup: SEO metadata finomhangolás (Brunella + Szolgáltatások + Kapcsolat)
 
 Fájlok:
