@@ -335,6 +335,18 @@ Fájl:
   - `npm run lint` → OK
   - `npm run build` → sikeres
 
+## 35) 2025-12-19 – Termékek: 3. showcase videó stabil MP4 loop (X helyett)
+
+Fájl:
+- `app/termekek/components/VideoShowcase.jsx`
+
+- A 3. (korábban X.com) videó embed mobilon nem garantálható autoplay/loop miatt.
+- Javítás: a 3. kártya natív MP4 lejátszóra állítva (`/showcase/automation-loop.mp4`), `autoPlay/muted/loop/playsInline` beállításokkal.
+- Ha a fájl hiányzik vagy 404, kulturált fallback jelenik meg az X posztra mutató linkkel.
+- Ellenőrzés:
+  - `npm run lint` → OK
+  - `npm run build` → sikeres
+
 ## 39) 2025-12-19 – Pre-Launch Cleanup: SEO metadata finomhangolás (Brunella + Szolgáltatások + Kapcsolat)
 
 Fájlok:
