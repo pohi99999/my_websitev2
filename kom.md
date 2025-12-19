@@ -308,6 +308,19 @@ Fájl:
   - `npm run lint` → OK
   - `npm run build` → sikeres
 
+## 33) 2025-12-19 – Termékek: YouTube showcase embed javítás + kulturált fallback
+
+Fájl:
+- `app/termekek/components/VideoShowcase.jsx`
+
+- A 3 beágyazott YouTube videó "A videó nem áll rendelkezésre" hibát mutatott (a használt video ID-k nem publikusak / 404).
+- Javítások:
+  - YouTube embed átállítva privacy-enhanced domainre (`youtube-nocookie`) + autoplay/mute/loop paraméterek.
+  - oEmbed alapú elérhetőség-ellenőrzés: csak akkor renderel iframe-et, ha a videó valóban beágyazható; különben kulturált fallback + "Megnyitás YouTube-on" link.
+- Ellenőrzés:
+  - `npm run lint` → OK
+  - `npm run build` → sikeres
+
 ## 39) 2025-12-19 – Pre-Launch Cleanup: SEO metadata finomhangolás (Brunella + Szolgáltatások + Kapcsolat)
 
 Fájlok:
