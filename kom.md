@@ -297,6 +297,17 @@ Ellenőrzés:
 - `npm run lint` → csak meglévő warningok
 - `npm run build` → sikeres
 
+## 32) 2025-12-19 – Brunella Agents: mobilos "ugrálás" megszüntetése az agent terminálnál
+
+Fájl:
+- `app/termekek/brunella-agents/components/AgentTerminalSection.jsx`
+
+- A `brunella://agent-terminal` demó résznél a gépelés közben változó magasság mobilon fel-le ugráltatta az alatta levő szekciókat.
+- Javítás: stabil `min-height` a terminál log területére (mobilon nagyobb), és reszponzív (mobilon keskenyebb) agent-oszlop, hogy csökkenjen a tördelésből adódó layout shift.
+- Ellenőrzés:
+  - `npm run lint` → OK
+  - `npm run build` → sikeres
+
 ## 39) 2025-12-19 – Pre-Launch Cleanup: SEO metadata finomhangolás (Brunella + Szolgáltatások + Kapcsolat)
 
 Fájlok:

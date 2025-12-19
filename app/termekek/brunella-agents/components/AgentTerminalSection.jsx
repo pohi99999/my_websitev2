@@ -122,18 +122,18 @@ export default function AgentTerminalSection() {
             </div>
 
             <div className="p-6 sm:p-8 bg-black/35">
-              <div className="space-y-4 font-mono text-sm leading-relaxed">
+              <div className="space-y-4 font-mono text-sm leading-relaxed min-h-[360px] sm:min-h-[280px]">
                 {lines.map((line, idx) => {
                   const Icon = line.icon;
                   const isActive = idx === activeLineIndex;
                   const showCursor = isActive && typed[idx].length < line.message.length;
                   return (
                     <div key={idx} className="flex gap-4 items-start">
-                      <div className="flex items-center gap-2 min-w-[14rem]">
+                      <div className="flex items-center gap-2 min-w-[9.5rem] sm:min-w-[14rem] shrink-0">
                         <Icon className={`w-4 h-4 ${line.tone}`} />
                         <span className={`text-xs ${line.tone}`}>{line.agent}</span>
                       </div>
-                      <div className="flex-1 text-gray-200">
+                      <div className="flex-1 text-gray-200 break-words whitespace-pre-wrap">
                         <span>{typed[idx]}</span>
                         {showCursor && (
                           <motion.span
