@@ -14,25 +14,25 @@ import SafetyControlSection from './components/SafetyControlSection';
 import DocumentationSection from './components/DocumentationSection';
 
 export const metadata = {
-  title: 'Brunella Agent System',
+  title: 'Brunella Agent System | Autonóm AI Munkaerő',
   description:
-    'Brunella Agent System: autonóm AI ügynökök KKV-k számára. Automatizálás, monitorozás, üzleti workflow-k és human-in-the-loop kontroll egy rendszerben.',
+    'Ismerje meg a Brunella Agent System-et: AI ügynökök, amelyek automatizálják a repetitív irodai feladatokat 0-24 órában.',
   alternates: {
     canonical: '/termekek/brunella-agents'
   },
   openGraph: {
-    title: 'Brunella Agent System',
+    title: 'Brunella Agent System | Autonóm AI Munkaerő',
     description:
-      'Brunella Agent System: autonóm AI ügynökök KKV-k számára. Automatizálás, monitorozás, üzleti workflow-k és human-in-the-loop kontroll egy rendszerben.',
+      'Ismerje meg a Brunella Agent System-et: AI ügynökök, amelyek automatizálják a repetitív irodai feladatokat 0-24 órában.',
     url: '/termekek/brunella-agents',
     type: 'website',
     locale: 'hu_HU'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Brunella Agent System',
+    title: 'Brunella Agent System | Autonóm AI Munkaerő',
     description:
-      'Brunella Agent System: autonóm AI ügynökök KKV-k számára. Automatizálás, monitorozás, üzleti workflow-k és human-in-the-loop kontroll egy rendszerben.'
+      'Ismerje meg a Brunella Agent System-et: AI ügynökök, amelyek automatizálják a repetitív irodai feladatokat 0-24 órában.'
   }
 };
 

@@ -297,6 +297,31 @@ Ellenőrzés:
 - `npm run lint` → csak meglévő warningok
 - `npm run build` → sikeres
 
+## 39) 2025-12-19 – Pre-Launch Cleanup: SEO metadata finomhangolás (Brunella + Szolgáltatások + Kapcsolat)
+
+Fájlok:
+- `app/termekek/brunella-agents/page.jsx`
+- `app/szolgaltatasok/page.jsx`
+- `app/kapcsolat/page.jsx`
+
+Változások:
+- Brunella Agents oldal `metadata` frissítve a launch szövegekre:
+  - Title: `Brunella Agent System | Autonóm AI Munkaerő`
+  - Description: „AI ügynökök, amelyek automatizálják a repetitív irodai feladatokat 0-24 órában.”
+- Szolgáltatások oldal `metadata` frissítve:
+  - Title: `Szolgáltatásaink | Szoftverfejlesztés & AI`
+  - Description: „Egyedi szoftverfejlesztés, AI integráció és felhő megoldások vállalkozások számára.”
+- Kapcsolat oldal `metadata` frissítve:
+  - Title: `Kapcsolat | Pohánka és Társa Kft.`
+  - Description: „Kérjen ingyenes konzultációt szoftverfejlesztési vagy AI projektjéhez.”
+
+Megjegyzés:
+- A layout JSON-LD telefonszám már helyes volt (`+36 30 244 6779`), ezért ott nem kellett módosítani.
+
+Ellenőrzés:
+- `npm run lint` → OK
+- `npm run build` → sikeres
+
 ## 32) 2025-12-17 – Brunella Agents: Office Automation (Spreadsheet) interaktív demo
 
 Fájlok:

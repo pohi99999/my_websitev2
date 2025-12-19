@@ -1,24 +1,21 @@
 import KapcsolatClient from "./KapcsolatClient";
 
 export const metadata = {
-  title: "Kapcsolat",
-  description:
-    "Kapcsolatfelvétel a Pohánka és Társa Kft.-vel – AI megoldások, Brunella Agent System és egyedi fejlesztések.",
+  title: 'Kapcsolat | Pohánka és Társa Kft.',
+  description: 'Lépjen kapcsolatba velünk! Kérjen ingyenes konzultációt szoftverfejlesztési vagy AI projektjéhez.',
   alternates: {
     canonical: "/kapcsolat"
   },
   openGraph: {
-    title: "Kapcsolat | Pohánka AI",
-    description:
-      "Kapcsolatfelvétel a Pohánka és Társa Kft.-vel – AI megoldások, Brunella Agent System és egyedi fejlesztések.",
+    title: 'Kapcsolat | Pohánka és Társa Kft.',
+    description: 'Lépjen kapcsolatba velünk! Kérjen ingyenes konzultációt szoftverfejlesztési vagy AI projektjéhez.',
     url: "/kapcsolat",
     images: [{ url: "/images/logo.png", alt: "Pohánka és Társa Kft. – logó" }]
   },
   twitter: {
     card: "summary",
-    title: "Kapcsolat | Pohánka AI",
-    description:
-      "Kapcsolatfelvétel a Pohánka és Társa Kft.-vel – AI megoldások, Brunella Agent System és egyedi fejlesztések."
+    title: 'Kapcsolat | Pohánka és Társa Kft.',
+    description: 'Lépjen kapcsolatba velünk! Kérjen ingyenes konzultációt szoftverfejlesztési vagy AI projektjéhez.'
   }
 };
 
