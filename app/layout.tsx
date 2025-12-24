@@ -7,6 +7,7 @@ import SequentialVideoBackground from './components/SequentialVideoBackground';
 import LenisProvider from './components/LenisProvider';
 import { LanguageProvider } from './context/LanguageContext';
 import { cookies, headers } from 'next/headers';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' });
 
@@ -119,6 +120,7 @@ export default function RootLayout({
             <Footer />
           </LenisProvider>
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
