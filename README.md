@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2ba240e3-5ee4-402a-b0e6-2c1fc1671c98/deploy-status)](https://app.netlify.com/projects/pohankaestarsa/deploys)
 # 🌐 Pohánka Company Website
 
 Egy modern, production-ready Next.js website a Pohánka és Társa Kft. számára.
