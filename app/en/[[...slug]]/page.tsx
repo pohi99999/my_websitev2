@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 import HomePage from '../../page';
 import TermekekPage from '../../termekek/page';
@@ -15,7 +15,6 @@ import FogalomtarPage from '../../fogalomtar/page';
 import AdatvedelemPage from '../../adatvedelmi-nyilatkozat/page';
 import ImpresszumPage from '../../impresszum/page';
 import AszfPage from '../../aszf/page';
-import BrunellaAgentsPage from '../../termekek/brunella-agents/page';
 import PohiAiProPage from '../../termekek/pohi-ai-pro/page';
 
 export const dynamic = 'force-dynamic';
@@ -250,7 +249,7 @@ export default function EnCatchAllPage({ params }: { params: Params }) {
 
   // Nested: /en/termekek/*
   if (slug[0] === 'termekek' && slug.length === 2) {
-    if (slug[1] === 'brunella-agents') return <BrunellaAgentsPage />;
+    if (slug[1] === 'brunella-agents') return redirect('/portfolio/brunella-bas');
     if (slug[1] === 'pohi-ai-pro') return <PohiAiProPage />;
   }
 
