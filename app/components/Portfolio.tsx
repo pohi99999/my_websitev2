@@ -44,7 +44,7 @@ const Portfolio = () => {
 
         {/* Projekt Kártyák */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          {/* 1. BAS — link a dedikált oldalra */}
+          {/* 1. BAS */}
           <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2">
             <div className="h-48 bg-gradient-to-br from-blue-900/50 to-slate-900/50 flex items-center justify-center">
               <span className="text-4xl font-bold text-white">BAS</span>
@@ -72,16 +72,15 @@ const Portfolio = () => {
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Pohi AI Pro</h3>
               <p className="text-slate-400 mb-6 text-sm leading-relaxed">
-                Egyedi fejlesztésű, teljes portál rendszer amely egy vevői adatbázis és annak rendelés állományát
-                valamint a gyártok készletnyilvántartását összefésüli és kezeli a vevői igényekkel, fuvarszervezéssel
-                egybe hangolva.
+                Egyedi fejlesztésű B2B kereskedési platform — vevői adatbázis, gyártói készlet és fuvarszervezés
+                egy helyen, Gemini AI-val és Google Maps logisztikai tervezéssel.
                 <br /><br />
-                <span className="text-purple-400 font-medium">Még fejlesztés alatt:</span> tesztelés a Mesterséges
-                Intelligencia által vezérelt automatizálása bevezetése a gyorsabb és átláthatóbb nyilvántartás érdekében.
+                <span className="text-purple-400 font-medium">Fejlesztés alatt:</span> backend integráció,
+                valós idejű értesítések, prediktív analitika.
               </p>
-              <a href="#" className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium transition-colors">
+              <Link href="/portfolio/pohi-ai-pro" className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium transition-colors">
                 Részletek <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
 
