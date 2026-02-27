@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight, Award, TrendingUp, X } from 'lucide-react';
 
 const Portfolio = () => {
-  // Állapot a kiválasztott kép tárolására (Lightboxhoz)
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const badges = Array.from({ length: 12 }, (_, i) => ({
@@ -29,7 +29,7 @@ const Portfolio = () => {
         <source src="/portfolio.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark overlay for readability */}
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -44,7 +44,7 @@ const Portfolio = () => {
 
         {/* Projekt Kártyák */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          {/* 1. BAS */}
+          {/* 1. BAS — link a dedikált oldalra */}
           <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2">
             <div className="h-48 bg-gradient-to-br from-blue-900/50 to-slate-900/50 flex items-center justify-center">
               <span className="text-4xl font-bold text-white">BAS</span>
@@ -52,15 +52,16 @@ const Portfolio = () => {
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Brunella Agent System</h3>
               <p className="text-slate-400 mb-6">
-                Az első valódi AI Operációs Rendszer vállalkozásoknak. Nem csak egy chatbot, hanem egy teljes digitális munkaerő, ami lát, hall és cselekszik helyetted.
+                Az első valódi AI Operációs Rendszer vállalkozásoknak. Nem csak egy chatbot, hanem egy
+                57 ügynökből álló, öngyógyító digitális munkaerő, ami lát, hall és cselekszik helyetted.
               </p>
-              <a href="#" className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors">
+              <Link href="/portfolio/brunella-bas" className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors">
                 Részletek <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
 
-          {/* 2. Pohi AI Pro (FRISSÍTETT SZÖVEG) */}
+          {/* 2. Pohi AI Pro */}
           <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2">
             <div className="absolute top-4 right-4 bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-bold border border-yellow-500/30 flex items-center">
               <Award className="w-3 h-3 mr-1" /> WINNER
@@ -71,9 +72,12 @@ const Portfolio = () => {
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Pohi AI Pro</h3>
               <p className="text-slate-400 mb-6 text-sm leading-relaxed">
-                Egyedi fejlesztésű, teljes portál rendszer amely egy vevői adatbázis és annak rendelés állományát valamint a gyártok készletnyilvántartását összefésüli és kezeli a vevői igényekkel, fuvarszervezéssel egybe hangolva.
+                Egyedi fejlesztésű, teljes portál rendszer amely egy vevői adatbázis és annak rendelés állományát
+                valamint a gyártok készletnyilvántartását összefésüli és kezeli a vevői igényekkel, fuvarszervezéssel
+                egybe hangolva.
                 <br /><br />
-                <span className="text-purple-400 font-medium">Még fejlesztés alatt:</span> tesztelés a Mesterséges Intelligencia által vezérelt automatizálása bevezetése a gyorsabb és átláthatóbb nyilvántartás érdekében.
+                <span className="text-purple-400 font-medium">Még fejlesztés alatt:</span> tesztelés a Mesterséges
+                Intelligencia által vezérelt automatizálása bevezetése a gyorsabb és átláthatóbb nyilvántartás érdekében.
               </p>
               <a href="#" className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium transition-colors">
                 Részletek <ArrowRight className="ml-2 w-4 h-4" />
@@ -89,7 +93,8 @@ const Portfolio = () => {
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Üzleti Folyamatok</h3>
               <p className="text-slate-400 mb-6">
-                Üzleti folyamatok teljes körű automatizálása a BAS rendszer segítségével. A repetitív feladatok kiváltása intelligens ügynökökkel.
+                Üzleti folyamatok teljes körű automatizálása a BAS rendszer segítségével.
+                A repetitív feladatok kiváltása intelligens ügynökökkel.
               </p>
               <a href="#" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
                 Részletek <ArrowRight className="ml-2 w-4 h-4" />
@@ -98,7 +103,7 @@ const Portfolio = () => {
           </div>
         </div>
 
-        {/* Eredmények és Tanúsítványok (Kattintható Badge-ek) */}
+        {/* Eredmények és Tanúsítványok */}
         <div className="border-t border-slate-800 pt-16">
           <h3 className="text-center text-2xl font-bold text-white mb-4">Minősítéseink és Eredményeink</h3>
           <p className="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
@@ -137,7 +142,7 @@ const Portfolio = () => {
         </div>
       </div>
 
-      {/* Lightbox / Modal Overlay */}
+      {/* Lightbox */}
       {selectedImage && (
         <div
           className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
@@ -155,7 +160,7 @@ const Portfolio = () => {
             width={1600}
             height={1100}
             sizes="90vw"
-            className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl scale-100 transition-transform"
+            className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           />
         </div>
