@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import GsapFadeIn from '../../components/GsapFadeIn';
+import ImageLightboxGallery from '../../components/ImageLightboxGallery';
 import SpotlightCard from '../../components/SpotlightCard';
 import {
   ArrowLeft, ArrowRight, CheckCircle, Zap, Brain, Globe,
@@ -313,7 +314,7 @@ export default function PohiAIProPage() {
         </div>
       </section>
 
-      {/* Screenshots galéria */}
+      {/* Screenshots galéria — lightbox */}
       <section className="px-6 py-16">
         <div className="max-w-6xl mx-auto">
           <GsapFadeIn>
@@ -321,41 +322,13 @@ export default function PohiAIProPage() {
               Pohi AI Pro élesben
             </h2>
           </GsapFadeIn>
-
-          {/* Hero kép nagyban */}
-          <GsapFadeIn delay={0.05}>
-            <div className="rounded-2xl overflow-hidden border border-white/10 hover:border-purple-500/40 transition-all duration-300 mb-5">
-              <div className="relative w-full h-72 md:h-96 bg-slate-900">
-                <Image
-                  src="/images/pohi-ai-pro/pro-01.jpg"
-                  alt="Pohi AI Pro"
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                  priority
-                />
-              </div>
-            </div>
-          </GsapFadeIn>
-
-          {/* 4 oszlopos rács — cím nélkül */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {screenshots.slice(1).map((src, i) => (
-              <GsapFadeIn key={src} delay={0.04 * i}>
-                <div className="group rounded-xl overflow-hidden border border-white/10 hover:border-purple-500/40 transition-all duration-300 hover:scale-[1.02]">
-                  <div className="relative h-40 bg-slate-900">
-                    <Image
-                      src={src}
-                      alt="Pohi AI Pro képernyőkép"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    />
-                  </div>
-                </div>
-              </GsapFadeIn>
-            ))}
-          </div>
+          <ImageLightboxGallery
+            screenshots={screenshots.slice(1)}
+            heroSrc="/images/pohi-ai-pro/pro-01.jpg"
+            heroAlt="Pohi AI Pro"
+            thumbAlt="Pohi AI Pro képernyőkép"
+            accentColor="purple"
+          />
         </div>
       </section>
 
