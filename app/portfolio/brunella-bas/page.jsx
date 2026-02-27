@@ -131,6 +131,10 @@ const screenshots = [
   '/images/bas/bas-10.jpg',
   '/images/bas/bas-11.jpg',
   '/images/bas/bas-12.jpg',
+  '/images/bas/bas-13.jpg',
+  '/images/bas/bas-14.jpg',
+  '/images/bas/bas-15.jpg',
+  '/images/bas/bas-16.jpg',
 ];
 
 export default function BrunellaBASPage() {
