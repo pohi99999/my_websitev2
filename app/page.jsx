@@ -1,4 +1,5 @@
 import Hero from "./components/Hero";
+import AIFolyamatok from "./components/AIFolyamatok";
 
 export const metadata = {
   title: 'AI Ügynökség & Szoftverfejlesztés',
@@ -27,6 +28,7 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
+      <AIFolyamatok />
     </main>
   );
 }

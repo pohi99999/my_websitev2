@@ -51,7 +51,7 @@ const Hero = () => {
           >
             {t('hero.ctaPrimary')} <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
-          <a href="#contact" className="px-8 py-4 bg-transparent border border-slate-600 hover:border-white text-white rounded-full font-semibold transition-all hover:bg-slate-800">
+          <a href="#ai-folyamatok" className="px-8 py-4 bg-transparent border border-slate-600 hover:border-white text-white rounded-full font-semibold transition-all hover:bg-slate-800">
             {t('hero.ctaSecondary')}
           </a>
         </div>

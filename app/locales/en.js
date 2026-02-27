@@ -13,7 +13,7 @@ const en = {
     headlineLine2: 'Humans and Artificial Intelligence',
     subheadline: 'will define success in the years ahead.',
     ctaPrimary: 'Brunella Agent System',
-    ctaSecondary: 'Contact',
+    ctaSecondary: 'AI Agent Workflows',
   },
   footer: {
     companyName: 'Pohánka & Társa',
