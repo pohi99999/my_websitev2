@@ -21,11 +21,9 @@ export const metadata = {
     url: '/portfolio/brunella-bas',
     type: 'article',
     locale: 'hu_HU',
-    images: [{ url: '/images/logo.png', alt: 'Pohánka AI' }],
+    images: [{ url: '/images/bas/bas-00.jpg', alt: 'Brunella Agent System' }],
   },
 };
-
-// ─── Architektúra adatok ────────────────────────────────────────────────────
 
 const agentFamilies = [
   {
@@ -112,37 +110,39 @@ const infraStack = [
 ];
 
 const stats = [
-  { value: '57',   label: 'Regisztrált ügynök',    icon: Bot,       color: 'text-blue-400'  },
-  { value: '90+',  label: 'Fejlesztési track',      icon: FileText,  color: 'text-purple-400' },
-  { value: '97%',  label: 'Teszt lefedettség',      icon: CheckCircle, color: 'text-green-400'  },
-  { value: '24/7', label: 'Öngyógyító futás',       icon: Activity,  color: 'text-orange-400' },
+  { value: '57',   label: 'Regisztrált ügynök',    icon: Bot,        color: 'text-blue-400'   },
+  { value: '90+',  label: 'Fejlesztési track',      icon: FileText,   color: 'text-purple-400' },
+  { value: '97%',  label: 'Teszt lefedettség',      icon: CheckCircle,color: 'text-green-400'  },
+  { value: '24/7', label: 'Öngyógyító futás',       icon: Activity,   color: 'text-orange-400' },
 ];
 
-// Fotók helye: /public/images/bas/ mappában
-// Nevezd el őket: bas-01.jpg, bas-02.jpg ... bas-06.jpg
 const screenshots = [
-  { src: '/images/bas/bas-01.jpg', alt: 'BAS Mission Control Dashboard', label: 'Mission Control' },
-  { src: '/images/bas/bas-02.jpg', alt: 'BAS Agent Manager', label: 'Agent Manager' },
-  { src: '/images/bas/bas-03.jpg', alt: 'BAS Lead Intelligence', label: 'Lead Intelligence' },
-  { src: '/images/bas/bas-04.jpg', alt: 'BAS Campaign Studio', label: 'Kampány Stúdió' },
-  { src: '/images/bas/bas-05.jpg', alt: 'BAS Robotkéz V2', label: 'Robotkéz V2' },
-  { src: '/images/bas/bas-06.jpg', alt: 'BAS Enterprise Suite', label: 'Enterprise Suite' },
+  { src: '/images/bas/bas-00.jpg', label: '🚀 Brunella indítóképernyő',    col: 'lg:col-span-2' },
+  { src: '/images/bas/bas-01.jpg', label: '🖥️ Mission Control Dashboard',  col: '' },
+  { src: '/images/bas/bas-02.jpg', label: '🤖 Agent Manager',              col: '' },
+  { src: '/images/bas/bas-03.jpg', label: '🎯 Lead Intelligence',          col: '' },
+  { src: '/images/bas/bas-04.jpg', label: '📣 Kampány Stúdió',            col: '' },
+  { src: '/images/bas/bas-05.jpg', label: '🌐 Robotkéz V2 böngésző',      col: '' },
+  { src: '/images/bas/bas-06.jpg', label: '💼 Enterprise Suite',           col: '' },
+  { src: '/images/bas/bas-07.jpg', label: '📊 Analytics Dashboard',        col: '' },
+  { src: '/images/bas/bas-08.jpg', label: '💻 CLI parancssor',             col: '' },
+  { src: '/images/bas/bas-09.jpg', label: '💬 Brunella Chat',              col: '' },
+  { src: '/images/bas/bas-10.jpg', label: '👥 Ügynök lista',              col: '' },
+  { src: '/images/bas/bas-11.jpg', label: '🛤️ Tracks kezelő',             col: '' },
+  { src: '/images/bas/bas-12.jpg', label: '⚙️ Beállítások',               col: '' },
 ];
-
-// ─── Oldal ──────────────────────────────────────────────────────────────────
 
 export default function BrunellaBASPage() {
   return (
     <div className="min-h-screen text-white">
 
-      {/* ── Hero ── */}
+      {/* Hero */}
       <section className="relative py-12 px-6 pt-24 pb-16">
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn>
             <Link href="/portfolio" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8 transition-colors">
               <ArrowLeft className="w-4 h-4" /> Vissza a Portfólióhoz
             </Link>
-
             <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
               <div className="shrink-0 w-24 h-24 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center text-3xl font-black shadow-lg shadow-blue-900/40">
                 BAS
@@ -161,7 +161,6 @@ export default function BrunellaBASPage() {
                 </p>
               </div>
             </div>
-
             <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">
               Az első valódi <span className="text-white font-semibold">AI Operációs Rendszer</span> kis- és középvállalkozásoknak.
               Nem csak egy chatbot — hanem egy 57 ügynökből álló, öngyógyító digitális munkaerő,
@@ -171,7 +170,7 @@ export default function BrunellaBASPage() {
         </div>
       </section>
 
-      {/* ── Stat kártyák ── */}
+      {/* Stat kártyák */}
       <section className="px-6 pb-16">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
           {stats.map((s, i) => {
@@ -189,7 +188,7 @@ export default function BrunellaBASPage() {
         </div>
       </section>
 
-      {/* ── Rendszer összefoglaló ── */}
+      {/* Mi a BAS? */}
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn>
@@ -226,7 +225,7 @@ export default function BrunellaBASPage() {
         </div>
       </section>
 
-      {/* ── Architektúra Diagram ── */}
+      {/* Architektúra Diagram */}
       <section className="px-6 py-16">
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn>
@@ -235,10 +234,9 @@ export default function BrunellaBASPage() {
             </h2>
             <p className="text-gray-400 mb-10 text-sm">Háromrétegű hibrid rendszer — helyi AI + felhő + edge</p>
           </GsapFadeIn>
-
           <GsapFadeIn delay={0.15}>
-            {/* Layer 1: Orchestration */}
             <div className="relative">
+              {/* Layer 1 */}
               <div className="bg-gradient-to-r from-purple-900/60 to-blue-900/60 border border-purple-500/40 rounded-2xl p-5 mb-2">
                 <div className="text-xs text-purple-300 font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-purple-400 inline-block animate-pulse" />
@@ -246,22 +244,13 @@ export default function BrunellaBASPage() {
                 </div>
                 <div className="flex flex-wrap gap-3">
                   {['OrchestratorAgent', 'EnterpriseOrchestratorAgent', 'PAIOS Orchestrator'].map(a => (
-                    <div key={a} className="bg-purple-800/60 border border-purple-500/40 rounded-lg px-4 py-2 text-white text-sm font-medium">
-                      {a}
-                    </div>
+                    <div key={a} className="bg-purple-800/60 border border-purple-500/40 rounded-lg px-4 py-2 text-white text-sm font-medium">{a}</div>
                   ))}
                 </div>
-                <p className="text-purple-200/60 text-xs mt-3">
-                  Feladatok fogadása → tervezés → delegálás az ügynökök között → eredmény összesítés
-                </p>
+                <p className="text-purple-200/60 text-xs mt-3">Feladatok fogadása → tervezés → delegálás → eredmény összesítés</p>
               </div>
-
-              {/* Connector */}
-              <div className="flex justify-center my-1">
-                <div className="w-px h-5 bg-gradient-to-b from-purple-500 to-blue-500" />
-              </div>
-
-              {/* Layer 2: Agent Families */}
+              <div className="flex justify-center my-1"><div className="w-px h-5 bg-gradient-to-b from-purple-500 to-blue-500" /></div>
+              {/* Layer 2 */}
               <div className="border border-blue-500/20 rounded-2xl p-4 bg-blue-950/20 mb-2">
                 <div className="text-xs text-blue-300 font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-400 inline-block" />
@@ -273,14 +262,12 @@ export default function BrunellaBASPage() {
                     return (
                       <div key={f.id} className={`${f.bg} border ${f.border} rounded-xl p-4`}>
                         <div className={`flex items-center gap-2 font-semibold text-sm ${f.color} mb-2`}>
-                          <Icon size={14} />
-                          {f.name}
+                          <Icon size={14} />{f.name}
                         </div>
                         <div className="space-y-0.5 mb-2">
                           {f.agents.map(a => (
                             <div key={a} className="flex items-center gap-1.5 text-xs text-gray-300">
-                              <span className={`w-1 h-1 rounded-full shrink-0 ${f.dot}`} />
-                              {a}
+                              <span className={`w-1 h-1 rounded-full shrink-0 ${f.dot}`} />{a}
                             </div>
                           ))}
                         </div>
@@ -290,13 +277,8 @@ export default function BrunellaBASPage() {
                   })}
                 </div>
               </div>
-
-              {/* Connector */}
-              <div className="flex justify-center my-1">
-                <div className="w-px h-5 bg-gradient-to-b from-blue-500 to-zinc-500" />
-              </div>
-
-              {/* Layer 3: Infrastructure */}
+              <div className="flex justify-center my-1"><div className="w-px h-5 bg-gradient-to-b from-blue-500 to-zinc-500" /></div>
+              {/* Layer 3 */}
               <div className="bg-zinc-900/60 border border-zinc-600/30 rounded-2xl p-5">
                 <div className="text-xs text-zinc-400 font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-zinc-400 inline-block" />
@@ -307,8 +289,7 @@ export default function BrunellaBASPage() {
                     const I = t.icon;
                     return (
                       <div key={t.name} className={`flex items-center gap-1.5 ${t.bg} border ${t.border} rounded-lg px-3 py-1.5 text-xs ${t.color} font-medium`}>
-                        <I size={12} />
-                        {t.name}
+                        <I size={12} />{t.name}
                       </div>
                     );
                   })}
@@ -319,41 +300,51 @@ export default function BrunellaBASPage() {
         </div>
       </section>
 
-      {/* ── Screenshots ── */}
+      {/* Screenshots galéria */}
       <section className="px-6 py-16 bg-white/5">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <GsapFadeIn>
             <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Képernyőképek
             </h2>
-            <p className="text-gray-400 mb-10 text-sm">A valódi rendszer — Mission Control dashboard, ügynök kezelő, kampány stúdió</p>
+            <p className="text-gray-400 mb-10 text-sm">13 valódi képernyőkép a futó rendszerből</p>
           </GsapFadeIn>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {screenshots.map((shot, i) => (
-              <GsapFadeIn key={shot.src} delay={0.1 * i}>
-                <div className="group rounded-2xl overflow-hidden border border-white/10 hover:border-blue-500/40 transition-all duration-300">
-                  <div className="relative h-48 bg-gradient-to-br from-slate-800 to-slate-900">
+          {/* Hero kép — Brunella indítókép nagyban */}
+          <GsapFadeIn delay={0.1}>
+            <div className="rounded-2xl overflow-hidden border border-white/10 hover:border-blue-500/40 transition-all duration-300 mb-5">
+              <div className="relative w-full h-72 md:h-96 bg-slate-900">
+                <Image
+                  src="/images/bas/bas-00.jpg"
+                  alt="Brunella Agent System — indítókép"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+              <div className="p-3 bg-black/50 backdrop-blur-sm">
+                <p className="text-sm text-blue-300 font-semibold">🚀 Brunella Agent System — indítóképernyő</p>
+              </div>
+            </div>
+          </GsapFadeIn>
+
+          {/* 4 oszlopos rács a többi 12 képnek */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {screenshots.slice(1).map((shot, i) => (
+              <GsapFadeIn key={shot.src} delay={0.05 * i}>
+                <div className="group rounded-xl overflow-hidden border border-white/10 hover:border-blue-500/40 transition-all duration-300 hover:scale-[1.02]">
+                  <div className="relative h-40 bg-slate-900">
                     <Image
                       src={shot.src}
-                      alt={shot.alt}
+                      alt={shot.label}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
-                    {/* Placeholder ha nincs kép */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-2">
-                          <Cpu className="w-5 h-5 text-blue-400" />
-                        </div>
-                        <p className="text-gray-500 text-xs">Kép hamarosan</p>
-                      </div>
-                    </div>
                   </div>
-                  <div className="p-3 bg-black/40 backdrop-blur-sm">
-                    <p className="text-sm text-gray-300 font-medium">{shot.label}</p>
+                  <div className="p-2 bg-black/50 backdrop-blur-sm">
+                    <p className="text-xs text-gray-300 font-medium truncate">{shot.label}</p>
                   </div>
                 </div>
               </GsapFadeIn>
@@ -362,7 +353,7 @@ export default function BrunellaBASPage() {
         </div>
       </section>
 
-      {/* ── Eredmények ── */}
+      {/* Eredmények */}
       <section className="px-6 py-16">
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn>
@@ -372,10 +363,10 @@ export default function BrunellaBASPage() {
           </GsapFadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { metric: 'Napi friss lead', value: '250+',  sub: 'Cloudflare Worker gyűjti',  color: 'text-blue-400'   },
-              { metric: 'Ügynök tesztek',  value: '97%',   sub: '657/679 teszt zöld',        color: 'text-green-400'  },
-              { metric: 'Fejlesztés',      value: '90+',   sub: 'track befejezve',           color: 'text-purple-400' },
-              { metric: 'Archit. réteg',   value: '3',     sub: 'Node.js + Python + Edge',   color: 'text-orange-400' },
+              { metric: 'Napi friss lead', value: '250+', sub: 'Cloudflare Worker gyűjti',  color: 'text-blue-400'   },
+              { metric: 'Ügynök tesztek',  value: '97%',  sub: '657/679 teszt zöld',        color: 'text-green-400'  },
+              { metric: 'Befejezett track',value: '90+',  sub: 'aktív fejlesztés',          color: 'text-purple-400' },
+              { metric: 'Archit. réteg',   value: '3',    sub: 'Node.js + Python + Edge',   color: 'text-orange-400' },
             ].map((r, i) => (
               <GsapFadeIn key={r.metric} delay={0.1 * i}>
                 <SpotlightCard className="p-7 text-center">
@@ -390,7 +381,7 @@ export default function BrunellaBASPage() {
         </div>
       </section>
 
-      {/* ── Főbb funkciók ── */}
+      {/* Főbb funkciók */}
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn>
@@ -400,42 +391,12 @@ export default function BrunellaBASPage() {
           </GsapFadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              {
-                icon: Shield,
-                color: 'text-green-400',
-                title: 'Phoenix Protocol — Öngyógyítás',
-                desc: 'Ha bármely ügynök hibás állapotba kerül, a rendszer automatikusan észleli és visszaállítja. Nincsenek "halott" folyamatok, nincs emberi beavatkozás szükséges.',
-              },
-              {
-                icon: Brain,
-                color: 'text-purple-400',
-                title: 'RAG Memória & Tudásbázis',
-                desc: 'LanceDB vektoradatbázis + AnythingLLM integráció — az ügynökök "emlékeznek" korábbi feladatokra és tanulnak belőlük. Minden futás okosabbá teszi a rendszert.',
-              },
-              {
-                icon: Layers,
-                color: 'text-blue-400',
-                title: 'MCP Protocol — Dual-mode Szerver',
-                desc: 'Egyszerre fut MCP StdIO módban (AI kliensek számára) és Express HTTP szerverként (Dashboard + CLI). Egy indítás, két elérési mód.',
-              },
-              {
-                icon: Cloud,
-                color: 'text-orange-400',
-                title: 'Cloudflare Edge Integration',
-                desc: 'Lead Intelligence Worker, D1 adatbázis, AI Workers — a rendszer peremhálózati komponensei naponta futnak és frissítik a lead adatbázist automatikusan.',
-              },
-              {
-                icon: Activity,
-                color: 'text-cyan-400',
-                title: 'Valós idejű Mission Control',
-                desc: 'Webszoftveres dashboard Socket.IO alapú élő frissítéssel: ügynök státuszok, feladat sor, log nézegető, metrikák — minden egy képernyőn.',
-              },
-              {
-                icon: TrendingUp,
-                color: 'text-pink-400',
-                title: 'Model Router — Smart AI választás',
-                desc: 'Feladat bonyolultságától függően automatikusan választ helyi (Ollama) vagy felhő AI-t (Gemini, GPT-4o). Budget módban teljesen offline futtatható.',
-              },
+              { icon: Shield,    color: 'text-green-400',  title: 'Phoenix Protocol — Öngyógyítás',       desc: 'Ha bármely ügynök hibás állapotba kerül, a rendszer automatikusan észleli és visszaállítja. Nincsenek "halott" folyamatok, nincs emberi beavatkozás.' },
+              { icon: Brain,     color: 'text-purple-400', title: 'RAG Memória & Tudásbázis',             desc: 'LanceDB vektoradatbázis + AnythingLLM integráció — az ügynökök "emlékeznek" korábbi feladatokra és tanulnak belőlük.' },
+              { icon: Layers,    color: 'text-blue-400',   title: 'MCP Protocol — Dual-mode Szerver',     desc: 'Egyszerre fut MCP StdIO módban (AI kliensek számára) és Express HTTP szerverként (Dashboard + CLI). Egy indítás, két elérési mód.' },
+              { icon: Cloud,     color: 'text-orange-400', title: 'Cloudflare Edge Integration',          desc: 'Lead Intelligence Worker, D1 adatbázis, AI Workers — a peremhálózati komponensek naponta futnak és frissítik a lead adatbázist.' },
+              { icon: Activity,  color: 'text-cyan-400',   title: 'Valós idejű Mission Control',          desc: 'Socket.IO alapú élő dashboard: ügynök státuszok, feladat sor, log nézegető, metrikák — minden egy képernyőn.' },
+              { icon: TrendingUp,color: 'text-pink-400',   title: 'Model Router — Smart AI választás',    desc: 'Feladat bonyolultságától függően automatikusan választ helyi (Ollama) vagy felhő AI-t (Gemini, GPT-4o). Budget módban teljesen offline.' },
             ].map((f, i) => {
               const I = f.icon;
               return (
@@ -456,7 +417,7 @@ export default function BrunellaBASPage() {
         </div>
       </section>
 
-      {/* ── Tech Stack ── */}
+      {/* Tech Stack */}
       <section className="px-6 py-16">
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn>
@@ -479,34 +440,25 @@ export default function BrunellaBASPage() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* CTA */}
       <section className="px-6 py-24">
         <div className="max-w-3xl mx-auto">
           <GsapFadeIn delay={0.2}>
             <SpotlightCard className="p-12 text-center">
               <div className="flex justify-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                ))}
+                {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />)}
               </div>
               <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 Neked is épülhet ilyen rendszer
               </h2>
               <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-                A BAS minden eleme testreszabható. Ha van egy üzleti problémád amit automatizálható —
-                megcsináljuk a saját verziód.
+                A BAS minden eleme testreszabható. Ha van egy üzleti problémád amit automatizálható — megcsináljuk a saját verziód.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/kapcsolat"
-                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105"
-                >
+                <Link href="/kapcsolat" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105">
                   Ingyenes konzultáció <ArrowRight size={18} />
                 </Link>
-                <Link
-                  href="/termekek/brunella-agents"
-                  className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-blue-400/50 text-gray-300 hover:text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
-                >
+                <Link href="/termekek/brunella-agents" className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-blue-400/50 text-gray-300 hover:text-white font-semibold px-8 py-4 rounded-full transition-all duration-300">
                   Termék oldal <ArrowRight size={18} />
                 </Link>
               </div>
