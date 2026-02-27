@@ -21,11 +21,9 @@ export const metadata = {
     url: '/portfolio/pohi-ai-pro',
     type: 'article',
     locale: 'hu_HU',
-    images: [{ url: '/images/logo.png', alt: 'Pohi AI Pro' }],
+    images: [{ url: '/images/pohi-ai-pro/pro-01.jpg', alt: 'Pohi AI Pro' }],
   },
 };
-
-// ─── Adatok ─────────────────────────────────────────────────────────────────
 
 const roles = [
   {
@@ -70,16 +68,16 @@ const roles = [
 ];
 
 const techStack = [
-  { name: 'React',           color: 'text-cyan-300'    },
-  { name: 'Vite',            color: 'text-purple-300'  },
-  { name: 'Tailwind CSS',    color: 'text-blue-300'    },
-  { name: 'Gemini AI',       color: 'text-yellow-300'  },
-  { name: 'Vertex AI',       color: 'text-green-300'   },
-  { name: 'Imagen 3',        color: 'text-pink-300'    },
-  { name: 'Google Maps API', color: 'text-red-300'     },
-  { name: 'responseSchema',  color: 'text-orange-300'  },
-  { name: 'localStorage',    color: 'text-gray-300'    },
-  { name: 'Node.js (terv)',  color: 'text-green-200'   },
+  { name: 'React',            color: 'text-cyan-300'   },
+  { name: 'Vite',             color: 'text-purple-300' },
+  { name: 'Tailwind CSS',     color: 'text-blue-300'   },
+  { name: 'Gemini AI',        color: 'text-yellow-300' },
+  { name: 'Vertex AI',        color: 'text-green-300'  },
+  { name: 'Imagen 3',         color: 'text-pink-300'   },
+  { name: 'Google Maps API',  color: 'text-red-300'    },
+  { name: 'responseSchema',   color: 'text-orange-300' },
+  { name: 'localStorage',     color: 'text-gray-300'   },
+  { name: 'Node.js (terv)',   color: 'text-green-200'  },
   { name: 'PostgreSQL (terv)',color: 'text-blue-200'   },
   { name: 'WebSockets (terv)',color: 'text-violet-200' },
 ];
@@ -138,8 +136,6 @@ const results = [
   },
 ];
 
-// Fotók: /public/images/pohi-ai-pro/ mappában
-// Nevezd el: pro-01.jpg ... pro-08.jpg
 const screenshots = [
   '/images/pohi-ai-pro/pro-01.jpg',
   '/images/pohi-ai-pro/pro-02.jpg',
@@ -149,9 +145,11 @@ const screenshots = [
   '/images/pohi-ai-pro/pro-06.jpg',
   '/images/pohi-ai-pro/pro-07.jpg',
   '/images/pohi-ai-pro/pro-08.jpg',
+  '/images/pohi-ai-pro/pro-09.jpg',
+  '/images/pohi-ai-pro/pro-10.jpg',
+  '/images/pohi-ai-pro/pro-11.jpg',
+  '/images/pohi-ai-pro/pro-12.jpg',
 ];
-
-// ─── Oldal ───────────────────────────────────────────────────────────────────
 
 export default function PohiAIProPage() {
   return (
@@ -164,7 +162,6 @@ export default function PohiAIProPage() {
             <Link href="/portfolio" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8 transition-colors">
               <ArrowLeft className="w-4 h-4" /> Vissza a Portfólióhoz
             </Link>
-
             <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
               <div className="shrink-0 w-24 h-24 rounded-2xl bg-gradient-to-br from-purple-600 to-blue-700 flex items-center justify-center shadow-lg shadow-purple-900/40">
                 <span className="text-white font-black text-lg leading-tight text-center">Pohi<br/>AI Pro</span>
@@ -186,7 +183,6 @@ export default function PohiAIProPage() {
                 </p>
               </div>
             </div>
-
             <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">
               Egy teljes körű <span className="text-white font-semibold">B2B nyersanyag-kereskedési platform</span>, amely összekapcsolja a vevőket, gyártókat és logisztikát — Gemini AI-val, interaktív Google Maps alapú szállítástervezéssel, és automatikus dokumentumgenerálással.
             </p>
@@ -198,10 +194,10 @@ export default function PohiAIProPage() {
       <section className="px-6 pb-16">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { value: '3',       label: 'Felhasználói szerepkör', icon: Users,      color: 'text-blue-400'   },
-            { value: 'Gemini',  label: 'AI motor',               icon: Brain,      color: 'text-purple-400' },
-            { value: '100%',    label: 'Frontend alapú',         icon: Globe,      color: 'text-cyan-400'   },
-            { value: 'Teljes',  label: 'Interaktív prototípus',  icon: CheckCircle,color: 'text-green-400'  },
+            { value: '3',       label: 'Felhasználói szerepkör', icon: Users,       color: 'text-blue-400'   },
+            { value: 'Gemini',  label: 'AI motor',               icon: Brain,       color: 'text-purple-400' },
+            { value: '100%',    label: 'Frontend alapú',         icon: Globe,       color: 'text-cyan-400'   },
+            { value: 'Teljes',  label: 'Interaktív prototípus',  icon: CheckCircle, color: 'text-green-400'  },
           ].map((s, i) => {
             const Icon = s.icon;
             return (
@@ -273,7 +269,7 @@ export default function PohiAIProPage() {
         </div>
       </section>
 
-      {/* Logisztikai Irányítóközpont — kiemelt blokk */}
+      {/* Logisztikai Irányítóközpont */}
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn>
@@ -317,7 +313,7 @@ export default function PohiAIProPage() {
         </div>
       </section>
 
-      {/* Screenshots */}
+      {/* Screenshots galéria */}
       <section className="px-6 py-16">
         <div className="max-w-6xl mx-auto">
           <GsapFadeIn>
@@ -326,11 +322,28 @@ export default function PohiAIProPage() {
             </h2>
           </GsapFadeIn>
 
+          {/* Hero kép nagyban */}
+          <GsapFadeIn delay={0.05}>
+            <div className="rounded-2xl overflow-hidden border border-white/10 hover:border-purple-500/40 transition-all duration-300 mb-5">
+              <div className="relative w-full h-72 md:h-96 bg-slate-900">
+                <Image
+                  src="/images/pohi-ai-pro/pro-01.jpg"
+                  alt="Pohi AI Pro"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+            </div>
+          </GsapFadeIn>
+
+          {/* 4 oszlopos rács — cím nélkül */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {screenshots.map((src, i) => (
-              <GsapFadeIn key={src} delay={0.05 * i}>
+            {screenshots.slice(1).map((src, i) => (
+              <GsapFadeIn key={src} delay={0.04 * i}>
                 <div className="group rounded-xl overflow-hidden border border-white/10 hover:border-purple-500/40 transition-all duration-300 hover:scale-[1.02]">
-                  <div className="relative h-44 bg-gradient-to-br from-slate-800 to-slate-900">
+                  <div className="relative h-40 bg-slate-900">
                     <Image
                       src={src}
                       alt="Pohi AI Pro képernyőkép"
@@ -338,10 +351,6 @@ export default function PohiAIProPage() {
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
-                    {/* Placeholder ha még nincs kép */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center opacity-40 group-hover:opacity-20 transition-opacity">
-                      <Cpu className="w-8 h-8 text-purple-400 mb-1" />
-                    </div>
                   </div>
                 </div>
               </GsapFadeIn>
@@ -420,12 +429,12 @@ export default function PohiAIProPage() {
           </GsapFadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { icon: Layers,    color: 'text-blue-400',   title: 'Teljes körű backend',       desc: 'localStorage → Node.js/Express + PostgreSQL vagy Firebase, többfelhasználós hitelesítéssel' },
-              { icon: Activity,  color: 'text-green-400',  title: 'Valós idejű funkciók',       desc: 'WebSockets: valós idejű csevegés, üzletkötési tárgyalások, azonnali riasztások' },
-              { icon: TrendingUp,color: 'text-purple-400', title: 'Prediktív analitika',        desc: 'Piaci áringadozás előrejelzés, jövőbeli keresleti gócpontok, ellátási lánc szűk keresztmetszetei' },
-              { icon: FileText,  color: 'text-orange-400', title: 'Multimodális bemenetek',     desc: 'Fuvarlevelek és minőségi tanúsítványok feltöltése — Gemini automatikusan kinyeri és ellenőrzi az adatokat' },
-              { icon: Globe,     color: 'text-cyan-400',   title: 'Mobilalkalmazás',            desc: 'Natív vagy platformfüggetlen app: üzenetek, üzletkötési értesítések, valós idejű szállítmánykövetés' },
-              { icon: Building2, color: 'text-pink-400',   title: 'Ipari általánosítás',        desc: 'Nyersanyag-logika adaptálása mezőgazdaságra, fémpiacra, textiliparra — konfigurálható iparág-modulokkal' },
+              { icon: Layers,    color: 'text-blue-400',   title: 'Teljes körű backend',    desc: 'localStorage → Node.js/Express + PostgreSQL vagy Firebase, többfelhasználós hitelesítéssel' },
+              { icon: Activity,  color: 'text-green-400',  title: 'Valós idejű funkciók',   desc: 'WebSockets: valós idejű csevegés, üzletkötési tárgyalások, azonnali riasztások' },
+              { icon: TrendingUp,color: 'text-purple-400', title: 'Prediktív analitika',    desc: 'Piaci áringadozás előrejelzés, jövőbeli keresleti gócpontok, ellátási lánc szűk keresztmetszetei' },
+              { icon: FileText,  color: 'text-orange-400', title: 'Multimodális bemenetek', desc: 'Fuvarlevelek és tanúsítványok feltöltése — Gemini automatikusan kinyeri és ellenőrzi az adatokat' },
+              { icon: Globe,     color: 'text-cyan-400',   title: 'Mobilalkalmazás',        desc: 'Natív app: üzenetek, üzletkötési értesítések, valós idejű szállítmánykövetés' },
+              { icon: Building2, color: 'text-pink-400',   title: 'Ipari általánosítás',    desc: 'Nyersanyag-logika adaptálása mezőgazdaságra, fémpiacra, textiliparra' },
             ].map((item, i) => {
               const I = item.icon;
               return (
