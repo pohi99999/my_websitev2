@@ -117,19 +117,19 @@ const stats = [
 ];
 
 const screenshots = [
-  { src: '/images/bas/bas-00.jpg', label: '🚀 Brunella indítóképernyő',    col: 'lg:col-span-2' },
-  { src: '/images/bas/bas-01.jpg', label: '🖥️ Mission Control Dashboard',  col: '' },
-  { src: '/images/bas/bas-02.jpg', label: '🤖 Agent Manager',              col: '' },
-  { src: '/images/bas/bas-03.jpg', label: '🎯 Lead Intelligence',          col: '' },
-  { src: '/images/bas/bas-04.jpg', label: '📣 Kampány Stúdió',            col: '' },
-  { src: '/images/bas/bas-05.jpg', label: '🌐 Robotkéz V2 böngésző',      col: '' },
-  { src: '/images/bas/bas-06.jpg', label: '💼 Enterprise Suite',           col: '' },
-  { src: '/images/bas/bas-07.jpg', label: '📊 Analytics Dashboard',        col: '' },
-  { src: '/images/bas/bas-08.jpg', label: '💻 CLI parancssor',             col: '' },
-  { src: '/images/bas/bas-09.jpg', label: '💬 Brunella Chat',              col: '' },
-  { src: '/images/bas/bas-10.jpg', label: '👥 Ügynök lista',              col: '' },
-  { src: '/images/bas/bas-11.jpg', label: '🛤️ Tracks kezelő',             col: '' },
-  { src: '/images/bas/bas-12.jpg', label: '⚙️ Beállítások',               col: '' },
+  '/images/bas/bas-00.jpg',
+  '/images/bas/bas-01.jpg',
+  '/images/bas/bas-02.jpg',
+  '/images/bas/bas-03.jpg',
+  '/images/bas/bas-04.jpg',
+  '/images/bas/bas-05.jpg',
+  '/images/bas/bas-06.jpg',
+  '/images/bas/bas-07.jpg',
+  '/images/bas/bas-08.jpg',
+  '/images/bas/bas-09.jpg',
+  '/images/bas/bas-10.jpg',
+  '/images/bas/bas-11.jpg',
+  '/images/bas/bas-12.jpg',
 ];
 
 export default function BrunellaBASPage() {
@@ -236,7 +236,6 @@ export default function BrunellaBASPage() {
           </GsapFadeIn>
           <GsapFadeIn delay={0.15}>
             <div className="relative">
-              {/* Layer 1 */}
               <div className="bg-gradient-to-r from-purple-900/60 to-blue-900/60 border border-purple-500/40 rounded-2xl p-5 mb-2">
                 <div className="text-xs text-purple-300 font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-purple-400 inline-block animate-pulse" />
@@ -250,7 +249,6 @@ export default function BrunellaBASPage() {
                 <p className="text-purple-200/60 text-xs mt-3">Feladatok fogadása → tervezés → delegálás → eredmény összesítés</p>
               </div>
               <div className="flex justify-center my-1"><div className="w-px h-5 bg-gradient-to-b from-purple-500 to-blue-500" /></div>
-              {/* Layer 2 */}
               <div className="border border-blue-500/20 rounded-2xl p-4 bg-blue-950/20 mb-2">
                 <div className="text-xs text-blue-300 font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-400 inline-block" />
@@ -278,7 +276,6 @@ export default function BrunellaBASPage() {
                 </div>
               </div>
               <div className="flex justify-center my-1"><div className="w-px h-5 bg-gradient-to-b from-blue-500 to-zinc-500" /></div>
-              {/* Layer 3 */}
               <div className="bg-zinc-900/60 border border-zinc-600/30 rounded-2xl p-5">
                 <div className="text-xs text-zinc-400 font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-zinc-400 inline-block" />
@@ -304,47 +301,40 @@ export default function BrunellaBASPage() {
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-6xl mx-auto">
           <GsapFadeIn>
-            <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Képernyőképek
+            <h2 className="text-3xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Brunella Agent System élesben
             </h2>
-            <p className="text-gray-400 mb-10 text-sm">13 valódi képernyőkép a futó rendszerből</p>
           </GsapFadeIn>
 
-          {/* Hero kép — Brunella indítókép nagyban */}
+          {/* Hero kép nagyban */}
           <GsapFadeIn delay={0.1}>
             <div className="rounded-2xl overflow-hidden border border-white/10 hover:border-blue-500/40 transition-all duration-300 mb-5">
               <div className="relative w-full h-72 md:h-96 bg-slate-900">
                 <Image
                   src="/images/bas/bas-00.jpg"
-                  alt="Brunella Agent System — indítókép"
+                  alt="Brunella Agent System"
                   fill
                   className="object-cover"
                   sizes="100vw"
                   priority
                 />
               </div>
-              <div className="p-3 bg-black/50 backdrop-blur-sm">
-                <p className="text-sm text-blue-300 font-semibold">🚀 Brunella Agent System — indítóképernyő</p>
-              </div>
             </div>
           </GsapFadeIn>
 
-          {/* 4 oszlopos rács a többi 12 képnek */}
+          {/* 4 oszlopos rács — kép alatti cím nélkül */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {screenshots.slice(1).map((shot, i) => (
-              <GsapFadeIn key={shot.src} delay={0.05 * i}>
+            {screenshots.slice(1).map((src, i) => (
+              <GsapFadeIn key={src} delay={0.05 * i}>
                 <div className="group rounded-xl overflow-hidden border border-white/10 hover:border-blue-500/40 transition-all duration-300 hover:scale-[1.02]">
                   <div className="relative h-40 bg-slate-900">
                     <Image
-                      src={shot.src}
-                      alt={shot.label}
+                      src={src}
+                      alt="Brunella Agent System képernyőkép"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
-                  </div>
-                  <div className="p-2 bg-black/50 backdrop-blur-sm">
-                    <p className="text-xs text-gray-300 font-medium truncate">{shot.label}</p>
                   </div>
                 </div>
               </GsapFadeIn>
@@ -391,12 +381,12 @@ export default function BrunellaBASPage() {
           </GsapFadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { icon: Shield,    color: 'text-green-400',  title: 'Phoenix Protocol — Öngyógyítás',       desc: 'Ha bármely ügynök hibás állapotba kerül, a rendszer automatikusan észleli és visszaállítja. Nincsenek "halott" folyamatok, nincs emberi beavatkozás.' },
-              { icon: Brain,     color: 'text-purple-400', title: 'RAG Memória & Tudásbázis',             desc: 'LanceDB vektoradatbázis + AnythingLLM integráció — az ügynökök "emlékeznek" korábbi feladatokra és tanulnak belőlük.' },
-              { icon: Layers,    color: 'text-blue-400',   title: 'MCP Protocol — Dual-mode Szerver',     desc: 'Egyszerre fut MCP StdIO módban (AI kliensek számára) és Express HTTP szerverként (Dashboard + CLI). Egy indítás, két elérési mód.' },
-              { icon: Cloud,     color: 'text-orange-400', title: 'Cloudflare Edge Integration',          desc: 'Lead Intelligence Worker, D1 adatbázis, AI Workers — a peremhálózati komponensek naponta futnak és frissítik a lead adatbázist.' },
-              { icon: Activity,  color: 'text-cyan-400',   title: 'Valós idejű Mission Control',          desc: 'Socket.IO alapú élő dashboard: ügynök státuszok, feladat sor, log nézegető, metrikák — minden egy képernyőn.' },
-              { icon: TrendingUp,color: 'text-pink-400',   title: 'Model Router — Smart AI választás',    desc: 'Feladat bonyolultságától függően automatikusan választ helyi (Ollama) vagy felhő AI-t (Gemini, GPT-4o). Budget módban teljesen offline.' },
+              { icon: Shield,    color: 'text-green-400',  title: 'Phoenix Protocol — Öngyógyítás',    desc: 'Ha bármely ügynök hibás állapotba kerül, a rendszer automatikusan észleli és visszaállítja. Nincsenek "halott" folyamatok, nincs emberi beavatkozás.' },
+              { icon: Brain,     color: 'text-purple-400', title: 'RAG Memória & Tudásbázis',          desc: 'LanceDB vektoradatbázis + AnythingLLM integráció — az ügynökök "emlékeznek" korábbi feladatokra és tanulnak belőlük.' },
+              { icon: Layers,    color: 'text-blue-400',   title: 'MCP Protocol — Dual-mode Szerver',  desc: 'Egyszerre fut MCP StdIO módban (AI kliensek számára) és Express HTTP szerverként (Dashboard + CLI). Egy indítás, két elérési mód.' },
+              { icon: Cloud,     color: 'text-orange-400', title: 'Cloudflare Edge Integration',       desc: 'Lead Intelligence Worker, D1 adatbázis, AI Workers — a peremhálózati komponensek naponta futnak és frissítik a lead adatbázist.' },
+              { icon: Activity,  color: 'text-cyan-400',   title: 'Valós idejű Mission Control',       desc: 'Socket.IO alapú élő dashboard: ügynök státuszok, feladat sor, log nézegető, metrikák — minden egy képernyőn.' },
+              { icon: TrendingUp,color: 'text-pink-400',   title: 'Model Router — Smart AI választás', desc: 'Feladat bonyolultságától függően automatikusan választ helyi (Ollama) vagy felhő AI-t (Gemini, GPT-4o). Budget módban teljesen offline.' },
             ].map((f, i) => {
               const I = f.icon;
               return (
