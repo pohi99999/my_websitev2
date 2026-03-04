@@ -28,6 +28,27 @@ export const PORTFOLIO_PROJECT_META: Record<string, PortfolioProjectMeta> = {
     emoji: '🤖',
     industry: 'Ügyfélszolgálat',
     description: 'Multilingvális AI chatbot 24/7 támogatáshoz, amely 60% csökkentést eredményezett az ügyfélszolgálati költségekben.'
+  },
+  'web-robotpilota': {
+    id: 'web-robotpilota',
+    title: 'Web Robotpilóta',
+    emoji: '🤖',
+    industry: 'Automatizálás',
+    description: 'AI-vezérelt böngésző automatizáció — adatgyűjtés, form kitöltés, monitoring, emberi felügyelet nélkül.'
+  },
+  'palyazat-radar': {
+    id: 'palyazat-radar',
+    title: 'Pályázat Radar',
+    emoji: '📋',
+    industry: 'KKV Szolgáltatás',
+    description: 'Automatikus pályázat- és jogszabályfigyelés KKV-knak — heti riport, TEÁOR szűrés, eligibility check.'
+  },
+  'tartalom-gyartas': {
+    id: 'tartalom-gyartas',
+    title: 'AI Tartalom Gyártás',
+    emoji: '✍️',
+    industry: 'Marketing',
+    description: 'AI által generált, ember által ellenőrzött social media posztok, blog cikkek és email kampányok.'
   }
 };
 

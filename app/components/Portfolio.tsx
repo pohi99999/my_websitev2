@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Award, TrendingUp, X } from 'lucide-react';
+import { ArrowRight, Award, TrendingUp, X, Bot, FileSearch, PenTool } from 'lucide-react';
 
 const Portfolio = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -98,6 +98,90 @@ const Portfolio = () => {
               <a href="#" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
                 Részletek <ArrowRight className="ml-2 w-4 h-4" />
               </a>
+            </div>
+          </div>
+        </div>
+
+        {/* === ÚJ SZEKCIÓ: Szolgáltatásaink === */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-transparent">
+            Szolgáltatásaink
+          </h2>
+          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            Kulcsrakész AI megoldások — azonnal elérhető, havidíjas szolgáltatások.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+          {/* 4. Web Robotpilóta */}
+          <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="absolute top-4 right-4 bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-xs font-bold border border-cyan-500/30">
+              ÚJ
+            </div>
+            <div className="h-48 bg-gradient-to-br from-cyan-900/50 to-slate-900/50 flex items-center justify-center">
+              <Bot className="w-16 h-16 text-cyan-400" />
+            </div>
+            <div className="p-8">
+              <h3 className="text-2xl font-bold text-white mb-3">Web Robotpilóta</h3>
+              <p className="text-slate-400 mb-4 text-sm leading-relaxed">
+                AI-vezérelt böngésző automatizáció. Adatgyűjtés, form kitöltés, versenytárs monitoring —
+                emberi felügyelet nélkül, 0-24-ben.
+              </p>
+              <div className="flex items-center gap-2 mb-6">
+                <span className="bg-cyan-500/10 text-cyan-400 text-xs px-2 py-1 rounded border border-cyan-500/20">14.990 Ft/hó-tól</span>
+                <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">Első feladat INGYEN</span>
+              </div>
+              <Link href="/portfolio/web-robotpilota" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors">
+                Részletek & Árak <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* 5. Pályázat Radar */}
+          <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="absolute top-4 right-4 bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-xs font-bold border border-amber-500/30">
+              ÚJ
+            </div>
+            <div className="h-48 bg-gradient-to-br from-amber-900/50 to-slate-900/50 flex items-center justify-center">
+              <FileSearch className="w-16 h-16 text-amber-400" />
+            </div>
+            <div className="p-8">
+              <h3 className="text-2xl font-bold text-white mb-3">Pályázat Radar</h3>
+              <p className="text-slate-400 mb-4 text-sm leading-relaxed">
+                Soha többé ne maradj le pályázatról. Automatikusan figyeljük az EU/HU pályázatokat
+                és jogszabály-változásokat — heti riport emailben.
+              </p>
+              <div className="flex items-center gap-2 mb-6">
+                <span className="bg-amber-500/10 text-amber-400 text-xs px-2 py-1 rounded border border-amber-500/20">9.990 Ft/hó-tól</span>
+                <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">2 hét INGYEN próba</span>
+              </div>
+              <Link href="/portfolio/palyazat-radar" className="inline-flex items-center text-amber-400 hover:text-amber-300 font-medium transition-colors">
+                Részletek & Árak <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* 6. Tartalom Gyártás */}
+          <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-pink-500/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="absolute top-4 right-4 bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-xs font-bold border border-pink-500/30">
+              ÚJ
+            </div>
+            <div className="h-48 bg-gradient-to-br from-pink-900/50 to-slate-900/50 flex items-center justify-center">
+              <PenTool className="w-16 h-16 text-pink-400" />
+            </div>
+            <div className="p-8">
+              <h3 className="text-2xl font-bold text-white mb-3">AI Tartalom Gyártás</h3>
+              <p className="text-slate-400 mb-4 text-sm leading-relaxed">
+                Havi social media posztok, blog cikkek és email kampányok — AI-val generálva,
+                a te iparágadra és hangnemedre szabva.
+              </p>
+              <div className="flex items-center gap-2 mb-6">
+                <span className="bg-pink-500/10 text-pink-400 text-xs px-2 py-1 rounded border border-pink-500/20">9.990 Ft/hó-tól</span>
+                <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">5 minta poszt INGYEN</span>
+              </div>
+              <Link href="/portfolio/tartalom-gyartas" className="inline-flex items-center text-pink-400 hover:text-pink-300 font-medium transition-colors">
+                Részletek & Árak <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
             </div>
           </div>
         </div>
