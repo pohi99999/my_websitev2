@@ -8,6 +8,7 @@ import { Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '../context/LanguageContext';
+import { trackCtaClick } from '../lib/analytics';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,6 +69,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => trackCtaClick({ location: 'header_nav_desktop', language, target: item.href, page: 'global' })}
                   className="relative px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 group"
                 >
                   {isActive && (
@@ -91,7 +93,10 @@ export default function Header() {
           {/* CTA + Language */}
           <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher />
-            <Link href={withLang('/kapcsolat')}>
+            <Link
+              href={withLang('/kapcsolat')}
+              onClick={() => trackCtaClick({ location: 'header_contact_desktop', language, target: '/kapcsolat', page: 'global' })}
+            >
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -141,7 +146,10 @@ export default function Header() {
                 >
                   <Link
                     href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => {
+                      trackCtaClick({ location: 'header_nav_mobile', language, target: item.href, page: 'global' });
+                      setIsMenuOpen(false);
+                    }}
                     className={`block text-2xl font-bold py-4 border-b border-white/10 ${pathname === item.href ? 'text-neon-green' : 'text-white/60'
                       }`}
                   >
@@ -157,7 +165,10 @@ export default function Header() {
               >
                 <Link
                   href={withLang('/kapcsolat')}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => {
+                    trackCtaClick({ location: 'header_contact_mobile', language, target: '/kapcsolat', page: 'global' });
+                    setIsMenuOpen(false);
+                  }}
                   className="block w-full py-4 rounded-xl bg-gradient-to-r from-neon-green to-electric-blue text-black font-bold text-center text-lg"
                 >
                   {t('navbar.contact')}

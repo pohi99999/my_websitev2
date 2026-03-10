@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Award, TrendingUp, X, Bot, FileSearch, PenTool, ExternalLink, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { trackCtaClick } from '../lib/analytics';
 
 const Portfolio = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -116,7 +117,11 @@ const Portfolio = () => {
                 Az első valódi AI Operációs Rendszer vállalkozásoknak. Nem csak egy chatbot, hanem egy
                 57 ügynökből álló, öngyógyító digitális munkaerő, ami lát, hall és cselekszik helyetted.
               </p>
-              <Link href={withLang('/portfolio/brunella-bas')} className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors">
+              <Link
+                href={withLang('/portfolio/brunella-bas')}
+                onClick={() => trackCtaClick({ location: 'portfolio_featured_brunella', language, target: '/portfolio/brunella-bas', page: 'home' })}
+                className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors"
+              >
                 {ui.details} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
@@ -139,7 +144,11 @@ const Portfolio = () => {
                 <span className="text-purple-400 font-medium">Fejlesztés alatt:</span> backend integráció,
                 valós idejű értesítések, prediktív analitika.
               </p>
-              <Link href={withLang('/portfolio/pohi-ai-pro')} className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium transition-colors">
+              <Link
+                href={withLang('/portfolio/pohi-ai-pro')}
+                onClick={() => trackCtaClick({ location: 'portfolio_featured_pohi', language, target: '/portfolio/pohi-ai-pro', page: 'home' })}
+                className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium transition-colors"
+              >
                 {ui.details} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
@@ -192,7 +201,11 @@ const Portfolio = () => {
                 <span className="bg-cyan-500/10 text-cyan-400 text-xs px-2 py-1 rounded border border-cyan-500/20">14.990 Ft/hó-tól</span>
                 <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">Első feladat INGYEN</span>
               </div>
-              <Link href={withLang('/portfolio/web-robotpilota')} className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors">
+              <Link
+                href={withLang('/portfolio/web-robotpilota')}
+                onClick={() => trackCtaClick({ location: 'portfolio_service_robotpilot', language, target: '/portfolio/web-robotpilota', page: 'home' })}
+                className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
+              >
                 {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
@@ -216,7 +229,11 @@ const Portfolio = () => {
                 <span className="bg-amber-500/10 text-amber-400 text-xs px-2 py-1 rounded border border-amber-500/20">9.990 Ft/hó-tól</span>
                 <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">2 hét INGYEN próba</span>
               </div>
-              <Link href={withLang('/portfolio/palyazat-radar')} className="inline-flex items-center text-amber-400 hover:text-amber-300 font-medium transition-colors">
+              <Link
+                href={withLang('/portfolio/palyazat-radar')}
+                onClick={() => trackCtaClick({ location: 'portfolio_service_radar', language, target: '/portfolio/palyazat-radar', page: 'home' })}
+                className="inline-flex items-center text-amber-400 hover:text-amber-300 font-medium transition-colors"
+              >
                 {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
@@ -240,7 +257,11 @@ const Portfolio = () => {
                 <span className="bg-pink-500/10 text-pink-400 text-xs px-2 py-1 rounded border border-pink-500/20">9.990 Ft/hó-tól</span>
                 <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">5 minta poszt INGYEN</span>
               </div>
-              <Link href={withLang('/portfolio/tartalom-gyartas')} className="inline-flex items-center text-pink-400 hover:text-pink-300 font-medium transition-colors">
+              <Link
+                href={withLang('/portfolio/tartalom-gyartas')}
+                onClick={() => trackCtaClick({ location: 'portfolio_service_content', language, target: '/portfolio/tartalom-gyartas', page: 'home' })}
+                className="inline-flex items-center text-pink-400 hover:text-pink-300 font-medium transition-colors"
+              >
                 {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
@@ -277,7 +298,7 @@ const Portfolio = () => {
                   <span className="bg-blue-500/10 text-blue-400 text-xs px-2 py-1 rounded border border-blue-500/20">Tailwind CSS</span>
                   <span className="bg-violet-500/10 text-violet-400 text-xs px-2 py-1 rounded border border-violet-500/20">Reszponzív</span>
                 </div>
-                <a href="https://cimbi-weboldal.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors text-sm">
+                <a href="https://cimbi-weboldal.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: 'portfolio_reference_external', language, target: 'https://cimbi-weboldal.vercel.app/', page: 'home' })} className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors text-sm">
                   {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
@@ -301,7 +322,7 @@ const Portfolio = () => {
                   <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">SEO optimalizált</span>
                   <span className="bg-teal-500/10 text-teal-400 text-xs px-2 py-1 rounded border border-teal-500/20">Mobil-first</span>
                 </div>
-                <a href="https://ecomud-eu.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium transition-colors text-sm">
+                <a href="https://ecomud-eu.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: 'portfolio_reference_external', language, target: 'https://ecomud-eu.vercel.app/', page: 'home' })} className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium transition-colors text-sm">
                   {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
@@ -325,7 +346,7 @@ const Portfolio = () => {
                   <span className="bg-fuchsia-500/10 text-fuchsia-400 text-xs px-2 py-1 rounded border border-fuchsia-500/20">Animációk</span>
                   <span className="bg-pink-500/10 text-pink-400 text-xs px-2 py-1 rounded border border-pink-500/20">UI/UX design</span>
                 </div>
-                <a href="https://aronia-chi.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-fuchsia-400 hover:text-fuchsia-300 font-medium transition-colors text-sm">
+                <a href="https://aronia-chi.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: 'portfolio_reference_external', language, target: 'https://aronia-chi.vercel.app/', page: 'home' })} className="inline-flex items-center text-fuchsia-400 hover:text-fuchsia-300 font-medium transition-colors text-sm">
                   {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
