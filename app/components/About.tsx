@@ -96,7 +96,7 @@ const About = () => {
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="none"
         aria-hidden="true"
       >
         <source src="/contact.mp4" type="video/mp4" />

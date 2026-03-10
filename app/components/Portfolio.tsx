@@ -84,7 +84,7 @@ const Portfolio = () => {
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="none"
         aria-hidden="true"
       >
         <source src="/portfolio.mp4" type="video/mp4" />
