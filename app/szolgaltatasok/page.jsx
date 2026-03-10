@@ -6,24 +6,56 @@ import {
   ArrowRight, CheckCircle, Building2, Truck, Shield, ExternalLink
 } from "lucide-react";
 
-export const metadata = {
-  title: "Szolgáltatásaink | Szoftverfejlesztés & AI | Pohánka AI",
-  description:
-    "AI-alapú lead generálás, üzleti folyamat automatizálás, marketing kampányok, piackutatás és egyedi szoftver fejlesztés. Pohánka & Társa — ahol az automatizálás munkává válik.",
-  alternates: { canonical: "/szolgaltatasok" },
-  openGraph: {
-    title: "Szolgáltatásaink | AI Automatizálás & Szoftverfejlesztés",
-    description:
-      "AI-alapú lead generálás, üzleti folyamat automatizálás, marketing kampányok és egyedi szoftver fejlesztés.",
-    url: "/szolgaltatasok",
-    images: [{ url: "/images/logo.png", alt: "Pohánka és Társa Kft. – logó" }],
-  },
-  twitter: {
-    card: "summary",
-    title: "Szolgáltatásaink | Pohánka AI",
-    description: "AI-alapú automatizálás, lead generálás és szoftverfejlesztés.",
-  },
-};
+export function generateMetadata() {
+  const headerLang = headers().get("x-site-language");
+  const language = headerLang === "en" ? "en" : headerLang === "de" ? "de" : "hu";
+
+  const meta =
+    language === "en"
+      ? {
+          title: "Services | AI Automation & Software Development | Pohánka AI",
+          description:
+            "AI lead generation, business process automation, market intelligence and custom software engineering.",
+          canonical: "/en/szolgaltatasok",
+        }
+      : language === "de"
+        ? {
+            title: "Dienstleistungen | KI-Automatisierung & Softwareentwicklung | Pohánka AI",
+            description:
+              "KI-gestützte Lead-Generierung, Prozessautomatisierung, Marktanalyse und individuelle Softwareentwicklung.",
+            canonical: "/de/szolgaltatasok",
+          }
+        : {
+            title: "Szolgáltatásaink | Szoftverfejlesztés & AI | Pohánka AI",
+            description:
+              "AI-alapú lead generálás, üzleti folyamat automatizálás, marketing kampányok, piackutatás és egyedi szoftver fejlesztés.",
+            canonical: "/szolgaltatasok",
+          };
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: meta.canonical,
+      languages: {
+        hu: "/szolgaltatasok",
+        en: "/en/szolgaltatasok",
+        de: "/de/szolgaltatasok",
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: meta.canonical,
+      images: [{ url: "/images/logo.png", alt: "Pohánka és Társa Kft. – logó" }],
+    },
+    twitter: {
+      card: "summary",
+      title: meta.title,
+      description: meta.description,
+    },
+  };
+}
 
 const categories = [
   {

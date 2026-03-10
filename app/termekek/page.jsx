@@ -4,25 +4,57 @@ import { Bot, BrainCircuit, ArrowRight } from "lucide-react";
 import VideoShowcase from "./components/VideoShowcase";
 import { headers } from "next/headers";
 
-export const metadata = {
-  title: "Termékek",
-  description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára.",
-  alternates: {
-    canonical: "/termekek"
-  },
-  openGraph: {
-    title: "Termékek | Pohánka AI",
-    description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára.",
-    url: "/termekek",
-    type: "website",
-    locale: "hu_HU"
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Termékek | Pohánka AI",
-    description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára."
-  }
-};
+export function generateMetadata() {
+  const headerLang = headers().get("x-site-language");
+  const language = headerLang === "en" ? "en" : headerLang === "de" ? "de" : "hu";
+
+  const meta =
+    language === "en"
+      ? {
+          title: "Products | Pohánka AI",
+          description: "Brunella Agent System (BAS), Pohi AI Pro and additional AI solutions for SMEs.",
+          locale: "en_US",
+          canonical: "/en/termekek",
+        }
+      : language === "de"
+        ? {
+            title: "Produkte | Pohánka AI",
+            description: "Brunella Agent System (BAS), Pohi AI Pro und weitere KI-Lösungen für KMU.",
+            locale: "de_DE",
+            canonical: "/de/termekek",
+          }
+        : {
+            title: "Termékek | Pohánka AI",
+            description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára.",
+            locale: "hu_HU",
+            canonical: "/termekek",
+          };
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: meta.canonical,
+      languages: {
+        hu: "/termekek",
+        en: "/en/termekek",
+        de: "/de/termekek",
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: meta.canonical,
+      type: "website",
+      locale: meta.locale,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.description,
+    },
+  };
+}
 
 export default function TermekekPage() {
   const headerLang = headers().get("x-site-language");
