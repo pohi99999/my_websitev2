@@ -3,6 +3,7 @@ import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
 import { ArrowLeft, CheckCircle, BarChart3, Users, ArrowRight, Star } from 'lucide-react';
+import { headers } from 'next/headers';
 
 const projects = {
   1: {
@@ -125,20 +126,44 @@ const projects = {
 };
 
 export async function generateMetadata({ params }) {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
   const rawId = params?.id;
   const id = typeof rawId === 'string' ? rawId : String(rawId ?? '');
   const project = projects?.[id];
 
   if (!project) {
     return {
-      title: 'Portfólió',
-      alternates: { canonical: '/portfolio' }
+      title: language === 'en' ? 'Portfolio' : language === 'de' ? 'Portfolio' : 'Portfólió',
+      alternates: { canonical: language === 'hu' ? '/portfolio' : `/${language}/portfolio` }
     };
   }
 
+  const localizedDescriptions = {
+    en: {
+      '1': 'AI recommendation and personalization platform for e-commerce growth.',
+      '2': 'Cloud migration program with major uptime and cost efficiency gains.',
+      '3': 'Multilingual AI support platform for faster customer response cycles.',
+      'web-robotpilota': 'AI browser automation for repetitive digital workflows.',
+      'palyazat-radar': 'Automated grant and regulation intelligence for SMEs.',
+      'tartalom-gyartas': 'AI-assisted content production with editorial control.',
+    },
+    de: {
+      '1': 'KI-Empfehlungs- und Personalisierungsplattform für E-Commerce-Wachstum.',
+      '2': 'Cloud-Migrationsprogramm mit deutlichen Verfügbarkeits- und Kostenvorteilen.',
+      '3': 'Mehrsprachige KI-Supportplattform für schnellere Reaktionszeiten.',
+      'web-robotpilota': 'KI-Browser-Automatisierung für wiederkehrende digitale Prozesse.',
+      'palyazat-radar': 'Automatisierte Förder- und Regulierungsintelligenz für KMU.',
+      'tartalom-gyartas': 'KI-gestützte Content-Produktion mit redaktioneller Kontrolle.',
+    },
+  };
+
   const title = project.title;
-  const description = project.description || 'Portfólió projekt a Pohánka AI-tól.';
-  const url = `/portfolio/${id}`;
+  const description =
+    language === 'hu'
+      ? project.description || 'Portfólió projekt a Pohánka AI-tól.'
+      : localizedDescriptions[language]?.[id] || project.description || 'Portfolio case study by Pohánka AI.';
+  const url = language === 'hu' ? `/portfolio/${id}` : `/${language}/portfolio/${id}`;
 
   return {
     title,
@@ -151,7 +176,7 @@ export async function generateMetadata({ params }) {
       description,
       url,
       type: 'article',
-      locale: 'hu_HU'
+      locale: language === 'en' ? 'en_US' : language === 'de' ? 'de_DE' : 'hu_HU'
     },
     twitter: {
       card: 'summary_large_image',
@@ -162,18 +187,214 @@ export async function generateMetadata({ params }) {
 }
 
 export default function ProjectDetailPage({ params }) {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+  const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
   const project = projects[params.id];
+
+  const projectLocalized = {
+    en: {
+      '1': {
+        title: 'E-commerce AI Personalization Platform',
+        client: 'TechRetail Hungary',
+        industry: 'E-commerce',
+        description: 'AI-based recommendation engine that improved conversion and basket quality.',
+      },
+      '2': {
+        title: 'Cloud Migration Program',
+        client: 'Finance Corp',
+        industry: 'Finance',
+        description: 'Full migration from on-premise infrastructure to cloud with high availability.',
+      },
+      '3': {
+        title: 'AI Chatbot Platform',
+        client: 'Customer Support Inc',
+        industry: 'Customer Support',
+        description: '24/7 multilingual AI chatbot platform reducing response latency and support costs.',
+      },
+    },
+    de: {
+      '1': {
+        title: 'E-Commerce KI-Personalisierungsplattform',
+        client: 'TechRetail Hungary',
+        industry: 'E-Commerce',
+        description: 'KI-Empfehlungsengine mit besserer Conversion und Warenkorbqualität.',
+      },
+      '2': {
+        title: 'Cloud-Migrationsprogramm',
+        client: 'Finance Corp',
+        industry: 'Finanzen',
+        description: 'Vollständige Migration von On-Premise in die Cloud mit hoher Verfügbarkeit.',
+      },
+      '3': {
+        title: 'KI-Chatbot-Plattform',
+        client: 'Customer Support Inc',
+        industry: 'Kundensupport',
+        description: 'Mehrsprachige 24/7 KI-Chatbot-Plattform mit kürzerer Reaktionszeit.',
+      },
+    },
+  };
+
+  const ui =
+    language === 'en'
+      ? {
+          notFoundTitle: '404 - Project Not Found',
+          notFoundDesc: 'Sorry, this project is not available.',
+          backPortfolio: 'Back to Portfolio',
+          clientLabel: 'Client',
+          overview: 'Project Overview',
+          impact: 'Business Impact',
+          impactDesc: 'Key outcomes delivered after implementation.',
+          technologies: 'Technology Stack',
+          ctaTitle: 'Interested in a similar project?',
+          ctaDesc: 'Tell us your goal and we will propose a practical implementation plan.',
+          ctaBtn: 'Contact us',
+          resultCards: [
+            { metric: 'Conversion', improvement: '+35%', value: 'User journey optimization' },
+            { metric: 'Efficiency', improvement: '+28%', value: 'Operational process gains' },
+            { metric: 'Stability', improvement: '+99.9%', value: 'Production-grade reliability' },
+            { metric: 'Satisfaction', improvement: '+42%', value: 'Customer experience quality' },
+          ],
+        }
+      : language === 'de'
+      ? {
+          notFoundTitle: '404 - Projekt nicht gefunden',
+          notFoundDesc: 'Dieses Projekt ist derzeit nicht verfügbar.',
+          backPortfolio: 'Zurück zum Portfolio',
+          clientLabel: 'Kunde',
+          overview: 'Projektüberblick',
+          impact: 'Geschäftlicher Effekt',
+          impactDesc: 'Wesentliche Ergebnisse nach der Einführung.',
+          technologies: 'Technologie-Stack',
+          ctaTitle: 'Interesse an einem ähnlichen Projekt?',
+          ctaDesc: 'Beschreiben Sie Ihr Ziel, wir schlagen einen praktischen Umsetzungsplan vor.',
+          ctaBtn: 'Kontakt aufnehmen',
+          resultCards: [
+            { metric: 'Conversion', improvement: '+35%', value: 'Optimierte Nutzerreise' },
+            { metric: 'Effizienz', improvement: '+28%', value: 'Prozessgewinne im Betrieb' },
+            { metric: 'Stabilität', improvement: '+99,9%', value: 'Produktionsreife Zuverlässigkeit' },
+            { metric: 'Zufriedenheit', improvement: '+42%', value: 'Bessere Kundenerfahrung' },
+          ],
+        }
+      : {
+          notFoundTitle: '404 - Projekt Nem Található',
+          notFoundDesc: 'Sajnos nem találjuk ezt a projektet.',
+          backPortfolio: 'Vissza a Portfólióhoz',
+          clientLabel: 'Ügyfél',
+        };
+
+  const localized = language === 'hu' ? null : projectLocalized[language]?.[params.id];
 
   if (!project) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-dark via-dark-light to-dark text-white flex items-center justify-center px-6">
         <div className="text-center">
-          <h1 className="text-4xl font-bold gradient-text mb-4">404 - Projekt Nem Található</h1>
-          <p className="text-gray-300 mb-8">Sajnos nem találjuk ezt a projektet.</p>
-          <Link href="/portfolio" className="btn-primary inline-block">
-            Vissza a Portfólióhoz
+          <h1 className="text-4xl font-bold gradient-text mb-4">{ui.notFoundTitle}</h1>
+          <p className="text-gray-300 mb-8">{ui.notFoundDesc}</p>
+          <Link href={withLang('/portfolio')} className="btn-primary inline-block">
+            {ui.backPortfolio}
           </Link>
         </div>
+      </div>
+    );
+  }
+
+  if (language !== 'hu') {
+    return (
+      <div className="min-h-screen bg-transparent text-white">
+        <section className="relative py-12 px-6 pt-24">
+          <div className="max-w-5xl mx-auto">
+            <GsapFadeIn>
+              <Link href={withLang('/portfolio')} className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8">
+                <ArrowLeft className="w-4 h-4" />
+                {ui.backPortfolio}
+              </Link>
+
+              <div className="flex items-center gap-6 mb-6">
+                <div className="text-7xl">{project.image}</div>
+                <div>
+                  <span className="px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 inline-block mb-4">
+                    {localized?.industry || project.industry}
+                  </span>
+                  <h1 className="text-5xl font-bold gradient-text mb-3">{localized?.title || project.title}</h1>
+                  <p className="text-gray-400">
+                    {ui.clientLabel}: <span className="text-gray-200 font-semibold">{localized?.client || project.client}</span> | {project.date}
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-xl text-gray-300 max-w-3xl">{localized?.description || project.description}</p>
+            </GsapFadeIn>
+          </div>
+        </section>
+
+        <section className="py-24 px-6">
+          <div className="max-w-5xl mx-auto">
+            <GsapFadeIn>
+              <SpotlightCard className="p-8">
+                <h2 className="text-2xl font-bold mb-4 gradient-text">{ui.overview}</h2>
+                <p className="text-gray-300 leading-relaxed">{localized?.description || project.description}</p>
+              </SpotlightCard>
+            </GsapFadeIn>
+          </div>
+        </section>
+
+        <section className="py-24 px-6 bg-white/5">
+          <div className="max-w-5xl mx-auto">
+            <GsapFadeIn>
+              <div className="text-center mb-16">
+                <h2 className="section-title">{ui.impact}</h2>
+                <p className="text-gray-300 max-w-2xl mx-auto">{ui.impactDesc}</p>
+              </div>
+            </GsapFadeIn>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {ui.resultCards.map((result, idx) => (
+                <GsapFadeIn key={idx} delay={0.2 + idx * 0.1}>
+                  <SpotlightCard className="p-8 text-center">
+                    <div className="inline-block mb-4 p-3 bg-blue-500/20 rounded-lg">
+                      <BarChart3 className="w-6 h-6 text-blue-300" />
+                    </div>
+                    <p className="text-gray-400 text-sm mb-2">{result.metric}</p>
+                    <p className="text-3xl font-bold gradient-text mb-2">{result.improvement}</p>
+                    <p className="text-sm text-gray-500">{result.value}</p>
+                  </SpotlightCard>
+                </GsapFadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 px-6 bg-white/5">
+          <div className="max-w-5xl mx-auto">
+            <GsapFadeIn>
+              <h2 className="text-3xl font-bold mb-12 gradient-text">{ui.technologies}</h2>
+            </GsapFadeIn>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+              {project.technologies.map((tech, idx) => (
+                <GsapFadeIn key={tech} delay={0.3 + idx * 0.04}>
+                  <SpotlightCard className="p-6 text-center">
+                    <p className="font-semibold text-blue-300">{tech}</p>
+                  </SpotlightCard>
+                </GsapFadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 px-6">
+          <div className="max-w-4xl mx-auto">
+            <GsapFadeIn delay={0.5}>
+              <SpotlightCard className="p-12 sm:p-16 text-center">
+                <h2 className="text-4xl font-bold mb-6 gradient-text">{ui.ctaTitle}</h2>
+                <p className="text-lg text-gray-300 mb-8">{ui.ctaDesc}</p>
+                <Link href={withLang('/kapcsolat')} className="btn-primary text-lg">
+                  {ui.ctaBtn}
+                </Link>
+              </SpotlightCard>
+            </GsapFadeIn>
+          </div>
+        </section>
       </div>
     );
   }
@@ -249,9 +470,9 @@ export default function ProjectDetailPage({ params }) {
       <section className="relative py-12 px-6 pt-24">
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn>
-            <Link href="/portfolio" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8">
+            <Link href={withLang('/portfolio')} className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8">
               <ArrowLeft className="w-4 h-4" />
-              Vissza a Portfólióhoz
+              {ui.backPortfolio}
             </Link>
 
             <div className="flex items-center gap-6 mb-6">
@@ -431,7 +652,7 @@ export default function ProjectDetailPage({ params }) {
               <p className="text-lg text-gray-300 mb-8">
                 Keresse meg csapatunkat az Ön ötletéről. Szívesen segítünk!
               </p>
-              <Link href="/kapcsolat" className="btn-primary text-lg">
+              <Link href={withLang('/kapcsolat')} className="btn-primary text-lg">
                 Felvesz Kapcsolatot
               </Link>
             </SpotlightCard>

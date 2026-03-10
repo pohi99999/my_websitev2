@@ -37,15 +37,37 @@ export default function LanguageSwitcher() {
     }`;
 
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-1.5 text-sm font-semibold text-white/80 backdrop-blur-md">
+    <div
+      role="group"
+      aria-label="Nyelvválasztó / Language selector"
+      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-1.5 text-sm font-semibold text-white/80 backdrop-blur-md"
+    >
       <Globe className="h-4 w-4 text-white/70 transition group-hover:text-white" />
-      <button type="button" onClick={() => handleSwitch('hu')} className={buttonClass('hu')} aria-label="Magyar nyelv">
+      <button
+        type="button"
+        onClick={() => handleSwitch('hu')}
+        className={buttonClass('hu')}
+        aria-label="Magyar nyelv"
+        aria-current={language === 'hu' ? 'true' : undefined}
+      >
         HU
       </button>
-      <button type="button" onClick={() => handleSwitch('en')} className={buttonClass('en')} aria-label="English language">
+      <button
+        type="button"
+        onClick={() => handleSwitch('en')}
+        className={buttonClass('en')}
+        aria-label="English language"
+        aria-current={language === 'en' ? 'true' : undefined}
+      >
         EN
       </button>
-      <button type="button" onClick={() => handleSwitch('de')} className={buttonClass('de')} aria-label="Deutsch Sprache">
+      <button
+        type="button"
+        onClick={() => handleSwitch('de')}
+        className={buttonClass('de')}
+        aria-label="Deutsch Sprache"
+        aria-current={language === 'de' ? 'true' : undefined}
+      >
         DE
       </button>
     </div>
