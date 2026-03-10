@@ -31,13 +31,24 @@ type KpiConfigResponse = {
     }>;
 };
 
-const DEMO_COUNTS = {
-    ctaClicks: 100,
-    contactSuccess: 22,
+type KpiSnapshotResponse = {
+    source: "env" | "fallback";
+    generatedAt: string;
+    counts: {
+        ctaClicksTotal: number;
+        contactSubmitSuccess: number;
+        contactSubmitError: number;
+    };
+    byLanguage: Record<string, { ctaClicks: number; contactSuccess: number }>;
+    metrics: {
+        conversionRate: number;
+        errorRate: number;
+    };
 };
 
 export default function AnalyticsAdminPage() {
     const [data, setData] = useState<KpiConfigResponse | null>(null);
+    const [snapshot, setSnapshot] = useState<KpiSnapshotResponse | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -49,14 +60,23 @@ export default function AnalyticsAdminPage() {
                 setLoading(true);
                 setError(null);
 
-                const res = await fetch("/api/analytics/kpi-config", { cache: "no-store" });
-                if (!res.ok) {
-                    throw new Error(`HTTP ${res.status}`);
+                const [configRes, snapshotRes] = await Promise.all([
+                    fetch("/api/analytics/kpi-config", { cache: "no-store" }),
+                    fetch("/api/analytics/kpi-snapshot", { cache: "no-store" }),
+                ]);
+
+                if (!configRes.ok) {
+                    throw new Error(`HTTP ${configRes.status}`);
+                }
+                if (!snapshotRes.ok) {
+                    throw new Error(`HTTP ${snapshotRes.status}`);
                 }
 
-                const json = (await res.json()) as KpiConfigResponse;
+                const json = (await configRes.json()) as KpiConfigResponse;
+                const snapshotJson = (await snapshotRes.json()) as KpiSnapshotResponse;
                 if (!cancelled) {
                     setData(json);
+                    setSnapshot(snapshotJson);
                 }
             } catch (e) {
                 if (!cancelled) {
@@ -111,7 +131,7 @@ export default function AnalyticsAdminPage() {
                     </section>
                 )}
 
-                {data && summary && (
+                {data && summary && snapshot && (
                     <>
                         <section className="grid grid-cols-2 md:grid-cols-5 gap-4">
                             <StatCard label="Events" value={summary.events} />
@@ -134,26 +154,45 @@ export default function AnalyticsAdminPage() {
                         </section>
 
                         <section className="rounded-xl border border-white/10 bg-white/5 p-6 space-y-4">
-                            <h2 className="text-xl font-semibold">Funnel Drop-off (Demo Visualization)</h2>
+                            <h2 className="text-xl font-semibold">Funnel Drop-off (Live Snapshot)</h2>
                             <p className="text-slate-300 text-sm">
-                                This block is a visual template. Replace demo values with real aggregated counts from your analytics source.
+                                Source: <span className="font-semibold text-white">{snapshot.source}</span> • generated at {new Date(snapshot.generatedAt).toLocaleString()}
                             </p>
 
                             <FunnelBar
                                 label="CTA Clicks"
-                                count={DEMO_COUNTS.ctaClicks}
+                                count={snapshot.counts.ctaClicksTotal}
                                 percent={100}
                                 colorClass="from-cyan-500 to-blue-500"
                             />
                             <FunnelBar
                                 label="Contact Submit Success"
-                                count={DEMO_COUNTS.contactSuccess}
-                                percent={Math.round((DEMO_COUNTS.contactSuccess / Math.max(1, DEMO_COUNTS.ctaClicks)) * 100)}
+                                count={snapshot.counts.contactSubmitSuccess}
+                                percent={snapshot.metrics.conversionRate}
                                 colorClass="from-emerald-500 to-green-500"
+                            />
+                            <FunnelBar
+                                label="Contact Submit Error"
+                                count={snapshot.counts.contactSubmitError}
+                                percent={snapshot.metrics.errorRate}
+                                colorClass="from-red-500 to-rose-500"
                             />
 
                             <div className="text-sm text-slate-300">
-                                Demo conversion rate: <span className="font-semibold text-white">{Math.round((DEMO_COUNTS.contactSuccess / Math.max(1, DEMO_COUNTS.ctaClicks)) * 100)}%</span>
+                                Conversion rate: <span className="font-semibold text-white">{snapshot.metrics.conversionRate}%</span>
+                            </div>
+                        </section>
+
+                        <section className="rounded-xl border border-white/10 bg-white/5 p-6 space-y-3">
+                            <h2 className="text-xl font-semibold">Language Split</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                {Object.entries(snapshot.byLanguage).map(([lang, v]) => (
+                                    <div key={lang} className="rounded-lg border border-white/10 bg-slate-900/60 p-4 text-sm text-slate-200 space-y-1">
+                                        <div className="uppercase tracking-wide text-xs text-slate-400">{lang}</div>
+                                        <div>CTA clicks: <span className="font-semibold text-white">{v.ctaClicks}</span></div>
+                                        <div>Contact success: <span className="font-semibold text-white">{v.contactSuccess}</span></div>
+                                    </div>
+                                ))}
                             </div>
                         </section>
 
