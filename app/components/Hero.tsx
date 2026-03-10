@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { trackEvent } from '../lib/analytics';
 
 const Hero = () => {
   const { t, language } = useLanguage();
@@ -47,11 +48,19 @@ const Hero = () => {
         </p>
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-          <Link href={withLang('/termekek/brunella-agents')} className="btn-primary text-lg px-8 py-4 group">
+          <Link
+            href={withLang('/termekek/brunella-agents')}
+            className="btn-primary text-lg px-8 py-4 group"
+            onClick={() => trackEvent('cta_click', { location: 'hero_primary', language })}
+          >
             {t('hero.cta')}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
-          <a href="#ai-folyamatok" className="px-8 py-4 bg-transparent border border-slate-600 hover:border-white text-white rounded-full font-semibold transition-all hover:bg-slate-800">
+          <a
+            href="#ai-folyamatok"
+            className="px-8 py-4 bg-transparent border border-slate-600 hover:border-white text-white rounded-full font-semibold transition-all hover:bg-slate-800"
+            onClick={() => trackEvent('cta_click', { location: 'hero_secondary_scroll', language })}
+          >
             {t('hero.ctaSecondary')}
           </a>
         </div>

@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Zap, Target, Brain, Bot, BarChart3, Mail, Shield, TrendingUp, CheckCircle, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { trackEvent } from '../lib/analytics';
 
 export default function AIFolyamatok() {
   const { language } = useLanguage();
@@ -59,10 +60,18 @@ export default function AIFolyamatok() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href={withLang('/szolgaltatasok')} className="inline-flex items-center gap-2 px-7 py-3 rounded-xl border border-cyan-400/40 text-cyan-300 hover:text-white hover:border-cyan-300 transition-colors">
+            <Link
+              href={withLang('/szolgaltatasok')}
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl border border-cyan-400/40 text-cyan-300 hover:text-white hover:border-cyan-300 transition-colors"
+              onClick={() => trackEvent('cta_click', { location: 'ai_workflow_services', language })}
+            >
               {ui.details} <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link href={withLang('/kapcsolat')} className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:from-blue-600 hover:to-purple-700 transition-colors">
+            <Link
+              href={withLang('/kapcsolat')}
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:from-blue-600 hover:to-purple-700 transition-colors"
+              onClick={() => trackEvent('cta_click', { location: 'ai_workflow_contact', language })}
+            >
               {ui.contact}
             </Link>
           </div>
@@ -191,12 +200,14 @@ export default function AIFolyamatok() {
             <Link
               href={withLang('/szolgaltatasok')}
               className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105"
+              onClick={() => trackEvent('cta_click', { location: 'ai_workflow_services_hu', language })}
             >
               Összes szolgáltatás <ArrowRight size={18} />
             </Link>
             <Link
               href={withLang('/kapcsolat')}
               className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-blue-400/50 text-slate-300 hover:text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
+              onClick={() => trackEvent('cta_click', { location: 'ai_workflow_contact_hu', language })}
             >
               Ingyenes konzultáció <ArrowRight size={18} />
             </Link>

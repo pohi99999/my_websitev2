@@ -4,6 +4,7 @@ import VideoBackground from "../components/VideoBackground";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { trackEvent } from "../lib/analytics";
 
 export default function KapcsolatClient() {
   const { language } = useLanguage();
@@ -89,15 +90,18 @@ export default function KapcsolatClient() {
 
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data?.ok) {
+        trackEvent("contact_form_submit", { status: "error_response", language });
         throw new Error(data?.error || ui.fail);
       }
 
       setStatus({ state: "success", message: ui.success });
+      trackEvent("contact_form_submit", { status: "success", language });
       setName("");
       setEmail("");
       setMessage("");
       setWebsite("");
     } catch (err) {
+      trackEvent("contact_form_submit", { status: "error_exception", language });
       setStatus({
         state: "error",
         message:

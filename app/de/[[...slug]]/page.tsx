@@ -153,8 +153,9 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
     return null;
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-    const slug = params?.slug ?? [];
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+    const resolvedParams = await params;
+    const slug = resolvedParams.slug ?? [];
     const spec = deMetaForSlug(slug);
 
     const huPath = toPath(slug);
@@ -213,8 +214,9 @@ type Params = {
     slug?: string[];
 };
 
-export default function DeCatchAllPage({ params }: { params: Params }) {
-    const slug = params?.slug ?? [];
+export default async function DeCatchAllPage({ params }: { params: Promise<Params> }) {
+    const resolvedParams = await params;
+    const slug = resolvedParams.slug ?? [];
 
     if (slug.length === 0) return <HomePage />;
 

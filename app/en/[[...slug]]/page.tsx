@@ -156,8 +156,9 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
   return null;
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const slug = params?.slug ?? [];
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug ?? [];
   const spec = enMetaForSlug(slug);
 
   const huPath = toPath(slug);
@@ -216,8 +217,9 @@ type Params = {
   slug?: string[];
 };
 
-export default function EnCatchAllPage({ params }: { params: Params }) {
-  const slug = params?.slug ?? [];
+export default async function EnCatchAllPage({ params }: { params: Promise<Params> }) {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug ?? [];
 
   // /en
   if (slug.length === 0) return <HomePage />;
