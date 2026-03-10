@@ -4,6 +4,7 @@ import Image from 'next/image';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import ImageLightboxGallery from '../../components/ImageLightboxGallery';
 import SpotlightCard from '../../components/SpotlightCard';
+import { headers } from 'next/headers';
 import {
   ArrowLeft, ArrowRight, CheckCircle, Zap, Brain, Globe,
   Shield, Users, BarChart3, Cpu, Code2, Target, Lightbulb,
@@ -11,20 +12,55 @@ import {
   Layers, Activity, Bot, Mail, Truck, Search, Building2
 } from 'lucide-react';
 
-export const metadata = {
-  title: 'Brunella Agent System (BAS) | Portfólió | Pohánka AI',
-  description:
-    '57 AI ügynökből álló, öngyógyító operációs rendszer vállalkozásoknak. Node.js + Python + Cloudflare hibrid architektúra, teljes üzleti folyamat automatizálással.',
-  alternates: { canonical: '/portfolio/brunella-bas' },
-  openGraph: {
-    title: 'Brunella Agent System — AI Operációs Rendszer',
-    description: '57 AI ügynök, öngyógyító architektúra, teljes üzleti automatizálás.',
-    url: '/portfolio/brunella-bas',
-    type: 'article',
-    locale: 'hu_HU',
-    images: [{ url: '/images/bas/bas-00.jpg', alt: 'Brunella Agent System' }],
-  },
-};
+export function generateMetadata() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+
+  const meta =
+    language === 'en'
+      ? {
+          title: 'Brunella Agent System (BAS) | Portfolio | Pohánka AI',
+          description:
+            'Self-healing AI operating system with 57 agents, hybrid Node.js + Python architecture and end-to-end workflow automation.',
+          canonical: '/en/portfolio/brunella-bas',
+          locale: 'en_US',
+        }
+      : language === 'de'
+      ? {
+          title: 'Brunella Agent System (BAS) | Portfolio | Pohánka AI',
+          description:
+            'Selbstheilendes KI-Betriebssystem mit 57 Agenten, hybrider Node.js + Python Architektur und End-to-End-Automatisierung.',
+          canonical: '/de/portfolio/brunella-bas',
+          locale: 'de_DE',
+        }
+      : {
+          title: 'Brunella Agent System (BAS) | Portfólió | Pohánka AI',
+          description:
+            '57 AI ügynökből álló, öngyógyító operációs rendszer vállalkozásoknak. Node.js + Python + Cloudflare hibrid architektúra, teljes üzleti folyamat automatizálással.',
+          canonical: '/portfolio/brunella-bas',
+          locale: 'hu_HU',
+        };
+
+  return {
+    title: meta.title,
+    alternates: {
+      canonical: meta.canonical,
+      languages: {
+        hu: '/portfolio/brunella-bas',
+        en: '/en/portfolio/brunella-bas',
+        de: '/de/portfolio/brunella-bas',
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: meta.canonical,
+      type: 'article',
+      locale: meta.locale,
+      images: [{ url: '/images/bas/bas-00.jpg', alt: 'Brunella Agent System' }],
+    },
+  };
+}
 
 const agentFamilies = [
   {
@@ -138,6 +174,80 @@ const screenshots = [
 ];
 
 export default function BrunellaBASPage() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+  const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
+
+  if (language !== 'hu') {
+    const ui =
+      language === 'en'
+        ? {
+            back: 'Back to Portfolio',
+            title: 'Brunella Agent System',
+            subtitle:
+              'A self-healing AI operating system for SME automation with orchestrated agents, observability and resilient execution.',
+            points: [
+              '57 specialized agents coordinated in a unified architecture',
+              'Hybrid Node.js + Python implementation with production resilience',
+              'Transparent operations and traceable decision workflow',
+            ],
+            cta: 'Request architecture consultation',
+          }
+        : {
+            back: 'Zurück zum Portfolio',
+            title: 'Brunella Agent System',
+            subtitle:
+              'Ein selbstheilendes KI-Betriebssystem für KMU-Automatisierung mit orchestrierten Agenten, Observability und stabiler Ausführung.',
+            points: [
+              '57 spezialisierte Agenten in einer einheitlichen Architektur',
+              'Hybride Node.js + Python Umsetzung mit produktiver Stabilität',
+              'Transparente Abläufe und nachvollziehbare Entscheidungswege',
+            ],
+            cta: 'Architektur-Beratung anfragen',
+          };
+
+    return (
+      <div className="min-h-screen text-white">
+        <section className="relative py-12 px-6 pt-24 pb-16">
+          <div className="max-w-5xl mx-auto">
+            <GsapFadeIn>
+              <Link href={withLang('/portfolio')} className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8 transition-colors">
+                <ArrowLeft className="w-4 h-4" /> {ui.back}
+              </Link>
+              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-3">{ui.title}</h1>
+              <p className="text-xl text-gray-300 max-w-4xl leading-relaxed">{ui.subtitle}</p>
+            </GsapFadeIn>
+          </div>
+        </section>
+
+        <section className="px-6 py-16 bg-white/5">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            {ui.points.map((item, i) => (
+              <GsapFadeIn key={item} delay={0.1 * i}>
+                <SpotlightCard className="p-7 h-full">
+                  <CheckCircle className="w-6 h-6 mb-4 text-blue-300" />
+                  <p className="text-gray-200 text-sm leading-relaxed">{item}</p>
+                </SpotlightCard>
+              </GsapFadeIn>
+            ))}
+          </div>
+        </section>
+
+        <section className="px-6 py-20">
+          <div className="max-w-4xl mx-auto">
+            <GsapFadeIn>
+              <SpotlightCard className="p-10 text-center">
+                <Link href={withLang('/kapcsolat')} className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105">
+                  {ui.cta} <ArrowRight size={18} />
+                </Link>
+              </SpotlightCard>
+            </GsapFadeIn>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen text-white">
 
