@@ -5,12 +5,12 @@ import Link from 'next/link';
 import {
   CheckCircle, ExternalLink, Download, MapPin, Star, Globe,
   Shield, AlertTriangle, TrendingUp, Users, Zap, ArrowRight,
-  BarChart3, Lock, Mail, ChevronDown
+  BarChart3, Lock, Mail, ChevronDown, ArrowLeft
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const SHEETS_URL =
   'https://docs.google.com/spreadsheets/d/1GCWVHcXmyHeytvI391pQSzltSmoW6RQU_4xY-IN9w-E/edit?usp=sharing';
-
 const sampleData = [
   { nev: 'Budavári Fogászat',      pont: 78, weboldal: '✅ Van',  https: '❌ Nincs', ertekelesek: 12,  fajdalom: 'MAGAS'  },
   { nev: 'Smile Dental Center',    pont: 45, weboldal: '✅ Van',  https: '✅ Van',   ertekelesek: 8,   fajdalom: 'KÖZEPES'},
@@ -31,6 +31,72 @@ export default function LeadListaClient() {
   const [cegnev, setCegnev] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [showTable, setShowTable] = useState(false);
+  const { language } = useLanguage();
+  const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
+
+  if (language !== 'hu') {
+    const ui =
+      language === 'en'
+        ? {
+            back: 'Back to home',
+            title: 'Dental Lead List 2.0',
+            subtitle:
+              'AI-screened sample list of Budapest dental clinics with digital pain scoring for faster lead qualification.',
+            bullets: ['50 screened clinics', 'Website/HTTPS profile checks', 'Pain score prioritization for outreach'],
+            sampleBtn: 'Open sample in Google Sheets',
+            contactBtn: 'Request full list access',
+          }
+        : {
+            back: 'Zurück zur Startseite',
+            title: 'Dental Lead Liste 2.0',
+            subtitle:
+              'KI-geprüfte Beispielliste von Budapester Zahnkliniken mit digitalem Pain-Score für schnelle Lead-Qualifizierung.',
+            bullets: ['50 geprüfte Kliniken', 'Website-/HTTPS-Profilchecks', 'Pain-Score-Priorisierung für Outreach'],
+            sampleBtn: 'Beispiel in Google Sheets öffnen',
+            contactBtn: 'Vollzugang zur Liste anfragen',
+          };
+
+    return (
+      <div className="min-h-screen text-white bg-slate-950 pt-24 pb-16 px-6">
+        <div className="max-w-5xl mx-auto">
+          <Link href={withLang('/')} className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8">
+            <ArrowLeft className="w-4 h-4" /> {ui.back}
+          </Link>
+
+          <h1 className="text-4xl md:text-5xl font-black mb-4 bg-gradient-to-r from-blue-400 via-emerald-400 to-blue-400 bg-clip-text text-transparent">
+            {ui.title}
+          </h1>
+          <p className="text-xl text-slate-300 max-w-3xl mb-8">{ui.subtitle}</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+            {ui.bullets.map((item) => (
+              <div key={item} className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                <CheckCircle className="w-5 h-5 text-emerald-400 mb-3" />
+                <p className="text-slate-200 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-4">
+            <a
+              href={SHEETS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 font-semibold transition-colors"
+            >
+              <ExternalLink className="w-4 h-4" /> {ui.sampleBtn}
+            </a>
+            <Link
+              href={withLang('/kapcsolat')}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 hover:border-white/40 text-white font-semibold transition-colors"
+            >
+              {ui.contactBtn} <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

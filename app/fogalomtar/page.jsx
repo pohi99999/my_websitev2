@@ -1,19 +1,57 @@
 import GlossaryClient from './GlossaryClient';
+import { headers } from 'next/headers';
 
-export const metadata = {
-  title: 'Fogalomtár (AI & Tech)',
-  description:
-    'Kereshető AI és technológiai fogalomtár a Brunella Agent System és a modern mesterséges intelligencia kulcsfogalmaival.',
-  alternates: {
-    canonical: '/fogalomtar'
-  },
-  openGraph: {
-    title: 'AI és Technológiai Fogalomtár | Pohánka AI',
-    description:
-      'Kereshető AI és technológiai fogalomtár a Brunella Agent System és a modern mesterséges intelligencia kulcsfogalmaival.',
-    images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }]
-  }
-};
+export function generateMetadata() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+
+  const meta =
+    language === 'en'
+      ? {
+          title: 'AI Glossary | Pohánka AI',
+          description: 'Essential AI and technology concepts explained in clear business language.',
+          canonical: '/en/fogalomtar',
+          locale: 'en_US',
+        }
+      : language === 'de'
+      ? {
+          title: 'KI-Glossar | Pohánka AI',
+          description: 'Wichtige KI- und Technologiebegriffe klar und verständlich erklärt.',
+          canonical: '/de/fogalomtar',
+          locale: 'de_DE',
+        }
+      : {
+          title: 'AI Fogalomtár | Pohánka AI',
+          description: 'A modern AI és technológiai fogalmak közérthetően magyarázva, a Brunella rendszer szemléletével.',
+          canonical: '/fogalomtar',
+          locale: 'hu_HU',
+        };
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: meta.canonical,
+      languages: {
+        hu: '/fogalomtar',
+        en: '/en/fogalomtar',
+        de: '/de/fogalomtar',
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: meta.canonical,
+      type: 'website',
+      locale: meta.locale,
+    },
+    twitter: {
+      card: 'summary',
+      title: meta.title,
+      description: meta.description,
+    },
+  };
+}
 
 export default function GlossaryPage() {
   return <GlossaryClient />;

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Search, BookOpen, ArrowLeft } from 'lucide-react';
 import GsapFadeIn from '../components/GsapFadeIn';
+import { useLanguage } from '../context/LanguageContext';
 
 const glossaryTerms = [
   {
@@ -99,7 +100,72 @@ const glossaryTerms = [
 ];
 
 export default function GlossaryClient() {
+  const { language } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
+  const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
+
+  if (language !== 'hu') {
+    const ui =
+      language === 'en'
+        ? {
+            back: 'Back to home',
+            title: 'AI & Technology Glossary',
+            subtitle: 'Key concepts behind modern AI and agent systems, explained in practical terms.',
+            note: 'This is a curated multilingual subset. Full glossary translation is in progress.',
+            concepts: [
+              { term: 'Agentic AI', definition: 'AI systems that can plan and execute multi-step tasks with explicit goals.' },
+              { term: 'Orchestrator', definition: 'Central coordinator that assigns tasks to specialized agents.' },
+              { term: 'RAG', definition: 'Retrieval-Augmented Generation: model responses enriched with external knowledge.' },
+              { term: 'Human-in-the-Loop', definition: 'Critical actions remain reviewable and approvable by humans.' },
+              { term: 'Observability', definition: 'Visibility into runtime behavior, failures, retries and decision traces.' },
+              { term: 'MLOps', definition: 'Practices for building, deploying and monitoring machine learning systems.' },
+            ],
+          }
+        : {
+            back: 'Zurück zur Startseite',
+            title: 'KI- und Technologie-Glossar',
+            subtitle: 'Wichtige Begriffe moderner KI- und Agentensysteme, praxisnah erklärt.',
+            note: 'Dies ist eine kuratierte mehrsprachige Auswahl. Die vollständige Übersetzung folgt schrittweise.',
+            concepts: [
+              { term: 'Agentische KI', definition: 'KI-Systeme, die mehrstufige Aufgaben mit klaren Zielen planen und ausführen.' },
+              { term: 'Orchestrator', definition: 'Zentrale Koordinationseinheit, die Aufgaben an spezialisierte Agenten verteilt.' },
+              { term: 'RAG', definition: 'Retrieval-Augmented Generation: Antworten werden mit externem Wissen angereichert.' },
+              { term: 'Human-in-the-Loop', definition: 'Kritische Aktionen bleiben durch Menschen prüf- und freigabefähig.' },
+              { term: 'Observability', definition: 'Transparenz über Laufzeitverhalten, Fehler, Retries und Entscheidungswege.' },
+              { term: 'MLOps', definition: 'Methoden zum Entwickeln, Deployen und Betreiben von ML-Systemen.' },
+            ],
+          };
+
+    return (
+      <div className="min-h-screen bg-slate-950 text-white pt-24 pb-12 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <GsapFadeIn>
+            <div className="text-center mb-12">
+              <Link href={withLang('/')} className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6 transition-colors">
+                <ArrowLeft className="w-4 h-4 mr-2" /> {ui.back}
+              </Link>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                {ui.title}
+              </h1>
+              <p className="text-xl text-slate-400 max-w-2xl mx-auto">{ui.subtitle}</p>
+              <p className="mt-4 text-sm text-amber-300/90">{ui.note}</p>
+            </div>
+          </GsapFadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {ui.concepts.map((item, index) => (
+              <GsapFadeIn key={item.term} delay={index * 0.05}>
+                <div className="bg-slate-900/60 border border-slate-700 rounded-xl p-6">
+                  <h2 className="text-xl font-bold mb-3 text-blue-300">{item.term}</h2>
+                  <p className="text-slate-300 leading-relaxed">{item.definition}</p>
+                </div>
+              </GsapFadeIn>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const filteredTerms = glossaryTerms.filter(
     (item) =>
@@ -113,7 +179,7 @@ export default function GlossaryClient() {
         <GsapFadeIn>
           <div className="text-center mb-16">
             <Link
-              href="/"
+              href={withLang('/')}
               className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6 transition-colors"
             >
               <ArrowLeft className="w-4 h-4 mr-2" /> Vissza a főoldalra

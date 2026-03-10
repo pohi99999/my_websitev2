@@ -1,20 +1,42 @@
 import LeadListaClient from './LeadListaClient';
 
-export const metadata = {
-  title: 'Ingyenes Fogászati Lead Lista | 50 Budapesti Fogorvos | Pohánka AI',
-  description:
-    '50 budapesti fogorvosi rendelő AI-alapú digitális állapotfelmérése — weboldal, HTTPS, Google értékelések, digitális fájdalompontszám. Ingyenesen letölthető marketing ügynökségeknek.',
-  alternates: { canonical: '/fogaszati-lead-lista' },
-  openGraph: {
-    title: 'Ingyenes Fogászati Lead Lista — 50 Budapesti Fogorvos',
-    description: 'AI-alapú előminősített B2B lead lista ügynökségeknek. Weboldal állapot, HTTPS, értékelések, fájdalompontszám.',
-    url: '/fogaszati-lead-lista',
-    type: 'website',
-    locale: 'hu_HU',
-    images: [{ url: '/images/logo.png', alt: 'Pohánka AI Lead Lista' }],
-  },
-  robots: { index: true, follow: true },
-};
+import { headers } from 'next/headers';
+export function generateMetadata() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+
+  const meta =
+    language === 'en'
+      ? {
+          title: 'Dental Lead List 2.0 | Pohánka AI',
+          description: 'AI-optimized list of 410 Hungarian dental clinics with segmented growth opportunities.',
+          canonical: '/en/fogaszati-lead-lista',
+        }
+      : language === 'de'
+      ? {
+          title: 'Dental Lead Liste 2.0 | Pohánka AI',
+          description: 'KI-optimierte Liste mit 410 ungarischen Zahnkliniken und segmentierten Wachstumschancen.',
+          canonical: '/de/fogaszati-lead-lista',
+        }
+      : {
+          title: 'Fogászati Lead Lista 2.0 | Pohánka AI',
+          description: '410 magyarországi fogászat, AI-optimalizált lead lista, 47.490 Ft értékben csak 9.990 Ft-ért.',
+          canonical: '/fogaszati-lead-lista',
+        };
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: meta.canonical,
+      languages: {
+        hu: '/fogaszati-lead-lista',
+        en: '/en/fogaszati-lead-lista',
+        de: '/de/fogaszati-lead-lista',
+      },
+    },
+  };
+}
 
 export default function FogaszatiLeadListaPage() {
   return <LeadListaClient />;
