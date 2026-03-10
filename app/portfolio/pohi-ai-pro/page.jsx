@@ -244,6 +244,165 @@ const screenshots = [
   '/images/pohi-ai-pro/pro-12.jpg',
 ];
 
+const pohiNarrative = {
+  hu: {
+    executiveTitle: 'Vezetői összefoglaló',
+    executiveBody: [
+      'A Pohi AI Pro a Brunella ökoszisztéma egyik legfontosabb vertikális demonstrációja: egy teljes értékű B2B kereskedelmi és logisztikai platform, amely a vevői igényeket, a gyártói készleteket és a fuvarszervezést egy közös operatív rétegbe emeli.',
+      'A rendszer jelentősége abban áll, hogy a nyersanyag-kereskedelmet nem csupán digitalizálja, hanem intelligenssé teszi. Az AI nem különálló modul, hanem a folyamat minden pontján értéket ad — ajánl, előrejelez, optimalizál és dokumentál.',
+      'Ez a platform egyben minta arra is, hogyan lehet egy konkrét iparági problémából skálázható, több iparágra adaptálható, SaaS-képes megoldást építeni.',
+    ],
+    pillarsTitle: 'A platform kulcspilléreit',
+    pillars: [
+      {
+        title: 'Háromszereplős operációs modell',
+        description:
+          'A vevők, gyártók és adminisztrátorok külön szerepkör-alapú felületeken dolgoznak, mégis ugyanabban az intelligens rendszerben, közös adatlogikával és átlátható folyamatokkal.',
+      },
+      {
+        title: 'AI-támogatott logisztikai központ',
+        description:
+          'A zászlóshajó funkció az Irányítóközpont: a rendszer optimalizált rakodási terveket, többmegállós útvonalakat és dokumentum-előkészítést generál, ezzel csökkentve az üresjáratot és a szervezési időt.',
+      },
+      {
+        title: 'Strukturált AI és vizuális döntéstámogatás',
+        description:
+          'A Gemini-alapú responseSchema megközelítésnek köszönhetően az AI kimenete megbízhatóan strukturált. Ez tisztább UI-t, gyorsabb iterációt és kevesebb hibát jelent a kritikus üzleti munkafolyamatokban.',
+      },
+      {
+        title: 'Fejlődő vállalati platform',
+        description:
+          'A jelenlegi interaktív prototípus már most teljes rendszerélményt ad, de a jövőképe multi-tenant, real-time és iparágfüggetlen vállalati platform irányába mutat.',
+      },
+    ],
+    roadmapTitle: 'Technológiai útiterv',
+    roadmap: [
+      {
+        phase: 'Q1–Q2 2026',
+        title: 'Prototípus → Pilot',
+        description:
+          'A frontend-alapú prototípusból pilot üzem: validáció valós logisztikai és kereskedelmi use case-eken, a szerepkörök és az AI-folyamatok finomhangolásával.',
+      },
+      {
+        phase: 'Q3 2026',
+        title: 'Backend és real-time réteg',
+        description:
+          'Node.js/Express, PostgreSQL/Firebase, WebSocket-ek és jogosultsági modell bevezetése — teljes multi-user működés, valós idejű tárgyalás és értesítés.',
+      },
+      {
+        phase: '2027',
+        title: 'SaaS és iparági skálázás',
+        description:
+          'A nyersanyag-logika kiterjesztése más iparágakra: mezőgazdaság, fémipar, textilipar és további supply-chain folyamatok.',
+      },
+    ],
+  },
+  en: {
+    executiveTitle: 'Executive Summary',
+    executiveBody: [
+      'Pohi AI Pro is one of the strongest vertical demonstrations inside the Brunella ecosystem: a full B2B commerce and logistics platform unifying customer demand, supplier stock, and transport execution in a single operational layer.',
+      'Its importance lies in moving beyond digitization into intelligent operations. AI is not an add-on module here — it recommends, predicts, optimizes, and documents across the workflow.',
+      'The platform also serves as a template for how a sector-specific operational problem can evolve into a scalable, SaaS-ready system adaptable across industries.',
+    ],
+    pillarsTitle: 'Key platform pillars',
+    pillars: [
+      {
+        title: 'Three-role operating model',
+        description:
+          'Customers, manufacturers, and administrators work in role-specific experiences while sharing a unified data model and transparent operational flow.',
+      },
+      {
+        title: 'AI-assisted logistics command center',
+        description:
+          'The flagship capability is the logistics control center: optimized loading plans, multi-stop route planning, and document preparation reduce idle capacity and planning time.',
+      },
+      {
+        title: 'Structured AI and visual decision support',
+        description:
+          'Gemini responseSchema outputs make AI responses reliably structured, which leads to cleaner UI, faster iteration, and fewer operational errors.',
+      },
+      {
+        title: 'A growing enterprise platform',
+        description:
+          'Today it functions as a highly interactive prototype, but the roadmap points toward a multi-tenant, real-time, industry-agnostic enterprise platform.',
+      },
+    ],
+    roadmapTitle: 'Technology roadmap',
+    roadmap: [
+      {
+        phase: 'Q1–Q2 2026',
+        title: 'Prototype → Pilot',
+        description:
+          'Move from an interactive prototype to pilot deployments with real logistics and trading use cases, validating the operating model in practice.',
+      },
+      {
+        phase: 'Q3 2026',
+        title: 'Backend and real-time layer',
+        description:
+          'Introduce Node.js/Express, PostgreSQL/Firebase, WebSockets, and permissions for full multi-user execution, negotiation, and alerting.',
+      },
+      {
+        phase: '2027',
+        title: 'SaaS and industry scaling',
+        description:
+          'Extend the raw-material trading logic into agriculture, metals, textiles, and adjacent supply-chain-heavy industries.',
+      },
+    ],
+  },
+  de: {
+    executiveTitle: 'Management-Zusammenfassung',
+    executiveBody: [
+      'Pohi AI Pro ist eine der stärksten vertikalen Demonstrationen im Brunella-Ökosystem: eine vollständige B2B-Handels- und Logistikplattform, die Kundennachfrage, Herstellerbestände und Transportausführung in einer operativen Schicht vereint.',
+      'Die Relevanz liegt darin, dass nicht nur digitalisiert, sondern intelligent gearbeitet wird. KI ist hier kein Zusatzmodul, sondern empfiehlt, prognostiziert, optimiert und dokumentiert entlang des gesamten Prozesses.',
+      'Zugleich ist die Plattform ein Modell dafür, wie aus einem branchenspezifischen Problem ein skalierbares, SaaS-fähiges System mit branchenübergreifendem Potenzial entsteht.',
+    ],
+    pillarsTitle: 'Zentrale Plattform-Säulen',
+    pillars: [
+      {
+        title: 'Drei-Rollen-Betriebsmodell',
+        description:
+          'Kunden, Hersteller und Administratoren arbeiten in rollenspezifischen Oberflächen, teilen jedoch dieselbe Datenlogik und transparente Prozessstruktur.',
+      },
+      {
+        title: 'KI-gestütztes Logistik-Kontrollzentrum',
+        description:
+          'Die Leitfunktion der Plattform erzeugt optimierte Beladepläne, Mehrstopp-Routen und Dokumentenvorbereitung — das reduziert Leerkapazität und Planungsaufwand.',
+      },
+      {
+        title: 'Strukturierte KI und visuelle Entscheidungsunterstützung',
+        description:
+          'Dank Gemini responseSchema werden KI-Antworten verlässlich strukturiert. Das bedeutet sauberere UI, schnellere Iteration und weniger operative Fehler.',
+      },
+      {
+        title: 'Wachsende Enterprise-Plattform',
+        description:
+          'Heute ist Pohi AI Pro ein hochinteraktiver Prototyp, langfristig entwickelt es sich in Richtung Multi-Tenant-, Echtzeit- und branchenübergreifende Enterprise-Plattform.',
+      },
+    ],
+    roadmapTitle: 'Technologischer Fahrplan',
+    roadmap: [
+      {
+        phase: 'Q1–Q2 2026',
+        title: 'Prototyp → Pilot',
+        description:
+          'Übergang vom interaktiven Prototypen zu Pilotprojekten mit realen Handels- und Logistik-Use-Cases.',
+      },
+      {
+        phase: 'Q3 2026',
+        title: 'Backend und Echtzeit-Schicht',
+        description:
+          'Einführung von Node.js/Express, PostgreSQL/Firebase, WebSockets und Rollen-/Rechteverwaltung für produktiven Mehrbenutzerbetrieb.',
+      },
+      {
+        phase: '2027',
+        title: 'SaaS und Branchenskalierung',
+        description:
+          'Ausweitung der Rohstofflogik auf Landwirtschaft, Metall, Textil und weitere supply-chain-intensive Branchen.',
+      },
+    ],
+  },
+};
+
 export default function PohiAIProPage() {
   const headerLang = headers().get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
