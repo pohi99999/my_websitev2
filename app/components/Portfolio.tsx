@@ -4,9 +4,70 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Award, TrendingUp, X, Bot, FileSearch, PenTool, ExternalLink, Globe } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Portfolio = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const { language } = useLanguage();
+  const withLang = (href: string) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
+
+  const ui =
+    language === 'en'
+      ? {
+        title: 'Featured Projects',
+        subtitle: 'Where technology meets business efficiency.',
+        details: 'Details',
+        detailsPricing: 'Details & Pricing',
+        servicesTitle: 'Our Services',
+        servicesSubtitle: 'Ready-to-use AI solutions — available as subscription services.',
+        new: 'NEW',
+        webRefsTitle: 'Website References',
+        webRefsSubtitle: 'Live websites designed and developed by our team.',
+        view: 'View',
+        certTitle: 'Certifications & Results',
+        certSubtitle: 'We continuously evolve our expertise to deliver the most up-to-date technology.',
+        companyRating: 'Top Company Rating',
+        turnover: 'Verified previous turnover',
+        close: 'Close',
+        certLarge: 'Certificate enlarged',
+      }
+      : language === 'de'
+        ? {
+          title: 'Ausgewählte Projekte',
+          subtitle: 'Wo Technologie auf Geschäftseffizienz trifft.',
+          details: 'Details',
+          detailsPricing: 'Details & Preise',
+          servicesTitle: 'Unsere Services',
+          servicesSubtitle: 'Schlüsselfertige KI-Lösungen als sofort nutzbare Services.',
+          new: 'NEU',
+          webRefsTitle: 'Webseiten-Referenzen',
+          webRefsSubtitle: 'Live-Webseiten, die wir konzipiert und entwickelt haben.',
+          view: 'Ansehen',
+          certTitle: 'Zertifizierungen & Ergebnisse',
+          certSubtitle: 'Wir entwickeln uns kontinuierlich weiter, um modernste Technologie zu liefern.',
+          companyRating: 'Top-Unternehmensbewertung',
+          turnover: 'Verifizierter früherer Umsatz',
+          close: 'Schließen',
+          certLarge: 'Zertifikat vergrößert',
+        }
+        : {
+          title: 'Kiemelt Projektjeink',
+          subtitle: 'Ahol a technológia találkozik az üzleti hatékonysággal.',
+          details: 'Részletek',
+          detailsPricing: 'Részletek & Árak',
+          servicesTitle: 'Szolgáltatásaink',
+          servicesSubtitle: 'Kulcsrakész AI megoldások — azonnal elérhető, havidíjas szolgáltatások.',
+          new: 'ÚJ',
+          webRefsTitle: 'Weboldal Referenciák',
+          webRefsSubtitle: 'Élő, működő weboldalak — melyeket mi terveztünk és fejlesztettünk.',
+          view: 'Megtekintés',
+          certTitle: 'Minősítéseink és Eredményeink',
+          certSubtitle: 'Folyamatosan képezzük magunkat és rendszereinket, hogy a legfrissebb technológiát nyújthassuk.',
+          companyRating: 'Kiemelt Cégminősítés',
+          turnover: 'Igazolt korábbi forgalom',
+          close: 'Bezárás',
+          certLarge: 'Tanúsítvány nagyítva',
+        };
 
   const badges = Array.from({ length: 12 }, (_, i) => ({
     id: i + 1,
@@ -35,10 +96,10 @@ const Portfolio = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            Kiemelt Projektjeink
+            {ui.title}
           </h2>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-            Ahol a technológia találkozik az üzleti hatékonysággal.
+            {ui.subtitle}
           </p>
         </div>
 
@@ -55,8 +116,8 @@ const Portfolio = () => {
                 Az első valódi AI Operációs Rendszer vállalkozásoknak. Nem csak egy chatbot, hanem egy
                 57 ügynökből álló, öngyógyító digitális munkaerő, ami lát, hall és cselekszik helyetted.
               </p>
-              <Link href="/portfolio/brunella-bas" className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors">
-                Részletek <ArrowRight className="ml-2 w-4 h-4" />
+              <Link href={withLang('/portfolio/brunella-bas')} className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors">
+                {ui.details} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -78,8 +139,8 @@ const Portfolio = () => {
                 <span className="text-purple-400 font-medium">Fejlesztés alatt:</span> backend integráció,
                 valós idejű értesítések, prediktív analitika.
               </p>
-              <Link href="/portfolio/pohi-ai-pro" className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium transition-colors">
-                Részletek <ArrowRight className="ml-2 w-4 h-4" />
+              <Link href={withLang('/portfolio/pohi-ai-pro')} className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium transition-colors">
+                {ui.details} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -96,7 +157,7 @@ const Portfolio = () => {
                 A repetitív feladatok kiváltása intelligens ügynökökkel.
               </p>
               <a href="#" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
-                Részletek <ArrowRight className="ml-2 w-4 h-4" />
+                {ui.details} <ArrowRight className="ml-2 w-4 h-4" />
               </a>
             </div>
           </div>
@@ -105,10 +166,10 @@ const Portfolio = () => {
         {/* === ÚJ SZEKCIÓ: Szolgáltatásaink === */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-transparent">
-            Szolgáltatásaink
+            {ui.servicesTitle}
           </h2>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-            Kulcsrakész AI megoldások — azonnal elérhető, havidíjas szolgáltatások.
+            {ui.servicesSubtitle}
           </p>
         </div>
 
@@ -116,7 +177,7 @@ const Portfolio = () => {
           {/* 4. Web Robotpilóta */}
           <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2">
             <div className="absolute top-4 right-4 bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-xs font-bold border border-cyan-500/30">
-              ÚJ
+              {ui.new}
             </div>
             <div className="h-48 bg-gradient-to-br from-cyan-900/50 to-slate-900/50 flex items-center justify-center">
               <Bot className="w-16 h-16 text-cyan-400" />
@@ -131,8 +192,8 @@ const Portfolio = () => {
                 <span className="bg-cyan-500/10 text-cyan-400 text-xs px-2 py-1 rounded border border-cyan-500/20">14.990 Ft/hó-tól</span>
                 <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">Első feladat INGYEN</span>
               </div>
-              <Link href="/portfolio/web-robotpilota" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors">
-                Részletek & Árak <ArrowRight className="ml-2 w-4 h-4" />
+              <Link href={withLang('/portfolio/web-robotpilota')} className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors">
+                {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -140,7 +201,7 @@ const Portfolio = () => {
           {/* 5. Pályázat Radar */}
           <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2">
             <div className="absolute top-4 right-4 bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-xs font-bold border border-amber-500/30">
-              ÚJ
+              {ui.new}
             </div>
             <div className="h-48 bg-gradient-to-br from-amber-900/50 to-slate-900/50 flex items-center justify-center">
               <FileSearch className="w-16 h-16 text-amber-400" />
@@ -155,8 +216,8 @@ const Portfolio = () => {
                 <span className="bg-amber-500/10 text-amber-400 text-xs px-2 py-1 rounded border border-amber-500/20">9.990 Ft/hó-tól</span>
                 <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">2 hét INGYEN próba</span>
               </div>
-              <Link href="/portfolio/palyazat-radar" className="inline-flex items-center text-amber-400 hover:text-amber-300 font-medium transition-colors">
-                Részletek & Árak <ArrowRight className="ml-2 w-4 h-4" />
+              <Link href={withLang('/portfolio/palyazat-radar')} className="inline-flex items-center text-amber-400 hover:text-amber-300 font-medium transition-colors">
+                {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -164,7 +225,7 @@ const Portfolio = () => {
           {/* 6. Tartalom Gyártás */}
           <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-pink-500/50 transition-all duration-300 hover:-translate-y-2">
             <div className="absolute top-4 right-4 bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-xs font-bold border border-pink-500/30">
-              ÚJ
+              {ui.new}
             </div>
             <div className="h-48 bg-gradient-to-br from-pink-900/50 to-slate-900/50 flex items-center justify-center">
               <PenTool className="w-16 h-16 text-pink-400" />
@@ -179,8 +240,8 @@ const Portfolio = () => {
                 <span className="bg-pink-500/10 text-pink-400 text-xs px-2 py-1 rounded border border-pink-500/20">9.990 Ft/hó-tól</span>
                 <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">5 minta poszt INGYEN</span>
               </div>
-              <Link href="/portfolio/tartalom-gyartas" className="inline-flex items-center text-pink-400 hover:text-pink-300 font-medium transition-colors">
-                Részletek & Árak <ArrowRight className="ml-2 w-4 h-4" />
+              <Link href={withLang('/portfolio/tartalom-gyartas')} className="inline-flex items-center text-pink-400 hover:text-pink-300 font-medium transition-colors">
+                {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -190,10 +251,10 @@ const Portfolio = () => {
         <div className="mb-24">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Weboldal Referenciák
+              {ui.webRefsTitle}
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              Élő, működő weboldalak — melyeket mi terveztünk és fejlesztettünk.
+              {ui.webRefsSubtitle}
             </p>
           </div>
 
@@ -217,7 +278,7 @@ const Portfolio = () => {
                   <span className="bg-violet-500/10 text-violet-400 text-xs px-2 py-1 rounded border border-violet-500/20">Reszponzív</span>
                 </div>
                 <a href="https://cimbi-weboldal.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors text-sm">
-                  Megtekintés <ExternalLink className="ml-2 w-4 h-4" />
+                  {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -241,7 +302,7 @@ const Portfolio = () => {
                   <span className="bg-teal-500/10 text-teal-400 text-xs px-2 py-1 rounded border border-teal-500/20">Mobil-first</span>
                 </div>
                 <a href="https://ecomud-eu.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium transition-colors text-sm">
-                  Megtekintés <ExternalLink className="ml-2 w-4 h-4" />
+                  {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -265,7 +326,7 @@ const Portfolio = () => {
                   <span className="bg-pink-500/10 text-pink-400 text-xs px-2 py-1 rounded border border-pink-500/20">UI/UX design</span>
                 </div>
                 <a href="https://aronia-chi.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-fuchsia-400 hover:text-fuchsia-300 font-medium transition-colors text-sm">
-                  Megtekintés <ExternalLink className="ml-2 w-4 h-4" />
+                  {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -274,9 +335,9 @@ const Portfolio = () => {
 
         {/* Eredmények és Tanúsítványok */}
         <div className="border-t border-slate-800 pt-16">
-          <h3 className="text-center text-2xl font-bold text-white mb-4">Minősítéseink és Eredményeink</h3>
+          <h3 className="text-center text-2xl font-bold text-white mb-4">{ui.certTitle}</h3>
           <p className="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
-            Folyamatosan képezzük magunkat és rendszereinket, hogy a legfrissebb technológiát nyújthassuk.
+            {ui.certSubtitle}
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
@@ -301,11 +362,11 @@ const Portfolio = () => {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             <div className="p-6 bg-slate-800/30 rounded-xl border border-slate-700 text-center">
               <div className="text-3xl font-bold text-yellow-500 mb-2">A+</div>
-              <div className="text-white font-medium">Kiemelt Cégminősítés</div>
+              <div className="text-white font-medium">{ui.companyRating}</div>
             </div>
             <div className="p-6 bg-slate-800/30 rounded-xl border border-slate-700 text-center">
               <div className="text-3xl font-bold text-emerald-500 mb-2">3.2 Mrd Ft</div>
-              <div className="text-white font-medium">Igazolt korábbi forgalom</div>
+              <div className="text-white font-medium">{ui.turnover}</div>
             </div>
           </div>
         </div>
@@ -318,7 +379,7 @@ const Portfolio = () => {
           onClick={() => setSelectedImage(null)}
         >
           <button
-            aria-label="Bezárás"
+            aria-label={ui.close}
             className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
             onClick={() => setSelectedImage(null)}
           >
@@ -326,7 +387,7 @@ const Portfolio = () => {
           </button>
           <Image
             src={selectedImage}
-            alt="Tanúsítvány nagyítva"
+            alt={ui.certLarge}
             width={1600}
             height={1100}
             sizes="90vw"

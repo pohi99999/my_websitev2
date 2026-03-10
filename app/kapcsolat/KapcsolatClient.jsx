@@ -3,19 +3,82 @@
 import VideoBackground from "../components/VideoBackground";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function KapcsolatClient() {
+  const { language } = useLanguage();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState({ state: "idle", message: "" });
 
+  const ui =
+    language === "en"
+      ? {
+          title: "Get in Touch",
+          contactTitle: "Contact Details",
+          formTitle: "Send Message",
+          name: "Name",
+          email: "Email",
+          location: "Location",
+          phone: "Phone",
+          message: "Message",
+          namePlaceholder: "Enter your name",
+          emailPlaceholder: "Enter your email address",
+          messagePlaceholder: "Tell us how we can help...",
+          sending: "Sending in progress…",
+          sendingBtn: "Sending...",
+          submitBtn: "Send Message",
+          success: "Thank you! Your message has been sent.",
+          fail: "Sending failed. Please email us directly: peterpohankapersonal@gmail.com (or try again in a few minutes).",
+          country: "Hungary",
+        }
+      : language === "de"
+        ? {
+            title: "Kontakt aufnehmen",
+            contactTitle: "Kontaktinformationen",
+            formTitle: "Nachricht senden",
+            name: "Name",
+            email: "E-Mail",
+            location: "Standort",
+            phone: "Telefon",
+            message: "Nachricht",
+            namePlaceholder: "Geben Sie Ihren Namen ein",
+            emailPlaceholder: "Geben Sie Ihre E-Mail-Adresse ein",
+            messagePlaceholder: "Beschreiben Sie kurz, wobei wir helfen können...",
+            sending: "Wird gesendet…",
+            sendingBtn: "Senden...",
+            submitBtn: "Nachricht senden",
+            success: "Danke! Ihre Nachricht wurde gesendet.",
+            fail: "Senden fehlgeschlagen. Schreiben Sie direkt an: peterpohankapersonal@gmail.com (oder versuchen Sie es in ein paar Minuten erneut).",
+            country: "Ungarn",
+          }
+        : {
+            title: "Lépj Velünk Kapcsolatba",
+            contactTitle: "Elérhetőségek",
+            formTitle: "Üzenet Küldése",
+            name: "Név",
+            email: "Email",
+            location: "Helyszín",
+            phone: "Telefon",
+            message: "Üzenet",
+            namePlaceholder: "Add meg a neved",
+            emailPlaceholder: "Add meg az email címed",
+            messagePlaceholder: "Írd le, miben segíthetünk...",
+            sending: "Küldés folyamatban…",
+            sendingBtn: "Küldés...",
+            submitBtn: "Üzenet Küldése",
+            success: "Köszönjük! Az üzenet elküldve.",
+            fail: "Nem sikerült elküldeni. Írj közvetlenül: peterpohankapersonal@gmail.com (vagy próbáld újra pár perc múlva).",
+            country: "Magyarország",
+          };
+
   const isSending = status.state === "sending";
 
   async function onSubmit(e) {
     e.preventDefault();
-    setStatus({ state: "sending", message: "Küldés folyamatban…" });
+    setStatus({ state: "sending", message: ui.sending });
 
     try {
       const res = await fetch("/api/contact", {
@@ -26,10 +89,10 @@ export default function KapcsolatClient() {
 
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data?.ok) {
-        throw new Error(data?.error || "Nem sikerült elküldeni az üzenetet.");
+        throw new Error(data?.error || ui.fail);
       }
 
-      setStatus({ state: "success", message: "Köszönjük! Az üzenet elküldve." });
+      setStatus({ state: "success", message: ui.success });
       setName("");
       setEmail("");
       setMessage("");
@@ -38,7 +101,7 @@ export default function KapcsolatClient() {
       setStatus({
         state: "error",
         message:
-          "Nem sikerült elküldeni. Írj közvetlenül: peterpohankapersonal@gmail.com (vagy próbáld újra pár perc múlva)."
+            ui.fail
       });
     }
   }
@@ -49,12 +112,12 @@ export default function KapcsolatClient() {
 
       <div className="relative z-10 container mx-auto px-4 py-20 text-white">
         <h1 className="text-5xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-          Lépj Velünk Kapcsolatba
+          {ui.title}
         </h1>
 
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="glass-panel p-8 rounded-2xl backdrop-blur-md bg-black/40 border border-white/10">
-            <h2 className="text-2xl font-bold mb-6">Elérhetőségek</h2>
+            <h2 className="text-2xl font-bold mb-6">{ui.contactTitle}</h2>
 
             <div className="space-y-6">
               <div className="flex items-center space-x-4">
@@ -62,7 +125,7 @@ export default function KapcsolatClient() {
                   <Mail size={24} />
                 </div>
                 <div>
-                  <p className="text-gray-400 text-sm">Email</p>
+                  <p className="text-gray-400 text-sm">{ui.email}</p>
                   <p className="font-semibold">peterpohankapersonal@gmail.com</p>
                 </div>
               </div>
@@ -72,7 +135,7 @@ export default function KapcsolatClient() {
                   <Phone size={24} />
                 </div>
                 <div>
-                  <p className="text-gray-400 text-sm">Telefon</p>
+                  <p className="text-gray-400 text-sm">{ui.phone}</p>
                   <p className="font-semibold">+36 30 244 6779</p>
                 </div>
               </div>
@@ -82,38 +145,38 @@ export default function KapcsolatClient() {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <p className="text-gray-400 text-sm">Helyszín</p>
-                  <p className="font-semibold">8900 Zalaegerszeg, Magyarország</p>
+                  <p className="text-gray-400 text-sm">{ui.location}</p>
+                  <p className="font-semibold">8900 Zalaegerszeg, {ui.country}</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="glass-panel p-8 rounded-2xl backdrop-blur-md bg-black/40 border border-white/10">
-            <h2 className="text-2xl font-bold mb-6">Üzenet Küldése</h2>
+            <h2 className="text-2xl font-bold mb-6">{ui.formTitle}</h2>
 
             <form onSubmit={onSubmit} className="space-y-6">
               <div>
-                <label className="block text-gray-300 mb-2">Név</label>
+                <label className="block text-gray-300 mb-2">{ui.name}</label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
                   className="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/10 text-white focus:border-blue-500/50 focus:outline-none"
-                  placeholder="Add meg a neved"
+                  placeholder={ui.namePlaceholder}
                 />
               </div>
 
               <div>
-                <label className="block text-gray-300 mb-2">Email</label>
+                <label className="block text-gray-300 mb-2">{ui.email}</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/10 text-white focus:border-purple-500/50 focus:outline-none"
-                  placeholder="Add meg az email címed"
+                  placeholder={ui.emailPlaceholder}
                 />
               </div>
 
@@ -131,14 +194,14 @@ export default function KapcsolatClient() {
               </div>
 
               <div>
-                <label className="block text-gray-300 mb-2">Üzenet</label>
+                <label className="block text-gray-300 mb-2">{ui.message}</label>
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required
                   rows={6}
                   className="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none resize-none"
-                  placeholder="Írd le, miben segíthetünk..."
+                  placeholder={ui.messagePlaceholder}
                 />
               </div>
 
@@ -161,7 +224,7 @@ export default function KapcsolatClient() {
                 disabled={isSending}
                 className="btn-primary w-full text-lg disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {isSending ? "Küldés..." : "Üzenet Küldése"}
+                {isSending ? ui.sendingBtn : ui.submitBtn}
               </button>
             </form>
           </div>

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
 import { ArrowLeft, CheckCircle, Zap, Layers, Code, Database, Shield, Cpu } from 'lucide-react';
+import { headers } from 'next/headers';
 
 export const metadata = {
   title: 'Pohi AI Pro',
@@ -27,6 +28,82 @@ export const metadata = {
 };
 
 export default function PohiAIProPage() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+  const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
+
+  if (language !== 'hu') {
+    const ui =
+      language === 'en'
+        ? {
+            back: 'Back to products',
+            title: 'Pohi AI Pro',
+            desc: 'A custom AI-enabled operations portal for customer data, orders, inventory and logistics coordination.',
+            cta: 'Start free trial',
+            sectionTitle: 'Core capabilities',
+            sectionSubtitle: 'Designed for practical deployment and measurable business impact.',
+            bullets: [
+              'Unified customer/order/inventory layer',
+              'Process automation with AI agents',
+              'Scalable integration-first architecture',
+              'Secure governance and operational transparency',
+            ],
+          }
+        : {
+            back: 'Zurück zu Produkten',
+            title: 'Pohi AI Pro',
+            desc: 'Ein individuelles KI-Portal für Kundendaten, Bestellungen, Lagerbestände und Logistikkoordination.',
+            cta: 'Kostenlos testen',
+            sectionTitle: 'Kernfunktionen',
+            sectionSubtitle: 'Für produktive Einführung und messbaren geschäftlichen Nutzen konzipiert.',
+            bullets: [
+              'Vereinheitlichte Kunden-/Bestell-/Lager-Schicht',
+              'Prozessautomatisierung mit KI-Agenten',
+              'Skalierbare, integrationsorientierte Architektur',
+              'Sichere Governance und transparente Abläufe',
+            ],
+          };
+
+    return (
+      <div className="relative min-h-screen bg-transparent text-white overflow-hidden">
+        <div className="fixed inset-0 z-[1] bg-black/70" aria-hidden="true" />
+        <div className="relative z-10">
+          <section className="relative min-h-[60vh] flex items-center justify-center pt-20 px-6">
+            <div className="relative z-10 max-w-4xl mx-auto text-center">
+              <Link href={withLang('/termekek')} className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8">
+                <ArrowLeft className="w-4 h-4" />
+                {ui.back}
+              </Link>
+              <GsapFadeIn>
+                <div className="text-6xl mb-6">🤖</div>
+                <h1 className="text-5xl sm:text-6xl font-bold mb-6 gradient-text">{ui.title}</h1>
+                <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">{ui.desc}</p>
+                <Link href={withLang('/kapcsolat')} className="btn-primary">{ui.cta}</Link>
+              </GsapFadeIn>
+            </div>
+          </section>
+
+          <section className="py-16 px-6">
+            <div className="max-w-4xl mx-auto">
+              <SpotlightCard className="p-8">
+                <h2 className="section-title mb-4">{ui.sectionTitle}</h2>
+                <p className="section-subtitle mb-6">{ui.sectionSubtitle}</p>
+                <ul className="space-y-3 text-left">
+                  {ui.bullets.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-gray-300">
+                      <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </SpotlightCard>
+            </div>
+          </section>
+        </div>
+      </div>
+    );
+  }
+
   const features = [
     {
       icon: <Zap className="w-8 h-8" />,

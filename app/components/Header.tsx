@@ -16,9 +16,9 @@ export default function Header() {
   const { t, language } = useLanguage();
 
   const withLang = (href: string) => {
-    if (language !== 'en') return href;
-    if (href === '/') return '/en';
-    return href.startsWith('/') ? `/en${href}` : href;
+    if (language === 'hu') return href;
+    if (href === '/') return `/${language}`;
+    return href.startsWith('/') ? `/${language}${href}` : href;
   };
 
   useEffect(() => {
@@ -42,14 +42,14 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-            ? 'py-3 bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]'
-            : 'py-6 bg-transparent border-b border-transparent'
+          ? 'py-3 bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]'
+          : 'py-6 bg-transparent border-b border-transparent'
           }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between relative">
 
           {/* Logo (image) */}
-          <Link href="/" className="flex items-center group relative z-50">
+          <Link href={withLang('/')} className="flex items-center group relative z-50">
             <Image
               src="/images/logo.png"
               alt="Pohánka és Társa Logo"

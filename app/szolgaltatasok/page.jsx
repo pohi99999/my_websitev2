@@ -1,4 +1,5 @@
 import VideoBackground from "../components/VideoBackground";
+import { headers } from "next/headers";
 import {
   Cpu, Globe, Zap, Search, BarChart3, Lightbulb, Mail,
   Target, TrendingUp, FileText, Package, Users, Brain,
@@ -276,6 +277,107 @@ const colorMap = {
 };
 
 export default function SzolgaltatasokPage() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+  const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
+
+  if (language !== 'hu') {
+    const ui =
+      language === 'en'
+        ? {
+            title: 'Our Services',
+            subtitle:
+              'We do more than software development — we automate your business workflows with practical AI systems.',
+            highlights: ['Local market expertise', 'Production-ready systems', 'Transparent operations'],
+            cards: [
+              {
+                title: 'Intelligent Lead Generation',
+                desc: 'AI-powered prospect discovery, scoring and outreach automation tailored to your market.',
+              },
+              {
+                title: 'Business Process Automation',
+                desc: 'Invoice handling, support mailbox routing, and logistics monitoring with agent-based workflows.',
+              },
+              {
+                title: 'Custom AI Solutions',
+                desc: 'End-to-end design and implementation of custom AI systems integrated with your stack.',
+              },
+            ],
+            whyTitle: 'Why choose us?',
+            whyDesc:
+              'We build and run real systems in production. You get measurable outcomes, transparent execution, and fast iteration.',
+            cta: 'Free consultation',
+          }
+        : {
+            title: 'Unsere Dienstleistungen',
+            subtitle:
+              'Wir entwickeln nicht nur Software — wir automatisieren Ihre Geschäftsprozesse mit praxisnahen KI-Systemen.',
+            highlights: ['Marktexpertise', 'Produktive Systeme', 'Transparente Abläufe'],
+            cards: [
+              {
+                title: 'Intelligente Lead-Generierung',
+                desc: 'KI-gestützte Lead-Suche, Priorisierung und Outreach-Automatisierung für Ihren Zielmarkt.',
+              },
+              {
+                title: 'Automatisierung von Geschäftsprozessen',
+                desc: 'Rechnungsverarbeitung, E-Mail-Routing im Support und Logistik-Monitoring mit Agenten-Workflows.',
+              },
+              {
+                title: 'Individuelle KI-Lösungen',
+                desc: 'End-to-End Konzeption und Umsetzung maßgeschneiderter KI-Systeme inklusive Integrationen.',
+              },
+            ],
+            whyTitle: 'Warum wir?',
+            whyDesc:
+              'Wir liefern echte produktive Systeme mit messbaren Ergebnissen, transparenter Umsetzung und schnellen Iterationen.',
+            cta: 'Kostenlose Beratung',
+          };
+
+    return (
+      <main className="relative min-h-screen">
+        <VideoBackground videoSrc="/services.mp4" />
+        <div className="absolute inset-0 bg-black/60 z-[1]" />
+        <div className="relative z-10 container mx-auto px-4 pt-28 pb-20 text-white">
+          <div className="text-center mb-14 max-w-3xl mx-auto">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+              {ui.title}
+            </h1>
+            <p className="text-xl text-gray-300 leading-relaxed">{ui.subtitle}</p>
+            <div className="flex flex-wrap justify-center gap-4 mt-8">
+              {ui.highlights.map((tag) => (
+                <span key={tag} className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-gray-200 backdrop-blur-sm">
+                  <CheckCircle size={14} className="text-green-400" />
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+            {ui.cards.map((card) => (
+              <div key={card.title} className="glass-panel p-7 rounded-2xl border border-white/10 backdrop-blur-md bg-black/30">
+                <h3 className="text-xl font-bold mb-3 text-white">{card.title}</h3>
+                <p className="text-gray-300 text-sm leading-relaxed">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <section className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">{ui.whyTitle}</h2>
+            <p className="text-gray-300 text-lg mb-8">{ui.whyDesc}</p>
+            <a
+              href={withLang('/kapcsolat')}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-purple-500/30 hover:scale-105"
+            >
+              {ui.cta}
+              <ArrowRight size={18} />
+            </a>
+          </section>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="relative min-h-screen">
       <VideoBackground videoSrc="/services.mp4" />
