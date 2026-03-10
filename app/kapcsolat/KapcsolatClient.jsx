@@ -82,7 +82,14 @@ export default function KapcsolatClient() {
     setStatus({ state: "sending", message: ui.sending });
 
     try {
-      const res = await fetch("/api/contact", {
+      // Default: same-origin Next API route (works on Netlify too)
+      // Optional override: external backend base URL (without trailing slash)
+      const externalApiBase = process.env.NEXT_PUBLIC_API_ENDPOINT?.trim();
+      const contactUrl = externalApiBase
+        ? `${externalApiBase.replace(/\/$/, "")}/api/contact`
+        : "/api/contact";
+
+      const res = await fetch(contactUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message, website })
