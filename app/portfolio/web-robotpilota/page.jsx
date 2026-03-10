@@ -2,23 +2,59 @@ import React from 'react';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
+import { headers } from 'next/headers';
 import {
   ArrowLeft, ArrowRight, CheckCircle, Bot, Globe, Zap,
   Clock, Shield, ShoppingCart, Home, Users, Database, Monitor, Settings
 } from 'lucide-react';
 
-export const metadata = {
-  title: 'Web Robotpilóta — AI Böngésző Automatizáció | Pohánka AI',
-  description: 'AI-vezérelt böngésző automatizáció: adatgyűjtés, form kitöltés, versenytárs monitoring — emberi felügyelet nélkül, 0-24-ben.',
-  alternates: { canonical: '/portfolio/web-robotpilota' },
-  openGraph: {
-    title: 'Web Robotpilóta — AI Böngésző Automatizáció',
-    description: 'Bármilyen webes feladatot elvégzünk robot-tal, emberi felügyelet nélkül.',
-    url: '/portfolio/web-robotpilota',
-    type: 'article',
-    locale: 'hu_HU',
-  },
-};
+export function generateMetadata() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+
+  const meta =
+    language === 'en'
+      ? {
+          title: 'Web Autopilot — AI Browser Automation | Pohánka AI',
+          description: 'AI-driven browser automation for scraping, form filling and monitoring, running 24/7.',
+          canonical: '/en/portfolio/web-robotpilota',
+          locale: 'en_US',
+        }
+      : language === 'de'
+      ? {
+          title: 'Web-Robotpilot — KI-Browser-Automatisierung | Pohánka AI',
+          description: 'KI-gestützte Browser-Automatisierung für Datenerfassung, Formulare und Monitoring, 24/7.',
+          canonical: '/de/portfolio/web-robotpilota',
+          locale: 'de_DE',
+        }
+      : {
+          title: 'Web Robotpilóta — AI Böngésző Automatizáció | Pohánka AI',
+          description:
+            'AI-vezérelt böngésző automatizáció: adatgyűjtés, form kitöltés, versenytárs monitoring — emberi felügyelet nélkül, 0-24-ben.',
+          canonical: '/portfolio/web-robotpilota',
+          locale: 'hu_HU',
+        };
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: meta.canonical,
+      languages: {
+        hu: '/portfolio/web-robotpilota',
+        en: '/en/portfolio/web-robotpilota',
+        de: '/de/portfolio/web-robotpilota',
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: meta.canonical,
+      type: 'article',
+      locale: meta.locale,
+    },
+  };
+}
 
 const useCases = [
   { icon: ShoppingCart, color: 'text-cyan-400', title: 'Versenytárs Ár Monitoring', desc: '5 webshop, 500 termék — árak és készlet automatikus összehasonlítása naponta.', result: 'Átlag 15% jobb árazás' },
@@ -44,12 +80,82 @@ const stats = [
 ];
 
 export default function WebRobotpilotaPage() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+  const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
+
+  if (language !== 'hu') {
+    const ui =
+      language === 'en'
+        ? {
+            back: 'Back to Portfolio',
+            title: 'Web Autopilot',
+            subtitle: 'AI browser automation for recurring web workflows, running continuously with supervision options.',
+            blocks: [
+              'Competitor monitoring and price intelligence',
+              'Automated form execution and QA checks',
+              'Scheduled scraping and structured reporting',
+            ],
+            cta: 'Request demo',
+          }
+        : {
+            back: 'Zurück zum Portfolio',
+            title: 'Web-Robotpilot',
+            subtitle:
+              'KI-Browser-Automatisierung für wiederkehrende Web-Prozesse mit planbarer Ausführung und transparenter Ergebnisausgabe.',
+            blocks: [
+              'Wettbewerbsmonitoring und Preisintelligenz',
+              'Automatisierte Formularabläufe und QA-Checks',
+              'Geplantes Scraping mit strukturiertem Reporting',
+            ],
+            cta: 'Demo anfragen',
+          };
+
+    return (
+      <div className="min-h-screen text-white">
+        <section className="relative py-12 px-6 pt-24 pb-16">
+          <div className="max-w-5xl mx-auto">
+            <GsapFadeIn>
+              <Link href={withLang('/portfolio')} className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 transition-colors">
+                <ArrowLeft className="w-4 h-4" /> {ui.back}
+              </Link>
+              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">{ui.title}</h1>
+              <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">{ui.subtitle}</p>
+            </GsapFadeIn>
+          </div>
+        </section>
+        <section className="px-6 py-16 bg-white/5">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            {ui.blocks.map((item, i) => (
+              <GsapFadeIn key={item} delay={0.1 * i}>
+                <SpotlightCard className="p-7 h-full">
+                  <CheckCircle className="w-6 h-6 mb-4 text-cyan-300" />
+                  <p className="text-gray-200 text-sm leading-relaxed">{item}</p>
+                </SpotlightCard>
+              </GsapFadeIn>
+            ))}
+          </div>
+        </section>
+        <section className="px-6 py-24">
+          <div className="max-w-3xl mx-auto">
+            <GsapFadeIn delay={0.2}>
+              <SpotlightCard className="p-12 text-center">
+                <Bot className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
+                <Link href={withLang('/kapcsolat')} className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105">{ui.cta} <ArrowRight size={18} /></Link>
+              </SpotlightCard>
+            </GsapFadeIn>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen text-white">
       <section className="relative py-12 px-6 pt-24 pb-16">
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn>
-            <Link href="/portfolio" className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 transition-colors">
+            <Link href={withLang('/portfolio')} className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 transition-colors">
               <ArrowLeft className="w-4 h-4" /> Vissza a Portfólióhoz
             </Link>
             <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
@@ -132,7 +238,7 @@ export default function WebRobotpilotaPage() {
                   <h3 className="text-lg font-bold text-white mb-2">{plan.name}</h3>
                   <div className="mb-6"><span className="text-3xl font-black text-white">{plan.price}</span><span className="text-gray-400 text-sm">{plan.period}</span></div>
                   <ul className="space-y-3 mb-8 flex-1">{plan.features.map(f => <li key={f} className="flex items-center gap-2 text-sm text-gray-300"><CheckCircle className="w-4 h-4 text-cyan-400 shrink-0" />{f}</li>)}</ul>
-                  <Link href="/kapcsolat" className={`inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold transition-all duration-300 ${plan.highlight ? 'bg-cyan-500 hover:bg-cyan-600 text-white' : 'border border-white/20 text-gray-300 hover:border-cyan-400/50 hover:text-white'}`}>Kezdjük el <ArrowRight size={16} /></Link>
+                  <Link href={withLang('/kapcsolat')} className={`inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold transition-all duration-300 ${plan.highlight ? 'bg-cyan-500 hover:bg-cyan-600 text-white' : 'border border-white/20 text-gray-300 hover:border-cyan-400/50 hover:text-white'}`}>Kezdjük el <ArrowRight size={16} /></Link>
                 </div>
               </GsapFadeIn>
             ))}
@@ -147,7 +253,7 @@ export default function WebRobotpilotaPage() {
               <Bot className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
               <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Próbáld ki INGYEN</h2>
               <p className="text-lg text-gray-300 mb-8 leading-relaxed">Az első feladat ajándék — írd meg mit csináljon a robotod, és 24 órán belül megkapod az eredményt.</p>
-              <Link href="/kapcsolat" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105">Ingyenes próba feladat <ArrowRight size={18} /></Link>
+              <Link href={withLang('/kapcsolat')} className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105">Ingyenes próba feladat <ArrowRight size={18} /></Link>
             </SpotlightCard>
           </GsapFadeIn>
         </div>

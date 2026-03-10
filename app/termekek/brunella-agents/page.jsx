@@ -1,5 +1,9 @@
 import { redirect } from 'next/navigation';
+import { headers } from 'next/headers';
 
 export default function BrunellaAgentsRedirect() {
-  redirect('/portfolio/brunella-bas');
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+  const target = language === 'hu' ? '/portfolio/brunella-bas' : `/${language}/portfolio/brunella-bas`;
+  redirect(target);
 }
