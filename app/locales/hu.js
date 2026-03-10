@@ -12,6 +12,7 @@ const hu = {
     headlineLine1: 'A Jövő Elkezdődött...',
     headlineLine2: 'Az ember és a Mesterséges Intelligencia',
     subheadline: 'kapcsolata az elkövetkező időszak kulcsa a sikerhez.',
+    cta: 'Brunella Agent System',
     ctaPrimary: 'Brunella Agent System',
     ctaSecondary: 'AI Ügynöki Folyamatok',
   },
