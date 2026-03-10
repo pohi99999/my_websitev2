@@ -43,6 +43,7 @@ export function generateMetadata() {
 
   return {
     title: meta.title,
+    description: meta.description,
     alternates: {
       canonical: meta.canonical,
       languages: {
@@ -173,10 +174,161 @@ const screenshots = [
   '/images/bas/bas-16.jpg',
 ];
 
+const basNarrative = {
+  hu: {
+    executiveTitle: 'Vezetői összefoglaló',
+    executiveBody: [
+      'A Brunella Agent System (BAS) ma már nem laboratóriumi koncepció, hanem egy teljes értékű hibrid MI operációs rendszer. A cél egy olyan digitális idegrendszer létrehozása, amely alapjaiban változtatja meg a szoftverfejlesztésről és a vállalati automatizálásról alkotott korábbi dogmákat.',
+      'A rendszer nem “fekete dobozként” működik, hanem a Glass Box és a kognitív augmentáció elvére épül: az emberi döntéshozást erősíti fel. Minél nagyobb a raj, minél több ügynök csatlakozik hozzá, annál stabilabb, önellátóbb és költséghatékonyabb lesz.',
+      'A BAS nem egyszerű szoftvert értékesít, hanem Expertise-as-a-Service modellt: folyamatosan fejlődő szakértelmet ad iparágfüggetlenül — a logisztikától a K+F-ig, a városi rendszerektől a tartalomgyártásig.',
+    ],
+    pillarsTitle: 'A rendszer forradalmi pillérei',
+    pillars: [
+      {
+        title: 'Felderítők és Adat-Volán',
+        description:
+          'A Robotkéz V2 és a CEAN micro-workerei emberként navigálnak a weben, strukturált adatot gyűjtenek, az adattudós modulok pedig megtisztítják ezt Arany Adattá és a LanceDB szemantikus memóriájába írják.',
+      },
+      {
+        title: 'Inkubátor és “kis csibészek”',
+        description:
+          'A rendszer a saját sikereiből tanul: az Inkubátor modul éjszakánként finomhangolt, gyors, specializált modelleket képez a felhalmozott Arany Adaton, így a BAS minden reggel okosabban ébred.',
+      },
+      {
+        title: 'Enterprise Suite és Software Genesis',
+        description:
+          'A 18 modulos Enterprise Suite konkrét üzleti feladatokat vesz át, míg a Software Genesis protokoll ötletből specifikációt, kódot, tesztet és kiadási folyamatot generál — emberi felügyelet mellett, de nagyrészt autonóm módon.',
+      },
+      {
+        title: 'Phoenix Protocol & LangSmith',
+        description:
+          'A Phoenix Protocol v2 biztosítja az öngyógyítást és a checkpointingot, a LangSmith telemetria pedig valós idejű auditálhatóságot ad: minden döntés, gondolatmenet és adatforrás követhető.',
+      },
+    ],
+    roadmapTitle: 'Technológiai ütemterv (TRL 4 → 9)',
+    roadmap: [
+      {
+        phase: 'Q1 2026',
+        title: 'TRL 4 → 5',
+        description: 'Architektúra stabilizálás, szűk keresztmetszetek felszámolása, BOV MVP élesítés, Robotkéz és Phoenix Protocol teljes aktiválása.',
+      },
+      {
+        phase: 'Q2 2026',
+        title: 'TRL 5 → 6',
+        description: 'Pilot ügyfelek integrálása, Cogella Core MCP szabványosítás, GDPR/ISO audit, Adat-Volán és Inkubátor működésének felskálázása.',
+      },
+      {
+        phase: 'Q3–Q4 2026 → 2027',
+        title: 'TRL 6 → 9',
+        description: 'Multi-tenant SaaS, Enterprise funkciók, Software Genesis, majd iparágfüggetlen, globálisan skálázható MI ökoszisztéma és piaci érettség.',
+      },
+    ],
+  },
+  en: {
+    executiveTitle: 'Executive Summary',
+    executiveBody: [
+      'The Brunella Agent System (BAS) is no longer a lab concept — it is a full hybrid AI Operating System. Its purpose is to create a digital nervous system that redefines software delivery and business automation.',
+      'Unlike black-box copilots, BAS follows a Glass Box and cognitive augmentation philosophy: it amplifies human capability instead of obscuring it. As the swarm grows, the platform becomes more stable, self-sustaining, useful, and cost-efficient.',
+      'BAS is not simply software; it is an Expertise-as-a-Service model. It continuously evolves domain knowledge across logistics, enterprise operations, R&D, smart city systems, and content automation.',
+    ],
+    pillarsTitle: 'Revolutionary system pillars',
+    pillars: [
+      {
+        title: 'Scouts and Data Flywheel',
+        description:
+          'Robotkez V2 and CEAN edge workers navigate the web like human operators, collect structured signals, and refinery modules transform that signal into Golden Data stored in LanceDB semantic memory.',
+      },
+      {
+        title: 'Incubator and “small chicks”',
+        description:
+          'The platform learns from its own successful outputs. The Incubator trains smaller, faster, specialized models overnight on Golden Data, so the system wakes up smarter every day.',
+      },
+      {
+        title: 'Enterprise Suite and Software Genesis',
+        description:
+          'The 18-module Enterprise Suite takes over concrete business workflows, while the Software Genesis protocol can turn an idea into specs, code, tests, and deployment flow with high autonomy.',
+      },
+      {
+        title: 'Phoenix Protocol and LangSmith',
+        description:
+          'Phoenix Protocol v2 delivers self-healing and checkpoint recovery, while LangSmith telemetry makes every reasoning chain, decision point, and source auditable in real time.',
+      },
+    ],
+    roadmapTitle: 'Technology roadmap (TRL 4 → 9)',
+    roadmap: [
+      {
+        phase: 'Q1 2026',
+        title: 'TRL 4 → 5',
+        description: 'Architecture hardening, bottleneck removal, BOV MVP release, and full activation of Robotkez and Phoenix Protocol.',
+      },
+      {
+        phase: 'Q2 2026',
+        title: 'TRL 5 → 6',
+        description: 'Pilot customer integration, Cogella Core MCP standardization, compliance audits, and scale-up of the Golden Data / Incubator loop.',
+      },
+      {
+        phase: 'Q3–Q4 2026 → 2027',
+        title: 'TRL 6 → 9',
+        description: 'Multi-tenant SaaS evolution, enterprise capabilities, Software Genesis expansion, and full market maturity across industries.',
+      },
+    ],
+  },
+  de: {
+    executiveTitle: 'Management-Zusammenfassung',
+    executiveBody: [
+      'Das Brunella Agent System (BAS) ist kein Laborprototyp mehr, sondern ein vollwertiges hybrides KI-Betriebssystem. Ziel ist ein digitales Nervensystem, das Softwareentwicklung und Unternehmensautomatisierung neu definiert.',
+      'Im Gegensatz zu Black-Box-Copilots folgt BAS der Glass-Box- und Augmentationsphilosophie: menschliche Fähigkeiten werden verstärkt statt verborgen. Je größer der Schwarm, desto stabiler, autonomer, nützlicher und kosteneffizienter wird das System.',
+      'BAS verkauft nicht nur Software, sondern ein Expertise-as-a-Service-Modell. Das System entwickelt Fachwissen kontinuierlich weiter — branchenübergreifend von Logistik bis Forschung, von Smart City bis Content Automation.',
+    ],
+    pillarsTitle: 'Die revolutionären Säulen des Systems',
+    pillars: [
+      {
+        title: 'Scouts und Data Flywheel',
+        description:
+          'Robotkez V2 und CEAN-Edge-Worker navigieren wie menschliche Operatoren im Web, sammeln strukturierte Signale und veredeln diese über Refinery-Module zu Golden Data in der LanceDB-Semantikschicht.',
+      },
+      {
+        title: 'Inkubator und „kleine Küken“',
+        description:
+          'Das System lernt aus eigenen Erfolgen. Der Inkubator trainiert nachts kleinere, schnellere Spezialmodelle auf Golden Data — dadurch wird BAS täglich intelligenter.',
+      },
+      {
+        title: 'Enterprise Suite und Software Genesis',
+        description:
+          'Die 18-modulige Enterprise Suite übernimmt konkrete Geschäftsprozesse, während das Software-Genesis-Protokoll Ideen in Spezifikationen, Code, Tests und Rollout-Flows überführt.',
+      },
+      {
+        title: 'Phoenix Protocol und LangSmith',
+        description:
+          'Phoenix Protocol v2 liefert Self-Healing und Checkpoint-Wiederherstellung, während LangSmith-Telemetrie jede Entscheidung, jedes Reasoning und jede Quelle in Echtzeit auditierbar macht.',
+      },
+    ],
+    roadmapTitle: 'Technologischer Fahrplan (TRL 4 → 9)',
+    roadmap: [
+      {
+        phase: 'Q1 2026',
+        title: 'TRL 4 → 5',
+        description: 'Architektur-Stabilisierung, Beseitigung technischer Engpässe, BOV-MVP und volle Aktivierung von Robotkez und Phoenix Protocol.',
+      },
+      {
+        phase: 'Q2 2026',
+        title: 'TRL 5 → 6',
+        description: 'Pilotkunden, Standardisierung des Cogella Core MCP, Compliance-Audits und Skalierung des Golden-Data-/Inkubator-Kreislaufs.',
+      },
+      {
+        phase: 'Q3–Q4 2026 → 2027',
+        title: 'TRL 6 → 9',
+        description: 'Multi-Tenant-SaaS, Enterprise-Funktionen, Ausbau von Software Genesis und volle Marktreife als branchenunabhängiges KI-Ökosystem.',
+      },
+    ],
+  },
+};
+
 export default function BrunellaBASPage() {
   const headerLang = headers().get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
   const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
+  const narrative = basNarrative[language] ?? basNarrative.hu;
 
   if (language !== 'hu') {
     const ui =
@@ -230,6 +382,46 @@ export default function BrunellaBASPage() {
                 </SpotlightCard>
               </GsapFadeIn>
             ))}
+          </div>
+        </section>
+
+        <section className="px-6 py-16">
+          <div className="max-w-5xl mx-auto space-y-10">
+            <GsapFadeIn>
+              <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                {narrative.executiveTitle}
+              </h2>
+            </GsapFadeIn>
+            <div className="space-y-4 text-gray-300 leading-relaxed">
+              {narrative.executiveBody.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-5">{narrative.pillarsTitle}</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {narrative.pillars.map((pillar) => (
+                  <SpotlightCard key={pillar.title} className="p-6">
+                    <h4 className="font-semibold text-blue-300 mb-2">{pillar.title}</h4>
+                    <p className="text-sm text-gray-300 leading-relaxed">{pillar.description}</p>
+                  </SpotlightCard>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-5">{narrative.roadmapTitle}</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {narrative.roadmap.map((item) => (
+                  <SpotlightCard key={item.phase} className="p-6">
+                    <div className="text-xs uppercase tracking-wide text-purple-300 mb-2">{item.phase}</div>
+                    <h4 className="font-semibold text-white mb-2">{item.title}</h4>
+                    <p className="text-sm text-gray-300 leading-relaxed">{item.description}</p>
+                  </SpotlightCard>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -336,6 +528,46 @@ export default function BrunellaBASPage() {
                 </p>
               </SpotlightCard>
             </GsapFadeIn>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-16">
+        <div className="max-w-5xl mx-auto space-y-10">
+          <GsapFadeIn>
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              {narrative.executiveTitle}
+            </h2>
+          </GsapFadeIn>
+          <div className="space-y-4 text-gray-300 leading-relaxed">
+            {narrative.executiveBody.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-bold text-white mb-5">{narrative.pillarsTitle}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {narrative.pillars.map((pillar) => (
+                <SpotlightCard key={pillar.title} className="p-6">
+                  <h4 className="font-semibold text-blue-300 mb-2">{pillar.title}</h4>
+                  <p className="text-sm text-gray-300 leading-relaxed">{pillar.description}</p>
+                </SpotlightCard>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-bold text-white mb-5">{narrative.roadmapTitle}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {narrative.roadmap.map((item) => (
+                <SpotlightCard key={item.phase} className="p-6">
+                  <div className="text-xs uppercase tracking-wide text-purple-300 mb-2">{item.phase}</div>
+                  <h4 className="font-semibold text-white mb-2">{item.title}</h4>
+                  <p className="text-sm text-gray-300 leading-relaxed">{item.description}</p>
+                </SpotlightCard>
+              ))}
+            </div>
           </div>
         </div>
       </section>
