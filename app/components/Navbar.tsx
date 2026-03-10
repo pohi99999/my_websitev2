@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '../context/LanguageContext';
-import { trackCtaClick } from '../lib/analytics';
+import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,10 +48,10 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <NavLink href="#home" onClick={() => trackCtaClick({ location: 'navbar_home', language, target: '#home', page: 'home' })}>{t('navbar.home')}</NavLink>
-            <NavLink href="#portfolio" onClick={() => trackCtaClick({ location: 'navbar_portfolio', language, target: '#portfolio', page: 'home' })}>{t('navbar.portfolio')}</NavLink>
-            <NavLink href="#about" onClick={() => trackCtaClick({ location: 'navbar_about', language, target: '#about', page: 'home' })}>{t('navbar.about')}</NavLink>
-            <NavLink href="#contact" onClick={() => trackCtaClick({ location: 'navbar_contact', language, target: '#contact', page: 'home' })}>{t('navbar.contact')}</NavLink>
+            <NavLink href="#home" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.NavbarHome, language, target: '#home', page: PAGE_NAMES.Home })}>{t('navbar.home')}</NavLink>
+            <NavLink href="#portfolio" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.NavbarPortfolio, language, target: '#portfolio', page: PAGE_NAMES.Home })}>{t('navbar.portfolio')}</NavLink>
+            <NavLink href="#about" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.NavbarAbout, language, target: '#about', page: PAGE_NAMES.Home })}>{t('navbar.about')}</NavLink>
+            <NavLink href="#contact" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.NavbarContact, language, target: '#contact', page: PAGE_NAMES.Home })}>{t('navbar.contact')}</NavLink>
             <LanguageSwitcher />
           </div>
 
@@ -68,16 +68,16 @@ const Navbar = () => {
               <div className="pb-2">
                 <LanguageSwitcher />
               </div>
-              <MobileNavLink href="#home" onClick={() => { trackCtaClick({ location: 'navbar_mobile_home', language, target: '#home', page: 'home' }); setIsOpen(false); }}>
+              <MobileNavLink href="#home" onClick={() => { trackCtaClick({ location: CTA_LOCATIONS.NavbarMobileHome, language, target: '#home', page: PAGE_NAMES.Home }); setIsOpen(false); }}>
                 {t('navbar.home')}
               </MobileNavLink>
-              <MobileNavLink href="#portfolio" onClick={() => { trackCtaClick({ location: 'navbar_mobile_portfolio', language, target: '#portfolio', page: 'home' }); setIsOpen(false); }}>
+              <MobileNavLink href="#portfolio" onClick={() => { trackCtaClick({ location: CTA_LOCATIONS.NavbarMobilePortfolio, language, target: '#portfolio', page: PAGE_NAMES.Home }); setIsOpen(false); }}>
                 {t('navbar.portfolio')}
               </MobileNavLink>
-              <MobileNavLink href="#about" onClick={() => { trackCtaClick({ location: 'navbar_mobile_about', language, target: '#about', page: 'home' }); setIsOpen(false); }}>
+              <MobileNavLink href="#about" onClick={() => { trackCtaClick({ location: CTA_LOCATIONS.NavbarMobileAbout, language, target: '#about', page: PAGE_NAMES.Home }); setIsOpen(false); }}>
                 {t('navbar.about')}
               </MobileNavLink>
-              <MobileNavLink href="#contact" onClick={() => { trackCtaClick({ location: 'navbar_mobile_contact', language, target: '#contact', page: 'home' }); setIsOpen(false); }}>
+              <MobileNavLink href="#contact" onClick={() => { trackCtaClick({ location: CTA_LOCATIONS.NavbarMobileContact, language, target: '#contact', page: PAGE_NAMES.Home }); setIsOpen(false); }}>
                 {t('navbar.contact')}
               </MobileNavLink>
             </div>

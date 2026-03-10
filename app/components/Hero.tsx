@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { trackCtaClick } from '../lib/analytics';
+import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
 
 const Hero = () => {
   const { t, language } = useLanguage();
@@ -51,7 +51,7 @@ const Hero = () => {
           <Link
             href={withLang('/termekek/brunella-agents')}
             className="btn-primary text-lg px-8 py-4 group"
-            onClick={() => trackCtaClick({ location: 'hero_primary', language, target: '/termekek/brunella-agents', page: 'home' })}
+            onClick={() => trackCtaClick({ location: CTA_LOCATIONS.HeroPrimary, language, target: '/termekek/brunella-agents', page: PAGE_NAMES.Home })}
           >
             {t('hero.cta')}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -59,7 +59,7 @@ const Hero = () => {
           <a
             href="#ai-folyamatok"
             className="px-8 py-4 bg-transparent border border-slate-600 hover:border-white text-white rounded-full font-semibold transition-all hover:bg-slate-800"
-            onClick={() => trackCtaClick({ location: 'hero_secondary_scroll', language, target: '#ai-folyamatok', page: 'home' })}
+            onClick={() => trackCtaClick({ location: CTA_LOCATIONS.HeroSecondaryScroll, language, target: '#ai-folyamatok', page: PAGE_NAMES.Home })}
           >
             {t('hero.ctaSecondary')}
           </a>
