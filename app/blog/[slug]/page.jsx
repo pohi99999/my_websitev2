@@ -386,6 +386,221 @@ const blogPosts = {
   },
 };
 
+  const localizedLongformBodies = {
+    en: {
+    'fekete-doboz-vege-glass-box': `
+  ## Why transparency matters in AI
+
+  Most organizations do not struggle with AI capability — they struggle with trust. If people cannot see *why* a system reached a conclusion, adoption slows down.
+
+  ### The Black Box risk
+
+  - Decisions are difficult to audit.
+  - Teams hesitate to rely on outputs.
+  - Regulatory pressure (GDPR, emerging AI rules) requires explainability.
+
+  ### Our Glass Box approach
+
+  At Brunella, every major step is observable:
+
+  1. **Live operational visibility** of agent reasoning and actions.
+  2. **Traceable decision paths** for review and post-analysis.
+  3. **Human-in-command workflow**, where AI augments experts rather than replacing them.
+
+  The future belongs to systems that are not only powerful, but accountable.
+  `,
+    'brunella-mi-csapatvezeto': `
+  ## Brunella as an AI team lead
+
+  Brunella is not a reactive assistant. It operates as an orchestration layer that can plan, delegate and supervise multi-step work.
+
+  ### What enables this model
+
+  - **ReAct loops**: reason first, act second.
+  - **Reflection**: detect and repair weak intermediate results.
+  - **Tree-of-Thought** branching for complex decisions.
+  - **Constitutional constraints** for safe, aligned behavior.
+
+  ### Business impact
+
+  In practice, this means shorter execution cycles, fewer handoff losses, and better visibility across cross-functional workstreams.
+  `,
+    'digitalis-lenyomat-anatomiaja': `
+  ## Digital footprint as an operational asset
+
+  Your digital footprint is not just identity — it is an execution map: accounts, tools, repositories, workflows, and behavioral preferences.
+
+  ### Why this matters
+
+  - Better context leads to better AI assistance.
+  - Cleaner identity boundaries reduce operational risk.
+  - Structured knowledge enables proactive support, not only reactive responses.
+
+  Brunella uses this model to align recommendations with your real environment and goals.
+  `,
+    'bevezeto-a-mesterseges-intelligencia-vilagaba': `
+  ## Practical introduction to AI
+
+  AI systems are probability engines, not mystical black magic. The quality of your results depends heavily on context and instruction quality.
+
+  ### Core foundations
+
+  1. **Neural models** transform patterns into outputs.
+  2. **Prompt engineering** defines role, task, format, and context.
+  3. **Human review** remains essential for critical decisions.
+
+  ### Practical takeaway
+
+  Treat AI as a co-pilot: combine machine-scale processing with human judgment.
+  `,
+    'brunella-strategiai-white-paper': `
+  ## Strategic direction: from projects to products
+
+  The AI agent market is evolving quickly. To remain competitive, organizations need productized, repeatable service delivery rather than one-off project execution.
+
+  ### Key shift
+
+  Move from ad-hoc delivery to a scalable AI operations model where BAS is a core platform capability.
+
+  ### What this enables
+
+  - Higher repeatability and quality.
+  - Better unit economics.
+  - Faster innovation cycles with controlled risk.
+  `,
+    'az-ido-a-legertekesebb-valuta': `
+  ## Time is the real currency
+
+  In modern business, speed is not optional. Market access, campaign timing, and decision latency directly affect outcomes.
+
+  ### What AI should deliver
+
+  Not only automation, but **time reclaimed** for strategic thinking, innovation, and leadership.
+
+  When a 40-hour process becomes a 40-minute workflow, value is created beyond cost savings.
+  `,
+    'brunella-agent-system-mukodese': `
+  ## How BAS works under the hood
+
+  BAS is a multi-agent architecture where an orchestrator assigns tasks to specialized agents based on intent and required capability.
+
+  ### Core components
+
+  - **Orchestrator** for decomposition and routing.
+  - **Specialists** (research, coding, analysis).
+  - **Reasoning loops** with validation and reflection.
+
+  This structure allows BAS to handle workflows that are too complex for single-turn LLM interaction.
+  `,
+    },
+    de: {
+    'fekete-doboz-vege-glass-box': `
+  ## Warum Transparenz in der KI entscheidend ist
+
+  Das Hauptproblem ist oft nicht die Leistungsfähigkeit von KI, sondern das Vertrauen. Wenn nicht nachvollziehbar ist, *warum* ein System eine Entscheidung trifft, wird es kaum akzeptiert.
+
+  ### Risiken der Black Box
+
+  - Entscheidungen sind schwer prüfbar.
+  - Teams vertrauen Ergebnissen weniger.
+  - Regulatorik verlangt nachvollziehbare Erklärbarkeit.
+
+  ### Unser Glass-Box-Ansatz
+
+  Bei Brunella ist jeder wichtige Schritt sichtbar:
+
+  1. **Live-Transparenz** über Denken und Handeln der Agenten.
+  2. **Nachvollziehbare Entscheidungswege** für Analyse und Audit.
+  3. **Mensch im Kontrollzentrum**, KI als Verstärker.
+
+  Die Zukunft gehört Systemen, die nicht nur stark, sondern auch verantwortbar sind.
+  `,
+    'brunella-mi-csapatvezeto': `
+  ## Brunella als KI-Teamlead
+
+  Brunella ist kein reaktiver Assistent, sondern eine Orchestrierungsschicht, die komplexe Aufgaben planen, delegieren und steuern kann.
+
+  ### Technische Bausteine
+
+  - **ReAct-Loops**: erst denken, dann handeln.
+  - **Reflexion**: Zwischenergebnisse prüfen und verbessern.
+  - **Tree-of-Thought** für komplexe Entscheidungen.
+  - **Konstitutionelle Leitplanken** für sichere Ausführung.
+
+  ### Geschäftlicher Nutzen
+
+  Schnellere Umsetzungszyklen, weniger Reibungsverluste und bessere Transparenz in funktionsübergreifenden Prozessen.
+  `,
+    'digitalis-lenyomat-anatomiaja': `
+  ## Digitaler Fußabdruck als operativer Vorteil
+
+  Ein digitaler Fußabdruck ist mehr als Identität — er ist eine Ausführungskarte aus Konten, Tools, Repositories und Arbeitsmustern.
+
+  ### Warum das wichtig ist
+
+  - Besserer Kontext erzeugt bessere KI-Unterstützung.
+  - Klare Identitätsgrenzen reduzieren Risiken.
+  - Strukturierte Wissensbasis ermöglicht proaktive Hilfe.
+
+  Brunella nutzt dieses Modell, um Empfehlungen auf reale Ziele und Umgebungen auszurichten.
+  `,
+    'bevezeto-a-mesterseges-intelligencia-vilagaba': `
+  ## Praktische Einführung in KI
+
+  KI-Systeme sind Wahrscheinlichkeitsmaschinen. Die Qualität der Ergebnisse hängt stark von Kontext und klaren Anweisungen ab.
+
+  ### Grundlagen
+
+  1. **Neuronale Modelle** erkennen Muster und erzeugen Ausgaben.
+  2. **Prompt Engineering** definiert Rolle, Aufgabe, Format und Kontext.
+  3. **Menschliche Prüfung** bleibt bei kritischen Entscheidungen unverzichtbar.
+
+  ### Fazit
+
+  Nutzen Sie KI als Co-Pilot: maschinelle Skalierung plus menschliches Urteilsvermögen.
+  `,
+    'brunella-strategiai-white-paper': `
+  ## Strategiewechsel: von Projekten zu Produkten
+
+  Der Markt für KI-Agenten entwickelt sich schnell. Für langfristige Wettbewerbsfähigkeit braucht es skalierbare, produktisierte Liefermodelle.
+
+  ### Der zentrale Wandel
+
+  Von ad-hoc Projekten zu einer wiederholbaren KI-Betriebslogik, in der BAS eine Plattformfähigkeit ist.
+
+  ### Ergebnis
+
+  - Höhere Reproduzierbarkeit und Qualität.
+  - Bessere Wirtschaftlichkeit.
+  - Schnellere Innovation bei kontrolliertem Risiko.
+  `,
+    'az-ido-a-legertekesebb-valuta': `
+  ## Zeit ist die wichtigste Währung
+
+  Im modernen Geschäft ist Geschwindigkeit kein Bonus, sondern Voraussetzung. Marktzugang, Kampagnen-Timing und Entscheidungsdauer beeinflussen direkt das Ergebnis.
+
+  ### Was KI liefern sollte
+
+  Nicht nur Automatisierung, sondern **zurückgewonnene Zeit** für Strategie, Innovation und Führung.
+
+  Wenn aus 40 Stunden 40 Minuten werden, entsteht Wert weit über reine Kosteneffizienz hinaus.
+  `,
+    'brunella-agent-system-mukodese': `
+  ## BAS unter der Haube
+
+  BAS ist eine Multi-Agent-Architektur: Ein Orchestrator zerlegt Aufgaben und delegiert sie an spezialisierte Agenten.
+
+  ### Kernbausteine
+
+  - **Orchestrator** für Aufteilung und Routing.
+  - **Spezialisten** (Recherche, Coding, Analyse).
+  - **Reasoning- und Reflexionsschleifen** mit Validierung.
+
+  So kann BAS Workflows lösen, die klassische Einzelinteraktionen mit LLMs nicht zuverlässig abdecken.
+  `,
+    },
+  };
+
 function toIsoDate(huDate) {
   if (!huDate) return undefined;
 
@@ -552,45 +767,7 @@ export default async function BlogPostPage({ params }) {
   const localizedBody =
     language === 'hu'
       ? String(post.content ?? '').trim()
-      : language === 'en'
-      ? `
-## ${post.title}
-
-${post.excerpt}
-
-### What this article is about
-
-This article explains the strategic and practical aspects of AI adoption through the Brunella ecosystem, with a focus on reliability, transparency, and business value.
-
-### Core ideas
-
-- Human + AI collaboration creates measurable productivity gains.
-- Agentic systems require observability, governance, and clear decision trails.
-- Long-term success comes from practical workflows, not hype.
-
-### Note
-
-The full editorial English translation of this long-form post is currently in progress.
-`
-      : `
-## ${post.title}
-
-${post.excerpt}
-
-### Worum es in diesem Artikel geht
-
-Dieser Artikel erklärt die strategischen und praktischen Aspekte der KI-Einführung im Brunella-Ökosystem — mit Fokus auf Zuverlässigkeit, Transparenz und geschäftlichen Nutzen.
-
-### Kerngedanken
-
-- Die Zusammenarbeit von Mensch und KI schafft messbare Produktivitätsgewinne.
-- Agentische Systeme benötigen Beobachtbarkeit, Governance und nachvollziehbare Entscheidungen.
-- Langfristiger Erfolg entsteht durch praktische Workflows statt Hype.
-
-### Hinweis
-
-Die vollständige redaktionelle deutsche Übersetzung dieses Longform-Artikels ist derzeit in Arbeit.
-`;
+      : localizedLongformBodies[language]?.[slug] ?? `\n## ${post.title}\n\n${post.excerpt}\n`;
 
   const renderedContent = await renderMarkdownToHtml(localizedBody);
 
