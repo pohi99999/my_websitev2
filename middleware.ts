@@ -2,6 +2,8 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 const PUBLIC_FILE = /\.(.*)$/;
+const ADMIN_PATH = "/admin/analytics";
+const ADMIN_COOKIE = "admin_analytics_auth";
 
 function isBypassedPath(pathname: string) {
   return (
@@ -16,6 +18,41 @@ function isBypassedPath(pathname: string) {
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+
+  if (pathname.startsWith(ADMIN_PATH)) {
+    const configuredToken = process.env.ADMIN_ANALYTICS_TOKEN;
+
+    // If no token is configured, keep route open (safe for local/dev).
+    if (configuredToken) {
+      const cookieToken = req.cookies.get(ADMIN_COOKIE)?.value;
+      if (cookieToken !== configuredToken) {
+        const urlToken = req.nextUrl.searchParams.get("token");
+
+        if (urlToken === configuredToken) {
+          const cleanUrl = req.nextUrl.clone();
+          cleanUrl.searchParams.delete("token");
+
+          const response = NextResponse.redirect(cleanUrl);
+          response.cookies.set(ADMIN_COOKIE, configuredToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            path: "/",
+            maxAge: 60 * 60 * 8,
+          });
+          return response;
+        }
+
+        return new NextResponse("Unauthorized", {
+          status: 401,
+          headers: {
+            "content-type": "text/plain; charset=utf-8",
+            "cache-control": "no-store",
+          },
+        });
+      }
+    }
+  }
 
   if (isBypassedPath(pathname)) return NextResponse.next();
 
