@@ -174,6 +174,61 @@ const results = [
   },
 ];
 
+// ─── Tri-lingual Executive Narrative ───────────────────────────────────────
+const pohiNarrative = {
+  en: {
+    badge: 'Executive Summary',
+    tagline: 'Where AI meets raw-material commerce',
+    headline: 'A B2B marketplace that thinks, plans, and ships — autonomously.',
+    body: `Pohi AI Pro is a fully interactive B2B trading and logistics platform built
+for the raw-materials industry. Three distinct user roles — Buyers, Manufacturers,
+and Administrators — each receive a tailored AI-assisted workspace. Buyers
+articulate complex sourcing demands and get instant AI-matched supplier proposals.
+Manufacturers list inventory with AI-generated descriptions, fair pricing guidance,
+and photorealistic product images (Imagen 3). Administrators command a real-time
+Logistics Control Centre that routes multi-stop shipments, generates CMR documents,
+and forecasts demand anomalies — all powered by Gemini and Vertex AI.`,
+    pillars: [
+      { icon: Brain,       color: 'text-purple-400', title: 'Deep AI Integration',    body: 'AI is embedded at every touchpoint — not bolted on as an afterthought. From crafting supplier messages to autonomous truck loading, every workflow has a Gemini-powered step.' },
+      { icon: Truck,       color: 'text-blue-400',   title: 'Logistics Control Centre', body: 'The flagship feature: AI optimises multi-stop routes, auto-fills vehicles by volume & proximity, and generates legally valid shipping documents in seconds.' },
+      { icon: BarChart3,   color: 'text-cyan-400',   title: 'Predictive Analytics',   body: 'Vertex AI detects demand anomalies and surfaces supply-chain bottlenecks before they become costly disruptions.' },
+      { icon: Globe,       color: 'text-emerald-400', title: 'Scalable Architecture', body: 'Built entirely on the frontend today; designed for a seamless migration to Node.js, PostgreSQL, and WebSocket real-time channels tomorrow.' },
+    ],
+    roadmap: [
+      { phase: 'Now',    items: ['Full frontend prototype', 'Gemini AI at every touchpoint', 'Interactive logistics map'] },
+      { phase: 'Next',   items: ['Node.js + PostgreSQL backend', 'Multi-user auth', 'Real-time WebSocket deals'] },
+      { phase: 'Future', items: ['Mobile app (iOS/Android)', 'Predictive pricing AI', 'Cross-industry adaptation'] },
+    ],
+    cta: 'Interested in a platform like this?',
+  },
+  de: {
+    badge: 'Management-Zusammenfassung',
+    tagline: 'Wo KI auf Rohstoffhandel trifft',
+    headline: 'Ein B2B-Marktplatz, der denkt, plant und liefert — autonom.',
+    body: `Pohi AI Pro ist eine vollständig interaktive B2B-Handels- und Logistikplattform
+für die Rohstoffbranche. Drei Benutzerrollen — Käufer, Hersteller und Administratoren —
+erhalten jeweils einen KI-gestützten Arbeitsbereich. Käufer formulieren komplexe
+Beschaffungsanforderungen und erhalten sofort KI-abgestimmte Lieferantenvorschläge.
+Hersteller listen Bestände mit KI-generierten Beschreibungen, fairen Preisempfehlungen
+und fotorealistischen Produktbildern (Imagen 3). Administratoren steuern ein
+Echtzeit-Logistikzentrum, das Mehrfachlieferungen plant, CMR-Dokumente erzeugt
+und Nachfrageanomalien erkennt — alles mit Gemini und Vertex AI.`,
+    pillars: [
+      { icon: Brain,       color: 'text-purple-400', title: 'Tiefe KI-Integration',     body: 'KI ist an jedem Berührungspunkt eingebettet — keine nachträgliche Ergänzung. Von der Lieferantenkommunikation bis zur autonomen Lkw-Beladung steckt Gemini in jedem Schritt.' },
+      { icon: Truck,       color: 'text-blue-400',   title: 'Logistik-Leitstelle',       body: 'Das Flaggschiff-Feature: KI optimiert Mehrfachrouten, füllt Fahrzeuge automatisch nach Volumen und Nähe auf und erstellt rechtsgültige Versanddokumente in Sekunden.' },
+      { icon: BarChart3,   color: 'text-cyan-400',   title: 'Prädiktive Analytik',       body: 'Vertex AI erkennt Nachfrageanomalien und zeigt Engpässe in der Lieferkette auf, bevor sie kostspielig werden.' },
+      { icon: Globe,       color: 'text-emerald-400', title: 'Skalierbare Architektur', body: 'Heute vollständig im Frontend; konzipiert für eine nahtlose Migration auf Node.js, PostgreSQL und WebSocket-Echtzeitsystem.' },
+    ],
+    roadmap: [
+      { phase: 'Jetzt',    items: ['Vollständiger Frontend-Prototyp', 'Gemini-KI an jedem Schritt', 'Interaktive Logistikkarte'] },
+      { phase: 'Nächstes', items: ['Node.js + PostgreSQL Backend', 'Multi-User-Auth', 'Echtzeit-WebSocket-Deals'] },
+      { phase: 'Zukunft',  items: ['Mobile App (iOS/Android)', 'Prädiktive Preis-KI', 'Branchenadaption'] },
+    ],
+    cta: 'Interesse an einer ähnlichen Plattform?',
+  },
+};
+
+// ─── Screenshots ─────────────────────────────────────────────────────────────
 const screenshots = [
   '/images/pohi-ai-pro/pro-01.jpg',
   '/images/pohi-ai-pro/pro-02.jpg',
@@ -340,6 +395,112 @@ export default function PohiAIProPage() {
                 A platform testreszabott élményt nyújt három felhasználói szerepkörnek: <span className="text-blue-300 font-medium">vevőknek</span>, <span className="text-emerald-300 font-medium">gyártóknak</span> és <span className="text-purple-300 font-medium">adminisztrátoroknak</span>. Az AI nem kiegészítő funkció — a platform minden érintkezési pontján jelen van, kézzelfogható értéket nyújtva.
               </p>
             </SpotlightCard>
+          </GsapFadeIn>
+        </div>
+      </section>
+
+      {/* ── Executive Summary (EN) ── */}
+      <section className="px-6 py-16">
+        <div className="max-w-5xl mx-auto">
+          <GsapFadeIn>
+            <span className="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs border border-blue-500/30 mb-4">
+              {pohiNarrative.en.badge}
+            </span>
+            <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">{pohiNarrative.en.tagline}</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">{pohiNarrative.en.headline}</h2>
+          </GsapFadeIn>
+          <GsapFadeIn delay={0.1}>
+            <SpotlightCard className="p-8 mb-8">
+              <p className="text-gray-300 leading-relaxed text-sm whitespace-pre-line">{pohiNarrative.en.body}</p>
+            </SpotlightCard>
+          </GsapFadeIn>
+          {/* EN pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
+            {pohiNarrative.en.pillars.map((p, i) => {
+              const Icon = p.icon;
+              return (
+                <GsapFadeIn key={p.title} delay={0.1 * i}>
+                  <SpotlightCard className="p-6 h-full">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Icon className={`w-5 h-5 shrink-0 ${p.color}`} />
+                      <h3 className={`font-semibold text-sm ${p.color}`}>{p.title}</h3>
+                    </div>
+                    <p className="text-gray-400 text-xs leading-relaxed">{p.body}</p>
+                  </SpotlightCard>
+                </GsapFadeIn>
+              );
+            })}
+          </div>
+          {/* EN roadmap */}
+          <GsapFadeIn delay={0.2}>
+            <div className="grid grid-cols-3 gap-4">
+              {pohiNarrative.en.roadmap.map((stage, i) => (
+                <SpotlightCard key={stage.phase} className={`p-5 ${i === 0 ? 'border border-purple-500/40' : i === 1 ? 'border border-blue-500/30' : 'border border-gray-500/20'}`}>
+                  <p className={`text-xs font-bold uppercase tracking-wider mb-3 ${i === 0 ? 'text-purple-400' : i === 1 ? 'text-blue-400' : 'text-gray-400'}`}>{stage.phase}</p>
+                  <ul className="space-y-1">
+                    {stage.items.map(item => (
+                      <li key={item} className="text-xs text-gray-300 flex items-start gap-1.5">
+                        <CheckCircle className={`w-3 h-3 shrink-0 mt-0.5 ${i === 0 ? 'text-purple-400' : i === 1 ? 'text-blue-400' : 'text-gray-500'}`} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </SpotlightCard>
+              ))}
+            </div>
+          </GsapFadeIn>
+        </div>
+      </section>
+
+      {/* ── Executive Summary (DE) ── */}
+      <section className="px-6 py-16 bg-white/5">
+        <div className="max-w-5xl mx-auto">
+          <GsapFadeIn>
+            <span className="inline-block px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs border border-cyan-500/30 mb-4">
+              🇩🇪 {pohiNarrative.de.badge}
+            </span>
+            <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">{pohiNarrative.de.tagline}</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">{pohiNarrative.de.headline}</h2>
+          </GsapFadeIn>
+          <GsapFadeIn delay={0.1}>
+            <SpotlightCard className="p-8 mb-8">
+              <p className="text-gray-300 leading-relaxed text-sm whitespace-pre-line">{pohiNarrative.de.body}</p>
+            </SpotlightCard>
+          </GsapFadeIn>
+          {/* DE pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
+            {pohiNarrative.de.pillars.map((p, i) => {
+              const Icon = p.icon;
+              return (
+                <GsapFadeIn key={p.title} delay={0.1 * i}>
+                  <SpotlightCard className="p-6 h-full">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Icon className={`w-5 h-5 shrink-0 ${p.color}`} />
+                      <h3 className={`font-semibold text-sm ${p.color}`}>{p.title}</h3>
+                    </div>
+                    <p className="text-gray-400 text-xs leading-relaxed">{p.body}</p>
+                  </SpotlightCard>
+                </GsapFadeIn>
+              );
+            })}
+          </div>
+          {/* DE roadmap */}
+          <GsapFadeIn delay={0.2}>
+            <div className="grid grid-cols-3 gap-4">
+              {pohiNarrative.de.roadmap.map((stage, i) => (
+                <SpotlightCard key={stage.phase} className={`p-5 ${i === 0 ? 'border border-cyan-500/40' : i === 1 ? 'border border-blue-500/30' : 'border border-gray-500/20'}`}>
+                  <p className={`text-xs font-bold uppercase tracking-wider mb-3 ${i === 0 ? 'text-cyan-400' : i === 1 ? 'text-blue-400' : 'text-gray-400'}`}>{stage.phase}</p>
+                  <ul className="space-y-1">
+                    {stage.items.map(item => (
+                      <li key={item} className="text-xs text-gray-300 flex items-start gap-1.5">
+                        <CheckCircle className={`w-3 h-3 shrink-0 mt-0.5 ${i === 0 ? 'text-cyan-400' : i === 1 ? 'text-blue-400' : 'text-gray-500'}`} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </SpotlightCard>
+              ))}
+            </div>
           </GsapFadeIn>
         </div>
       </section>
