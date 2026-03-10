@@ -2,7 +2,7 @@ import VideoBackground from "../components/VideoBackground";
 import {
   Cpu, Globe, Zap, Search, BarChart3, Lightbulb, Mail,
   Target, TrendingUp, FileText, Package, Users, Brain,
-  ArrowRight, CheckCircle, Building2, Truck, Shield
+  ArrowRight, CheckCircle, Building2, Truck, Shield, ExternalLink
 } from "lucide-react";
 
 export const metadata = {
@@ -233,18 +233,33 @@ const categories = [
     title: "Webfejlesztés AI-val kiegészítve",
     subtitle: "Modern weboldal, ami nem csak szép — hanem dolgozik is.",
     services: [
-      {
-        name: "Next.js weboldal beépített AI funkciókkal",
+      {        name: "Next.js weboldal beépített AI funkciókkal",
         desc:
-          "SEO-optimalizált, mobilbarát weboldalak — beépített AI funkciókkal. A weboldalad kap chatbotot, automatikus ajánlatküldőt, foglaláskezelőt vagy lead-qualification rendszert.",
+          "SEO-optimalizált, mobilbarát weboldalak — beépített AI funkciókkal. A weboldalad kap chatbotot, automatikus ajánlatküldőt, foglaláskelelőt vagy lead-qualification rendszert.",
         bullets: [
           "Gyors, modern weboldal (Next.js, Tailwind CSS)",
           "SEO alapok beépítve az első naptól",
-          "AI chatbot integráció (ügyfélszolgálat, foglalás, ajánlatkérés)",
+          "AI chatbot integráció (ügyfélszolgálat, foglalás, ajánlатkérés)",
           "Google Analytics + teljesítménykövetés",
           "Folyamatos karbantartás és frissítés",
         ],
         forWho: "Vállalkozóknak, KKV-knak, szolgáltatóknak, önkormányzatoknak",
+      },
+      {
+        name: "Referencia weboldalaink",
+        desc:
+          "Íme néhány élő, működő weboldal — melyeket terveztünk és fejlesztettünk. Minden projekt mögött ügyfélközpontú gondolkodás, modern technológia és gondosan épített felhasználói élmény áll.",
+        bullets: [
+          "Cimbi Weboldal — modern arculati bemutatkozó oldal",
+          "Ecomud — prémium termékbemutató oldal, SEO-optimalizálva",
+          "Aronia — elegáns termékoldal vizuális storytellinggel",
+        ],
+        refs: [
+          { text: "cimbi-weboldal.vercel.app", url: "https://cimbi-weboldal.vercel.app/" },
+          { text: "ecomud-eu.vercel.app", url: "https://ecomud-eu.vercel.app/" },
+          { text: "aronia-chi.vercel.app", url: "https://aronia-chi.vercel.app/" },
+        ],
+        forWho: "Vállalkozóknak, KKV-knak, egyedi vállalkozóknak és magánsemélyeknek",
       },
     ],
   },
@@ -348,6 +363,25 @@ export default function SzolgaltatasokPage() {
                               <span key={ex} className="text-xs bg-white/10 border border-white/10 rounded-full px-3 py-1 text-gray-300">
                                 {ex}
                               </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {svc.refs && (
+                        <div className="mb-4">
+                          <p className="text-xs text-gray-500 uppercase tracking-wider mb-2">Élő referencia oldalak</p>
+                          <div className="flex flex-col gap-2">
+                            {svc.refs.map((ref) => (
+                              <a
+                                key={ref.url}
+                                href={ref.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 transition-colors group/ref"
+                              >
+                                <ExternalLink size={11} className="shrink-0" />
+                                <span className="group-hover/ref:underline">{ref.text}</span>
+                              </a>
                             ))}
                           </div>
                         </div>

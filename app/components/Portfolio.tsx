@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Award, TrendingUp, X, Bot, FileSearch, PenTool } from 'lucide-react';
+import { ArrowRight, Award, TrendingUp, X, Bot, FileSearch, PenTool, ExternalLink, Globe } from 'lucide-react';
 
 const Portfolio = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -186,6 +186,92 @@ const Portfolio = () => {
           </div>
         </div>
 
+        {/* === WEBOLDAL REFERENCIÁK === */}
+        <div className="mb-24">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Weboldal Referenciák
+            </h2>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+              Élő, működő weboldalak — melyeket mi terveztünk és fejlesztettünk.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Cimbi Weboldal */}
+            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="h-48 bg-gradient-to-br from-blue-700/40 to-violet-800/40 flex flex-col items-center justify-center">
+                <Globe className="w-10 h-10 text-cyan-400 mb-2" />
+                <span className="text-base font-bold text-white">cimbi-weboldal.vercel.app</span>
+                <span className="text-xs text-slate-400 mt-1">Arculati bemutatkozó oldal</span>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-white mb-2">Cimbi Weboldal</h3>
+                <p className="text-slate-400 text-sm mb-4 leading-relaxed">
+                  Modern, letisztult arculati weboldal — reszponzív dizájn, gyors betöltés és
+                  mobilbarát megjelenés az első naptól fogva.
+                </p>
+                <div className="flex flex-wrap items-center gap-2 mb-5">
+                  <span className="bg-cyan-500/10 text-cyan-400 text-xs px-2 py-1 rounded border border-cyan-500/20">Next.js</span>
+                  <span className="bg-blue-500/10 text-blue-400 text-xs px-2 py-1 rounded border border-blue-500/20">Tailwind CSS</span>
+                  <span className="bg-violet-500/10 text-violet-400 text-xs px-2 py-1 rounded border border-violet-500/20">Reszponzív</span>
+                </div>
+                <a href="https://cimbi-weboldal.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors text-sm">
+                  Megtekintés <ExternalLink className="ml-2 w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Ecomud */}
+            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="h-48 bg-gradient-to-br from-emerald-700/40 to-green-900/40 flex flex-col items-center justify-center">
+                <Globe className="w-10 h-10 text-emerald-400 mb-2" />
+                <span className="text-base font-bold text-white">ecomud-eu.vercel.app</span>
+                <span className="text-xs text-slate-400 mt-1">Prémium termékbemutató</span>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-white mb-2">Ecomud</h3>
+                <p className="text-slate-400 text-sm mb-4 leading-relaxed">
+                  Prémium termék-bemutatkozó oldal — konverzióra optimalizált landing page,
+                  képgaléria és integrált kapcsolatfelvételi form.
+                </p>
+                <div className="flex flex-wrap items-center gap-2 mb-5">
+                  <span className="bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded border border-emerald-500/20">Next.js</span>
+                  <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">SEO optimalizált</span>
+                  <span className="bg-teal-500/10 text-teal-400 text-xs px-2 py-1 rounded border border-teal-500/20">Mobil-first</span>
+                </div>
+                <a href="https://ecomud-eu.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium transition-colors text-sm">
+                  Megtekintés <ExternalLink className="ml-2 w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Aronia */}
+            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-fuchsia-500/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="h-48 bg-gradient-to-br from-violet-700/40 to-fuchsia-900/40 flex flex-col items-center justify-center">
+                <Globe className="w-10 h-10 text-fuchsia-400 mb-2" />
+                <span className="text-base font-bold text-white">aronia-chi.vercel.app</span>
+                <span className="text-xs text-slate-400 mt-1">Természetes termékoldal</span>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-white mb-2">Aronia</h3>
+                <p className="text-slate-400 text-sm mb-4 leading-relaxed">
+                  Elegáns termékbemutató oldal természetes termékekhez — vizuális storytelling,
+                  igényes UI dizájn és gördülékeny felhasználói élmény.
+                </p>
+                <div className="flex flex-wrap items-center gap-2 mb-5">
+                  <span className="bg-violet-500/10 text-violet-400 text-xs px-2 py-1 rounded border border-violet-500/20">Next.js</span>
+                  <span className="bg-fuchsia-500/10 text-fuchsia-400 text-xs px-2 py-1 rounded border border-fuchsia-500/20">Animációk</span>
+                  <span className="bg-pink-500/10 text-pink-400 text-xs px-2 py-1 rounded border border-pink-500/20">UI/UX design</span>
+                </div>
+                <a href="https://aronia-chi.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-fuchsia-400 hover:text-fuchsia-300 font-medium transition-colors text-sm">
+                  Megtekintés <ExternalLink className="ml-2 w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Eredmények és Tanúsítványok */}
         <div className="border-t border-slate-800 pt-16">
           <h3 className="text-center text-2xl font-bold text-white mb-4">Minősítéseink és Eredményeink</h3>
@@ -232,6 +318,7 @@ const Portfolio = () => {
           onClick={() => setSelectedImage(null)}
         >
           <button
+            aria-label="Bezárás"
             className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
             onClick={() => setSelectedImage(null)}
           >
