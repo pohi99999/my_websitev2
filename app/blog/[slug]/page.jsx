@@ -5,6 +5,7 @@ import SpotlightCard from '../../components/SpotlightCard';
 import { ArrowLeft, Calendar, Clock, User, Share2, ArrowRight } from 'lucide-react';
 import { getBlogPostMeta } from '../blogPosts.meta';
 import { renderMarkdownToHtml } from '../../../lib/markdown';
+import { headers } from 'next/headers';
 
 // Valós Blog Tartalmak
 const blogPosts = {
@@ -443,7 +444,9 @@ function toDurationMinutes(readTime) {
 
 export async function generateMetadata({ params }) {
   const slug = params?.slug ?? '';
-  const postMeta = getBlogPostMeta(slug);
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+  const postMeta = getBlogPostMeta(slug, language);
 
   if (!postMeta) {
     return {
@@ -453,8 +456,15 @@ export async function generateMetadata({ params }) {
   }
 
   const title = postMeta.title;
-  const description = postMeta.excerpt || 'Blog bejegyzés a Pohánka AI tudástárból.';
-  const url = `/blog/${slug}`;
+  const description =
+    postMeta.excerpt ||
+    (language === 'en'
+      ? 'Blog post from the Pohánka AI knowledge hub.'
+      : language === 'de'
+      ? 'Blogbeitrag aus dem Wissenszentrum von Pohánka AI.'
+      : 'Blog bejegyzés a Pohánka AI tudástárból.');
+  const prefix = language === 'hu' ? '' : `/${language}`;
+  const url = `${prefix}/blog/${slug}`;
 
   return {
     title,
@@ -467,7 +477,7 @@ export async function generateMetadata({ params }) {
       description,
       url,
       type: 'article',
-      locale: 'hu_HU'
+      locale: language === 'en' ? 'en_US' : language === 'de' ? 'de_DE' : 'hu_HU'
     },
     twitter: {
       card: 'summary_large_image',
@@ -479,25 +489,110 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogPostPage({ params }) {
   const slug = params?.slug ?? '';
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+  const prefix = language === 'hu' ? '' : `/${language}`;
+  const ui =
+    language === 'en'
+      ? {
+          notFoundTitle: '404 - Post Not Found',
+          notFoundDesc: 'Sorry, this blog post could not be found.',
+          backToBlog: 'Back to Blog',
+          readSuffix: 'read',
+          shareCta: 'Liked the article? Share it with others!',
+          shareButton: 'Share',
+          relatedTitle: 'Related Articles',
+          relatedRead: 'Read article',
+          contentNotice: 'This long-form article is currently available in Hungarian. EN/DE full translation is in progress.',
+          homeCrumb: 'Home',
+        }
+      : language === 'de'
+      ? {
+          notFoundTitle: '404 - Beitrag nicht gefunden',
+          notFoundDesc: 'Dieser Blogbeitrag wurde leider nicht gefunden.',
+          backToBlog: 'Zurück zum Blog',
+          readSuffix: 'Lesezeit',
+          shareCta: 'Hat dir der Artikel gefallen? Teile ihn mit anderen!',
+          shareButton: 'Teilen',
+          relatedTitle: 'Verwandte Artikel',
+          relatedRead: 'Artikel lesen',
+          contentNotice: 'Dieser Longform-Artikel ist derzeit auf Ungarisch verfügbar. Die vollständige EN/DE-Übersetzung ist in Arbeit.',
+          homeCrumb: 'Startseite',
+        }
+      : {
+          notFoundTitle: '404 - Poszt Nem Található',
+          notFoundDesc: 'Sajnos nem találjuk ezt a blog bejegyzést.',
+          backToBlog: 'Vissza a Bloghoz',
+          readSuffix: 'olvasás',
+          shareCta: 'Tetszett a cikk? Ossza meg másokkal is!',
+          shareButton: 'Megosztás',
+          relatedTitle: 'Kapcsolódó Cikkek',
+          relatedRead: 'Olvassa el',
+          contentNotice: null,
+          homeCrumb: 'Főoldal',
+        };
   const postContent = blogPosts?.[slug];
-  const postMeta = getBlogPostMeta(slug);
+  const postMeta = getBlogPostMeta(slug, language);
   const post = postContent && postMeta ? { ...postContent, ...postMeta } : undefined;
 
   if (!post) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white flex items-center justify-center px-6">
         <div className="text-center">
-          <h1 className="text-4xl font-bold gradient-text mb-4">404 - Poszt Nem Található</h1>
-          <p className="text-gray-300 mb-8">Sajnos nem találjuk ezt a blog bejegyzést.</p>
-          <Link href="/blog" className="btn-primary inline-block">
-            Vissza a Bloghoz
+          <h1 className="text-4xl font-bold gradient-text mb-4">{ui.notFoundTitle}</h1>
+          <p className="text-gray-300 mb-8">{ui.notFoundDesc}</p>
+          <Link href={`${prefix}/blog`} className="btn-primary inline-block">
+            {ui.backToBlog}
           </Link>
         </div>
       </div>
     );
   }
 
-  const renderedContent = await renderMarkdownToHtml(String(post.content ?? '').trim());
+  const localizedBody =
+    language === 'hu'
+      ? String(post.content ?? '').trim()
+      : language === 'en'
+      ? `
+## ${post.title}
+
+${post.excerpt}
+
+### What this article is about
+
+This article explains the strategic and practical aspects of AI adoption through the Brunella ecosystem, with a focus on reliability, transparency, and business value.
+
+### Core ideas
+
+- Human + AI collaboration creates measurable productivity gains.
+- Agentic systems require observability, governance, and clear decision trails.
+- Long-term success comes from practical workflows, not hype.
+
+### Note
+
+The full editorial English translation of this long-form post is currently in progress.
+`
+      : `
+## ${post.title}
+
+${post.excerpt}
+
+### Worum es in diesem Artikel geht
+
+Dieser Artikel erklärt die strategischen und praktischen Aspekte der KI-Einführung im Brunella-Ökosystem — mit Fokus auf Zuverlässigkeit, Transparenz und geschäftlichen Nutzen.
+
+### Kerngedanken
+
+- Die Zusammenarbeit von Mensch und KI schafft messbare Produktivitätsgewinne.
+- Agentische Systeme benötigen Beobachtbarkeit, Governance und nachvollziehbare Entscheidungen.
+- Langfristiger Erfolg entsteht durch praktische Workflows statt Hype.
+
+### Hinweis
+
+Die vollständige redaktionelle deutsche Übersetzung dieses Longform-Artikels ist derzeit in Arbeit.
+`;
+
+  const renderedContent = await renderMarkdownToHtml(localizedBody);
 
   return (
     <div className="min-h-screen bg-transparent text-white">
@@ -505,7 +600,7 @@ export default async function BlogPostPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify((() => {
-            const canonicalUrl = `https://pohanka.vercel.app/blog/${slug}`;
+            const canonicalUrl = `https://pohanka.vercel.app${prefix}/blog/${slug}`;
             const isoDate = toIsoDate(post.date);
             const duration = toDurationMinutes(post.readTime);
 
@@ -513,13 +608,19 @@ export default async function BlogPostPage({ params }) {
               '@context': 'https://schema.org',
               '@type': 'BlogPosting',
               headline: post.title,
-              description: post.excerpt || 'Blog bejegyzés a Pohánka AI tudástárból.',
+              description:
+                post.excerpt ||
+                (language === 'en'
+                  ? 'Blog post from the Pohánka AI knowledge hub.'
+                  : language === 'de'
+                  ? 'Blogbeitrag aus dem Wissenszentrum von Pohánka AI.'
+                  : 'Blog bejegyzés a Pohánka AI tudástárból.'),
               url: canonicalUrl,
               mainEntityOfPage: {
                 '@type': 'WebPage',
                 '@id': canonicalUrl
               },
-              inLanguage: 'hu-HU',
+              inLanguage: language === 'en' ? 'en-US' : language === 'de' ? 'de-DE' : 'hu-HU',
               author: {
                 '@type': 'Person',
                 name: post.author || 'Pohánka és Társa Kft.'
@@ -546,14 +647,14 @@ export default async function BlogPostPage({ params }) {
                 {
                   '@type': 'ListItem',
                   position: 1,
-                  name: 'Főoldal',
+                  name: ui.homeCrumb,
                   item: 'https://pohanka.vercel.app/'
                 },
                 {
                   '@type': 'ListItem',
                   position: 2,
                   name: 'Blog',
-                  item: 'https://pohanka.vercel.app/blog'
+                  item: `https://pohanka.vercel.app${prefix}/blog`
                 },
                 {
                   '@type': 'ListItem',
@@ -573,11 +674,11 @@ export default async function BlogPostPage({ params }) {
         <div className="max-w-4xl mx-auto">
           <GsapFadeIn>
             <Link
-              href="/blog"
+              href={`${prefix}/blog`}
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              Vissza a Bloghoz
+              {ui.backToBlog}
             </Link>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 gradient-text leading-tight">
@@ -591,7 +692,7 @@ export default async function BlogPostPage({ params }) {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-blue-500" />
-                <span>{post.readTime} olvasás</span>
+                <span>{post.readTime} {ui.readSuffix}</span>
               </div>
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4 text-purple-500" />
@@ -652,11 +753,11 @@ export default async function BlogPostPage({ params }) {
           <GsapFadeIn delay={0.4}>
             <div className="flex flex-col sm:flex-row items-center justify-between p-8 rounded-2xl bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-white/10">
               <span className="text-xl font-semibold text-white mb-4 sm:mb-0">
-                Tetszett a cikk? Ossza meg másokkal is!
+                {ui.shareCta}
               </span>
               <button className="btn-primary flex items-center gap-2 px-6 py-3">
                 <Share2 className="w-5 h-5" />
-                Megosztás
+                {ui.shareButton}
               </button>
             </div>
           </GsapFadeIn>
@@ -668,7 +769,7 @@ export default async function BlogPostPage({ params }) {
         <div className="max-w-7xl mx-auto">
           <GsapFadeIn>
             <div className="text-center mb-16">
-              <h2 className="section-title">Kapcsolódó Cikkek</h2>
+              <h2 className="section-title">{ui.relatedTitle}</h2>
             </div>
           </GsapFadeIn>
 
@@ -677,13 +778,13 @@ export default async function BlogPostPage({ params }) {
               <GsapFadeIn key={idx} delay={0.5 + idx * 0.1}>
                 <SpotlightCard className="p-8 h-full flex flex-col justify-between hover:border-blue-500/50 transition-colors">
                   <h3 className="text-xl font-bold mb-4">
-                    {getBlogPostMeta(relatedPost.slug)?.title ?? relatedPost.title ?? relatedPost.slug}
+                    {getBlogPostMeta(relatedPost.slug, language)?.title ?? relatedPost.title ?? relatedPost.slug}
                   </h3>
                   <Link
-                    href={`/blog/${relatedPost.slug}`}
+                    href={`${prefix}/blog/${relatedPost.slug}`}
                     className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium group"
                   >
-                    Olvassa el{' '}
+                    {ui.relatedRead}{' '}
                     <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </SpotlightCard>

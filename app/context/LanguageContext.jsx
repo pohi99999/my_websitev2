@@ -3,16 +3,18 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import hu from '../locales/hu';
 import en from '../locales/en';
+import de from '../locales/de';
 
 const STORAGE_KEY = 'site-language';
 
 const translations = {
   hu,
   en,
+  de,
 };
 
 function isSupportedLanguage(value) {
-  return value === 'hu' || value === 'en';
+  return value === 'hu' || value === 'en' || value === 'de';
 }
 
 function getNestedValue(obj, path) {
@@ -47,6 +49,7 @@ export function LanguageProvider({ children, initialLanguage = 'hu' }) {
 
       const browserLang = (navigator.language || '').toLowerCase();
       if (browserLang.startsWith('en')) setLanguage('en');
+      if (browserLang.startsWith('de')) setLanguage('de');
     } catch {
       // no-op
     }
@@ -61,7 +64,11 @@ export function LanguageProvider({ children, initialLanguage = 'hu' }) {
   }, [language]);
 
   const toggleLanguage = useCallback(() => {
-    setLanguage((prev) => (prev === 'hu' ? 'en' : 'hu'));
+    setLanguage((prev) => {
+      if (prev === 'hu') return 'en';
+      if (prev === 'en') return 'de';
+      return 'hu';
+    });
   }, []);
 
   const t = useCallback(

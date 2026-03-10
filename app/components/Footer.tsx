@@ -8,9 +8,9 @@ const Footer = () => {
   const { t, language } = useLanguage();
 
   const withLang = (href: string) => {
-    if (language !== 'en') return href;
-    if (href === '/') return '/en';
-    return href.startsWith('/') ? `/en${href}` : href;
+    if (language === 'hu') return href;
+    if (href === '/') return `/${language}`;
+    return href.startsWith('/') ? `/${language}${href}` : href;
   };
 
   return (

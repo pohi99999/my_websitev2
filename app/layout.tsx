@@ -46,7 +46,12 @@ export default function RootLayout({
   const cookieStore = cookies();
   const langCookie = cookieStore.get('site-language')?.value;
   const headerLang = headers().get('x-site-language');
-  const initialLanguage = headerLang === 'en' || langCookie === 'en' ? 'en' : 'hu';
+  const initialLanguage =
+    headerLang === 'de' || langCookie === 'de'
+      ? 'de'
+      : headerLang === 'en' || langCookie === 'en'
+        ? 'en'
+        : 'hu';
 
   return (
     <html lang={initialLanguage}>
@@ -55,7 +60,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#00ff9d" />
-        
+
         {/* Organization Schema */}
         <script
           type="application/ld+json"

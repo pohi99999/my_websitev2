@@ -31,7 +31,8 @@ export function middleware(req: NextRequest) {
   }
 
   const isEn = pathname === '/en' || pathname.startsWith('/en/');
-  const lang = isEn ? 'en' : 'hu';
+  const isDe = pathname === '/de' || pathname.startsWith('/de/');
+  const lang = isEn ? 'en' : isDe ? 'de' : 'hu';
   const requestHeaders = new Headers(req.headers);
   requestHeaders.set('x-site-language', lang);
 

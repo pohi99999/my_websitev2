@@ -162,6 +162,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
 
   const huPath = toPath(slug);
   const enPath = `/en${huPath === '/' ? '' : huPath}`;
+  const dePath = `/de${huPath === '/' ? '' : huPath}`;
 
   if (!spec) {
     return {
@@ -172,6 +173,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
         languages: {
           hu: huPath,
           en: enPath,
+          de: dePath,
         },
       },
     };
@@ -186,6 +188,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
       languages: {
         hu: huPath,
         en: enPath,
+        de: dePath,
       },
     },
     openGraph: {
