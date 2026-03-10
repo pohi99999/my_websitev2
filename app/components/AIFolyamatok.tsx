@@ -2,74 +2,126 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Zap, Target, Brain, Bot, BarChart3, Mail, Shield, TrendingUp, CheckCircle } from 'lucide-react';
-
-const services = [
-  {
-    icon: Target,
-    color: 'text-blue-400',
-    bg: 'bg-blue-900/30',
-    border: 'border-blue-500/30',
-    title: 'Intelligens Lead Generálás',
-    desc: 'Az AI naponta kiszűri azokat a vállalkozásokat, akiknek a legnagyobb szükségük van a te szolgáltatásodra. Heti 100–200 előminősített kontakt, automatikusan — te csak tárgyalsz.',
-    bullets: ['Fájdalompontszám alapú priorizálás', 'Automatikus digitális állapotjelentés', 'Iparág-specifikus célzás'],
-  },
-  {
-    icon: Mail,
-    color: 'text-purple-400',
-    bg: 'bg-purple-900/30',
-    border: 'border-purple-500/30',
-    title: 'Automatikus Outreach Kampányok',
-    desc: 'Személyre szabott emailek, automatikus kiküldés, follow-up emlékeztetők — minden a rendszer csinálja. Nem tömeges spam, hanem célzott, egyedi megkeresés.',
-    bullets: ['Ütemezett kiküldés csúcsidőben', 'Automatikus 5 napos follow-up', 'Google Sheets státuszkövetés'],
-  },
-  {
-    icon: Zap,
-    color: 'text-yellow-400',
-    bg: 'bg-yellow-900/30',
-    border: 'border-yellow-500/30',
-    title: 'Üzleti Folyamatok Automatizálása',
-    desc: 'Amit ma kézzel csinálsz — holnaptól csinálja helyetted a rendszer. Számlafeldolgozás, adatbevitel, riportok, email triage — mind automatikusan.',
-    bullets: ['OCR számlafeldolgozás', 'Automatikus riport generálás', 'Email osztályozás és válaszolás'],
-  },
-  {
-    icon: Brain,
-    color: 'text-cyan-400',
-    bg: 'bg-cyan-900/30',
-    border: 'border-cyan-500/30',
-    title: 'AI Ügynökök Telepítése',
-    desc: 'A Brunella Agent System 57 ügynöke közül kiválasztjuk a vállalkozásodhoz illőket. Kutatás, tartalom, ügyfélszolgálat, logisztika — mind egy AI-csapat végzi.',
-    bullets: ['Phoenix Protocol öngyógyítás', 'RAG memória: tanul a korábbi feladatokból', '24/7 felügyelet nélkül'],
-  },
-  {
-    icon: BarChart3,
-    color: 'text-green-400',
-    bg: 'bg-green-900/30',
-    border: 'border-green-500/30',
-    title: 'Piackutatás & Versenytárs Elemzés',
-    desc: 'Az AI folyamatosan figyeli az iparágadat: versenytársak, árak, trendek, pályázati lehetőségek. Minden reggel friss intelligencia — emberi munka nélkül.',
-    bullets: ['Napi piaci hírlevél', 'Automatikus pályázatfigyelés', 'Versenytárs ár- és eseménykövetés'],
-  },
-  {
-    icon: TrendingUp,
-    color: 'text-pink-400',
-    bg: 'bg-pink-900/30',
-    border: 'border-pink-500/30',
-    title: 'Marketing & Tartalom Automatizálás',
-    desc: 'SEO cikkek, közösségi média posztok, hirdetésszövegek — az AI gyártja, a stratégiát te határozod meg. Több tartalom, kevesebb idő, mérhetően jobb elérés.',
-    bullets: ['SEO-optimalizált cikk generálás', 'Közösségi média ütemező', 'A/B teszt hirdetésszövegek'],
-  },
-];
+import { ArrowRight, Zap, Target, Brain, Bot, BarChart3, Mail, Shield, TrendingUp, CheckCircle, Sparkles } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function AIFolyamatok() {
+  const { language } = useLanguage();
+  const withLang = (href: string) => {
+    if (language === 'hu') return href;
+    if (href === '/') return `/${language}`;
+    return href.startsWith('/') ? `/${language}${href}` : href;
+  };
+
+  if (language !== 'hu') {
+    const ui =
+      language === 'en'
+        ? {
+          title: 'How We Build AI Workflows',
+          subtitle: 'From process diagnosis to deployment-ready automation in clear, measurable phases.',
+          phases: [
+            'Process mapping and bottleneck discovery',
+            'Solution architecture and AI integration design',
+            'Implementation, testing and operational rollout',
+          ],
+          details: 'View services',
+          contact: 'Request consultation',
+        }
+        : {
+          title: 'So bauen wir KI-Workflows',
+          subtitle: 'Von der Prozessdiagnose bis zur produktiven Automatisierung in klaren, messbaren Phasen.',
+          phases: [
+            'Prozessanalyse und Engpass-Erkennung',
+            'Lösungsarchitektur und KI-Integrationsdesign',
+            'Implementierung, Tests und operativer Rollout',
+          ],
+          details: 'Services ansehen',
+          contact: 'Beratung anfragen',
+        };
+
+    return (
+      <section className="py-24 px-6 bg-slate-950 text-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-4xl md:text-5xl font-bold mb-5 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              {ui.title}
+            </h2>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">{ui.subtitle}</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {ui.phases.map((phase) => (
+              <div key={phase} className="bg-white/5 border border-white/10 rounded-2xl p-7">
+                <Sparkles className="w-5 h-5 text-cyan-300 mb-3" />
+                <p className="text-gray-200 leading-relaxed">{phase}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href={withLang('/szolgaltatasok')} className="inline-flex items-center gap-2 px-7 py-3 rounded-xl border border-cyan-400/40 text-cyan-300 hover:text-white hover:border-cyan-300 transition-colors">
+              {ui.details} <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href={withLang('/kapcsolat')} className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:from-blue-600 hover:to-purple-700 transition-colors">
+              {ui.contact}
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const services = [
+    {
+      icon: Target,
+      color: 'text-blue-400',
+      title: 'Intelligens Lead Generálás',
+      desc: 'Az AI naponta kiszűri azokat a vállalkozásokat, akiknek a legnagyobb szükségük van a te szolgáltatásodra.',
+      bullets: ['Fájdalompontszám alapú priorizálás', 'Automatikus digitális állapotjelentés', 'Iparág-specifikus célzás'],
+    },
+    {
+      icon: Mail,
+      color: 'text-purple-400',
+      title: 'Automatikus Outreach Kampányok',
+      desc: 'Személyre szabott emailek, automatikus kiküldés, follow-up emlékeztetők — minden a rendszer csinálja.',
+      bullets: ['Ütemezett kiküldés', 'Automatikus follow-up', 'Státuszkövetés'],
+    },
+    {
+      icon: Zap,
+      color: 'text-yellow-400',
+      title: 'Üzleti Folyamatok Automatizálása',
+      desc: 'Amit ma kézzel csinálsz — holnaptól csinálja helyetted a rendszer.',
+      bullets: ['OCR feldolgozás', 'Automatikus riportok', 'Email osztályozás'],
+    },
+    {
+      icon: Brain,
+      color: 'text-cyan-400',
+      title: 'AI Ügynökök Telepítése',
+      desc: 'A Brunella Agent System ügynökei valódi üzleti feladatokat végeznek.',
+      bullets: ['Öngyógyító működés', 'RAG memória', '24/7 futás'],
+    },
+    {
+      icon: BarChart3,
+      color: 'text-green-400',
+      title: 'Piackutatás & Versenytárs Elemzés',
+      desc: 'Folyamatos iparági monitoring versenytársakra, trendekre és lehetőségekre.',
+      bullets: ['Napi összefoglaló', 'Pályázatfigyelés', 'Árkövetés'],
+    },
+    {
+      icon: TrendingUp,
+      color: 'text-pink-400',
+      title: 'Marketing & Tartalom Automatizálás',
+      desc: 'SEO cikkek, social posztok és hirdetésszövegek AI-val gyorsítva.',
+      bullets: ['SEO tartalom', 'Közösségi ütemezés', 'A/B kreatívok'],
+    },
+  ];
+
   return (
     <section id="ai-folyamatok" className="py-24 px-6 relative bg-slate-950">
-      {/* Subtle gradient háttér */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950/10 to-slate-950 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
 
-        {/* Fejléc */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm font-medium mb-6">
             <Bot className="w-4 h-4" /> AI ügynökök · 24/7 · Emberi felügyelet nélkül
@@ -84,12 +136,11 @@ export default function AIFolyamatok() {
           </p>
         </div>
 
-        {/* Számok */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {[
             { value: '250+', label: 'Napi friss lead', color: 'text-blue-400' },
-            { value: '57',   label: 'Bevetett AI ügynök', color: 'text-purple-400' },
-            { value: '80%',  label: 'Időmegtakarítás', color: 'text-green-400' },
+            { value: '57', label: 'Bevetett AI ügynök', color: 'text-purple-400' },
+            { value: '80%', label: 'Időmegtakarítás', color: 'text-green-400' },
             { value: '24/7', label: 'Emberi beavatkozás nélkül', color: 'text-orange-400' },
           ].map(s => (
             <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-blue-500/30 transition-colors">
@@ -99,20 +150,19 @@ export default function AIFolyamatok() {
           ))}
         </div>
 
-        {/* Szolgáltatás kártyák */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
           {services.map((s, i) => {
             const Icon = s.icon;
             return (
               <div
                 key={s.title}
-                className={`${s.bg} border ${s.border} rounded-2xl p-7 hover:scale-[1.02] transition-all duration-300 group`}
+                className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-colors"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className={`p-2 rounded-xl bg-black/20`}>
                     <Icon className={`w-6 h-6 ${s.color}`} />
                   </div>
-                  <h3 className="font-bold text-white text-base">{s.title}</h3>
+                  <h3 className="text-white font-semibold">{s.title}</h3>
                 </div>
                 <p className="text-slate-300 text-sm leading-relaxed mb-4">{s.desc}</p>
                 <ul className="space-y-1.5">
@@ -128,7 +178,6 @@ export default function AIFolyamatok() {
           })}
         </div>
 
-        {/* CTA sáv */}
         <div className="bg-gradient-to-r from-blue-900/40 via-purple-900/30 to-blue-900/40 border border-blue-500/20 rounded-3xl p-10 text-center">
           <Shield className="w-8 h-8 text-blue-400 mx-auto mb-4" />
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
@@ -140,13 +189,13 @@ export default function AIFolyamatok() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/szolgaltatasok"
+              href={withLang('/szolgaltatasok')}
               className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105"
             >
               Összes szolgáltatás <ArrowRight size={18} />
             </Link>
             <Link
-              href="/kapcsolat"
+              href={withLang('/kapcsolat')}
               className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-blue-400/50 text-slate-300 hover:text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
             >
               Ingyenes konzultáció <ArrowRight size={18} />

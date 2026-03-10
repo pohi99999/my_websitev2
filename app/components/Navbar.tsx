@@ -10,7 +10,13 @@ import { useLanguage } from '../context/LanguageContext';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const withLang = (href: string) => {
+    if (language === 'hu') return href;
+    if (href === '/') return `/${language}`;
+    return href.startsWith('/') ? `/${language}${href}` : href;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,14 +28,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg py-2' : 'bg-transparent py-4'
-      }`}
+      className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg py-2' : 'bg-transparent py-4'
+        }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* LOGO CSERE */}
-          <Link href="/" className="flex items-center">
+          <Link href={withLang('/')} className="flex items-center">
             <Image
               src="/images/logo.png"
               alt="Pohánka és Társa Logo"
