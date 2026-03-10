@@ -2,17 +2,59 @@ import React from 'react';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
+import { headers } from 'next/headers';
 import {
   ArrowLeft, ArrowRight, CheckCircle, PenTool, Instagram, Mail,
   Sparkles, Clock, Star, FileText, Users, MessageSquare, Palette, Share2, Megaphone
 } from 'lucide-react';
 
-export const metadata = {
-  title: 'AI Tartalom Gyártás — Social Media & Email Marketing | Pohánka AI',
-  description: 'Havi social media posztok, blog cikkek és email kampányok — AI-val generálva, a te iparágadra és hangnemedre szabva.',
-  alternates: { canonical: '/portfolio/tartalom-gyartas' },
-  openGraph: { title: 'AI Tartalom Gyártás — Social Media & Email Marketing', description: 'AI által generált, ember által ellenőrzött tartalom. 9.990 Ft/hó-tól.', url: '/portfolio/tartalom-gyartas', type: 'article', locale: 'hu_HU' },
-};
+export function generateMetadata() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+
+  const meta =
+    language === 'en'
+      ? {
+          title: 'AI Content Production — Social Media & Email Marketing | Pohánka AI',
+          description: 'Monthly social media, blog and email content tailored to your industry and brand voice.',
+          canonical: '/en/portfolio/tartalom-gyartas',
+          locale: 'en_US',
+        }
+      : language === 'de'
+      ? {
+          title: 'KI-Content-Produktion — Social Media & E-Mail Marketing | Pohánka AI',
+          description: 'Monatlicher Content für Social Media, Blog und E-Mail, abgestimmt auf Branche und Tonalität.',
+          canonical: '/de/portfolio/tartalom-gyartas',
+          locale: 'de_DE',
+        }
+      : {
+          title: 'AI Tartalom Gyártás — Social Media & Email Marketing | Pohánka AI',
+          description:
+            'Havi social media posztok, blog cikkek és email kampányok — AI-val generálva, a te iparágadra és hangnemedre szabva.',
+          canonical: '/portfolio/tartalom-gyartas',
+          locale: 'hu_HU',
+        };
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: meta.canonical,
+      languages: {
+        hu: '/portfolio/tartalom-gyartas',
+        en: '/en/portfolio/tartalom-gyartas',
+        de: '/de/portfolio/tartalom-gyartas',
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: meta.canonical,
+      type: 'article',
+      locale: meta.locale,
+    },
+  };
+}
 
 const contentTypes = [
   { icon: Instagram, color: 'text-pink-400', title: 'Social Media Posztok', desc: 'Facebook, Instagram, LinkedIn — iparágra szabva, posztoló naptárral.' },
@@ -44,12 +86,67 @@ const stats = [
 ];
 
 export default function TartalomGyartasPage() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+  const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
+
+  if (language !== 'hu') {
+    const ui =
+      language === 'en'
+        ? {
+            back: 'Back to Portfolio',
+            title: 'AI Content Production',
+            subtitle: 'AI-generated, editor-reviewed social, blog and email content tailored to your business tone.',
+            bullets: ['Social media content calendar', 'SEO blog articles', 'Automated email campaign copy'],
+            cta: 'Request free sample',
+          }
+        : {
+            back: 'Zurück zum Portfolio',
+            title: 'KI-Content-Produktion',
+            subtitle:
+              'KI-generierter, redaktionell geprüfter Content für Social Media, Blog und E-Mail — abgestimmt auf Ihre Marke.',
+            bullets: ['Social-Media Redaktionsplan', 'SEO-Blogartikel', 'Automatisierte E-Mail-Kampagnentexte'],
+            cta: 'Kostenlose Muster anfordern',
+          };
+
+    return (
+      <div className="min-h-screen text-white">
+        <section className="relative py-12 px-6 pt-24 pb-16">
+          <div className="max-w-5xl mx-auto">
+            <GsapFadeIn>
+              <Link href={withLang('/portfolio')} className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 mb-8 transition-colors"><ArrowLeft className="w-4 h-4" /> {ui.back}</Link>
+              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent mb-3">{ui.title}</h1>
+              <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">{ui.subtitle}</p>
+            </GsapFadeIn>
+          </div>
+        </section>
+        <section className="px-6 py-16 bg-white/5">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            {ui.bullets.map((b, i) => (
+              <GsapFadeIn key={b} delay={0.1 * i}><SpotlightCard className="p-7 h-full"><CheckCircle className="w-6 h-6 mb-4 text-pink-300" /><p className="text-gray-200 text-sm leading-relaxed">{b}</p></SpotlightCard></GsapFadeIn>
+            ))}
+          </div>
+        </section>
+        <section className="px-6 py-24">
+          <div className="max-w-3xl mx-auto">
+            <GsapFadeIn delay={0.2}>
+              <SpotlightCard className="p-12 text-center">
+                <Sparkles className="w-12 h-12 text-pink-400 mx-auto mb-4" />
+                <Link href={withLang('/kapcsolat')} className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105">{ui.cta} <ArrowRight size={18} /></Link>
+              </SpotlightCard>
+            </GsapFadeIn>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen text-white">
       <section className="relative py-12 px-6 pt-24 pb-16">
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn>
-            <Link href="/portfolio" className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 mb-8 transition-colors"><ArrowLeft className="w-4 h-4" /> Vissza a Portfólióhoz</Link>
+            <Link href={withLang('/portfolio')} className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 mb-8 transition-colors"><ArrowLeft className="w-4 h-4" /> Vissza a Portfólióhoz</Link>
             <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
               <div className="shrink-0 w-24 h-24 rounded-2xl bg-gradient-to-br from-pink-600 to-purple-700 flex items-center justify-center shadow-lg shadow-pink-900/40"><PenTool className="w-12 h-12 text-white" /></div>
               <div>
@@ -112,7 +209,7 @@ export default function TartalomGyartasPage() {
                   <h3 className="text-lg font-bold text-white mb-2">{plan.name}</h3>
                   <div className="mb-6"><span className="text-3xl font-black text-white">{plan.price}</span><span className="text-gray-400 text-sm">{plan.period}</span></div>
                   <ul className="space-y-3 mb-8 flex-1">{plan.features.map(f => <li key={f} className="flex items-center gap-2 text-sm text-gray-300"><CheckCircle className="w-4 h-4 text-pink-400 shrink-0" />{f}</li>)}</ul>
-                  <Link href="/kapcsolat" className={`inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold transition-all duration-300 ${plan.highlight ? 'bg-pink-500 hover:bg-pink-600 text-white' : 'border border-white/20 text-gray-300 hover:border-pink-400/50 hover:text-white'}`}>Kezdjük el <ArrowRight size={16} /></Link>
+                  <Link href={withLang('/kapcsolat')} className={`inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold transition-all duration-300 ${plan.highlight ? 'bg-pink-500 hover:bg-pink-600 text-white' : 'border border-white/20 text-gray-300 hover:border-pink-400/50 hover:text-white'}`}>Kezdjük el <ArrowRight size={16} /></Link>
                 </div>
               </GsapFadeIn>
             ))}
@@ -127,7 +224,7 @@ export default function TartalomGyartasPage() {
               <Sparkles className="w-12 h-12 text-pink-400 mx-auto mb-4" />
               <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">5 minta poszt INGYEN</h2>
               <p className="text-lg text-gray-300 mb-8 leading-relaxed">Írd meg az iparágadat és a céged hangnemét — 24 órán belül küldünk 5 kész, posztolható tartalmat.</p>
-              <Link href="/kapcsolat" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105">Ingyenes minta kérése <ArrowRight size={18} /></Link>
+              <Link href={withLang('/kapcsolat')} className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105">Ingyenes minta kérése <ArrowRight size={18} /></Link>
             </SpotlightCard>
           </GsapFadeIn>
         </div>
