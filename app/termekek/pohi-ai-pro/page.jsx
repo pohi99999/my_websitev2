@@ -5,27 +5,60 @@ import SpotlightCard from '../../components/SpotlightCard';
 import { ArrowLeft, CheckCircle, Zap, Layers, Code, Database, Shield, Cpu } from 'lucide-react';
 import { headers } from 'next/headers';
 
-export const metadata = {
-  title: 'Pohi AI Pro',
-  description:
-    'Pohi AI Pro: egyedi, fejlett portál és automatizációs rendszer – vevői adatbázis, rendelésállomány és készletkezelés összefésülése AI támogatással.',
-  alternates: {
-    canonical: '/termekek/pohi-ai-pro'
-  },
-  openGraph: {
-    title: 'Pohi AI Pro',
-    description:
-      'Pohi AI Pro: egyedi, fejlett portál és automatizációs rendszer – vevői adatbázis, rendelésállomány és készletkezelés összefésülése AI támogatással.',
-    url: '/termekek/pohi-ai-pro',
-    images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }]
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Pohi AI Pro',
-    description:
-      'Pohi AI Pro: egyedi, fejlett portál és automatizációs rendszer – vevői adatbázis, rendelésállomány és készletkezelés összefésülése AI támogatással.'
-  }
-};
+export function generateMetadata() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+
+  const meta =
+    language === 'en'
+      ? {
+          title: 'Pohi AI Pro | Pohánka AI',
+          description:
+            'Custom AI portal system for customer records, orders, inventory and logistics optimization.',
+          canonical: '/en/termekek/pohi-ai-pro',
+          locale: 'en_US',
+        }
+      : language === 'de'
+      ? {
+          title: 'Pohi AI Pro | Pohánka AI',
+          description:
+            'Individuelles KI-Portalsystem für Kundendaten, Bestellungen, Lagerbestand und Logistikoptimierung.',
+          canonical: '/de/termekek/pohi-ai-pro',
+          locale: 'de_DE',
+        }
+      : {
+          title: 'Pohi AI Pro | Pohánka AI',
+          description:
+            'Pohi AI Pro: egyedi, fejlett portál és automatizációs rendszer – vevői adatbázis, rendelésállomány és készletkezelés összefésülése AI támogatással.',
+          canonical: '/termekek/pohi-ai-pro',
+          locale: 'hu_HU',
+        };
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: meta.canonical,
+      languages: {
+        hu: '/termekek/pohi-ai-pro',
+        en: '/en/termekek/pohi-ai-pro',
+        de: '/de/termekek/pohi-ai-pro',
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: meta.canonical,
+      locale: meta.locale,
+      images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }],
+    },
+    twitter: {
+      card: 'summary',
+      title: meta.title,
+      description: meta.description,
+    },
+  };
+}
 
 export default function PohiAIProPage() {
   const headerLang = headers().get('x-site-language');

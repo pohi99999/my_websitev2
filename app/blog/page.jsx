@@ -5,27 +5,60 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { BLOG_POST_ORDER, getBlogPostMeta } from './blogPosts.meta';
 import { headers } from 'next/headers';
 
-export const metadata = {
-  title: 'Blog & Tudástár',
-  description: 'Cikkek és white paper anyagok AI ügynökökről, automatizálásról, technológiáról és a Brunella Agent System működéséről.',
-  alternates: {
-    canonical: '/blog'
-  },
-  openGraph: {
-    title: 'Blog & Tudástár | Pohánka AI',
-    description:
-      'Cikkek és white paper anyagok AI ügynökökről, automatizálásról, technológiáról és a Brunella Agent System működéséről.',
-    url: '/blog',
-    type: 'website',
-    locale: 'hu_HU'
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Blog & Tudástár | Pohánka AI',
-    description:
-      'Cikkek és white paper anyagok AI ügynökökről, automatizálásról, technológiáról és a Brunella Agent System működéséről.'
-  }
-};
+export function generateMetadata() {
+  const headerLang = headers().get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+
+  const meta =
+    language === 'en'
+      ? {
+          title: 'Blog & Knowledge Hub | Pohánka AI',
+          description:
+            'Articles and white papers about AI agents, automation, technology and practical implementation.',
+          canonical: '/en/blog',
+          locale: 'en_US',
+        }
+      : language === 'de'
+      ? {
+          title: 'Blog & Wissenszentrum | Pohánka AI',
+          description:
+            'Artikel und Whitepaper zu KI-Agenten, Automatisierung, Technologie und praxisnaher Umsetzung.',
+          canonical: '/de/blog',
+          locale: 'de_DE',
+        }
+      : {
+          title: 'Blog & Tudástár | Pohánka AI',
+          description:
+            'Cikkek és white paper anyagok AI ügynökökről, automatizálásról, technológiáról és a Brunella Agent System működéséről.',
+          canonical: '/blog',
+          locale: 'hu_HU',
+        };
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: meta.canonical,
+      languages: {
+        hu: '/blog',
+        en: '/en/blog',
+        de: '/de/blog',
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: meta.canonical,
+      type: 'website',
+      locale: meta.locale,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title,
+      description: meta.description,
+    },
+  };
+}
 
 export default function BlogPage() {
   const headerLang = headers().get('x-site-language');
