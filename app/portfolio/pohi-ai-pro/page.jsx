@@ -244,7 +244,7 @@ const screenshots = [
   '/images/pohi-ai-pro/pro-12.jpg',
 ];
 
-const pohiNarrative = {
+const pohiNarrativeHuLegacy = {
   hu: {
     executiveTitle: 'Vezetői összefoglaló',
     executiveBody: [

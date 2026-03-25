@@ -1,4 +1,5 @@
 import VideoBackground from "../components/VideoBackground";
+import Image from "next/image";
 import { headers } from "next/headers";
 import {
   Cpu, Globe, Zap, Search, BarChart3, Lightbulb, Mail,
@@ -286,13 +287,142 @@ const categories = [
           "Cimbi Weboldal — modern arculati bemutatkozó oldal",
           "Ecomud — prémium termékbemutató oldal, SEO-optimalizálva",
           "Aronia — elegáns termékoldal vizuális storytellinggel",
+          "Lumen Limited Series — prémium lifestyle márkaoldal",
         ],
         refs: [
           { text: "cimbi-weboldal.vercel.app", url: "https://cimbi-weboldal.vercel.app/" },
           { text: "ecomud-eu.vercel.app", url: "https://ecomud-eu.vercel.app/" },
           { text: "aronia-chi.vercel.app", url: "https://aronia-chi.vercel.app/" },
+          { text: "lumenlimitedseries.com", url: "https://www.lumenlimitedseries.com/" },
         ],
         forWho: "Vállalkozóknak, KKV-knak, egyedi vállalkozóknak és magánsemélyeknek",
+      },
+    ],
+  },
+  {
+    id: "agent-mcp",
+    icon: Cpu,
+    color: "blue",
+    gradient: "from-sky-400 to-indigo-400",
+    border: "hover:border-sky-500/60",
+    bg: "bg-sky-500/20",
+    text: "text-sky-400",
+    title: "AI Ügynökök & MCP Integrációk",
+    subtitle: "Látványos, mégis üzletileg azonnal használható automatizálások döntéshozóknak.",
+    services: [
+      {
+        name: "TDD munkafolyamat (tdd-workflow)",
+        desc:
+          "Tesztvezérelt fejlesztési pipeline, amely kényszeríti a minőséget és mérhető megbízhatóságot ad minden fejlesztési ciklusban.",
+        bullets: [
+          "80%+ tesztlefedettségi célok automatikus ellenőrzése",
+          "Unit, integrációs és E2E tesztek egységes kezelése",
+          "Release előtti minőségkapu és regresszió-védelem",
+        ],
+        forWho: "Termékcsapatoknak, fejlesztő cégeknek, skálázódó startupoknak",
+      },
+      {
+        name: "Maestro munkafolyamat-vezérlés",
+        desc:
+          "Komplex projektek irányítása agent-orchestrationnel, hogy ne vesszen el sem döntés, sem feladat, sem határidő.",
+        bullets: [
+          "Session-management: állapotkövetés és folytatható munkamenetek",
+          "Implementation-planning: részletes megvalósítási tervek",
+          "Execution: fázisok futtatása beépített hibakezeléssel",
+          "Design-dialogue: strukturált tervezési döntéstámogatás",
+        ],
+        forWho: "Projektmenedzsereknek, ügynökségeknek, többcsapatos szervezeteknek",
+      },
+      {
+        name: "Blueprint & Dev-Flow",
+        desc:
+          "Ötletből kivitelezhető terv: követelmény, feladatbontás, végrehajtás és dokumentált átadás egyetlen folyamatban.",
+        bullets: [
+          "create-prd: termékkövetelmény dokumentum (PRD) készítés",
+          "generate-tasks: részletes feladatlista generálás",
+          "process-task-list: feladatok lépésenkénti végrehajtása és tesztelése",
+        ],
+        forWho: "Szoftvercégeknek, terméktulajdonosoknak, digitalizációs projektekhez",
+      },
+      {
+        name: "Speciális ügynökcsapat (Planner, Scout, Coder, Tester, Reviewer)",
+        desc:
+          "Szerepkör-alapú delegálás komplex feladatokhoz — mintha egy tapasztalt szakmai csapat dolgozna párhuzamosan rajta.",
+        bullets: [
+          "Planner: stratégiai bontás és prioritás",
+          "Scout: piac- és információfeltárás",
+          "Coder/Tester/Reviewer: kivitelezés, validáció és minőségbiztosítás",
+        ],
+        forWho: "Vállalkozásoknak, ahol gyors döntés + gyors megvalósítás kell",
+      },
+      {
+        name: "Cloudflare szolgáltatások (Radar + Security)",
+        desc:
+          "Valós idejű internetes és biztonsági betekintés, hogy adat alapon dönthess kampányról, kockázatról és prioritásról.",
+        bullets: [
+          "get_http_data: globális HTTP trendek",
+          "get_l7_attack_data: alkalmazásrétegű támadási statisztikák",
+          "get_as_details: ASN és hálózati háttérelemzés",
+          "create_url_scan: weboldal biztonsági szkennelés",
+        ],
+        forWho: "E-kereskedelemnek, IT vezetőknek, marketing + biztonsági döntéshozóknak",
+      },
+      {
+        name: "Google Workspace integráció (Gmail, Drive, Docs, Calendar, Chat)",
+        desc:
+          "A napi adminisztráció automatizálása a meglévő Google rendszeredben — emberi hibák és időveszteség nélkül.",
+        bullets: [
+          "Gmail: keresés, tartalomolvasás, válasz/piszkozat automatizálás",
+          "Drive/Docs: dokumentumkészítés, keresés, rendszerezés",
+          "Calendar/Chat: meeting szervezés és automatikus értesítés",
+        ],
+        forWho: "Irodáknak, ügyfélszolgálatoknak, értékesítési csapatoknak",
+      },
+      {
+        name: "Google Cloud műveletek (gcloud)",
+        desc:
+          "Felhős infrastruktúra-operáció egyetlen vezérelt felületen keresztül, gyorsabb beavatkozással és auditálhatóan.",
+        bullets: [
+          "run_gcloud_command: Compute, SQL, GKE és egyéb szolgáltatások kezelése",
+          "Üzemeltetési folyamatok standardizálása",
+          "Gyors incident response és riportolhatóság",
+        ],
+        forWho: "Technológiai cégeknek, üzemeltetési csapatoknak",
+      },
+      {
+        name: "Apify + Deep Research adatgyűjtés",
+        desc:
+          "Skálázható piackutatás és lead discovery közösségi és nyílt webforrásokból, strukturált exporttal.",
+        bullets: [
+          "Instagram / TikTok / YouTube scraper",
+          "Google search scraper + lead generation",
+          "research_start és file_search_upload RAG-támogatással",
+        ],
+        forWho: "Sales és kutatási csapatoknak, ügynökségeknek",
+      },
+      {
+        name: "ComputerUse + Chrome DevTools automatizálás",
+        desc:
+          "Az AI úgy kezeli a böngészőt, mint egy ember: navigál, kitölt, kattint, ellenőriz és dokumentál.",
+        bullets: [
+          "Interaktív böngészés (click, type, scroll, keyboard)",
+          "Képernyőkép-alapú vizuális elemzés és pontos navigáció",
+          "Makrózható, több oldalon átívelő üzleti folyamatok",
+          "navigate_page / click / fill / take_screenshot műveletek",
+        ],
+        forWho: "Adminisztrációs csapatoknak, operatív vezetőknek, backoffice folyamatokra",
+      },
+      {
+        name: "Vibe Prospecting üzleti intelligencia",
+        desc:
+          "B2B döntéshozók, céges technológiák és piaci jelzések gyors feltárása értékesítéshez és stratégiai tervezéshez.",
+        bullets: [
+          "Cégdiscovery iparág/méret/lokáció alapján",
+          "Döntéshozó-azonosítás és kapcsolati adatbővítés",
+          "Tech stack + pénzügyi + versenytársinformáció",
+          "CSV export és enrichment folyamatok",
+        ],
+        forWho: "B2B értékesítőknek, üzletfejlesztőknek, tanácsadóknak",
       },
     ],
   },
@@ -531,6 +661,80 @@ export default function SzolgaltatasokPage() {
             );
           })}
         </div>
+
+        <section className="mt-24 max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+            Üzleti automatizálás valós példákon
+          </h2>
+          <p className="text-gray-300 text-center max-w-3xl mx-auto mb-10">
+            Az alábbi folyamatok mind AI ügynökökkel vezérelhetők: adatkinyerés, rendszerezés,
+            riportolás, dokumentumkezelés és vezetői döntéstámogatás.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                title: "AI géppark- és eszköznyilvántartás",
+                desc: "Automatikus eszközállapot-követés, szerviz-emlékeztetők és heti vezetői riport.",
+                src: "/images/biz-automation/geppark-nyilvantarto.jpg",
+              },
+              {
+                title: "Munkaügyi adminisztráció automatizálás",
+                desc: "Jelenlétek, igazolások, riportok és compliance nyilvántartás emberi hibák nélkül.",
+                src: "/images/biz-automation/munkaugyi-nyilvantarto-ai.jpg",
+              },
+              {
+                title: "Hangvezérelt operatív folyamatok",
+                desc: "Gyors rögzítés és lekérdezés terepen dolgozó csapatoknak is, mobilbarát működéssel.",
+                src: "/images/biz-automation/hangvezerelt-munkaugyi-kieg.jpg",
+              },
+              {
+                title: "Okos ajánlatadó és értékesítési előkészítés",
+                desc: "Ajánlatgenerálás, utánkövetés, dokumentáció és státuszfrissítés egy rendszerben.",
+                src: "/images/biz-automation/okos-ajanlatado.jpg",
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl overflow-hidden border border-white/10 bg-black/30 backdrop-blur-md">
+                <Image src={item.src} alt={item.title} width={1200} height={800} className="w-full h-56 object-cover" />
+                <div className="p-5">
+                  <h3 className="text-white font-bold mb-2">{item.title}</h3>
+                  <p className="text-gray-300 text-sm">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-20 max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
+            Kiemelt, csábító AI folyamatok vállalkozásoknak
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                title: "Komplett könyvelési és admin folyamat",
+                desc: "Számlafeldolgozás + OCR + kategorizálás + ellenőrzés + havi vezetői összesítő automatikusan.",
+              },
+              {
+                title: "Teljes munkaügyi nyilvántartás AI ügynökkel",
+                desc: "Beléptetés, jelenlét, dokumentumfrissítés, figyelmeztetések és audit-ready riportok egy helyen.",
+              },
+              {
+                title: "Ingatlan/iparterület értékesítési kampány",
+                desc: "Keresletfelmérés, döntéshozó-azonosítás, automatikus outreach, follow-up és dokumentációkészítés.",
+              },
+              {
+                title: "LinkedIn + email B2B lead motor",
+                desc: "Célpiac-feltárás, személyre szabott kommunikáció és pipeline-kezelés teljesen automatizáltan.",
+              },
+            ].map((flow) => (
+              <div key={flow.title} className="p-6 rounded-2xl border border-white/10 bg-black/30 backdrop-blur-md">
+                <h3 className="text-white font-bold mb-2">{flow.title}</h3>
+                <p className="text-gray-300 text-sm leading-relaxed">{flow.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Miért mi */}
         <section className="mt-24 max-w-4xl mx-auto">
