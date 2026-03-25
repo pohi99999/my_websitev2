@@ -1,6 +1,8 @@
 import Portfolio from "../components/Portfolio";
 import { headers } from "next/headers";
 
+export const revalidate = 3600;
+
 export function generateMetadata() {
   const headerLang = headers().get("x-site-language");
   const language = headerLang === "en" ? "en" : headerLang === "de" ? "de" : "hu";
@@ -54,5 +56,21 @@ export function generateMetadata() {
 }
 
 export default function PortfolioPage() {
-  return <Portfolio />;
+  return (
+    <>
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Főoldal", "item": "https://www.pohankaestarsa.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Portfólió", "item": "https://www.pohankaestarsa.com/portfolio" }
+          ]
+        })}}
+      />
+      <Portfolio />
+    </>
+  );
 }

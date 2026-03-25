@@ -4,6 +4,8 @@ import { Bot, BrainCircuit, ArrowRight } from "lucide-react";
 import VideoShowcase from "./components/VideoShowcase";
 import { headers } from "next/headers";
 
+export const revalidate = 3600;
+
 export function generateMetadata() {
   const headerLang = headers().get("x-site-language");
   const language = headerLang === "en" ? "en" : headerLang === "de" ? "de" : "hu";
@@ -114,6 +116,18 @@ export default function TermekekPage() {
 
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center">
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Főoldal", "item": "https://www.pohankaestarsa.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Termékek", "item": "https://www.pohankaestarsa.com/termekek" }
+          ]
+        })}}
+      />
       <VideoBackground videoSrc="/products.mp4" />
 
       <div className="relative z-10 container mx-auto px-4 py-20 text-white">

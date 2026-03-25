@@ -1,6 +1,8 @@
 import VideoBackground from "../components/VideoBackground";
 import Image from "next/image";
 import { headers } from "next/headers";
+
+export const revalidate = 3600;
 import {
   Cpu, Globe, Zap, Search, BarChart3, Lightbulb, Mail,
   Target, TrendingUp, FileText, Package, Users, Brain,
@@ -542,6 +544,68 @@ export default function SzolgaltatasokPage() {
 
   return (
     <main className="relative min-h-screen">
+      {/* FAQ Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Mi az AI lead generálás és hogyan segít a vállalkozásomnak?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Az AI lead generálás automatikusan azonosítja, pontozza és priorizálja a potenciális ügyfeleket valós idejű adatok alapján. Brunella Agent System segítségével napi 30-40 kvalifikált érdeklődőt kezelhet az értékesítési csapata emberi beavatkozás nélkül."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Mennyi ideig tart egy átlagos projekt bevezetése?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Egy tipikus KKV automatizálási projekt 4-8 hétig tart: 1-2 hét elemzés és tervezés, 2-4 hét fejlesztés és integráció, 1-2 hét tesztelés és átadás. A Brunella Agent System esetén az első eredmények már az első héten láthatók."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Milyen szoftverfejlesztési és AI szolgáltatásokat nyújtotok?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Szolgáltatásaink: AI-alapú lead generálás, üzleti folyamat automatizálás (számla feldolgozás, ügyfélszolgálat, logisztika), egyedi AI megoldások fejlesztése, webáruház és CRM integráció, valamint a Brunella Agent System (BAS) KKV-optimal multi-agent rendszer."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Hogyan kezdjük el az együttműködést?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Az együttműködés egy ingyenes konzultációval kezdődik, ahol feltérképezzük a vállalkozás igényeit. Ezután egy részletes ajánlatot készítünk, amit Ön jóváhagy, majd megkezdődik a fejlesztés. Minden projekt dedikált projektmenedzsert és rendszeres státuszjelentést kap."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Mekkora megtakarítást hozhat az AI automatizálás?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ügyfeleink átlagosan havi 200.000–500.000 Ft-ot takarítanak meg automatizálással. Az AI-rendszerek 24/7 dolgoznak, emberi hibák nélkül, és az átlagos ROI elérési idő 3 hónap."
+              }
+            }
+          ]
+        })}}
+      />
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Főoldal", "item": "https://www.pohankaestarsa.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Szolgáltatások", "item": "https://www.pohankaestarsa.com/szolgaltatasok" }
+          ]
+        })}}
+      />
       <VideoBackground videoSrc="/services.mp4" />
       <div className="absolute inset-0 bg-black/60 z-[1]" />
 

@@ -1,6 +1,9 @@
 import Hero from "./components/Hero";
 import AIFolyamatok from "./components/AIFolyamatok";
+import Testimonials from "./components/Testimonials";
 import { headers } from "next/headers";
+
+export const revalidate = 3600;
 
 export function generateMetadata() {
   const headerLang = headers().get('x-site-language');
@@ -62,6 +65,7 @@ export default function HomePage() {
     <main>
       <Hero />
       <AIFolyamatok />
+      <Testimonials />
     </main>
   );
 }

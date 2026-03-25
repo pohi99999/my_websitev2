@@ -1,0 +1,45 @@
+{
+  "name": "Pohánka és Társa Kft. | AI Ügynökség",
+  "short_name": "Pohánka AI",
+  "description": "Innovatív AI megoldások, Brunella Agent System és egyedi szoftverfejlesztés KKV-k számára.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#00ff9d",
+  "lang": "hu",
+  "dir": "ltr",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "categories": ["business", "productivity", "technology"],
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Kapcsolat",
+      "short_name": "Kapcsolat",
+      "description": "Vegye fel velünk a kapcsolatot",
+      "url": "/kapcsolat",
+      "icons": [{ "src": "/images/logo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Szolgáltatások",
+      "short_name": "Szolgáltatások",
+      "description": "AI és szoftverfejlesztési szolgáltatások",
+      "url": "/szolgaltatasok",
+      "icons": [{ "src": "/images/logo.png", "sizes": "96x96" }]
+    }
+  ]
+}

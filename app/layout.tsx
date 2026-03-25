@@ -8,6 +8,7 @@ import LenisProvider from './components/LenisProvider';
 import { LanguageProvider } from './context/LanguageContext';
 import { cookies, headers } from 'next/headers';
 import { Analytics } from '@vercel/analytics/next';
+import Script from 'next/script';
 
 const inter = Inter( { subsets: ['latin'], display: 'swap', variable: '--font-inter' } );
 
@@ -66,7 +67,21 @@ export default async function RootLayout ( {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/logo.png" type="image/png" />
-        <meta name="theme-color" content="#00ff9d" />
+        {/* PWA manifest */ }
+        <link rel="manifest" href="/manifest.json" />
+        {/* theme-color: Chrome, Safari, Edge (dark/light variants) */ }
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#00ff9d" />
+        {/* Apple PWA */ }
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Pohánka AI" />
+        <link rel="apple-touch-icon" href="/images/logo.png" />
+        {/* Global hreflang fallback */ }
+        <link rel="alternate" hrefLang="hu" href="https://www.pohankaestarsa.com/" />
+        <link rel="alternate" hrefLang="en" href="https://www.pohankaestarsa.com/en/" />
+        <link rel="alternate" hrefLang="de" href="https://www.pohankaestarsa.com/de/" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.pohankaestarsa.com/" />
 
         {/* Organization Schema */ }
         <script
@@ -140,6 +155,26 @@ export default async function RootLayout ( {
           </LenisProvider>
         </LanguageProvider>
         <Analytics />
+        {/* Service Worker regisztráció */ }
+        <Script id="sw-register" strategy="afterInteractive">
+          { `if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').catch(function(err) {});
+              });
+            }`}
+        </Script>
+        {/* Tawk.to Live Chat */ }
+        <Script id="tawkto" strategy="lazyOnload">
+          { `var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+              s1.async=true;
+              s1.src='https://embed.tawk.to/6847f8b0258d2119151c5e2f/1it9k7a72';
+              s1.charset='UTF-8';
+              s1.setAttribute('crossorigin','*');
+              s0.parentNode.insertBefore(s1,s0);
+            })();`}
+        </Script>
       </body>
     </html>
   );

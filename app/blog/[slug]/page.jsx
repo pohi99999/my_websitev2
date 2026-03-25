@@ -384,6 +384,143 @@ const blogPosts = {
       { slug: 'az-ido-a-legertekesebb-valuta' }
     ],
   },
+  'ai-automatizalas-kkv-knak': {
+    title: 'AI Automatizálás KKV-knak: Honnan Kezdjük?',
+    date: '2025. Március 5.',
+    author: 'Pohánka József Péter',
+    readTime: '7 perc',
+    category: 'Útmutató',
+    image: '🚀',
+    videoId: '',
+    excerpt: 'A legtöbb KKV pontosan nem tudja, hol kezdje az AI bevezetését. Megmutatjuk azt az egyszerű 3 lépéses keretet, amellyel 30 napon belül mérhető eredményeket érhet el.',
+    content: `
+Az AI bevezetése nem a nagyvállalatoknak szóló luxus — hanem egy **versenyelőny, amelyet a kis- és középvállalkozások most tudnak megragadni**, mielőtt a piac ezt alapkövetelménnyé teszi.
+
+## Miért most?
+
+A ChatGPT megjelenése óta az AI eszközök elérhetősége és ára drasztikusan megváltozott. Ma már egy KKV is hozzáférhet olyan rendszerekhez, amelyek öt évvel ezelőtt csak Fortune 500-as cégek számára voltak elérhetőek.
+
+De az elérhető eszközök önmagukban nem elegendőek. A kérdés az: **hogyan**?
+
+## A 3 Lépéses KKV AI Keret
+
+### 1. Lépés: Fájdalompontok azonosítása (1. hét)
+
+Ne az AI-tól indulj el — a problémádtól. Kérdezd meg magadtól:
+- Mire megy el a legtöbb ideje a csapatodnak ismétlődő feladatokra?
+- Hol csúszik el a legtöbb ügyfélkommunikáció?
+- Melyik folyamatban van a legtöbb emberi hiba?
+
+Tipikus KKV fájdalompontok: ajánlatküldés, ügyfél-visszajelzés kezelése, időpontfoglalás, riportálás.
+
+### 2. Lépés: Egyetlen folyamat automatizálása (2-3. hét)
+
+Ne akarj mindent egyszerre. Válassz ki **egyetlen folyamatot** — azt, amelyik a legtöbb időt veszi el — és automatizáld azt egy AI ügynökkel.
+
+Egy ügyfélszolgálati chatbot, amely a kérdések 70%-át megválaszolja, azonnal mérhető ROI-t termel: kevesebb elszalasztott lead, gyorsabb válaszidő.
+
+### 3. Lépés: Mérés és skálázás (4. hét és utána)
+
+Amint az első folyamat fut, mérd az eredményeket: mennyivel csökkent a válaszidő? Hány órát spórolt a csapat? Mennyivel nőtt a konverzió?
+
+Ezekre az adatokra alapozva döntsd el, hova érdemes a következő AI befektetést irányítani.
+
+## Összefoglalás
+
+Az AI-ba való belépés nem kell, hogy drága vagy bonyolult legyen. Egy jól megválasztott első lépéssel 30 napon belül mérhető eredményeket érhetsz el. A Brunella Consulting pont ebben segít.
+    `,
+    relatedPosts: [
+      { slug: 'chatbot-az-ugyfelszolgalatban' },
+      { slug: 'folyamat-automatizalas-5-lepes' }
+    ],
+  },
+  'chatbot-az-ugyfelszolgalatban': {
+    title: 'Chatbot az Ügyfélszolgálatban: Mítoszok és Valóság',
+    date: '2025. Március 18.',
+    author: 'Pohánka József Péter',
+    readTime: '5 perc',
+    category: 'Elemzés',
+    image: '🤖',
+    videoId: '',
+    excerpt: 'A chatbotok nem helyettesítik az embert — de a kérdések 70%-át megoldják. Megnézzük, mi igaz és mi nem a chatbotokról szóló legendákból.',
+    content: `
+A chatbotról szóló vita sokszor két táborra osztja a vállalkozókat: az egyik tábor mindent lát bennük, a másik semmit. Az igazság, mint mindig, **valahol a kettő között van**.
+
+## Ami igaz a chatbotokról
+
+**A kérdések 60-70%-a ismétlődő.** Nyitvatartási idő, árlista, rendelési státusz, alapvető szervizinfo — ezeket egy jól betanított chatbot tökéletesen megválaszolja, és 24/7-ben teszi.
+
+**A válaszidő számít.** Tanulmányok szerint az ügyfelek 82%-a azonnali választ vár (5 percen belül). Egy chatbot ezt garantálja; egy emberi ügyfélszolgálat nem mindig.
+
+**Az ember felszabadul az értékes munkára.** Ha a bot kezeli a rutinkérdéseket, az emberek a bonyolult, empatikus interakciókra fókuszálhatnak — amelyek valódi értéket teremtenek.
+
+## Ami nem igaz
+
+**"A chatbot hideg és személytelen."** A modern, LLM-alapú chatbotok hangszínét, stílusát és személyiségét pontosan be lehet állítani. Egy jól konfigurált bot barátságos, segítőkész és a márkád hangján szól.
+
+**"Mindenki utálja a chatbotokat."** Az ügyfelek akkor utálják a chatbotokat, ha azok nem tudnak segíteni. Ha a bot gyors, releváns választ ad és tud eskalálni, az elégedettség magas.
+
+**"Drága és nehéz integrálni."** 2025-ben egy KKV is beüzemelhet egy személyre szabott chatbotot érthető áron, weboldalba, CRM-be és e-mail rendszerbe integrálva.
+
+## Mikor NE vezess be chatbotot?
+
+Ha az ügyfélkommunikáció elsősorban komplex, érzelmi, vagy egyedi — például jogi- vagy egészségügyi tanácsadás — ott az emberi jelenlét pótolhatatlan. A chatbot **kiegészíti**, nem helyettesíti az embert.
+
+## Összefoglalás
+
+A chatbot nem varázspálca, de nem is zsákutca. Egy jól tervezett, célzottan bevezetett chatbot **az egyik legjobb megtérülést nyújtó AI befektetés** egy ügyfélközpontú KKV számára.
+    `,
+    relatedPosts: [
+      { slug: 'ai-automatizalas-kkv-knak' },
+      { slug: 'folyamat-automatizalas-5-lepes' }
+    ],
+  },
+  'folyamat-automatizalas-5-lepes': {
+    title: '5 Lépés az Üzleti Folyamat Automatizáláshoz',
+    date: '2025. Április 2.',
+    author: 'Pohánka József Péter',
+    readTime: '8 perc',
+    category: 'Stratégia',
+    image: '⚙️',
+    videoId: '',
+    excerpt: 'Az üzleti folyamatok automatizálása nem rakétatudomány — ha tudod, honnét indulj el. 5 konkrét lépés valós példákkal.',
+    content: `
+Az üzleti folyamat automatizálás (BPA) az egyik legtöbbet emlegetett, de legkevésbé értett fogalom a KKV-k világában. Sokan azt hiszik, hogy ehhez hatalmas IT-csapat és milliós büdzsé kell. **Nem kell.**
+
+## Miért érdemes automatizálni?
+
+Egy átlagos KKV munkaidejének 20-40%-a megy el ismétlődő, értéket nem termelő adminisztratív feladatokra. Ez nem hatékonysági probléma — ez **pénzügyi vérzés**, amit AI-jal el lehet állítani.
+
+## Az 5 Lépés
+
+### 1. Folyamat-feltérképezés
+Rajzold le az összes kulcslépést: ki mit csinál, milyen adattal dolgozik, hol csúszik el. Eszköz: egy whiteboard és 2 óra csapatmunka.
+
+### 2. Prioritizálás az ROI alapján
+Minden folyamathoz becsüld meg: hány óra megy rá hetente × hány ember × órabér = ez az automatizálás potenciális megtakarítása. Válaszd a legmagasabb számot.
+
+### 3. Adatminőség ellenőrzése
+Az AI-nak adatra van szüksége. Mielőtt automatizálsz, győződj meg, hogy az érintett adatok rendezetten, hozzáférhető formátumban léteznek (Excel, CRM, ERP).
+
+### 4. Pilot futtatása
+Ne vezess be mindent egyszerre. Futtass egy 2-4 hetes pilotot egyetlen folyamaton, egyetlen csapattal. Mérd az eredményt: idő-, hiba- és költségmegtakarítás.
+
+### 5. Skálázás és integráció
+A sikeres pilot eredményei alapján döntsd el, hova érdemes kiterjeszteni az automatizálást. Integráld a meglévő rendszereidbe (CRM, számlázó, email) API-kon keresztül.
+
+## Valós példa: Ajánlatküldés automatizálása
+
+Egy 8 fős tanácsadó cég esetében az ajánlatküldési folyamat (adatgyűjtés → sablon töltés → PDF export → email) 3,5 órába telt ajanlatonként. Egy AI-ügynökkel ez 12 percre csökkent. Heti 15 ajánlatnál ez **47 óra megtakarítás hetente**.
+
+## Összefoglalás
+
+Az automatizálás nem egyszeri projekt — hanem folyamatos fejlődés. Kezdd a legfájóbb ponttal, mérd, tanulj, és skálázz. A Brunella Consulting ebben az úton végigkísér.
+    `,
+    relatedPosts: [
+      { slug: 'ai-automatizalas-kkv-knak' },
+      { slug: 'chatbot-az-ugyfelszolgalatban' }
+    ],
+  },
 };
 
   const localizedLongformBodies = {

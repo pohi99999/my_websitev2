@@ -36,7 +36,6 @@ const Hero = () => {
         <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
           <span className="text-white block mb-2">{t('hero.headlineLine1')}</span>
           <span className="relative inline-block">
-            <span className="absolute inset-0 text-white" aria-hidden="true">{t('hero.headlineLine2')}</span>
             <span className="relative bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               {t('hero.headlineLine2')}
             </span>
