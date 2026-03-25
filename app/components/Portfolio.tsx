@@ -97,9 +97,9 @@ const Portfolio = () =>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             { ui.title }
-          </h2>
+          </h1>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto">
             { ui.subtitle }
           </p>

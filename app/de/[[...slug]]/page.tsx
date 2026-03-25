@@ -19,7 +19,7 @@ import PohiAiProPage from '../../termekek/pohi-ai-pro/page';
 
 export const dynamic = 'force-dynamic';
 
-const SITE_URL = 'https://pohanka.vercel.app';
+const SITE_URL = 'https://www.pohankaestarsa.com';
 
 type MetaSpec = {
     title: string;

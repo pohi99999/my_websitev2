@@ -168,8 +168,10 @@ export default function KapcsolatClient() {
 
             <form onSubmit={onSubmit} className="space-y-6">
               <div>
-                <label className="block text-gray-300 mb-2">{ui.name}</label>
+                <label htmlFor="contact-name" className="block text-gray-300 mb-2">{ui.name}</label>
                 <input
+                  id="contact-name"
+                  name="name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -180,8 +182,10 @@ export default function KapcsolatClient() {
               </div>
 
               <div>
-                <label className="block text-gray-300 mb-2">{ui.email}</label>
+                <label htmlFor="contact-email" className="block text-gray-300 mb-2">{ui.email}</label>
                 <input
+                  id="contact-email"
+                  name="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -194,6 +198,8 @@ export default function KapcsolatClient() {
               <div className="hidden" aria-hidden="true">
                 <label className="block text-gray-300 mb-2">Website</label>
                 <input
+                  id="honeypot-website"
+                  name="website"
                   type="text"
                   value={website}
                   onChange={(e) => setWebsite(e.target.value)}
@@ -205,8 +211,10 @@ export default function KapcsolatClient() {
               </div>
 
               <div>
-                <label className="block text-gray-300 mb-2">{ui.message}</label>
+                <label htmlFor="contact-message" className="block text-gray-300 mb-2">{ui.message}</label>
                 <textarea
+                  id="contact-message"
+                  name="message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required

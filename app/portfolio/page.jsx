@@ -8,20 +8,20 @@ export function generateMetadata() {
   const meta =
     language === "en"
       ? {
-          title: "Portfolio | Pohánka AI",
+          title: "Portfolio",
           description: "Featured projects and case studies — AI, automation, web development and business systems.",
           locale: "en_US",
           canonical: "/en/portfolio",
         }
       : language === "de"
         ? {
-            title: "Portfolio | Pohánka AI",
+            title: "Portfolio",
             description: "Ausgewählte Projekte und Fallstudien — KI, Automatisierung, Webentwicklung und Geschäftssysteme.",
             locale: "de_DE",
             canonical: "/de/portfolio",
           }
         : {
-            title: "Portfólió | Pohánka AI",
+            title: "Portfólió",
             description: "Kiemelt projektek és esettanulmányok – AI, automatizálás, webfejlesztés és üzleti rendszerek.",
             locale: "hu_HU",
             canonical: "/portfolio",

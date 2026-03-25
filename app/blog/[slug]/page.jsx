@@ -777,7 +777,7 @@ export default async function BlogPostPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify((() => {
-            const canonicalUrl = `https://pohanka.vercel.app${prefix}/blog/${slug}`;
+            const canonicalUrl = `https://www.pohankaestarsa.com${prefix}/blog/${slug}`;
             const isoDate = toIsoDate(post.date);
             const duration = toDurationMinutes(post.readTime);
 
@@ -805,10 +805,10 @@ export default async function BlogPostPage({ params }) {
               publisher: {
                 '@type': 'Organization',
                 name: 'Pohánka és Társa Kft.',
-                url: 'https://pohanka.vercel.app',
+                url: 'https://www.pohankaestarsa.com',
                 logo: {
                   '@type': 'ImageObject',
-                  url: 'https://pohanka.vercel.app/images/logo.png'
+                  url: 'https://www.pohankaestarsa.com/images/logo.png'
                 }
               },
               articleSection: post.category || undefined,
@@ -825,13 +825,13 @@ export default async function BlogPostPage({ params }) {
                   '@type': 'ListItem',
                   position: 1,
                   name: ui.homeCrumb,
-                  item: 'https://pohanka.vercel.app/'
+                  item: 'https://www.pohankaestarsa.com/'
                 },
                 {
                   '@type': 'ListItem',
                   position: 2,
                   name: 'Blog',
-                  item: `https://pohanka.vercel.app${prefix}/blog`
+                  item: `https://www.pohankaestarsa.com${prefix}/blog`
                 },
                 {
                   '@type': 'ListItem',

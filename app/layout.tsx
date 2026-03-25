@@ -9,10 +9,10 @@ import { LanguageProvider } from './context/LanguageContext';
 import { cookies, headers } from 'next/headers';
 import { Analytics } from '@vercel/analytics/next';
 
-const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' });
+const inter = Inter( { subsets: ['latin'], display: 'swap', variable: '--font-inter' } );
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://pohanka.vercel.app'),
+  metadataBase: new URL( 'https://www.pohankaestarsa.com' ),
   title: {
     template: '%s | Pohánka AI',
     default: 'Pohánka és Társa Kft. | AI Ügynökség & Szoftverfejlesztés'
@@ -22,13 +22,18 @@ export const metadata: Metadata = {
   keywords: "szoftverfejlesztés, AI, mesterséges intelligencia, felhő, cloud, webfejlesztés, Budapest",
   creator: "Pohánka Péter",
   publisher: "Pohánka és Társa Kft.",
+  icons: {
+    icon: '/images/logo.png',
+    shortcut: '/images/logo.png',
+    apple: '/images/logo.png',
+  },
   openGraph: {
     title: 'Pohánka és Társa Kft. | AI Ügynökség & Szoftverfejlesztés',
     description:
       'Innovatív AI megoldások, Brunella Agent System és egyedi szoftverfejlesztés KKV-k számára. Automatizálja üzleti folyamatait velünk.',
     type: 'website',
     locale: 'hu_HU',
-    url: 'https://pohanka.vercel.app',
+    url: 'https://www.pohankaestarsa.com',
     images: [
       {
         url: '/images/logo.png',
@@ -38,15 +43,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default async function RootLayout ( {
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}> )
+{
   const cookieStore = await cookies();
-  const langCookie = cookieStore.get('site-language')?.value;
+  const langCookie = cookieStore.get( 'site-language' )?.value;
   const headerStore = await headers();
-  const headerLang = headerStore.get('x-site-language');
+  const headerLang = headerStore.get( 'x-site-language' );
   const initialLanguage =
     headerLang === 'de' || langCookie === 'de'
       ? 'de'
@@ -55,24 +61,24 @@ export default async function RootLayout({
         : 'hu';
 
   return (
-    <html lang={initialLanguage}>
+    <html lang={ initialLanguage }>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/logo.png" type="image/png" />
         <meta name="theme-color" content="#00ff9d" />
 
-        {/* Organization Schema */}
+        {/* Organization Schema */ }
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+          dangerouslySetInnerHTML={ {
+            __html: JSON.stringify( {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Pohánka és Társa Kft.",
               description: "Szoftverfejlesztés és AI megoldások",
-              url: "https://pohanka.vercel.app",
-              logo: "https://pohanka.vercel.app/images/logo.png",
+              url: "https://www.pohankaestarsa.com",
+              logo: "https://www.pohankaestarsa.com/images/logo.png",
               contact: {
                 "@type": "ContactPoint",
                 contactType: "Customer Support",
@@ -92,36 +98,43 @@ export default async function RootLayout({
                 addressCountry: "HU",
                 addressLocality: "Zalaegerszeg"
               }
-            })
-          }}
+            } )
+          } }
         />
 
-        {/* LocalBusiness Schema */}
+        {/* LocalBusiness Schema */ }
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+          dangerouslySetInnerHTML={ {
+            __html: JSON.stringify( {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "Pohánka és Társa Kft.",
-              image: "https://pohanka.vercel.app/images/logo.png",
+              image: "https://www.pohankaestarsa.com/images/logo.png",
               telephone: "+36 30 244 6779",
               address: {
                 "@type": "PostalAddress",
                 addressCountry: "HU",
                 addressLocality: "Zalaegerszeg"
               }
-            })
-          }}
+            } )
+          } }
         />
       </head>
-      <body className={`${inter.variable} ${inter.className} bg-black text-white`}>
+      <body className={ `${ inter.variable } ${ inter.className } bg-black text-white` }>
+        {/* Skip navigation – akadálymentesítés */ }
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium"
+        >
+          Ugrás a fő tartalomhoz
+        </a>
         <SequentialVideoBackground />
-        <LanguageProvider initialLanguage={initialLanguage}>
+        <LanguageProvider initialLanguage={ initialLanguage }>
           <LenisProvider>
             <Header />
-            <main className="pt-20">
-              {children}
+            <main id="main-content" className="pt-20">
+              { children }
             </main>
             <Footer />
           </LenisProvider>

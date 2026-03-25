@@ -14,20 +14,20 @@ export function generateMetadata() {
   const meta =
     language === "en"
       ? {
-          title: "Services | AI Automation & Software Development | Pohánka AI",
+          title: "Services | AI Automation & Software Development",
           description:
             "AI lead generation, business process automation, market intelligence and custom software engineering.",
           canonical: "/en/szolgaltatasok",
         }
       : language === "de"
         ? {
-            title: "Dienstleistungen | KI-Automatisierung & Softwareentwicklung | Pohánka AI",
+            title: "Dienstleistungen | KI-Automatisierung & Softwareentwicklung",
             description:
               "KI-gestützte Lead-Generierung, Prozessautomatisierung, Marktanalyse und individuelle Softwareentwicklung.",
             canonical: "/de/szolgaltatasok",
           }
         : {
-            title: "Szolgáltatásaink | Szoftverfejlesztés & AI | Pohánka AI",
+            title: "Szolgáltatásaink | Szoftverfejlesztés & AI",
             description:
               "AI-alapú lead generálás, üzleti folyamat automatizálás, marketing kampányok, piackutatás és egyedi szoftver fejlesztés.",
             canonical: "/szolgaltatasok",
