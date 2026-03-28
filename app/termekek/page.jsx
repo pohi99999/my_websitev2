@@ -169,7 +169,7 @@ export default function TermekekPage() {
               {ui.moreDesc}
             </p>
             <Link
-              href={withLang('/blog')}
+              href={withLang('/szolgaltatasok')}
               className="inline-flex items-center text-emerald-400 font-bold hover:text-emerald-300 transition-colors"
             >
               {ui.open} <ArrowRight className="ml-2" size={20} />

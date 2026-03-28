@@ -226,25 +226,6 @@ und Nachfrageanomalien erkennt — alles mit Gemini und Vertex AI.`,
     ],
     cta: 'Interesse an einer ähnlichen Plattform?',
   },
-};
-
-// ─── Screenshots ─────────────────────────────────────────────────────────────
-const screenshots = [
-  '/images/pohi-ai-pro/pro-01.jpg',
-  '/images/pohi-ai-pro/pro-02.jpg',
-  '/images/pohi-ai-pro/pro-03.jpg',
-  '/images/pohi-ai-pro/pro-04.jpg',
-  '/images/pohi-ai-pro/pro-05.jpg',
-  '/images/pohi-ai-pro/pro-06.jpg',
-  '/images/pohi-ai-pro/pro-07.jpg',
-  '/images/pohi-ai-pro/pro-08.jpg',
-  '/images/pohi-ai-pro/pro-09.jpg',
-  '/images/pohi-ai-pro/pro-10.jpg',
-  '/images/pohi-ai-pro/pro-11.jpg',
-  '/images/pohi-ai-pro/pro-12.jpg',
-];
-
-const pohiNarrative = {
   hu: {
     executiveTitle: 'Vezetői összefoglaló',
     executiveBody: [

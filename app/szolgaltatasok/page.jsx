@@ -3,7 +3,8 @@ import { headers } from "next/headers";
 import {
   Cpu, Globe, Zap, Search, BarChart3, Lightbulb, Mail,
   Target, TrendingUp, FileText, Package, Users, Brain,
-  ArrowRight, CheckCircle, Building2, Truck, Shield, ExternalLink
+  ArrowRight, CheckCircle, Building2, Truck, Shield, ExternalLink,
+  Bot, FileSearch, Award
 } from "lucide-react";
 
 export function generateMetadata() {
@@ -58,6 +59,118 @@ export function generateMetadata() {
 }
 
 const categories = [
+  {
+    id: "konyvelesi",
+    icon: TrendingUp,
+    color: "teal",
+    gradient: "from-teal-400 to-green-400",
+    border: "hover:border-teal-500/60",
+    bg: "bg-teal-500/20",
+    text: "text-teal-400",
+    title: "Könyvelési Automatizálás I.",
+    subtitle: "Az AI elvégzi a számla-feldolgozást, bank-egyeztetést és NAV-ellenőrzést – te csak a valódi döntésekre fókuszálsz.",
+    services: [
+      {
+        name: "OCR-alapú számlakezelés",
+        desc: "Automatikus számlák beolvasása, kategorizálása és könyvelési tételek előkészítése manuális bevitel nélkül.",
+        bullets: ["Gyors OCR feldolgozás", "Automatikus kategorizálás", "Könyvelési előkészítés"],
+      },
+      {
+        name: "Bank-egyeztetés & NAV-ellenőrzés",
+        desc: "Folyószámla-kivonat és NAV-adatok folyamatos, valós idejű szinkronizálása és egyeztetése.",
+        bullets: ["Valós idejű szinkronizáció", "Eltérések automatikus jelzése", "NAV-megfelelőség"],
+      },
+      {
+        name: "Anomália detektálás & riporting",
+        desc: "Intelligens szűrők kiszűrik a duplikált, hibás vagy gyanús tételeket, és azonnal értesítik a könyvelőt.",
+        bullets: ["Duplikáció szűrés", "Gyanús tételek jelzése", "Irányítópultos riportok"],
+      },
+    ],
+  },
+  {
+    id: "nova",
+    icon: Bot,
+    color: "violet",
+    gradient: "from-violet-400 to-purple-400",
+    border: "hover:border-violet-500/60",
+    bg: "bg-violet-500/20",
+    text: "text-violet-400",
+    title: "Nova — AI Üzleti Asszisztens",
+    subtitle: "Egy tanuló, fejlődő napi társ, aki megismeri vállalkozásodat és 24/7 segíti az operatív munkát.",
+    services: [
+      {
+        name: "Vállalkozás-specifikus tanulás",
+        desc: "Nova beolvassa a cég folyamatait, szabályzatait és tudásbázisát, majd személyre szabott válaszokat ad.",
+        bullets: ["Belső dokumentumok feldolgozása", "Folyamatos tanulás", "Személyre szabott tudásbázis"],
+      },
+      {
+        name: "Hangalapú kommunikáció",
+        desc: "Valódi hangfelismréssel és TTS-sel kommunikál — tárgyalók, call-centerek, asszisztens feladatokra.",
+        bullets: ["Hangfelismerés & TTS", "Természetes párbeszéd", "Telefonos integráció"],
+      },
+      {
+        name: "24/7 Operatív segítség",
+        desc: "Emailek szerkesztése, riportok összefoglalása, feladatok priorizálása és naptárkezelés emberi beavatkozás nélkül.",
+        bullets: ["Email & naptár kezelés", "Riport összefoglalók", "Feladatpriorizálás"],
+      },
+    ],
+  },
+  {
+    id: "psales",
+    icon: FileSearch,
+    color: "orange",
+    gradient: "from-orange-400 to-amber-400",
+    border: "hover:border-orange-500/60",
+    bg: "bg-orange-500/20",
+    text: "text-orange-400",
+    title: "P-Sales — Ingatlan Értékesítő Platform",
+    subtitle: "Dokumentumfelmérés, piackutatás és egyedi értékesítési stratégia egy komplex ügynöki rendszerrel.",
+    services: [
+      {
+        name: "Felmérő ügynök & dokumentáció",
+        desc: "Az ingatlan adatainak és kötelező iratainak összegyűjtése, hiányok jelzése és pontos lista a szükséges dokumentumokról.",
+        bullets: ["Kötelező iratok ellenőrzése", "Dokumentum feltöltés segítség", "Hiánylisták generálása"],
+      },
+      {
+        name: "Kutató & piacelemző ügynök",
+        desc: "Valós idejű online kutatás hasonló ingatlanok adásáról, piaci árelemzés és értékelési riport készítése.",
+        bullets: ["Ingatlan-árak összehasonlítása", "Piaci trend elemzés", "Értékelési riport PDF"],
+      },
+      {
+        name: "Stratégia & végrehajtás",
+        desc: "Tervező ügynök kialakítja az akciótervet, a jóváhagyás után az értékesítő ügynök végig vezet a folyamaton.",
+        bullets: ["Akciótervek generálása", "Felhasználói jóváhagyás", "Értékesítési végrehajtás"],
+      },
+    ],
+  },
+  {
+    id: "psearch",
+    icon: Award,
+    color: "blue",
+    gradient: "from-blue-400 to-sky-400",
+    border: "hover:border-blue-500/60",
+    bg: "bg-blue-500/20",
+    text: "text-blue-400",
+    title: "P-Search — Pályázat & Hitelkereső",
+    subtitle: "Folyamatos EU és hazai pályázat- és hitelfigyelem, személyre szabott találatokkal és Kanban-követéssel.",
+    services: [
+      {
+        name: "Folyamatos pályázatfigyelem",
+        desc: "Napi automatikus keresés EU és HU pályázati adatbázisokban — csak a te profil alapján releváns találatok.",
+        bullets: ["Napi automatikus keresés", "EU & HU adatbázisok", "Profil alapú szűrés"],
+      },
+      {
+        name: "Hitelkereső & ajánlategyeztetés",
+        desc: "Piaci banki és alternatív hitelkonstrukciók összehasonlítása, személyre szabott ajánlatok kiemelése.",
+        bullets: ["Banki ajánlatok összehasonlítása", "Kamat & feltétel elemzés", "Személyre szabott javaslatok"],
+      },
+      {
+        name: "Kanban-követés & határidő értesítők",
+        desc: "Minden pályázat és hiteligény Kanban-táblán nyomon követhető, automatikus határidő emlékeztetőkkel.",
+        bullets: ["Kanban-tábla", "Automatikus emlékeztetők", "Státusz követés"],
+      },
+    ],
+  },
   {
     id: "lead",
     icon: Target,

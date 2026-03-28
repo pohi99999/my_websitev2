@@ -145,18 +145,59 @@ export default function AIFolyamatok() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-          {[
-            { value: '250+', label: 'Napi friss lead', color: 'text-blue-400' },
-            { value: '57', label: 'Bevetett AI ügynök', color: 'text-purple-400' },
-            { value: '80%', label: 'Időmegtakarítás', color: 'text-green-400' },
-            { value: '24/7', label: 'Emberi beavatkozás nélkül', color: 'text-orange-400' },
-          ].map(s => (
-            <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-blue-500/30 transition-colors">
-              <div className={`text-3xl font-black mb-1 ${s.color}`}>{s.value}</div>
-              <div className="text-slate-400 text-sm">{s.label}</div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+          {/* Konyvelesi Automatizalas */}
+          <div className="bg-white/5 border border-teal-500/20 rounded-2xl p-6 hover:border-teal-400/50 transition-colors">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-1.5 rounded-lg bg-teal-500/10"><BarChart3 className="w-5 h-5 text-teal-400" /></div>
+              <span className="text-xs font-bold text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded-full">UJ</span>
             </div>
-          ))}
+            <h3 className="text-white font-bold mb-2 text-sm">Konyvelesi Automatizalas</h3>
+            <ul className="space-y-1.5">
+              {["Automatikus szamla-feldolgozas OCR-rel", "Bank-egyeztetes & NAV-ellenorzes", "Valos ideju penzugyi iranyitopult"].map(b => (
+                <li key={b} className="flex items-start gap-1.5 text-xs text-slate-400"><CheckCircle className="w-3 h-3 text-teal-400 shrink-0 mt-0.5" />{b}</li>
+              ))}
+            </ul>
+          </div>
+          {/* Nova AI Asszisztens */}
+          <div className="bg-white/5 border border-violet-500/20 rounded-2xl p-6 hover:border-violet-400/50 transition-colors">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-1.5 rounded-lg bg-violet-500/10"><Brain className="w-5 h-5 text-violet-400" /></div>
+              <span className="text-xs font-bold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded-full">UJ</span>
+            </div>
+            <h3 className="text-white font-bold mb-2 text-sm">Nova — AI Asszisztens</h3>
+            <ul className="space-y-1.5">
+              {["Megismeri a vallalkozasodat, egyre okosabb", "Napi operativ segitseg hangalapu kommunikacioval", "24/7 elerheto vallalkozoi tars"].map(b => (
+                <li key={b} className="flex items-start gap-1.5 text-xs text-slate-400"><CheckCircle className="w-3 h-3 text-violet-400 shrink-0 mt-0.5" />{b}</li>
+              ))}
+            </ul>
+          </div>
+          {/* P-Sales */}
+          <div className="bg-white/5 border border-orange-500/20 rounded-2xl p-6 hover:border-orange-400/50 transition-colors">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-1.5 rounded-lg bg-orange-500/10"><TrendingUp className="w-5 h-5 text-orange-400" /></div>
+              <span className="text-xs font-bold text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded-full">UJ</span>
+            </div>
+            <h3 className="text-white font-bold mb-2 text-sm">P-Sales — Ingatlan Ertekesito</h3>
+            <ul className="space-y-1.5">
+              {["Dokumentumfelmerés & piackutatas ugynokkkel", "Egyedi ertekesitesi strategia es akcioterv", "Jovahagyas utan automatikus vegrehajtas"].map(b => (
+                <li key={b} className="flex items-start gap-1.5 text-xs text-slate-400"><CheckCircle className="w-3 h-3 text-orange-400 shrink-0 mt-0.5" />{b}</li>
+              ))}
+            </ul>
+          </div>
+          {/* P-Search */}
+          <div className="bg-white/5 border border-blue-500/20 rounded-2xl p-6 hover:border-blue-400/50 transition-colors">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-1.5 rounded-lg bg-blue-500/10"><Target className="w-5 h-5 text-blue-400" /></div>
+              <span className="text-xs font-bold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-full">UJ</span>
+            </div>
+            <h3 className="text-white font-bold mb-2 text-sm">P-Search — Palyazat & Hitelkereső</h3>
+            <ul className="space-y-1.5">
+              {["Folyamatos EU/HU palyazat- es hitelfigyelem", "Szemelyre szabott talalatok osszefoglaloval", "Kanban kovetes & hatarido ertesitok"].map(b => (
+                <li key={b} className="flex items-start gap-1.5 text-xs text-slate-400"><CheckCircle className="w-3 h-3 text-blue-400 shrink-0 mt-0.5" />{b}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
