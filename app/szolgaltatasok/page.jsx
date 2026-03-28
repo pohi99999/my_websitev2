@@ -1,8 +1,6 @@
-import VideoBackground from "../components/VideoBackground";
+﻿import VideoBackground from "../components/VideoBackground";
 import Image from "next/image";
 import { headers } from "next/headers";
-
-export const revalidate = 3600;
 import {
   Cpu, Globe, Zap, Search, BarChart3, Lightbulb, Mail,
   Target, TrendingUp, FileText, Package, Users, Brain,
