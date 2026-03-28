@@ -1,4 +1,4 @@
-﻿import VideoBackground from "../components/VideoBackground";
+import VideoBackground from "../components/VideoBackground";
 import Image from "next/image";
 import { headers } from "next/headers";
 import {
@@ -549,6 +549,8 @@ const colorMap = {
   yellow: { dot: "bg-yellow-400" },
   pink:   { dot: "bg-pink-400"   },
   cyan:   { dot: "bg-cyan-400"   },
+  teal:   { dot: "bg-teal-400"   },
+  violet: { dot: "bg-violet-400" },
 };
 
 export default function SzolgaltatasokPage() {
