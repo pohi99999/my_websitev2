@@ -5,6 +5,8 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { BLOG_POST_ORDER, getBlogPostMeta } from './blogPosts.meta';
 import { headers } from 'next/headers';
 
+export const revalidate = 3600;
+
 export function generateMetadata() {
   const headerLang = headers().get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
@@ -90,6 +92,18 @@ export default function BlogPage() {
 
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center">
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Főoldal", "item": "https://www.pohankaestarsa.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.pohankaestarsa.com/blog" }
+          ]
+        })}}
+      />
       <VideoBackground videoSrc="/blog.mp4" />
 
       <div className="relative z-10 container mx-auto px-4 py-20 text-white">

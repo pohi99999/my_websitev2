@@ -405,7 +405,7 @@ export default function ProjectDetailPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify((() => {
-            const canonicalUrl = `https://pohanka.vercel.app/portfolio/${params.id}`;
+            const canonicalUrl = `https://www.pohankaestarsa.com/portfolio/${params.id}`;
 
             const caseStudy = {
               '@context': 'https://schema.org',
@@ -422,15 +422,15 @@ export default function ProjectDetailPage({ params }) {
               author: {
                 '@type': 'Organization',
                 name: 'Pohánka és Társa Kft.',
-                url: 'https://pohanka.vercel.app'
+                url: 'https://www.pohankaestarsa.com'
               },
               publisher: {
                 '@type': 'Organization',
                 name: 'Pohánka és Társa Kft.',
-                url: 'https://pohanka.vercel.app',
+                url: 'https://www.pohankaestarsa.com',
                 logo: {
                   '@type': 'ImageObject',
-                  url: 'https://pohanka.vercel.app/images/logo.png'
+                  url: 'https://www.pohankaestarsa.com/images/logo.png'
                 }
               },
               about: project.industry ? [{ '@type': 'Thing', name: project.industry }] : undefined,
@@ -445,13 +445,13 @@ export default function ProjectDetailPage({ params }) {
                   '@type': 'ListItem',
                   position: 1,
                   name: 'Főoldal',
-                  item: 'https://pohanka.vercel.app/'
+                  item: 'https://www.pohankaestarsa.com/'
                 },
                 {
                   '@type': 'ListItem',
                   position: 2,
                   name: 'Portfólió',
-                  item: 'https://pohanka.vercel.app/portfolio'
+                  item: 'https://www.pohankaestarsa.com/portfolio'
                 },
                 {
                   '@type': 'ListItem',
