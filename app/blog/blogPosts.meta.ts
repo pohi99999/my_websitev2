@@ -33,7 +33,10 @@ export const BLOG_POST_ORDER: string[] = [
   'brunella-mi-csapatvezeto',
   'fekete-doboz-vege-glass-box',
   'az-ido-a-legertekesebb-valuta',
-  'brunella-agent-system-mukodese'
+  'brunella-agent-system-mukodese',
+  'ai-automatizalas-kkv-knak',
+  'chatbot-az-ugyfelszolgalatban',
+  'folyamat-automatizalas-5-lepes'
 ];
 
 export const BLOG_POST_META: Record<string, BlogPostMeta> = {
@@ -156,6 +159,57 @@ export const BLOG_POST_META: Record<string, BlogPostMeta> = {
       de: 'Dies ist kein normaler Blogbeitrag. Es ist die Zusammenfassung des vollständigen Strategieberichts: von projektbasierter Arbeit zu KI-Agentensystemen, inklusive Bewertung, TRL-4-Prototyp und Roadmap.',
     },
   },
+    'ai-automatizalas-kkv-knak': {
+      slug: 'ai-automatizalas-kkv-knak',
+      title: {
+        hu: 'AI Automatizálás KKV-knak: Honnan Kezdjük?',
+        en: 'AI Automation for SMEs: Where to Start?',
+        de: 'KI-Automatisierung für KMUs: Wo anfangen?',
+      },
+      date: { hu: '2025. Március 5.', en: 'March 5, 2025', de: '5. März 2025' },
+      author: { hu: 'Pohánka József Péter', en: 'József Péter Pohánka', de: 'József Péter Pohánka' },
+      readTime: { hu: '7 perc', en: '7 min', de: '7 Min.' },
+      category: { hu: 'Útmutató', en: 'Guide', de: 'Leitfaden' },
+      excerpt: {
+        hu: 'A legtöbb KKV pontosan nem tudja, hol kezdje az AI bevezetését. Megmutatjuk azt az egyszerű 3 lépéses keretet, amellyel 30 napon belül mérhető eredményeket érhet el.',
+        en: 'Most SMEs do not know where to start with AI adoption. We show a simple 3-step framework that delivers measurable results within 30 days.',
+        de: 'Die meisten KMUs wissen nicht, wo sie mit KI anfangen sollen. Wir zeigen einen einfachen 3-Schritte-Rahmen, der innerhalb von 30 Tagen messbare Ergebnisse liefert.',
+      },
+    },
+    'chatbot-az-ugyfelszolgalatban': {
+      slug: 'chatbot-az-ugyfelszolgalatban',
+      title: {
+        hu: 'Chatbot az Ügyfélszolgálatban: Mítoszok és Valóság',
+        en: 'Chatbot in Customer Service: Myths and Reality',
+        de: 'Chatbot im Kundenservice: Mythen und Realität',
+      },
+      date: { hu: '2025. Március 18.', en: 'March 18, 2025', de: '18. März 2025' },
+      author: { hu: 'Pohánka József Péter', en: 'József Péter Pohánka', de: 'József Péter Pohánka' },
+      readTime: { hu: '5 perc', en: '5 min', de: '5 Min.' },
+      category: { hu: 'Elemzés', en: 'Analysis', de: 'Analyse' },
+      excerpt: {
+        hu: 'A chatbotok nem helyettesítik az embert — de a kérdések 70%-át megoldják. Megnézzük, mi igaz és mi nem a chatbotokról szóló legendákból, és mikor érdemes bevezetni egyet.',
+        en: 'Chatbots do not replace humans — but they solve 70% of queries. We examine what is true and false about chatbot myths, and when it makes sense to deploy one.',
+        de: 'Chatbots ersetzen keine Menschen — aber sie lösen 70% der Anfragen. Wir untersuchen, was an den Chatbot-Mythen stimmt und was nicht, und wann eine Einführung sinnvoll ist.',
+      },
+    },
+    'folyamat-automatizalas-5-lepes': {
+      slug: 'folyamat-automatizalas-5-lepes',
+      title: {
+        hu: '5 Lépés az Üzleti Folyamat Automatizáláshoz',
+        en: '5 Steps to Business Process Automation',
+        de: '5 Schritte zur Geschäftsprozessautomatisierung',
+      },
+      date: { hu: '2025. Április 2.', en: 'April 2, 2025', de: '2. April 2025' },
+      author: { hu: 'Pohánka József Péter', en: 'József Péter Pohánka', de: 'József Péter Pohánka' },
+      readTime: { hu: '8 perc', en: '8 min', de: '8 Min.' },
+      category: { hu: 'Stratégia', en: 'Strategy', de: 'Strategie' },
+      excerpt: {
+        hu: 'Az üzleti folyamatok automatizálása nem rakétatudomány — ha tudod, honnét indulj el. 5 konkrét lépés: folyamat-feltérképezéstől az élő AI-rendszerig, valós példákkal.',
+        en: 'Business process automation is not rocket science — if you know where to start. 5 concrete steps: from process mapping to a live AI system, with real examples.',
+        de: 'Geschäftsprozessautomatisierung ist keine Raketenwissenschaft — wenn man weiß, wo man anfangen soll. 5 konkrete Schritte: von der Prozesskartierung bis zum Live-KI-System, mit realen Beispielen.',
+      },
+    },
 };
 
 export function getBlogPostMeta(slug: string, language: BlogLanguage = 'hu'): BlogPostMetaResolved | undefined {

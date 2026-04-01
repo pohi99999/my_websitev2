@@ -172,6 +172,84 @@ const Portfolio = () => {
           </div>
         </div>
 
+        {/* === 4 ÚJ ALKALMAZÁS KÁRTYÁK === */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Új Alkalmazásaink
+            </h2>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+              Frissen érkező, specialiálisan fejlesztett AI megoldások vállalkozásod minden területére.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Könyvelési Automatizálás */}
+            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-teal-500/20 hover:border-teal-400/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute top-4 right-4 bg-teal-500/20 text-teal-400 px-3 py-1 rounded-full text-xs font-bold border border-teal-500/30">ÚJ</div>
+              <div className="p-6 pt-14">
+                <div className="p-2 rounded-xl bg-teal-500/10 w-fit mb-4"><TrendingUp className="w-6 h-6 text-teal-400" /></div>
+                <h3 className="text-lg font-bold text-white mb-2">Könyvelési Automatizálás</h3>
+                <p className="text-slate-400 text-sm mb-4 leading-relaxed">Automatikus számla-feldolgozás, bank-egyeztetés és NAV-ellenőrzés valós idejű irányítópulttal.</p>
+                <ul className="space-y-1.5 mb-5">
+                  {["OCR alapú számlakezelés", "Bank-egyeztetés & NAV-ellenőrzés", "Anomália detektálás"].map(b => (
+                    <li key={b} className="flex items-center gap-2 text-xs text-slate-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-400 shrink-0" />{b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            {/* Nova AI Asszisztens */}
+            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-violet-500/20 hover:border-violet-400/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute top-4 right-4 bg-violet-500/20 text-violet-400 px-3 py-1 rounded-full text-xs font-bold border border-violet-500/30">ÚJ</div>
+              <div className="p-6 pt-14">
+                <div className="p-2 rounded-xl bg-violet-500/10 w-fit mb-4"><Bot className="w-6 h-6 text-violet-400" /></div>
+                <h3 className="text-lg font-bold text-white mb-2">Nova — AI Asszisztens</h3>
+                <p className="text-slate-400 text-sm mb-4 leading-relaxed">Vállalkozásodat megismerő, tanuló napi társ — hangalapú kommunikációval és 24/7 elérhetőséggel.</p>
+                <ul className="space-y-1.5 mb-5">
+                  {["Vállalkozás-specifikus tanulás", "Hangalapú kommunikáció", "24/7 operatív segítség"].map(b => (
+                    <li key={b} className="flex items-center gap-2 text-xs text-slate-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0" />{b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            {/* P-Sales */}
+            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-orange-500/20 hover:border-orange-400/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute top-4 right-4 bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-xs font-bold border border-orange-500/30">ÚJ</div>
+              <div className="p-6 pt-14">
+                <div className="p-2 rounded-xl bg-orange-500/10 w-fit mb-4"><FileSearch className="w-6 h-6 text-orange-400" /></div>
+                <h3 className="text-lg font-bold text-white mb-2">P-Sales — Ingatlan Értékesítő</h3>
+                <p className="text-slate-400 text-sm mb-4 leading-relaxed">Dokumentumfelmérés, piackutatás és egyedi értékesítési stratégia ügynöki megoldással.</p>
+                <ul className="space-y-1.5 mb-5">
+                  {["Felmérő & kutató ügynök", "Piaci árelemzés & stratégia", "Jóváhagyás utáni végrehajtás"].map(b => (
+                    <li key={b} className="flex items-center gap-2 text-xs text-slate-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0" />{b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            {/* P-Search */}
+            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute top-4 right-4 bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-bold border border-blue-500/30">ÚJ</div>
+              <div className="p-6 pt-14">
+                <div className="p-2 rounded-xl bg-blue-500/10 w-fit mb-4"><PenTool className="w-6 h-6 text-blue-400" /></div>
+                <h3 className="text-lg font-bold text-white mb-2">P-Search — Pályázat & Hitelkereső</h3>
+                <p className="text-slate-400 text-sm mb-4 leading-relaxed">Folyamatos EU/HU pályázat- és hitelfigyelem személyre szabott találatokkal és Kanban követéssel.</p>
+                <ul className="space-y-1.5 mb-5">
+                  {["Folyamatos pályázatfigyelem", "Személyre szabott találatok", "Határidő értesítők"].map(b => (
+                    <li key={b} className="flex items-center gap-2 text-xs text-slate-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />{b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* === ÚJ SZEKCIÓ: Szolgáltatásaink === */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-transparent">
@@ -282,10 +360,8 @@ const Portfolio = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Cimbi Weboldal */}
             <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2">
-              <div className="h-48 bg-gradient-to-br from-blue-700/40 to-violet-800/40 flex flex-col items-center justify-center">
-                <Globe className="w-10 h-10 text-cyan-400 mb-2" />
-                <span className="text-base font-bold text-white">cimbi-weboldal.vercel.app</span>
-                <span className="text-xs text-slate-400 mt-1">Arculati bemutatkozó oldal</span>
+              <div className="relative h-48 overflow-hidden">
+                <Image src="/cimbi.jpg" alt="Cimbi Weboldal" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Cimbi Weboldal</h3>
@@ -306,10 +382,8 @@ const Portfolio = () => {
 
             {/* Ecomud */}
             <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2">
-              <div className="h-48 bg-gradient-to-br from-emerald-700/40 to-green-900/40 flex flex-col items-center justify-center">
-                <Globe className="w-10 h-10 text-emerald-400 mb-2" />
-                <span className="text-base font-bold text-white">ecomud-eu.vercel.app</span>
-                <span className="text-xs text-slate-400 mt-1">Prémium termékbemutató</span>
+              <div className="relative h-48 overflow-hidden">
+                <Image src="/edmund.jpg" alt="Ecomud" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Ecomud</h3>
@@ -330,10 +404,8 @@ const Portfolio = () => {
 
             {/* Aronia */}
             <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-fuchsia-500/50 transition-all duration-300 hover:-translate-y-2">
-              <div className="h-48 bg-gradient-to-br from-violet-700/40 to-fuchsia-900/40 flex flex-col items-center justify-center">
-                <Globe className="w-10 h-10 text-fuchsia-400 mb-2" />
-                <span className="text-base font-bold text-white">aronia-chi.vercel.app</span>
-                <span className="text-xs text-slate-400 mt-1">Természetes termékoldal</span>
+              <div className="relative h-48 overflow-hidden">
+                <Image src="/aaronia.jpg" alt="Aronia" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Aronia</h3>
@@ -347,6 +419,28 @@ const Portfolio = () => {
                   <span className="bg-pink-500/10 text-pink-400 text-xs px-2 py-1 rounded border border-pink-500/20">UI/UX design</span>
                 </div>
                 <a href="https://aronia-chi.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://aronia-chi.vercel.app/', page: PAGE_NAMES.Home })} className="inline-flex items-center text-fuchsia-400 hover:text-fuchsia-300 font-medium transition-colors text-sm">
+                  {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Lumen Limited Series */}
+            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="relative h-48 overflow-hidden">
+                <Image src="/lumen.jpg" alt="Lumen Limited Series" fill className="object-cover object-top" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-white mb-2">Lumen Limited Series</h3>
+                <p className="text-slate-400 text-sm mb-4 leading-relaxed">
+                  Exkluzív borászati bemutatkozó oldal — sorszámozott kollekcióhoz digitális
+                  hitelesítéssel, QR-kód alapú nyomonkövetéssel és elegáns vizuális identitással.
+                </p>
+                <div className="flex flex-wrap items-center gap-2 mb-5">
+                  <span className="bg-amber-500/10 text-amber-400 text-xs px-2 py-1 rounded border border-amber-500/20">Next.js</span>
+                  <span className="bg-orange-500/10 text-orange-400 text-xs px-2 py-1 rounded border border-orange-500/20">Luxury design</span>
+                  <span className="bg-yellow-500/10 text-yellow-400 text-xs px-2 py-1 rounded border border-yellow-500/20">QR hitelesítés</span>
+                </div>
+                <a href="https://www.lumenlimitedseries.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-amber-400 hover:text-amber-300 font-medium transition-colors text-sm">
                   {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>

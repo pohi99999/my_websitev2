@@ -1,6 +1,8 @@
 import Portfolio from "../components/Portfolio";
 import { headers } from "next/headers";
 
+export const revalidate = 3600;
+
 export function generateMetadata() {
   const headerLang = headers().get("x-site-language");
   const language = headerLang === "en" ? "en" : headerLang === "de" ? "de" : "hu";
@@ -8,20 +10,20 @@ export function generateMetadata() {
   const meta =
     language === "en"
       ? {
-          title: "Portfolio | Pohánka AI",
+          title: "Portfolio",
           description: "Featured projects and case studies — AI, automation, web development and business systems.",
           locale: "en_US",
           canonical: "/en/portfolio",
         }
       : language === "de"
         ? {
-            title: "Portfolio | Pohánka AI",
+            title: "Portfolio",
             description: "Ausgewählte Projekte und Fallstudien — KI, Automatisierung, Webentwicklung und Geschäftssysteme.",
             locale: "de_DE",
             canonical: "/de/portfolio",
           }
         : {
-            title: "Portfólió | Pohánka AI",
+            title: "Portfólió",
             description: "Kiemelt projektek és esettanulmányok – AI, automatizálás, webfejlesztés és üzleti rendszerek.",
             locale: "hu_HU",
             canonical: "/portfolio",
@@ -54,5 +56,21 @@ export function generateMetadata() {
 }
 
 export default function PortfolioPage() {
-  return <Portfolio />;
+  return (
+    <>
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Főoldal", "item": "https://www.pohankaestarsa.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Portfólió", "item": "https://www.pohankaestarsa.com/portfolio" }
+          ]
+        })}}
+      />
+      <Portfolio />
+    </>
+  );
 }
