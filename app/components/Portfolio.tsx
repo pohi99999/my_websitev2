@@ -77,7 +77,7 @@ const Portfolio = () => {
   }));
 
   return (
-    <section id="portfolio" className="py-24 bg-slate-900 relative overflow-hidden">
+    <section id="portfolio" className="py-24 bg-black relative overflow-hidden">
       {/* Background video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
@@ -96,10 +96,10 @@ const Portfolio = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#00e5ff]">
             {ui.title}
           </h2>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             {ui.subtitle}
           </p>
         </div>
@@ -107,20 +107,20 @@ const Portfolio = () => {
         {/* Projekt Kártyák */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
           {/* 1. BAS */}
-          <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2">
-            <div className="h-48 bg-gradient-to-br from-blue-900/50 to-slate-900/50 flex items-center justify-center">
+          <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="h-48 bg-gradient-to-br from-[#00e5ff]/10 to-black/60 flex items-center justify-center">
               <span className="text-4xl font-bold text-white">BAS</span>
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Brunella Agent System</h3>
-              <p className="text-slate-400 mb-6">
+              <p className="text-gray-400 mb-6">
                 Az első valódi AI Operációs Rendszer vállalkozásoknak. Nem csak egy chatbot, hanem egy
                 57 ügynökből álló, öngyógyító digitális munkaerő, ami lát, hall és cselekszik helyetted.
               </p>
               <Link
                 href={withLang('/portfolio/brunella-bas')}
                 onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioFeaturedBrunella, language, target: '/portfolio/brunella-bas', page: PAGE_NAMES.Home })}
-                className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors"
+                className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors"
               >
                 {ui.details} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
@@ -128,26 +128,26 @@ const Portfolio = () => {
           </div>
 
           {/* 2. Pohi AI Pro */}
-          <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2">
+          <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
             <div className="absolute top-4 right-4 bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-bold border border-yellow-500/30 flex items-center">
               <Award className="w-3 h-3 mr-1" /> WINNER
             </div>
-            <div className="h-48 bg-gradient-to-br from-purple-900/50 to-slate-900/50 flex items-center justify-center">
+            <div className="h-48 bg-gradient-to-br from-[#00e5ff]/10 to-black/60 flex items-center justify-center">
               <span className="text-4xl font-bold text-white">Pohi AI Pro</span>
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Pohi AI Pro</h3>
-              <p className="text-slate-400 mb-6 text-sm leading-relaxed">
+              <p className="text-gray-400 mb-6 text-sm leading-relaxed">
                 Egyedi fejlesztésű B2B kereskedési platform — vevői adatbázis, gyártói készlet és fuvarszervezés
                 egy helyen, Gemini AI-val és Google Maps logisztikai tervezéssel.
                 <br /><br />
-                <span className="text-purple-400 font-medium">Fejlesztés alatt:</span> backend integráció,
+                <span className="text-[#00e5ff]/70 font-medium">Fejlesztés alatt:</span> backend integráció,
                 valós idejű értesítések, prediktív analitika.
               </p>
               <Link
                 href={withLang('/portfolio/pohi-ai-pro')}
                 onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioFeaturedPohi, language, target: '/portfolio/pohi-ai-pro', page: PAGE_NAMES.Home })}
-                className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium transition-colors"
+                className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors"
               >
                 {ui.details} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
@@ -155,17 +155,17 @@ const Portfolio = () => {
           </div>
 
           {/* 3. Üzleti Automatizálás */}
-          <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2">
-            <div className="h-48 bg-gradient-to-br from-emerald-900/50 to-slate-900/50 flex items-center justify-center">
-              <TrendingUp className="w-16 h-16 text-emerald-400" />
+          <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="h-48 bg-gradient-to-br from-[#00e5ff]/10 to-black/60 flex items-center justify-center">
+              <TrendingUp className="w-16 h-16 text-[#00e5ff]" />
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Üzleti Folyamatok</h3>
-              <p className="text-slate-400 mb-6">
+              <p className="text-gray-400 mb-6">
                 Üzleti folyamatok teljes körű automatizálása a BAS rendszer segítségével.
                 A repetitív feladatok kiváltása intelligens ügynökökkel.
               </p>
-              <a href="#" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
+              <a href="#" className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors">
                 {ui.details} <ArrowRight className="ml-2 w-4 h-4" />
               </a>
             </div>
@@ -175,73 +175,73 @@ const Portfolio = () => {
         {/* === 4 ÚJ ALKALMAZÁS KÁRTYÁK === */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#00e5ff]">
               Új Alkalmazásaink
             </h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Frissen érkező, specialiálisan fejlesztett AI megoldások vállalkozásod minden területére.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Könyvelési Automatizálás */}
-            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-teal-500/20 hover:border-teal-400/50 transition-all duration-300 hover:-translate-y-2">
-              <div className="absolute top-4 right-4 bg-teal-500/20 text-teal-400 px-3 py-1 rounded-full text-xs font-bold border border-teal-500/30">ÚJ</div>
+            <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">ÚJ</div>
               <div className="p-6 pt-14">
-                <div className="p-2 rounded-xl bg-teal-500/10 w-fit mb-4"><TrendingUp className="w-6 h-6 text-teal-400" /></div>
+                <div className="p-2 rounded-xl bg-[#00e5ff]/10 w-fit mb-4"><TrendingUp className="w-6 h-6 text-[#00e5ff]" /></div>
                 <h3 className="text-lg font-bold text-white mb-2">Könyvelési Automatizálás</h3>
-                <p className="text-slate-400 text-sm mb-4 leading-relaxed">Automatikus számla-feldolgozás, bank-egyeztetés és NAV-ellenőrzés valós idejű irányítópulttal.</p>
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">Automatikus számla-feldolgozás, bank-egyeztetés és NAV-ellenőrzés valós idejű irányítópulttal.</p>
                 <ul className="space-y-1.5 mb-5">
                   {["OCR alapú számlakezelés", "Bank-egyeztetés & NAV-ellenőrzés", "Anomália detektálás"].map(b => (
-                    <li key={b} className="flex items-center gap-2 text-xs text-slate-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-400 shrink-0" />{b}
+                    <li key={b} className="flex items-center gap-2 text-xs text-gray-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{b}
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
             {/* Nova AI Asszisztens */}
-            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-violet-500/20 hover:border-violet-400/50 transition-all duration-300 hover:-translate-y-2">
-              <div className="absolute top-4 right-4 bg-violet-500/20 text-violet-400 px-3 py-1 rounded-full text-xs font-bold border border-violet-500/30">ÚJ</div>
+            <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">ÚJ</div>
               <div className="p-6 pt-14">
-                <div className="p-2 rounded-xl bg-violet-500/10 w-fit mb-4"><Bot className="w-6 h-6 text-violet-400" /></div>
+                <div className="p-2 rounded-xl bg-[#00e5ff]/10 w-fit mb-4"><Bot className="w-6 h-6 text-[#00e5ff]" /></div>
                 <h3 className="text-lg font-bold text-white mb-2">Nova — AI Asszisztens</h3>
-                <p className="text-slate-400 text-sm mb-4 leading-relaxed">Vállalkozásodat megismerő, tanuló napi társ — hangalapú kommunikációval és 24/7 elérhetőséggel.</p>
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">Vállalkozásodat megismerő, tanuló napi társ — hangalapú kommunikációval és 24/7 elérhetőséggel.</p>
                 <ul className="space-y-1.5 mb-5">
                   {["Vállalkozás-specifikus tanulás", "Hangalapú kommunikáció", "24/7 operatív segítség"].map(b => (
-                    <li key={b} className="flex items-center gap-2 text-xs text-slate-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0" />{b}
+                    <li key={b} className="flex items-center gap-2 text-xs text-gray-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{b}
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
             {/* P-Sales */}
-            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-orange-500/20 hover:border-orange-400/50 transition-all duration-300 hover:-translate-y-2">
-              <div className="absolute top-4 right-4 bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-xs font-bold border border-orange-500/30">ÚJ</div>
+            <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">ÚJ</div>
               <div className="p-6 pt-14">
-                <div className="p-2 rounded-xl bg-orange-500/10 w-fit mb-4"><FileSearch className="w-6 h-6 text-orange-400" /></div>
+                <div className="p-2 rounded-xl bg-[#00e5ff]/10 w-fit mb-4"><FileSearch className="w-6 h-6 text-[#00e5ff]" /></div>
                 <h3 className="text-lg font-bold text-white mb-2">P-Sales — Ingatlan Értékesítő</h3>
-                <p className="text-slate-400 text-sm mb-4 leading-relaxed">Dokumentumfelmérés, piackutatás és egyedi értékesítési stratégia ügynöki megoldással.</p>
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">Dokumentumfelmérés, piackutatás és egyedi értékesítési stratégia ügynöki megoldással.</p>
                 <ul className="space-y-1.5 mb-5">
                   {["Felmérő & kutató ügynök", "Piaci árelemzés & stratégia", "Jóváhagyás utáni végrehajtás"].map(b => (
-                    <li key={b} className="flex items-center gap-2 text-xs text-slate-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0" />{b}
+                    <li key={b} className="flex items-center gap-2 text-xs text-gray-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{b}
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
             {/* P-Search */}
-            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:-translate-y-2">
-              <div className="absolute top-4 right-4 bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-bold border border-blue-500/30">ÚJ</div>
+            <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">ÚJ</div>
               <div className="p-6 pt-14">
-                <div className="p-2 rounded-xl bg-blue-500/10 w-fit mb-4"><PenTool className="w-6 h-6 text-blue-400" /></div>
+                <div className="p-2 rounded-xl bg-[#00e5ff]/10 w-fit mb-4"><PenTool className="w-6 h-6 text-[#00e5ff]" /></div>
                 <h3 className="text-lg font-bold text-white mb-2">P-Search — Pályázat & Hitelkereső</h3>
-                <p className="text-slate-400 text-sm mb-4 leading-relaxed">Folyamatos EU/HU pályázat- és hitelfigyelem személyre szabott találatokkal és Kanban követéssel.</p>
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">Folyamatos EU/HU pályázat- és hitelfigyelem személyre szabott találatokkal és Kanban követéssel.</p>
                 <ul className="space-y-1.5 mb-5">
                   {["Folyamatos pályázatfigyelem", "Személyre szabott találatok", "Határidő értesítők"].map(b => (
-                    <li key={b} className="flex items-center gap-2 text-xs text-slate-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />{b}
+                    <li key={b} className="flex items-center gap-2 text-xs text-gray-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{b}
                     </li>
                   ))}
                 </ul>
@@ -252,37 +252,37 @@ const Portfolio = () => {
 
         {/* === ÚJ SZEKCIÓ: Szolgáltatásaink === */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#00e5ff]">
             {ui.servicesTitle}
           </h2>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             {ui.servicesSubtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
           {/* 4. Web Robotpilóta */}
-          <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2">
-            <div className="absolute top-4 right-4 bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-xs font-bold border border-cyan-500/30">
+          <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">
               {ui.new}
             </div>
-            <div className="h-48 bg-gradient-to-br from-cyan-900/50 to-slate-900/50 flex items-center justify-center">
-              <Bot className="w-16 h-16 text-cyan-400" />
+            <div className="h-48 bg-gradient-to-br from-[#00e5ff]/10 to-black/60 flex items-center justify-center">
+              <Bot className="w-16 h-16 text-[#00e5ff]" />
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Web Robotpilóta</h3>
-              <p className="text-slate-400 mb-4 text-sm leading-relaxed">
+              <p className="text-gray-400 mb-4 text-sm leading-relaxed">
                 AI-vezérelt böngésző automatizáció. Adatgyűjtés, form kitöltés, versenytárs monitoring —
                 emberi felügyelet nélkül, 0-24-ben.
               </p>
               <div className="flex items-center gap-2 mb-6">
-                <span className="bg-cyan-500/10 text-cyan-400 text-xs px-2 py-1 rounded border border-cyan-500/20">14.990 Ft/hó-tól</span>
-                <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">Első feladat INGYEN</span>
+                <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">14.990 Ft/hó-tól</span>
+                <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Első feladat INGYEN</span>
               </div>
               <Link
                 href={withLang('/portfolio/web-robotpilota')}
                 onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioServiceRobotpilot, language, target: '/portfolio/web-robotpilota', page: PAGE_NAMES.Home })}
-                className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
+                className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors"
               >
                 {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
@@ -290,27 +290,27 @@ const Portfolio = () => {
           </div>
 
           {/* 5. Pályázat Radar */}
-          <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2">
-            <div className="absolute top-4 right-4 bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-xs font-bold border border-amber-500/30">
+          <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">
               {ui.new}
             </div>
-            <div className="h-48 bg-gradient-to-br from-amber-900/50 to-slate-900/50 flex items-center justify-center">
-              <FileSearch className="w-16 h-16 text-amber-400" />
+            <div className="h-48 bg-gradient-to-br from-[#00e5ff]/10 to-black/60 flex items-center justify-center">
+              <FileSearch className="w-16 h-16 text-[#00e5ff]" />
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Pályázat Radar</h3>
-              <p className="text-slate-400 mb-4 text-sm leading-relaxed">
+              <p className="text-gray-400 mb-4 text-sm leading-relaxed">
                 Soha többé ne maradj le pályázatról. Automatikusan figyeljük az EU/HU pályázatokat
                 és jogszabály-változásokat — heti riport emailben.
               </p>
               <div className="flex items-center gap-2 mb-6">
-                <span className="bg-amber-500/10 text-amber-400 text-xs px-2 py-1 rounded border border-amber-500/20">9.990 Ft/hó-tól</span>
-                <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">2 hét INGYEN próba</span>
+                <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">9.990 Ft/hó-tól</span>
+                <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">2 hét INGYEN próba</span>
               </div>
               <Link
                 href={withLang('/portfolio/palyazat-radar')}
                 onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioServiceRadar, language, target: '/portfolio/palyazat-radar', page: PAGE_NAMES.Home })}
-                className="inline-flex items-center text-amber-400 hover:text-amber-300 font-medium transition-colors"
+                className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors"
               >
                 {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
@@ -318,27 +318,27 @@ const Portfolio = () => {
           </div>
 
           {/* 6. Tartalom Gyártás */}
-          <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-pink-500/50 transition-all duration-300 hover:-translate-y-2">
-            <div className="absolute top-4 right-4 bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-xs font-bold border border-pink-500/30">
+          <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">
               {ui.new}
             </div>
-            <div className="h-48 bg-gradient-to-br from-pink-900/50 to-slate-900/50 flex items-center justify-center">
-              <PenTool className="w-16 h-16 text-pink-400" />
+            <div className="h-48 bg-gradient-to-br from-[#00e5ff]/10 to-black/60 flex items-center justify-center">
+              <PenTool className="w-16 h-16 text-[#00e5ff]" />
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">AI Tartalom Gyártás</h3>
-              <p className="text-slate-400 mb-4 text-sm leading-relaxed">
+              <p className="text-gray-400 mb-4 text-sm leading-relaxed">
                 Havi social media posztok, blog cikkek és email kampányok — AI-val generálva,
                 a te iparágadra és hangnemedre szabva.
               </p>
               <div className="flex items-center gap-2 mb-6">
-                <span className="bg-pink-500/10 text-pink-400 text-xs px-2 py-1 rounded border border-pink-500/20">9.990 Ft/hó-tól</span>
-                <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">5 minta poszt INGYEN</span>
+                <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">9.990 Ft/hó-tól</span>
+                <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">5 minta poszt INGYEN</span>
               </div>
               <Link
                 href={withLang('/portfolio/tartalom-gyartas')}
                 onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioServiceContent, language, target: '/portfolio/tartalom-gyartas', page: PAGE_NAMES.Home })}
-                className="inline-flex items-center text-pink-400 hover:text-pink-300 font-medium transition-colors"
+                className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors"
               >
                 {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
@@ -349,98 +349,98 @@ const Portfolio = () => {
         {/* === WEBOLDAL REFERENCIÁK === */}
         <div className="mb-24">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#00e5ff]">
               {ui.webRefsTitle}
             </h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               {ui.webRefsSubtitle}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Cimbi Weboldal */}
-            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
                 <Image src="/cimbi.jpg" alt="Cimbi Weboldal" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Cimbi Weboldal</h3>
-                <p className="text-slate-400 text-sm mb-4 leading-relaxed">
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
                   Modern, letisztult arculati weboldal — reszponzív dizájn, gyors betöltés és
                   mobilbarát megjelenés az első naptól fogva.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
-                  <span className="bg-cyan-500/10 text-cyan-400 text-xs px-2 py-1 rounded border border-cyan-500/20">Next.js</span>
-                  <span className="bg-blue-500/10 text-blue-400 text-xs px-2 py-1 rounded border border-blue-500/20">Tailwind CSS</span>
-                  <span className="bg-violet-500/10 text-violet-400 text-xs px-2 py-1 rounded border border-violet-500/20">Reszponzív</span>
+                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Next.js</span>
+                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Tailwind CSS</span>
+                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Reszponzív</span>
                 </div>
-                <a href="https://cimbi-weboldal.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://cimbi-weboldal.vercel.app/', page: PAGE_NAMES.Home })} className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors text-sm">
+                <a href="https://cimbi-weboldal.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://cimbi-weboldal.vercel.app/', page: PAGE_NAMES.Home })} className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
                   {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
             </div>
 
             {/* Ecomud */}
-            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
                 <Image src="/edmund.jpg" alt="Ecomud" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Ecomud</h3>
-                <p className="text-slate-400 text-sm mb-4 leading-relaxed">
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
                   Prémium termék-bemutatkozó oldal — konverzióra optimalizált landing page,
                   képgaléria és integrált kapcsolatfelvételi form.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
-                  <span className="bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded border border-emerald-500/20">Next.js</span>
-                  <span className="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20">SEO optimalizált</span>
-                  <span className="bg-teal-500/10 text-teal-400 text-xs px-2 py-1 rounded border border-teal-500/20">Mobil-first</span>
+                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Next.js</span>
+                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">SEO optimalizált</span>
+                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Mobil-first</span>
                 </div>
-                <a href="https://ecomud-eu.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://ecomud-eu.vercel.app/', page: PAGE_NAMES.Home })} className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium transition-colors text-sm">
+                <a href="https://ecomud-eu.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://ecomud-eu.vercel.app/', page: PAGE_NAMES.Home })} className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
                   {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
             </div>
 
             {/* Aronia */}
-            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-fuchsia-500/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
                 <Image src="/aaronia.jpg" alt="Aronia" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Aronia</h3>
-                <p className="text-slate-400 text-sm mb-4 leading-relaxed">
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
                   Elegáns termékbemutató oldal természetes termékekhez — vizuális storytelling,
                   igényes UI dizájn és gördülékeny felhasználói élmény.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
-                  <span className="bg-violet-500/10 text-violet-400 text-xs px-2 py-1 rounded border border-violet-500/20">Next.js</span>
-                  <span className="bg-fuchsia-500/10 text-fuchsia-400 text-xs px-2 py-1 rounded border border-fuchsia-500/20">Animációk</span>
-                  <span className="bg-pink-500/10 text-pink-400 text-xs px-2 py-1 rounded border border-pink-500/20">UI/UX design</span>
+                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Next.js</span>
+                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Animációk</span>
+                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">UI/UX design</span>
                 </div>
-                <a href="https://aronia-chi.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://aronia-chi.vercel.app/', page: PAGE_NAMES.Home })} className="inline-flex items-center text-fuchsia-400 hover:text-fuchsia-300 font-medium transition-colors text-sm">
+                <a href="https://aronia-chi.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://aronia-chi.vercel.app/', page: PAGE_NAMES.Home })} className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
                   {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
             </div>
 
             {/* Lumen Limited Series */}
-            <div className="group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
                 <Image src="/lumen.jpg" alt="Lumen Limited Series" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Lumen Limited Series</h3>
-                <p className="text-slate-400 text-sm mb-4 leading-relaxed">
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
                   Exkluzív borászati bemutatkozó oldal — sorszámozott kollekcióhoz digitális
                   hitelesítéssel, QR-kód alapú nyomonkövetéssel és elegáns vizuális identitással.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
-                  <span className="bg-amber-500/10 text-amber-400 text-xs px-2 py-1 rounded border border-amber-500/20">Next.js</span>
-                  <span className="bg-orange-500/10 text-orange-400 text-xs px-2 py-1 rounded border border-orange-500/20">Luxury design</span>
+                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Next.js</span>
+                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Luxury design</span>
                   <span className="bg-yellow-500/10 text-yellow-400 text-xs px-2 py-1 rounded border border-yellow-500/20">QR hitelesítés</span>
                 </div>
-                <a href="https://www.lumenlimitedseries.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-amber-400 hover:text-amber-300 font-medium transition-colors text-sm">
+                <a href="https://www.lumenlimitedseries.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
                   {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
@@ -449,9 +449,9 @@ const Portfolio = () => {
         </div>
 
         {/* Eredmények és Tanúsítványok */}
-        <div className="border-t border-slate-800 pt-16">
-          <h3 className="text-center text-2xl font-bold text-white mb-4">{ui.certTitle}</h3>
-          <p className="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
+        <div className="border-t border-white/[0.08] pt-16">
+          <h3 className="text-center text-2xl font-bold text-[#00e5ff] mb-4">{ui.certTitle}</h3>
+          <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
             {ui.certSubtitle}
           </p>
 
@@ -460,7 +460,7 @@ const Portfolio = () => {
               <div
                 key={badge.id}
                 onClick={() => setSelectedImage(badge.src)}
-                className="cursor-pointer p-4 bg-slate-800/30 rounded-xl hover:bg-slate-800/60 transition-all duration-300 group flex items-center justify-center h-32 border border-transparent hover:border-slate-700"
+                className="cursor-pointer p-4 bg-white/[0.02] rounded-xl hover:bg-[#00e5ff]/5 transition-all duration-300 group flex items-center justify-center h-32 border border-transparent hover:border-[#00e5ff]/20"
               >
                 <Image
                   src={badge.src}
@@ -475,12 +475,12 @@ const Portfolio = () => {
           </div>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-            <div className="p-6 bg-slate-800/30 rounded-xl border border-slate-700 text-center">
-              <div className="text-3xl font-bold text-yellow-500 mb-2">A+</div>
+            <div className="p-6 bg-black/40 backdrop-blur-xl rounded-xl border border-white/[0.08] text-center">
+              <div className="text-3xl font-bold text-[#00e5ff] mb-2">A+</div>
               <div className="text-white font-medium">{ui.companyRating}</div>
             </div>
-            <div className="p-6 bg-slate-800/30 rounded-xl border border-slate-700 text-center">
-              <div className="text-3xl font-bold text-emerald-500 mb-2">3.2 Mrd Ft</div>
+            <div className="p-6 bg-black/40 backdrop-blur-xl rounded-xl border border-white/[0.08] text-center">
+              <div className="text-3xl font-bold text-[#00e5ff] mb-2">3.2 Mrd Ft</div>
               <div className="text-white font-medium">{ui.turnover}</div>
             </div>
           </div>

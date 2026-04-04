@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-const About = () => {
-  const [openSection, setOpenSection] = useState<string | null>('values');
+const About = () =>
+{
+  const [openSection, setOpenSection] = useState<string | null>( 'values' );
   const { language } = useLanguage();
 
   const txt =
@@ -83,13 +84,14 @@ const About = () => {
             'Szakértő csapatunk tagjai több éves tapasztalattal rendelkeznek a könyviteli, pályázatírási, finanszírozási, pénzügyi, vám ügyintézés, munkavédelmi, munkaügyi engedélyezés területén, komplett engedélyezési kapcsolat rendszerünk van kiépítve az iparkamarával és a növényegészségügyi hivatallal egyaránt. Elemző, és piackutató módszerünk egyedülálló az országban. Kereskedelmi és logisztikai kapcsolatunk van hazai, és nemzetközi fuvarozó cégekkel és hajózási szállítási szolgáltatókkal.',
         };
 
-  const toggleSection = (id: string) => {
-    setOpenSection(openSection === id ? null : id);
+  const toggleSection = ( id: string ) =>
+  {
+    setOpenSection( openSection === id ? null : id );
   };
 
   return (
-    <section id="about" className="py-24 bg-slate-950 relative overflow-hidden">
-      {/* Background video */}
+    <section id="about" className="py-24 bg-black relative overflow-hidden">
+      {/* Background video */ }
       <video
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
@@ -102,64 +104,64 @@ const About = () => {
         <source src="/contact.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark overlay for readability */}
+      {/* Dark overlay for readability */ }
       <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center">{txt.title}</h2>
+          <h2 className="text-4xl font-bold text-[#00e5ff] mb-12 text-center">{ txt.title }</h2>
 
-          <p className="text-slate-300 text-lg leading-relaxed text-center mb-10">
-            {txt.intro}
+          <p className="text-gray-300 text-lg leading-relaxed text-center mb-10">
+            { txt.intro }
           </p>
 
           <div className="space-y-4">
-            {/* 1. Értékek és Filozófia */}
+            {/* 1. Értékek és Filozófia */ }
             <AccordionItem
-              title={txt.valuesTitle}
-              isOpen={openSection === 'values'}
-              onClick={() => toggleSection('values')}
+              title={ txt.valuesTitle }
+              isOpen={ openSection === 'values' }
+              onClick={ () => toggleSection( 'values' ) }
             >
               <p className="mb-4">
-                {txt.valuesP1}
+                { txt.valuesP1 }
               </p>
               <p className="mb-4">
-                {txt.valuesP2}
+                { txt.valuesP2 }
               </p>
               <p>
-                {txt.valuesP3}
+                { txt.valuesP3 }
               </p>
             </AccordionItem>
 
-            {/* 2. Jövőképünk */}
+            {/* 2. Jövőképünk */ }
             <AccordionItem
-              title={txt.visionTitle}
-              isOpen={openSection === 'vision'}
-              onClick={() => toggleSection('vision')}
+              title={ txt.visionTitle }
+              isOpen={ openSection === 'vision' }
+              onClick={ () => toggleSection( 'vision' ) }
             >
               <p className="mb-4">
-                {txt.visionP1}
+                { txt.visionP1 }
               </p>
               <p className="mb-4">
-                {txt.visionP2}
+                { txt.visionP2 }
               </p>
               <p>
-                {txt.visionP3}
+                { txt.visionP3 }
               </p>
             </AccordionItem>
 
-            {/* 3. Elkötelezettség és Csapat */}
+            {/* 3. Elkötelezettség és Csapat */ }
             <AccordionItem
-              title={txt.teamTitle}
-              isOpen={openSection === 'team'}
-              onClick={() => toggleSection('team')}
+              title={ txt.teamTitle }
+              isOpen={ openSection === 'team' }
+              onClick={ () => toggleSection( 'team' ) }
             >
               <p className="mb-4">
-                {txt.teamP1}
+                { txt.teamP1 }
               </p>
-              <h4 className="text-white font-semibold mb-2">{txt.teamHeader}</h4>
+              <h4 className="text-white font-semibold mb-2">{ txt.teamHeader }</h4>
               <p>
-                {txt.teamP2}
+                { txt.teamP2 }
               </p>
             </AccordionItem>
           </div>
@@ -170,21 +172,21 @@ const About = () => {
 };
 
 // Segédkomponens az Accordionhoz
-const AccordionItem = ({ title, isOpen, onClick, children }: any) => (
-  <div className="border border-slate-800 rounded-xl bg-slate-900/50 overflow-hidden">
+const AccordionItem = ( { title, isOpen, onClick, children }: any ) => (
+  <div className="border border-white/[0.08] rounded-xl bg-black/40 backdrop-blur-xl overflow-hidden">
     <button
-      onClick={onClick}
-      className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-slate-800 transition-colors"
+      onClick={ onClick }
+      className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-white/[0.04] transition-colors"
     >
-      <span className="text-xl font-semibold text-white">{title}</span>
-      {isOpen ? <ChevronUp className="text-blue-400" /> : <ChevronDown className="text-slate-500" />}
+      <span className="text-xl font-semibold text-white">{ title }</span>
+      { isOpen ? <ChevronUp className="text-[#00e5ff]" /> : <ChevronDown className="text-[#00e5ff]/30" /> }
     </button>
 
     <div
-      className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
-        }`}
+      className={ `transition-all duration-300 ease-in-out ${ isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
+        }` }
     >
-      <div className="px-6 pb-6 pt-2 text-slate-400 leading-relaxed text-justify">{children}</div>
+      <div className="px-6 pb-6 pt-2 text-gray-400 leading-relaxed text-justify">{ children }</div>
     </div>
   </div>
 );
