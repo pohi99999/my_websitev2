@@ -28,9 +28,9 @@ export function generateMetadata() {
             canonical: "/de/szolgaltatasok",
           }
         : {
-            title: "Szolgáltatásaink | Szoftverfejlesztés & AI",
+            title: "Szolgáltatásaink – Szoftverfejlesztés & AI",
             description:
-              "AI-alapú lead generálás, üzleti folyamat automatizálás, marketing kampányok, piackutatás és egyedi szoftver fejlesztés.",
+              "AI-alapú lead generálás, üzleti folyamat automatizálás, marketing kampányok, piackutatás és egyedi szoftverfejlesztés. Teljes körű digitális megoldások.",
             canonical: "/szolgaltatasok",
           };
 
@@ -49,10 +49,11 @@ export function generateMetadata() {
       title: meta.title,
       description: meta.description,
       url: meta.canonical,
+      type: "website",
       images: [{ url: "/images/logo.png", alt: "Pohánka és Társa Kft. – logó" }],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: meta.title,
       description: meta.description,
     },

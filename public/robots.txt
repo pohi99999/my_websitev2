@@ -4,11 +4,11 @@ Disallow: /admin
 Disallow: /api
 Disallow: /internal
 
-# Crawl delay (optional - in milliseconds)
+# Crawl delay (optional - in seconds)
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://pohanka.vercel.app/sitemap.xml
+Sitemap: https://www.pohankaestarsa.com/sitemap.xml
 
 # Google specific rules
 User-agent: Googlebot

@@ -8,19 +8,19 @@ export function generateMetadata() {
   const meta =
     language === "en"
       ? {
-          title: "Contact | Pohánka AI",
-          description: "Get in touch with us and request a free consultation for your software or AI project.",
+          title: "Contact",
+          description: "Get in touch with Pohánka & Társa and request a free consultation for your software or AI project. We'd love to hear from you.",
           canonical: "/en/kapcsolat",
         }
       : language === "de"
         ? {
-            title: "Kontakt | Pohánka AI",
-            description: "Kontaktieren Sie uns für eine kostenlose Beratung zu Ihrem Software- oder KI-Projekt.",
+            title: "Kontakt",
+            description: "Kontaktieren Sie Pohánka & Társa für eine kostenlose Beratung zu Ihrem Software- oder KI-Projekt. Wir freuen uns auf Ihre Nachricht.",
             canonical: "/de/kapcsolat",
           }
         : {
-            title: "Kapcsolat | Pohánka és Társa Kft.",
-            description: "Lépjen kapcsolatba velünk! Kérjen ingyenes konzultációt szoftverfejlesztési vagy AI projektjéhez.",
+            title: "Kapcsolat",
+            description: "Lépjen kapcsolatba a Pohánka és Társa Kft.-vel! Kérjen ingyenes konzultációt szoftverfejlesztési vagy AI projektjéhez. Várjuk megkeresését!",
             canonical: "/kapcsolat",
           };
 
@@ -39,10 +39,11 @@ export function generateMetadata() {
       title: meta.title,
       description: meta.description,
       url: meta.canonical,
+      type: "website",
       images: [{ url: "/images/logo.png", alt: "Pohánka és Társa Kft. – logó" }],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: meta.title,
       description: meta.description,
     },

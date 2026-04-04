@@ -109,7 +109,7 @@ const About = () =>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-[#00e5ff] mb-12 text-center">{ txt.title }</h2>
+          <h1 className="text-4xl font-bold text-[#00e5ff] mb-12 text-center">{ txt.title }</h1>
 
           <p className="text-gray-300 text-lg leading-relaxed text-center mb-10">
             { txt.intro }
@@ -159,7 +159,7 @@ const About = () =>
               <p className="mb-4">
                 { txt.teamP1 }
               </p>
-              <h4 className="text-white font-semibold mb-2">{ txt.teamHeader }</h4>
+              <h3 className="text-white font-semibold mb-2">{ txt.teamHeader }</h3>
               <p>
                 { txt.teamP2 }
               </p>

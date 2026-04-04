@@ -11,20 +11,20 @@ export function generateMetadata() {
     language === "en"
       ? {
           title: "Portfolio",
-          description: "Featured projects and case studies — AI, automation, web development and business systems.",
+          description: "Featured projects and case studies — AI automation, web development and business systems by Pohánka & Társa. See our work in action.",
           locale: "en_US",
           canonical: "/en/portfolio",
         }
       : language === "de"
         ? {
             title: "Portfolio",
-            description: "Ausgewählte Projekte und Fallstudien — KI, Automatisierung, Webentwicklung und Geschäftssysteme.",
+            description: "Ausgewählte Projekte und Fallstudien — KI-Automatisierung, Webentwicklung und Geschäftssysteme von Pohánka & Társa.",
             locale: "de_DE",
             canonical: "/de/portfolio",
           }
         : {
-            title: "Portfólió",
-            description: "Kiemelt projektek és esettanulmányok – AI, automatizálás, webfejlesztés és üzleti rendszerek.",
+            title: "Portfólió – Kiemelt Projektek",
+            description: "Kiemelt projektek és esettanulmányok – AI automatizálás, webfejlesztés és üzleti rendszerek a Pohánka és Társa Kft.-től.",
             locale: "hu_HU",
             canonical: "/portfolio",
           };

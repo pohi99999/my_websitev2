@@ -14,24 +14,24 @@ export function generateMetadata() {
   const meta =
     language === 'en'
       ? {
-          title: 'Blog & Knowledge Hub | Pohánka AI',
+          title: 'Blog & Knowledge Hub',
           description:
-            'Articles and white papers about AI agents, automation, technology and practical implementation.',
+            'Articles and white papers about AI agents, automation, technology and practical implementation. Stay ahead with Pohánka AI insights.',
           canonical: '/en/blog',
           locale: 'en_US',
         }
       : language === 'de'
       ? {
-          title: 'Blog & Wissenszentrum | Pohánka AI',
+          title: 'Blog & Wissenszentrum',
           description:
-            'Artikel und Whitepaper zu KI-Agenten, Automatisierung, Technologie und praxisnaher Umsetzung.',
+            'Artikel und Whitepaper zu KI-Agenten, Automatisierung, Technologie und praxisnaher Umsetzung. Bleiben Sie mit Pohánka AI informiert.',
           canonical: '/de/blog',
           locale: 'de_DE',
         }
       : {
-          title: 'Blog & Tudástár | Pohánka AI',
+          title: 'Blog & Tudástár',
           description:
-            'Cikkek és white paper anyagok AI ügynökökről, automatizálásról, technológiáról és a Brunella Agent System működéséről.',
+            'Cikkek és white paper anyagok AI ügynökökről, automatizálásról, technológiáról és a Brunella Agent System működéséről. Friss tartalmak!',
           canonical: '/blog',
           locale: 'hu_HU',
         };

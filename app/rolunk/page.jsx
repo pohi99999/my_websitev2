@@ -8,19 +8,19 @@ export function generateMetadata() {
   const meta =
     language === "en"
       ? {
-          title: "About Us | Pohánka AI",
-          description: "Pohánka & Társa — AI agency and software development. Mission, approach and technology focus.",
+          title: "About Us",
+          description: "Pohánka & Társa — AI agency and software development. Learn about our mission, values, approach and technology focus.",
           canonical: "/en/rolunk",
         }
       : language === "de"
         ? {
-            title: "Über uns | Pohánka AI",
-            description: "Pohánka & Társa — KI-Agentur und Softwareentwicklung. Mission, Ansatz und technologischer Fokus.",
+            title: "Über uns",
+            description: "Pohánka & Társa — KI-Agentur und Softwareentwicklung. Erfahren Sie mehr über unsere Mission, Werte und Technologie-Fokus.",
             canonical: "/de/rolunk",
           }
         : {
-            title: "Rólunk | Pohánka AI",
-            description: "Pohánka és Társa Kft. – AI ügynökség és szoftverfejlesztés. Küldetés, szemlélet és technológiai fókusz.",
+            title: "Rólunk",
+            description: "Pohánka és Társa Kft. – AI ügynökség és szoftverfejlesztés. Ismerje meg küldetésünket, értékeinket és technológiai fókuszunkat.",
             canonical: "/rolunk",
           };
 
@@ -39,10 +39,11 @@ export function generateMetadata() {
       title: meta.title,
       description: meta.description,
       url: meta.canonical,
+      type: "website",
       images: [{ url: "/images/logo.png", alt: "Pohánka és Társa Kft. – logó" }],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: meta.title,
       description: meta.description,
     },

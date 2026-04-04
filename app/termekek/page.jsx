@@ -13,21 +13,21 @@ export function generateMetadata() {
   const meta =
     language === "en"
       ? {
-          title: "Products | Pohánka AI",
-          description: "Brunella Agent System (BAS), Pohi AI Pro and additional AI solutions for SMEs.",
+          title: "Products",
+          description: "Brunella Agent System (BAS), Pohi AI Pro and additional AI solutions for SMEs. Discover our platforms and products.",
           locale: "en_US",
           canonical: "/en/termekek",
         }
       : language === "de"
         ? {
-            title: "Produkte | Pohánka AI",
-            description: "Brunella Agent System (BAS), Pohi AI Pro und weitere KI-Lösungen für KMU.",
+            title: "Produkte",
+            description: "Brunella Agent System (BAS), Pohi AI Pro und weitere KI-Lösungen für KMU. Entdecken Sie unsere Plattformen und Produkte.",
             locale: "de_DE",
             canonical: "/de/termekek",
           }
         : {
-            title: "Termékek | Pohánka AI",
-            description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára.",
+            title: "Termékek",
+            description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára. Fedezze fel egyedi megoldásainkat!",
             locale: "hu_HU",
             canonical: "/termekek",
           };

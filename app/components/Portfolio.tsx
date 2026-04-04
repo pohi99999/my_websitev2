@@ -7,10 +7,11 @@ import { ArrowRight, Award, TrendingUp, X, Bot, FileSearch, PenTool, ExternalLin
 import { useLanguage } from '../context/LanguageContext';
 import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
 
-const Portfolio = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+const Portfolio = () =>
+{
+  const [selectedImage, setSelectedImage] = useState<string | null>( null );
   const { language } = useLanguage();
-  const withLang = (href: string) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
+  const withLang = ( href: string ) => ( language === 'hu' ? href : href === '/' ? `/${ language }` : `/${ language }${ href }` );
 
   const ui =
     language === 'en'
@@ -70,15 +71,15 @@ const Portfolio = () => {
           certLarge: 'Tanúsítvány nagyítva',
         };
 
-  const badges = Array.from({ length: 12 }, (_, i) => ({
+  const badges = Array.from( { length: 12 }, ( _, i ) => ( {
     id: i + 1,
-    src: `/images/google-dev-badge${i + 1}.png`,
-    alt: `Google Developer Certification ${i + 1}`
-  }));
+    src: `/images/google-dev-badge${ i + 1 }.png`,
+    alt: `Google Developer Certification ${ i + 1 }`
+  } ) );
 
   return (
     <section id="portfolio" className="py-24 bg-black relative overflow-hidden">
-      {/* Background video */}
+      {/* Background video */ }
       <video
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
@@ -91,22 +92,22 @@ const Portfolio = () => {
         <source src="/portfolio.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark overlay */}
+      {/* Dark overlay */ }
       <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#00e5ff]">
-            {ui.title}
-          </h2>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[#00e5ff]">
+            { ui.title }
+          </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            {ui.subtitle}
+            { ui.subtitle }
           </p>
         </div>
 
-        {/* Projekt Kártyák */}
+        {/* Projekt Kártyák */ }
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          {/* 1. BAS */}
+          {/* 1. BAS */ }
           <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
             <div className="h-48 bg-gradient-to-br from-[#00e5ff]/10 to-black/60 flex items-center justify-center">
               <span className="text-4xl font-bold text-white">BAS</span>
@@ -118,16 +119,16 @@ const Portfolio = () => {
                 57 ügynökből álló, öngyógyító digitális munkaerő, ami lát, hall és cselekszik helyetted.
               </p>
               <Link
-                href={withLang('/portfolio/brunella-bas')}
-                onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioFeaturedBrunella, language, target: '/portfolio/brunella-bas', page: PAGE_NAMES.Home })}
+                href={ withLang( '/portfolio/brunella-bas' ) }
+                onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioFeaturedBrunella, language, target: '/portfolio/brunella-bas', page: PAGE_NAMES.Home } ) }
                 className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors"
               >
-                {ui.details} <ArrowRight className="ml-2 w-4 h-4" />
+                { ui.details } <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
           </div>
 
-          {/* 2. Pohi AI Pro */}
+          {/* 2. Pohi AI Pro */ }
           <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
             <div className="absolute top-4 right-4 bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-bold border border-yellow-500/30 flex items-center">
               <Award className="w-3 h-3 mr-1" /> WINNER
@@ -145,16 +146,16 @@ const Portfolio = () => {
                 valós idejű értesítések, prediktív analitika.
               </p>
               <Link
-                href={withLang('/portfolio/pohi-ai-pro')}
-                onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioFeaturedPohi, language, target: '/portfolio/pohi-ai-pro', page: PAGE_NAMES.Home })}
+                href={ withLang( '/portfolio/pohi-ai-pro' ) }
+                onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioFeaturedPohi, language, target: '/portfolio/pohi-ai-pro', page: PAGE_NAMES.Home } ) }
                 className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors"
               >
-                {ui.details} <ArrowRight className="ml-2 w-4 h-4" />
+                { ui.details } <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
           </div>
 
-          {/* 3. Üzleti Automatizálás */}
+          {/* 3. Üzleti Automatizálás */ }
           <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
             <div className="h-48 bg-gradient-to-br from-[#00e5ff]/10 to-black/60 flex items-center justify-center">
               <TrendingUp className="w-16 h-16 text-[#00e5ff]" />
@@ -166,13 +167,13 @@ const Portfolio = () => {
                 A repetitív feladatok kiváltása intelligens ügynökökkel.
               </p>
               <a href="#" className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors">
-                {ui.details} <ArrowRight className="ml-2 w-4 h-4" />
+                { ui.details } <ArrowRight className="ml-2 w-4 h-4" />
               </a>
             </div>
           </div>
         </div>
 
-        {/* === 4 ÚJ ALKALMAZÁS KÁRTYÁK === */}
+        {/* === 4 ÚJ ALKALMAZÁS KÁRTYÁK === */ }
         <div className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#00e5ff]">
@@ -183,7 +184,7 @@ const Portfolio = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Könyvelési Automatizálás */}
+            {/* Könyvelési Automatizálás */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">ÚJ</div>
               <div className="p-6 pt-14">
@@ -191,15 +192,15 @@ const Portfolio = () => {
                 <h3 className="text-lg font-bold text-white mb-2">Könyvelési Automatizálás</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">Automatikus számla-feldolgozás, bank-egyeztetés és NAV-ellenőrzés valós idejű irányítópulttal.</p>
                 <ul className="space-y-1.5 mb-5">
-                  {["OCR alapú számlakezelés", "Bank-egyeztetés & NAV-ellenőrzés", "Anomália detektálás"].map(b => (
-                    <li key={b} className="flex items-center gap-2 text-xs text-gray-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{b}
+                  { ["OCR alapú számlakezelés", "Bank-egyeztetés & NAV-ellenőrzés", "Anomália detektálás"].map( b => (
+                    <li key={ b } className="flex items-center gap-2 text-xs text-gray-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{ b }
                     </li>
-                  ))}
+                  ) ) }
                 </ul>
               </div>
             </div>
-            {/* Nova AI Asszisztens */}
+            {/* Nova AI Asszisztens */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">ÚJ</div>
               <div className="p-6 pt-14">
@@ -207,15 +208,15 @@ const Portfolio = () => {
                 <h3 className="text-lg font-bold text-white mb-2">Nova — AI Asszisztens</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">Vállalkozásodat megismerő, tanuló napi társ — hangalapú kommunikációval és 24/7 elérhetőséggel.</p>
                 <ul className="space-y-1.5 mb-5">
-                  {["Vállalkozás-specifikus tanulás", "Hangalapú kommunikáció", "24/7 operatív segítség"].map(b => (
-                    <li key={b} className="flex items-center gap-2 text-xs text-gray-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{b}
+                  { ["Vállalkozás-specifikus tanulás", "Hangalapú kommunikáció", "24/7 operatív segítség"].map( b => (
+                    <li key={ b } className="flex items-center gap-2 text-xs text-gray-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{ b }
                     </li>
-                  ))}
+                  ) ) }
                 </ul>
               </div>
             </div>
-            {/* P-Sales */}
+            {/* P-Sales */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">ÚJ</div>
               <div className="p-6 pt-14">
@@ -223,15 +224,15 @@ const Portfolio = () => {
                 <h3 className="text-lg font-bold text-white mb-2">P-Sales — Ingatlan Értékesítő</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">Dokumentumfelmérés, piackutatás és egyedi értékesítési stratégia ügynöki megoldással.</p>
                 <ul className="space-y-1.5 mb-5">
-                  {["Felmérő & kutató ügynök", "Piaci árelemzés & stratégia", "Jóváhagyás utáni végrehajtás"].map(b => (
-                    <li key={b} className="flex items-center gap-2 text-xs text-gray-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{b}
+                  { ["Felmérő & kutató ügynök", "Piaci árelemzés & stratégia", "Jóváhagyás utáni végrehajtás"].map( b => (
+                    <li key={ b } className="flex items-center gap-2 text-xs text-gray-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{ b }
                     </li>
-                  ))}
+                  ) ) }
                 </ul>
               </div>
             </div>
-            {/* P-Search */}
+            {/* P-Search */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">ÚJ</div>
               <div className="p-6 pt-14">
@@ -239,32 +240,32 @@ const Portfolio = () => {
                 <h3 className="text-lg font-bold text-white mb-2">P-Search — Pályázat & Hitelkereső</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">Folyamatos EU/HU pályázat- és hitelfigyelem személyre szabott találatokkal és Kanban követéssel.</p>
                 <ul className="space-y-1.5 mb-5">
-                  {["Folyamatos pályázatfigyelem", "Személyre szabott találatok", "Határidő értesítők"].map(b => (
-                    <li key={b} className="flex items-center gap-2 text-xs text-gray-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{b}
+                  { ["Folyamatos pályázatfigyelem", "Személyre szabott találatok", "Határidő értesítők"].map( b => (
+                    <li key={ b } className="flex items-center gap-2 text-xs text-gray-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{ b }
                     </li>
-                  ))}
+                  ) ) }
                 </ul>
               </div>
             </div>
           </div>
         </div>
 
-        {/* === ÚJ SZEKCIÓ: Szolgáltatásaink === */}
+        {/* === ÚJ SZEKCIÓ: Szolgáltatásaink === */ }
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#00e5ff]">
-            {ui.servicesTitle}
+            { ui.servicesTitle }
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            {ui.servicesSubtitle}
+            { ui.servicesSubtitle }
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          {/* 4. Web Robotpilóta */}
+          {/* 4. Web Robotpilóta */ }
           <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
             <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">
-              {ui.new}
+              { ui.new }
             </div>
             <div className="h-48 bg-gradient-to-br from-[#00e5ff]/10 to-black/60 flex items-center justify-center">
               <Bot className="w-16 h-16 text-[#00e5ff]" />
@@ -280,19 +281,19 @@ const Portfolio = () => {
                 <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Első feladat INGYEN</span>
               </div>
               <Link
-                href={withLang('/portfolio/web-robotpilota')}
-                onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioServiceRobotpilot, language, target: '/portfolio/web-robotpilota', page: PAGE_NAMES.Home })}
+                href={ withLang( '/portfolio/web-robotpilota' ) }
+                onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioServiceRobotpilot, language, target: '/portfolio/web-robotpilota', page: PAGE_NAMES.Home } ) }
                 className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors"
               >
-                {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
+                { ui.detailsPricing } <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
           </div>
 
-          {/* 5. Pályázat Radar */}
+          {/* 5. Pályázat Radar */ }
           <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
             <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">
-              {ui.new}
+              { ui.new }
             </div>
             <div className="h-48 bg-gradient-to-br from-[#00e5ff]/10 to-black/60 flex items-center justify-center">
               <FileSearch className="w-16 h-16 text-[#00e5ff]" />
@@ -308,19 +309,19 @@ const Portfolio = () => {
                 <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">2 hét INGYEN próba</span>
               </div>
               <Link
-                href={withLang('/portfolio/palyazat-radar')}
-                onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioServiceRadar, language, target: '/portfolio/palyazat-radar', page: PAGE_NAMES.Home })}
+                href={ withLang( '/portfolio/palyazat-radar' ) }
+                onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioServiceRadar, language, target: '/portfolio/palyazat-radar', page: PAGE_NAMES.Home } ) }
                 className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors"
               >
-                {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
+                { ui.detailsPricing } <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
           </div>
 
-          {/* 6. Tartalom Gyártás */}
+          {/* 6. Tartalom Gyártás */ }
           <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
             <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">
-              {ui.new}
+              { ui.new }
             </div>
             <div className="h-48 bg-gradient-to-br from-[#00e5ff]/10 to-black/60 flex items-center justify-center">
               <PenTool className="w-16 h-16 text-[#00e5ff]" />
@@ -336,29 +337,29 @@ const Portfolio = () => {
                 <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">5 minta poszt INGYEN</span>
               </div>
               <Link
-                href={withLang('/portfolio/tartalom-gyartas')}
-                onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioServiceContent, language, target: '/portfolio/tartalom-gyartas', page: PAGE_NAMES.Home })}
+                href={ withLang( '/portfolio/tartalom-gyartas' ) }
+                onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioServiceContent, language, target: '/portfolio/tartalom-gyartas', page: PAGE_NAMES.Home } ) }
                 className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors"
               >
-                {ui.detailsPricing} <ArrowRight className="ml-2 w-4 h-4" />
+                { ui.detailsPricing } <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
           </div>
         </div>
 
-        {/* === WEBOLDAL REFERENCIÁK === */}
+        {/* === WEBOLDAL REFERENCIÁK === */ }
         <div className="mb-24">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#00e5ff]">
-              {ui.webRefsTitle}
+              { ui.webRefsTitle }
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              {ui.webRefsSubtitle}
+              { ui.webRefsSubtitle }
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Cimbi Weboldal */}
+            {/* Cimbi Weboldal */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
                 <Image src="/cimbi.jpg" alt="Cimbi Weboldal" fill className="object-cover object-top" />
@@ -374,13 +375,13 @@ const Portfolio = () => {
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Tailwind CSS</span>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Reszponzív</span>
                 </div>
-                <a href="https://cimbi-weboldal.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://cimbi-weboldal.vercel.app/', page: PAGE_NAMES.Home })} className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
-                  {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
+                <a href="https://cimbi-weboldal.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://cimbi-weboldal.vercel.app/', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
+                  { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
             </div>
 
-            {/* Ecomud */}
+            {/* Ecomud */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
                 <Image src="/edmund.jpg" alt="Ecomud" fill className="object-cover object-top" />
@@ -396,13 +397,13 @@ const Portfolio = () => {
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">SEO optimalizált</span>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Mobil-first</span>
                 </div>
-                <a href="https://ecomud-eu.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://ecomud-eu.vercel.app/', page: PAGE_NAMES.Home })} className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
-                  {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
+                <a href="https://ecomud-eu.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://ecomud-eu.vercel.app/', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
+                  { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
             </div>
 
-            {/* Aronia */}
+            {/* Aronia */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
                 <Image src="/aaronia.jpg" alt="Aronia" fill className="object-cover object-top" />
@@ -418,13 +419,13 @@ const Portfolio = () => {
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Animációk</span>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">UI/UX design</span>
                 </div>
-                <a href="https://aronia-chi.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackCtaClick({ location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://aronia-chi.vercel.app/', page: PAGE_NAMES.Home })} className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
-                  {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
+                <a href="https://aronia-chi.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://aronia-chi.vercel.app/', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
+                  { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
             </div>
 
-            {/* Lumen Limited Series */}
+            {/* Lumen Limited Series */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
                 <Image src="/lumen.jpg" alt="Lumen Limited Series" fill className="object-cover object-top" />
@@ -441,76 +442,76 @@ const Portfolio = () => {
                   <span className="bg-yellow-500/10 text-yellow-400 text-xs px-2 py-1 rounded border border-yellow-500/20">QR hitelesítés</span>
                 </div>
                 <a href="https://www.lumenlimitedseries.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
-                  {ui.view} <ExternalLink className="ml-2 w-4 h-4" />
+                  { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Eredmények és Tanúsítványok */}
+        {/* Eredmények és Tanúsítványok */ }
         <div className="border-t border-white/[0.08] pt-16">
-          <h3 className="text-center text-2xl font-bold text-[#00e5ff] mb-4">{ui.certTitle}</h3>
+          <h3 className="text-center text-2xl font-bold text-[#00e5ff] mb-4">{ ui.certTitle }</h3>
           <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-            {ui.certSubtitle}
+            { ui.certSubtitle }
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {badges.map((badge) => (
+            { badges.map( ( badge ) => (
               <div
-                key={badge.id}
-                onClick={() => setSelectedImage(badge.src)}
+                key={ badge.id }
+                onClick={ () => setSelectedImage( badge.src ) }
                 className="cursor-pointer p-4 bg-white/[0.02] rounded-xl hover:bg-[#00e5ff]/5 transition-all duration-300 group flex items-center justify-center h-32 border border-transparent hover:border-[#00e5ff]/20"
               >
                 <Image
-                  src={badge.src}
-                  alt={badge.alt}
-                  width={220}
-                  height={140}
+                  src={ badge.src }
+                  alt={ badge.alt }
+                  width={ 220 }
+                  height={ 140 }
                   sizes="(max-width: 640px) 40vw, (max-width: 1024px) 20vw, 12vw"
                   className="max-h-20 w-auto object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
                 />
               </div>
-            ))}
+            ) ) }
           </div>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             <div className="p-6 bg-black/40 backdrop-blur-xl rounded-xl border border-white/[0.08] text-center">
               <div className="text-3xl font-bold text-[#00e5ff] mb-2">A+</div>
-              <div className="text-white font-medium">{ui.companyRating}</div>
+              <div className="text-white font-medium">{ ui.companyRating }</div>
             </div>
             <div className="p-6 bg-black/40 backdrop-blur-xl rounded-xl border border-white/[0.08] text-center">
               <div className="text-3xl font-bold text-[#00e5ff] mb-2">3.2 Mrd Ft</div>
-              <div className="text-white font-medium">{ui.turnover}</div>
+              <div className="text-white font-medium">{ ui.turnover }</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Lightbox */}
-      {selectedImage && (
+      {/* Lightbox */ }
+      { selectedImage && (
         <div
           className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
-          onClick={() => setSelectedImage(null)}
+          onClick={ () => setSelectedImage( null ) }
         >
           <button
-            aria-label={ui.close}
+            aria-label={ ui.close }
             className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
-            onClick={() => setSelectedImage(null)}
+            onClick={ () => setSelectedImage( null ) }
           >
-            <X size={48} />
+            <X size={ 48 } />
           </button>
           <Image
-            src={selectedImage}
-            alt={ui.certLarge}
-            width={1600}
-            height={1100}
+            src={ selectedImage }
+            alt={ ui.certLarge }
+            width={ 1600 }
+            height={ 1100 }
             sizes="90vw"
             className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+            onClick={ ( e ) => e.stopPropagation() }
           />
         </div>
-      )}
+      ) }
     </section>
   );
 };
