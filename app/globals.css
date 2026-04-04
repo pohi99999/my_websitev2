@@ -20,6 +20,17 @@
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-accent: rgba(0, 229, 255, 0.3);
 
+  /* Surface layers — depth without gray */
+  --surface-0: #000000;
+  --surface-1: #060608;
+  --surface-2: #0c0c10;
+  --surface-3: #12121a;
+  --surface-hover: rgba(0, 229, 255, 0.04);
+
+  /* Accent complementary palette (subtle) */
+  --accent-warm: #f5a623;
+  --accent-success: #34d399;
+
   /* Legacy RGB vars — aliased to cyan for backward-compat */
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
@@ -66,6 +77,18 @@ body {
 
 .bg-surface {
   background: var(--bg-surface);
+}
+
+.bg-surface-1 {
+  background: var(--surface-1);
+}
+
+.bg-surface-2 {
+  background: var(--surface-2);
+}
+
+.bg-surface-3 {
+  background: var(--surface-3);
 }
 
 /* Corner bracket decoration */

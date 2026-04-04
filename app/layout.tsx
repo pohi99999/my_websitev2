@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Syne } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import MobileCTA from './components/MobileCTA';
 import SequentialVideoBackground from './components/SequentialVideoBackground';
 import LenisProvider from './components/LenisProvider';
 import { LanguageProvider } from './context/LanguageContext';
@@ -11,6 +12,7 @@ import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
 
 const inter = Inter( { subsets: ['latin'], display: 'swap', variable: '--font-inter' } );
+const syne = Syne( { subsets: ['latin'], display: 'swap', variable: '--font-syne', weight: ['600', '700', '800'] } );
 
 export const metadata: Metadata = {
   metadataBase: new URL( 'https://www.pohankaestarsa.com' ),
@@ -136,7 +138,7 @@ export default async function RootLayout ( {
           } }
         />
       </head>
-      <body className={ `${ inter.variable } ${ inter.className } bg-black text-white` }>
+      <body className={ `${ inter.variable } ${ syne.variable } ${ inter.className } bg-black text-white` }>
         {/* Skip navigation – akadálymentesítés */ }
         <a
           href="#main-content"
@@ -152,6 +154,7 @@ export default async function RootLayout ( {
               { children }
             </main>
             <Footer />
+            <MobileCTA />
           </LenisProvider>
         </LanguageProvider>
         <Analytics />

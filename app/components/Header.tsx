@@ -1,54 +1,172 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown, Bot, Cpu, Megaphone, Search, FileText, BookOpen, Zap, BarChart3, Package, Code2, Brain } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '../context/LanguageContext';
 import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
 
-export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+export default function Header ()
+{
+  const [isMenuOpen, setIsMenuOpen] = useState( false );
+  const [scrolled, setScrolled] = useState( false );
+  const [megaMenuOpen, setMegaMenuOpen] = useState<string | null>( null );
+  const megaMenuTimerRef = useRef<ReturnType<typeof setTimeout> | null>( null );
   const pathname = usePathname();
   const { t, language } = useLanguage();
 
-  const withLang = (href: string) => {
-    if (language === 'hu') return href;
-    if (href === '/') return `/${language}`;
-    return href.startsWith('/') ? `/${language}${href}` : href;
+  const withLang = ( href: string ) =>
+  {
+    if ( language === 'hu' ) return href;
+    if ( href === '/' ) return `/${ language }`;
+    return href.startsWith( '/' ) ? `/${ language }${ href }` : href;
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+  // Hover handlers with a small delay so accidental brief mouse-overs don't flash the menu
+  const openMegaMenu = useCallback( ( key: string ) =>
+  {
+    if ( megaMenuTimerRef.current ) clearTimeout( megaMenuTimerRef.current );
+    setMegaMenuOpen( key );
+  }, [] );
+
+  const closeMegaMenu = useCallback( () =>
+  {
+    megaMenuTimerRef.current = setTimeout( () => setMegaMenuOpen( null ), 120 );
+  }, [] );
+
+  const keepMegaMenuOpen = useCallback( () =>
+  {
+    if ( megaMenuTimerRef.current ) clearTimeout( megaMenuTimerRef.current );
+  }, [] );
+
+  // Mega menu data — localised
+  const megaMenuData = {
+    services: {
+      hu: {
+        title: 'Szolgáltatások',
+        cta: { label: 'Összes szolgáltatás', href: withLang( '/szolgaltatasok' ) },
+        items: [
+          { icon: BookOpen, label: 'Könyvelési Automatizálás', desc: 'OCR, NAV-szinkron, pénzügyi irányítópult', href: withLang( '/szolgaltatasok' ) },
+          { icon: Brain, label: 'Nova — AI Asszisztens', desc: 'Hangalapú 24/7 vállalkozói társ', href: withLang( '/szolgaltatasok' ) },
+          { icon: Search, label: 'P-Search', desc: 'EU/HU pályázat- és hitelfigyelő', href: withLang( '/szolgaltatasok' ) },
+          { icon: Bot, label: 'Intelligens Lead Generálás', desc: 'Napi fájdalompontszám-alapú szűrés', href: withLang( '/szolgaltatasok' ) },
+          { icon: Megaphone, label: 'Automatikus Outreach', desc: 'Személyre szabott email + follow-up', href: withLang( '/szolgaltatasok' ) },
+          { icon: Zap, label: 'Folyamat Automatizálás', desc: 'OCR, riportok, email osztályozás', href: withLang( '/szolgaltatasok' ) },
+          { icon: Cpu, label: 'AI Ügynök Telepítés', desc: 'Öngyógyító, RAG-alapú ügynökök', href: withLang( '/szolgaltatasok' ) },
+          { icon: BarChart3, label: 'Marketing Automatizálás', desc: 'SEO tartalom, social, A/B hirdetések', href: withLang( '/szolgaltatasok' ) },
+        ],
+      },
+      en: {
+        title: 'Services',
+        cta: { label: 'All services', href: withLang( '/szolgaltatasok' ) },
+        items: [
+          { icon: BookOpen, label: 'Accounting Automation', desc: 'OCR, bank sync, financial dashboard', href: withLang( '/szolgaltatasok' ) },
+          { icon: Brain, label: 'Nova — AI Assistant', desc: 'Voice-based 24/7 business partner', href: withLang( '/szolgaltatasok' ) },
+          { icon: Search, label: 'P-Search', desc: 'EU/HU grant & loan monitor', href: withLang( '/szolgaltatasok' ) },
+          { icon: Bot, label: 'Intelligent Lead Gen', desc: 'Daily pain-score-based filtering', href: withLang( '/szolgaltatasok' ) },
+          { icon: Megaphone, label: 'Automatic Outreach', desc: 'Personalised email + follow-up', href: withLang( '/szolgaltatasok' ) },
+          { icon: Zap, label: 'Process Automation', desc: 'OCR, reports, email sorting', href: withLang( '/szolgaltatasok' ) },
+          { icon: Cpu, label: 'AI Agent Deployment', desc: 'Self-healing, RAG-based agents', href: withLang( '/szolgaltatasok' ) },
+          { icon: BarChart3, label: 'Marketing Automation', desc: 'SEO content, social, A/B ads', href: withLang( '/szolgaltatasok' ) },
+        ],
+      },
+      de: {
+        title: 'Dienstleistungen',
+        cta: { label: 'Alle Dienste', href: withLang( '/szolgaltatasok' ) },
+        items: [
+          { icon: BookOpen, label: 'Buchhaltungs-Automatisierung', desc: 'OCR, Bank-Sync, Finanzdashboard', href: withLang( '/szolgaltatasok' ) },
+          { icon: Brain, label: 'Nova — KI-Assistent', desc: 'Sprachbasierter 24/7 Partner', href: withLang( '/szolgaltatasok' ) },
+          { icon: Search, label: 'P-Search', desc: 'EU/HU Förder- & Kreditmonitor', href: withLang( '/szolgaltatasok' ) },
+          { icon: Bot, label: 'Lead-Generierung', desc: 'Tägliches Schmerz­punkte-Screening', href: withLang( '/szolgaltatasok' ) },
+          { icon: Megaphone, label: 'Auto. Outreach', desc: 'Personalisierte E-Mails + Follow-up', href: withLang( '/szolgaltatasok' ) },
+          { icon: Zap, label: 'Prozess-Automatisierung', desc: 'OCR, Berichte, E-Mail-Klassifikation', href: withLang( '/szolgaltatasok' ) },
+          { icon: Cpu, label: 'KI-Agenten-Deployment', desc: 'Selbstheilende, RAG-basierte Agenten', href: withLang( '/szolgaltatasok' ) },
+          { icon: BarChart3, label: 'Marketing-Automatisierung', desc: 'SEO-Inhalte, Social, A/B-Anzeigen', href: withLang( '/szolgaltatasok' ) },
+        ],
+      },
+    },
+    products: {
+      hu: {
+        title: 'Termékek',
+        cta: { label: 'Összes termék', href: withLang( '/termekek' ) },
+        items: [
+          { icon: Bot, label: 'Brunella Agent System', desc: '95+ AI ügynök, 53 MCP eszköz, 24/7', href: withLang( '/termekek/brunella-agents' ) },
+          { icon: Brain, label: 'Pohi AI Pro', desc: 'Személyes AI asszisztens csomag', href: withLang( '/termekek/pohi-ai-pro' ) },
+          { icon: Code2, label: 'Egyedi fejlesztések', desc: 'Testreszabott szoftver KKV-knak', href: withLang( '/szolgaltatasok' ) },
+          { icon: Package, label: 'AI Starter Pack', desc: 'Gyors bevezető csomag kis cégeknek', href: withLang( '/kapcsolat' ) },
+        ],
+      },
+      en: {
+        title: 'Products',
+        cta: { label: 'All products', href: withLang( '/termekek' ) },
+        items: [
+          { icon: Bot, label: 'Brunella Agent System', desc: '95+ AI agents, 53 MCP tools, 24/7', href: withLang( '/termekek/brunella-agents' ) },
+          { icon: Brain, label: 'Pohi AI Pro', desc: 'Personal AI assistant package', href: withLang( '/termekek/pohi-ai-pro' ) },
+          { icon: Code2, label: 'Custom Development', desc: 'Bespoke software for SMEs', href: withLang( '/szolgaltatasok' ) },
+          { icon: Package, label: 'AI Starter Pack', desc: 'Fast onboarding bundle for small teams', href: withLang( '/kapcsolat' ) },
+        ],
+      },
+      de: {
+        title: 'Produkte',
+        cta: { label: 'Alle Produkte', href: withLang( '/termekek' ) },
+        items: [
+          { icon: Bot, label: 'Brunella Agent System', desc: '95+ KI-Agenten, 53 MCP-Tools, 24/7', href: withLang( '/termekek/brunella-agents' ) },
+          { icon: Brain, label: 'Pohi AI Pro', desc: 'Persönliches KI-Assistenz-Paket', href: withLang( '/termekek/pohi-ai-pro' ) },
+          { icon: Code2, label: 'Individuelle Entwicklung', desc: 'Maßgeschneiderte Software für KMU', href: withLang( '/szolgaltatasok' ) },
+          { icon: Package, label: 'AI Starter Pack', desc: 'Schnelles Einführungspaket', href: withLang( '/kapcsolat' ) },
+        ],
+      },
+    },
+  };
+
+  const lang = ( ['hu', 'en', 'de'] as const ).includes( language as 'hu' | 'en' | 'de' ) ? ( language as 'hu' | 'en' | 'de' ) : ( 'hu' as const );
+
+  useEffect( () =>
+  {
+    const handleScroll = () =>
+    {
+      setScrolled( window.scrollY > 20 );
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener( 'scroll', handleScroll );
+    return () => window.removeEventListener( 'scroll', handleScroll );
+  }, [] );
+
+  // Clean up mega menu hover timer on unmount
+  useEffect( () =>
+  {
+    return () =>
+    {
+      if ( megaMenuTimerRef.current ) clearTimeout( megaMenuTimerRef.current );
+    };
+  }, [] );
 
   // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
+  useEffect( () =>
+  {
+    if ( isMenuOpen )
+    {
       document.body.style.overflow = 'hidden';
-    } else {
+    } else
+    {
       document.body.style.overflow = '';
     }
-    return () => {
+    return () =>
+    {
       document.body.style.overflow = '';
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen] );
 
   const navItems = [
-    { label: t('navbar.home'), href: withLang('/') },
-    { label: t('navbar.services'), href: withLang('/szolgaltatasok') },
-    { label: t('navbar.products'), href: withLang('/termekek') },
-    { label: t('navbar.portfolio'), href: withLang('/portfolio') },
-    { label: t('navbar.blog'), href: withLang('/blog') },
-    { label: t('navbar.about'), href: withLang('/rolunk') },
+    { label: t( 'navbar.home' ), href: withLang( '/' ) },
+    { label: t( 'navbar.services' ), href: withLang( '/szolgaltatasok' ) },
+    { label: t( 'navbar.products' ), href: withLang( '/termekek' ) },
+    { label: t( 'navbar.portfolio' ), href: withLang( '/portfolio' ) },
+    { label: t( 'navbar.blog' ), href: withLang( '/blog' ) },
+    { label: t( 'navbar.about' ), href: withLang( '/rolunk' ) },
   ];
 
   return (
@@ -57,83 +175,204 @@ export default function Header() {
           HEADER BAR
       ───────────────────────────────────────────────────────────────────── */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_40px_rgba(0,0,0,0.6)] py-3'
-            : 'bg-transparent py-5'
-        }`}
+        className={ `fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${ scrolled
+          ? 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_40px_rgba(0,0,0,0.6)] py-3'
+          : 'bg-transparent py-5'
+          }` }
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
 
-          {/* ── Logo ── */}
-          <Link href={withLang('/')} className="flex items-center relative z-50">
+          {/* ── Logo ── */ }
+          <Link href={ withLang( '/' ) } className="flex items-center relative z-50">
             <Image
               src="/images/logo.png"
               alt="Pohánka és Társa Logo"
-              width={240}
-              height={96}
+              width={ 240 }
+              height={ 96 }
               priority
               className="h-10 md:h-12 w-auto object-contain transition-opacity duration-200 hover:opacity-80"
             />
           </Link>
 
-          {/* ── Desktop Navigation ── */}
-          <nav className="hidden lg:flex items-center gap-0">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
+          {/* ── Desktop Navigation ── */ }
+          <nav className="hidden lg:flex items-center gap-0" role="navigation" aria-label="Főmenü">
+            { navItems.map( ( item ) =>
+            {
+              const isActive = pathname === item.href || pathname.startsWith( item.href + '/' );
+              const megaKey: 'services' | 'products' | null =
+                item.href === withLang( '/szolgaltatasok' ) ? 'services' :
+                  item.href === withLang( '/termekek' ) ? 'products' : null;
+              const hasMega = !!megaKey;
+              const isExpanded = megaKey !== null && megaMenuOpen === megaKey;
+
+              if ( hasMega && megaKey )
+              {
+                const menuData = megaMenuData[megaKey][lang];
+                return (
+                  <div
+                    key={ item.href }
+                    className="relative"
+                    onMouseEnter={ () => openMegaMenu( megaKey ) }
+                    onMouseLeave={ closeMegaMenu }
+                  >
+                    <button
+                      className={ `
+                        relative px-4 py-6 text-sm font-medium tracking-widest uppercase
+                        transition-colors duration-200 group flex items-center gap-1
+                        ${ isActive || isExpanded ? 'text-[#00e5ff]' : 'text-gray-400 hover:text-white' }
+                      `}
+                      aria-expanded={ isExpanded }
+                      aria-haspopup="true"
+                      onClick={ () => setMegaMenuOpen( isExpanded ? null : megaKey ) }
+                    >
+                      { item.label }
+                      <ChevronDown
+                        size={ 12 }
+                        className={ `transition-transform duration-200 ${ megaMenuOpen === megaKey ? 'rotate-180 text-[#00e5ff]' : '' }` }
+                      />
+                      {/* Animated underline */ }
+                      <span
+                        className={ `
+                          absolute bottom-4 left-4 right-4 h-px
+                          bg-[#00e5ff] transition-all duration-300 origin-left
+                          ${ isActive || megaMenuOpen === megaKey
+                            ? 'scale-x-100 opacity-100 shadow-[0_0_8px_#00e5ff]'
+                            : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-50'
+                          }
+                        `}
+                      />
+                    </button>
+
+                    {/* ── Mega Menu Panel ── */ }
+                    <AnimatePresence>
+                      { megaMenuOpen === megaKey && (
+                        <motion.div
+                          initial={ { opacity: 0, y: -8 } }
+                          animate={ { opacity: 1, y: 0 } }
+                          exit={ { opacity: 0, y: -8 } }
+                          transition={ { duration: 0.18, ease: 'easeOut' } }
+                          className="absolute top-full left-1/2 -translate-x-1/2 z-50 pt-2"
+                          onMouseEnter={ keepMegaMenuOpen }
+                          onMouseLeave={ closeMegaMenu }
+                          role="region"
+                          aria-label={ menuData.title }
+                        >
+                          <div
+                            className="bg-[#060608] border border-white/8 shadow-[0_24px_64px_rgba(0,0,0,0.8),0_0_0_1px_rgba(0,229,255,0.06)] backdrop-blur-xl"
+                            style={ { width: megaKey === 'services' ? '720px' : '520px' } }
+                          >
+                            {/* Top accent line */ }
+                            <div className="h-px bg-gradient-to-r from-transparent via-[#00e5ff]/40 to-transparent" />
+
+                            <div className="p-6">
+                              {/* Grid of items */ }
+                              <div className={ `grid gap-2 mb-5 ${ megaKey === 'services' ? 'grid-cols-2' : 'grid-cols-2' }` }>
+                                { menuData.items.map( ( menuItem ) =>
+                                {
+                                  const Icon = menuItem.icon;
+                                  return (
+                                    <Link
+                                      key={ menuItem.href + menuItem.label }
+                                      href={ menuItem.href }
+                                      className="group/item flex items-start gap-3 p-3 hover:bg-[rgba(0,229,255,0.04)] border border-transparent hover:border-[rgba(0,229,255,0.12)] transition-all duration-150"
+                                      onClick={ () =>
+                                      {
+                                        setMegaMenuOpen( null );
+                                        trackCtaClick( { location: CTA_LOCATIONS.HeaderNavDesktop, language, target: menuItem.href, page: PAGE_NAMES.Global } );
+                                      } }
+                                    >
+                                      <div className="shrink-0 w-8 h-8 flex items-center justify-center border border-white/8 group-hover/item:border-[#00e5ff]/30 transition-colors duration-150">
+                                        <Icon size={ 14 } className="text-[#00e5ff]/60 group-hover/item:text-[#00e5ff] transition-colors duration-150" />
+                                      </div>
+                                      <div className="min-w-0">
+                                        <p className="text-xs font-semibold text-white/90 uppercase tracking-wide group-hover/item:text-white transition-colors duration-150 truncate">
+                                          { menuItem.label }
+                                        </p>
+                                        <p className="text-xs text-gray-500 mt-0.5 leading-snug group-hover/item:text-gray-400 transition-colors duration-150">
+                                          { menuItem.desc }
+                                        </p>
+                                      </div>
+                                    </Link>
+                                  );
+                                } ) }
+                              </div>
+
+                              {/* Bottom CTA bar */ }
+                              <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+                                <Link
+                                  href={ menuData.cta.href }
+                                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#00e5ff] hover:text-white transition-colors duration-200 group/cta"
+                                  onClick={ () => setMegaMenuOpen( null ) }
+                                >
+                                  { menuData.cta.label }
+                                  <span className="group-hover/cta:translate-x-1 transition-transform duration-200">→</span>
+                                </Link>
+                                <div className="flex items-center gap-1.5 text-[10px] font-mono text-gray-600 uppercase tracking-widest">
+                                  <span className="w-1 h-1 rounded-full bg-[#00e5ff]/40 animate-pulse" />
+                                  LIVE
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ) }
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
               return (
                 <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() =>
-                    trackCtaClick({
+                  key={ item.href }
+                  href={ item.href }
+                  onClick={ () =>
+                    trackCtaClick( {
                       location: CTA_LOCATIONS.HeaderNavDesktop,
                       language,
                       target: item.href,
                       page: PAGE_NAMES.Global,
-                    })
+                    } )
                   }
-                  className={`
+                  className={ `
                     relative px-4 py-6 text-sm font-medium tracking-widest uppercase
                     transition-colors duration-200 group
-                    ${isActive ? 'text-[#00e5ff]' : 'text-gray-400 hover:text-white'}
+                    ${ isActive ? 'text-[#00e5ff]' : 'text-gray-400 hover:text-white' }
                   `}
                 >
-                  {item.label}
-                  {/* Animated underline */}
+                  { item.label }
+                  {/* Animated underline */ }
                   <span
-                    className={`
+                    className={ `
                       absolute bottom-4 left-4 right-4 h-px
                       bg-[#00e5ff] transition-all duration-300 origin-left
-                      ${
-                        isActive
-                          ? 'scale-x-100 opacity-100 shadow-[0_0_8px_#00e5ff]'
-                          : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-50'
+                      ${ isActive
+                        ? 'scale-x-100 opacity-100 shadow-[0_0_8px_#00e5ff]'
+                        : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-50'
                       }
                     `}
                   />
                 </Link>
               );
-            })}
+            } ) }
           </nav>
 
-          {/* ── Right side: Language + CTA ── */}
+          {/* ── Right side: Language + CTA ── */ }
           <div className="hidden lg:flex items-center gap-4">
             <LanguageSwitcher />
             <Link
-              href={withLang('/kapcsolat')}
-              onClick={() =>
-                trackCtaClick({
+              href={ withLang( '/kapcsolat' ) }
+              onClick={ () =>
+                trackCtaClick( {
                   location: CTA_LOCATIONS.HeaderContactDesktop,
                   language,
                   target: '/kapcsolat',
                   page: PAGE_NAMES.Global,
-                })
+                } )
               }
             >
               <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.96 }}
+                whileHover={ { scale: 1.03 } }
+                whileTap={ { scale: 0.96 } }
                 className="
                   px-5 py-2.5 text-xs font-bold uppercase tracking-widest
                   text-[#00e5ff] border border-[#00e5ff]/40
@@ -141,27 +380,27 @@ export default function Header() {
                   transition-all duration-300
                   hover:shadow-[0_0_20px_rgba(0,229,255,0.2)]
                 "
-                style={{
+                style={ {
                   clipPath:
                     'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
-                }}
+                } }
               >
-                {t('navbar.contact')}&nbsp;▶
+                { t( 'navbar.contact' ) }&nbsp;▶
               </motion.button>
             </Link>
           </div>
 
-          {/* ── Mobile Hamburger ── */}
+          {/* ── Mobile Hamburger ── */ }
           <motion.button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            animate={{ rotate: isMenuOpen ? 90 : 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            aria-label={isMenuOpen ? 'Menü bezárása' : 'Menü megnyitása'}
-            aria-expanded={isMenuOpen}
+            onClick={ () => setIsMenuOpen( !isMenuOpen ) }
+            animate={ { rotate: isMenuOpen ? 90 : 0 } }
+            transition={ { duration: 0.3, ease: 'easeInOut' } }
+            aria-label={ isMenuOpen ? 'Menü bezárása' : 'Menü megnyitása' }
+            aria-expanded={ isMenuOpen }
             aria-controls="mobile-menu"
             className="lg:hidden relative z-50 p-2 text-white hover:text-[#00e5ff] transition-colors"
           >
-            {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            { isMenuOpen ? <X size={ 26 } /> : <Menu size={ 26 } /> }
           </motion.button>
         </div>
       </header>
@@ -170,99 +409,101 @@ export default function Header() {
           MOBILE FULL-SCREEN OVERLAY
       ───────────────────────────────────────────────────────────────────── */}
       <AnimatePresence>
-        {isMenuOpen && (
+        { isMenuOpen && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35, ease: 'easeInOut' }}
+            initial={ { opacity: 0 } }
+            animate={ { opacity: 1 } }
+            exit={ { opacity: 0 } }
+            transition={ { duration: 0.35, ease: 'easeInOut' } }
             className="fixed inset-0 z-40 flex flex-col justify-center px-10 lg:hidden overflow-hidden"
-            style={{ background: 'rgba(0, 0, 0, 0.97)', backdropFilter: 'blur(24px)' }}
+            style={ { background: 'rgba(0, 0, 0, 0.97)', backdropFilter: 'blur(24px)' } }
           >
-            {/* ── HUD Corner Brackets ── */}
+            {/* ── HUD Corner Brackets ── */ }
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.05 }}
+              initial={ { opacity: 0, scale: 0.8 } }
+              animate={ { opacity: 1, scale: 1 } }
+              transition={ { duration: 0.4, delay: 0.05 } }
               className="absolute top-6 left-6 w-10 h-10"
-              style={{ borderTop: '1.5px solid #00e5ff', borderLeft: '1.5px solid #00e5ff' }}
+              style={ { borderTop: '1.5px solid #00e5ff', borderLeft: '1.5px solid #00e5ff' } }
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.05 }}
+              initial={ { opacity: 0, scale: 0.8 } }
+              animate={ { opacity: 1, scale: 1 } }
+              transition={ { duration: 0.4, delay: 0.05 } }
               className="absolute top-6 right-6 w-10 h-10"
-              style={{ borderTop: '1.5px solid #00e5ff', borderRight: '1.5px solid #00e5ff' }}
+              style={ { borderTop: '1.5px solid #00e5ff', borderRight: '1.5px solid #00e5ff' } }
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.05 }}
+              initial={ { opacity: 0, scale: 0.8 } }
+              animate={ { opacity: 1, scale: 1 } }
+              transition={ { duration: 0.4, delay: 0.05 } }
               className="absolute bottom-6 left-6 w-10 h-10"
-              style={{ borderBottom: '1.5px solid #00e5ff', borderLeft: '1.5px solid #00e5ff' }}
+              style={ { borderBottom: '1.5px solid #00e5ff', borderLeft: '1.5px solid #00e5ff' } }
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.05 }}
+              initial={ { opacity: 0, scale: 0.8 } }
+              animate={ { opacity: 1, scale: 1 } }
+              transition={ { duration: 0.4, delay: 0.05 } }
               className="absolute bottom-6 right-6 w-10 h-10"
-              style={{ borderBottom: '1.5px solid #00e5ff', borderRight: '1.5px solid #00e5ff' }}
+              style={ { borderBottom: '1.5px solid #00e5ff', borderRight: '1.5px solid #00e5ff' } }
             />
 
-            {/* ── Scan-line sweep ── */}
+            {/* ── Scan-line sweep ── */ }
             <motion.div
-              initial={{ scaleX: 0, opacity: 0.6 }}
-              animate={{ scaleX: 1, opacity: 0 }}
-              transition={{ duration: 0.9, delay: 0.1, ease: 'easeInOut' }}
+              initial={ { scaleX: 0, opacity: 0.6 } }
+              animate={ { scaleX: 1, opacity: 0 } }
+              transition={ { duration: 0.9, delay: 0.1, ease: 'easeInOut' } }
               className="absolute left-0 right-0 top-1/2 h-px origin-left pointer-events-none"
-              style={{
+              style={ {
                 background:
                   'linear-gradient(to right, transparent, #00e5ff 30%, #00e5ff 70%, transparent)',
-              }}
+              } }
             />
 
-            {/* ── Nav Items ── */}
+            {/* ── Nav Items ── */ }
             <nav className="space-y-1">
-              {navItems.map((item, index) => {
+              { navItems.map( ( item, index ) =>
+              {
                 const isActive = pathname === item.href;
                 return (
                   <motion.div
-                    key={item.href}
-                    initial={{ x: -60, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: -40, opacity: 0 }}
-                    transition={{
+                    key={ item.href }
+                    initial={ { x: -60, opacity: 0 } }
+                    animate={ { x: 0, opacity: 1 } }
+                    exit={ { x: -40, opacity: 0 } }
+                    transition={ {
                       delay: index * 0.07,
                       duration: 0.45,
                       ease: 'easeOut',
-                    }}
+                    } }
                   >
                     <Link
-                      href={item.href}
-                      onClick={() => {
-                        trackCtaClick({
+                      href={ item.href }
+                      onClick={ () =>
+                      {
+                        trackCtaClick( {
                           location: CTA_LOCATIONS.HeaderNavMobile,
                           language,
                           target: item.href,
                           page: PAGE_NAMES.Global,
-                        });
-                        setIsMenuOpen(false);
-                      }}
-                      className={`
+                        } );
+                        setIsMenuOpen( false );
+                      } }
+                      className={ `
                         flex items-baseline gap-4 group py-2.5
-                        ${isActive ? 'text-[#00e5ff]' : 'text-white/75 hover:text-white'}
+                        ${ isActive ? 'text-[#00e5ff]' : 'text-white/75 hover:text-white' }
                       `}
                     >
-                      {/* Index number */}
+                      {/* Index number */ }
                       <span
                         className="text-xs font-mono w-6 shrink-0"
-                        style={{ color: isActive ? '#00e5ff' : 'rgba(0,229,255,0.35)' }}
+                        style={ { color: isActive ? '#00e5ff' : 'rgba(0,229,255,0.35)' } }
                       >
-                        {String(index + 1).padStart(2, '0')}.
+                        { String( index + 1 ).padStart( 2, '0' ) }.
                       </span>
 
-                      {/* Label */}
+                      {/* Label */ }
                       <span
                         className="
                           text-4xl sm:text-5xl font-bold uppercase tracking-tight
@@ -274,50 +515,51 @@ export default function Header() {
                             : undefined
                         }
                       >
-                        {item.label}
+                        { item.label }
                       </span>
                     </Link>
                   </motion.div>
                 );
-              })}
+              } ) }
             </nav>
 
-            {/* ── Bottom Bar: Language + Contact ── */}
+            {/* ── Bottom Bar: Language + Contact ── */ }
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.52, duration: 0.4 }}
+              initial={ { opacity: 0, y: 20 } }
+              animate={ { opacity: 1, y: 0 } }
+              transition={ { delay: 0.52, duration: 0.4 } }
               className="
                 absolute bottom-10 left-10 right-10
                 flex items-center justify-between
                 border-t pt-5
               "
-              style={{ borderColor: 'rgba(255,255,255,0.1)' }}
+              style={ { borderColor: 'rgba(255,255,255,0.1)' } }
             >
               <LanguageSwitcher />
               <Link
-                href={withLang('/kapcsolat')}
-                onClick={() => {
-                  trackCtaClick({
+                href={ withLang( '/kapcsolat' ) }
+                onClick={ () =>
+                {
+                  trackCtaClick( {
                     location: CTA_LOCATIONS.HeaderContactMobile,
                     language,
                     target: '/kapcsolat',
                     page: PAGE_NAMES.Global,
-                  });
-                  setIsMenuOpen(false);
-                }}
+                  } );
+                  setIsMenuOpen( false );
+                } }
                 className="
                   text-xs font-mono uppercase tracking-widest
                   transition-colors duration-200
                   hover:text-[#00e5ff]
                 "
-                style={{ color: 'rgba(0,229,255,0.55)' }}
+                style={ { color: 'rgba(0,229,255,0.55)' } }
               >
-                {t('navbar.contact')} →
+                { t( 'navbar.contact' ) } →
               </Link>
             </motion.div>
           </motion.div>
-        )}
+        ) }
       </AnimatePresence>
     </>
   );

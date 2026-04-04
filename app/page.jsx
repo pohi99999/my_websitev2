@@ -1,6 +1,8 @@
 import Hero from "./components/Hero";
+import StatsBar from "./components/StatsBar";
 import AIFolyamatok from "./components/AIFolyamatok";
 import Testimonials from "./components/Testimonials";
+import HomepageFAQ from "./components/HomepageFAQ";
 import { headers } from "next/headers";
 
 export const revalidate = 3600;
@@ -64,8 +66,10 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
+      <StatsBar />
       <AIFolyamatok />
       <Testimonials />
+      <HomepageFAQ />
     </main>
   );
 }
