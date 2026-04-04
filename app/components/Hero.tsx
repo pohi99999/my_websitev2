@@ -5,10 +5,12 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
+import { useRichMediaEnabled } from '../hooks/useRichMediaEnabled';
 
 const Hero = () =>
 {
   const { t, language } = useLanguage();
+  const richMediaEnabled = useRichMediaEnabled();
 
   const withLang = ( href: string ) =>
   {
@@ -18,41 +20,41 @@ const Hero = () =>
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden pt-20">
-      {/* ── Mobile: static gradient background (no video download) ── */ }
-      <div
-        className="absolute inset-0 w-full h-full md:hidden"
-        aria-hidden="true"
-        style={ {
-          background:
-            'radial-gradient(ellipse 80% 60% at 30% 40%, rgba(0,229,255,0.10) 0%, transparent 65%), radial-gradient(ellipse 60% 80% at 70% 80%, rgba(0,229,255,0.06) 0%, transparent 60%), linear-gradient(160deg, #000000 0%, #00060a 50%, #000000 100%)',
-        } }
-      >
-        {/* Subtle HUD grid — mobile only */ }
+    <section id="home" className="relative min-h-screen flex items-center justify-center bg-surface-0 overflow-hidden pt-20">
+      { !richMediaEnabled ? (
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 w-full h-full"
+          aria-hidden="true"
           style={ {
-            backgroundImage:
-              'linear-gradient(rgba(0,229,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '48px 48px',
+            background:
+              'radial-gradient(ellipse 80% 60% at 30% 40%, rgba(0,229,255,0.10) 0%, transparent 65%), radial-gradient(ellipse 60% 80% at 70% 80%, rgba(0,229,255,0.06) 0%, transparent 60%), linear-gradient(160deg, #000000 0%, #00060a 50%, #000000 100%)',
           } }
-        />
-      </div>
-
-      {/* ── Desktop: video background (hidden on mobile for performance) ── */ }
-      <video
-        className="absolute inset-0 w-full h-full object-cover hidden md:block"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        poster="/1.jpg"
-        aria-hidden="true"
-        tabIndex={ -1 }
-      >
-        <source src="/home.mp4" type="video/mp4" />
-      </video>
+        >
+          <div
+            className="absolute inset-0 opacity-[0.04]"
+            style={ {
+              backgroundImage:
+                'linear-gradient(rgba(0,229,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.8) 1px, transparent 1px)',
+              backgroundSize: '48px 48px',
+            } }
+          />
+        </div>
+      ) : (
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/1.jpg"
+          aria-hidden="true"
+          tabIndex={ -1 }
+          data-testid="hero-video"
+        >
+          <source src="/home.mp4" type="video/mp4" />
+        </video>
+      ) }
 
       {/* Dark overlay */ }
       <div className="absolute inset-0 bg-black/70" aria-hidden="true" />
@@ -67,12 +69,12 @@ const Hero = () =>
 
       <div className="container mx-auto px-4 relative z-10 text-center">
         {/* Context badge */ }
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 border border-[#00e5ff]/20 bg-[#00e5ff]/5 text-[#00e5ff] text-xs font-mono uppercase tracking-widest">
+        <div className="hud-badge mb-6 text-xs font-mono" data-testid="hero-context-badge">
           <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] animate-pulse" aria-hidden="true" />
           { language === 'en' ? 'AI-Powered Enterprise Solutions' : language === 'de' ? 'KI-gestützte Unternehmenslösungen' : 'AI-Vezérelt Vállalati Megoldások' }
         </div>
 
-        <h1 className="text-4xl md:text-6xl mb-6 leading-tight font-syne">
+        <h1 className="heading-display text-4xl md:text-6xl mb-6 leading-tight font-syne">
           <span className="text-white font-light block mb-2 tracking-tight">
             { t( 'hero.headlineLine1' ) }
           </span>
@@ -143,7 +145,7 @@ const Hero = () =>
       </div>
 
       {/* Scroll indicator */ }
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10" aria-hidden="true">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10" aria-hidden="true" data-testid="hero-scroll-indicator">
         <div className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center p-1.5">
           <div className="w-1 h-2 bg-[#00e5ff] rounded-full animate-bounce" />
         </div>

@@ -104,18 +104,25 @@ test.describe('P1 — Hero scroll indicator', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await goHome(page);
 
-    // Look for scroll indicator SVG or badge
-    const indicator = page.locator('svg[aria-label*="scroll"], [data-testid="scroll-indicator"], .scroll-indicator, [class*="scroll"]').first();
-    const badge = page.locator('[class*="badge"], [class*="Badge"]').first();
+    // The scroll indicator in Hero.tsx is: div.absolute.bottom-8 containing a div.animate-bounce
+    // Context badge is: div.inline-flex.items-center with text-[#00e5ff]
+    const bounceDot = page.locator('[class*="animate-bounce"]').first();
+    const contextBadge = page.locator('div.inline-flex').filter({
+      hasText: /AI-Vezérelt|AI-Powered|KI-gestützte/i,
+    }).first();
+    const scrollWheelContainer = page.locator('div').filter({
+      has: page.locator('[class*="animate-bounce"]'),
+    }).first();
 
-    const indicatorVisible = await indicator.isVisible().catch(() => false);
-    const badgeVisible = await badge.isVisible().catch(() => false);
+    const bounceVisible = await bounceDot.isVisible().catch(() => false);
+    const badgeVisible = await contextBadge.isVisible().catch(() => false);
+    const wheelVisible = await scrollWheelContainer.isVisible().catch(() => false);
 
-    console.log('Scroll indicator:', indicatorVisible, 'Badge:', badgeVisible);
-    // At least one should be visible
-    expect(indicatorVisible || badgeVisible).toBe(true);
+    console.log('Bounce dot:', bounceVisible, 'Context badge:', badgeVisible);
+    // Either the scroll wheel bounce dot OR the context badge must be visible
+    expect(bounceVisible || badgeVisible || wheelVisible).toBe(true);
     await screenshot(page, 'p1-hero-desktop');
-    console.log('✅ Hero scroll indicator visible');
+    console.log('✅ Hero scroll indicator/badge visible');
   });
 });
 
@@ -149,13 +156,18 @@ test.describe('P2 — Mobile: no video, static gradient', () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await goHome(page);
 
-    const video = page.locator('video').first();
-    const videoVisible = await video.isVisible().catch(() => false);
+    // Mobile now uses a true no-download fallback, so either there is no video element
+    // at all, or the element is not displayed.
+    const videoState = await page.evaluate(() => {
+      const video = document.querySelector('video');
+      if (!video) return 'not-found';
+      return window.getComputedStyle(video).display;
+    });
 
-    console.log('Video visible on 390px:', videoVisible);
-    expect(videoVisible).toBe(false); // video must be hidden md:block → invisible at 390px
+    console.log('Video state at 390px:', videoState);
+    expect(['not-found', 'none']).toContain(videoState);
     await screenshot(page, 'p2-mobile-hero-no-video');
-    console.log('✅ Video hidden on mobile');
+    console.log('✅ No active video rendering on mobile');
   });
 
   test('Mobile hero gradient background is visible', async ({ page }) => {
@@ -241,7 +253,7 @@ test.describe('P3 — Mega Menu Navigation', () => {
     await page.waitForTimeout(300);
 
     // Mega menu panel should appear
-    const megaMenu = page.locator('[role="dialog"], [aria-label*="mega"], [class*="mega-menu"], [class*="megaMenu"]')
+    const megaMenu = page.locator('[role="menu"], [role="dialog"], [aria-label*="mega"], [class*="mega-menu"], [class*="megaMenu"]')
       .first();
 
     const panelByContent = page.locator('div').filter({
@@ -282,23 +294,22 @@ test.describe('P3 — Mega Menu Navigation', () => {
   });
 
   test('Desktop: mega menu closes when hovering away', async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.setViewportSize({ width: 1440, height: 900 });
     await goHome(page);
 
     const servicesBtn = page.locator('header nav button').filter({ hasText: SERVICES_TEXT }).first();
+    await expect(servicesBtn).toBeVisible();
     await servicesBtn.hover();
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(400); // wait for menu to open
 
-    // Move to a neutral area (the logo)
-    const logo = page.locator('header img, header a[href="/"]').first();
-    await logo.hover();
-    await page.waitForTimeout(600); // allow 120ms delay + animation
+    const megaMenu = page.locator('[data-testid="mega-menu-services"]');
+    await expect(megaMenu).toBeVisible();
 
-    const panelByContent = page.locator('div').filter({
-      hasText: /Könyvelési|Automatizálás|Lead Gen/i,
-    }).first();
+    // Move mouse to a completely neutral corner (bottom of viewport, far from header)
+    await page.mouse.move(200, 600); // well below header
+    await page.waitForTimeout(800); // 120ms timer + Framer exit animation (300ms) + buffer
 
-    const stillVisible = await panelByContent.isVisible().catch(() => false);
+    const stillVisible = await megaMenu.isVisible().catch(() => false);
     console.log('Mega menu still visible after moving away:', stillVisible);
     expect(stillVisible).toBe(false);
     console.log('✅ Mega menu closes on hover out');

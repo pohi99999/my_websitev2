@@ -142,7 +142,7 @@ export default function HomepageFAQ ()
     };
 
     return (
-        <section id="faq" className="py-24 px-6 bg-black">
+        <section id="faq" className="py-24 px-6 bg-surface-0" data-testid="homepage-faq">
             {/* FAQPage structured data for SEO */ }
             <script
                 type="application/ld+json"
@@ -157,7 +157,7 @@ export default function HomepageFAQ ()
                     <p className="text-gray-400">{ sub }</p>
                 </div>
 
-                <div className="bg-[#060608] border border-white/5 p-6 md:p-8">
+                <div className="surface-panel p-6 md:p-8">
                     { items.map( ( item, idx ) => (
                         <FAQItem key={ idx } question={ item.q } answer={ item.a } />
                     ) ) }

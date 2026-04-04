@@ -62,6 +62,13 @@ export default async function RootLayout ( {
       : headerLang === 'en' || langCookie === 'en'
         ? 'en'
         : 'hu';
+  const skipLinkLabel =
+    initialLanguage === 'de'
+      ? 'Zum Hauptinhalt springen'
+      : initialLanguage === 'en'
+        ? 'Skip to main content'
+        : 'Ugrás a fő tartalomhoz';
+  const shouldLoadVercelAnalytics = process.env.VERCEL === '1';
 
   return (
     <html lang={ initialLanguage }>
@@ -76,6 +83,7 @@ export default async function RootLayout ( {
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#00ff9d" />
         {/* Apple PWA */ }
         <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Pohánka AI" />
         <link rel="apple-touch-icon" href="/images/logo.png" />
@@ -144,7 +152,7 @@ export default async function RootLayout ( {
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium"
         >
-          Ugrás a fő tartalomhoz
+          { skipLinkLabel }
         </a>
         <SequentialVideoBackground />
         <LanguageProvider initialLanguage={ initialLanguage }>
@@ -157,7 +165,7 @@ export default async function RootLayout ( {
             <MobileCTA />
           </LenisProvider>
         </LanguageProvider>
-        <Analytics />
+        { shouldLoadVercelAnalytics ? <Analytics /> : null }
         {/* Service Worker regisztráció */ }
         <Script id="sw-register" strategy="afterInteractive">
           { `if ('serviceWorker' in navigator) {

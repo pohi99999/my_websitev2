@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'http://localhost:3333';
 
 test.describe('Dark HUD Design Verification', () => {
 
@@ -34,9 +34,15 @@ test.describe('Dark HUD Design Verification', () => {
     const logo = page.locator('header img[alt*="Pohánka"]');
     await expect(logo).toBeVisible();
 
-    // Desktop navigáció tartalmaz linkeket
-    const desktopNav = page.locator('header nav');
-    await expect(desktopNav).toBeVisible();
+    const viewport = page.viewportSize();
+
+    if ((viewport?.width ?? 0) >= 1024) {
+      const desktopNav = page.locator('header nav[aria-label]');
+      await expect(desktopNav).toBeVisible();
+    } else {
+      const mobileToggle = page.locator('button[aria-controls="mobile-menu"]');
+      await expect(mobileToggle).toBeVisible();
+    }
 
     // Screenshot a headerről
     await header.screenshot({ path: 'tests/screenshots/header.png' });

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, Zap, Target, Brain, Bot, BarChart3, Mail, Shield, TrendingUp, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
+import Card from './Card';
 
 export default function AIFolyamatok ()
 {
@@ -44,10 +45,10 @@ export default function AIFolyamatok ()
         };
 
     return (
-      <section className="py-24 px-6 bg-black text-white">
+      <section className="py-24 px-6 bg-surface-0 text-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-4xl md:text-5xl font-bold mb-5 text-[#00e5ff]">
+            <h2 className="heading-display text-4xl md:text-5xl font-bold mb-5 text-[#00e5ff]">
               { ui.title }
             </h2>
             <div className="flex justify-center mb-6">
@@ -58,13 +59,14 @@ export default function AIFolyamatok ()
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             { ui.phases.map( ( phase ) => (
-              <div
+              <Card
                 key={ phase }
-                className="bg-white/3 border border-white/8 p-7 hover:border-[#00e5ff]/30 transition-colors duration-200"
+                variant="highlight"
+                className="h-full p-7"
               >
                 <Sparkles className="w-5 h-5 text-[#00e5ff] mb-3" />
                 <p className="text-gray-300 leading-relaxed">{ phase }</p>
-              </div>
+              </Card>
             ) ) }
           </div>
 
@@ -156,16 +158,16 @@ export default function AIFolyamatok ()
   ];
 
   return (
-    <section id="ai-folyamatok" className="py-24 px-6 relative bg-black">
+    <section id="ai-folyamatok" className="py-24 px-6 relative bg-surface-0">
       <div className="max-w-6xl mx-auto relative z-10">
 
         {/* Section header */ }
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#00e5ff]/20 bg-[#00e5ff]/5 text-[#00e5ff] text-sm font-medium mb-6">
+          <div className="hud-badge text-sm font-medium mb-6">
             <Bot className="w-4 h-4" /> AI ügynökök · 24/7 · Emberi felügyelet nélkül
           </div>
           <h2
-            className="text-4xl md:text-5xl font-bold mb-4 leading-tight"
+            className="heading-display text-4xl md:text-5xl font-bold mb-4 leading-tight"
             style={ {
               color: '#00e5ff',
               textShadow: '0 0 40px rgba(0, 229, 255, 0.25)',
@@ -186,7 +188,7 @@ export default function AIFolyamatok ()
         {/* Top 4 product cards */ }
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
           {/* Könyvelési Automatizálás */ }
-          <div className="bg-[#00e5ff]/3 border border-[#00e5ff]/20 p-6 hover:border-[#00e5ff]/50 transition-colors duration-200">
+          <Card variant="highlight" className="h-full">
             <div className="flex items-center gap-2 mb-3">
               <div className="p-1.5 bg-[#00e5ff]/5 border border-[#00e5ff]/15">
                 <BarChart3 className="w-5 h-5 text-[#00e5ff]" />
@@ -202,10 +204,10 @@ export default function AIFolyamatok ()
                 </li>
               ) ) }
             </ul>
-          </div>
+          </Card>
 
           {/* Nova AI Asszisztens */ }
-          <div className="bg-[#00e5ff]/3 border border-[#00e5ff]/20 p-6 hover:border-[#00e5ff]/50 transition-colors duration-200">
+          <Card variant="highlight" className="h-full">
             <div className="flex items-center gap-2 mb-3">
               <div className="p-1.5 bg-[#00e5ff]/5 border border-[#00e5ff]/15">
                 <Brain className="w-5 h-5 text-[#00e5ff]" />
@@ -221,10 +223,10 @@ export default function AIFolyamatok ()
                 </li>
               ) ) }
             </ul>
-          </div>
+          </Card>
 
           {/* P-Sales */ }
-          <div className="bg-[#00e5ff]/3 border border-[#00e5ff]/20 p-6 hover:border-[#00e5ff]/50 transition-colors duration-200">
+          <Card variant="highlight" className="h-full">
             <div className="flex items-center gap-2 mb-3">
               <div className="p-1.5 bg-[#00e5ff]/5 border border-[#00e5ff]/15">
                 <TrendingUp className="w-5 h-5 text-[#00e5ff]" />
@@ -240,10 +242,10 @@ export default function AIFolyamatok ()
                 </li>
               ) ) }
             </ul>
-          </div>
+          </Card>
 
           {/* P-Search */ }
-          <div className="bg-[#00e5ff]/3 border border-[#00e5ff]/20 p-6 hover:border-[#00e5ff]/50 transition-colors duration-200">
+          <Card variant="highlight" className="h-full">
             <div className="flex items-center gap-2 mb-3">
               <div className="p-1.5 bg-[#00e5ff]/5 border border-[#00e5ff]/15">
                 <Target className="w-5 h-5 text-[#00e5ff]" />
@@ -259,7 +261,7 @@ export default function AIFolyamatok ()
                 </li>
               ) ) }
             </ul>
-          </div>
+          </Card>
         </div>
 
         {/* Services grid */ }
@@ -268,9 +270,9 @@ export default function AIFolyamatok ()
           {
             const Icon = s.icon;
             return (
-              <div
+              <Card
                 key={ s.title }
-                className="bg-white/3 border border-white/8 p-6 hover:border-[#00e5ff]/40 transition-colors duration-200"
+                className="h-full"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2 bg-[#00e5ff]/5 border border-[#00e5ff]/15">
@@ -287,17 +289,17 @@ export default function AIFolyamatok ()
                     </li>
                   ) ) }
                 </ul>
-              </div>
+              </Card>
             );
           } ) }
         </div>
 
         {/* Bottom CTA */ }
-        <div className="border border-[#00e5ff]/20 bg-[#00e5ff]/3 p-10 text-center">
+        <div className="surface-panel-premium p-10 text-center">
           {/* HUD corner brackets on CTA box */ }
           <div className="relative">
             <Shield className="w-8 h-8 text-[#00e5ff] mx-auto mb-4" />
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+            <h3 className="heading-display text-2xl md:text-3xl font-bold text-white mb-3">
               Melyik folyamatot automatizáljuk elsőként?
             </h3>
             <p className="text-gray-400 mb-8 max-w-xl mx-auto leading-relaxed">

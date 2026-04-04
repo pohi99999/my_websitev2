@@ -44,9 +44,10 @@ export default function MobileCTA ()
 
     return (
         <div
-            className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-black/90 backdrop-blur-xl border-t border-white/10 px-4 py-3 flex items-center justify-between"
+            className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-surface-1/95 backdrop-blur-xl border-t border-white/10 px-4 py-3 flex items-center justify-between"
             role="complementary"
             aria-label={ label }
+            data-testid="mobile-sticky-cta"
         >
             <span className="text-sm text-gray-400 font-medium">{ label }</span>
             <Link

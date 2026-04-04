@@ -64,12 +64,12 @@ export function generateMetadata() {
 
 export default function HomePage() {
   return (
-    <main>
+    <>
       <Hero />
       <StatsBar />
       <AIFolyamatok />
       <Testimonials />
       <HomepageFAQ />
-    </main>
+    </>
   );
 }

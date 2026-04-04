@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
+import { useRichMediaEnabled } from '../hooks/useRichMediaEnabled';
 
 const videos: Record<string, string> = {
   '/': '/home.mp4',
@@ -28,14 +29,19 @@ const getVideoForPath = ( path: string ): string =>
 const SequentialVideoBackground: React.FC = () =>
 {
   const pathname = usePathname();
+  const richMediaEnabled = useRichMediaEnabled();
   const [activePlayer, setActivePlayer] = useState( 0 ); // 0 or 1
   const [videoError, setVideoError] = useState( false );
   const video0Ref = useRef<HTMLVideoElement>( null );
   const video1Ref = useRef<HTMLVideoElement>( null );
+  const normalizedPath = pathname.replace( /^\/(en|de)(?=\/|$)/, '' ) || '/';
+  const isHomepage = normalizedPath === '/';
 
   // Function to switch video with cross-fade
   const switchVideo = useCallback( ( newSrc: string ) =>
   {
+    if ( !richMediaEnabled ) return;
+
     const currentPlayerRef = activePlayer === 0 ? video0Ref : video1Ref;
     if ( currentPlayerRef.current && currentPlayerRef.current.src.endsWith( newSrc ) )
     {
@@ -62,18 +68,20 @@ const SequentialVideoBackground: React.FC = () =>
       // The CSS transition will handle the fade
       setActivePlayer( inactivePlayer );
     }
-  }, [activePlayer, video0Ref, video1Ref] );
+  }, [activePlayer, richMediaEnabled, video0Ref, video1Ref] );
 
   // Main effect to handle route changes
   useEffect( () =>
   {
+    if ( !richMediaEnabled || isHomepage ) return;
     const targetVideo = getVideoForPath( pathname );
     switchVideo( targetVideo );
-  }, [pathname, switchVideo] );
+  }, [pathname, switchVideo, richMediaEnabled, isHomepage] );
 
   // Set initial video source on component mount
   useEffect( () =>
   {
+    if ( !richMediaEnabled || isHomepage ) return;
     const initialSrc = getVideoForPath( pathname );
     const currentRef = activePlayer === 0 ? video0Ref : video1Ref;
     if ( currentRef.current )
@@ -81,16 +89,17 @@ const SequentialVideoBackground: React.FC = () =>
       currentRef.current.src = initialSrc;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [] );
+  }, [richMediaEnabled, isHomepage, pathname] );
+
+  if ( isHomepage ) return null;
 
 
   return (
     <div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
-      { videoError ? (
-        // Ha a videó nem érhető el → szép gradient CSS háttér (Tailwind arbitrary value)
+      { videoError || !richMediaEnabled ? (
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(59,130,246,0.30)_0%,transparent_60%),radial-gradient(ellipse_at_80%_80%,rgba(147,51,234,0.25)_0%,transparent_60%),linear-gradient(135deg,#050a14_0%,#0a1628_50%,#050a14_100%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(0,229,255,0.16)_0%,transparent_60%),radial-gradient(ellipse_at_80%_80%,rgba(0,229,255,0.08)_0%,transparent_58%),linear-gradient(160deg,#000000_0%,#02060a_55%,#000000_100%)]"
         />
       ) : (
         <>
@@ -114,7 +123,7 @@ const SequentialVideoBackground: React.FC = () =>
           />
         </>
       ) }
-      <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute inset-0 bg-black/60" />
     </div>
   );
 };

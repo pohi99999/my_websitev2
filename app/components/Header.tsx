@@ -15,6 +15,12 @@ export default function Header ()
   const [isMenuOpen, setIsMenuOpen] = useState( false );
   const [scrolled, setScrolled] = useState( false );
   const [megaMenuOpen, setMegaMenuOpen] = useState<string | null>( null );
+  const headerRef = useRef<HTMLElement>( null );
+  const mobileMenuRef = useRef<HTMLDivElement>( null );
+  const megaMenuButtonRefs = useRef<Record<'services' | 'products', HTMLButtonElement | null>>( {
+    services: null,
+    products: null,
+  } );
   const megaMenuTimerRef = useRef<ReturnType<typeof setTimeout> | null>( null );
   const pathname = usePathname();
   const { t, language } = useLanguage();
@@ -25,6 +31,28 @@ export default function Header ()
     if ( href === '/' ) return `/${ language }`;
     return href.startsWith( '/' ) ? `/${ language }${ href }` : href;
   };
+
+  const lang = ( ['hu', 'en', 'de'] as const ).includes( language as 'hu' | 'en' | 'de' ) ? ( language as 'hu' | 'en' | 'de' ) : ( 'hu' as const );
+  const a11yLabels = {
+    hu: {
+      mainNav: 'Főmenü',
+      openMenu: 'Menü megnyitása',
+      closeMenu: 'Menü bezárása',
+      mobileMenu: 'Mobil menü',
+    },
+    en: {
+      mainNav: 'Main navigation',
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu',
+      mobileMenu: 'Mobile navigation',
+    },
+    de: {
+      mainNav: 'Hauptnavigation',
+      openMenu: 'Menü öffnen',
+      closeMenu: 'Menü schließen',
+      mobileMenu: 'Mobile Navigation',
+    },
+  }[lang];
 
   // Hover handlers with a small delay so accidental brief mouse-overs don't flash the menu
   const openMegaMenu = useCallback( ( key: string ) =>
@@ -42,6 +70,41 @@ export default function Header ()
   {
     if ( megaMenuTimerRef.current ) clearTimeout( megaMenuTimerRef.current );
   }, [] );
+
+  const closeMegaMenuImmediately = useCallback( () =>
+  {
+    if ( megaMenuTimerRef.current ) clearTimeout( megaMenuTimerRef.current );
+    setMegaMenuOpen( null );
+  }, [] );
+
+  const focusFirstMegaMenuItem = useCallback( ( key: 'services' | 'products' ) =>
+  {
+    requestAnimationFrame( () =>
+    {
+      document.querySelector<HTMLElement>( `#mega-panel-${ key } [role="menuitem"]` )?.focus();
+    } );
+  }, [] );
+
+  const handleMegaMenuButtonKeyDown = useCallback(
+    ( event: React.KeyboardEvent<HTMLButtonElement>, key: 'services' | 'products' ) =>
+    {
+      if ( event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowDown' )
+      {
+        event.preventDefault();
+        openMegaMenu( key );
+        focusFirstMegaMenuItem( key );
+        return;
+      }
+
+      if ( event.key === 'Escape' )
+      {
+        event.preventDefault();
+        closeMegaMenuImmediately();
+        megaMenuButtonRefs.current[key]?.focus();
+      }
+    },
+    [closeMegaMenuImmediately, focusFirstMegaMenuItem, openMegaMenu],
+  );
 
   // Mega menu data — localised
   const megaMenuData = {
@@ -123,8 +186,6 @@ export default function Header ()
     },
   };
 
-  const lang = ( ['hu', 'en', 'de'] as const ).includes( language as 'hu' | 'en' | 'de' ) ? ( language as 'hu' | 'en' | 'de' ) : ( 'hu' as const );
-
   useEffect( () =>
   {
     const handleScroll = () =>
@@ -160,6 +221,31 @@ export default function Header ()
     };
   }, [isMenuOpen] );
 
+  useEffect( () =>
+  {
+    const handleDocumentPointerDown = ( event: PointerEvent ) =>
+    {
+      if ( headerRef.current?.contains( event.target as Node ) ) return;
+      closeMegaMenuImmediately();
+    };
+
+    const handleDocumentKeyDown = ( event: KeyboardEvent ) =>
+    {
+      if ( event.key !== 'Escape' ) return;
+      closeMegaMenuImmediately();
+      setIsMenuOpen( false );
+    };
+
+    document.addEventListener( 'pointerdown', handleDocumentPointerDown );
+    document.addEventListener( 'keydown', handleDocumentKeyDown );
+
+    return () =>
+    {
+      document.removeEventListener( 'pointerdown', handleDocumentPointerDown );
+      document.removeEventListener( 'keydown', handleDocumentKeyDown );
+    };
+  }, [closeMegaMenuImmediately] );
+
   const navItems = [
     { label: t( 'navbar.home' ), href: withLang( '/' ) },
     { label: t( 'navbar.services' ), href: withLang( '/szolgaltatasok' ) },
@@ -175,6 +261,7 @@ export default function Header ()
           HEADER BAR
       ───────────────────────────────────────────────────────────────────── */}
       <header
+        ref={ headerRef }
         className={ `fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${ scrolled
           ? 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_40px_rgba(0,0,0,0.6)] py-3'
           : 'bg-transparent py-5'
@@ -195,7 +282,7 @@ export default function Header ()
           </Link>
 
           {/* ── Desktop Navigation ── */ }
-          <nav className="hidden lg:flex items-center gap-0" role="navigation" aria-label="Főmenü">
+          <nav className="hidden lg:flex items-center gap-0" role="navigation" aria-label={ a11yLabels.mainNav }>
             { navItems.map( ( item ) =>
             {
               const isActive = pathname === item.href || pathname.startsWith( item.href + '/' );
@@ -214,16 +301,31 @@ export default function Header ()
                     className="relative"
                     onMouseEnter={ () => openMegaMenu( megaKey ) }
                     onMouseLeave={ closeMegaMenu }
+                    onBlur={ ( event ) =>
+                    {
+                      if ( !event.currentTarget.contains( event.relatedTarget as Node | null ) )
+                      {
+                        closeMegaMenuImmediately();
+                      }
+                    } }
                   >
                     <button
+                      ref={ ( node ) =>
+                      {
+                        megaMenuButtonRefs.current[megaKey] = node;
+                      } }
+                      id={ `mega-trigger-${ megaKey }` }
+                      type="button"
                       className={ `
                         relative px-4 py-6 text-sm font-medium tracking-widest uppercase
                         transition-colors duration-200 group flex items-center gap-1
                         ${ isActive || isExpanded ? 'text-[#00e5ff]' : 'text-gray-400 hover:text-white' }
                       `}
                       aria-expanded={ isExpanded }
-                      aria-haspopup="true"
+                      aria-haspopup="menu"
+                      aria-controls={ `mega-panel-${ megaKey }` }
                       onClick={ () => setMegaMenuOpen( isExpanded ? null : megaKey ) }
+                      onKeyDown={ ( event ) => handleMegaMenuButtonKeyDown( event, megaKey ) }
                     >
                       { item.label }
                       <ChevronDown
@@ -247,6 +349,7 @@ export default function Header ()
                     <AnimatePresence>
                       { megaMenuOpen === megaKey && (
                         <motion.div
+                          id={ `mega-panel-${ megaKey }` }
                           initial={ { opacity: 0, y: -8 } }
                           animate={ { opacity: 1, y: 0 } }
                           exit={ { opacity: 0, y: -8 } }
@@ -254,11 +357,21 @@ export default function Header ()
                           className="absolute top-full left-1/2 -translate-x-1/2 z-50 pt-2"
                           onMouseEnter={ keepMegaMenuOpen }
                           onMouseLeave={ closeMegaMenu }
-                          role="region"
-                          aria-label={ menuData.title }
+                          role="menu"
+                          aria-labelledby={ `mega-trigger-${ megaKey }` }
+                          data-testid={ `mega-menu-${ megaKey }` }
+                          onKeyDown={ ( event ) =>
+                          {
+                            if ( event.key === 'Escape' )
+                            {
+                              event.preventDefault();
+                              closeMegaMenuImmediately();
+                              megaMenuButtonRefs.current[megaKey]?.focus();
+                            }
+                          } }
                         >
                           <div
-                            className="bg-[#060608] border border-white/8 shadow-[0_24px_64px_rgba(0,0,0,0.8),0_0_0_1px_rgba(0,229,255,0.06)] backdrop-blur-xl"
+                            className="surface-panel-elevated shadow-[0_24px_64px_rgba(0,0,0,0.8),0_0_0_1px_rgba(0,229,255,0.06)] backdrop-blur-xl"
                             style={ { width: megaKey === 'services' ? '720px' : '520px' } }
                           >
                             {/* Top accent line */ }
@@ -274,6 +387,7 @@ export default function Header ()
                                     <Link
                                       key={ menuItem.href + menuItem.label }
                                       href={ menuItem.href }
+                                      role="menuitem"
                                       className="group/item flex items-start gap-3 p-3 hover:bg-[rgba(0,229,255,0.04)] border border-transparent hover:border-[rgba(0,229,255,0.12)] transition-all duration-150"
                                       onClick={ () =>
                                       {
@@ -395,7 +509,7 @@ export default function Header ()
             onClick={ () => setIsMenuOpen( !isMenuOpen ) }
             animate={ { rotate: isMenuOpen ? 90 : 0 } }
             transition={ { duration: 0.3, ease: 'easeInOut' } }
-            aria-label={ isMenuOpen ? 'Menü bezárása' : 'Menü megnyitása' }
+            aria-label={ isMenuOpen ? a11yLabels.closeMenu : a11yLabels.openMenu }
             aria-expanded={ isMenuOpen }
             aria-controls="mobile-menu"
             className="lg:hidden relative z-50 p-2 text-white hover:text-[#00e5ff] transition-colors"
@@ -411,6 +525,7 @@ export default function Header ()
       <AnimatePresence>
         { isMenuOpen && (
           <motion.div
+            ref={ mobileMenuRef }
             id="mobile-menu"
             initial={ { opacity: 0 } }
             animate={ { opacity: 1 } }
@@ -418,7 +533,11 @@ export default function Header ()
             transition={ { duration: 0.35, ease: 'easeInOut' } }
             className="fixed inset-0 z-40 flex flex-col justify-center px-10 lg:hidden overflow-hidden"
             style={ { background: 'rgba(0, 0, 0, 0.97)', backdropFilter: 'blur(24px)' } }
+            role="dialog"
+            aria-modal="true"
+            aria-label={ a11yLabels.mobileMenu }
           >
+            <h2 id="mobile-menu-title" className="sr-only">{ a11yLabels.mobileMenu }</h2>
             {/* ── HUD Corner Brackets ── */ }
             <motion.div
               initial={ { opacity: 0, scale: 0.8 } }
@@ -462,7 +581,7 @@ export default function Header ()
             />
 
             {/* ── Nav Items ── */ }
-            <nav className="space-y-1">
+            <nav className="space-y-1" aria-label={ a11yLabels.mobileMenu }>
               { navItems.map( ( item, index ) =>
               {
                 const isActive = pathname === item.href;

@@ -32,7 +32,7 @@ export default function StatsBar ()
     const stats = statsData[lang];
 
     return (
-        <section className="py-16 border-y border-white/5 bg-[#060608]" aria-label="Key statistics">
+        <section className="py-16 border-y border-white/5 bg-surface-1" aria-label="Key statistics" data-testid="stats-bar">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
                     { stats.map( ( stat ) => (
