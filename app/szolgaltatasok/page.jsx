@@ -63,11 +63,6 @@ const categories = [
   {
     id: "konyvelesi",
     icon: TrendingUp,
-    color: "teal",
-    gradient: "from-teal-400 to-green-400",
-    border: "hover:border-teal-500/60",
-    bg: "bg-teal-500/20",
-    text: "text-teal-400",
     title: "Könyvelési Automatizálás I.",
     subtitle: "Az AI elvégzi a számla-feldolgozást, bank-egyeztetést és NAV-ellenőrzést – te csak a valódi döntésekre fókuszálsz.",
     services: [
@@ -91,11 +86,6 @@ const categories = [
   {
     id: "nova",
     icon: Bot,
-    color: "violet",
-    gradient: "from-violet-400 to-purple-400",
-    border: "hover:border-violet-500/60",
-    bg: "bg-violet-500/20",
-    text: "text-violet-400",
     title: "Nova — AI Üzleti Asszisztens",
     subtitle: "Egy tanuló, fejlődő napi társ, aki megismeri vállalkozásodat és 24/7 segíti az operatív munkát.",
     services: [
@@ -119,11 +109,6 @@ const categories = [
   {
     id: "psales",
     icon: FileSearch,
-    color: "orange",
-    gradient: "from-orange-400 to-amber-400",
-    border: "hover:border-orange-500/60",
-    bg: "bg-orange-500/20",
-    text: "text-orange-400",
     title: "P-Sales — Ingatlan Értékesítő Platform",
     subtitle: "Dokumentumfelmérés, piackutatás és egyedi értékesítési stratégia egy komplex ügynöki rendszerrel.",
     services: [
@@ -147,11 +132,6 @@ const categories = [
   {
     id: "psearch",
     icon: Award,
-    color: "blue",
-    gradient: "from-blue-400 to-sky-400",
-    border: "hover:border-blue-500/60",
-    bg: "bg-blue-500/20",
-    text: "text-blue-400",
     title: "P-Search — Pályázat & Hitelkereső",
     subtitle: "Folyamatos EU és hazai pályázat- és hitelfigyelem, személyre szabott találatokkal és Kanban-követéssel.",
     services: [
@@ -175,11 +155,6 @@ const categories = [
   {
     id: "lead",
     icon: Target,
-    color: "blue",
-    gradient: "from-blue-400 to-cyan-400",
-    border: "hover:border-blue-500/60",
-    bg: "bg-blue-500/20",
-    text: "text-blue-400",
     title: "Intelligens Lead Generálás & Ügyfélszerzés",
     subtitle: "Nem Te keresed az ügyfeleket — az AI hozza őket. Minden nap, automatikusan.",
     services: [
@@ -213,11 +188,6 @@ const categories = [
   {
     id: "automation",
     icon: Zap,
-    color: "purple",
-    gradient: "from-purple-400 to-pink-400",
-    border: "hover:border-purple-500/60",
-    bg: "bg-purple-500/20",
-    text: "text-purple-400",
     title: "Üzleti Folyamatok Automatizálása",
     subtitle: "Amit ma kézzel csinálsz — holnaptól csinálja helyetted a rendszer.",
     services: [
@@ -263,11 +233,6 @@ const categories = [
   {
     id: "market",
     icon: BarChart3,
-    color: "green",
-    gradient: "from-green-400 to-emerald-400",
-    border: "hover:border-green-500/60",
-    bg: "bg-green-500/20",
-    text: "text-green-400",
     title: "Piackutatás & Versenytárselemzés",
     subtitle: "Tudd meg, mit csinál a konkurencia — mielőtt ő tenné ugyanezt.",
     services: [
@@ -288,11 +253,6 @@ const categories = [
   {
     id: "marketing",
     icon: TrendingUp,
-    color: "orange",
-    gradient: "from-orange-400 to-yellow-400",
-    border: "hover:border-orange-500/60",
-    bg: "bg-orange-500/20",
-    text: "text-orange-400",
     title: "Marketing Kampány Automatizálás",
     subtitle: "Egy briefing — teljes kampány. Percek alatt, nem napok alatt.",
     services: [
@@ -314,11 +274,6 @@ const categories = [
   {
     id: "innovation",
     icon: Lightbulb,
-    color: "yellow",
-    gradient: "from-yellow-400 to-amber-400",
-    border: "hover:border-yellow-500/60",
-    bg: "bg-yellow-500/20",
-    text: "text-yellow-400",
     title: "Kereszt-ipari Innováció",
     subtitle: "Más iparágak megoldásai — a te problémádra alkalmazva.",
     services: [
@@ -339,11 +294,6 @@ const categories = [
   {
     id: "custom",
     icon: Brain,
-    color: "pink",
-    gradient: "from-pink-400 to-red-400",
-    border: "hover:border-pink-500/60",
-    bg: "bg-pink-500/20",
-    text: "text-pink-400",
     title: "Egyedi AI Rendszer Fejlesztés",
     subtitle: "Ha a kész megoldások nem elégek — megcsináljuk a sajátodat.",
     services: [
@@ -372,11 +322,6 @@ const categories = [
   {
     id: "web",
     icon: Globe,
-    color: "cyan",
-    gradient: "from-cyan-400 to-blue-400",
-    border: "hover:border-cyan-500/60",
-    bg: "bg-cyan-500/20",
-    text: "text-cyan-400",
     title: "Webfejlesztés AI-val kiegészítve",
     subtitle: "Modern weboldal, ami nem csak szép — hanem dolgozik is.",
     services: [
@@ -415,11 +360,6 @@ const categories = [
   {
     id: "agent-mcp",
     icon: Cpu,
-    color: "blue",
-    gradient: "from-sky-400 to-indigo-400",
-    border: "hover:border-sky-500/60",
-    bg: "bg-sky-500/20",
-    text: "text-sky-400",
     title: "AI Ügynökök & MCP Integrációk",
     subtitle: "Látványos, mégis üzletileg azonnal használható automatizálások döntéshozóknak.",
     services: [
@@ -541,17 +481,7 @@ const categories = [
   },
 ];
 
-const colorMap = {
-  blue:   { dot: "bg-blue-400"   },
-  purple: { dot: "bg-purple-400" },
-  green:  { dot: "bg-green-400"  },
-  orange: { dot: "bg-orange-400" },
-  yellow: { dot: "bg-yellow-400" },
-  pink:   { dot: "bg-pink-400"   },
-  cyan:   { dot: "bg-cyan-400"   },
-  teal:   { dot: "bg-teal-400"   },
-  violet: { dot: "bg-violet-400" },
-};
+
 
 export default function SzolgaltatasokPage() {
   const headerLang = headers().get('x-site-language');
@@ -613,17 +543,17 @@ export default function SzolgaltatasokPage() {
     return (
       <main className="relative min-h-screen">
         <VideoBackground videoSrc="/services.mp4" />
-        <div className="absolute inset-0 bg-black/60 z-[1]" />
+        <div className="absolute inset-0 bg-black/70 z-[1]" />
         <div className="relative z-10 container mx-auto px-4 pt-28 pb-20 text-white">
           <div className="text-center mb-14 max-w-3xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-[#00e5ff]">
               {ui.title}
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">{ui.subtitle}</p>
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               {ui.highlights.map((tag) => (
                 <span key={tag} className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-gray-200 backdrop-blur-sm">
-                  <CheckCircle size={14} className="text-green-400" />
+                  <CheckCircle size={14} className="text-[#00e5ff]" />
                   {tag}
                 </span>
               ))}
@@ -640,11 +570,11 @@ export default function SzolgaltatasokPage() {
           </div>
 
           <section className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">{ui.whyTitle}</h2>
+            <h2 className="text-3xl font-bold mb-4 text-[#00e5ff]">{ui.whyTitle}</h2>
             <p className="text-gray-300 text-lg mb-8">{ui.whyDesc}</p>
             <a
               href={withLang('/kapcsolat')}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-purple-500/30 hover:scale-105"
+              className="inline-flex items-center gap-2 border border-[#00e5ff] text-[#00e5ff] font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:bg-[#00e5ff]/10 hover:shadow-[#00e5ff]/20 hover:scale-105"
             >
               {ui.cta}
               <ArrowRight size={18} />
@@ -726,7 +656,7 @@ export default function SzolgaltatasokPage() {
 
         {/* Hero */}
         <div className="text-center mb-20 max-w-3xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-[#00e5ff]">
             Szolgáltatásaink
           </h1>
           <p className="text-xl text-gray-300 leading-relaxed">
@@ -737,7 +667,7 @@ export default function SzolgaltatasokPage() {
           <div className="flex flex-wrap justify-center gap-4 mt-8">
             {["Magyar piac ismerete", "Élesben futó rendszerek", "Átlátható működés"].map((tag) => (
               <span key={tag} className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-gray-200 backdrop-blur-sm">
-                <CheckCircle size={14} className="text-green-400" />
+                <CheckCircle size={14} className="text-[#00e5ff]" />
                 {tag}
               </span>
             ))}
@@ -752,7 +682,7 @@ export default function SzolgaltatasokPage() {
               <a
                 key={cat.id}
                 href={`#${cat.id}`}
-                className={`flex items-center gap-2 ${cat.bg} border border-white/10 ${cat.border} rounded-full px-4 py-2 text-sm ${cat.text} backdrop-blur-sm transition-all duration-200 hover:scale-105`}
+                className="flex items-center gap-2 bg-[#00e5ff]/5 border border-[#00e5ff]/20 hover:border-[#00e5ff]/50 rounded-full px-4 py-2 text-sm text-[#00e5ff] backdrop-blur-sm transition-all duration-200 hover:scale-105"
               >
                 <Icon size={14} />
                 {cat.title.split(" ").slice(0, 3).join(" ")}…
@@ -765,15 +695,14 @@ export default function SzolgaltatasokPage() {
         <div className="space-y-20">
           {categories.map((cat, catIdx) => {
             const Icon = cat.icon;
-            const colors = colorMap[cat.color];
             return (
               <section key={cat.id} id={cat.id}>
                 <div className="flex items-start gap-4 mb-8">
-                  <div className={`p-3 ${cat.bg} rounded-xl flex items-center justify-center shrink-0`}>
-                    <Icon size={28} className={cat.text} />
+                  <div className="p-3 bg-[#00e5ff]/5 border border-[#00e5ff]/20 rounded-xl flex items-center justify-center shrink-0">
+                    <Icon size={28} className="text-[#00e5ff]" />
                   </div>
                   <div>
-                    <h2 className={`text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${cat.gradient}`}>
+                    <h2 className="text-2xl md:text-3xl font-bold text-[#00e5ff]">
                       {catIdx + 1}. {cat.title}
                     </h2>
                     <p className="text-gray-400 mt-1 text-lg">{cat.subtitle}</p>
@@ -784,14 +713,14 @@ export default function SzolgaltatasokPage() {
                   {cat.services.map((svc) => (
                     <div
                       key={svc.name}
-                      className={`glass-panel p-7 rounded-2xl border border-white/10 ${cat.border} transition-all duration-300 backdrop-blur-md bg-black/30`}
+                      className="glass-panel p-7 rounded-2xl border border-white/8 bg-white/2 hover:border-[#00e5ff]/30 transition-all duration-300 backdrop-blur-md"
                     >
                       <h3 className="text-xl font-bold mb-3 text-white">{svc.name}</h3>
                       <p className="text-gray-300 text-sm leading-relaxed mb-5">{svc.desc}</p>
                       <ul className="space-y-2 mb-5">
                         {svc.bullets.map((b) => (
                           <li key={b} className="flex items-start gap-2 text-sm text-gray-200">
-                            <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${colors.dot}`} />
+                            <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 bg-[#00e5ff]" />
                             {b}
                           </li>
                         ))}
@@ -840,7 +769,7 @@ export default function SzolgaltatasokPage() {
         </div>
 
         <section className="mt-24 max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+          <h2 className="text-3xl font-bold text-center mb-4 text-[#00e5ff]">
             Üzleti automatizálás valós példákon
           </h2>
           <p className="text-gray-300 text-center max-w-3xl mx-auto mb-10">
@@ -883,7 +812,7 @@ export default function SzolgaltatasokPage() {
         </section>
 
         <section className="mt-20 max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
+          <h2 className="text-3xl font-bold text-center mb-10 text-[#00e5ff]">
             Kiemelt, csábító AI folyamatok vállalkozásoknak
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -915,20 +844,20 @@ export default function SzolgaltatasokPage() {
 
         {/* Miért mi */}
         <section className="mt-24 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+          <h2 className="text-3xl font-bold text-center mb-10 text-[#00e5ff]">
             Miért minket válassz?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { icon: Zap,       color: "text-yellow-400", bg: "bg-yellow-500/10", title: "Nem tanácsadunk. Megcsináljuk.", desc: "Minden amit felsorolunk, élesben fut. Nem PowerPoint, hanem működő rendszer." },
-              { icon: Users,     color: "text-blue-400",   bg: "bg-blue-500/10",   title: "Kis csapat, nagy teljesítmény.", desc: "AI ügynökeink elvégzik, ami egy 5–10 fős csapatnak kellene. Gyorsan, hibátlanul, hétvégén is." },
-              { icon: Building2, color: "text-green-400",  bg: "bg-green-500/10",  title: "Magyar piac ismerete.", desc: "Rendszereink magyar vállalkozásokra kalibráltak — magyar adatbázisokkal és kommunikációs stílussal." },
-              { icon: Shield,    color: "text-purple-400", bg: "bg-purple-500/10", title: "Átláthatóság — Glass Box.", desc: "Minden futó folyamatot látsz: valós idejű dashboard, értesítések, riportok. Teljes kontroll." },
+              { icon: Zap,       title: "Nem tanácsadunk. Megcsináljuk.", desc: "Minden amit felsorolunk, élesben fut. Nem PowerPoint, hanem működő rendszer." },
+              { icon: Users,     title: "Kis csapat, nagy teljesítmény.", desc: "AI ügynökeink elvégezik, ami egy 5–10 fős csapatnak kellene. Gyorsan, hibátlanul, hétvégén is." },
+              { icon: Building2, title: "Magyar piac ismerete.", desc: "Rendszereink magyar vállalkozásokra kalibráltak — magyar adatbázisokkal és kommunikációs stílussal." },
+              { icon: Shield,    title: "Átláthatóság — Glass Box.", desc: "Minden futó folyamatot látsz: valós idejű dashboard, értesítések, riportok. Teljes kontroll." },
             ].map((item) => {
               const I = item.icon;
               return (
-                <div key={item.title} className={`flex gap-4 p-6 rounded-2xl border border-white/10 backdrop-blur-md bg-black/30 ${item.bg}`}>
-                  <I size={24} className={`${item.color} shrink-0 mt-0.5`} />
+                <div key={item.title} className="flex gap-4 p-6 rounded-2xl border border-white/8 bg-white/2 hover:border-[#00e5ff]/30 backdrop-blur-md transition-all">
+                  <I size={24} className="text-[#00e5ff] shrink-0 mt-0.5" />
                   <div>
                     <h3 className="font-bold text-white mb-1">{item.title}</h3>
                     <p className="text-gray-300 text-sm">{item.desc}</p>
@@ -944,7 +873,7 @@ export default function SzolgaltatasokPage() {
           <p className="text-gray-400 mb-6 text-lg">Kérdésed van? Mutasd meg a problémád — megmutatjuk a megoldást.</p>
           <a
             href="/kapcsolat"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-purple-500/30 hover:scale-105"
+            className="inline-flex items-center gap-2 border border-[#00e5ff] text-[#00e5ff] font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:bg-[#00e5ff]/10 hover:shadow-[#00e5ff]/20 hover:scale-105"
           >
             Ingyenes konzultáció
             <ArrowRight size={18} />
