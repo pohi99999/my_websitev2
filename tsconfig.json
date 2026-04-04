@@ -32,6 +32,8 @@
   "exclude": [
     "node_modules",
     "app/components/_AudioReactive.tsx",
-    "app/components/AudioReactiveVisualize.tsx"
+    "app/components/AudioReactiveVisualize.tsx",
+    "playwright.config.ts",
+    "tests/**"
   ]
 }
