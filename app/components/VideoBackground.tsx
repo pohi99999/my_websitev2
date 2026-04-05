@@ -64,25 +64,26 @@ export default function VideoBackground({
   }
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
-      {/* Sötétítő réteg (Overlay) a szöveg olvashatósága miatt */}
-      <div 
-        className="absolute inset-0 bg-black pointer-events-none"
-        style={{ opacity: overlayOpacity }} 
-      />
-
+    <div className="absolute inset-0 overflow-hidden -z-10">
+      {/* Video first — overlay sits on top in DOM order */}
       <video
         ref={videoRef}
-        className="w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-center"
         autoPlay
         loop
         muted
-        playsInline // Fontos mobilra!
+        playsInline
         preload="metadata"
       >
         <source src={videoSrc} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+
+      {/* Overlay after video so it renders on top and dims the video */}
+      <div
+        className="absolute inset-0 bg-black pointer-events-none"
+        style={{ opacity: overlayOpacity }}
+      />
     </div>
   );
 }

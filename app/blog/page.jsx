@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import VideoBackground from '../components/VideoBackground';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { BLOG_POST_ORDER, getBlogPostMeta } from './blogPosts.meta';
 import { headers } from 'next/headers';
@@ -104,8 +103,6 @@ export default function BlogPage() {
           ]
         })}}
       />
-      <VideoBackground videoSrc="/blog.mp4" />
-
       <div className="relative z-10 container mx-auto px-4 py-20 text-white">
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold mb-8 text-[#00e5ff]">

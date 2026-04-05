@@ -1,6 +1,5 @@
 "use client";
 
-import VideoBackground from "../components/VideoBackground";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
@@ -119,8 +118,6 @@ export default function KapcsolatClient() {
 
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center">
-      <VideoBackground videoSrc="/contact.mp4" />
-
       <div className="relative z-10 container mx-auto px-4 py-20 text-white">
         <h1 className="text-5xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
           {ui.title}

@@ -1,4 +1,3 @@
-import VideoBackground from "../components/VideoBackground";
 import Link from "next/link";
 import { Bot, BrainCircuit, ArrowRight } from "lucide-react";
 import VideoShowcase from "./components/VideoShowcase";
@@ -128,8 +127,6 @@ export default function TermekekPage() {
           ]
         })}}
       />
-      <VideoBackground videoSrc="/products.mp4" />
-
       <div className="relative z-10 container mx-auto px-4 py-20 text-white">
         <h1 className="text-5xl font-bold mb-12 text-center text-[#00e5ff]">
           {ui.title}

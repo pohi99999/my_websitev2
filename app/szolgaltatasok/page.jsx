@@ -1,4 +1,3 @@
-import VideoBackground from "../components/VideoBackground";
 import Image from "next/image";
 import { headers } from "next/headers";
 import {
@@ -543,7 +542,6 @@ export default function SzolgaltatasokPage() {
 
     return (
       <main className="relative min-h-screen">
-        <VideoBackground videoSrc="/services.mp4" />
         <div className="absolute inset-0 bg-black/70 z-[1]" />
         <div className="relative z-10 container mx-auto px-4 pt-28 pb-20 text-white">
           <div className="text-center mb-14 max-w-3xl mx-auto">
@@ -650,7 +648,6 @@ export default function SzolgaltatasokPage() {
           ]
         })}}
       />
-      <VideoBackground videoSrc="/services.mp4" />
       <div className="absolute inset-0 bg-black/60 z-[1]" />
 
       <div className="relative z-10 container mx-auto px-4 pt-28 pb-20 text-white">
