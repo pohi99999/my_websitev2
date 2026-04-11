@@ -4,14 +4,11 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
-import { useRichMediaEnabled } from '../hooks/useRichMediaEnabled';
-import HeroParticles from './HeroParticles';
 import CountUpNumber from './CountUpNumber';
 
 const Hero = () =>
 {
   const { t, language } = useLanguage();
-  const richMediaEnabled = useRichMediaEnabled();
   const liveBadgeLabel = language === 'en' ? 'Live' : language === 'de' ? 'Live' : 'Élő';
   const heroStats =
     language === 'en'
@@ -47,7 +44,6 @@ const Hero = () =>
         } }
       />
 
-      { richMediaEnabled ? <HeroParticles /> : null }
 
       {/* Dark overlay */ }
       <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
