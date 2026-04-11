@@ -12,8 +12,8 @@ const en = {
     headlineLine1: 'The Future Has Begun...',
     headlineLine2: 'Humans and Artificial Intelligence',
     subheadline: 'will define success in the years ahead.',
-    cta: 'Brunella Agent System',
-    ctaPrimary: 'Brunella Agent System',
+    cta: 'Get in Touch',
+    ctaPrimary: 'Get in Touch',
     ctaSecondary: 'AI Agent Workflows',
   },
   footer: {

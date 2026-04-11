@@ -34,6 +34,9 @@ class Particle {
     let dx = mouse.x - this.x;
     let dy = mouse.y - this.y;
     let distance = Math.sqrt(dx * dx + dy * dy);
+    if (distance === 0) {
+      distance = 0.001;
+    }
     let forceDirectionX = dx / distance;
     let forceDirectionY = dy / distance;
     let maxDistance = mouseDistance;
@@ -156,6 +159,7 @@ const HeroParticles = () => {
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       className="absolute inset-0 z-0 pointer-events-none"
       style={{ background: 'transparent' }}
     />

@@ -18,11 +18,12 @@ export const metadata: Metadata = {
   metadataBase: new URL( 'https://www.pohankaestarsa.com' ),
   title: {
     template: '%s | Pohánka AI',
-    default: 'Pohánka és Társa Kft. | AI Ügynökség & Szoftverfejlesztés'
+    default: 'Brunella AI Automatizálás | KKV Digitalizáció | pohankaestarsa.com'
   },
   description:
-    'Innovatív AI megoldások, Brunella Agent System és egyedi szoftverfejlesztés KKV-k számára. Automatizálja üzleti folyamatait velünk.',
-  keywords: "szoftverfejlesztés, AI, mesterséges intelligencia, felhő, cloud, webfejlesztés, Budapest",
+    'AI ügynök rendszer KKV-knak. 95+ specializált AI ügynök, automatizált lead generálás, könyvelés, ügyfélszolgálat. 80% időmegtakarítás. Ingyenes konzultáció.',
+  keywords:
+    'AI automatizálás, mesterséges intelligencia KKV, lead generálás AI, könyvelési automatizálás, Brunella ügynök, digitalizáció Magyarország',
   creator: "Pohánka Péter",
   publisher: "Pohánka és Társa Kft.",
   icons: {
@@ -31,10 +32,11 @@ export const metadata: Metadata = {
     apple: '/images/logo.png',
   },
   openGraph: {
-    title: 'Pohánka és Társa Kft. | AI Ügynökség & Szoftverfejlesztés',
+    title: 'Brunella AI — A Jövő Elkezdődött',
     description:
-      'Innovatív AI megoldások, Brunella Agent System és egyedi szoftverfejlesztés KKV-k számára. Automatizálja üzleti folyamatait velünk.',
+      'Valós problémákat megoldó AI automatizálás magyar KKV-knak.',
     type: 'website',
+    siteName: 'Pohánka és Társa',
     locale: 'hu_HU',
     url: 'https://www.pohankaestarsa.com',
     images: [
@@ -43,6 +45,22 @@ export const metadata: Metadata = {
         alt: 'Pohánka és Társa Kft. – logó'
       }
     ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Brunella AI Automatizálás',
+    description: '95+ AI ügynök, 80% időmegtakarítás, 24/7 működés.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  alternates: {
+    canonical: 'https://www.pohankaestarsa.com',
   },
 };
 
@@ -69,6 +87,7 @@ export default async function RootLayout ( {
         ? 'Skip to main content'
         : 'Ugrás a fő tartalomhoz';
   const shouldLoadVercelAnalytics = process.env.VERCEL === '1';
+  const tawkEmbedUrl = process.env.NEXT_PUBLIC_TAWK_EMBED_URL?.trim();
 
   return (
     <html lang={ initialLanguage }>
@@ -100,10 +119,16 @@ export default async function RootLayout ( {
             __html: JSON.stringify( {
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Pohánka és Társa Kft.",
-              description: "Szoftverfejlesztés és AI megoldások",
+              name: "Pohánka és Társa",
+              description: "AI automatizálási megoldások KKV vállalkozásoknak",
               url: "https://www.pohankaestarsa.com",
               logo: "https://www.pohankaestarsa.com/images/logo.png",
+              serviceType: "AI Automatizálás",
+              areaServed: "HU",
+              offers: {
+                "@type": "Offer",
+                category: "Mesterséges Intelligencia Szolgáltatások"
+              },
               contact: {
                 "@type": "ContactPoint",
                 contactType: "Customer Support",
@@ -174,18 +199,19 @@ export default async function RootLayout ( {
               });
             }`}
         </Script>
-        {/* Tawk.to Live Chat */ }
-        <Script id="tawkto" strategy="lazyOnload">
-          { `var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-            (function(){
-              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-              s1.async=true;
-              s1.src='https://embed.tawk.to/6847f8b0258d2119151c5e2f/1it9k7a72';
-              s1.charset='UTF-8';
-              s1.setAttribute('crossorigin','*');
-              s0.parentNode.insertBefore(s1,s0);
-            })();`}
-        </Script>
+        { tawkEmbedUrl ? (
+          <Script id="tawkto" strategy="lazyOnload">
+            { `var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+              (function(){
+                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                s1.async=true;
+                s1.src='${ tawkEmbedUrl }';
+                s1.charset='UTF-8';
+                s1.setAttribute('crossorigin','*');
+                s0.parentNode.insertBefore(s1,s0);
+              })();`}
+          </Script>
+        ) : null }
       </body>
     </html>
   );

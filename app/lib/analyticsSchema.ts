@@ -13,6 +13,8 @@ export const CTA_LOCATIONS = {
   AiWorkflowContact: "ai_workflow_contact",
   AiWorkflowServicesHu: "ai_workflow_services_hu",
   AiWorkflowContactHu: "ai_workflow_contact_hu",
+  RoiPrimary: "roi_primary",
+  HomepageContactWhatsapp: "homepage_contact_whatsapp",
   HeaderNavDesktop: "header_nav_desktop",
   HeaderNavMobile: "header_nav_mobile",
   HeaderContactDesktop: "header_contact_desktop",
@@ -44,6 +46,7 @@ export type AnalyticsEventName = (typeof ANALYTICS_EVENTS)[keyof typeof ANALYTIC
 
 export const FORMS = {
   ContactMain: "contact_main",
+  ContactHomeQuick: "contact_home_quick",
 } as const;
 
 export type FormName = (typeof FORMS)[keyof typeof FORMS];

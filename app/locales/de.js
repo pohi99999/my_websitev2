@@ -12,8 +12,8 @@ const de = {
     headlineLine1: 'Die Zukunft hat begonnen...',
     headlineLine2: 'Menschen und künstliche Intelligenz',
     subheadline: 'werden den Erfolg in den kommenden Jahren bestimmen.',
-    cta: 'Brunella Agent System',
-    ctaPrimary: 'Brunella Agent System',
+    cta: 'Kontakt aufnehmen',
+    ctaPrimary: 'Kontakt aufnehmen',
     ctaSecondary: 'KI-Agent-Workflows',
   },
   footer: {
