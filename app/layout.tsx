@@ -9,6 +9,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import { cookies, headers } from 'next/headers';
 import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
+import BrunellaChat from './components/BrunellaChat';
 
 const inter = Inter( { subsets: ['latin'], display: 'swap', variable: '--font-inter' } );
 const syne = Syne( { subsets: ['latin'], display: 'swap', variable: '--font-syne', weight: ['600', '700', '800'] } );
@@ -187,6 +188,7 @@ export default async function RootLayout ( {
             </main>
             <Footer />
           </LenisProvider>
+          <BrunellaChat />
         </LanguageProvider>
         { shouldLoadVercelAnalytics ? <Analytics /> : null }
         {/* Service Worker regisztráció */ }
