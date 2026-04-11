@@ -37,6 +37,21 @@ const Hero = () =>
       id="home"
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-surface-0 px-4 pb-12 pt-24 md:min-h-screen md:px-6"
     >
+      {/* Video background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+        style={{ zIndex: -1 }}
+      >
+        <source src="/home.mp4" type="video/mp4" />
+      </video>
+
+      {/* Fallback background if video fails to load */}
       <div
         className="absolute inset-0 w-full h-full"
         aria-hidden="true"
@@ -44,21 +59,12 @@ const Hero = () =>
           background:
             'radial-gradient(ellipse 80% 60% at 30% 40%, rgba(0,229,255,0.10) 0%, transparent 65%), radial-gradient(ellipse 60% 80% at 70% 80%, rgba(0,229,255,0.06) 0%, transparent 60%), linear-gradient(160deg, #000000 0%, #00060a 50%, #000000 100%)',
         } }
-      >
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={ {
-            backgroundImage:
-              'linear-gradient(rgba(0,229,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '48px 48px',
-          } }
-        />
-      </div>
+      />
 
       { richMediaEnabled ? <HeroParticles /> : null }
 
       {/* Dark overlay */ }
-      <div className="absolute inset-0 bg-black/70" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
 
       {/* HUD corner brackets */ }
       <div className="absolute inset-8 md:inset-16 pointer-events-none z-10" aria-hidden="true">
