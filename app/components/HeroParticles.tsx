@@ -84,6 +84,12 @@ const HeroParticles = () => {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false;
+    const saveData = (navigator as any)?.connection?.saveData === true;
+
+    if (prefersReducedMotion || saveData || window.innerWidth < 1024) {
+      return;
+    }
 
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;

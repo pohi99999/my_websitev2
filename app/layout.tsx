@@ -3,8 +3,7 @@ import { Inter, Syne } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import MobileCTA from './components/MobileCTA';
-import SequentialVideoBackground from './components/SequentialVideoBackground';
+import DeferredLayoutEnhancements from './components/DeferredLayoutEnhancements';
 import LenisProvider from './components/LenisProvider';
 import { LanguageProvider } from './context/LanguageContext';
 import { cookies, headers } from 'next/headers';
@@ -179,15 +178,14 @@ export default async function RootLayout ( {
         >
           { skipLinkLabel }
         </a>
-        <SequentialVideoBackground />
         <LanguageProvider initialLanguage={ initialLanguage }>
           <LenisProvider>
+            <DeferredLayoutEnhancements />
             <Header />
             <main id="main-content" className="pt-20">
               { children }
             </main>
             <Footer />
-            <MobileCTA />
           </LenisProvider>
         </LanguageProvider>
         { shouldLoadVercelAnalytics ? <Analytics /> : null }
