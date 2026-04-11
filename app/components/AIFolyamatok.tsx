@@ -45,7 +45,7 @@ export default function AIFolyamatok ()
         };
 
     return (
-      <section className="py-24 px-6 bg-surface-0 text-white">
+      <section className="py-24 px-6 bg-surface-0 text-white" style={{ background: 'rgba(0,0,0,0.82)' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="heading-display text-4xl md:text-5xl font-bold mb-5 text-[#00e5ff]">
@@ -158,7 +158,7 @@ export default function AIFolyamatok ()
   ];
 
   return (
-    <section id="ai-folyamatok" className="py-24 px-6 relative bg-surface-0">
+    <section id="ai-folyamatok" className="py-24 px-6 relative bg-surface-0" style={{ background: 'rgba(0,0,0,0.82)' }}>
       <div className="max-w-6xl mx-auto relative z-10">
 
         {/* Section header */ }

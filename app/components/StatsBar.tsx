@@ -34,7 +34,7 @@ export default function StatsBar ()
     const liveBadgeLabel = language === 'en' ? 'LIVE' : language === 'de' ? 'LIVE' : 'ÉLŐ';
 
     return (
-        <section className="py-16 border-y border-white/5 bg-surface-1" aria-label="Key statistics" data-testid="stats-bar">
+        <section className="py-16 border-y border-white/5 bg-surface-1" style={{ background: 'rgba(0,0,0,0.80)' }} aria-label="Key statistics" data-testid="stats-bar">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
                     { stats.map( ( stat ) => (

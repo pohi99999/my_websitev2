@@ -35,23 +35,9 @@ const Hero = () =>
   return (
     <section
       id="home"
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-surface-0 px-4 pb-12 pt-24 md:min-h-screen md:px-6"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-transparent px-4 pb-12 pt-24 md:min-h-screen md:px-6"
     >
-      {/* Video background */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        aria-hidden="true"
-        style={{ zIndex: -1 }}
-      >
-        <source src="/home.mp4" type="video/mp4" />
-      </video>
-
-      {/* Fallback background if video fails to load */}
+      {/* Fallback gradient visible when video hasn't loaded */}
       <div
         className="absolute inset-0 w-full h-full"
         aria-hidden="true"

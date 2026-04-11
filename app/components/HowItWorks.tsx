@@ -144,6 +144,7 @@ export default function HowItWorks() {
       id="how-it-works"
       ref={sectionRef}
       className="relative overflow-hidden bg-surface-0 px-6 py-24"
+      style={{ background: 'rgba(0,0,0,0.82)' }}
     >
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />

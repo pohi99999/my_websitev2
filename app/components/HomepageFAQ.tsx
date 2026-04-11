@@ -142,7 +142,7 @@ export default function HomepageFAQ ()
     };
 
     return (
-        <section id="faq" className="py-24 px-6 bg-surface-0" data-testid="homepage-faq">
+        <section id="faq" className="py-24 px-6 bg-surface-0" style={{ background: 'rgba(0,0,0,0.82)' }} data-testid="homepage-faq">
             {/* FAQPage structured data for SEO */ }
             <script
                 type="application/ld+json"

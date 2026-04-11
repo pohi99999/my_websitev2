@@ -79,7 +79,7 @@ export default function RoiCalculator() {
   const monthlySavings = useMemo(() => Math.round(annualSavings / 12), [annualSavings]);
 
   return (
-    <section id="roi-kalkulator" className="relative overflow-hidden bg-surface-1 px-6 py-24">
+    <section id="roi-kalkulator" className="relative overflow-hidden bg-surface-1 px-6 py-24" style={{ background: 'rgba(0,0,0,0.82)' }}>
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#00e5ff]/60 to-transparent" />
         <div className="absolute left-1/2 top-10 h-64 w-64 -translate-x-1/2 rounded-full bg-[#00e5ff]/10 blur-3xl" />

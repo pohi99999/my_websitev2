@@ -23,7 +23,7 @@ const Footer = () => {
             <h3 className="text-2xl font-bold text-[#00e5ff]">
               {t('footer.companyName')}
             </h3>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-400 leading-relaxed">
               {t('footer.tagline')}
             </p>
           </div>
@@ -37,7 +37,7 @@ const Footer = () => {
               <li>
                 <a
                   href={withLang('/termekek/brunella-agents')}
-                  className="text-gray-500 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
                   {t('footer.solutions.brunella')}
                 </a>
@@ -45,7 +45,7 @@ const Footer = () => {
               <li>
                 <a
                   href={withLang('/termekek/pohi-ai-pro')}
-                  className="text-gray-500 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
                   {t('footer.solutions.pohi')}
                 </a>
@@ -53,7 +53,7 @@ const Footer = () => {
               <li>
                 <a
                   href={withLang('/szolgaltatasok')}
-                  className="text-gray-500 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
                   {t('footer.solutions.customDev')}
                 </a>
@@ -67,17 +67,17 @@ const Footer = () => {
               {t('footer.sections.contact')}
             </h4>
             <ul className="space-y-4">
-              <li className="flex items-start space-x-3 text-gray-500">
+              <li className="flex items-start space-x-3 text-gray-400">
                 <MapPin className="w-5 h-5 text-[#00e5ff]/50 mt-1 flex-shrink-0" />
                 <span>8900 Zalaegerszeg,<br />Magyarország</span>
               </li>
-              <li className="flex items-center space-x-3 text-gray-500">
+              <li className="flex items-center space-x-3 text-gray-400">
                 <Phone className="w-5 h-5 text-[#00e5ff]/50 flex-shrink-0" />
                 <a href="tel:+36302446779" className="hover:text-white transition-colors">
                   +36 30 244 6779
                 </a>
               </li>
-              <li className="flex items-center space-x-3 text-gray-500">
+              <li className="flex items-center space-x-3 text-gray-400">
                 <Mail className="w-5 h-5 text-[#00e5ff]/50 flex-shrink-0" />
                 <a
                   href="mailto:peterpohankapersonal@gmail.com"
@@ -94,7 +94,7 @@ const Footer = () => {
             <h4 className="text-xs font-semibold mb-6 text-[#00e5ff]/70 uppercase tracking-[0.12em]">
               {t('footer.sections.leadership')}
             </h4>
-            <div className="text-gray-500">
+            <div className="text-gray-400">
               <p className="font-medium text-white">{t('footer.leadership.name')}</p>
               <p className="text-sm mb-4">{t('footer.leadership.title')}</p>
               <div className="flex flex-wrap gap-3">
@@ -102,7 +102,7 @@ const Footer = () => {
                   href="https://www.linkedin.com/in/pohi99999/"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-500 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
+                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
@@ -111,7 +111,7 @@ const Footer = () => {
                   href="https://www.facebook.com/profile.php?id=61576881120445"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-500 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
+                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-5 h-5" />
@@ -120,7 +120,7 @@ const Footer = () => {
                   href="https://github.com/pohi99999"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-500 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
+                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="GitHub"
                 >
                   <Github className="w-5 h-5" />
@@ -129,7 +129,7 @@ const Footer = () => {
                   href="https://x.com/pohanka_peter"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-500 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
+                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="X (Twitter)"
                 >
                   <Twitter className="w-5 h-5" />
@@ -138,7 +138,7 @@ const Footer = () => {
                   href="https://g.dev/PohankaPeter"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-500 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
+                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="Google Developer"
                 >
                   <Code2 className="w-5 h-5" />
@@ -147,7 +147,7 @@ const Footer = () => {
                   href="https://www.youtube.com/@J%C3%B3zsefP%C3%A9terPoh%C3%A1nka"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-500 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
+                  className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="YouTube"
                 >
                   <Youtube className="w-5 h-5" />
@@ -159,7 +159,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom copyright bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <p>© 2025 {t('footer.companyName')} {t('footer.legal.rights')}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href={withLang('/impresszum')} className="hover:text-white transition-colors">

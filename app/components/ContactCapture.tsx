@@ -172,7 +172,7 @@ export default function ContactCapture() {
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-surface-1 px-6 py-24">
+    <section id="contact" className="relative overflow-hidden bg-surface-1 px-6 py-24" style={{ background: 'rgba(0,0,0,0.82)' }}>
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute left-0 top-20 h-64 w-64 rounded-full bg-[#00e5ff]/10 blur-3xl" />
         <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-emerald-400/10 blur-3xl" />

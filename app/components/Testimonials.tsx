@@ -115,7 +115,7 @@ export default function Testimonials ()
   const { heading, sub } = titles[lang];
 
   return (
-    <section id="testimonials" className="py-24 bg-[#060608] relative overflow-hidden">
+    <section id="testimonials" className="py-24 bg-[#060608] relative overflow-hidden" style={{ background: 'rgba(0,0,0,0.82)' }}>
       {/* Background glow */ }
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#00e5ff]/5 blur-3xl" />
