@@ -34,19 +34,15 @@ const Hero = () =>
       id="home"
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-transparent px-4 pb-12 pt-24 md:min-h-screen md:px-6"
     >
-      {/* Fallback gradient visible when video hasn't loaded */}
+      {/* Ambient glow only — keep the video visible */}
       <div
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full pointer-events-none"
         aria-hidden="true"
         style={ {
           background:
-            'radial-gradient(ellipse 80% 60% at 30% 40%, rgba(0,229,255,0.10) 0%, transparent 65%), radial-gradient(ellipse 60% 80% at 70% 80%, rgba(0,229,255,0.06) 0%, transparent 60%), linear-gradient(160deg, #000000 0%, #00060a 50%, #000000 100%)',
+            'radial-gradient(ellipse 80% 60% at 30% 40%, rgba(0,229,255,0.10) 0%, rgba(0,229,255,0.03) 34%, transparent 72%), radial-gradient(ellipse 60% 80% at 70% 80%, rgba(0,229,255,0.05) 0%, transparent 62%)',
         } }
       />
-
-
-      {/* Dark overlay */ }
-      <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
 
       {/* HUD corner brackets */ }
       <div className="absolute inset-8 md:inset-16 pointer-events-none z-10" aria-hidden="true">
