@@ -4,13 +4,16 @@ import React from 'react';
 import { Mail, Phone, MapPin, Linkedin, Facebook, Github, Twitter, Youtube, Code2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-const Footer = () => {
+const Footer = () =>
+{
   const { t, language } = useLanguage();
+  const currentYear = new Date().getFullYear();
 
-  const withLang = (href: string) => {
-    if (language === 'hu') return href;
-    if (href === '/') return `/${language}`;
-    return href.startsWith('/') ? `/${language}${href}` : href;
+  const withLang = ( href: string ) =>
+  {
+    if ( language === 'hu' ) return href;
+    if ( href === '/' ) return `/${ language }`;
+    return href.startsWith( '/' ) ? `/${ language }${ href }` : href;
   };
 
   return (
@@ -21,41 +24,41 @@ const Footer = () => {
           {/* Céginfó */}
           <div className="space-y-4">
             <h3 className="text-2xl font-bold text-[#00e5ff]">
-              {t('footer.companyName')}
+              {t( 'footer.companyName' )}
             </h3>
             <p className="text-gray-400 leading-relaxed">
-              {t('footer.tagline')}
+              {t( 'footer.tagline' )}
             </p>
           </div>
 
           {/* Megoldások */}
           <div>
             <h4 className="text-xs font-semibold mb-6 text-[#00e5ff]/70 uppercase tracking-[0.12em]">
-              {t('footer.sections.solutions')}
+              {t( 'footer.sections.solutions' )}
             </h4>
             <ul className="space-y-3">
               <li>
                 <a
-                  href={withLang('/termekek/brunella-agents')}
+                  href={withLang( '/termekek/brunella-agents' )}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  {t('footer.solutions.brunella')}
+                  {t( 'footer.solutions.brunella' )}
                 </a>
               </li>
               <li>
                 <a
-                  href={withLang('/termekek/pohi-ai-pro')}
+                  href={withLang( '/termekek/pohi-ai-pro' )}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  {t('footer.solutions.pohi')}
+                  {t( 'footer.solutions.pohi' )}
                 </a>
               </li>
               <li>
                 <a
-                  href={withLang('/szolgaltatasok')}
+                  href={withLang( '/szolgaltatasok' )}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  {t('footer.solutions.customDev')}
+                  {t( 'footer.solutions.customDev' )}
                 </a>
               </li>
             </ul>
@@ -64,7 +67,7 @@ const Footer = () => {
           {/* Kapcsolat */}
           <div>
             <h4 className="text-xs font-semibold mb-6 text-[#00e5ff]/70 uppercase tracking-[0.12em]">
-              {t('footer.sections.contact')}
+              {t( 'footer.sections.contact' )}
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 text-gray-400">
@@ -92,16 +95,16 @@ const Footer = () => {
           {/* Vezető */}
           <div>
             <h4 className="text-xs font-semibold mb-6 text-[#00e5ff]/70 uppercase tracking-[0.12em]">
-              {t('footer.sections.leadership')}
+              {t( 'footer.sections.leadership' )}
             </h4>
             <div className="text-gray-400">
-              <p className="font-medium text-white">{t('footer.leadership.name')}</p>
-              <p className="text-sm mb-4">{t('footer.leadership.title')}</p>
+              <p className="font-medium text-white">{t( 'footer.leadership.name' )}</p>
+              <p className="text-sm mb-4">{t( 'footer.leadership.title' )}</p>
               <div className="flex flex-wrap gap-3">
                 <a
                   href="https://www.linkedin.com/in/pohi99999/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noreferrer noopener"
                   className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="LinkedIn"
                 >
@@ -110,7 +113,7 @@ const Footer = () => {
                 <a
                   href="https://www.facebook.com/profile.php?id=61576881120445"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noreferrer noopener"
                   className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="Facebook"
                 >
@@ -119,7 +122,7 @@ const Footer = () => {
                 <a
                   href="https://github.com/pohi99999"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noreferrer noopener"
                   className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="GitHub"
                 >
@@ -128,7 +131,7 @@ const Footer = () => {
                 <a
                   href="https://x.com/pohanka_peter"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noreferrer noopener"
                   className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="X (Twitter)"
                 >
@@ -137,7 +140,7 @@ const Footer = () => {
                 <a
                   href="https://g.dev/PohankaPeter"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noreferrer noopener"
                   className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="Google Developer"
                 >
@@ -146,7 +149,7 @@ const Footer = () => {
                 <a
                   href="https://www.youtube.com/@J%C3%B3zsefP%C3%A9terPoh%C3%A1nka"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noreferrer noopener"
                   className="p-2 rounded-full border border-white/10 bg-transparent text-gray-400 hover:border-[#00e5ff]/50 hover:text-[#00e5ff] transition-colors"
                   aria-label="YouTube"
                 >
@@ -160,16 +163,16 @@ const Footer = () => {
 
         {/* Bottom copyright bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-          <p>© 2025 {t('footer.companyName')} {t('footer.legal.rights')}</p>
+          <p>© {currentYear} {t( 'footer.companyName' )} {t( 'footer.legal.rights' )}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href={withLang('/impresszum')} className="hover:text-white transition-colors">
-              {t('footer.legal.imprint')}
+            <a href={withLang( '/impresszum' )} className="hover:text-white transition-colors">
+              {t( 'footer.legal.imprint' )}
             </a>
-            <a href={withLang('/adatvedelmi-nyilatkozat')} className="hover:text-white transition-colors">
-              {t('footer.legal.privacy')}
+            <a href={withLang( '/adatvedelmi-nyilatkozat' )} className="hover:text-white transition-colors">
+              {t( 'footer.legal.privacy' )}
             </a>
-            <a href={withLang('/aszf')} className="hover:text-white transition-colors">
-              {t('footer.legal.terms')}
+            <a href={withLang( '/aszf' )} className="hover:text-white transition-colors">
+              {t( 'footer.legal.terms' )}
             </a>
           </div>
         </div>

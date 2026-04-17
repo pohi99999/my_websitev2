@@ -1,7 +1,7 @@
 import GlobalVideoBackground from "./components/GlobalVideoBackground";
 import Hero from "./components/Hero";
-import StatsBar from "./components/StatsBar";
 import AIFolyamatok from "./components/AIFolyamatok";
+import StatsBar from "./components/StatsBar";
 import RoiCalculator from "./components/RoiCalculator";
 import HowItWorks from "./components/HowItWorks";
 import Testimonials from "./components/Testimonials";
@@ -11,31 +11,32 @@ import { headers } from "next/headers";
 
 export const revalidate = 3600;
 
-export function generateMetadata() {
-  const headerLang = headers().get('x-site-language');
+export async function generateMetadata() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
 
   const meta =
     language === 'en'
       ? {
-          title: 'Brunella AI Automation | SME Digitalization | pohankaestarsa.com',
+          title: 'Business AI Systems | Pohánka AI',
           description:
-            'AI agent system for SMEs. 95+ specialized AI agents, automated lead generation, accounting, and customer support with measurable time savings.',
+            'Business-ready AI systems designed for companies. Automation, decision support, and custom integrations with measurable results.',
           canonical: '/en',
           locale: 'en_US',
         }
       : language === 'de'
       ? {
-          title: 'Brunella KI-Automatisierung | KMU-Digitalisierung | pohankaestarsa.com',
+          title: 'KI-Systeme für Unternehmen | Pohánka AI',
           description:
-            'KI-Agentensystem für KMU. 95+ spezialisierte KI-Agenten, automatisierte Lead-Generierung, Buchhaltung und Support mit messbarer Zeitersparnis.',
+            'Unternehmensnahe KI-Systeme für Automatisierung, Entscheidungshilfe und Integrationen mit messbaren Ergebnissen.',
           canonical: '/de',
           locale: 'de_DE',
         }
       : {
-          title: 'Brunella AI Automatizálás | KKV Digitalizáció | pohankaestarsa.com',
+          title: 'Mesterséges intelligencia és AI rendszerek vállalkozásoknak | Pohánka AI',
           description:
-            'AI ügynök rendszer KKV-knak. 95+ specializált AI ügynök, automatizált lead generálás, könyvelés, ügyfélszolgálat. 80% időmegtakarítás. Ingyenes konzultáció.',
+          'Vállalkozásokra szabott AI rendszerek tervezése, fejlesztése és bevezetése. Automatizálás, intelligens döntéstámogatás és üzleti integrációk mérhető eredménnyel.',
           canonical: '/',
           locale: 'hu_HU',
         };
@@ -72,8 +73,8 @@ export default function HomePage() {
     <>
       <GlobalVideoBackground />
       <Hero />
-      <StatsBar />
       <AIFolyamatok />
+      <StatsBar />
       <RoiCalculator />
       <HowItWorks />
       <Testimonials />

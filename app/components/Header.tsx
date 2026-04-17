@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown, Bot, Cpu, Megaphone, Search, FileText, BookOpen, Zap, BarChart3, Package, Code2, Brain } from 'lucide-react';
+import { Menu, X, ChevronDown, Bot, Cpu, Megaphone, Search, FileText, BookOpen, Zap, BarChart3, Package, Code2, Brain, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '../context/LanguageContext';
@@ -17,6 +17,8 @@ export default function Header ()
   const [megaMenuOpen, setMegaMenuOpen] = useState<string | null>( null );
   const headerRef = useRef<HTMLElement>( null );
   const mobileMenuRef = useRef<HTMLDivElement>( null );
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>( null );
+  const wasMobileMenuOpenRef = useRef( false );
   const megaMenuButtonRefs = useRef<Record<'services' | 'products', HTMLButtonElement | null>>( {
     services: null,
     products: null,
@@ -71,6 +73,14 @@ export default function Header ()
     if ( megaMenuTimerRef.current ) clearTimeout( megaMenuTimerRef.current );
   }, [] );
 
+  const focusFirstMobileMenuItem = useCallback( () =>
+  {
+    requestAnimationFrame( () =>
+    {
+      mobileMenuRef.current?.querySelector<HTMLElement>( 'a[href], button:not([disabled])' )?.focus();
+    } );
+  }, [] );
+
   const closeMegaMenuImmediately = useCallback( () =>
   {
     if ( megaMenuTimerRef.current ) clearTimeout( megaMenuTimerRef.current );
@@ -108,58 +118,14 @@ export default function Header ()
 
   // Mega menu data — localised
   const megaMenuData = {
-    services: {
-      hu: {
-        title: 'Szolgáltatások',
-        cta: { label: 'Összes szolgáltatás', href: withLang( '/szolgaltatasok' ) },
-        items: [
-          { icon: BookOpen, label: 'Könyvelési Automatizálás', desc: 'OCR, NAV-szinkron, pénzügyi irányítópult', href: withLang( '/szolgaltatasok' ) },
-          { icon: Brain, label: 'Nova — AI Asszisztens', desc: 'Hangalapú 24/7 vállalkozói társ', href: withLang( '/szolgaltatasok' ) },
-          { icon: Search, label: 'P-Search', desc: 'EU/HU pályázat- és hitelfigyelő', href: withLang( '/szolgaltatasok' ) },
-          { icon: Bot, label: 'Intelligens Lead Generálás', desc: 'Napi fájdalompontszám-alapú szűrés', href: withLang( '/szolgaltatasok' ) },
-          { icon: Megaphone, label: 'Automatikus Outreach', desc: 'Személyre szabott email + follow-up', href: withLang( '/szolgaltatasok' ) },
-          { icon: Zap, label: 'Folyamat Automatizálás', desc: 'OCR, riportok, email osztályozás', href: withLang( '/szolgaltatasok' ) },
-          { icon: Cpu, label: 'AI Ügynök Telepítés', desc: 'Öngyógyító, RAG-alapú ügynökök', href: withLang( '/szolgaltatasok' ) },
-          { icon: BarChart3, label: 'Marketing Automatizálás', desc: 'SEO tartalom, social, A/B hirdetések', href: withLang( '/szolgaltatasok' ) },
-        ],
-      },
-      en: {
-        title: 'Services',
-        cta: { label: 'All services', href: withLang( '/szolgaltatasok' ) },
-        items: [
-          { icon: BookOpen, label: 'Accounting Automation', desc: 'OCR, bank sync, financial dashboard', href: withLang( '/szolgaltatasok' ) },
-          { icon: Brain, label: 'Nova — AI Assistant', desc: 'Voice-based 24/7 business partner', href: withLang( '/szolgaltatasok' ) },
-          { icon: Search, label: 'P-Search', desc: 'EU/HU grant & loan monitor', href: withLang( '/szolgaltatasok' ) },
-          { icon: Bot, label: 'Intelligent Lead Gen', desc: 'Daily pain-score-based filtering', href: withLang( '/szolgaltatasok' ) },
-          { icon: Megaphone, label: 'Automatic Outreach', desc: 'Personalised email + follow-up', href: withLang( '/szolgaltatasok' ) },
-          { icon: Zap, label: 'Process Automation', desc: 'OCR, reports, email sorting', href: withLang( '/szolgaltatasok' ) },
-          { icon: Cpu, label: 'AI Agent Deployment', desc: 'Self-healing, RAG-based agents', href: withLang( '/szolgaltatasok' ) },
-          { icon: BarChart3, label: 'Marketing Automation', desc: 'SEO content, social, A/B ads', href: withLang( '/szolgaltatasok' ) },
-        ],
-      },
-      de: {
-        title: 'Dienstleistungen',
-        cta: { label: 'Alle Dienste', href: withLang( '/szolgaltatasok' ) },
-        items: [
-          { icon: BookOpen, label: 'Buchhaltungs-Automatisierung', desc: 'OCR, Bank-Sync, Finanzdashboard', href: withLang( '/szolgaltatasok' ) },
-          { icon: Brain, label: 'Nova — KI-Assistent', desc: 'Sprachbasierter 24/7 Partner', href: withLang( '/szolgaltatasok' ) },
-          { icon: Search, label: 'P-Search', desc: 'EU/HU Förder- & Kreditmonitor', href: withLang( '/szolgaltatasok' ) },
-          { icon: Bot, label: 'Lead-Generierung', desc: 'Tägliches Schmerz­punkte-Screening', href: withLang( '/szolgaltatasok' ) },
-          { icon: Megaphone, label: 'Auto. Outreach', desc: 'Personalisierte E-Mails + Follow-up', href: withLang( '/szolgaltatasok' ) },
-          { icon: Zap, label: 'Prozess-Automatisierung', desc: 'OCR, Berichte, E-Mail-Klassifikation', href: withLang( '/szolgaltatasok' ) },
-          { icon: Cpu, label: 'KI-Agenten-Deployment', desc: 'Selbstheilende, RAG-basierte Agenten', href: withLang( '/szolgaltatasok' ) },
-          { icon: BarChart3, label: 'Marketing-Automatisierung', desc: 'SEO-Inhalte, Social, A/B-Anzeigen', href: withLang( '/szolgaltatasok' ) },
-        ],
-      },
-    },
     products: {
       hu: {
         title: 'Termékek',
         cta: { label: 'Összes termék', href: withLang( '/termekek' ) },
         items: [
-          { icon: Bot, label: 'Brunella Agent System', desc: '95+ AI ügynök, 53 MCP eszköz, 24/7', href: withLang( '/termekek/brunella-agents' ) },
+          { icon: Bot, label: 'Brunella / BAS rendszer', desc: 'Saját, élesben futó rendszerünk, amely valós vállalati AI bevezetéseket bizonyít.', href: withLang( '/termekek/brunella-agents' ) },
           { icon: Brain, label: 'Pohi AI Pro', desc: 'Személyes AI asszisztens csomag', href: withLang( '/termekek/pohi-ai-pro' ) },
-          { icon: Code2, label: 'Egyedi fejlesztések', desc: 'Testreszabott szoftver KKV-knak', href: withLang( '/szolgaltatasok' ) },
+          { icon: Code2, label: 'Egyedi fejlesztések', desc: 'Testreszabott szoftver és AI megoldások vállalkozásoknak', href: withLang( '/szolgaltatasok' ) },
           { icon: Package, label: 'AI Starter Pack', desc: 'Gyors bevezető csomag kis cégeknek', href: withLang( '/kapcsolat' ) },
         ],
       },
@@ -167,9 +133,9 @@ export default function Header ()
         title: 'Products',
         cta: { label: 'All products', href: withLang( '/termekek' ) },
         items: [
-          { icon: Bot, label: 'Brunella Agent System', desc: '95+ AI agents, 53 MCP tools, 24/7', href: withLang( '/termekek/brunella-agents' ) },
+          { icon: Bot, label: 'Brunella / BAS system', desc: 'Our in-house system that proves real business AI rollouts.', href: withLang( '/termekek/brunella-agents' ) },
           { icon: Brain, label: 'Pohi AI Pro', desc: 'Personal AI assistant package', href: withLang( '/termekek/pohi-ai-pro' ) },
-          { icon: Code2, label: 'Custom Development', desc: 'Bespoke software for SMEs', href: withLang( '/szolgaltatasok' ) },
+          { icon: Code2, label: 'Custom Development', desc: 'Tailored software and AI solutions for companies', href: withLang( '/szolgaltatasok' ) },
           { icon: Package, label: 'AI Starter Pack', desc: 'Fast onboarding bundle for small teams', href: withLang( '/kapcsolat' ) },
         ],
       },
@@ -177,10 +143,42 @@ export default function Header ()
         title: 'Produkte',
         cta: { label: 'Alle Produkte', href: withLang( '/termekek' ) },
         items: [
-          { icon: Bot, label: 'Brunella Agent System', desc: '95+ KI-Agenten, 53 MCP-Tools, 24/7', href: withLang( '/termekek/brunella-agents' ) },
+          { icon: Bot, label: 'Brunella / BAS-System', desc: 'Unser eigenes System für reale KI-Rollouts in Unternehmen.', href: withLang( '/termekek/brunella-agents' ) },
           { icon: Brain, label: 'Pohi AI Pro', desc: 'Persönliches KI-Assistenz-Paket', href: withLang( '/termekek/pohi-ai-pro' ) },
-          { icon: Code2, label: 'Individuelle Entwicklung', desc: 'Maßgeschneiderte Software für KMU', href: withLang( '/szolgaltatasok' ) },
+          { icon: Code2, label: 'Individuelle Entwicklung', desc: 'Maßgeschneiderte Software und KI-Lösungen für Unternehmen', href: withLang( '/szolgaltatasok' ) },
           { icon: Package, label: 'AI Starter Pack', desc: 'Schnelles Einführungspaket', href: withLang( '/kapcsolat' ) },
+        ],
+      },
+    },
+    services: {
+      hu: {
+        title: 'AI rendszerek',
+        cta: { label: 'Összes szolgáltatás', href: withLang( '/szolgaltatasok' ) },
+        items: [
+          { icon: Brain, label: 'AI rendszerek tervezése és kiépítése', desc: 'Egyedi AI rendszerek, automatizálások és döntéstámogatás vállalkozásoknak.', href: withLang( '/szolgaltatasok' ) },
+          { icon: Zap, label: 'Folyamatautomatizálás', desc: 'Ismétlődő munkafolyamatok gyorsítása és kiváltása.', href: withLang( '/szolgaltatasok' ) },
+          { icon: BarChart3, label: 'Intelligens döntéstámogatás', desc: 'Riportok, elemzések és AI-alapú javaslatok.', href: withLang( '/szolgaltatasok' ) },
+          { icon: Mail, label: 'CRM és integrációk', desc: 'Email, ügyfélszolgálat, admin és belső rendszerek összekötése.', href: withLang( '/szolgaltatasok' ) },
+        ],
+      },
+      en: {
+        title: 'AI Systems',
+        cta: { label: 'All services', href: withLang( '/szolgaltatasok' ) },
+        items: [
+          { icon: Brain, label: 'AI system design and build', desc: 'Custom AI systems, automation and decision support for companies.', href: withLang( '/szolgaltatasok' ) },
+          { icon: Zap, label: 'Workflow automation', desc: 'Remove repetitive work and speed up operations.', href: withLang( '/szolgaltatasok' ) },
+          { icon: BarChart3, label: 'Decision support', desc: 'Reports, insights and AI-generated recommendations.', href: withLang( '/szolgaltatasok' ) },
+          { icon: Mail, label: 'CRM and integrations', desc: 'Connect email, support, admin and internal systems.', href: withLang( '/szolgaltatasok' ) },
+        ],
+      },
+      de: {
+        title: 'KI-Systeme',
+        cta: { label: 'Alle Leistungen', href: withLang( '/szolgaltatasok' ) },
+        items: [
+          { icon: Brain, label: 'KI-Systeme planen und aufbauen', desc: 'Individuelle KI-Systeme, Automatisierung und Entscheidungsunterstützung für Unternehmen.', href: withLang( '/szolgaltatasok' ) },
+          { icon: Zap, label: 'Prozessautomatisierung', desc: 'Wiederkehrende Arbeit entfernen und Abläufe beschleunigen.', href: withLang( '/szolgaltatasok' ) },
+          { icon: BarChart3, label: 'Entscheidungsunterstützung', desc: 'Reports, Analysen und KI-gestützte Empfehlungen.', href: withLang( '/szolgaltatasok' ) },
+          { icon: Mail, label: 'CRM und Integrationen', desc: 'E-Mail, Support, Admin und interne Systeme verbinden.', href: withLang( '/szolgaltatasok' ) },
         ],
       },
     },
@@ -208,6 +206,16 @@ export default function Header ()
   // Lock body scroll when mobile menu is open
   useEffect( () =>
   {
+    if ( isMenuOpen )
+    {
+      focusFirstMobileMenuItem();
+    } else if ( wasMobileMenuOpenRef.current )
+    {
+      mobileMenuButtonRef.current?.focus();
+    }
+
+    wasMobileMenuOpenRef.current = isMenuOpen;
+
     if ( isMenuOpen )
     {
       document.body.style.overflow = 'hidden';
@@ -246,6 +254,40 @@ export default function Header ()
     };
   }, [closeMegaMenuImmediately] );
 
+  const handleMobileMenuKeyDown = useCallback( ( event: React.KeyboardEvent<HTMLDivElement> ) =>
+  {
+    if ( event.key === 'Escape' )
+    {
+      event.preventDefault();
+      setIsMenuOpen( false );
+      return;
+    }
+
+    if ( event.key !== 'Tab' ) return;
+
+    const focusables = Array.from(
+      mobileMenuRef.current?.querySelectorAll<HTMLElement>( 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])' ) ?? []
+    );
+
+    if ( focusables.length === 0 ) return;
+
+    const firstFocusable = focusables[0];
+    const lastFocusable = focusables[focusables.length - 1];
+
+    if ( event.shiftKey && document.activeElement === firstFocusable )
+    {
+      event.preventDefault();
+      lastFocusable.focus();
+      return;
+    }
+
+    if ( !event.shiftKey && document.activeElement === lastFocusable )
+    {
+      event.preventDefault();
+      firstFocusable.focus();
+    }
+  }, [] );
+
   const navItems = [
     { label: t( 'navbar.home' ), href: withLang( '/' ) },
     { label: t( 'navbar.services' ), href: withLang( '/szolgaltatasok' ) },
@@ -261,29 +303,29 @@ export default function Header ()
           HEADER BAR
       ───────────────────────────────────────────────────────────────────── */}
       <header
-        ref={ headerRef }
-        className={ `fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${ scrolled
+        ref={headerRef}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${ scrolled
           ? 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_40px_rgba(0,0,0,0.6)] py-3'
           : 'bg-transparent py-5'
-          }` }
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
 
-          {/* ── Logo ── */ }
-          <Link href={ withLang( '/' ) } className="flex items-center relative z-50">
+          {/* ── Logo ── */}
+          <Link href={withLang( '/' )} className="flex items-center relative z-50">
             <Image
               src="/images/logo.png"
               alt="Pohánka és Társa Logo"
-              width={ 240 }
-              height={ 96 }
+              width={240}
+              height={96}
               priority
               className="h-10 md:h-12 w-auto object-contain transition-opacity duration-200 hover:opacity-80"
             />
           </Link>
 
-          {/* ── Desktop Navigation ── */ }
-          <nav className="hidden lg:flex items-center gap-0" role="navigation" aria-label={ a11yLabels.mainNav }>
-            { navItems.map( ( item ) =>
+          {/* ── Desktop Navigation ── */}
+          <nav className="hidden lg:flex items-center gap-0" role="navigation" aria-label={a11yLabels.mainNav}>
+            {navItems.map( ( item ) =>
             {
               const isActive = pathname === item.href || pathname.startsWith( item.href + '/' );
               const megaKey: 'services' | 'products' | null =
@@ -297,44 +339,44 @@ export default function Header ()
                 const menuData = megaMenuData[megaKey][lang];
                 return (
                   <div
-                    key={ item.href }
+                    key={item.href}
                     className="relative"
-                    onMouseEnter={ () => openMegaMenu( megaKey ) }
-                    onMouseLeave={ closeMegaMenu }
-                    onBlur={ ( event ) =>
+                    onMouseEnter={() => openMegaMenu( megaKey )}
+                    onMouseLeave={closeMegaMenu}
+                    onBlur={( event ) =>
                     {
                       if ( !event.currentTarget.contains( event.relatedTarget as Node | null ) )
                       {
                         closeMegaMenuImmediately();
                       }
-                    } }
+                    }}
                   >
                     <button
-                      ref={ ( node ) =>
+                      ref={( node ) =>
                       {
                         megaMenuButtonRefs.current[megaKey] = node;
-                      } }
-                      id={ `mega-trigger-${ megaKey }` }
+                      }}
+                      id={`mega-trigger-${ megaKey }`}
                       type="button"
-                      className={ `
+                      className={`
                         relative px-4 py-6 text-sm font-medium tracking-widest uppercase
                         transition-colors duration-200 group flex items-center gap-1
                         ${ isActive || isExpanded ? 'text-[#00e5ff]' : 'text-gray-400 hover:text-white' }
                       `}
-                      aria-expanded={ isExpanded }
+                      aria-expanded={isExpanded ? 'true' : 'false'}
                       aria-haspopup="menu"
-                      aria-controls={ `mega-panel-${ megaKey }` }
-                      onClick={ () => setMegaMenuOpen( isExpanded ? null : megaKey ) }
-                      onKeyDown={ ( event ) => handleMegaMenuButtonKeyDown( event, megaKey ) }
+                      aria-controls={`mega-panel-${ megaKey }`}
+                      onClick={() => setMegaMenuOpen( isExpanded ? null : megaKey )}
+                      onKeyDown={( event ) => handleMegaMenuButtonKeyDown( event, megaKey )}
                     >
-                      { item.label }
+                      {item.label}
                       <ChevronDown
-                        size={ 12 }
-                        className={ `transition-transform duration-200 ${ megaMenuOpen === megaKey ? 'rotate-180 text-[#00e5ff]' : '' }` }
+                        size={12}
+                        className={`transition-transform duration-200 ${ megaMenuOpen === megaKey ? 'rotate-180 text-[#00e5ff]' : '' }`}
                       />
-                      {/* Animated underline */ }
+                      {/* Animated underline */}
                       <span
-                        className={ `
+                        className={`
                           absolute bottom-4 left-4 right-4 h-px
                           bg-[#00e5ff] transition-all duration-300 origin-left
                           ${ isActive || megaMenuOpen === megaKey
@@ -345,22 +387,22 @@ export default function Header ()
                       />
                     </button>
 
-                    {/* ── Mega Menu Panel ── */ }
+                    {/* ── Mega Menu Panel ── */}
                     <AnimatePresence>
-                      { megaMenuOpen === megaKey && (
+                      {megaMenuOpen === megaKey && (
                         <motion.div
-                          id={ `mega-panel-${ megaKey }` }
-                          initial={ { opacity: 0, y: -8 } }
-                          animate={ { opacity: 1, y: 0 } }
-                          exit={ { opacity: 0, y: -8 } }
-                          transition={ { duration: 0.18, ease: 'easeOut' } }
+                          id={`mega-panel-${ megaKey }`}
+                          initial={{ opacity: 0, y: -8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -8 }}
+                          transition={{ duration: 0.18, ease: 'easeOut' }}
                           className="absolute top-full left-1/2 -translate-x-1/2 z-50 pt-2"
-                          onMouseEnter={ keepMegaMenuOpen }
-                          onMouseLeave={ closeMegaMenu }
+                          onMouseEnter={keepMegaMenuOpen}
+                          onMouseLeave={closeMegaMenu}
                           role="menu"
-                          aria-labelledby={ `mega-trigger-${ megaKey }` }
-                          data-testid={ `mega-menu-${ megaKey }` }
-                          onKeyDown={ ( event ) =>
+                          aria-labelledby={`mega-trigger-${ megaKey }`}
+                          data-testid={`mega-menu-${ megaKey }`}
+                          onKeyDown={( event ) =>
                           {
                             if ( event.key === 'Escape' )
                             {
@@ -368,57 +410,57 @@ export default function Header ()
                               closeMegaMenuImmediately();
                               megaMenuButtonRefs.current[megaKey]?.focus();
                             }
-                          } }
+                          }}
                         >
                           <div
                             className="surface-panel-elevated shadow-[0_24px_64px_rgba(0,0,0,0.8),0_0_0_1px_rgba(0,229,255,0.06)] backdrop-blur-xl"
-                            style={ { width: megaKey === 'services' ? '720px' : '520px' } }
+                            style={{ width: megaKey === 'services' ? '720px' : '520px' }}
                           >
-                            {/* Top accent line */ }
+                            {/* Top accent line */}
                             <div className="h-px bg-gradient-to-r from-transparent via-[#00e5ff]/40 to-transparent" />
 
                             <div className="p-6">
-                              {/* Grid of items */ }
-                              <div className={ `grid gap-2 mb-5 ${ megaKey === 'services' ? 'grid-cols-2' : 'grid-cols-2' }` }>
-                                { menuData.items.map( ( menuItem ) =>
+                              {/* Grid of items */}
+                              <div className={`grid gap-2 mb-5 ${ megaKey === 'services' ? 'grid-cols-2' : 'grid-cols-2' }`}>
+                                {menuData.items.map( ( menuItem ) =>
                                 {
                                   const Icon = menuItem.icon;
                                   return (
                                     <Link
-                                      key={ menuItem.href + menuItem.label }
-                                      href={ menuItem.href }
+                                      key={menuItem.href + menuItem.label}
+                                      href={menuItem.href}
                                       role="menuitem"
                                       className="group/item flex items-start gap-3 p-3 hover:bg-[rgba(0,229,255,0.04)] border border-transparent hover:border-[rgba(0,229,255,0.12)] transition-all duration-150"
-                                      onClick={ () =>
+                                      onClick={() =>
                                       {
                                         setMegaMenuOpen( null );
                                         trackCtaClick( { location: CTA_LOCATIONS.HeaderNavDesktop, language, target: menuItem.href, page: PAGE_NAMES.Global } );
-                                      } }
+                                      }}
                                     >
                                       <div className="shrink-0 w-8 h-8 flex items-center justify-center border border-white/8 group-hover/item:border-[#00e5ff]/30 transition-colors duration-150">
-                                        <Icon size={ 14 } className="text-[#00e5ff]/60 group-hover/item:text-[#00e5ff] transition-colors duration-150" />
+                                        <Icon size={14} className="text-[#00e5ff]/60 group-hover/item:text-[#00e5ff] transition-colors duration-150" />
                                       </div>
                                       <div className="min-w-0">
                                         <p className="text-xs font-semibold text-white/90 uppercase tracking-wide group-hover/item:text-white transition-colors duration-150 truncate">
-                                          { menuItem.label }
+                                          {menuItem.label}
                                         </p>
                                         <p className="text-xs text-gray-500 mt-0.5 leading-snug group-hover/item:text-gray-400 transition-colors duration-150">
-                                          { menuItem.desc }
+                                          {menuItem.desc}
                                         </p>
                                       </div>
                                     </Link>
                                   );
-                                } ) }
+                                } )}
                               </div>
 
-                              {/* Bottom CTA bar */ }
+                              {/* Bottom CTA bar */}
                               <div className="pt-4 border-t border-white/5 flex items-center justify-between">
                                 <Link
-                                  href={ menuData.cta.href }
+                                  href={menuData.cta.href}
                                   className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#00e5ff] hover:text-white transition-colors duration-200 group/cta"
-                                  onClick={ () => setMegaMenuOpen( null ) }
+                                  onClick={() => setMegaMenuOpen( null )}
                                 >
-                                  { menuData.cta.label }
+                                  {menuData.cta.label}
                                   <span className="group-hover/cta:translate-x-1 transition-transform duration-200">→</span>
                                 </Link>
                                 <div className="flex items-center gap-1.5 text-[10px] font-mono text-gray-600 uppercase tracking-widest">
@@ -429,7 +471,7 @@ export default function Header ()
                             </div>
                           </div>
                         </motion.div>
-                      ) }
+                      )}
                     </AnimatePresence>
                   </div>
                 );
@@ -437,9 +479,9 @@ export default function Header ()
 
               return (
                 <Link
-                  key={ item.href }
-                  href={ item.href }
-                  onClick={ () =>
+                  key={item.href}
+                  href={item.href}
+                  onClick={() =>
                     trackCtaClick( {
                       location: CTA_LOCATIONS.HeaderNavDesktop,
                       language,
@@ -447,16 +489,16 @@ export default function Header ()
                       page: PAGE_NAMES.Global,
                     } )
                   }
-                  className={ `
+                  className={`
                     relative px-4 py-6 text-sm font-medium tracking-widest uppercase
                     transition-colors duration-200 group
                     ${ isActive ? 'text-[#00e5ff]' : 'text-gray-400 hover:text-white' }
                   `}
                 >
-                  { item.label }
-                  {/* Animated underline */ }
+                  {item.label}
+                  {/* Animated underline */}
                   <span
-                    className={ `
+                    className={`
                       absolute bottom-4 left-4 right-4 h-px
                       bg-[#00e5ff] transition-all duration-300 origin-left
                       ${ isActive
@@ -467,15 +509,15 @@ export default function Header ()
                   />
                 </Link>
               );
-            } ) }
+            } )}
           </nav>
 
-          {/* ── Right side: Language + CTA ── */ }
+          {/* ── Right side: Language + CTA ── */}
           <div className="hidden lg:flex items-center gap-4">
             <LanguageSwitcher />
             <Link
-              href={ withLang( '/kapcsolat' ) }
-              onClick={ () =>
+              href={withLang( '/kapcsolat' )}
+              onClick={() =>
                 trackCtaClick( {
                   location: CTA_LOCATIONS.HeaderContactDesktop,
                   language,
@@ -483,38 +525,34 @@ export default function Header ()
                   page: PAGE_NAMES.Global,
                 } )
               }
+              className="
+                inline-flex px-5 py-2.5 text-xs font-bold uppercase tracking-widest
+                text-[#00e5ff] border border-[#00e5ff]/40
+                hover:border-[#00e5ff] hover:bg-[#00e5ff]/5 hover:scale-[1.03]
+                transition-all duration-300
+                hover:shadow-[0_0_20px_rgba(0,229,255,0.2)]
+              "
+              style={{
+                clipPath:
+                  'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+              }}
             >
-              <motion.button
-                whileHover={ { scale: 1.03 } }
-                whileTap={ { scale: 0.96 } }
-                className="
-                  px-5 py-2.5 text-xs font-bold uppercase tracking-widest
-                  text-[#00e5ff] border border-[#00e5ff]/40
-                  hover:border-[#00e5ff] hover:bg-[#00e5ff]/5
-                  transition-all duration-300
-                  hover:shadow-[0_0_20px_rgba(0,229,255,0.2)]
-                "
-                style={ {
-                  clipPath:
-                    'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
-                } }
-              >
-                { t( 'navbar.contact' ) }&nbsp;▶
-              </motion.button>
+              {t( 'navbar.contact' )}&nbsp;▶
             </Link>
           </div>
 
-          {/* ── Mobile Hamburger ── */ }
+          {/* ── Mobile Hamburger ── */}
           <motion.button
-            onClick={ () => setIsMenuOpen( !isMenuOpen ) }
-            animate={ { rotate: isMenuOpen ? 90 : 0 } }
-            transition={ { duration: 0.3, ease: 'easeInOut' } }
-            aria-label={ isMenuOpen ? a11yLabels.closeMenu : a11yLabels.openMenu }
-            aria-expanded={ isMenuOpen }
+            ref={mobileMenuButtonRef}
+            onClick={() => setIsMenuOpen( !isMenuOpen )}
+            animate={{ rotate: isMenuOpen ? 90 : 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            aria-label={isMenuOpen ? a11yLabels.closeMenu : a11yLabels.openMenu}
+            aria-expanded={isMenuOpen ? 'true' : 'false'}
             aria-controls="mobile-menu"
             className="lg:hidden relative z-50 p-2 text-white hover:text-[#00e5ff] transition-colors"
           >
-            { isMenuOpen ? <X size={ 26 } /> : <Menu size={ 26 } /> }
+            {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
           </motion.button>
         </div>
       </header>
@@ -523,83 +561,85 @@ export default function Header ()
           MOBILE FULL-SCREEN OVERLAY
       ───────────────────────────────────────────────────────────────────── */}
       <AnimatePresence>
-        { isMenuOpen && (
+        {isMenuOpen && (
           <motion.div
-            ref={ mobileMenuRef }
+            ref={mobileMenuRef}
             id="mobile-menu"
-            initial={ { opacity: 0 } }
-            animate={ { opacity: 1 } }
-            exit={ { opacity: 0 } }
-            transition={ { duration: 0.35, ease: 'easeInOut' } }
-            className="fixed inset-0 z-40 flex flex-col justify-center px-10 lg:hidden overflow-hidden"
-            style={ { background: 'rgba(0, 0, 0, 0.97)', backdropFilter: 'blur(24px)' } }
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
+            className="fixed inset-0 z-40 flex flex-col justify-start px-6 py-24 sm:px-10 lg:hidden overflow-y-auto"
+            style={{ background: 'rgba(0, 0, 0, 0.97)', backdropFilter: 'blur(24px)' }}
             role="dialog"
             aria-modal="true"
-            aria-label={ a11yLabels.mobileMenu }
+            aria-label={a11yLabels.mobileMenu}
+            tabIndex={-1}
+            onKeyDown={handleMobileMenuKeyDown}
           >
-            <h2 id="mobile-menu-title" className="sr-only">{ a11yLabels.mobileMenu }</h2>
-            {/* ── HUD Corner Brackets ── */ }
+            <h2 id="mobile-menu-title" className="sr-only">{a11yLabels.mobileMenu}</h2>
+            {/* ── HUD Corner Brackets ── */}
             <motion.div
-              initial={ { opacity: 0, scale: 0.8 } }
-              animate={ { opacity: 1, scale: 1 } }
-              transition={ { duration: 0.4, delay: 0.05 } }
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.05 }}
               className="absolute top-6 left-6 w-10 h-10"
-              style={ { borderTop: '1.5px solid #00e5ff', borderLeft: '1.5px solid #00e5ff' } }
+              style={{ borderTop: '1.5px solid #00e5ff', borderLeft: '1.5px solid #00e5ff' }}
             />
             <motion.div
-              initial={ { opacity: 0, scale: 0.8 } }
-              animate={ { opacity: 1, scale: 1 } }
-              transition={ { duration: 0.4, delay: 0.05 } }
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.05 }}
               className="absolute top-6 right-6 w-10 h-10"
-              style={ { borderTop: '1.5px solid #00e5ff', borderRight: '1.5px solid #00e5ff' } }
+              style={{ borderTop: '1.5px solid #00e5ff', borderRight: '1.5px solid #00e5ff' }}
             />
             <motion.div
-              initial={ { opacity: 0, scale: 0.8 } }
-              animate={ { opacity: 1, scale: 1 } }
-              transition={ { duration: 0.4, delay: 0.05 } }
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.05 }}
               className="absolute bottom-6 left-6 w-10 h-10"
-              style={ { borderBottom: '1.5px solid #00e5ff', borderLeft: '1.5px solid #00e5ff' } }
+              style={{ borderBottom: '1.5px solid #00e5ff', borderLeft: '1.5px solid #00e5ff' }}
             />
             <motion.div
-              initial={ { opacity: 0, scale: 0.8 } }
-              animate={ { opacity: 1, scale: 1 } }
-              transition={ { duration: 0.4, delay: 0.05 } }
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.05 }}
               className="absolute bottom-6 right-6 w-10 h-10"
-              style={ { borderBottom: '1.5px solid #00e5ff', borderRight: '1.5px solid #00e5ff' } }
+              style={{ borderBottom: '1.5px solid #00e5ff', borderRight: '1.5px solid #00e5ff' }}
             />
 
-            {/* ── Scan-line sweep ── */ }
+            {/* ── Scan-line sweep ── */}
             <motion.div
-              initial={ { scaleX: 0, opacity: 0.6 } }
-              animate={ { scaleX: 1, opacity: 0 } }
-              transition={ { duration: 0.9, delay: 0.1, ease: 'easeInOut' } }
+              initial={{ scaleX: 0, opacity: 0.6 }}
+              animate={{ scaleX: 1, opacity: 0 }}
+              transition={{ duration: 0.9, delay: 0.1, ease: 'easeInOut' }}
               className="absolute left-0 right-0 top-1/2 h-px origin-left pointer-events-none"
-              style={ {
+              style={{
                 background:
                   'linear-gradient(to right, transparent, #00e5ff 30%, #00e5ff 70%, transparent)',
-              } }
+              }}
             />
 
-            {/* ── Nav Items ── */ }
-            <nav className="space-y-1" aria-label={ a11yLabels.mobileMenu }>
-              { navItems.map( ( item, index ) =>
+            {/* ── Nav Items ── */}
+            <nav className="mt-2 space-y-1" aria-label={a11yLabels.mobileMenu}>
+              {navItems.map( ( item, index ) =>
               {
                 const isActive = pathname === item.href;
                 return (
                   <motion.div
-                    key={ item.href }
-                    initial={ { x: -60, opacity: 0 } }
-                    animate={ { x: 0, opacity: 1 } }
-                    exit={ { x: -40, opacity: 0 } }
-                    transition={ {
+                    key={item.href}
+                    initial={{ x: -60, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: -40, opacity: 0 }}
+                    transition={{
                       delay: index * 0.07,
                       duration: 0.45,
                       ease: 'easeOut',
-                    } }
+                    }}
                   >
                     <Link
-                      href={ item.href }
-                      onClick={ () =>
+                      href={item.href}
+                      onClick={() =>
                       {
                         trackCtaClick( {
                           location: CTA_LOCATIONS.HeaderNavMobile,
@@ -608,24 +648,24 @@ export default function Header ()
                           page: PAGE_NAMES.Global,
                         } );
                         setIsMenuOpen( false );
-                      } }
-                      className={ `
+                      }}
+                      className={`
                         flex items-baseline gap-4 group py-2.5
                         ${ isActive ? 'text-[#00e5ff]' : 'text-white/75 hover:text-white' }
                       `}
                     >
-                      {/* Index number */ }
+                      {/* Index number */}
                       <span
                         className="text-xs font-mono w-6 shrink-0"
-                        style={ { color: isActive ? '#00e5ff' : 'rgba(0,229,255,0.35)' } }
+                        style={{ color: isActive ? '#00e5ff' : 'rgba(0,229,255,0.35)' }}
                       >
-                        { String( index + 1 ).padStart( 2, '0' ) }.
+                        {String( index + 1 ).padStart( 2, '0' )}.
                       </span>
 
-                      {/* Label */ }
+                      {/* Label */}
                       <span
                         className="
-                          text-4xl sm:text-5xl font-bold uppercase tracking-tight
+                          text-3xl sm:text-4xl font-bold uppercase tracking-tight
                           transition-transform duration-200 group-hover:translate-x-2
                         "
                         style={
@@ -634,30 +674,30 @@ export default function Header ()
                             : undefined
                         }
                       >
-                        { item.label }
+                        {item.label}
                       </span>
                     </Link>
                   </motion.div>
                 );
-              } ) }
+              } )}
             </nav>
 
-            {/* ── Bottom Bar: Language + Contact ── */ }
+            {/* ── Bottom Bar: Language + Contact ── */}
             <motion.div
-              initial={ { opacity: 0, y: 20 } }
-              animate={ { opacity: 1, y: 0 } }
-              transition={ { delay: 0.52, duration: 0.4 } }
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.52, duration: 0.4 }}
               className="
-                absolute bottom-10 left-10 right-10
+                mt-10
                 flex items-center justify-between
                 border-t pt-5
               "
-              style={ { borderColor: 'rgba(255,255,255,0.1)' } }
+              style={{ borderColor: 'rgba(255,255,255,0.1)' }}
             >
               <LanguageSwitcher />
               <Link
-                href={ withLang( '/kapcsolat' ) }
-                onClick={ () =>
+                href={withLang( '/kapcsolat' )}
+                onClick={() =>
                 {
                   trackCtaClick( {
                     location: CTA_LOCATIONS.HeaderContactMobile,
@@ -666,19 +706,19 @@ export default function Header ()
                     page: PAGE_NAMES.Global,
                   } );
                   setIsMenuOpen( false );
-                } }
+                }}
                 className="
                   text-xs font-mono uppercase tracking-widest
                   transition-colors duration-200
                   hover:text-[#00e5ff]
                 "
-                style={ { color: 'rgba(0,229,255,0.55)' } }
+                style={{ color: 'rgba(0,229,255,0.55)' }}
               >
-                { t( 'navbar.contact' ) } →
+                {t( 'navbar.contact' )} →
               </Link>
             </motion.div>
           </motion.div>
-        ) }
+        )}
       </AnimatePresence>
     </>
   );

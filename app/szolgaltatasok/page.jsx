@@ -7,29 +7,30 @@ import {
   Bot, FileSearch, Award
 } from "lucide-react";
 
-export function generateMetadata() {
-  const headerLang = headers().get("x-site-language");
+export async function generateMetadata() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get("x-site-language");
   const language = headerLang === "en" ? "en" : headerLang === "de" ? "de" : "hu";
 
   const meta =
     language === "en"
       ? {
-          title: "Services | AI Automation & Software Development",
+          title: "AI Systems for Companies | Services",
           description:
-            "AI lead generation, business process automation, market intelligence and custom software engineering.",
+            "Business-ready AI systems, workflow automation, decision support and custom integrations for companies.",
           canonical: "/en/szolgaltatasok",
         }
       : language === "de"
         ? {
-            title: "Dienstleistungen | KI-Automatisierung & Softwareentwicklung",
+            title: "KI-Systeme für Unternehmen | Leistungen",
             description:
-              "KI-gestützte Lead-Generierung, Prozessautomatisierung, Marktanalyse und individuelle Softwareentwicklung.",
+              "Unternehmensnahe KI-Systeme, Prozessautomatisierung, Entscheidungsunterstützung und individuelle Integrationen.",
             canonical: "/de/szolgaltatasok",
           }
         : {
-            title: "Szolgáltatásaink – Szoftverfejlesztés & AI",
+            title: "AI rendszerek vállalkozásoknak – Szolgáltatások",
             description:
-              "AI-alapú lead generálás, üzleti folyamat automatizálás, marketing kampányok, piackutatás és egyedi szoftverfejlesztés. Teljes körű digitális megoldások.",
+              "Vállalkozásokra szabott AI rendszerek, folyamatautomatizálás, intelligens döntéstámogatás és egyedi integrációk mérhető eredménnyel.",
             canonical: "/szolgaltatasok",
           };
 
@@ -61,25 +62,35 @@ export function generateMetadata() {
 
 const categories = [
   {
-    id: "konyvelesi",
-    icon: TrendingUp,
-    title: "Könyvelési Automatizálás I.",
-    subtitle: "Az AI elvégzi a számla-feldolgozást, bank-egyeztetést és NAV-ellenőrzést – te csak a valódi döntésekre fókuszálsz.",
+    id: "ai-rendszerek",
+    icon: Brain,
+    title: "AI rendszerek tervezése és kiépítése",
+    subtitle: "Egyedi AI rendszerek, automatizálások és intelligens döntéstámogató megoldások tervezése, fejlesztése és integrálása vállalkozások számára.",
     services: [
       {
-        name: "OCR-alapú számlakezelés",
-        desc: "Automatikus számlák beolvasása, kategorizálása és könyvelési tételek előkészítése manuális bevitel nélkül.",
-        bullets: ["Gyors OCR feldolgozás", "Automatikus kategorizálás", "Könyvelési előkészítés"],
+        name: "Folyamatautomatizálás és workflow optimalizálás",
+        desc: "Az ismétlődő folyamatokat és manuális lépéseket kiváltó AI megoldásokat építünk, amelyek gyorsítják a napi működést.",
+        bullets: ["Ismétlődő folyamatok kiváltása", "Workflow gyorsítás", "Admin terhelés csökkentése"],
       },
       {
-        name: "Bank-egyeztetés & NAV-ellenőrzés",
-        desc: "Folyószámla-kivonat és NAV-adatok folyamatos, valós idejű szinkronizálása és egyeztetése.",
-        bullets: ["Valós idejű szinkronizáció", "Eltérések automatikus jelzése", "NAV-megfelelőség"],
+        name: "AI komponensek és üzleti folyamatok összekapcsolása",
+        desc: "Az AI komponenseket úgy illesztjük a működésbe, hogy ne különálló eszközök legyenek, hanem egymásra épülő rendszeralkotók.",
+        bullets: ["Folyamatok összekötése", "Üzleti logika illesztése", "Működésközpontú tervezés"],
       },
       {
-        name: "Anomália detektálás & riporting",
-        desc: "Intelligens szűrők kiszűrik a duplikált, hibás vagy gyanús tételeket, és azonnal értesítik a könyvelőt.",
-        bullets: ["Duplikáció szűrés", "Gyanús tételek jelzése", "Irányítópultos riportok"],
+        name: "Intelligens döntéstámogatás és riporting",
+        desc: "Adatokból, riportokból és elemzésekből AI-alapú javaslatokat és jól használható vezetői összefoglalókat készítünk.",
+        bullets: ["Riportok és elemzések", "AI-alapú javaslatok", "Vezetői összefoglalók"],
+      },
+      {
+        name: "CRM, email, ügyfélszolgálat és admin integráció",
+        desc: "Összekötjük a napi üzleti rendszereket, hogy a csapatod egységesebb és gyorsabb működésben dolgozhasson.",
+        bullets: ["CRM és belső rendszerek", "Email és ügyfélszolgálat", "Admin és dokumentumfolyamatok"],
+      },
+      {
+        name: "Pilot, mérés, finomhangolás, skálázás",
+        desc: "Kis kockázatú pilottal indulunk, mérjük a hatást, majd fokozatosan skálázzuk a működő megoldást.",
+        bullets: ["Pilot és mérés", "Finomhangolás", "Skálázási terv"],
       },
     ],
   },
@@ -96,7 +107,7 @@ const categories = [
       },
       {
         name: "Hangalapú kommunikáció",
-        desc: "Valódi hangfelismréssel és TTS-sel kommunikál — tárgyalók, call-centerek, asszisztens feladatokra.",
+        desc: "Valódi hangfelismeréssel és TTS-sel kommunikál — tárgyalók, call-centerek, asszisztens feladatokra.",
         bullets: ["Hangfelismerés & TTS", "Természetes párbeszéd", "Telefonos integráció"],
       },
       {
@@ -194,7 +205,7 @@ const categories = [
       {
         name: "Számla- és pénzügyi feldolgozás",
         desc:
-          "AI ügynökünk beolvassa, kategorizálja és exportálja a számlákat — OCR technológiával, anomália-detektálással. Véget ér a manuális számlavezetés.",
+          "Az AI rendszer beolvassa, kategorizálja és exportálja a számlákat — OCR technológiával, anomália-detektálással. Véget ér a manuális számlavezetés.",
         bullets: [
           "Bejövő számlák automatikus felismerése (PDF, kép, email)",
           "Automatikus kategorizálás és könyvelési kód hozzárendelés",
@@ -298,12 +309,12 @@ const categories = [
     subtitle: "Ha a kész megoldások nem elégek — megcsináljuk a sajátodat.",
     services: [
       {
-        name: "Testreszabott AI ügynök és automatizálási rendszer",
+        name: "Testreszabott AI rendszer és automatizálási megoldás",
         desc:
           "Teljesen egyedi AI rendszert fejlesztünk — a te folyamataidra, a te iparágadra, a te csapatod munkastílusához igazítva. Integrálunk meglévő rendszerekbe, és valós idejű dashboardot adunk mellé.",
         bullets: [
           "Teljes igényfelmérés és folyamattérkép",
-          "Egyedi AI ügynök fejlesztés (Node.js / Python)",
+          "Egyedi AI rendszerfejlesztés (Node.js / Python)",
           "Integráció meglévő rendszerekbe (CRM, ERP, Google Workspace)",
           "Dashboard és kezelői felület (webes, mobilbarát)",
           "Folyamatos karbantartás és fejlesztés",
@@ -327,7 +338,7 @@ const categories = [
     services: [
       {        name: "Next.js weboldal beépített AI funkciókkal",
         desc:
-          "SEO-optimalizált, mobilbarát weboldalak — beépített AI funkciókkal. A weboldalad kap chatbotot, automatikus ajánlatküldőt, foglaláskelelőt vagy lead-qualification rendszert.",
+          "SEO-optimalizált, mobilbarát weboldalak — beépített AI funkciókkal. A weboldalad kap chatbotot, automatikus ajánlatküldőt, foglaláskezelőt vagy lead-qualification rendszert.",
         bullets: [
           "Gyors, modern weboldal (Next.js, Tailwind CSS)",
           "SEO alapok beépítve az első naptól",
@@ -336,55 +347,6 @@ const categories = [
           "Folyamatos karbantartás és frissítés",
         ],
         forWho: "Vállalkozóknak, KKV-knak, szolgáltatóknak, önkormányzatoknak",
-      },
-      {
-        name: "Referencia weboldalaink",
-        desc:
-          "Íme néhány élő, működő weboldal — melyeket terveztünk és fejlesztettünk. Minden projekt mögött ügyfélközpontú gondolkodás, modern technológia és gondosan épített felhasználói élmény áll.",
-        bullets: [
-          "Cimbi Weboldal — modern arculati bemutatkozó oldal",
-          "Ecomud — prémium termékbemutató oldal, SEO-optimalizálva",
-          "Aronia — elegáns termékoldal vizuális storytellinggel",
-          "Lumen Limited Series — prémium lifestyle márkaoldal",
-        ],
-        refs: [
-          { text: "cimbi-weboldal.vercel.app", url: "https://cimbi-weboldal.vercel.app/" },
-          { text: "ecomud-eu.vercel.app", url: "https://ecomud-eu.vercel.app/" },
-          { text: "aronia-chi.vercel.app", url: "https://aronia-chi.vercel.app/" },
-          { text: "lumenlimitedseries.com", url: "https://www.lumenlimitedseries.com/" },
-        ],
-        forWho: "Vállalkozóknak, KKV-knak, egyedi vállalkozóknak és magánsemélyeknek",
-      },
-    ],
-  },
-  {
-    id: "agent-mcp",
-    icon: Cpu,
-    title: "AI Ügynökök & MCP Integrációk",
-    subtitle: "Látványos, mégis üzletileg azonnal használható automatizálások döntéshozóknak.",
-    services: [
-      {
-        name: "TDD munkafolyamat (tdd-workflow)",
-        desc:
-          "Tesztvezérelt fejlesztési pipeline, amely kényszeríti a minőséget és mérhető megbízhatóságot ad minden fejlesztési ciklusban.",
-        bullets: [
-          "80%+ tesztlefedettségi célok automatikus ellenőrzése",
-          "Unit, integrációs és E2E tesztek egységes kezelése",
-          "Release előtti minőségkapu és regresszió-védelem",
-        ],
-        forWho: "Termékcsapatoknak, fejlesztő cégeknek, skálázódó startupoknak",
-      },
-      {
-        name: "Maestro munkafolyamat-vezérlés",
-        desc:
-          "Komplex projektek irányítása agent-orchestrationnel, hogy ne vesszen el sem döntés, sem feladat, sem határidő.",
-        bullets: [
-          "Session-management: állapotkövetés és folytatható munkamenetek",
-          "Implementation-planning: részletes megvalósítási tervek",
-          "Execution: fázisok futtatása beépített hibakezeléssel",
-          "Design-dialogue: strukturált tervezési döntéstámogatás",
-        ],
-        forWho: "Projektmenedzsereknek, ügynökségeknek, többcsapatos szervezeteknek",
       },
       {
         name: "Blueprint & Dev-Flow",
@@ -483,8 +445,9 @@ const categories = [
 
 
 
-export default function SzolgaltatasokPage() {
-  const headerLang = headers().get('x-site-language');
+export default async function SzolgaltatasokPage() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
   const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
 
@@ -586,56 +549,6 @@ export default function SzolgaltatasokPage() {
 
   return (
     <main className="relative min-h-screen">
-      {/* FAQ Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Mi az AI lead generálás és hogyan segít a vállalkozásomnak?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Az AI lead generálás automatikusan azonosítja, pontozza és priorizálja a potenciális ügyfeleket valós idejű adatok alapján. Brunella Agent System segítségével napi 30-40 kvalifikált érdeklődőt kezelhet az értékesítési csapata emberi beavatkozás nélkül."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Mennyi ideig tart egy átlagos projekt bevezetése?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Egy tipikus KKV automatizálási projekt 4-8 hétig tart: 1-2 hét elemzés és tervezés, 2-4 hét fejlesztés és integráció, 1-2 hét tesztelés és átadás. A Brunella Agent System esetén az első eredmények már az első héten láthatók."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Milyen szoftverfejlesztési és AI szolgáltatásokat nyújtotok?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Szolgáltatásaink: AI-alapú lead generálás, üzleti folyamat automatizálás (számla feldolgozás, ügyfélszolgálat, logisztika), egyedi AI megoldások fejlesztése, webáruház és CRM integráció, valamint a Brunella Agent System (BAS) KKV-optimal multi-agent rendszer."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Hogyan kezdjük el az együttműködést?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Az együttműködés egy ingyenes konzultációval kezdődik, ahol feltérképezzük a vállalkozás igényeit. Ezután egy részletes ajánlatot készítünk, amit Ön jóváhagy, majd megkezdődik a fejlesztés. Minden projekt dedikált projektmenedzsert és rendszeres státuszjelentést kap."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Mekkora megtakarítást hozhat az AI automatizálás?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Ügyfeleink átlagosan havi 200.000–500.000 Ft-ot takarítanak meg automatizálással. Az AI-rendszerek 24/7 dolgoznak, emberi hibák nélkül, és az átlagos ROI elérési idő 3 hónap."
-              }
-            }
-          ]
-        })}}
-      />
       {/* Breadcrumb Schema */}
       <script
         type="application/ld+json"
@@ -660,7 +573,7 @@ export default function SzolgaltatasokPage() {
           <p className="text-xl text-gray-300 leading-relaxed">
             Nem csak szoftvert fejlesztünk —{" "}
             <span className="text-white font-semibold">automatizáljuk a vállalkozásod jövőjét.</span>{" "}
-            AI ügynökeink naponta végzik el azt a munkát, ami korábban egy 5–10 fős csapatnak kellett volna.
+            AI rendszereink naponta végzik el azt a munkát, ami korábban egy 5–10 fős csapatnak kellett volna.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-8">
             {["Magyar piac ismerete", "Élesben futó rendszerek", "Átlátható működés"].map((tag) => (
@@ -771,7 +684,7 @@ export default function SzolgaltatasokPage() {
             Üzleti automatizálás valós példákon
           </h2>
           <p className="text-gray-300 text-center max-w-3xl mx-auto mb-10">
-            Az alábbi folyamatok mind AI ügynökökkel vezérelhetők: adatkinyerés, rendszerezés,
+            Az alábbi folyamatok mind AI rendszerekkel vezérelhetők: adatkinyerés, rendszerezés,
             riportolás, dokumentumkezelés és vezetői döntéstámogatás.
           </p>
 
@@ -820,7 +733,7 @@ export default function SzolgaltatasokPage() {
                 desc: "Számlafeldolgozás + OCR + kategorizálás + ellenőrzés + havi vezetői összesítő automatikusan.",
               },
               {
-                title: "Teljes munkaügyi nyilvántartás AI ügynökkel",
+                title: "Teljes munkaügyi nyilvántartás AI rendszerrel",
                 desc: "Beléptetés, jelenlét, dokumentumfrissítés, figyelmeztetések és audit-ready riportok egy helyen.",
               },
               {
@@ -848,7 +761,7 @@ export default function SzolgaltatasokPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               { icon: Zap,       title: "Nem tanácsadunk. Megcsináljuk.", desc: "Minden amit felsorolunk, élesben fut. Nem PowerPoint, hanem működő rendszer." },
-              { icon: Users,     title: "Kis csapat, nagy teljesítmény.", desc: "AI ügynökeink elvégezik, ami egy 5–10 fős csapatnak kellene. Gyorsan, hibátlanul, hétvégén is." },
+              { icon: Users,     title: "Kis csapat, nagy teljesítmény.", desc: "AI rendszereink elvégzik, ami egy 5–10 fős csapatnak kellene. Gyorsan, hibátlanul, hétvégén is." },
               { icon: Building2, title: "Magyar piac ismerete.", desc: "Rendszereink magyar vállalkozásokra kalibráltak — magyar adatbázisokkal és kommunikációs stílussal." },
               { icon: Shield,    title: "Átláthatóság — Glass Box.", desc: "Minden futó folyamatot látsz: valós idejű dashboard, értesítések, riportok. Teljes kontroll." },
             ].map((item) => {

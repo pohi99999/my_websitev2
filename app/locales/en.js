@@ -1,7 +1,7 @@
 const en = {
   navbar: {
     home: 'Home',
-    services: 'Services',
+    services: 'AI Systems',
     products: 'Products',
     portfolio: 'Portfolio',
     blog: 'Blog',
@@ -9,26 +9,27 @@ const en = {
     contact: 'Contact',
   },
   hero: {
-    headlineLine1: 'The Future Has Begun...',
-    headlineLine2: 'Humans and Artificial Intelligence',
-    subheadline: 'will define success in the years ahead.',
-    cta: 'Get in Touch',
-    ctaPrimary: 'Get in Touch',
-    ctaSecondary: 'AI Agent Workflows',
+    headlineLine1: 'Business-ready AI systems',
+    headlineLine2: 'for companies that need real efficiency',
+    subheadline:
+      'We do more than automate: we design and build AI systems around your business so repetitive work shrinks, workflows move faster, and decision-making becomes smarter.',
+    cta: 'Request an AI system review',
+    ctaPrimary: 'Request an AI system review',
+    ctaSecondary: 'See the services',
   },
   footer: {
     companyName: 'Pohánka & Társa',
     tagline:
-      'The future has begun. Innovation and Artificial Intelligence — the relationship between humans and AI will be key to success in the years ahead.',
+      'We design, build, and roll out AI systems tailored to business operations — so repetitive work shrinks, decisions move faster, and results are measurable.',
     sections: {
       solutions: 'Solutions',
       contact: 'Contact',
       leadership: 'Leadership',
     },
     solutions: {
-      brunella: 'Brunella Agent System',
+      brunella: 'Brunella / BAS system',
       pohi: 'Pohi AI Pro',
-      customDev: 'Custom Development',
+      customDev: 'AI system development',
     },
     leadership: {
       name: 'József Péter Pohánka',

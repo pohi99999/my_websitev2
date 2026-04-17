@@ -1,7 +1,7 @@
 const de = {
   navbar: {
     home: 'Startseite',
-    services: 'Dienstleistungen',
+    services: 'KI-Systeme',
     products: 'Produkte',
     portfolio: 'Portfolio',
     blog: 'Blog',
@@ -9,26 +9,27 @@ const de = {
     contact: 'Kontakt',
   },
   hero: {
-    headlineLine1: 'Die Zukunft hat begonnen...',
-    headlineLine2: 'Menschen und künstliche Intelligenz',
-    subheadline: 'werden den Erfolg in den kommenden Jahren bestimmen.',
-    cta: 'Kontakt aufnehmen',
-    ctaPrimary: 'Kontakt aufnehmen',
-    ctaSecondary: 'KI-Agent-Workflows',
+    headlineLine1: 'Künstliche Intelligenz und KI-Systeme',
+    headlineLine2: 'für Unternehmen',
+    subheadline:
+      'Wir automatisieren nicht nur: Wir entwerfen und bauen KI-Systeme für Ihr Unternehmen, damit repetitive Arbeit sinkt, Prozesse schneller laufen und Entscheidungen intelligenter werden.',
+    cta: 'KI-Systemprüfung anfragen',
+    ctaPrimary: 'KI-Systemprüfung anfragen',
+    ctaSecondary: 'Leistungen ansehen',
   },
   footer: {
     companyName: 'Pohánka & Társa',
     tagline:
-      'Die Zukunft hat begonnen. Innovation und künstliche Intelligenz — die Beziehung zwischen Mensch und KI wird in den kommenden Jahren der Schlüssel zum Erfolg sein.',
+      'Wir entwerfen, bauen und führen KI-Systeme ein, die auf Unternehmensprozesse zugeschnitten sind — damit repetitive Arbeit sinkt, Entscheidungen schneller werden und Ergebnisse messbar sind.',
     sections: {
       solutions: 'Lösungen',
       contact: 'Kontakt',
       leadership: 'Leitung',
     },
     solutions: {
-      brunella: 'Brunella Agent System',
+      brunella: 'Brunella / BAS-System',
       pohi: 'Pohi AI Pro',
-      customDev: 'Individuelle Entwicklung',
+      customDev: 'KI-Systementwicklung',
     },
     leadership: {
       name: 'József Péter Pohánka',

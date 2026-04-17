@@ -5,40 +5,46 @@ import { Activity, BrainCircuit, ClipboardList, PlugZap } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
-export default function HowItWorks() {
+export default function HowItWorks ()
+{
   const { language } = useLanguage();
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>( null );
   const prefersReducedMotion = usePrefersReducedMotion();
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState( false );
 
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      setIsVisible(true);
+  useEffect( () =>
+  {
+    if ( prefersReducedMotion )
+    {
+      setIsVisible( true );
       return;
     }
 
     const node = sectionRef.current;
-    if (!node) return;
+    if ( !node ) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries[0]?.isIntersecting) return;
-        setIsVisible(true);
+      ( entries ) =>
+      {
+        if ( !entries[0]?.isIntersecting ) return;
+        setIsVisible( true );
         observer.disconnect();
       },
       { threshold: 0.2 }
     );
 
-    observer.observe(node);
+    observer.observe( node );
 
     return () => observer.disconnect();
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion] );
 
-  const content = useMemo(() => {
-    if (language === 'en') {
+  const content = useMemo( () =>
+  {
+    if ( language === 'en' )
+    {
       return {
         badge: 'How it works',
-        title: 'From discovery to always-on automation in four clear steps',
+        title: 'From discovery to always-on AI systems in four clear steps',
         subtitle:
           'We keep the rollout simple, measurable and business-first so your team sees value fast.',
         steps: [
@@ -50,9 +56,9 @@ export default function HowItWorks() {
           },
           {
             icon: BrainCircuit,
-            title: '2. AI Configuration',
+            title: '2. AI System Design',
             description:
-              'We configure the right Brunella agents, prompts and business rules for your exact process.',
+              'We configure the right AI components, prompts and business rules for your exact process.',
           },
           {
             icon: PlugZap,
@@ -70,10 +76,11 @@ export default function HowItWorks() {
       };
     }
 
-    if (language === 'de') {
+    if ( language === 'de' )
+    {
       return {
         badge: 'So funktioniert es',
-        title: 'Von der Bedarfsklärung zur 24/7-Automatisierung in vier klaren Schritten',
+        title: 'Von der Bedarfsklärung zu laufenden KI-Systemen in vier klaren Schritten',
         subtitle:
           'Ein einfacher, messbarer Rollout mit Fokus auf schnelle Wirkung für Ihr Team.',
         steps: [
@@ -85,9 +92,9 @@ export default function HowItWorks() {
           },
           {
             icon: BrainCircuit,
-            title: '2. KI-Konfiguration',
+            title: '2. KI-Systemdesign',
             description:
-              'Wir konfigurieren die passenden Brunella-Agenten, Regeln und Prompts für Ihren Prozess.',
+              'Wir konfigurieren die passenden KI-Komponenten, Regeln und Prompts für Ihren Prozess.',
           },
           {
             icon: PlugZap,
@@ -107,7 +114,7 @@ export default function HowItWorks() {
 
     return {
       badge: 'Hogyan működik',
-      title: 'Négy lépésben jutunk el az igényfelméréstől a 24/7 automatizálásig',
+      title: 'Négy lépésben jutunk el az igényfelméréstől a futó AI rendszerekig',
       subtitle:
         'Egyszerű, üzleti fókuszú folyamat: gyors felmérés, gyors bevezetés, gyors ROI.',
       steps: [
@@ -119,9 +126,9 @@ export default function HowItWorks() {
         },
         {
           icon: BrainCircuit,
-          title: '2. AI Konfiguráció',
+          title: '2. AI rendszertervezés',
           description:
-            'A Brunella ügynököket, promptokat és szabályokat a vállalkozásod valós működéséhez hangoljuk.',
+            'Az AI komponenseket, promptokat és szabályokat a vállalkozásod valós működéséhez hangoljuk.',
         },
         {
           icon: PlugZap,
@@ -137,7 +144,7 @@ export default function HowItWorks() {
         },
       ],
     };
-  }, [language]);
+  }, [language] );
 
   return (
     <section
@@ -159,18 +166,17 @@ export default function HowItWorks() {
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {content.steps.map((step, index) => {
+          {content.steps.map( ( step, index ) =>
+          {
             const Icon = step.icon;
 
             return (
               <article
                 key={step.title}
-                className={`surface-panel-elevated min-h-[240px] p-7 ${
-                  prefersReducedMotion ? '' : 'transition-all duration-700'
-                } ${
-                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                }`}
-                style={{ transitionDelay: prefersReducedMotion ? '0ms' : `${index * 140}ms` }}
+                className={`surface-panel-elevated min-h-[240px] p-7 ${ prefersReducedMotion ? '' : 'transition-all duration-700'
+                  } ${ isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                  }`}
+                style={{ transitionDelay: prefersReducedMotion ? '0ms' : `${ index * 140 }ms` }}
               >
                 <div className="mb-5 inline-flex rounded-2xl border border-[#00e5ff]/20 bg-[#00e5ff]/10 p-3 text-[#00e5ff]">
                   <Icon className="h-6 w-6" />
@@ -179,7 +185,7 @@ export default function HowItWorks() {
                 <p className="text-sm leading-7 text-gray-400">{step.description}</p>
               </article>
             );
-          })}
+          } )}
         </div>
       </div>
     </section>

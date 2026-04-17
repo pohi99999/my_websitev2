@@ -10,7 +10,7 @@ const testimonials = {
       name: 'Kovács Gábor',
       role: 'Ügyvezető',
       company: 'GK Épületgépészet Kft.',
-      text: 'A Brunella Agent System bevezetése után az lead-feldolgozási időnk 80%-kal csökkent. Naponta 30-40 kvalifikált érdeklődőt kap az értékesítési csapatom automatikus elemzéssel.',
+      text: 'Az AI rendszer bevezetése után az ajánlatfeldolgozási időnk 80%-kal csökkent. Az értékesítési csapatom naponta több tucat releváns érdeklődést kap automatizált előszűréssel.',
       rating: 5,
       avatar: '👔',
     },
@@ -18,7 +18,7 @@ const testimonials = {
       name: 'Tóth Marianna',
       role: 'Marketing Igazgató',
       company: 'AquaTech Solutions',
-      text: 'Korábban 3 emberünk foglalkozott azzal, hogy ajánlatokat készítsen és kövesse az ügyfeleket. Ma az AI végzi ezt, mi a kreatív munkára koncentrálunk. Megtakarítottunk havi 400 000 Ft-ot.',
+      text: 'Korábban három emberünk foglalkozott ajánlatokkal és utánkövetéssel. Ma ezt az AI rendszer végzi, mi pedig a kreatív munkára koncentrálunk. Havi több százezer forintot spórolunk.',
       rating: 5,
       avatar: '👩‍💼',
     },
@@ -26,7 +26,7 @@ const testimonials = {
       name: 'Dr. Nagy Péter',
       role: 'Fogorvos – Praxisvezető',
       company: 'Mosolycentrum Fogászat',
-      text: 'A Patient Lead rendszer bevezetése óta a páciensek 40%-a online foglalja az időpontját. Az AI automatikusan emlékeztetőket küld, a lemondások száma felére csökkent.',
+      text: 'Az AI-alapú betegkommunikáció bevezetése óta a páciensek 40%-a online foglal időpontot. Az automatikus emlékeztetőknek köszönhetően a lemondások száma felére csökkent.',
       rating: 5,
       avatar: '🦷',
     },
@@ -34,7 +34,7 @@ const testimonials = {
       name: 'Fekete Zsolt',
       role: 'CEO',
       company: 'FastLog Fuvarozó Kft.',
-      text: 'Pohánka Péterék nemcsak fejlesztők – stratégiai partnerek. Feltárták azokat a "vak pontokat" a cégünkben, melyeket mi magunk sem láttunk. Az automatizált diszpécser rendszer óriási előrelépés.',
+      text: 'A csapat nemcsak fejlesztőként, hanem stratégiai partnerként dolgozott velünk. Segítettek feltárni azokat a működési pontokat, ahol az automatizált diszpécser rendszer azonnali előrelépést hozott.',
       rating: 5,
       avatar: '🚛',
     },
@@ -52,7 +52,7 @@ const testimonials = {
       name: 'Gabriel Kovacs',
       role: 'Managing Director',
       company: 'GK Engineering Ltd.',
-      text: 'After implementing the Brunella Agent System, our lead processing time dropped by 80%. My sales team now receives 30–40 qualified prospects daily with automated analysis.',
+      text: 'After implementing the AI system, our quote processing time dropped by 80%. My sales team now receives dozens of relevant prospects daily through automated pre-qualification.',
       rating: 5,
       avatar: '👔',
     },
@@ -60,7 +60,7 @@ const testimonials = {
       name: 'Marianna Toth',
       role: 'Marketing Director',
       company: 'AquaTech Solutions',
-      text: 'We used to have 3 people preparing quotes and following up with clients. Now AI handles it, and we focus on creative work. We save 400,000 HUF monthly.',
+      text: 'We used to have three people preparing quotes and following up with clients. Now the AI system handles it, and we focus on creative work. We save several hundred thousand HUF monthly.',
       rating: 5,
       avatar: '👩‍💼',
     },
@@ -68,7 +68,7 @@ const testimonials = {
       name: 'Dr. Peter Nagy',
       role: 'Dentist – Practice Owner',
       company: 'Mosolycentrum Dental',
-      text: 'Since implementing the Patient Lead system, 40% of patients book appointments online. AI sends reminders automatically, and cancellations dropped by half.',
+      text: 'Since implementing AI-powered patient communication, 40% of patients now book appointments online. Automated reminders cut cancellations in half.',
       rating: 5,
       avatar: '🦷',
     },
@@ -78,7 +78,7 @@ const testimonials = {
       name: 'Gabriel Kovacs',
       role: 'Geschäftsführer',
       company: 'GK Gebäudetechnik GmbH',
-      text: 'Nach der Einführung des Brunella Agent Systems sank unsere Lead-Bearbeitungszeit um 80 %. Mein Vertriebsteam erhält täglich 30–40 qualifizierte Interessenten mit automatischer Analyse.',
+      text: 'Nach der Einführung des KI-Systems sank unsere Angebotsbearbeitungszeit um 80 %. Mein Vertriebsteam erhält täglich Dutzende relevante Interessenten mit automatischer Vorqualifizierung.',
       rating: 5,
       avatar: '👔',
     },
@@ -86,7 +86,7 @@ const testimonials = {
       name: 'Marianna Toth',
       role: 'Marketingleiterin',
       company: 'AquaTech Solutions',
-      text: 'Früher kümmerten sich 3 Mitarbeiter um Angebote und Nachverfolgung. Heute erledigt das die KI, wir konzentrieren uns auf kreative Arbeit. Wir sparen monatlich 400.000 HUF.',
+      text: 'Früher kümmerten sich drei Mitarbeiter um Angebote und Nachverfolgung. Heute erledigt das das KI-System, wir konzentrieren uns auf kreative Arbeit. Wir sparen monatlich mehrere hunderttausend HUF.',
       rating: 5,
       avatar: '👩‍💼',
     },
@@ -94,7 +94,7 @@ const testimonials = {
       name: 'Zsolt Fekete',
       role: 'CEO',
       company: 'FastLog Transport GmbH',
-      text: 'Das Team von Pohánka sind nicht nur Entwickler – sie sind strategische Partner. Sie haben die "blinden Flecken" in unserem Unternehmen gefunden. Das automatisierte Dispatcher-System ist ein riesiger Fortschritt.',
+      text: 'Das Team von Pohánka denkt nicht nur technisch, sondern strategisch. Sie haben uns geholfen, operative blinde Flecken zu erkennen und in ein automatisiertes Dispositionssystem zu überführen.',
       rating: 5,
       avatar: '🚛',
     },
@@ -102,9 +102,9 @@ const testimonials = {
 };
 
 const titles = {
-  hu: { heading: 'Ügyfeleink mondják', sub: 'Valódi eredmények, valódi cégektől.' },
-  en: { heading: 'What Our Clients Say', sub: 'Real results from real businesses.' },
-  de: { heading: 'Das sagen unsere Kunden', sub: 'Echte Ergebnisse von echten Unternehmen.' },
+  hu: { heading: 'Üzleti eredmények és visszajelzések', sub: 'Valódi cégeknél, valódi működésre épített AI rendszerek.' },
+  en: { heading: 'Business Results & Feedback', sub: 'Real results from real businesses.' },
+  de: { heading: 'Geschäftsergebnisse & Feedback', sub: 'Echte Ergebnisse von echten Unternehmen.' },
 };
 
 export default function Testimonials ()
@@ -116,72 +116,72 @@ export default function Testimonials ()
 
   return (
     <section id="testimonials" className="py-24 bg-[#060608] relative overflow-hidden" style={{ background: 'rgba(0,0,0,0.82)' }}>
-      {/* Background glow */ }
+      {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#00e5ff]/5 blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header */ }
+        {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 font-syne">
-            { heading }
+            {heading}
           </h2>
-          <p className="text-gray-400 text-lg">{ sub }</p>
+          <p className="text-gray-400 text-lg">{sub}</p>
         </div>
 
-        {/* Testimonial grid */ }
+        {/* Testimonial grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          { items.map( ( item, idx ) => (
+          {items.map( ( item, idx ) => (
             <article
-              key={ idx }
+              key={idx}
               className="relative bg-[#0c0c10] border border-white/5 p-6 hover:border-[#00e5ff]/30 transition-all duration-300 group"
             >
               <Quote className="w-8 h-8 text-[#00e5ff]/30 mb-4" aria-hidden="true" />
 
-              {/* Stars */ }
-              <div className="flex gap-1 mb-4" aria-label={ `Értékelés: ${ item.rating }/5 csillag` }>
-                { Array.from( { length: item.rating } ).map( ( _, i ) => (
-                  <Star key={ i } className="w-4 h-4 fill-yellow-400 text-yellow-400" aria-hidden="true" />
-                ) ) }
+              {/* Stars */}
+              <div className="flex gap-1 mb-4" aria-label={`Értékelés: ${ item.rating }/5 csillag`}>
+                {Array.from( { length: item.rating } ).map( ( _, i ) => (
+                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" aria-hidden="true" />
+                ) )}
               </div>
 
-              {/* Quote */ }
+              {/* Quote */}
               <p className="text-gray-300 text-sm leading-relaxed mb-6 italic">
-                &ldquo;{ item.text }&rdquo;
+                &ldquo;{item.text}&rdquo;
               </p>
 
-              {/* Person */ }
+              {/* Person */}
               <div className="flex items-center gap-3 mt-auto">
                 <div
                   className="w-12 h-12 rounded-full bg-[#0c0c10] border border-white/10 flex items-center justify-center text-2xl"
                   aria-hidden="true"
                 >
-                  { item.avatar }
+                  {item.avatar}
                 </div>
                 <div>
-                  <p className="font-semibold text-white text-sm">{ item.name }</p>
-                  <p className="text-gray-400 text-xs">{ item.role }</p>
-                  <p className="text-[#00e5ff] text-xs">{ item.company }</p>
+                  <p className="font-semibold text-white text-sm">{item.name}</p>
+                  <p className="text-gray-400 text-xs">{item.role}</p>
+                  <p className="text-[#00e5ff] text-xs">{item.company}</p>
                 </div>
               </div>
             </article>
-          ) ) }
+          ) )}
         </div>
 
-        {/* Stats row */ }
+        {/* Stats row */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-          { [
+          {[
             { value: '40+', label: lang === 'hu' ? 'Elégedett ügyfél' : lang === 'en' ? 'Happy Clients' : 'Zufriedene Kunden' },
             { value: '4.9/5', label: lang === 'hu' ? 'Átlag értékelés' : lang === 'en' ? 'Average Rating' : 'Bewertung ⌀' },
             { value: '80%', label: lang === 'hu' ? 'Időmegtakarítás átlag' : lang === 'en' ? 'Avg. Time Saved' : 'Zeit gespart ⌀' },
             { value: '3 hó', label: lang === 'hu' ? 'Átlagos ROI idő' : lang === 'en' ? 'Avg. ROI Timeline' : 'Ø ROI-Zeitraum' },
           ].map( ( stat, i ) => (
-            <div key={ i } className="text-center">
-              <div className="text-3xl font-bold text-[#00e5ff] mb-1 font-syne">{ stat.value }</div>
-              <div className="text-gray-500 text-sm uppercase tracking-wider">{ stat.label }</div>
+            <div key={i} className="text-center">
+              <div className="text-3xl font-bold text-[#00e5ff] mb-1 font-syne">{stat.value}</div>
+              <div className="text-gray-500 text-sm uppercase tracking-wider">{stat.label}</div>
             </div>
-          ) ) }
+          ) )}
         </div>
       </div>
     </section>

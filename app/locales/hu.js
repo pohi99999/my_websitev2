@@ -1,7 +1,7 @@
 const hu = {
   navbar: {
     home: 'Kezdőoldal',
-    services: 'Szolgáltatások',
+    services: 'AI rendszerek',
     products: 'Termékek',
     portfolio: 'Portfólió',
     blog: 'Blog',
@@ -9,26 +9,27 @@ const hu = {
     contact: 'Kapcsolat',
   },
   hero: {
-    headlineLine1: 'A Jövő Elkezdődött...',
-    headlineLine2: 'Az ember és a Mesterséges Intelligencia',
-    subheadline: 'kapcsolata az elkövetkező időszak kulcsa a sikerhez.',
-    cta: 'Kapcsolatfelvétel',
-    ctaPrimary: 'Kapcsolatfelvétel',
-    ctaSecondary: 'AI Ügynöki Folyamatok',
+    headlineLine1: 'Mesterséges intelligencia és AI rendszerek',
+    headlineLine2: 'kiépítése vállalkozások számára',
+    subheadline:
+      'Nem csak automatizálunk: a vállalkozásod működésére tervezünk és építünk AI rendszereket, amelyek csökkentik az ismétlődő munkát, gyorsítják a folyamatokat és támogatják az intelligens döntéshozatalt.',
+    cta: 'Kérek AI rendszerfelmérést',
+    ctaPrimary: 'Kérek AI rendszerfelmérést',
+    ctaSecondary: 'Megnézem a szolgáltatásokat',
   },
   footer: {
     companyName: 'Pohánka & Társa',
     tagline:
-      'A jövő elkezdődött. Innováció és Mesterséges Intelligencia – az ember kapcsolata az elkövetkező időszak kulcsa a sikerhez.',
+      'Vállalkozásokra szabott AI rendszereket tervezünk, fejlesztünk és vezetünk be, hogy az ismétlődő munka csökkenjen, a döntések gyorsuljanak, és az üzleti folyamatok mérhetően hatékonyabbá váljanak.',
     sections: {
       solutions: 'Megoldások',
       contact: 'Kapcsolat',
       leadership: 'Vezetés',
     },
     solutions: {
-      brunella: 'Brunella Agent System',
+      brunella: 'Brunella / BAS rendszer',
       pohi: 'Pohi AI Pro',
-      customDev: 'Egyedi fejlesztések',
+      customDev: 'AI rendszerfejlesztés',
     },
     leadership: {
       name: 'Pohánka József Péter',

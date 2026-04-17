@@ -8,75 +8,76 @@ import CountUpNumber from './CountUpNumber';
 
 const challengeAccent = 'from-[#00e5ff] via-emerald-400 to-[#f5a623]';
 
-export default function RoiCalculator() {
+export default function RoiCalculator ()
+{
   const { language } = useLanguage();
-  const [hours, setHours] = useState(12);
-  const [teamSize, setTeamSize] = useState(5);
-  const [hourlyRate, setHourlyRate] = useState(3500);
+  const [hours, setHours] = useState( 12 );
+  const [teamSize, setTeamSize] = useState( 5 );
+  const [hourlyRate, setHourlyRate] = useState( 3500 );
 
   const ui =
     language === 'en'
-        ? {
-            badge: 'ROI calculator',
-            title: 'How much admin time could AI give back this year?',
-            subtitle:
-              'Move the sliders and estimate how much value Brunella-style automation can unlock in your team.',
-            snapshotBadge: 'Brunella ROI snapshot',
-            hoursLabel: 'Hours spent on manual admin weekly',
-            hoursUnit: 'hours',
-            teamLabel: 'Team size',
-            teamUnit: 'people',
-            rateLabel: 'Average hourly cost (HUF)',
-            currencySuffix: ' HUF',
-            annual: 'Annual savings',
-            monthly: 'Monthly savings',
-            note: 'Formula: weekly admin hours × 75% automation × 52 weeks × team size × hourly cost',
-          cta: 'Get a detailed proposal',
-          support: 'Most SME automation projects reach measurable ROI in 30-90 days.',
-        }
+      ? {
+        badge: 'ROI calculator',
+        title: 'How much value could an AI system give back this year?',
+        subtitle:
+          'Move the sliders and estimate how much value a tailored AI system can unlock in your team.',
+        snapshotBadge: 'AI system ROI snapshot',
+        hoursLabel: 'Hours spent on manual admin weekly',
+        hoursUnit: 'hours',
+        teamLabel: 'Team size',
+        teamUnit: 'people',
+        rateLabel: 'Average hourly cost (HUF)',
+        currencySuffix: ' HUF',
+        annual: 'Annual savings',
+        monthly: 'Monthly savings',
+        note: 'Formula: weekly admin hours × 75% automation × 52 weeks × team size × hourly cost',
+        cta: 'Get a detailed proposal',
+        support: 'Most business AI projects reach measurable ROI in 30-90 days.',
+      }
       : language === 'de'
-          ? {
-              badge: 'ROI-Rechner',
-              title: 'Wie viel Verwaltungszeit kann KI Ihrem Team dieses Jahr zurückgeben?',
-              subtitle:
-                'Bewegen Sie die Regler und schätzen Sie den Wert, den Brunella-ähnliche Automatisierung freisetzen kann.',
-              snapshotBadge: 'Brunella ROI Momentaufnahme',
-              hoursLabel: 'Stunden manueller Admin-Arbeit pro Woche',
-              hoursUnit: 'Std.',
-              teamLabel: 'Teamgröße',
-              teamUnit: 'Personen',
-              rateLabel: 'Durchschnittlicher Stundensatz (HUF)',
-              currencySuffix: ' HUF',
-              annual: 'Jährliche Ersparnis',
-              monthly: 'Monatliche Ersparnis',
-              note: 'Formel: Admin-Stunden pro Woche × 75 % Automatisierung × 52 Wochen × Teamgröße × Stundensatz',
-            cta: 'Detailliertes Angebot anfordern',
-            support: 'Bei den meisten KMU-Projekten wird der ROI innerhalb von 30-90 Tagen messbar.',
-          }
+        ? {
+          badge: 'ROI-Rechner',
+          title: 'Wie viel Wert kann ein KI-System Ihrem Team dieses Jahr zurückgeben?',
+          subtitle:
+            'Bewegen Sie die Regler und schätzen Sie den Wert, den ein maßgeschneidertes KI-System freisetzen kann.',
+          snapshotBadge: 'KI-System ROI Momentaufnahme',
+          hoursLabel: 'Stunden manueller Admin-Arbeit pro Woche',
+          hoursUnit: 'Std.',
+          teamLabel: 'Teamgröße',
+          teamUnit: 'Personen',
+          rateLabel: 'Durchschnittlicher Stundensatz (HUF)',
+          currencySuffix: ' HUF',
+          annual: 'Jährliche Ersparnis',
+          monthly: 'Monatliche Ersparnis',
+          note: 'Formel: Admin-Stunden pro Woche × 75 % Automatisierung × 52 Wochen × Teamgröße × Stundensatz',
+          cta: 'Detailliertes Angebot anfordern',
+          support: 'Bei den meisten KI-Projekten wird der ROI innerhalb von 30-90 Tagen messbar.',
+        }
         : {
-            badge: 'ROI kalkulátor',
-            title: 'Mennyi adminisztrációs időt adhat vissza az AI egy év alatt?',
-            subtitle:
-              'Mozgasd a csúszkákat, és nézd meg, mekkora pénzügyi hatása lehet a Brunella-alapú automatizálásnak a csapatodban.',
-            snapshotBadge: 'Brunella ROI pillanatkép',
-            hoursLabel: 'Hány órát töltesz manuális adminisztrációval hetente?',
-            hoursUnit: 'óra',
-            teamLabel: 'Hány fős a csapatod?',
-            teamUnit: 'fő',
-            rateLabel: 'Átlagos órabér (Ft)',
-            currencySuffix: ' Ft',
-            annual: 'Éves megtakarítás',
-            monthly: 'Havi megtakarítás',
-            note: 'Képlet: heti admin órák × 75% automatizálás × 52 hét × csapatlétszám × órabér',
-            cta: 'Kérek részletes ajánlatot',
-            support: 'A legtöbb KKV-projektnél 30-90 napon belül megjelenik a mérhető ROI.',
-          };
+          badge: 'ROI kalkulátor',
+          title: 'Mennyi értéket adhat vissza egy AI rendszer egy év alatt?',
+          subtitle:
+            'Mozgasd a csúszkákat, és nézd meg, mekkora pénzügyi hatása lehet egy vállalatra szabott AI rendszernek a csapatodban.',
+          snapshotBadge: 'AI rendszer ROI pillanatkép',
+          hoursLabel: 'Hány órát töltesz manuális adminisztrációval hetente?',
+          hoursUnit: 'óra',
+          teamLabel: 'Hány fős a csapatod?',
+          teamUnit: 'fő',
+          rateLabel: 'Átlagos órabér (Ft)',
+          currencySuffix: ' Ft',
+          annual: 'Éves megtakarítás',
+          monthly: 'Havi megtakarítás',
+          note: 'Képlet: heti admin órák × 75% automatizálás × 52 hét × csapatlétszám × órabér',
+          cta: 'Kérek részletes ajánlatot',
+          support: 'A legtöbb AI-projektnél 30-90 napon belül megjelenik a mérhető ROI.',
+        };
 
   const annualSavings = useMemo(
-    () => Math.round(hours * 0.75 * 52 * teamSize * hourlyRate),
+    () => Math.round( hours * 0.75 * 52 * teamSize * hourlyRate ),
     [hours, teamSize, hourlyRate]
   );
-  const monthlySavings = useMemo(() => Math.round(annualSavings / 12), [annualSavings]);
+  const monthlySavings = useMemo( () => Math.round( annualSavings / 12 ), [annualSavings] );
 
   return (
     <section id="roi-kalkulator" className="relative overflow-hidden bg-surface-1 px-6 py-24" style={{ background: 'rgba(0,0,0,0.82)' }}>
@@ -106,7 +107,7 @@ export default function RoiCalculator() {
                 min={1}
                 max={40}
                 value={hours}
-                onChange={(event) => setHours(Number(event.target.value))}
+                onChange={( event ) => setHours( Number( event.target.value ) )}
                 className="h-2 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-[#00e5ff]"
               />
             </div>
@@ -124,7 +125,7 @@ export default function RoiCalculator() {
                 min={1}
                 max={50}
                 value={teamSize}
-                onChange={(event) => setTeamSize(Number(event.target.value))}
+                onChange={( event ) => setTeamSize( Number( event.target.value ) )}
                 className="h-2 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-emerald-400"
               />
             </div>
@@ -139,7 +140,7 @@ export default function RoiCalculator() {
                 min={500}
                 step={100}
                 value={hourlyRate}
-                onChange={(event) => setHourlyRate(Math.max(500, Number(event.target.value) || 0))}
+                onChange={( event ) => setHourlyRate( Math.max( 500, Number( event.target.value ) || 0 ) )}
                 className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-lg font-semibold text-white outline-none transition focus:border-[#00e5ff]/50 focus:shadow-[0_0_0_1px_rgba(0,229,255,0.2)]"
               />
             </div>
@@ -147,10 +148,10 @@ export default function RoiCalculator() {
         </div>
 
         <div className="surface-panel-elevated flex flex-col justify-between gap-8 p-8 md:p-10">
-            <div>
-              <div className={`mb-5 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r ${challengeAccent}`}>
-                {ui.snapshotBadge}
-              </div>
+          <div>
+            <div className={`mb-5 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r ${ challengeAccent }`}>
+              {ui.snapshotBadge}
+            </div>
 
             <div className="grid gap-4">
               <div className="rounded-3xl border border-[#00e5ff]/20 bg-black/40 p-6">
@@ -192,12 +193,12 @@ export default function RoiCalculator() {
               href="#contact"
               className="group inline-flex items-center gap-3 rounded-full border border-[#00e5ff]/40 bg-[#00e5ff]/10 px-7 py-4 text-sm font-bold uppercase tracking-[0.18em] text-[#00e5ff] transition duration-300 hover:scale-105 hover:border-[#00e5ff] hover:bg-[#00e5ff]/15 hover:shadow-[0_0_35px_rgba(0,229,255,0.28)]"
               onClick={() =>
-                trackCtaClick({
+                trackCtaClick( {
                   location: CTA_LOCATIONS.RoiPrimary,
                   language,
                   target: '#contact',
                   page: PAGE_NAMES.Home,
-                })
+                } )
               }
             >
               {ui.cta}

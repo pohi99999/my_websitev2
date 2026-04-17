@@ -18,12 +18,12 @@ export const metadata: Metadata = {
   metadataBase: new URL( 'https://www.pohankaestarsa.com' ),
   title: {
     template: '%s | Pohánka AI',
-    default: 'Brunella AI Automatizálás | KKV Digitalizáció | pohankaestarsa.com'
+    default: 'AI rendszerek vállalkozásoknak | Pohánka AI'
   },
   description:
-    'AI ügynök rendszer KKV-knak. 95+ specializált AI ügynök, automatizált lead generálás, könyvelés, ügyfélszolgálat. 80% időmegtakarítás. Ingyenes konzultáció.',
+    'Vállalkozásokra szabott AI rendszerek tervezése, fejlesztése és bevezetése. Automatizálás, intelligens döntéstámogatás és üzleti integrációk, mérhető eredményekkel.',
   keywords:
-    'AI automatizálás, mesterséges intelligencia KKV, lead generálás AI, könyvelési automatizálás, Brunella ügynök, digitalizáció Magyarország',
+    'AI rendszerek vállalkozásoknak, mesterséges intelligencia vállalkozások számára, AI automatizálás, intelligens döntéstámogatás, egyedi AI rendszerfejlesztés, AI ügynökök és automatizálás, vállalati AI megoldások',
   creator: "Pohánka Péter",
   publisher: "Pohánka és Társa Kft.",
   icons: {
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
     apple: '/images/logo.png',
   },
   openGraph: {
-    title: 'Brunella AI — A Jövő Elkezdődött',
+    title: 'AI rendszerek vállalkozásoknak | Pohánka AI',
     description:
-      'Valós problémákat megoldó AI automatizálás magyar KKV-knak.',
+      'Vállalkozásokra szabott AI rendszerek, automatizálás és intelligens döntéstámogatás magyar vállalkozásoknak.',
     type: 'website',
     siteName: 'Pohánka és Társa',
     locale: 'hu_HU',
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Brunella AI Automatizálás',
-    description: '95+ AI ügynök, 80% időmegtakarítás, 24/7 működés.',
+    title: 'AI rendszerek vállalkozásoknak',
+    description: 'Vállalkozásokra szabott AI rendszerek, automatizálás és intelligens döntéstámogatás.',
   },
   robots: {
     index: true,
@@ -90,44 +90,44 @@ export default async function RootLayout ( {
   const tawkEmbedUrl = process.env.NEXT_PUBLIC_TAWK_EMBED_URL?.trim();
 
   return (
-    <html lang={ initialLanguage }>
+    <html lang={initialLanguage}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/logo.png" type="image/png" />
-        {/* PWA manifest */ }
+        {/* PWA manifest */}
         <link rel="manifest" href="/manifest.json" />
-        {/* theme-color: Chrome, Safari, Edge (dark/light variants) */ }
+        {/* theme-color: Chrome, Safari, Edge (dark/light variants) */}
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#00ff9d" />
-        {/* Apple PWA */ }
+        {/* Apple PWA */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Pohánka AI" />
         <link rel="apple-touch-icon" href="/images/logo.png" />
-        {/* Global hreflang fallback */ }
+        {/* Global hreflang fallback */}
         <link rel="alternate" hrefLang="hu" href="https://www.pohankaestarsa.com/" />
         <link rel="alternate" hrefLang="en" href="https://www.pohankaestarsa.com/en/" />
         <link rel="alternate" hrefLang="de" href="https://www.pohankaestarsa.com/de/" />
         <link rel="alternate" hrefLang="x-default" href="https://www.pohankaestarsa.com/" />
 
-        {/* Organization Schema */ }
+        {/* Organization Schema */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={ {
+          dangerouslySetInnerHTML={{
             __html: JSON.stringify( {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Pohánka és Társa",
-              description: "AI automatizálási megoldások KKV vállalkozásoknak",
+              description: "Vállalkozásokra szabott AI rendszerek, automatizálás és intelligens döntéstámogatás",
               url: "https://www.pohankaestarsa.com",
               logo: "https://www.pohankaestarsa.com/images/logo.png",
-              serviceType: "AI Automatizálás",
+              serviceType: "AI rendszertervezés és bevezetés",
               areaServed: "HU",
               offers: {
                 "@type": "Offer",
-                category: "Mesterséges Intelligencia Szolgáltatások"
+                category: "Mesterséges intelligencia és AI rendszerek"
               },
               contact: {
                 "@type": "ContactPoint",
@@ -149,13 +149,13 @@ export default async function RootLayout ( {
                 addressLocality: "Zalaegerszeg"
               }
             } )
-          } }
+          }}
         />
 
-        {/* LocalBusiness Schema */ }
+        {/* LocalBusiness Schema */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={ {
+          dangerouslySetInnerHTML={{
             __html: JSON.stringify( {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
@@ -168,40 +168,40 @@ export default async function RootLayout ( {
                 addressLocality: "Zalaegerszeg"
               }
             } )
-          } }
+          }}
         />
       </head>
-      <body className={ `${ inter.variable } ${ syne.variable } ${ inter.className } bg-black text-white` }>
-        {/* Skip navigation – akadálymentesítés */ }
+      <body className={`${ inter.variable } ${ syne.variable } ${ inter.className } bg-black text-white`}>
+        {/* Skip navigation – akadálymentesítés */}
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium"
         >
-          { skipLinkLabel }
+          {skipLinkLabel}
         </a>
-        <LanguageProvider initialLanguage={ initialLanguage }>
+        <LanguageProvider initialLanguage={initialLanguage}>
           <LenisProvider>
             <DeferredLayoutEnhancements />
             <Header />
             <main id="main-content" className="pt-20">
-              { children }
+              {children}
             </main>
             <Footer />
           </LenisProvider>
           <BrunellaChat />
         </LanguageProvider>
-        { shouldLoadVercelAnalytics ? <Analytics /> : null }
-        {/* Service Worker regisztráció */ }
+        {shouldLoadVercelAnalytics ? <Analytics /> : null}
+        {/* Service Worker regisztráció */}
         <Script id="sw-register" strategy="afterInteractive">
-          { `if ('serviceWorker' in navigator) {
+          {`if ('serviceWorker' in navigator) {
               window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/sw.js').catch(function(err) {});
               });
             }`}
         </Script>
-        { tawkEmbedUrl ? (
+        {tawkEmbedUrl ? (
           <Script id="tawkto" strategy="lazyOnload">
-            { `var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
               (function(){
                 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
                 s1.async=true;
@@ -211,7 +211,7 @@ export default async function RootLayout ( {
                 s0.parentNode.insertBefore(s1,s0);
               })();`}
           </Script>
-        ) : null }
+        ) : null}
       </body>
     </html>
   );

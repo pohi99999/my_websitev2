@@ -1,26 +1,27 @@
 import About from "../components/About";
 import { headers } from "next/headers";
 
-export function generateMetadata() {
-  const headerLang = headers().get("x-site-language");
+export async function generateMetadata() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get("x-site-language");
   const language = headerLang === "en" ? "en" : headerLang === "de" ? "de" : "hu";
 
   const meta =
     language === "en"
       ? {
-          title: "About Us",
-          description: "Pohánka & Társa — AI agency and software development. Learn about our mission, values, approach and technology focus.",
+          title: "About Us | Business AI Systems",
+          description: "Pohánka & Társa designs and delivers business-ready AI systems, custom automations and practical integrations for companies.",
           canonical: "/en/rolunk",
         }
       : language === "de"
         ? {
-            title: "Über uns",
-            description: "Pohánka & Társa — KI-Agentur und Softwareentwicklung. Erfahren Sie mehr über unsere Mission, Werte und Technologie-Fokus.",
+            title: "Über uns | KI-Systeme für Unternehmen",
+            description: "Pohánka & Társa entwirft und liefert praxisnahe KI-Systeme, individuelle Automatisierung und Integrationen für Unternehmen.",
             canonical: "/de/rolunk",
           }
         : {
-            title: "Rólunk",
-            description: "Pohánka és Társa Kft. – AI ügynökség és szoftverfejlesztés. Ismerje meg küldetésünket, értékeinket és technológiai fókuszunkat.",
+            title: "Rólunk | AI rendszerek vállalkozásoknak",
+            description: "Pohánka és Társa Kft. vállalkozásokra szabott AI rendszereket, automatizálást és integrációkat tervez, fejleszt és vezet be.",
             canonical: "/rolunk",
           };
 

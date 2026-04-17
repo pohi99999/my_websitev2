@@ -1,194 +1,213 @@
 "use client";
 
-import React, { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-const About = () =>
+interface AboutCopy
 {
-  const [openSection, setOpenSection] = useState<string | null>( 'values' );
-  const { language } = useLanguage();
+    title: string;
+    intro: string;
+    valuesTitle: string;
+    valuesP1: string;
+    valuesP2: string;
+    valuesP3: string;
+    visionTitle: string;
+    visionP1: string;
+    visionP2: string;
+    visionP3: string;
+    teamTitle: string;
+    teamP1: string;
+    teamHeader: string;
+    teamP2: string;
+}
 
-  const txt =
-    language === 'en'
-      ? {
+const copyMap: Record<string, AboutCopy> = {
+    en: {
         title: 'About Us',
         intro:
-          'We believe this is the era of creators, where technology is the brush, you are the artist, and success is your creation. Our mission is to empower creators with ideas and solutions so their work can truly thrive.',
+            'We design and deliver business-ready AI systems that fit real operations — not generic tools, but practical solutions for teams that need measurable efficiency, better decisions and smoother workflows.',
         valuesTitle: 'Values & Philosophy',
-        valuesP1: 'Our core values are expertise, reliability, customer focus and continuous improvement.',
-        valuesP2: 'We combine modern technology with deep industry knowledge.',
+        valuesP1: 'Our core values are clarity, reliability, measurable impact and long-term partnership.',
+        valuesP2: 'We combine business process thinking with modern software engineering and AI orchestration.',
         valuesP3:
-          'We do not just build software; we build practical systems enhanced with advanced AI models so businesses gain real efficiency and, most importantly, time.',
+            'We do not just build software; we build systems that integrate AI into daily operations so businesses gain real efficiency and time back.',
         visionTitle: 'Our Vision',
         visionP1:
-          'We believe technology can improve daily operations and unlock sustainable growth. We continuously research innovative approaches so our clients stay ahead.',
+            'We believe technology should improve daily operations and unlock sustainable growth through controlled, cost-effective adoption.',
         visionP2:
-          'Speed matters everywhere: market timing, campaigns, funding opportunities, exchange rates, and changing customer behavior.',
+            'We turn repetitive work into stable systems and data into decisions that support the business.',
         visionP3:
-          'Our goal is to turn these signals into practical strategy and support your short- and long-term growth.',
+            'Our goal is to create solutions that scale with the business instead of adding complexity.',
         teamTitle: 'Commitment & Team',
         teamP1:
-          'We are committed to our clients’ success. Every project is a partnership built on transparency and trust.',
-        teamHeader: 'Our expert team:',
+            'We treat every project as a partnership, with transparent communication and clear rollout milestones.',
+        teamHeader: 'What we bring:',
         teamP2:
-          'Our team brings multi-domain experience in finance, compliance, logistics, permitting and market intelligence, supported by a strong domestic and international partner network.',
-      }
-      : language === 'de'
-        ? {
-          title: 'Über uns',
-          intro:
-            'Wir glauben an das Zeitalter der Gestalter: Technologie ist der Pinsel, Sie sind der Künstler, und Erfolg ist Ihr Werk. Unsere Mission ist es, Unternehmen mit Ideen und Lösungen zu stärken.',
-          valuesTitle: 'Werte & Philosophie',
-          valuesP1:
-            'Unsere Grundwerte sind Fachkompetenz, Zuverlässigkeit, Kundenorientierung und kontinuierliche Weiterentwicklung.',
-          valuesP2: 'Wir verbinden moderne Technologie mit tiefem Branchenwissen.',
-          valuesP3:
-            'Wir entwickeln nicht nur Software, sondern praxisnahe Systeme mit fortschrittlicher KI — für echte Effizienz und mehr Zeit für das Wesentliche.',
-          visionTitle: 'Unsere Vision',
-          visionP1:
-            'Wir sind überzeugt, dass Technologie den Alltag von Unternehmen verbessert und neues Wachstum ermöglicht.',
-          visionP2:
-            'Geschwindigkeit ist entscheidend: Marktzugang, Kampagnen, Förderungen, Wechselkurse und Kundenverhalten.',
-          visionP3:
-            'Unser Ziel ist es, daraus umsetzbare Strategien abzuleiten und Ihre kurz- und langfristigen Ziele zu unterstützen.',
-          teamTitle: 'Unser Engagement & Team',
-          teamP1:
-            'Wir sind dem Erfolg unserer Kunden verpflichtet. Jedes Projekt ist eine Partnerschaft auf Basis von Transparenz und Vertrauen.',
-          teamHeader: 'Unser Expertenteam:',
-          teamP2:
-            'Unser Team verfügt über langjährige Erfahrung in Finanzen, Compliance, Logistik, Genehmigungen und Marktanalyse sowie ein starkes Partnernetzwerk.',
-        }
-        : {
-          title: 'Rólunk',
-          intro:
-            'Hiszünk abban, hogy az Alkotók ideje jött el, ahol a technológia az ecset, Te vagy a Művész, és a siker a Te Alkotásod! Cégünk küldetése, hogy a Művészt inspirációval, ötletekkel és megoldásokkal vértezze fel, hogy mesterműve valóban sikeres legyen. Ha felkeltettük érdeklődésedet, tanulmányozd tovább weboldalunkat! Folyamatosan bővíteni fogjuk hasznos tartalmakkal, esettanulmányokkal, bemutatókkal és egyéb érdekességekkel, amelyekkel foglalkozunk.',
-          valuesTitle: 'Értékek és Filozófia',
-          valuesP1:
-            'Alapvető értékeink a szakértelem, megbízhatóság, ügyfélközpontúság és a folyamatos fejlődés iránti elkötelezettség.',
-          valuesP2: 'Munkánk során a legmodernebb technológiákat ötvözzük a mély iparági ismeretekkel.',
-          valuesP3:
-            'Nem csak szoftvert fejlesztünk, programokat, alkalmazásokat, applikációkat készítünk, hanem a Mesterséges Intelligencia Google támogatásának köszönhetően, az Ők általuk kifejlesztett legújabb technológiájú modellek állnak a rendelkezésünkre, melyeket ha okosan beleépítjük a vállalkozás ökoszisztémájába, olyan hatékonyságot érhetünk el amivel nem csak esélyünk van egy gazdaságosabb működést elérni, hanem a legértékesebb dolgot is mellé kapjuk, ami nem más mint a manapság mindennél értékesebb dolog, az IDŐ..!',
-          visionTitle: 'Jövőképünk',
-          visionP1:
-            'Hiszünk a technológia erejében, hogy jobbá tegye a vállalkozások mindennapjait és új távlatokat nyisson a növekedésben. Folyamatosan kutatjuk az innovatív megoldásokat, hogy ügyfeleink mindig a piaci verseny élvonalában maradhassanak.',
-          visionP2:
-            'Képzeljétek el, hogy mennyire felgyorsult körülöttünk az idő, mindenki rohan, az információ sebessége manapság kulcskérdés az élet minden területén. Igaz ez az üzleti életre is: ki tud előbb megszerezni egy piacot? Ki tudja először vírusként elterjeszteni a terméket, amit értékesíteni szeretne? Ki tudja meg először mikor, mire érdemes pályázni? Mennyi lesz a Ft/Euro árfolyam várható alakulása? Mi a fogyasztók viselkedése, érdeklődése jelenleg stb...?',
-          visionP3:
-            'Mi képesek leszünk rá, hogy ezeket és még elképesztőbb dolgokat beleépítsük a stratégiánkba, hogy a kitűzött rövid, és hosszútávú céljaid elérésében segítséget nyújtsunk.',
-          teamTitle: 'Elkötelezettségünk és Csapatunk',
-          teamP1:
-            'Elkötelezettek vagyunk ügyfeleink sikere mellett. Minden projektet partnerségként kezelünk, szorosan együttműködve a legjobb eredmények elérése érdekében, biztosítva az átláthatóságot és a kölcsönös bizalmat.',
-          teamHeader: 'Szakértő csapatunk:',
-          teamP2:
-            'Szakértő csapatunk tagjai több éves tapasztalattal rendelkeznek a könyviteli, pályázatírási, finanszírozási, pénzügyi, vám ügyintézés, munkavédelmi, munkaügyi engedélyezés területén, komplett engedélyezési kapcsolat rendszerünk van kiépítve az iparkamarával és a növényegészségügyi hivatallal egyaránt. Elemző, és piackutató módszerünk egyedülálló az országban. Kereskedelmi és logisztikai kapcsolatunk van hazai, és nemzetközi fuvarozó cégekkel és hajózási szállítási szolgáltatókkal.',
-        };
-
-  const toggleSection = ( id: string ) =>
-  {
-    setOpenSection( openSection === id ? null : id );
-  };
-
-  return (
-    <section id="about" className="py-24 bg-black relative overflow-hidden">
-      {/* Background video */ }
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="none"
-        aria-hidden="true"
-      >
-        <source src="/contact.mp4" type="video/mp4" />
-      </video>
-
-      {/* Dark overlay for readability */ }
-      <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-[#00e5ff] mb-12 text-center">{ txt.title }</h1>
-
-          <p className="text-gray-300 text-lg leading-relaxed text-center mb-10">
-            { txt.intro }
-          </p>
-
-          <div className="space-y-4">
-            {/* 1. Értékek és Filozófia */ }
-            <AccordionItem
-              title={ txt.valuesTitle }
-              isOpen={ openSection === 'values' }
-              onClick={ () => toggleSection( 'values' ) }
-            >
-              <p className="mb-4">
-                { txt.valuesP1 }
-              </p>
-              <p className="mb-4">
-                { txt.valuesP2 }
-              </p>
-              <p>
-                { txt.valuesP3 }
-              </p>
-            </AccordionItem>
-
-            {/* 2. Jövőképünk */ }
-            <AccordionItem
-              title={ txt.visionTitle }
-              isOpen={ openSection === 'vision' }
-              onClick={ () => toggleSection( 'vision' ) }
-            >
-              <p className="mb-4">
-                { txt.visionP1 }
-              </p>
-              <p className="mb-4">
-                { txt.visionP2 }
-              </p>
-              <p>
-                { txt.visionP3 }
-              </p>
-            </AccordionItem>
-
-            {/* 3. Elkötelezettség és Csapat */ }
-            <AccordionItem
-              title={ txt.teamTitle }
-              isOpen={ openSection === 'team' }
-              onClick={ () => toggleSection( 'team' ) }
-            >
-              <p className="mb-4">
-                { txt.teamP1 }
-              </p>
-              <h3 className="text-white font-semibold mb-2">{ txt.teamHeader }</h3>
-              <p>
-                { txt.teamP2 }
-              </p>
-            </AccordionItem>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+            'Experience across business process design, software delivery, system integration and AI orchestration.',
+    },
+    de: {
+        title: 'Über uns',
+        intro:
+            'Wir entwerfen und liefern praxistaugliche KI-Systeme für Unternehmen — keine generischen Tools, sondern Lösungen, die sich in echte Abläufe einfügen und messbare Wirkung erzielen.',
+        valuesTitle: 'Werte & Philosophie',
+        valuesP1:
+            'Unsere Grundwerte sind Klarheit, Zuverlässigkeit, messbare Wirkung und langfristige Partnerschaft.',
+        valuesP2: 'Wir verbinden Geschäftsprozessdenken mit moderner Softwareentwicklung und KI-Orchestrierung.',
+        valuesP3:
+            'Wir entwickeln nicht nur Software, sondern Systeme, die KI in den Alltag integrieren und Unternehmen echte Effizienz zurückgeben.',
+        visionTitle: 'Unsere Vision',
+        visionP1:
+            'Wir sind überzeugt, dass Technologie den Unternehmensalltag verbessern und nachhaltiges Wachstum durch kontrollierte, kosteneffiziente Einführung ermöglichen sollte.',
+        visionP2:
+            'Wir verwandeln wiederkehrende Arbeit in stabile Systeme und Daten in Entscheidungen, die das Geschäft unterstützen.',
+        visionP3:
+            'Unser Ziel ist es, Lösungen zu schaffen, die mit dem Unternehmen skalieren, statt zusätzliche Komplexität zu erzeugen.',
+        teamTitle: 'Unser Engagement & Team',
+        teamP1:
+            'Wir behandeln jedes Projekt als Partnerschaft mit transparenter Kommunikation und klaren Rollout-Meilensteinen.',
+        teamHeader: 'Was wir mitbringen:',
+        teamP2:
+            'Erfahrung in Geschäftsprozessdesign, Softwarelieferung, Systemintegration und KI-Orchestrierung.',
+    },
+    hu: {
+        title: 'Rólunk',
+        intro:
+            'Vállalkozásokra szabott AI rendszereket tervezünk és vezetünk be. Nem sablonos eszközöket adunk, hanem olyan megoldásokat építünk, amelyek a napi működésbe illeszkednek, csökkentik a manuális munkát és gyorsítják a döntéshozatalt.',
+        valuesTitle: 'Értékek és filozófia',
+        valuesP1: 'Alapvető értékeink a tisztaság, megbízhatóság, mérhető hatás és a hosszú távú partnerség.',
+        valuesP2: 'Üzleti folyamatokat, szoftverfejlesztést és AI orchestrationt kombinálunk.',
+        valuesP3:
+            'Nem csak szoftvert fejlesztünk: olyan rendszereket építünk, amelyek az AI-t a napi működés részévé teszik, így a vállalkozás valódi időt és hatékonyságot nyer vissza.',
+        visionTitle: 'Jövőképünk',
+        visionP1:
+            'Hiszünk abban, hogy a technológiának javítania kell a vállalkozások mindennapjait és kontrollált, költséghatékony bevezetéssel kell növekedést segítenie.',
+        visionP2:
+            'Az ismétlődő munkát stabil rendszerré, az adatokat pedig döntéstámogatássá alakítjuk, hogy a csapat a fontosabb feladatokra koncentrálhasson.',
+        visionP3:
+            'Olyan megoldásokat építünk, amelyek a vállalkozással együtt skálázhatók, nem pedig bonyolítják a működést.',
+        teamTitle: 'Elkötelezettségünk és csapatunk',
+        teamP1:
+            'Minden projektet partnerségként kezelünk, átlátható kommunikációval és világos mérföldkövekkel.',
+        teamHeader: 'Amit hozunk:',
+        teamP2:
+            'Tapasztalat az üzleti folyamatok tervezésében, szoftverfejlesztésben, rendszerintegrációban és AI orchestrationben.',
+    },
 };
 
-// Segédkomponens az Accordionhoz
-const AccordionItem = ( { title, isOpen, onClick, children }: any ) => (
-  <div className="border border-white/[0.08] rounded-xl bg-black/40 backdrop-blur-xl overflow-hidden">
-    <button
-      onClick={ onClick }
-      className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-white/[0.04] transition-colors"
-    >
-      <span className="text-xl font-semibold text-white">{ title }</span>
-      { isOpen ? <ChevronUp className="text-[#00e5ff]" /> : <ChevronDown className="text-[#00e5ff]/30" /> }
-    </button>
-
-    <div
-      className={ `transition-all duration-300 ease-in-out ${ isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
-        }` }
-    >
-      <div className="px-6 pb-6 pt-2 text-gray-400 leading-relaxed text-justify">{ children }</div>
+const AccordionItem = ( {
+    title,
+    isOpen,
+    onClick,
+    children,
+}: {
+    title: string;
+    isOpen: boolean;
+    onClick: () => void;
+    children: ReactNode;
+} ) => (
+    <div className="border border-white/10 bg-white/[0.03] backdrop-blur-sm overflow-hidden">
+        <button
+            onClick={onClick}
+            className="w-full flex justify-between items-center p-4 text-left hover:bg-white/[0.04] transition-colors"
+            aria-expanded={isOpen ? 'true' : 'false'}
+        >
+            <span className="font-semibold text-white">{title}</span>
+            {isOpen ? (
+                <ChevronUp className="w-5 h-5 text-[#00e5ff]" />
+            ) : (
+                <ChevronDown className="w-5 h-5 text-gray-400" />
+            )}
+        </button>
+        {isOpen && <div className="px-4 pb-4 text-gray-300 leading-relaxed">{children}</div>}
     </div>
-  </div>
 );
 
-export default About;
+export default function About ()
+{
+    const { language } = useLanguage();
+    const copy = copyMap[language] || copyMap.hu;
+    const [open, setOpen] = useState<number | null>( 0 );
+
+    const toggle = ( index: number ) => setOpen( ( current ) => ( current === index ? null : index ) );
+
+    return (
+        <section id="about" className="py-24 relative overflow-hidden">
+            <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+                <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
+                    <div>
+                        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#00e5ff] mb-5">
+                            <span className="w-2 h-2 rounded-full bg-[#00e5ff]" />
+                            {language === 'en' ? 'About Pohánka AI' : language === 'de' ? 'Über Pohánka AI' : 'Pohánka AI bemutatkozás'}
+                        </div>
+                        <h2 className="heading-display text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                            {copy.title}
+                        </h2>
+                        <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10 max-w-2xl">
+                            {copy.intro}
+                        </p>
+
+                        <div className="space-y-4">
+                            <AccordionItem
+                                title={copy.valuesTitle}
+                                isOpen={open === 0}
+                                onClick={() => toggle( 0 )}
+                            >
+                                <p className="mb-3">{copy.valuesP1}</p>
+                                <p className="mb-3">{copy.valuesP2}</p>
+                                <p>{copy.valuesP3}</p>
+                            </AccordionItem>
+                            <AccordionItem
+                                title={copy.visionTitle}
+                                isOpen={open === 1}
+                                onClick={() => toggle( 1 )}
+                            >
+                                <p className="mb-3">{copy.visionP1}</p>
+                                <p className="mb-3">{copy.visionP2}</p>
+                                <p>{copy.visionP3}</p>
+                            </AccordionItem>
+                            <AccordionItem
+                                title={copy.teamTitle}
+                                isOpen={open === 2}
+                                onClick={() => toggle( 2 )}
+                            >
+                                <p className="mb-3">{copy.teamP1}</p>
+                                <p className="mb-3 font-semibold text-white">{copy.teamHeader}</p>
+                                <p>{copy.teamP2}</p>
+                            </AccordionItem>
+                        </div>
+                    </div>
+
+                    <div className="surface-panel-premium p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl shadow-black/20">
+                        <div className="relative overflow-hidden rounded-xl aspect-[4/5] border border-white/10">
+                            <video
+                                className="w-full h-full object-cover"
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                preload="metadata"
+                                poster="/1.jpg"
+                            >
+                                <source src="/contact.mp4" type="video/mp4" />
+                            </video>
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#050816] via-[#050816]/30 to-transparent" />
+                            <div className="absolute bottom-0 left-0 right-0 p-6">
+                                <div className="hud-badge mb-3 text-xs uppercase tracking-[0.2em] w-fit">
+                                    {language === 'en' ? 'Business AI systems' : language === 'de' ? 'KI-Systeme für Unternehmen' : 'Vállalati AI rendszerek'}
+                                </div>
+                                <p className="text-white text-lg font-semibold leading-snug max-w-sm">
+                                    {language === 'en'
+                                        ? 'We help teams move from manual work to measurable AI-enabled operations.'
+                                        : language === 'de'
+                                            ? 'Wir helfen Teams dabei, manuelle Arbeit in messbare KI-gestützte Abläufe zu verwandeln.'
+                                            : 'Segítünk a csapatoknak a manuális munkát mérhető, AI-vezérelt működéssé alakítani.'}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
