@@ -1,6 +1,7 @@
 import React from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import GlobalVideoBackground from '../components/GlobalVideoBackground';
 
 import Hero from './components/Hero';
 import KinekSzol from './components/KinekSzol';
@@ -15,9 +16,10 @@ export const dynamic = 'force-dynamic';
 
 export default function WeboldalAiKkvPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white relative">
+      <GlobalVideoBackground />
       <Header />
-      <main id="main-content" className="pt-20">
+      <main id="main-content" className="pt-20 relative z-10">
         <Hero />
         <KinekSzol />
         <MitKapsz />
