@@ -16,7 +16,7 @@ export const dynamic = 'force-dynamic';
 
 export default function WeboldalAiKkvPage() {
   return (
-    <div className="min-h-screen bg-black text-white relative">
+    <div className="min-h-screen bg-transparent text-white relative">
       <GlobalVideoBackground />
       <Header />
       <main id="main-content" className="pt-20 relative z-10">
