@@ -21,7 +21,7 @@ export default function FAQ() {
   ];
 
   return (
-    <section className="py-20 px-6 bg-black">
+    <section className="py-20 px-6 bg-black/40 backdrop-blur-md">
       <div className="container mx-auto max-w-3xl">
         <h2 className="text-4xl font-bold mb-16 text-center">Gyakori kérdések</h2>
         <div className="space-y-6">
