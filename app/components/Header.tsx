@@ -292,6 +292,7 @@ export default function Header ()
     { label: t( 'navbar.home' ), href: withLang( '/' ) },
     { label: t( 'navbar.services' ), href: withLang( '/szolgaltatasok' ) },
     { label: t( 'navbar.products' ), href: withLang( '/termekek' ) },
+    { label: 'Weboldal + AI KKV-knak', href: withLang( '/weboldal-ai-kkv' ) },
     { label: t( 'navbar.portfolio' ), href: withLang( '/portfolio' ) },
     { label: t( 'navbar.blog' ), href: withLang( '/blog' ) },
     { label: t( 'navbar.about' ), href: withLang( '/rolunk' ) },
