@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: 'AI rendszerek vállalkozásoknak | Pohánka AI'
   },
   description:
-    'Vállalkozásokra szabott AI rendszerek tervezése, fejlesztése és bevezetése. Automatizálás, intelligens döntéstámogatás és üzleti integrációk, mérhető eredményekkel.',
+    'Pohánka & Társa: AI-vezérelt folyamatautomatizálás és modern, lead-generáló weboldalak fejlesztése KKV-k számára. Átlátható (Glass Box) megoldások azonnali ROI-val.',
   keywords:
     'AI rendszerek vállalkozásoknak, mesterséges intelligencia vállalkozások számára, AI automatizálás, intelligens döntéstámogatás, egyedi AI rendszerfejlesztés, AI ügynökök és automatizálás, vállalati AI megoldások',
   creator: "Pohánka Péter",
