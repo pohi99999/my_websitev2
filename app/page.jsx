@@ -37,7 +37,7 @@ export async function generateMetadata() {
           title: 'Mesterséges intelligencia és AI rendszerek vállalkozásoknak | Pohánka AI',
           description:
           'Vállalkozásokra szabott AI rendszerek tervezése, fejlesztése és bevezetése. Automatizálás, intelligens döntéstámogatás és üzleti integrációk mérhető eredménnyel.',
-          canonical: '/',
+          canonical: 'https://www.pohankaestarsa.com/',
           locale: 'hu_HU',
         };
 
@@ -47,9 +47,9 @@ export async function generateMetadata() {
     alternates: {
       canonical: meta.canonical,
       languages: {
-        hu: '/',
-        en: '/en',
-        de: '/de',
+        hu: 'https://www.pohankaestarsa.com/',
+        en: 'https://www.pohankaestarsa.com/en',
+        de: 'https://www.pohankaestarsa.com/de',
       },
     },
       openGraph: {

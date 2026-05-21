@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Syne } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
@@ -14,16 +14,26 @@ import BrunellaChat from './components/BrunellaChat';
 const inter = Inter( { subsets: ['latin'], display: 'swap', variable: '--font-inter' } );
 const syne = Syne( { subsets: ['latin'], display: 'swap', variable: '--font-syne', weight: ['600', '700', '800'] } );
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+    { media: "(prefers-color-scheme: light)", color: "#00ff9d" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL( 'https://www.pohankaestarsa.com' ),
   title: {
     template: '%s | Pohánka AI',
-    default: 'AI rendszerek vállalkozásoknak | Pohánka AI'
+    default: 'AI rendszerek és folyamatautomatizálás | Pohánka AI'
   },
   description:
-    'Pohánka & Társa: AI-vezérelt folyamatautomatizálás és modern, lead-generáló weboldalak fejlesztése KKV-k számára. Átlátható (Glass Box) megoldások azonnali ROI-val.',
+    'Pohánka & Társa: AI-vezérelt folyamatautomatizálás és modern, lead-generáló weboldalak fejlesztése magyar KKV-k számára. Átlátható (Glass Box) AI megoldások azonnali ROI-val.',
   keywords:
-    'AI rendszerek vállalkozásoknak, mesterséges intelligencia vállalkozások számára, AI automatizálás, intelligens döntéstámogatás, egyedi AI rendszerfejlesztés, AI ügynökök és automatizálás, vállalati AI megoldások',
+    'AI rendszerek vállalkozásoknak, mesterséges intelligencia vállalkozások számára, AI automatizálás, intelligens döntéstámogatás, egyedi AI rendszerfejlesztés, AI ügynökök és automatizálás, vállalati AI megoldások, weboldal fejlesztés, SEO optimalizálás',
   creator: "Pohánka Péter",
   publisher: "Pohánka és Társa Kft.",
   icons: {
@@ -31,6 +41,7 @@ export const metadata: Metadata = {
     shortcut: '/images/logo.png',
     apple: '/images/logo.png',
   },
+  manifest: '/manifest.json',
   openGraph: {
     title: 'AI rendszerek vállalkozásoknak | Pohánka AI',
     description:
@@ -42,14 +53,17 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/logo.png',
-        alt: 'Pohánka és Társa Kft. – logó'
+        width: 1200,
+        height: 630,
+        alt: 'Pohánka és Társa Kft. – AI Ügynökség'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI rendszerek vállalkozásoknak',
+    title: 'AI rendszerek és automatizálás | Pohánka AI',
     description: 'Vállalkozásokra szabott AI rendszerek, automatizálás és intelligens döntéstámogatás.',
+    images: ['/images/logo.png'],
   },
   robots: {
     index: true,
@@ -57,10 +71,23 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
   alternates: {
     canonical: 'https://www.pohankaestarsa.com',
+    languages: {
+      'hu-HU': 'https://www.pohankaestarsa.com/',
+      'en-US': 'https://www.pohankaestarsa.com/en',
+      'de-DE': 'https://www.pohankaestarsa.com/de',
+    }
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Pohánka AI',
   },
 };
 
@@ -90,92 +117,12 @@ export default async function RootLayout ( {
   const tawkEmbedUrl = process.env.NEXT_PUBLIC_TAWK_EMBED_URL?.trim();
 
   return (
-    <html lang={initialLanguage}>
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/images/logo.png" type="image/png" />
-        {/* PWA manifest */}
-        <link rel="manifest" href="/manifest.json" />
-        {/* theme-color: Chrome, Safari, Edge (dark/light variants) */}
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#00ff9d" />
-        {/* Apple PWA */}
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Pohánka AI" />
-        <link rel="apple-touch-icon" href="/images/logo.png" />
-        {/* Global hreflang fallback */}
-        <link rel="alternate" hrefLang="hu" href="https://www.pohankaestarsa.com/" />
-        <link rel="alternate" hrefLang="en" href="https://www.pohankaestarsa.com/en/" />
-        <link rel="alternate" hrefLang="de" href="https://www.pohankaestarsa.com/de/" />
-        <link rel="alternate" hrefLang="x-default" href="https://www.pohankaestarsa.com/" />
-
-        {/* Organization Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify( {
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Pohánka és Társa",
-              description: "Vállalkozásokra szabott AI rendszerek, automatizálás és intelligens döntéstámogatás",
-              url: "https://www.pohankaestarsa.com",
-              logo: "https://www.pohankaestarsa.com/images/logo.png",
-              serviceType: "AI rendszertervezés és bevezetés",
-              areaServed: "HU",
-              offers: {
-                "@type": "Offer",
-                category: "Mesterséges intelligencia és AI rendszerek"
-              },
-              contact: {
-                "@type": "ContactPoint",
-                contactType: "Customer Support",
-                telephone: "+36 30 244 6779",
-                email: "peterpohankapersonal@gmail.com"
-              },
-              sameAs: [
-                "https://www.linkedin.com/in/pohi99999/",
-                "https://www.facebook.com/profile.php?id=61576881120445",
-                "https://github.com/pohi99999",
-                "https://x.com/pohanka_peter",
-                "https://g.dev/PohankaPeter",
-                "https://www.youtube.com/@J%C3%B3zsefP%C3%A9terPoh%C3%A1nka"
-              ],
-              address: {
-                "@type": "PostalAddress",
-                addressCountry: "HU",
-                addressLocality: "Zalaegerszeg"
-              }
-            } )
-          }}
-        />
-
-        {/* LocalBusiness Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify( {
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: "Pohánka és Társa Kft.",
-              image: "https://www.pohankaestarsa.com/images/logo.png",
-              telephone: "+36 30 244 6779",
-              address: {
-                "@type": "PostalAddress",
-                addressCountry: "HU",
-                addressLocality: "Zalaegerszeg"
-              }
-            } )
-          }}
-        />
-      </head>
-      <body className={`${ inter.variable } ${ syne.variable } ${ inter.className } bg-black text-white`}>
+    <html lang={initialLanguage} className="scroll-smooth">
+      <body className={`${ inter.variable } ${ syne.variable } ${ inter.className } bg-black text-white antialiased`}>
         {/* Skip navigation – akadálymentesítés */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#00e5ff] focus:text-black focus:rounded-lg focus:text-sm focus:font-bold"
         >
           {skipLinkLabel}
         </a>

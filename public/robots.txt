@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /api
-Disallow: /internal
+Disallow: /admin/
+Disallow: /api/
+Disallow: /internal/
+
+# Host and Sitemap
+Host: https://www.pohankaestarsa.com
 Sitemap: https://www.pohankaestarsa.com/sitemap.xml
