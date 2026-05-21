@@ -95,7 +95,15 @@ export default function CrmAdminPage() {
 
   return (
     <div className="container mx-auto p-6 bg-slate-950 min-h-screen text-white relative">
-      <h1 className="text-3xl font-bold mb-8 text-emerald-400">B2B CRM Dashboard</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold text-emerald-400">B2B CRM Dashboard</h1>
+        <a 
+          href="/admin/crm/pipeline" 
+          className="bg-blue-600 hover:bg-blue-500 px-6 py-2 rounded-lg font-bold transition-all flex items-center gap-2"
+        >
+          View Sales Pipeline (Kanban) →
+        </a>
+      </div>
       
       {!loading && (
         <>
