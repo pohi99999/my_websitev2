@@ -67,12 +67,12 @@ export default function LeadMagnetForm() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-black/50 border border-gray-800 rounded-2xl backdrop-blur-sm shadow-2xl">
+    <div className="max-w-2xl mx-auto p-8 bg-black/50 border border-gray-800 rounded-2xl backdrop-blur-sm shadow-2xl" role="region" aria-labelledby="form-title">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-syne font-bold text-white">
-          Digitális Hatékonysági Audit <span className="text-[#00ff9d]">Lépés {step}/3</span>
+        <h2 id="form-title" className="text-2xl font-syne font-bold text-white">
+          Digitális Hatékonysági Audit <span className="text-[#00ff9d]" aria-live="polite">Lépés {step}/3</span>
         </h2>
-        <div className="w-1/3 bg-gray-800 h-2 rounded-full overflow-hidden">
+        <div className="w-1/3 bg-gray-800 h-2 rounded-full overflow-hidden" role="progressbar" aria-valuenow={(step/3)*100} aria-valuemin={0} aria-valuemax={100}>
           <div className="bg-[#00ff9d] h-full transition-all duration-300" style={{ width: \`\${(step / 3) * 100}%\` }}></div>
         </div>
       </div>
@@ -81,8 +81,9 @@ export default function LeadMagnetForm() {
         {step === 1 && (
           <div className="space-y-6">
             <div>
-              <label className="block text-gray-400 mb-2 font-medium">1. Melyik iparágban tevékenykedtek?</label>
+              <label htmlFor="industry" className="block text-gray-400 mb-2 font-medium">1. Melyik iparágban tevékenykedtek?</label>
               <select 
+                id="industry"
                 name="industry" 
                 value={formData.industry} 
                 onChange={handleChange} 
@@ -98,8 +99,8 @@ export default function LeadMagnetForm() {
               </select>
             </div>
             
-            <div>
-              <label className="block text-gray-400 mb-2 font-medium">2. Mekkora a cég létszáma?</label>
+            <fieldset>
+              <legend className="block text-gray-400 mb-2 font-medium">2. Mekkora a cég létszáma?</legend>
               <div className="grid grid-cols-2 gap-4">
                 {['1-5 fő', '6-20 fő', '21-50 fő', '50+ fő'].map(size => (
                   <label key={size} className={\`border p-4 rounded-lg cursor-pointer transition-colors flex items-center \${formData.size === size ? 'border-[#00ff9d] bg-[#00ff9d]/10' : 'border-gray-700 bg-gray-900 hover:border-gray-500'}\`}>
@@ -108,14 +109,15 @@ export default function LeadMagnetForm() {
                       name="size" 
                       value={size} 
                       onChange={handleChange} 
-                      className="hidden" 
+                      className="mr-3 accent-[#00ff9d]" 
                       required
+                      checked={formData.size === size}
                     />
                     <span className="text-white">{size}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
             
             <div className="flex justify-end pt-4">
               <button type="submit" className={btnClass}>Tovább</button>
@@ -126,8 +128,9 @@ export default function LeadMagnetForm() {
         {step === 2 && (
           <div className="space-y-6">
             <div>
-              <label className="block text-gray-400 mb-2 font-medium">3. Melyik terület veszi el a legtöbb időt a felesleges adminisztrációval?</label>
+              <label htmlFor="pain_points" className="block text-gray-400 mb-2 font-medium">3. Melyik terület veszi el a legtöbb időt a felesleges adminisztrációval?</label>
               <select 
+                id="pain_points"
                 name="pain_points" 
                 value={formData.pain_points} 
                 onChange={handleChange} 
@@ -143,8 +146,8 @@ export default function LeadMagnetForm() {
               </select>
             </div>
 
-            <div>
-              <label className="block text-gray-400 mb-2 font-medium">4. Mi a legfőbb üzleti célod a következő 6 hónapban?</label>
+            <fieldset>
+              <legend className="block text-gray-400 mb-2 font-medium">4. Mi a legfőbb üzleti célod a következő 6 hónapban?</legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   'Költségek optimalizálása', 
@@ -158,14 +161,15 @@ export default function LeadMagnetForm() {
                       name="goals" 
                       value={goal} 
                       onChange={handleChange} 
-                      className="hidden" 
+                      className="mr-3 accent-[#00ff9d]" 
                       required
+                      checked={formData.goals === goal}
                     />
                     <span className="text-white text-sm">{goal}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
             <div className="flex justify-between pt-4">
               <button type="button" onClick={prevStep} className={btnSecondaryClass}>Vissza</button>
@@ -177,8 +181,9 @@ export default function LeadMagnetForm() {
         {step === 3 && (
           <div className="space-y-6">
             <div>
-              <label className="block text-gray-400 mb-2 font-medium">5. Hogy szólíthatunk?</label>
+              <label htmlFor="name" className="block text-gray-400 mb-2 font-medium">5. Hogy szólíthatunk?</label>
               <input 
+                id="name"
                 type="text" 
                 name="name" 
                 value={formData.name} 
@@ -190,8 +195,9 @@ export default function LeadMagnetForm() {
             </div>
 
             <div>
-              <label className="block text-gray-400 mb-2 font-medium">6. Hova küldjük a személyre szabott Audit PDF-et?</label>
+              <label htmlFor="email" className="block text-gray-400 mb-2 font-medium">6. Hova küldjük a személyre szabott Audit PDF-et?</label>
               <input 
+                id="email"
                 type="email" 
                 name="email" 
                 value={formData.email} 
@@ -203,7 +209,7 @@ export default function LeadMagnetForm() {
             </div>
             
             {status === 'error' && (
-              <div className="p-4 bg-red-900/50 border border-red-500 rounded-lg text-red-200">
+              <div className="p-4 bg-red-900/50 border border-red-500 rounded-lg text-red-200" role="alert">
                 Hiba történt a küldés során. Kérjük, próbáld újra később, vagy keress minket az elérhetőségeinken!
               </div>
             )}
