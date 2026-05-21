@@ -56,21 +56,21 @@ export default function RoiCalculator ()
         }
         : {
           badge: 'ROI kalkulátor',
-          title: 'Mennyi értéket adhat vissza egy AI rendszer egy év alatt?',
+          title: 'Mennyi pénzt hagysz az asztalon a manuális munka miatt?',
           subtitle:
-            'Mozgasd a csúszkákat, és nézd meg, mekkora pénzügyi hatása lehet egy vállalatra szabott AI rendszernek a csapatodban.',
-          snapshotBadge: 'AI rendszer ROI pillanatkép',
-          hoursLabel: 'Hány órát töltesz manuális adminisztrációval hetente?',
+            'Állítsd be a csúszkákat, és nézd meg, mennyi profitot szabadít fel egy vállalatra szabott MI rendszer.',
+          snapshotBadge: 'Pénzügyi hatás elemzése',
+          hoursLabel: 'Heti adminisztráció (óra / fő)',
           hoursUnit: 'óra',
-          teamLabel: 'Hány fős a csapatod?',
+          teamLabel: 'Csapat létszáma',
           teamUnit: 'fő',
           rateLabel: 'Átlagos órabér (Ft)',
           currencySuffix: ' Ft',
           annual: 'Éves megtakarítás',
           monthly: 'Havi megtakarítás',
           note: 'Képlet: heti admin órák × 75% automatizálás × 52 hét × csapatlétszám × órabér',
-          cta: 'Kérek részletes ajánlatot',
-          support: 'A legtöbb AI-projektnél 30-90 napon belül megjelenik a mérhető ROI.',
+          cta: 'Kérem a részletes számítást',
+          support: 'A legtöbb ügyfelünknél 90 napon belül megtérül a teljes befektetés.',
         };
 
   const annualSavings = useMemo(

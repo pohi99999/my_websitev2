@@ -56,12 +56,12 @@ const Hero = () =>
         {/* Context badge */}
         <div className="hud-badge mb-6 text-xs font-mono" data-testid="hero-context-badge">
           <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] animate-pulse" aria-hidden="true" />
-          {language === 'en' ? 'Business-ready AI systems' : language === 'de' ? 'KI-Systeme für Unternehmen' : 'Vállalkozásra szabott AI rendszerek'}
+          {language === 'en' ? 'Digital workers & more revenue' : language === 'de' ? 'Digitale Mitarbeiter & mehr Umsatz' : 'Digitális munkatársak és több bevétel'}
         </div>
 
         <h1 className="heading-display text-4xl md:text-6xl mb-6 leading-tight font-syne">
           <span className="text-white font-light block mb-2 tracking-tight">
-            {t( 'hero.headlineLine1' )}
+            {language === 'en' ? 'Stop manual admin.' : language === 'de' ? 'Schluss mit manuellem Admin.' : 'Vége a manuális adminisztrációnak.'}
           </span>
           <span
             className="block font-bold"
@@ -70,7 +70,7 @@ const Hero = () =>
               textShadow: '0 0 30px rgba(0, 229, 255, 0.5), 0 0 60px rgba(0, 229, 255, 0.2)',
             }}
           >
-            {t( 'hero.headlineLine2' )}
+            {language === 'en' ? 'Grow with AI Automation.' : language === 'de' ? 'Wachsen Sie mit KI.' : 'Növekedj AI automatizálással.'}
           </span>
         </h1>
 
@@ -80,7 +80,7 @@ const Hero = () =>
         </div>
 
         <p className="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
-          {t( 'hero.subheadline' )}
+          {language === 'en' ? 'We build practical AI systems that save you 20+ hours a week and bring qualified leads automatically.' : language === 'de' ? 'Wir bauen KI-Systeme, die Ihnen wöchentlich 20+ Stunden sparen.' : 'Olyan MI rendszereket építünk, amik heti 20+ órát spórolnak neked és automatikusan hozzák az előminősített vevőket.'}
         </p>
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-6">
