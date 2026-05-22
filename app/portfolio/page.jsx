@@ -3,8 +3,9 @@ import { headers } from "next/headers";
 
 export const revalidate = 3600;
 
-export function generateMetadata() {
-  const headerLang = headers().get("x-site-language");
+export async function generateMetadata() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get("x-site-language");
   const language = headerLang === "en" ? "en" : headerLang === "de" ? "de" : "hu";
 
   const meta =

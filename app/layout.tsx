@@ -15,10 +15,7 @@ const inter = Inter( { subsets: ['latin'], display: 'swap', variable: '--font-in
 const syne = Syne( { subsets: ['latin'], display: 'swap', variable: '--font-syne', weight: ['600', '700', '800'] } );
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
-    { media: "(prefers-color-scheme: light)", color: "#00ff9d" },
-  ],
+  themeColor: "#0f172a",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -32,8 +29,7 @@ export const metadata: Metadata = {
   },
   description:
     'Pohánka & Társa: AI-vezérelt folyamatautomatizálás és modern, lead-generáló weboldalak fejlesztése magyar KKV-k számára. Átlátható (Glass Box) AI megoldások azonnali ROI-val.',
-  keywords:
-    'AI rendszerek vállalkozásoknak, mesterséges intelligencia vállalkozások számára, AI automatizálás, intelligens döntéstámogatás, egyedi AI rendszerfejlesztés, AI ügynökök és automatizálás, vállalati AI megoldások, weboldal fejlesztés, SEO optimalizálás',
+  keywords: 'AI rendszerek vállalkozásoknak, mesterséges intelligencia vállalkozások számára, AI automatizálás, intelligens döntéstámogatás, egyedi AI rendszerfejlesztés, AI ügynökök és automatizálás, vállalati AI megoldások, weboldal fejlesztés, SEO optimalizálás',
   creator: "Pohánka Péter",
   publisher: "Pohánka és Társa Kft.",
   icons: {
@@ -50,19 +46,17 @@ export const metadata: Metadata = {
     siteName: 'Pohánka és Társa',
     locale: 'hu_HU',
     url: 'https://www.pohankaestarsa.com',
-    images: [
-      {
-        url: '/images/logo.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pohánka és Társa Kft. – AI Ügynökség'
-      }
-    ]
+    images: [{
+      url: '/images/logo.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pohánka és Társa Kft. – AI Ügynökség'
+    }]
   },
   twitter: {
     card: 'summary_large_image',
     title: 'AI rendszerek és automatizálás | Pohánka AI',
-    description: 'Vállalkozásokra szabott AI rendszerek, automatizálás és intelligens döntéstámogatás.',
+    description: 'Vállalkozásokra szabott AI rendszerek, automatizálás and intelligens döntéstámogatás.',
     images: ['/images/logo.png'],
   },
   robots: {
@@ -79,9 +73,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.pohankaestarsa.com',
     languages: {
-      'hu-HU': 'https://www.pohankaestarsa.com/',
-      'en-US': 'https://www.pohankaestarsa.com/en',
-      'de-DE': 'https://www.pohankaestarsa.com/de',
+      'hu': 'https://www.pohankaestarsa.com/',
+      'en': 'https://www.pohankaestarsa.com/en',
+      'de': 'https://www.pohankaestarsa.com/de',
     }
   },
   appleWebApp: {
@@ -139,16 +133,13 @@ export default async function RootLayout ( {
         </LanguageProvider>
         {shouldLoadVercelAnalytics ? <Analytics /> : null}
         {/* Service Worker regisztráció */}
-        <Script id="sw-register" strategy="afterInteractive">
-          {`if ('serviceWorker' in navigator) {
+        <Script id="sw-register" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `if ('serviceWorker' in navigator) {
               window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/sw.js').catch(function(err) {});
               });
-            }`}
-        </Script>
+            }` }} />
         {tawkEmbedUrl ? (
-          <Script id="tawkto" strategy="lazyOnload">
-            {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+          <Script id="tawkto" strategy="lazyOnload" dangerouslySetInnerHTML={{ __html: `var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
               (function(){
                 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
                 s1.async=true;
@@ -156,8 +147,7 @@ export default async function RootLayout ( {
                 s1.charset='UTF-8';
                 s1.setAttribute('crossorigin','*');
                 s0.parentNode.insertBefore(s1,s0);
-              })();`}
-          </Script>
+              })();` }} />
         ) : null}
       </body>
     </html>

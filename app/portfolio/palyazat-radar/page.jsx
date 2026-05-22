@@ -8,8 +8,9 @@ import {
   Target, Mail, Building2, Search, AlertTriangle
 } from 'lucide-react';
 
-export function generateMetadata() {
-  const headerLang = headers().get('x-site-language');
+export async function generateMetadata() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
 
   const meta =
@@ -78,8 +79,9 @@ const stats = [
   { value: '95%', label: 'Pontosság', icon: Target, color: 'text-blue-400' },
 ];
 
-export default function PalyazatRadarPage() {
-  const headerLang = headers().get('x-site-language');
+export default async function PalyazatRadarPage() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
   const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
 
