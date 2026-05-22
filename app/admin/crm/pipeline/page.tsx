@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, User, Phone, Globe, MessageSquare, CheckCircle, XCircle, Clock } from 'lucide-react';
 import { DndContext, closestCorners, KeyboardSensor, PointerSensor, useSensor, useSensors, DragOverlay, defaultDropAnimationSideEffects } from '@dnd-kit/core';
@@ -117,9 +117,18 @@ export default function KanbanPage() {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     fetchLeads();
   }, []);
+
+  const leadsByStage = useMemo(() => {
+    return leads.reduce((acc, lead) => {
+      const stage = lead.deal_stage;
+      if (!acc[stage]) acc[stage] = [];
+      acc[stage].push(lead);
+      return acc;
+    }, {} as Record<string, Lead[]>);
+  }, [leads]);
 
   const updateLeadFields = async (id: number, fields: Partial<Lead>) => {
     try {
@@ -174,18 +183,20 @@ export default function KanbanPage() {
       ) : (
         <DndContext sensors={sensors} collisionDetection={closestCorners} onDragStart={(e) => setActiveId(Number(e.active.id))} onDragEnd={handleDragEnd}>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 h-[calc(100vh-160px)] overflow-hidden">
-            {STAGES.map(stage => (
+            {STAGES.map(stage => {
+              const stageLeads = leadsByStage[stage.id] || [];
+              return (
               <div key={stage.id} id={stage.id} className={`flex flex-col rounded-xl border \${stage.color} p-4 h-full relative`}>
                 <h3 className="text-lg font-semibold mb-4 flex items-center justify-between">
                   {stage.title}
                   <span className="text-xs bg-slate-800 px-2 py-1 rounded text-slate-400">
-                    {leads.filter(l => l.deal_stage === stage.id).length}
+                    {stageLeads.length}
                   </span>
                 </h3>
                 
                 <div className="flex-1 overflow-y-auto space-y-3 custom-scrollbar pr-1">
-                  <SortableContext items={leads.filter(l => l.deal_stage === stage.id).map(l => l.id)} strategy={verticalListSortingStrategy}>
-                    {leads.filter(l => l.deal_stage === stage.id).map(lead => (
+                  <SortableContext items={stageLeads.map(l => l.id)} strategy={verticalListSortingStrategy}>
+                    {stageLeads.map(lead => (
                       <SortableItem 
                         key={lead.id} 
                         lead={lead} 
@@ -198,7 +209,7 @@ export default function KanbanPage() {
                   </SortableContext>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         </DndContext>
       )}
