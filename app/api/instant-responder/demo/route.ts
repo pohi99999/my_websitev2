@@ -2,27 +2,30 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
-    const { message } = await req.json();
+    const { message, tone } = await req.json();
 
-    // Call Gemini 2.0 Flash directly for the demo response
-    // (In production, this would go through an n8n webhook for tracking/CRM)
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
+    // Call the n8n webhook instead of Gemini directly
+    // This allows tracking, CRM integration, and easier workflow changes
+    const n8nWebhookUrl = process.env.N8N_WEBHOOK_URL || 'http://localhost:5678/webhook/instant-responder';
     
-    const response = await fetch(geminiUrl, {
+    const response = await fetch(n8nWebhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{
-          role: 'user',
-          parts: [{
-            text: `Te egy profi ügyfélszolgálati AI vagy a Pohánka & Társánál. Az alábbi üzenetre válaszolj rendkívül segítőkészen, profin, de barátságos SME-barát stílusban. A válaszod legyen rövid (max 3-4 mondat). Üzenet: "${message}"`
-          }]
-        }]
+        message,
+        tone: tone || 'professzionális és udvarias',
+        source: 'website_demo'
       })
     });
 
+    if (!response.ok) {
+      console.error('n8n Webhook error:', response.statusText);
+      throw new Error('Failed to fetch from n8n');
+    }
+
     const data = await response.json();
-    const reply = data.candidates[0].content.parts[0].text;
+    // Assuming n8n returns { success: true, response: "reply text" }
+    const reply = data.response || "Hiba történt a válasz generálása során.";
 
     return NextResponse.json({ ok: true, reply });
   } catch (error) {
