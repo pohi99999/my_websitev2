@@ -73,7 +73,7 @@ export default function LeadMagnetForm() {
           Digitális Hatékonysági Audit <span className="text-[#00ff9d]" aria-live="polite">Lépés {step}/3</span>
         </h2>
         <div className="w-1/3 bg-gray-800 h-2 rounded-full overflow-hidden" role="progressbar" aria-valuenow={(step/3)*100} aria-valuemin={0} aria-valuemax={100}>
-          <div className="bg-[#00ff9d] h-full transition-all duration-300" style={{ width: \`\${(step / 3) * 100}%\` }}></div>
+          <div className="bg-[#00ff9d] h-full transition-all duration-300" style={{ width: `${(step / 3) * 100}%` }}></div>
         </div>
       </div>
 
@@ -103,7 +103,7 @@ export default function LeadMagnetForm() {
               <legend className="block text-gray-400 mb-2 font-medium">2. Mekkora a cég létszáma?</legend>
               <div className="grid grid-cols-2 gap-4">
                 {['1-5 fő', '6-20 fő', '21-50 fő', '50+ fő'].map(size => (
-                  <label key={size} className={\`border p-4 rounded-lg cursor-pointer transition-colors flex items-center \${formData.size === size ? 'border-[#00ff9d] bg-[#00ff9d]/10' : 'border-gray-700 bg-gray-900 hover:border-gray-500'}\`}>
+                  <label key={size} className={`border p-4 rounded-lg cursor-pointer transition-colors flex items-center ${formData.size === size ? 'border-[#00ff9d] bg-[#00ff9d]/10' : 'border-gray-700 bg-gray-900 hover:border-gray-500'}`}>
                     <input 
                       type="radio" 
                       name="size" 
@@ -155,7 +155,7 @@ export default function LeadMagnetForm() {
                   'Vezetői idő felszabadítása', 
                   'Versenyelőny megszerzése'
                 ].map(goal => (
-                  <label key={goal} className={\`border p-4 rounded-lg cursor-pointer transition-colors flex items-center \${formData.goals === goal ? 'border-[#00ff9d] bg-[#00ff9d]/10' : 'border-gray-700 bg-gray-900 hover:border-gray-500'}\`}>
+                  <label key={goal} className={`border p-4 rounded-lg cursor-pointer transition-colors flex items-center ${formData.goals === goal ? 'border-[#00ff9d] bg-[#00ff9d]/10' : 'border-gray-700 bg-gray-900 hover:border-gray-500'}`}>
                     <input 
                       type="radio" 
                       name="goals" 
@@ -219,7 +219,7 @@ export default function LeadMagnetForm() {
               <button 
                 type="submit" 
                 disabled={status === 'submitting'}
-                className={\`\${btnClass} \${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}\`}
+                className={`${btnClass} ${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 {status === 'submitting' ? 'Generálás és küldés...' : 'Audit Kérése'}
               </button>

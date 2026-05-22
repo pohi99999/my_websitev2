@@ -28,7 +28,7 @@ const getVideoForPath = ( path: string ): string =>
 
 const SequentialVideoBackground: React.FC = () =>
 {
-  const pathname = usePathname();
+  const pathname = usePathname() || '/';
   const richMediaEnabled = useRichMediaEnabled();
   const [activePlayer, setActivePlayer] = useState( 0 ); // 0 or 1
   const [videoError, setVideoError] = useState( false );

@@ -795,8 +795,10 @@ function toDurationMinutes(readTime) {
 }
 
 export async function generateMetadata({ params }) {
-  const slug = params?.slug ?? '';
-  const headerLang = headers().get('x-site-language');
+  const resolvedParams = await params;
+  const slug = resolvedParams?.slug ?? '';
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
   const postMeta = getBlogPostMeta(slug, language);
 
@@ -840,8 +842,10 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogPostPage({ params }) {
-  const slug = params?.slug ?? '';
-  const headerLang = headers().get('x-site-language');
+  const resolvedParams = await params;
+  const slug = resolvedParams?.slug ?? '';
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
   const prefix = language === 'hu' ? '' : `/${language}`;
   const ui =

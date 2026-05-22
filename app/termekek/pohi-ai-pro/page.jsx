@@ -5,8 +5,9 @@ import SpotlightCard from '../../components/SpotlightCard';
 import { ArrowLeft, CheckCircle, Zap, Layers, Code, Database, Shield, Cpu } from 'lucide-react';
 import { headers } from 'next/headers';
 
-export function generateMetadata() {
-  const headerLang = headers().get('x-site-language');
+export async function generateMetadata() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
 
   const meta =
@@ -60,8 +61,9 @@ export function generateMetadata() {
   };
 }
 
-export default function PohiAIProPage() {
-  const headerLang = headers().get('x-site-language');
+export default async function PohiAIProPage() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
   const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
 

@@ -224,12 +224,12 @@ export default function KanbanPage() {
         </div>
       )}
 
-      <style jsx global>{\`
+      <style>{`
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #334155; }
-      \`}</style>
+      `}</style>
     </div>
   );
 }

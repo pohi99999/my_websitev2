@@ -12,8 +12,9 @@ import {
   Layers, Activity, Bot, Mail, Truck, Search, Building2
 } from 'lucide-react';
 
-export function generateMetadata() {
-  const headerLang = headers().get('x-site-language');
+export async function generateMetadata() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
 
   const meta =
@@ -324,8 +325,9 @@ const basNarrative = {
   },
 };
 
-export default function BrunellaBASPage() {
-  const headerLang = headers().get('x-site-language');
+export default async function BrunellaBASPage() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
   const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
   const narrative = basNarrative[language] ?? basNarrative.hu;

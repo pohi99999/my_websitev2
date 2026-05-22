@@ -126,9 +126,11 @@ const projects = {
 };
 
 export async function generateMetadata({ params }) {
-  const headerLang = headers().get('x-site-language');
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
-  const rawId = params?.id;
+  const resolvedParams = await params;
+  const rawId = resolvedParams?.id;
   const id = typeof rawId === 'string' ? rawId : String(rawId ?? '');
   const project = projects?.[id];
 
@@ -186,11 +188,13 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function ProjectDetailPage({ params }) {
-  const headerLang = headers().get('x-site-language');
+export default async function ProjectDetailPage({ params }) {
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
   const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
   const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
-  const project = projects[params.id];
+  const resolvedParams = await params;
+  const project = projects[resolvedParams.id];
 
   const projectLocalized = {
     en: {
@@ -283,7 +287,7 @@ export default function ProjectDetailPage({ params }) {
           clientLabel: 'Ügyfél',
         };
 
-  const localized = language === 'hu' ? null : projectLocalized[language]?.[params.id];
+  const localized = language === 'hu' ? null : projectLocalized[language]?.[resolvedParams.id];
 
   if (!project) {
     return (
@@ -405,7 +409,7 @@ export default function ProjectDetailPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify((() => {
-            const canonicalUrl = `https://www.pohankaestarsa.com/portfolio/${params.id}`;
+            const canonicalUrl = `https://www.pohankaestarsa.com/portfolio/${resolvedParams.id}`;
 
             const caseStudy = {
               '@context': 'https://schema.org',

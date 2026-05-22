@@ -3,9 +3,6 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Impresszum',
   description: 'Céginformációk és elérhetőségek – Pohánka és Társa Kft.',
-  alternates: {
-    canonical: '/impresszum'
-  }
 };
 
 export default function ImpresszumPage() {

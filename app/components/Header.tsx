@@ -35,7 +35,7 @@ export default function Header ()
   };
 
   const lang = ( ['hu', 'en', 'de'] as const ).includes( language as 'hu' | 'en' | 'de' ) ? ( language as 'hu' | 'en' | 'de' ) : ( 'hu' as const );
-  const a11yLabels = {
+  const langRecord = {
     hu: {
       mainNav: 'Főmenü',
       openMenu: 'Menü megnyitása',
@@ -54,7 +54,8 @@ export default function Header ()
       closeMenu: 'Menü schließen',
       mobileMenu: 'Mobile Navigation',
     },
-  }[lang];
+  };
+  const a11yLabels = langRecord[lang] || langRecord.hu;
 
   // Hover handlers with a small delay so accidental brief mouse-overs don't flash the menu
   const openMegaMenu = useCallback( ( key: string ) =>
@@ -328,7 +329,8 @@ export default function Header ()
           <nav className="hidden lg:flex items-center gap-0" role="navigation" aria-label={a11yLabels.mainNav}>
             {navItems.map( ( item ) =>
             {
-              const isActive = pathname === item.href || pathname.startsWith( item.href + '/' );
+              const currentPath = pathname || '/';
+              const isActive = currentPath === item.href || currentPath.startsWith( item.href + '/' );
               const megaKey: 'services' | 'products' | null =
                 item.href === withLang( '/szolgaltatasok' ) ? 'services' :
                   item.href === withLang( '/termekek' ) ? 'products' : null;

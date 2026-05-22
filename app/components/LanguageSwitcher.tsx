@@ -15,9 +15,9 @@ export default function LanguageSwitcher() {
     const isEnPath = currentPath === '/en' || currentPath.startsWith('/en/');
     const isDePath = currentPath === '/de' || currentPath.startsWith('/de/');
     const basePath = isEnPath
-      ? currentPath.replace(/^\/en/, '') || '/'
+      ? (currentPath.replace(/^\/en/, '') || '/')
       : isDePath
-        ? currentPath.replace(/^\/de/, '') || '/'
+        ? (currentPath.replace(/^\/de/, '') || '/')
         : currentPath;
 
     if (targetLanguage === 'hu') return basePath;
