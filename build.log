@@ -1,0 +1,76 @@
+
+> ai-weboldal@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 13.1s
+  Running TypeScript ...
+  Finished TypeScript in 9.8s ...
+  Collecting page data using 3 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+  Generating static pages using 3 workers (0/31) ...
+  Generating static pages using 3 workers (7/31)
+  Generating static pages using 3 workers (15/31)
+  Generating static pages using 3 workers (23/31)
+✓ Generating static pages using 3 workers (31/31) in 455ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /adatvedelmi-nyilatkozat
+├ ƒ /admin/analytics
+├ ƒ /admin/crm
+├ ƒ /admin/crm/pipeline
+├ ○ /api/analytics/kpi-config
+├ ƒ /api/analytics/kpi-snapshot
+├ ƒ /api/chat
+├ ƒ /api/contact
+├ ƒ /api/instant-responder/demo
+├ ƒ /aszf
+├ ƒ /blog
+├ ƒ /blog/[slug]
+├ ƒ /blog/-/opengraph-image
+├ ƒ /blog/-/twitter-image
+├ ƒ /blog/opengraph-image
+├ ƒ /blog/twitter-image
+├ ƒ /de/[[...slug]]
+├ ƒ /en/[[...slug]]
+├ ƒ /fogalomtar
+├ ƒ /fogaszati-lead-lista
+├ ƒ /hatekonysagi-audit
+├ ƒ /impresszum
+├ ƒ /kapcsolat
+├ ƒ /opengraph-image
+├ ƒ /portfolio
+├ ƒ /portfolio/[id]
+├ ƒ /portfolio/-/opengraph-image
+├ ƒ /portfolio/-/twitter-image
+├ ƒ /portfolio/brunella-bas
+├ ƒ /portfolio/opengraph-image
+├ ƒ /portfolio/palyazat-radar
+├ ƒ /portfolio/pohi-ai-pro
+├ ƒ /portfolio/tartalom-gyartas
+├ ƒ /portfolio/twitter-image
+├ ƒ /portfolio/web-robotpilota
+├ ƒ /rolunk
+├ ƒ /szolgaltatasok
+├ ƒ /termekek
+├ ƒ /termekek/brunella-agents
+├ ƒ /termekek/brunella-agents/opengraph-image
+├ ƒ /termekek/brunella-agents/twitter-image
+├ ƒ /termekek/instant-responder
+├ ƒ /termekek/opengraph-image
+├ ƒ /termekek/pohi-ai-pro
+├ ƒ /termekek/twitter-image
+├ ƒ /twitter-image
+└ ƒ /weboldal-ai-kkv
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

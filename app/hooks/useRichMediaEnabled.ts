@@ -16,7 +16,7 @@ export function useRichMediaEnabled() {
   const [saveDataEnabled, setSaveDataEnabled] = useState(false);
 
   useEffect(() => {
-    const connection = (navigator as NavigatorWithConnection).connection;
+    const connection = (navigator as NavigatorWithConnection)?.connection;
     setSaveDataEnabled(Boolean(connection?.saveData));
   }, []);
 
