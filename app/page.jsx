@@ -1,4 +1,3 @@
-import GlobalVideoBackground from "./components/GlobalVideoBackground";
 import Hero from "./components/Hero";
 import AIFolyamatok from "./components/AIFolyamatok";
 import StatsBar from "./components/StatsBar";
@@ -71,7 +70,6 @@ export async function generateMetadata() {
 export default function HomePage() {
   return (
     <>
-      <GlobalVideoBackground />
       <Hero />
       <AIFolyamatok />
       <StatsBar />

@@ -12,6 +12,7 @@ const videos: Record<string, string> = {
   '/portfolio': '/portfolio.mp4',
   '/blog': '/blog.mp4',
   '/kapcsolat': '/contact.mp4',
+  '/weboldal-ai-kkv': '/home.mp4',
 };
 
 // Function to determine the correct video for a given path, handling sub-routes and locale prefixes (en/de)
@@ -22,8 +23,16 @@ const getVideoForPath = ( path: string ): string =>
   // Strip locale prefix if present (en, de)
   const first = segments[0];
   const isLocale = first === 'en' || first === 'de';
-  const topLevelKey = '/' + ( isLocale && segments[1] ? segments[1] : first );
-  return videos[topLevelKey] || videos['/']; // Default to homepage video if no match
+  
+  // Get the base path after locale
+  const baseSegments = isLocale ? segments.slice(1) : segments;
+  const topLevelKey = baseSegments.length > 0 ? '/' + baseSegments.join('/') : '/';
+  
+  // Try exact match first, then fall back to top-level key
+  if (videos[topLevelKey]) return videos[topLevelKey];
+  
+  const parentKey = '/' + baseSegments[0];
+  return videos[parentKey] || videos['/'];
 };
 
 const SequentialVideoBackground: React.FC = () =>
@@ -35,7 +44,6 @@ const SequentialVideoBackground: React.FC = () =>
   const video0Ref = useRef<HTMLVideoElement>( null );
   const video1Ref = useRef<HTMLVideoElement>( null );
   const normalizedPath = pathname.replace( /^\/(en|de)(?=\/|$)/, '' ) || '/';
-  const isHomepage = normalizedPath === '/';
 
   // Function to switch video with cross-fade
   const switchVideo = useCallback( ( newSrc: string ) =>
@@ -73,26 +81,28 @@ const SequentialVideoBackground: React.FC = () =>
   // Main effect to handle route changes
   useEffect( () =>
   {
-    if ( !richMediaEnabled || isHomepage ) return;
+    if ( !richMediaEnabled ) return;
     const targetVideo = getVideoForPath( pathname );
     switchVideo( targetVideo );
-  }, [pathname, switchVideo, richMediaEnabled, isHomepage] );
+  }, [pathname, switchVideo, richMediaEnabled] );
 
   // Set initial video source on component mount
   useEffect( () =>
   {
-    if ( !richMediaEnabled || isHomepage ) return;
+    if ( !richMediaEnabled ) return;
     const initialSrc = getVideoForPath( pathname );
     const currentRef = activePlayer === 0 ? video0Ref : video1Ref;
     if ( currentRef.current )
     {
       currentRef.current.src = initialSrc;
+      currentRef.current.load();
+      currentRef.current.play().catch( error =>
+      {
+        console.error( "Initial autoplay was prevented:", error );
+      } );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [richMediaEnabled, isHomepage, pathname] );
-
-  if ( isHomepage ) return null;
-
+  }, [richMediaEnabled] ); // Only run once on mount (or when richMediaEnabled changes)
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">

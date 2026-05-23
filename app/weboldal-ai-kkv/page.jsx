@@ -1,7 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import GlobalVideoBackground from '../components/GlobalVideoBackground';
+import { headers } from "next/headers";
 
 import Hero from './components/Hero';
 import KinekSzol from './components/KinekSzol';
@@ -14,22 +12,58 @@ import ZaroCTA from './components/ZaroCTA';
 
 export const dynamic = 'force-dynamic';
 
+export async function generateMetadata() {
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+
+  const meta =
+    language === 'en'
+      ? {
+          title: 'Website + AI for SMEs | Pohánka AI',
+          description:
+            'Modern, lead-generating websites with built-in AI automation for Hungarian small and medium-sized businesses.',
+          canonical: '/en/weboldal-ai-kkv',
+        }
+      : language === 'de'
+      ? {
+          title: 'Webseite + KI für KMU | Pohánka AI',
+          description:
+            'Moderne, Lead-generierende Webseiten mit integrierter KI-Automatisierung für ungarische KMU.',
+          canonical: '/de/weboldal-ai-kkv',
+        }
+      : {
+          title: 'Weboldal + AI-automatizálás magyar KKV-knak | Pohánka AI',
+          description:
+            'Modern, lead-generáló weboldalak és beépített AI folyamatautomatizálás magyar KKV-k számára. Időmegtakarítás és több vevő.',
+          canonical: 'https://www.pohankaestarsa.com/weboldal-ai-kkv',
+        };
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: meta.canonical,
+      languages: {
+        hu: 'https://www.pohankaestarsa.com/weboldal-ai-kkv',
+        en: 'https://www.pohankaestarsa.com/en/weboldal-ai-kkv',
+        de: 'https://www.pohankaestarsa.com/de/weboldal-ai-kkv',
+      },
+    },
+  };
+}
+
 export default function WeboldalAiKkvPage() {
   return (
-    <div className="min-h-screen bg-transparent text-white relative">
-      <GlobalVideoBackground />
-      <Header />
-      <main id="main-content" className="pt-20 relative z-10">
-        <Hero />
-        <KinekSzol />
-        <MitKapsz />
-        <Csomagok />
-        <HogyanDolgozunk />
-        <Referenciak />
-        <FAQ />
-        <ZaroCTA />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Hero />
+      <KinekSzol />
+      <MitKapsz />
+      <Csomagok />
+      <HogyanDolgozunk />
+      <Referenciak />
+      <FAQ />
+      <ZaroCTA />
+    </>
   );
 }

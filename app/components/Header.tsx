@@ -363,7 +363,7 @@ export default function Header ()
                       type="button"
                       className={`
                         relative px-4 py-6 text-sm font-medium tracking-widest uppercase
-                        transition-colors duration-200 group flex items-center gap-1
+                        transition-colors duration-200 group flex items-center gap-1 whitespace-nowrap
                         ${ isActive || isExpanded ? 'text-[#00e5ff]' : 'text-gray-400 hover:text-white' }
                       `}
                       aria-expanded={isExpanded ? 'true' : 'false'}
@@ -494,7 +494,7 @@ export default function Header ()
                   }
                   className={`
                     relative px-4 py-6 text-sm font-medium tracking-widest uppercase
-                    transition-colors duration-200 group
+                    transition-colors duration-200 group whitespace-nowrap
                     ${ isActive ? 'text-[#00e5ff]' : 'text-gray-400 hover:text-white' }
                   `}
                 >
