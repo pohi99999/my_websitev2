@@ -6,6 +6,7 @@ import {
   ArrowRight, CheckCircle, Building2, Truck, Shield, ExternalLink,
   Bot, FileSearch, Award, Clock, DollarSign
 } from "lucide-react";
+import SmartContactForm from "../components/SmartContactForm";
 
 export async function generateMetadata() {
   const headerStore = await headers();
@@ -566,6 +567,15 @@ export default async function SzolgaltatasokPage() {
               );
             })}
           </div>
+        </section>
+
+        {/* Smart Contact Form */}
+        <section className="mt-24 max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-[#00e5ff] mb-4">Miben segíthetünk?</h2>
+            <p className="text-gray-300">Írd le röviden a projekted, és azonnal egyeztetünk a lehetőségekről.</p>
+          </div>
+          <SmartContactForm />
         </section>
 
         {/* CTA */}
