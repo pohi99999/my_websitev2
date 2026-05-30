@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-export default function SmartContactForm() {
+export function SmartContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

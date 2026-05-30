@@ -6,8 +6,8 @@ import {
   ArrowRight, CheckCircle, Building2, Truck, Shield, ExternalLink,
   Bot, FileSearch, Award, Clock, DollarSign
 } from "lucide-react";
-import SmartContactForm from "../components/SmartContactForm";
-import AbandonedCartDemo from "../components/AbandonedCartDemo";
+import { SmartContactForm } from "../components/SmartContactForm";
+import { AbandonedCartDemo } from "../components/AbandonedCartDemo";
 
 export async function generateMetadata() {
   const headerStore = await headers();

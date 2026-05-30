@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { ShoppingCart, ArrowRight } from 'lucide-react';
 
-export default function AbandonedCartDemo() {
+export function AbandonedCartDemo() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
