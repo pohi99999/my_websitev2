@@ -12,7 +12,8 @@ export function AbandonedCartDemo() {
     setStatus('submitting');
 
     try {
-      const response = await fetch('http://localhost:5678/webhook/abandoned-cart', {
+      const n8nWebhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL || 'http://localhost:5678';
+      const response = await fetch(`${n8nWebhookUrl}/webhook/abandoned-cart`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -31,7 +31,8 @@ export default function LeadMagnetForm() {
     setStatus('submitting');
     try {
       // POST to n8n webhook
-      const res = await fetch('http://localhost:5678/webhook/lead-magnet-audit', {
+      const n8nWebhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL || 'http://localhost:5678';
+      const res = await fetch(`${n8nWebhookUrl}/webhook/lead-magnet-audit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
