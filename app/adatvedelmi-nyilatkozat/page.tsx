@@ -21,7 +21,7 @@ export default function AdatvedelmiPage() {
         <section className="mt-10 space-y-4 text-gray-300 leading-relaxed">
           <h2 className="text-xl font-bold text-white">Adatkezelő</h2>
           <p>Pohánka és Társa Kft. • 8900 Zalaegerszeg, Magyarország</p>
-          <p>Email: peterpohankapersonal@gmail.com • Telefon: +36 30 244 6779</p>
+          <p>Email: peterpohankapersonal@gmail.com • Telefon: +36 30 429 1227</p>
 
           <h2 className="text-xl font-bold text-white mt-8">Kezelt adatok</h2>
           <ul className="list-disc pl-6 space-y-2">

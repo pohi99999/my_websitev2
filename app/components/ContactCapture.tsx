@@ -106,7 +106,7 @@ export default function ContactCapture ()
 
   const isSending = status.state === 'sending';
   const whatsappHref =
-    'https://wa.me/36302446779?text=' +
+    'https://wa.me/36304291227?text=' +
     encodeURIComponent(
       language === 'en'
         ? 'Hi! I would like an AI system review for my business.'

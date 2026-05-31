@@ -144,7 +144,7 @@ export default function KapcsolatClient() {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">{ui.phone}</p>
-                  <p className="font-semibold">+36 30 244 6779</p>
+                  <p className="font-semibold">+36 30 429 1227</p>
                 </div>
               </div>
 

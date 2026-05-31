@@ -168,7 +168,7 @@ Fájlok:
 
 - Kapcsolat oldalon a placeholder adatok lecserélve a valós adatokra:
   - Email: `peterpohankapersonal@gmail.com`
-  - Telefon: `+36 30 244 6779`
+  - Telefon: `+36 30 429 1227`
   - Cím: `8900 Zalaegerszeg, Magyarország`
 - Footer „Vezetés” rész bővítve 6 social ikonnal + valós linkekkel:
   - Facebook, LinkedIn, GitHub, X (Twitter), Google Developer (`Code2`), YouTube
@@ -366,7 +366,7 @@ Változások:
   - Description: „Kérjen ingyenes konzultációt szoftverfejlesztési vagy AI projektjéhez.”
 
 Megjegyzés:
-- A layout JSON-LD telefonszám már helyes volt (`+36 30 244 6779`), ezért ott nem kellett módosítani.
+- A layout JSON-LD telefonszám már helyes volt (`+36 30 429 1227`), ezért ott nem kellett módosítani.
 
 Ellenőrzés:
 - `npm run lint` → OK
