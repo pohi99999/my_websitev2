@@ -1,6 +1,6 @@
 import { Brain, CheckCircle } from "lucide-react";
 import { SmartContactForm } from "../../../components/SmartContactForm";
-import seoTargets from "../../../lib/data/seo_targets.json";
+import seoTargets from "../../../../lib/data/seo_targets.json";
 
 export async function generateStaticParams() {
   return seoTargets.map((target) => ({

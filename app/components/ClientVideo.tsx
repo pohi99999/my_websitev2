@@ -6,7 +6,7 @@ export default function ClientVideo() {
   return (
     <section className="py-20 px-4 bg-white/5 relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10">
-        <GsapFadeIn direction="up">
+        <GsapFadeIn>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white tracking-tight">
               Interjú pár elégedett ügyfelünkkel
