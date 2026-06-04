@@ -110,7 +110,7 @@ export default async function RootLayout ( {
         : 'Ugrás a fő tartalomhoz';
   const shouldLoadVercelAnalytics = process.env.VERCEL === '1';
   const tawkEmbedUrl = process.env.NEXT_PUBLIC_TAWK_EMBED_URL?.trim();
-  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-BZQL39E3RD';
 
   return (
     <html lang={initialLanguage} className="scroll-smooth">
