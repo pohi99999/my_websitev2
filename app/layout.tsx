@@ -10,6 +10,7 @@ import { cookies, headers } from 'next/headers';
 import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
 import BrunellaChat from './components/BrunellaChat';
+import GoogleAnalytics from './components/GoogleAnalytics';
 
 const inter = Inter( { subsets: ['latin'], display: 'swap', variable: '--font-inter' } );
 const syne = Syne( { subsets: ['latin'], display: 'swap', variable: '--font-syne', weight: ['600', '700', '800'] } );
@@ -109,10 +110,12 @@ export default async function RootLayout ( {
         : 'Ugrás a fő tartalomhoz';
   const shouldLoadVercelAnalytics = process.env.VERCEL === '1';
   const tawkEmbedUrl = process.env.NEXT_PUBLIC_TAWK_EMBED_URL?.trim();
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
   return (
     <html lang={initialLanguage} className="scroll-smooth">
       <body className={`${ inter.variable } ${ syne.variable } ${ inter.className } bg-black text-white antialiased`}>
+        {gaId && <GoogleAnalytics GA_MEASUREMENT_ID={gaId} />}
         {/* Skip navigation – akadálymentesítés */}
         <a
           href="#main-content"
