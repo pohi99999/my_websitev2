@@ -1,0 +1,77 @@
+[
+  {
+    "slug": "instant-responder",
+    "title": "Azonnali MI Válaszadó",
+    "description": "Ne várakoztasd az ügyfeleid! Az MI Válaszadó 60 másodpercen belül professzionális, személyre szabott választ ad minden megkeresésre.",
+    "tag": "AUTOMATION-AS-A-SERVICE",
+    "hero_text": "Az érdeklődők 50%-a annál vásárol, aki először válaszol. Digitális munkatársunk 60 másodpercen belül reagál, mialatt Te éppen pihensz.",
+    "price": "59.000 Ft / hó-tól",
+    "features": [
+      {
+        "title": "60 másodperces válasz",
+        "description": "Nincs többé órákig (vagy napokig) tartó várakozás. Az MI azonnal feldolgozza az igényt és választ küld.",
+        "icon": "Clock"
+      },
+      {
+        "title": "Emberi tónus",
+        "description": "Nem sablonokat használunk. Az MI értelmezi a kérdést és a Te céged stílusában fogalmazza meg a választ.",
+        "icon": "Bot"
+      },
+      {
+        "title": "Mérhető eredmény",
+        "description": "A válaszok azonnal rögzítésre kerülnek a CRM rendszeredben, így mindenről pontos képed van.",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  {
+    "slug": "lead-kvalifikator",
+    "title": "Intelligens Lead Kvalifikátor",
+    "description": "Szűrd ki az ideális ügyfeleket automatikusan. Az MI elemzi az érdeklődőket és csak a valódi üzleti lehetőségeket továbbítja feléd.",
+    "tag": "SALES-OPTIMIZATION",
+    "hero_text": "Ne pazarold az időd komolytalan érdeklődőkre. MI rendszerünk kikérdezi, pontozza és előkészíti a leadeket a záráshoz.",
+    "price": "79.000 Ft / hó-tól",
+    "features": [
+      {
+        "title": "Automata Pontozás",
+        "description": "Az MI a megadott szempontok alapján 1-10-ig pontozza az érdeklődőt a költségvetés és igény szerint.",
+        "icon": "Target"
+      },
+      {
+        "title": "Személyre szabott kérdések",
+        "description": "A rendszer dinamikusan változtatja a kérdéseket az ügyfél korábbi válaszai alapján.",
+        "icon": "MessageSquare"
+      },
+      {
+        "title": "Naptár integráció",
+        "description": "A legígéretesebb ügyfeleknek azonnal felajánlja a szabad időpontokat a naptáradban.",
+        "icon": "Calendar"
+      }
+    ]
+  },
+  {
+    "slug": "web-rescue",
+    "title": "48 Órás Web Rescue",
+    "description": "Lassú a weboldalad? Rosszak a Google helyezéseid? 48 óra alatt technikai SEO javítást és sebesség optimalizálást végzünk mérhető ROI-val.",
+    "tag": "PERFORMANCE-RESCUE",
+    "hero_text": "A lassú weboldal elriasztja a vevőket. Technikai mentőcsapatunk (MI + Senior Dev) 48 órán belül gatyába rázza a jelenlétedet.",
+    "price": "149.000 Ft-tól",
+    "features": [
+      {
+        "title": "Lighthouse Optimalizálás",
+        "description": "A Google mérőszámait (Core Web Vitals) a zöld zónába toljuk a jobb helyezésekért.",
+        "icon": "Zap"
+      },
+      {
+        "title": "Technikai SEO Fix",
+        "description": "Meta tagek, robots.txt, sitemap és belső linkstruktúra javítása automatizált eszközökkel.",
+        "icon": "Search"
+      },
+      {
+        "title": "Konverzió Javítás",
+        "description": "Elemzzük a user journey-t és javaslatot teszünk (vagy implementáljuk) a hatékonyabb CTA gombokat.",
+        "icon": "TrendingUp"
+      }
+    ]
+  }
+]

@@ -1,29 +1,31 @@
 import { Brain, CheckCircle } from "lucide-react";
 import { SmartContactForm } from "../../../components/SmartContactForm";
+import seoTargets from "../../../lib/data/seo_targets.json";
 
 export async function generateStaticParams() {
-  return [
-    { industry: 'fogaszat', city: 'budapest' },
-    { industry: 'konyvelo', city: 'zalaegerszeg' },
-    { industry: 'autoszerviz', city: 'szombathely' },
-  ];
+  return seoTargets.map((target) => ({
+    industry: target.industry,
+    city: target.city,
+  }));
 }
 
 export async function generateMetadata({ params }: { params: { industry: string, city: string } }) {
-  const { industry, city } = params;
-  const capitalizedIndustry = industry.charAt(0).toUpperCase() + industry.slice(1);
-  const capitalizedCity = city.charAt(0).toUpperCase() + city.slice(1);
+  const target = seoTargets.find(t => t.industry === params.industry && t.city === params.city) || {
+    original_industry: params.industry,
+    original_city: params.city
+  };
 
   return {
-    title: `Professzionális ${capitalizedIndustry} weboldal készítés ${capitalizedCity} - Pohánka & Társa`,
-    description: `${capitalizedCity} területén működő ${industry} vállalkozások számára kínálunk MI-alapú weboldalakat és automatizációt mérhető ROI-val.`,
+    title: `Professzionális ${target.original_industry} weboldal készítés ${target.original_city} - Pohánka & Társa`,
+    description: `${target.original_city} területén működő ${target.original_industry} vállalkozások számára kínálunk MI-alapú weboldalakat és automatizációt mérhető ROI-val.`,
   };
 }
 
 export default function IndustryCityPage({ params }: { params: { industry: string, city: string } }) {
-  const { industry, city } = params;
-  const capitalizedIndustry = industry.charAt(0).toUpperCase() + industry.slice(1);
-  const capitalizedCity = city.charAt(0).toUpperCase() + city.slice(1);
+  const target = seoTargets.find(t => t.industry === params.industry && t.city === params.city) || {
+    original_industry: params.industry,
+    original_city: params.city
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 py-20 px-4">
@@ -34,10 +36,10 @@ export default function IndustryCityPage({ params }: { params: { industry: strin
             <span>Iparági Megoldások</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Professzionális {capitalizedIndustry} weboldal készítés {capitalizedCity} területén
+            Professzionális {target.original_industry} weboldal készítés {target.original_city} területén
           </h1>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Segítünk a(z) {capitalizedCity} környéki {industry} cégeknek, hogy modern, MI-vel támogatott weboldallal és 0 manuális adatrögzítéssel növeljék hatékonyságukat.
+            Segítünk a(z) {target.original_city} környéki {target.original_industry.toLowerCase()} cégeknek, hogy modern, MI-vel támogatott weboldallal és 0 manuális adatrögzítéssel növeljék hatékonyságukat.
           </p>
         </header>
 
@@ -62,7 +64,7 @@ export default function IndustryCityPage({ params }: { params: { industry: strin
 
         <section id="kapcsolat" className="bg-slate-900 rounded-2xl p-8 text-white">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4">Kérjen egyedi ajánlatot {capitalizedCity} területén!</h2>
+            <h2 className="text-3xl font-bold mb-4">Kérjen egyedi ajánlatot {target.original_city} területén!</h2>
             <p className="text-slate-400">Töltse ki az alábbi űrlapot, és 24 órán belül felvesszük Önnel a kapcsolatot.</p>
           </div>
           <SmartContactForm />
