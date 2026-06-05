@@ -161,6 +161,16 @@ const Footer = () =>
 
         </div>
 
+        {/* Könyvelési átvezető */}
+        <div className="border-t border-white/10 pt-6 pb-2 text-center text-sm text-gray-400">
+          <p>
+            {language === 'hu' ? 'Ha a könyvelési szolgáltatásaink érdeklik látogassa meg a ' : 'If you are interested in our accounting services, visit the '}
+            <a href="https://weboldal-konyveles.vercel.app/" target="_blank" rel="noreferrer noopener" className="text-[#00e5ff] hover:text-white transition-colors underline decoration-[#00e5ff]/30 underline-offset-4">
+              {language === 'hu' ? 'könyviteli részlegét cégünknek' : 'accounting department of our company'}
+            </a>.
+          </p>
+        </div>
+
         {/* Bottom copyright bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <p>© {currentYear} {t( 'footer.companyName' )} {t( 'footer.legal.rights' )}</p>
