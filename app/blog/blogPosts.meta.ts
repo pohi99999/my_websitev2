@@ -27,6 +27,7 @@ export type BlogPostMetaResolved = {
 };
 
 export const BLOG_POST_ORDER: string[] = [
+  'automatizalt-bongeszo-agensek',
   'brunella-strategiai-white-paper',
   'bevezeto-a-mesterseges-intelligencia-vilagaba',
   'digitalis-lenyomat-anatomiaja',
@@ -40,6 +41,23 @@ export const BLOG_POST_ORDER: string[] = [
 ];
 
 export const BLOG_POST_META: Record<string, BlogPostMeta> = {
+  'automatizalt-bongeszo-agensek': {
+    slug: 'automatizalt-bongeszo-agensek',
+    title: {
+      hu: 'Automatizált Böngésző Ágensek: A Digitális Munkatársad a Hétköznapokban',
+      en: 'Automated Browser Agents: Your Digital Worker in Everyday Life',
+      de: 'Automatisierte Browser-Agenten: Ihr digitaler Mitarbeiter im Alltag',
+    },
+    date: { hu: '2026. Június 8.', en: 'June 8, 2026', de: '8. Juni 2026' },
+    author: { hu: 'Pohánka József Péter', en: 'József Péter Pohánka', de: 'József Péter Pohánka' },
+    readTime: { hu: '6 perc', en: '6 min', de: '6 Min.' },
+    category: { hu: 'Automatizáció', en: 'Automation', de: 'Automatisierung' },
+    excerpt: {
+      hu: 'Mit jelent az, hogy egy robotpilóta helyetted böngészi a webet? Hogyan spórolnak meg órákat az AI ágensek egy átlagos vállalkozásnak?',
+      en: 'What does it mean for an autopilot to browse the web for you? How do AI agents save hours for an average business?',
+      de: 'Was bedeutet es, wenn ein Autopilot für Sie im Web surft? Wie sparen KI-Agenten einem durchschnittlichen Unternehmen Stunden?',
+    },
+  },
   'fekete-doboz-vege-glass-box': {
     slug: 'fekete-doboz-vege-glass-box',
     title: {

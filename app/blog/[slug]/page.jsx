@@ -9,6 +9,56 @@ import { headers } from 'next/headers';
 
 // Valós Blog Tartalmak
 const blogPosts = {
+  'automatizalt-bongeszo-agensek': {
+    title: 'Automatizált Böngésző Ágensek: A Digitális Munkatársad a Hétköznapokban',
+    date: '2026. Június 8.',
+    author: 'Pohánka József Péter',
+    readTime: '6 perc',
+    category: 'Automatizáció',
+    image: '🤖',
+    videoId: 'MxCrG5LsIPM',
+    excerpt:
+      'Mit jelent az, hogy egy robotpilóta helyetted böngészi a webet? Hogyan spórolnak meg órákat az AI ágensek egy átlagos vállalkozásnak?',
+    content: `
+      Képzelje el, hogy van egy láthatatlan asszisztense, aki leül a számítógép elé, megnyitja a böngészőt, megkeresi a konkurens árakat, letölti a havi számlákat, beírja őket egy táblázatba, majd küld egy értesítést, ha készen van. Nem hibázik, nem fárad el, és mindezt másodpercek alatt végzi el.
+
+      Ők az **automatizált böngésző ágensek** — és hamarosan alapjaiban változtatják meg, hogyan dolgozunk a mindennapokban.
+
+      ## Mi az a böngésző ágens és hogyan működik?
+
+      A hagyományos szoftverekkel ellentétben a modern, mesterséges intelligenciával támogatott böngésző ágensek (mint például a Skyvern, vagy a mi saját fejlesztésű Brunella rendszerünk) nem merev kódokat követnek.
+
+      Úgy látják és értelmezik a weboldalakat, mint egy ember:
+      - **Képernyő-megértés:** Nem zavarja meg őket, ha egy weboldal frissül, és máshová kerül a "Megrendelés" vagy a "Bejelentkezés" gomb. Felismerik az elemeket a funkciójuk alapján.
+      - **Autonóm döntéshozatal:** Ha egy oldalon felugrik egy hibaüzenet vagy egy cookie-elfogadó ablak, az ágens önállóan kitalálja, hogyan lépjen túl rajta.
+      - **Eszközhasználat:** Képesek gépelni, kattintani, görgetni, fájlokat letölteni és feltölteni.
+
+      ## Mire használható a mindennapokban?
+
+      Íme néhány konkrét példa, ami egy átlagos vállalkozásnak azonnal órákat spórol meg:
+
+      ### 1. Automata Lead-kutatás (Web Rescue)
+      Az ágens rákeres a Google Maps-en a célcsoportodba tartozó cégekre, megnyitja a weboldalukat, kinyeri a kapcsolati adatokat (email, telefon, közösségi média linkek), és lefuttat egy Lighthouse teljesítmény-auditot. Ha a weboldaluk lassú, az adatokat automatikusan beírja a CRM-rendszeredbe, hogy készíthesd a személyre szabott ajánlatot.
+
+      ### 2. Intelligens Árfigyelés és Konkurencia-elemzés
+      Ha webáruházad van, az ágens naponta végigböngészi a versenytársaid oldalait, kigyűjti a termékek árait, és egy Excel táblázatba rendezi őket. Akár arra is beprogramozható, hogy ha a konkurens árat csökkent, a saját áraidat is automatikusan igazítsa.
+
+      ### 3. Rutin Adminisztráció és Számlaletöltés
+      Minden hónap elején órákat töltesz a telefonszámlák, közműszámlák és szoftver-előfizetések számláinak letöltésével a különböző portálokról? Az ágens bejelentkezik az összes fiókodba, letölti a PDF fájlokat, elnevezi őket a megfelelő formátumban, feltölti a Google Drive-ra, és továbbítja a könyvelőnek.
+
+      ## Az IDŐ: A legfontosabb valuta
+
+      A modern üzleti életben a sebesség és az idő a legfontosabb erőforrás. Amikor egy böngésző ágens átvesz egy olyan unalmas, monoton kattintgatós folyamatot, ami egy embernek hetente 5-10 órát venne igénybe, nem csak a hibákat minimalizálja.
+
+      Valójában **időt ad vissza Önnek**. Időt, amit a vállalkozása építésére, stratégiai döntésekre, vagy a családjára fordíthat.
+
+      A robotpilóta korszak megérkezett a böngészőnkbe is. Ön készen áll átadni az irányítást a rutinfeladatokban?
+    `,
+    relatedPosts: [
+      { slug: 'brunella-agent-system-mukodese' },
+      { slug: 'ai-automatizalas-kkv-knak' }
+    ],
+  },
   'fekete-doboz-vege-glass-box': {
     title: 'A "Fekete Doboz" Korszak Vége: Miért az Átláthatóság (Glass Box) a Jövő?',
     date: '2025. Január 15.',
@@ -525,6 +575,23 @@ Az automatizálás nem egyszeri projekt — hanem folyamatos fejlődés. Kezdd a
 
   const localizedLongformBodies = {
     en: {
+    'automatizalt-bongeszo-agensek': `
+  ## Automated Browser Agents: Autopilot for the Web
+
+  Imagine a digital worker that logs in, retrieves data, processes invoices, and fills spreadsheets just like you do.
+
+  ### How they work
+
+  Modern browser agents understand the visual structure of web pages. They don't break when a button changes color or moves.
+
+  ### Key use cases
+
+  1. **Lead Generation & Auditing:** Scanning targets and collecting details.
+  2. **Competitor Price Monitoring:** Tracking market shifts automatically.
+  3. **Repetitive Administration:** Fetching billing receipts and matching records.
+
+  Embrace browser automation to reclaim hours of manual work every week.
+  `,
     'fekete-doboz-vege-glass-box': `
   ## Why transparency matters in AI
 
@@ -631,6 +698,23 @@ Az automatizálás nem egyszeri projekt — hanem folyamatos fejlődés. Kezdd a
   `,
     },
     de: {
+    'automatizalt-bongeszo-agensek': `
+  ## Automatisierte Browser-Agenten: Autopilot fürs Web
+
+  Stellen Sie sich einen digitalen Assistenten vor, der sich einloggt, Daten sammelt, Rechnungen verarbeitet und Tabellen ausfüllt – genau wie Sie.
+
+  ### Funktionsweise
+
+  Moderne Browser-Agenten verstehen den visuellen Aufbau von Webseiten. Sie scheitern nicht, wenn sich ein Button verschiebt oder die Farbe ändert.
+
+  ### Anwendungsfälle
+
+  1. **Lead-Generierung & Audit:** Zielgruppen scannen und Details sammeln.
+  2. **Konkurrenz-Preismonitoring:** Marktveränderungen automatisch verfolgen.
+  3. **Routine-Administration:** Rechnungen herunterladen und abgleichen.
+
+  Nutzen Sie Browser-Automatisierung, um jede Woche Stunden manueller Arbeit zurückzugewinnen.
+  `,
     'fekete-doboz-vege-glass-box': `
   ## Warum Transparenz in der KI entscheidend ist
 
