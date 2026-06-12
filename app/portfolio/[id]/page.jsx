@@ -4,6 +4,7 @@ import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
 import { ArrowLeft, CheckCircle, BarChart3, Users, ArrowRight, Star } from 'lucide-react';
 import { headers } from 'next/headers';
+import { notFound } from 'next/navigation';
 
 const projects = {
   1: {
@@ -290,17 +291,7 @@ export default async function ProjectDetailPage({ params }) {
   const localized = language === 'hu' ? null : projectLocalized[language]?.[resolvedParams.id];
 
   if (!project) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-dark via-dark-light to-dark text-white flex items-center justify-center px-6">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold gradient-text mb-4">{ui.notFoundTitle}</h1>
-          <p className="text-gray-300 mb-8">{ui.notFoundDesc}</p>
-          <Link href={withLang('/portfolio')} className="btn-primary inline-block">
-            {ui.backPortfolio}
-          </Link>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
   if (language !== 'hu') {

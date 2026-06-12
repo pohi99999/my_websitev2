@@ -6,6 +6,7 @@ import { ArrowLeft, Calendar, Clock, User, Share2, ArrowRight } from 'lucide-rea
 import { getBlogPostMeta } from '../blogPosts.meta';
 import { renderMarkdownToHtml } from '../../../lib/markdown';
 import { headers } from 'next/headers';
+import { notFound } from 'next/navigation';
 
 // Valós Blog Tartalmak
 const blogPosts = {
@@ -822,6 +823,15 @@ Az automatizálás nem egyszeri projekt — hanem folyamatos fejlődés. Kezdd a
     },
   };
 
+function stripIndent(str) {
+  if (!str) return '';
+  const match = str.match(/^[ \t]*(?=\S)/gm);
+  if (!match) return str;
+  const min = Math.min(...match.map(x => x.length));
+  const re = new RegExp(`^[ \\t]{${min}}`, 'gm');
+  return min > 0 ? str.replace(re, '') : str;
+}
+
 function toIsoDate(huDate) {
   if (!huDate) return undefined;
 
@@ -976,23 +986,13 @@ export default async function BlogPostPage({ params }) {
   const post = postContent && postMeta ? { ...postContent, ...postMeta } : undefined;
 
   if (!post) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white flex items-center justify-center px-6">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold gradient-text mb-4">{ui.notFoundTitle}</h1>
-          <p className="text-gray-300 mb-8">{ui.notFoundDesc}</p>
-          <Link href={`${prefix}/blog`} className="btn-primary inline-block">
-            {ui.backToBlog}
-          </Link>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
   const localizedBody =
     language === 'hu'
-      ? String(post.content ?? '').trim()
-      : localizedLongformBodies[language]?.[slug] ?? `\n## ${post.title}\n\n${post.excerpt}\n`;
+      ? stripIndent(String(post.content ?? '').trim())
+      : stripIndent(localizedLongformBodies[language]?.[slug] ?? `\n## ${post.title}\n\n${post.excerpt}\n`);
 
   const renderedContent = await renderMarkdownToHtml(localizedBody);
 

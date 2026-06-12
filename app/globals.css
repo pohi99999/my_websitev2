@@ -603,6 +603,41 @@ body {
     color: #80f4ff;
   }
 
+  .blog-content pre {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    max-width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+  }
+
+  .blog-content code {
+    font-family: monospace;
+    font-size: 0.9em;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    word-break: break-all;
+  }
+
+  .blog-content pre code {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  
+  .blog-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    display: block;
+  }
+
   /* Section titles */
   .section-title {
     font-size: clamp(3rem, 8vw, 7rem);

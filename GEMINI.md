@@ -2,74 +2,34 @@
 
 Ez a dokumentum a projekt jelenlegi állapotát, az eddig elvégzett feladatokat és a javasolt következő lépéseket tartalmazza.
 
-## Fejlesztési Napló - Framer Motion -> GSAP Refaktorálás
+## Fejlesztési Napló - Elvégzett Fejlesztések és Javítások
 
-A jelenlegi fejlesztési fázis fő célja a weboldal animációs rétegének modernizálása, a `Framer Motion` könyvtár teljes körű cseréje a `GSAP (GreenSock Animation Platform)` + `ScrollTrigger` pluginra. Ennek oka a jobb teljesítmény, a finomabb vezérelhetőség és a komplexebb, szekvenciális animációk egyszerűbb megvalósítása.
+### 1. Framer Motion -> GSAP Refaktorálás és Vizuális Finomítások
+* **Új Animációs Komponens:** Létrehoztuk a `GsapFadeIn.tsx` komponenst (`GSAP` + `ScrollTrigger` alapú görgetési animációk).
+* **Komponens Csere:** Lecseréltük a régi `FadeIn.tsx`-et és a `motion.div`-eket a teljes weboldalon (`rolunk`, `szolgaltatasok`, `termekek`, `portfolio` oldalak).
+* **Three.js & Részecskék optimalizálása:**
+  * Megnöveltük a `HeroParticleBackground` részecskéinek számát (4000-re) és finomítottuk a méretüket.
+  * Integráltuk az egérkövető fény funkcionalitást a `HeroParticleBackground`-be, megszüntetve a `GlowSphere` duplikációt.
+* **Build- és Futásidejű Hibák:** Javítottuk a `tsconfig.json` paths beállításait, kitakarítottuk az elavult `next.config.js` opciókat, és kijavítottuk a Three.js importálási hibákat.
 
-### Elvégzett Feladatok
+### 2. Google Search Console & Soft 404 Hibák Elhárítása
+* **Probléma:** A Next.js dinamikus útvonalai (pl. nem létező blogbejegyzés vagy portfólió elem lekérésekor) egyedi "Nem található" JSX felületet adtak vissza közvetlenül a render fában, ami HTTP `200 OK` választ eredményezett ahelyett, hogy valódi `404 Not Found` státuszkódot küldött volna vissza. Ez a Google Search Console-ban "Soft 404 (Lágy 404)" hibákat okozott.
+* **Megoldás:** Integráltuk a Next.js beépített `notFound()` függvényét az `app/blog/[slug]/page.jsx` és `app/portfolio/[id]/page.jsx` útvonalakon, így a szerver most már valódi 404-es HTTP státuszkóddal válaszol a hiányzó elemekre.
 
-<<<<<<< Updated upstream
-1.  **Új Animációs Komponens Létrehozása:**
-    *   Létrehoztuk az `app/components/GsapFadeIn.tsx` komponenst, amely a `GSAP` és a `ScrollTrigger` segítségével valósít meg egy újrahasználható, görgetésre aktiválódó "beúszó" animációt.
+### 3. Blogbejegyzések Reszponzivitása és Szöveg Túlcsordulás Javítása
+* **Probléma:** A blogbejegyzések szövege a YouTube videók alatt jobbra kicsúszott a képernyőről, különösen mobil és szűkebb asztali nézetben.
+* **Ok:** A többsoros stringekként tárolt blogbejegyzések szövegei a JSX fájlban 6-szóközös behúzással (indentation) kezdődtek. A Markdown parser ezt a 4+ szóközös szabály miatt `<pre><code>` (kódblokk) elemként értelmezte bekezdések helyett, ami letiltotta az automatikus sortörést (wrapping).
+* **Megoldás:** 
+  * Létrehoztunk egy `stripIndent` segédfunkciót az `app/blog/[slug]/page.jsx` fájlban, ami a renderelés előtt programozottan levágja a vezető behúzásokat a blogbejegyzések markdown tartalmából, így a parser már helyesen bekezdésekké (`<p>`) alakítja őket.
+  * Finomítottuk a `.blog-content` osztályhoz tartozó reszponzív CSS szabályokat az `app/globals.css` fájlban (pl. `pre`, `code`, `pre code` és `table` elemek automatikus tördelése és vízszintes görgetése), hogy megakadályozzuk a layout szétesését.
 
-2.  **Komponens Csere a Teljes Weboldalon:**
-    *   A régi, `Framer Motion` alapú `FadeIn.tsx` komponenst és a `motion.div` elemeket szisztematikusan lecseréltük az új `GsapFadeIn` komponensre az alábbi oldalakon:
-        *   `app/rolunk/page.jsx`
-        *   `app/szolgaltatasok/page.jsx`
-        *   `app/termekek/page.jsx`
-        *   `app/termekek/brunella-agents/page.jsx`
-        *   `app/termekek/pohi-ai-pro/page.jsx`
-        *   `app/portfolio/page.jsx`
-        *   `app/portfolio/[id]/page.jsx`
-    *   Ezzel párhuzamosan a `framer-motion` importokat eltávolítottuk a fenti fájlokból.
+## Jelenlegi Állapot
+* **Build Státusz:** A projekt sikeresen buildelhető lokálisan (`npm run build` lefutott 232/232 statikus oldal sikeres generálásával).
+* **Reszponzivitás:** A blogbejegyzések reszponzívak, a szövegek megfelelően wrapelnek asztali és mobil kijelzőn is.
 
-3.  **Régi Komponens Eltávolítása:**
-    *   A már nem használt `app/components/FadeIn.tsx` fájlt a felhasználó manuálisan törölte a projektből.
-=======
-#### 1. Build- és Futásidejű Hibák Javítása
-
-A projekt buildelési és futásidejű hibáktól szenvedett, amelyeket sikeresen elhárítottam:
-
-- **`tsconfig.json` Konfiguráció:** Hiányzott a `@/*` elérési útvonal alias, ami importálási hibákat okozott. Hozzáadtam a szükséges `paths` beállítást.
-- **`next.config.js` Tisztítás:** Eltávolítottam az elavult `experimental.appDir` beállítást.
-- **Import Szintaxis Javítása:** Kijavítottam egy elgépelést (`import *- as THREE`) a `HeroParticleBackground.tsx` komponensben.
-- **Komponens Import Hiba:** A `GlowSphere` komponens refaktorálása után az `app/page.jsx` hibásan próbálta importálni. Az import és a komponens hívása eltávolításra került, megszüntetve a futásidejű hibát.
-
-#### 2. Vizuális és Funkcionális Finomítások
-
-A felhasználói visszajelzés alapján a következő vizuális javításokat végeztem el a kezdőlapon:
-
-- **Háttér Videó Javítása:** A `SequentialVideoBackground.tsx` komponensben a `/kapcsolat` útvonalhoz tartozó videó elérési útja hibás volt. Javítottam a `6.mp4`-re.
-- **`HeroParticleBackground` Minőségének Javítása:**
-  - **Részecskék:** A részecskék számát megnöveltem (1800-ról 4000-re), méretüket pedig csökkentettem a pixeles megjelenés megszüntetése érdekében.
-  - **Háttér Gömb:** A központi gömb felbontását megnöveltem a simább textúra érdekében.
-  - **Egérkövető Fény:** A különálló `GlowSphere` komponens funkcionalitását (egérrel mozgatható fényforrás) sikeresen integráltam a `HeroParticleBackground` komponensbe, így az interaktivitás megmaradt, de a kód duplikáció és a renderelési hiba megszűnt.
-
-#### 3. HTML Struktúra és SEO Javítások
-
-- **Duplikált Meta Tagek:** Az `app/layout.tsx` fájlban eltávolítottam a duplikált `<meta charSet>` és `<meta name="viewport">` tageket, mivel ezeket a Next.js `metadata` objektuma már kezeli.
->>>>>>> Stashed changes
-
-### Jelenlegi Állapot és Blokkoló Hibák
-
-**Státusz:** A refaktorálás folyamatban van, de jelenleg **blokkolva** egy build hiba miatt.
-
-**Hiba:** A `replace` eszköz pontatlan használata miatt több komponensfájlban (legutóbb az `app/termekek/page.jsx` és `app/termekek/brunella-agents/page.jsx` fájlokban) szintaktikai hiba keletkezett. A hiba oka, hogy a `map()` ciklusokat tartalmazó grid containerekből hiányzik a lezáró `</div>` tag.
-
-<<<<<<< Updated upstream
-```
-Error: Expected corresponding JSX closing tag for <div>
-```
-
-Ez a hiba megakadályozza a projekt sikeres buildelését és a fejlesztés folytatását.
-
-### Következő Lépések
-
-1.  **Azonnali Hibajavítás:** A legfőbb prioritás a JSX szintaktikai hibák kijavítása a `replace` által érintett összes fájlban. Ez egy precíz, több lépésből álló folyamat lesz, ahol minden hiányzó `</div>` taget pótolni kell.
-2.  **Build Ellenőrzése:** A hibajavítás után egy `npm run build` futtatása szükséges annak ellenőrzésére, hogy a projekt hibamentesen fordul-e.
-3.  **Fejlesztés Folytatása:** A sikeres build után a `GEMINI.md` korábbi verziójában vázolt stratégiai útitervvel folytatjuk a munkát, amelynek első lépése a **Google Analytics integrációja**.
-=======
-1.  **Teljes Build Ellenőrzése:** Egy `npm run build` futtatása javasolt a javítások éles környezetben való teszteléséhez.
-2.  **Automatizált Tesztek Futtatása:** Az `npm run test` és `npm run test:e2e` parancsokkal ellenőrizni kell, hogy a módosítások nem okoztak-e regressziót.
-3.  **Teljesítmény Audit:** Egy új Lighthouse riport (`npm run ux:check`) készítése javasolt, hogy felmérjük a Three.js animációk teljesítményre gyakorolt hatását.
->>>>>>> Stashed changes
+## Következő Lépések
+1. **Verziókezelés és Deploy:** Változások commitolása és feltolása (git push) a GitHub `main` ágára, hogy a Vercel élesítse a változtatásokat.
+2. **Éles környezet validálása:** A sikeres deploy után az éles URL-ek manuális tesztelése Chrome DevTools-szal mobil nézetben.
+3. **Google Search Console ellenőrzés:** A "Soft 404" hibák javításának beküldése validálásra a Search Console felületén.
+4. **Automatizált Tesztek Futtatása:** Az `npm run test` és `npm run test:e2e` parancsokkal ellenőrizni kell, hogy a módosítások nem okoztak-e regressziót.
+5. **Teljesítmény Audit:** Egy új Lighthouse riport (`npm run ux:check`) készítése javasolt, hogy felmérjük a Three.js animációk teljesítményre gyakorolt hatását.
