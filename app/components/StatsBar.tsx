@@ -50,12 +50,12 @@ export default function StatsBar ()
                                     <span>{stat.value}</span>
                                 )}
                                 {stat.live ? (
-                                    <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-300 animate-pulse">
+                                    <span className="rounded-full border border-emerald-400/50 bg-emerald-400/20 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-100 animate-pulse">
                                         {liveBadgeLabel}
                                     </span>
                                 ) : null}
                             </p>
-                            <p className="text-sm text-gray-500 uppercase tracking-widest mt-1">
+                            <p className="text-sm text-gray-300 uppercase tracking-widest mt-1">
                                 {stat.label}
                             </p>
                         </div>

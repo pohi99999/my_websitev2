@@ -56,7 +56,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)} type="button">
+          <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)} type="button" aria-label={isOpen ? 'Menü bezárása' : 'Menü megnyitása'} aria-expanded={isOpen}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>

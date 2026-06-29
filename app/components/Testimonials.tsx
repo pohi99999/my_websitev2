@@ -140,7 +140,7 @@ export default function Testimonials ()
               <Quote className="w-8 h-8 text-[#00e5ff]/30 mb-4" aria-hidden="true" />
 
               {/* Stars */}
-              <div className="flex gap-1 mb-4" aria-label={`Értékelés: ${ item.rating }/5 csillag`}>
+              <div className="flex gap-1 mb-4" role="img" aria-label={`Értékelés: ${ item.rating }/5 csillag`}>
                 {Array.from( { length: item.rating } ).map( ( _, i ) => (
                   <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" aria-hidden="true" />
                 ) )}

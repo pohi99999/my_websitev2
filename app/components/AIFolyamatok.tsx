@@ -183,7 +183,7 @@ export default function AIFolyamatok ()
           <div className="flex justify-center mb-6">
             <div className="h-px w-16 bg-[#00e5ff]/50" aria-hidden="true" />
           </div>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Olyan AI rendszereket építünk vállalkozásoknak, amelyek nem különálló eszközök,
             hanem a napi működésbe integrált, mérhető üzleti értéket termelő megoldások.
           </p>
@@ -201,7 +201,7 @@ export default function AIFolyamatok ()
             <h3 className="text-white font-bold mb-2 text-sm">Automatizálás</h3>
             <ul className="space-y-1.5">
               {['Ismétlődő folyamatok kiváltása', 'Workflow optimalizálás', 'Admin terhelés csökkentése'].map( ( b ) => (
-                <li key={b} className="flex items-start gap-1.5 text-xs text-gray-400">
+                <li key={b} className="flex items-start gap-1.5 text-xs text-gray-200">
                   <span className="text-[#00e5ff] shrink-0 font-bold mt-[1px]">■</span>
                   {b}
                 </li>
@@ -219,7 +219,7 @@ export default function AIFolyamatok ()
             <h3 className="text-white font-bold mb-2 text-sm">Intelligens döntéstámogatás</h3>
             <ul className="space-y-1.5">
               {['Riportok, elemzések és összefoglalók', 'AI-alapú javaslatok', 'Gyorsabb vezetői döntések'].map( ( b ) => (
-                <li key={b} className="flex items-start gap-1.5 text-xs text-gray-400">
+                <li key={b} className="flex items-start gap-1.5 text-xs text-gray-200">
                   <span className="text-[#00e5ff] shrink-0 font-bold mt-[1px]">■</span>
                   {b}
                 </li>
@@ -237,7 +237,7 @@ export default function AIFolyamatok ()
             <h3 className="text-white font-bold mb-2 text-sm">Költséghatékony bevezetés</h3>
             <ul className="space-y-1.5">
               {['A cég méretéhez illesztett megoldás', 'Mérhető pilot és tesztelés', 'Skálázható bevezetési terv'].map( ( b ) => (
-                <li key={b} className="flex items-start gap-1.5 text-xs text-gray-400">
+                <li key={b} className="flex items-start gap-1.5 text-xs text-gray-200">
                   <span className="text-[#00e5ff] shrink-0 font-bold mt-[1px]">■</span>
                   {b}
                 </li>
@@ -255,7 +255,7 @@ export default function AIFolyamatok ()
             <h3 className="text-white font-bold mb-2 text-sm">Brunella / BAS bizonyíték</h3>
             <ul className="space-y-1.5 mb-4">
               {['Saját, élesben futó rendszer', 'Valós AI orchestration tapasztalat', 'Testreszabható vállalati bevezetés'].map( ( b ) => (
-                <li key={b} className="flex items-start gap-1.5 text-xs text-gray-400">
+                <li key={b} className="flex items-start gap-1.5 text-xs text-gray-200">
                   <span className="text-[#00e5ff] shrink-0 font-bold mt-[1px]">■</span>
                   {b}
                 </li>
@@ -288,10 +288,10 @@ export default function AIFolyamatok ()
                   </div>
                   <h3 className="text-white font-semibold text-sm">{s.title}</h3>
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed mb-4">{s.desc}</p>
+                <p className="text-gray-300 text-sm leading-relaxed mb-4">{s.desc}</p>
                 <ul className="space-y-1.5">
                   {s.bullets.map( ( b ) => (
-                    <li key={b} className="flex items-center gap-2 text-xs text-gray-500">
+                    <li key={b} className="flex items-center gap-2 text-xs text-gray-300">
                       <span className="text-[#00e5ff] shrink-0 font-bold">→</span>
                       {b}
                     </li>

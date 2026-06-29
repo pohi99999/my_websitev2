@@ -291,6 +291,7 @@ export default function BrunellaChat() {
                   placeholder={L.placeholder}
                   rows={1}
                   disabled={loading}
+                  aria-label={L.placeholder}
                   className="flex-1 resize-none rounded-lg px-3 py-2 text-sm text-white placeholder-white/30 focus:outline-none transition-colors"
                   style={{
                     background: '#0a1515',

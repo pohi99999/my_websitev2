@@ -141,7 +141,7 @@ const Hero = () =>
                   <span>{stat.value}</span>
                 )}
                 {stat.live ? (
-                  <span className="rounded-full border border-emerald-400/30 bg-emerald-400/15 px-2.5 py-1 text-xs font-bold uppercase tracking-[0.24em] text-emerald-300 animate-pulse">
+                  <span className="rounded-full border border-emerald-400/50 bg-emerald-400/20 px-2.5 py-1 text-xs font-bold uppercase tracking-[0.24em] text-emerald-100 animate-pulse">
                     {liveBadgeLabel}
                   </span>
                 ) : null}
