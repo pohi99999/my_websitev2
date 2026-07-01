@@ -375,7 +375,7 @@ const Portfolio = () =>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Tailwind CSS</span>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Reszponzív</span>
                 </div>
-                <a href="https://cimbi-weboldal.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://cimbi-weboldal.vercel.app/', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
+                <a href="https://czimber-tibor.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://czimber-tibor.vercel.app/', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
                   { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
