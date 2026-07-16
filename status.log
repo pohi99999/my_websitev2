@@ -1,0 +1,18 @@
+Status Log - 2026-07-16 20:10 (Helyi idő)
+
+Esemény: Két új referencia hozzáadása a portfolio oldalhoz
+- Cars99 (https://cars-sr99.vercel.app/)
+- Némethy Roland (https://nemethy-roland.vercel.app/)
+
+Képek áthelyezve a public/ mappába:
+- cars99.jpg -> public/cars99.jpg
+- roland.jpg -> public/roland.jpg
+
+Build teszt eredménye:
+- Parancs: npm run build
+- Állapot: SIKERES (232/232 statikus oldal generálva)
+- Időpont: 2026-07-16 20:08:42
+
+Git Műveletek:
+- Staged fájlok: public/cars99.jpg, public/roland.jpg, app/components/Portfolio.tsx, status.log
+- Commit üzenet: feat: add Cars99 and Nemethy Roland to portfolio references
