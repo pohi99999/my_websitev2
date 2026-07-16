@@ -15,4 +15,5 @@ Build teszt eredménye:
 
 Git Műveletek:
 - Staged fájlok: public/cars99.jpg, public/roland.jpg, app/components/Portfolio.tsx, status.log
+- Commit hash: 7edb2a8
 - Commit üzenet: feat: add Cars99 and Nemethy Roland to portfolio references
