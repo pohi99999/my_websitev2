@@ -20,7 +20,10 @@ export function SmartContactForm() {
     setStatus('submitting');
 
     try {
-      const n8nWebhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL || 'http://localhost:5678';
+      const n8nWebhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL;
+      if (!n8nWebhookUrl) {
+        throw new Error('N8N_WEBHOOK_URL is not configured');
+      }
       const response = await fetch(`${n8nWebhookUrl}/webhook/lead-form`, {
         method: 'POST',
         headers: {
