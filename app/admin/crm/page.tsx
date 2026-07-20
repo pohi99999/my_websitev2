@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 interface Lead {
@@ -93,6 +93,30 @@ export default function CrmAdminPage() {
     }));
   };
 
+
+  // Memoized stats to prevent redundant filtering on every render
+  const stats = useMemo(() => {
+    let auditCount = 0;
+    let sentCount = 0;
+    let newCount = 0;
+
+    leads.forEach(l => {
+      if (l.audit) auditCount++;
+      if (l.status === 'sent') sentCount++;
+      if (l.status === 'new') newCount++;
+    });
+
+    const total = leads.length || 1; // avoid division by zero
+
+    return {
+      auditCount,
+      auditPercent: Math.round((auditCount / total) * 100) || 0,
+      sentCount,
+      sentPercent: Math.round((sentCount / total) * 100) || 0,
+      newCount
+    };
+  }, [leads]);
+
   return (
     <div className="container mx-auto p-6 bg-slate-950 min-h-screen text-white relative">
       <div className="flex justify-between items-center mb-8">
@@ -115,25 +139,25 @@ export default function CrmAdminPage() {
             <div className="bg-slate-900 border border-slate-800 p-4 rounded-lg shadow-xl">
               <div className="text-slate-400 text-sm mb-1">Auditált Cégek</div>
               <div className="text-3xl font-bold text-purple-400">
-                {leads.filter(l => l.audit).length} 
+                {stats.auditCount}
                 <span className="text-sm font-normal text-slate-500 ml-2">
-                  ({Math.round((leads.filter(l => l.audit).length / leads.length) * 100 || 0)}%)
+                  ({stats.auditPercent}%)
                 </span>
               </div>
             </div>
             <div className="bg-slate-900 border border-slate-800 p-4 rounded-lg shadow-xl">
               <div className="text-slate-400 text-sm mb-1">Kiküldött (SENT)</div>
               <div className="text-3xl font-bold text-green-400">
-                {leads.filter(l => l.status === 'sent').length}
+                {stats.sentCount}
                 <span className="text-sm font-normal text-slate-500 ml-2">
-                  ({Math.round((leads.filter(l => l.status === 'sent').length / leads.length) * 100 || 0)}%)
+                  ({stats.sentPercent}%)
                 </span>
               </div>
             </div>
             <div className="bg-slate-900 border border-slate-800 p-4 rounded-lg shadow-xl">
               <div className="text-slate-400 text-sm mb-1">Új / Kapcsolatfelvételre vár</div>
               <div className="text-3xl font-bold text-blue-400">
-                {leads.filter(l => l.status === 'new').length}
+                {stats.newCount}
               </div>
             </div>
           </div>
