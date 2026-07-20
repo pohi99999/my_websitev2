@@ -110,7 +110,7 @@ window.addEventListener('resize', () => {
     body { margin: 0; background-color: #111; color: white; }
     canvas { position: fixed; top: 0; left: 0; z-index: -1; }
     .section { height: 100vh; display: flex; justify-content: center; align-items: center; font-size: 3rem; font-family: sans-serif; }
-    .scroll-section { height: 200vh; /* Extra magasság a görgetéshez */ }
+    .scroll-section { height: 200vh; }
   </style>
 </head>
 <body>

@@ -10,7 +10,7 @@ interface ThreeDSceneProps
   className?: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 type AnyRef = React.MutableRefObject<any>;
 
 const ThreeDScene: React.FC<ThreeDSceneProps> = ( { className } ) =>
