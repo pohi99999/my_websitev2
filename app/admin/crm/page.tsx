@@ -33,8 +33,8 @@ export default function CrmAdminPage() {
     setLoading(true);
     try {
       const url = filter === 'all' 
-        ? 'http://localhost:3000/api/v1/potential-clients' 
-        : `http://localhost:3000/api/v1/potential-clients?status=${filter}`;
+        ? '/api/v1/potential-clients'
+        : `/api/v1/potential-clients?status=${filter}`;
       const res = await fetch(url);
       const data = await res.json();
       if (data.ok) {
@@ -53,7 +53,7 @@ export default function CrmAdminPage() {
 
   const updateStatus = async (id: number, newStatus: string) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/v1/potential-clients/${id}/status`, {
+      const res = await fetch(`/api/v1/potential-clients/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
