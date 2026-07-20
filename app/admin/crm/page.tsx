@@ -29,25 +29,25 @@ export default function CrmAdminPage() {
   const [filter, setStatusFilter] = useState('all');
   const [selectedAudit, setSelectedAudit] = useState<Lead | null>(null);
 
-  const fetchLeads = async () => {
-    setLoading(true);
-    try {
-      const url = filter === 'all' 
-        ? 'http://localhost:3000/api/v1/potential-clients' 
-        : `http://localhost:3000/api/v1/potential-clients?status=${filter}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data.ok) {
-        setLeads(data.leads);
-      }
-    } catch (err) {
-      console.error('Failed to fetch leads:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchLeads = async () => {
+      setLoading(true);
+      try {
+        const url = filter === 'all'
+          ? 'http://localhost:3000/api/v1/potential-clients'
+          : `http://localhost:3000/api/v1/potential-clients?status=${filter}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.ok) {
+          setLeads(data.leads);
+        }
+      } catch (err) {
+        console.error('Failed to fetch leads:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchLeads();
   }, [filter]);
 
