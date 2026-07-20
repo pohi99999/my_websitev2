@@ -1,4 +1,5 @@
 "use client";
+import Link from 'next/link';
 
 import React from 'react';
 import { Mail, Phone, MapPin, Linkedin, Facebook, Github, Twitter, Youtube, Code2 } from 'lucide-react';
@@ -38,28 +39,28 @@ const Footer = () =>
             </h4>
             <ul className="space-y-3">
               <li>
-                <a
+                <Link
                   href={withLang( '/termekek/brunella-agents' )}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   {t( 'footer.solutions.brunella' )}
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href={withLang( '/termekek/pohi-ai-pro' )}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   {t( 'footer.solutions.pohi' )}
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href={withLang( '/szolgaltatasok' )}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   {t( 'footer.solutions.customDev' )}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -76,18 +77,18 @@ const Footer = () =>
               </li>
               <li className="flex items-center space-x-3 text-gray-400">
                 <Phone className="w-5 h-5 text-[#00e5ff]/50 flex-shrink-0" />
-                <a href="tel:+36304291227" className="hover:text-white transition-colors">
+                <Link href="tel:+36304291227" className="hover:text-white transition-colors">
                   +36 30 429 1227
-                </a>
+                </Link>
               </li>
               <li className="flex items-center space-x-3 text-gray-400">
                 <Mail className="w-5 h-5 text-[#00e5ff]/50 flex-shrink-0" />
-                <a
+                <Link
                   href="mailto:peterpohankapersonal@gmail.com"
                   className="hover:text-white transition-colors"
                 >
                   peterpohankapersonal@gmail.com
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -101,7 +102,7 @@ const Footer = () =>
               <p className="font-medium text-white">{t( 'footer.leadership.name' )}</p>
               <p className="text-sm mb-4">{t( 'footer.leadership.title' )}</p>
               <div className="flex flex-wrap gap-3">
-                <a
+                <Link
                   href="https://www.linkedin.com/in/pohi99999/"
                   target="_blank"
                   rel="noreferrer noopener"
@@ -109,8 +110,8 @@ const Footer = () =>
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://www.facebook.com/profile.php?id=61576881120445"
                   target="_blank"
                   rel="noreferrer noopener"
@@ -118,8 +119,8 @@ const Footer = () =>
                   aria-label="Facebook"
                 >
                   <Facebook className="w-5 h-5" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://github.com/pohi99999"
                   target="_blank"
                   rel="noreferrer noopener"
@@ -127,8 +128,8 @@ const Footer = () =>
                   aria-label="GitHub"
                 >
                   <Github className="w-5 h-5" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://x.com/pohanka_peter"
                   target="_blank"
                   rel="noreferrer noopener"
@@ -136,8 +137,8 @@ const Footer = () =>
                   aria-label="X (Twitter)"
                 >
                   <Twitter className="w-5 h-5" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://g.dev/PohankaPeter"
                   target="_blank"
                   rel="noreferrer noopener"
@@ -145,8 +146,8 @@ const Footer = () =>
                   aria-label="Google Developer"
                 >
                   <Code2 className="w-5 h-5" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://www.youtube.com/@J%C3%B3zsefP%C3%A9terPoh%C3%A1nka"
                   target="_blank"
                   rel="noreferrer noopener"
@@ -154,7 +155,7 @@ const Footer = () =>
                   aria-label="YouTube"
                 >
                   <Youtube className="w-5 h-5" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -165,9 +166,9 @@ const Footer = () =>
         <div className="border-t border-white/10 pt-6 pb-2 text-center text-sm text-gray-400">
           <p>
             {language === 'hu' ? 'Ha a könyvelési szolgáltatásaink érdeklik látogassa meg a ' : 'If you are interested in our accounting services, visit the '}
-            <a href="https://weboldal-konyveles.vercel.app/" target="_blank" rel="noreferrer noopener" className="text-[#00e5ff] hover:text-white transition-colors underline decoration-[#00e5ff]/30 underline-offset-4">
+            <Link href="https://weboldal-konyveles.vercel.app/" target="_blank" rel="noreferrer noopener" className="text-[#00e5ff] hover:text-white transition-colors underline decoration-[#00e5ff]/30 underline-offset-4">
               {language === 'hu' ? 'könyviteli részlegét cégünknek' : 'accounting department of our company'}
-            </a>.
+            </Link>.
           </p>
         </div>
 
@@ -175,15 +176,15 @@ const Footer = () =>
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <p>© {currentYear} {t( 'footer.companyName' )} {t( 'footer.legal.rights' )}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href={withLang( '/impresszum' )} className="hover:text-white transition-colors">
+            <Link href={withLang( '/impresszum' )} className="hover:text-white transition-colors">
               {t( 'footer.legal.imprint' )}
-            </a>
-            <a href={withLang( '/adatvedelmi-nyilatkozat' )} className="hover:text-white transition-colors">
+            </Link>
+            <Link href={withLang( '/adatvedelmi-nyilatkozat' )} className="hover:text-white transition-colors">
               {t( 'footer.legal.privacy' )}
-            </a>
-            <a href={withLang( '/aszf' )} className="hover:text-white transition-colors">
+            </Link>
+            <Link href={withLang( '/aszf' )} className="hover:text-white transition-colors">
               {t( 'footer.legal.terms' )}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

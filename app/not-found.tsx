@@ -4,9 +4,10 @@ export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] px-4 text-center">
       <h1 className="text-6xl font-bold text-[#00ff9d] mb-4">404</h1>
-      <h2 className="text-2xl font-semibold mb-6">A keresett oldal nem található</h2>
+      <h2 className="text-2xl font-semibold mb-6">Az oldal nem található</h2>
       <p className="text-slate-400 mb-8 max-w-md">
-        Sajnos az oldal, amit keresel, már nem létezik vagy áthelyezték.
+        Úgy tűnik, ez az oldal nem létezik, vagy el lett távolítva.
+        Kérjük, ellenőrizd az URL-t vagy térj vissza a főoldalra.
       </p>
       <Link 
         href="/"
