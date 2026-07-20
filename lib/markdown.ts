@@ -10,7 +10,11 @@ const schema = {
   ...defaultSchema,
   attributes: {
     ...defaultSchema.attributes,
-    a: [...(defaultSchema.attributes?.a ?? []), ['target', '_blank'], ['rel', 'noopener noreferrer']]
+    a: [
+      ...(defaultSchema.attributes?.a ?? []),
+      ['target', '_blank'],
+      ['rel', 'noopener noreferrer', 'noopener', 'noreferrer']
+    ]
   }
 };
 
