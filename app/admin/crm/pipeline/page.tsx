@@ -104,7 +104,7 @@ export default function KanbanPage() {
   const fetchLeads = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/api/v1/potential-clients');
+      const res = await fetch('/api/v1/potential-clients');
       const data = await res.json();
       if (data.ok) {
         const sentLeads = data.leads.filter((l: any) => l.status === 'sent' || l.deal_stage !== 'lead');
@@ -132,7 +132,7 @@ useEffect(() => {
 
   const updateLeadFields = async (id: number, fields: Partial<Lead>) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/v1/potential-clients/${id}/status`, {
+      const res = await fetch(`/api/v1/potential-clients/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(fields)
