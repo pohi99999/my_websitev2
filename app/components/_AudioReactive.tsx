@@ -33,7 +33,7 @@ export default function AudioReactive() {
       setIsListening(true);
       animate();
     } catch (error) {
-      console.log('Microphone access denied or not available');
+      console.warn('Microphone access denied or not available');
       setHasPermission(false);
       // Fallback to demo mode
       startDemoMode();

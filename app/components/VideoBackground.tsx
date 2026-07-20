@@ -39,7 +39,7 @@ export default function VideoBackground({
     // Biztosítjuk, hogy a videó automatikusan elinduljon (böngésző policy miatt)
     if (videoRef.current) {
       videoRef.current.play().catch((error) => {
-        console.log("Autoplay prevented by browser:", error);
+        console.warn("Autoplay prevented by browser:", error);
       });
     }
   }, [reduceMotion]);
