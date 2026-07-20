@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 // ── In-memory rate limiter (same pattern as /api/contact) ──────────────────
 type RateWindow = { count: number; resetAtMs: number };
 const RATE_WINDOW_MS = 60 * 1000; // 1 minute
-const RATE_MAX = 20;
-const rateMemory = new Map<string, RateWindow>();
+export const RATE_MAX = 20;
+export const rateMemory = new Map<string, RateWindow>();
 
 function getClientIp(req: NextRequest): string {
   const forwarded = req.headers.get('x-forwarded-for');
@@ -12,7 +12,7 @@ function getClientIp(req: NextRequest): string {
   return req.headers.get('x-real-ip') ?? 'unknown';
 }
 
-function checkRateLimit(ip: string): boolean {
+export function checkRateLimit(ip: string): boolean {
   const now = Date.now();
   const win = rateMemory.get(ip);
   if (!win || now > win.resetAtMs) {
