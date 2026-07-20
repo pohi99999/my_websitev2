@@ -34,7 +34,6 @@ if (isProd) {
 
 const nextConfig = {
   poweredByHeader: false,
-  outputFileTracingRoot: __dirname,
   images: {
     formats: ['image/webp', 'image/avif'],
   },

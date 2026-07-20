@@ -3,8 +3,4 @@
   command = "npm run build"
 
 [build.environment]
-  NODE_VERSION = "18"
-
-# Next.js specific settings
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  NODE_VERSION = "20"
