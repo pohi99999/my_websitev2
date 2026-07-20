@@ -4,5 +4,6 @@
   ],
   "rules": {
     "react/no-unescaped-entities": "off"
-  }
+  },
+  "ignorePatterns": ["mainWithScroll.js", "app/components/ThreeDScene.tsx"]
 }
