@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { checkRateLimit, rateMemory, RATE_MAX } from '../app/api/chat/route';
+import { checkRateLimit, rateMemory, RATE_MAX } from '../app/api/chat/rate-limiter';
 
 test.describe('chat rate limiter', () => {
   test.beforeEach(() => {
