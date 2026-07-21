@@ -101,7 +101,15 @@ const HeroParticles = () => {
     // Configuration
     const particleCount = Math.min(window.innerWidth / 10, 150); // Responsive count
     const connectionDistance = 150;
+    const connectionDistanceSq = connectionDistance * connectionDistance;
     const mouseDistance = 200;
+
+    // Spatial grid variables
+    const cellSize = connectionDistance;
+    let cols = Math.ceil(width / cellSize);
+    let rows = Math.ceil(height / cellSize);
+    let head = new Int32Array(cols * rows);
+    const next = new Int32Array(particleCount);
 
     const init = () => {
       particles = [];
@@ -114,24 +122,60 @@ const HeroParticles = () => {
       if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
 
+      // Reset spatial grid
+      head.fill(-1);
+
+      // Update particles, draw them, and add to grid
       for (let i = 0; i < particles.length; i++) {
-        particles[i].update(mouse, mouseDistance);
-        particles[i].draw(ctx);
+        const p = particles[i];
+        p.update(mouse, mouseDistance);
+        p.draw(ctx);
 
-        // Connections
-        for (let j = i; j < particles.length; j++) {
-          let dx = particles[i].x - particles[j].x;
-          let dy = particles[i].y - particles[j].y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
+        const col = Math.max(0, Math.min(cols - 1, Math.floor(p.x / cellSize)));
+        const row = Math.max(0, Math.min(rows - 1, Math.floor(p.y / cellSize)));
+        const cellIndex = row * cols + col;
+        next[i] = head[cellIndex];
+        head[cellIndex] = i;
+      }
 
-          if (distance < connectionDistance) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(100, 200, 255, ${1 - distance / connectionDistance})`;
-            ctx.lineWidth = 1;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-            ctx.closePath();
+      // Check connections using spatial grid
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        const p1x = p1.x;
+        const p1y = p1.y;
+
+        const col = Math.max(0, Math.min(cols - 1, Math.floor(p1x / cellSize)));
+        const row = Math.max(0, Math.min(rows - 1, Math.floor(p1y / cellSize)));
+
+        const minCol = Math.max(0, col - 1);
+        const maxCol = Math.min(cols - 1, col + 1);
+        const minRow = Math.max(0, row - 1);
+        const maxRow = Math.min(rows - 1, row + 1);
+
+        for (let checkRow = minRow; checkRow <= maxRow; checkRow++) {
+          for (let checkCol = minCol; checkCol <= maxCol; checkCol++) {
+            const cellIndex = checkRow * cols + checkCol;
+            let j = head[cellIndex];
+            while (j !== -1) {
+              if (i < j) {
+                const p2 = particles[j];
+                let dx = p1x - p2.x;
+                let dy = p1y - p2.y;
+                let distSq = dx * dx + dy * dy;
+
+                if (distSq < connectionDistanceSq) {
+                  let distance = Math.sqrt(distSq);
+                  ctx.beginPath();
+                  ctx.strokeStyle = `rgba(100, 200, 255, ${1 - distance / connectionDistance})`;
+                  ctx.lineWidth = 1;
+                  ctx.moveTo(p1x, p1y);
+                  ctx.lineTo(p2.x, p2.y);
+                  ctx.stroke();
+                  ctx.closePath();
+                }
+              }
+              j = next[j];
+            }
           }
         }
       }
@@ -144,6 +188,9 @@ const HeroParticles = () => {
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
+      cols = Math.ceil(width / cellSize);
+      rows = Math.ceil(height / cellSize);
+      head = new Int32Array(cols * rows);
       init();
     };
 
