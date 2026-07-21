@@ -1,19 +1,36 @@
-Status Log - 2026-07-16 20:10 (Helyi idő)
+Status Log - 2026-07-21 09:27 (Helyi idő)
 
-Esemény: Két új referencia hozzáadása a portfolio oldalhoz
-- Cars99 (https://cars-sr99.vercel.app/)
-- Némethy Roland (https://nemethy-roland.vercel.app/)
+Esemény: Jules AI ügynök munkáinak ellenőrzése, validációja és szinkronizációja
 
-Képek áthelyezve a public/ mappába:
-- cars99.jpg -> public/cars99.jpg
-- roland.jpg -> public/roland.jpg
+Szinkronizált és integrált fájlok:
+- app/admin/crm/page.tsx (Localhost API hívások javítása + stats useMemo optimálás)
+- app/admin/crm/pipeline/page.tsx (Localhost API hívások javítása)
+- app/components/AbandonedCartDemo.tsx (N8N webhook URL validáció)
+- app/components/LeadMagnetForm.tsx (N8N webhook URL validáció)
+- app/components/SmartContactForm.tsx (N8N webhook URL validáció)
+- app/components/AudioReactiveVisualize.tsx (Console.warn használata log helyett)
+- app/components/VideoBackground.tsx (NavigatorWithConnection interfész + console.warn)
+- app/components/_AudioReactive.tsx (Console.warn használata log helyett)
+- app/components/ThreeDScene.tsx (Szigorú Three.js ref típusok használata any helyett)
+- app/api/chat/rate-limiter.ts (Új moduláris chat rate limiter)
+- app/api/chat/route.ts (Rate limiter kiszervezése külön modulba)
+- tests/chat-rate-limit.spec.ts (Új Playwright unit teszt a chat rate limiterhez)
+- lib/markdown.ts (Sanitizer schema megerősítése noopener/noreferrer elemekkel)
+- app/error.tsx (Next.js Link komponens használata az <a> helyett)
+- tests/markdown.spec.ts (Új markdown renderelő teszt)
+
+Kiszűrt / elvetett nem kívánatos módosítások:
+- eslint.config.mjs törlésének visszavonása (projektszintű ESLint megőrzése)
+- fix_eslint.js és playwright-report generált átmeneti fájlok elvetése
+- Footer.tsx külső linkjeinek helytelen Link-re cseréjének visszavonása
 
 Build teszt eredménye:
 - Parancs: npm run build
 - Állapot: SIKERES (232/232 statikus oldal generálva)
-- Időpont: 2026-07-16 20:08:42
+- Időpont: 2026-07-21 09:27:10
 
 Git Műveletek:
-- Staged fájlok: public/cars99.jpg, public/roland.jpg, app/components/Portfolio.tsx, status.log
-- Commit hash: 7edb2a8
-- Commit üzenet: feat: add Cars99 and Nemethy Roland to portfolio references
+- Commit hash: c14601a
+- Commit üzenet: feat(jules-sync): integrate and validate Jules AI improvements
+- Távoli push: main -> origin/main (GitHub + Vercel auto-deploy)
+- Végrehajtás eredménye: SIKERES
