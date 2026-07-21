@@ -13,7 +13,7 @@ test.describe('P0–P2 Design Upgrades Verification', () => {
     await page.waitForLoadState('networkidle');
 
     const bodyClasses = await page.evaluate(() => document.body.className);
-    // Syne variable class should be present (Next.js generates __className_xxx)
+    // Syne variable class should be present (Next.js generates __className_[hash])
     expect(bodyClasses).toMatch(/syne|__variable/i);
     console.log('✅ Syne font variable present on body');
   });
