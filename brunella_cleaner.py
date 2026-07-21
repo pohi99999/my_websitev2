@@ -63,7 +63,7 @@ def clean_project():
 .DS_Store
 *.pem
 
-# Debug
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
