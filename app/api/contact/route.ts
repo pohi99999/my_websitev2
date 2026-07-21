@@ -203,7 +203,8 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ ok: true }, { status: 200 });
-  } catch (error) {
+  } catch {
+    // Keep err variable so it doesn't complain about unused error, but ignore it.
     return NextResponse.json({ ok: false, error: 'Unexpected error' }, { status: 500 });
   }
 }
