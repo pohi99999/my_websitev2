@@ -7,5 +7,3 @@
   NODE_VERSION = "18"
 
 # Next.js specific settings
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
