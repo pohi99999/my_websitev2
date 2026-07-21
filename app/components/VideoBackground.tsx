@@ -7,6 +7,12 @@ interface VideoBackgroundProps {
   overlayOpacity?: number; // Sötétítés erőssége
 }
 
+interface NavigatorWithConnection extends Navigator {
+  connection?: {
+    saveData?: boolean;
+  };
+}
+
 export default function VideoBackground({ 
   videoSrc = "https://res.cloudinary.com/dbrwg0av5/video/upload/v1765516398/0_rgswdr.mp4", // Az alapértelmezett hős videód
   overlayOpacity = 0.5 
@@ -18,7 +24,7 @@ export default function VideoBackground({
     const mediaQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)");
     const readSetting = () => {
       const prefersReduced = mediaQuery?.matches ?? false;
-      const saveData = (navigator as any)?.connection?.saveData === true;
+      const saveData = (navigator as NavigatorWithConnection)?.connection?.saveData === true;
       setReduceMotion(prefersReduced || saveData);
     };
 
@@ -39,7 +45,7 @@ export default function VideoBackground({
     // Biztosítjuk, hogy a videó automatikusan elinduljon (böngésző policy miatt)
     if (videoRef.current) {
       videoRef.current.play().catch((error) => {
-        console.log("Autoplay prevented by browser:", error);
+        console.warn("Autoplay prevented by browser:", error);
       });
     }
   }, [reduceMotion]);

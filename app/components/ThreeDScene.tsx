@@ -4,22 +4,20 @@
 // JS bundle small. Heavy 3-D assets are only fetched when the component
 // actually mounts in the browser — zero impact on first paint or SSR.
 import React, { useRef, useEffect, useState, useCallback } from 'react';
+import type * as THREE from 'three';
 
 interface ThreeDSceneProps
 {
   className?: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AnyRef = React.MutableRefObject<any>;
-
 const ThreeDScene: React.FC<ThreeDSceneProps> = ( { className } ) =>
 {
   const mountRef = useRef<HTMLDivElement>( null );
-  const sceneRef: AnyRef = useRef( null );
-  const cameraRef: AnyRef = useRef( null );
-  const rendererRef: AnyRef = useRef( null );
-  const objectRef: AnyRef = useRef( null ); // A 3D objektum
+  const sceneRef = useRef<THREE.Scene | null>( null );
+  const cameraRef = useRef<THREE.PerspectiveCamera | null>( null );
+  const rendererRef = useRef<THREE.WebGLRenderer | null>( null );
+  const objectRef = useRef<THREE.Mesh | null>( null ); // A 3D objektum
 
   const [isMounted, setIsMounted] = useState( false );
 
