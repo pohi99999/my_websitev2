@@ -4,6 +4,4 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "18"
-
-# Next.js specific settings
+  NODE_VERSION = "20"
