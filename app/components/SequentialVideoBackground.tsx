@@ -120,6 +120,7 @@ const SequentialVideoBackground: React.FC = () =>
             muted
             playsInline
             loop
+            preload="metadata"
             onError={ () => setVideoError( true ) }
           />
           <video
@@ -129,6 +130,7 @@ const SequentialVideoBackground: React.FC = () =>
             muted
             playsInline
             loop
+            preload="metadata"
             onError={ () => setVideoError( true ) }
           />
         </>

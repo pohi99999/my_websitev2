@@ -20,24 +20,24 @@ export async function generateMetadata() {
   const meta =
     language === 'en'
       ? {
-          title: 'Business AI Systems | Pohánka AI',
+          title: 'Pohánka & Co. - Professional Agency Representation & Product Protection',
           description:
-            'Business-ready AI systems designed for companies. Automation, decision support, and custom integrations with measurable results.',
-          canonical: '/en',
+            'Professional agency representation, Brunella AI agents, product protection, and business process automation for growing enterprises.',
+          canonical: 'https://www.pohankaestarsa.com/en',
           locale: 'en_US',
         }
       : language === 'de'
       ? {
-          title: 'KI-Systeme für Unternehmen | Pohánka AI',
+          title: 'Pohánka & Co. - Professionelle Vertretung & Produktschutz',
           description:
-            'Unternehmensnahe KI-Systeme für Automatisierung, Entscheidungshilfe und Integrationen mit messbaren Ergebnissen.',
-          canonical: '/de',
+            'Professionelle Vertretung, Brunella KI-Agenten, Produktschutz und KI-Prozessautomatisierung mit messbarem ROI.',
+          canonical: 'https://www.pohankaestarsa.com/de',
           locale: 'de_DE',
         }
       : {
-          title: 'Mesterséges intelligencia és AI rendszerek vállalkozásoknak | Pohánka AI',
+          title: 'Pohánka és Társa - Professzionális Ügynöki Képviselet, Brunella AI és Termékvédelem',
           description:
-          'Vállalkozásokra szabott AI rendszerek tervezése, fejlesztése és bevezetése. Automatizálás, intelligens döntéstámogatás és üzleti integrációk mérhető eredménnyel.',
+            'Pohánka és Társa: Professzionális ügynöki képviselet, Brunella AI ügynökök, termékvédelem és AI-vezérelt folyamatautomatizálás magyar KKV-k számára azonnali ROI-val.',
           canonical: 'https://www.pohankaestarsa.com/',
           locale: 'hu_HU',
         };

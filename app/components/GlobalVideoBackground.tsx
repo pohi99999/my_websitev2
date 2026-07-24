@@ -13,7 +13,7 @@ export default function GlobalVideoBackground ()
       {/* Preload poster image for LCP optimization */}
       <Image
         src="/1.jpg"
-        alt=""
+        alt="Pohánka és Társa - Professzionális ügynöki képviselet háttérkép"
         fill
         priority
         className="object-cover"

@@ -317,7 +317,7 @@ export default function Header ()
           <Link href={withLang( '/' )} className="flex items-center relative z-50">
             <Image
               src="/images/logo.png"
-              alt="Pohánka és Társa Logo"
+              alt="Pohánka és Társa - Professzionális Ügynöki Képviselet és AI Rendszerek Logo"
               width={240}
               height={96}
               priority
