@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { cache } from 'react';
 import { Bot, Zap, Clock, ShieldCheck, Target, MessageSquare, Calendar, Search, TrendingUp, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import productData from '../../../lib/data/dynamic_products.json';
+
+const getProduct = cache((slug: string) => productData.find(p => p.slug === slug));
 
 const iconMap: Record<string, any> = {
   Clock: Clock,
@@ -22,7 +24,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const product = productData.find(p => p.slug === params.slug);
+  const product = getProduct(params.slug);
   if (!product) return { title: 'Termék nem található' };
 
   return {
@@ -32,7 +34,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function DynamicProductPage({ params }: { params: { slug: string } }) {
-  const product = productData.find(p => p.slug === params.slug);
+  const product = getProduct(params.slug);
 
   if (!product) {
     return <div className="min-h-screen flex items-center justify-center text-white">Termék nem található.</div>;
