@@ -38,14 +38,7 @@ const nextConfig = {
   images: {
     formats: ['image/webp', 'image/avif'],
   },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: securityHeaders
-      }
-    ];
-  }
+  /* async headers() removed for Netlify compatibility */
 };
 
 module.exports = nextConfig;
