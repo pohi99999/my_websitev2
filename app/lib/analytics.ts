@@ -16,9 +16,14 @@ import {
 type EventProps = Record<string, string | number | boolean | undefined>;
 export { ANALYTICS_EVENTS, CTA_LOCATIONS, FORMS, FORM_STATUSES, PAGE_NAMES };
 
+// Abstract out the track call so we can mock it
+export const analyticsAdapter = {
+  track: (eventName: string, properties?: EventProps) => track(eventName, properties)
+};
+
 export function trackEvent(eventName: string, properties?: EventProps) {
   try {
-    track(eventName, properties);
+    analyticsAdapter.track(eventName, properties);
   } catch {
     // no-op: analytics should never break UX
   }
