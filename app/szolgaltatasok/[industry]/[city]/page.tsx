@@ -1,6 +1,14 @@
 import { Brain, CheckCircle } from "lucide-react";
 import { SmartContactForm } from "../../../components/SmartContactForm";
 import seoTargets from "../../../../lib/data/seo_targets.json";
+import { cache } from "react";
+
+const getTarget = cache((industry: string, city: string) => {
+  return seoTargets.find(t => t.industry === industry && t.city === city) || {
+    original_industry: industry,
+    original_city: city
+  };
+});
 
 export async function generateStaticParams() {
   return seoTargets.map((target) => ({
@@ -10,10 +18,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { industry: string, city: string } }) {
-  const target = seoTargets.find(t => t.industry === params.industry && t.city === params.city) || {
-    original_industry: params.industry,
-    original_city: params.city
-  };
+  const target = getTarget(params.industry, params.city);
 
   return {
     title: `Professzionális ${target.original_industry} weboldal készítés ${target.original_city} - Pohánka & Társa`,
@@ -22,10 +27,7 @@ export async function generateMetadata({ params }: { params: { industry: string,
 }
 
 export default function IndustryCityPage({ params }: { params: { industry: string, city: string } }) {
-  const target = seoTargets.find(t => t.industry === params.industry && t.city === params.city) || {
-    original_industry: params.industry,
-    original_city: params.city
-  };
+  const target = getTarget(params.industry, params.city);
 
   return (
     <div className="min-h-screen bg-slate-50 py-20 px-4">
