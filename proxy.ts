@@ -16,7 +16,7 @@ function isBypassedPath(pathname: string) {
   );
 }
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   if (pathname.startsWith(ADMIN_PATH)) {
