@@ -7,7 +7,7 @@ import {
   Bot, FileSearch, Award, Clock, DollarSign
 } from "lucide-react";
 import { SmartContactForm } from "../components/SmartContactForm";
-import { AbandonedCartDemo } from "../components/AbandonedCartDemo";
+
 
 export async function generateMetadata() {
   const headerStore = await headers();
@@ -577,11 +577,8 @@ export default async function SzolgaltatasokPage() {
             <p className="text-gray-300">Válaszd ki a számodra érdekes demót, és tapasztald meg a működését azonnal.</p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div className="max-w-2xl mx-auto">
             <SmartContactForm />
-            <div className="space-y-8">
-              <AbandonedCartDemo />
-            </div>
           </div>
         </section>
 
