@@ -496,15 +496,14 @@ export default async function ProjectDetailPage({ params }) {
             <GsapFadeIn delay={0.2}>
               <SpotlightCard className="p-8">
                 <h2 className="text-2xl font-bold mb-6 gradient-text">Kihívás</h2>
-                <div
-                  className="text-gray-300 leading-relaxed space-y-4"
-                  dangerouslySetInnerHTML={{
-                    __html: project.challenge
-                      .split('\n')
-                      .filter(line => line.trim())
-                      .join('</p><p>'),
-                  }}
-                />
+                <div className="text-gray-300 leading-relaxed space-y-4">
+                  {project.challenge
+                    .split('\n')
+                    .filter(line => line.trim())
+                    .map((line, i) => (
+                      <p key={i}>{line}</p>
+                    ))}
+                </div>
               </SpotlightCard>
             </GsapFadeIn>
 
@@ -512,24 +511,24 @@ export default async function ProjectDetailPage({ params }) {
             <GsapFadeIn delay={0.3}>
               <SpotlightCard className="p-8">
                 <h2 className="text-2xl font-bold mb-6 gradient-text">Megoldás</h2>
-                <div
-                  className="text-gray-300 leading-relaxed space-y-4"
-                  dangerouslySetInnerHTML={{
-                    __html: project.solution
-                      .split('\n')
-                      .filter(line => line.trim())
-                      .map(line => {
-                        if (line.match(/^\d+\./)) {
-                          const parts = line.split('**');
-                          if (parts.length > 1) {
-                            return `<p><strong class="text-blue-300">${parts[1]}:</strong> ${parts[2]}</p>`;
-                          }
+                <div className="text-gray-300 leading-relaxed space-y-4">
+                  {project.solution
+                    .split('\n')
+                    .filter(line => line.trim())
+                    .map((line, i) => {
+                      if (line.match(/^\d+\./)) {
+                        const parts = line.split('**');
+                        if (parts.length > 1) {
+                          return (
+                            <p key={i}>
+                              <strong className="text-blue-300">{parts[1]}:</strong> {parts[2]}
+                            </p>
+                          );
                         }
-                        return `<p>${line}</p>`;
-                      })
-                      .join(''),
-                  }}
-                />
+                      }
+                      return <p key={i}>{line}</p>;
+                    })}
+                </div>
               </SpotlightCard>
             </GsapFadeIn>
           </div>
