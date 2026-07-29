@@ -12,13 +12,6 @@ interface Props {
   accentColor?: string; // tailwind border color token e.g. "blue" | "purple"
 }
 
-/**
- * ImageLightboxGallery Component
- *
- * Displays a hero image and a grid of thumbnails, allowing users to view them in a full-screen lightbox.
- * NOTE: This component is actively used by portfolio pages (e.g., Brunella Agent System, Pohi AI Pro)
- * to showcase product screenshots. Do not remove this component as it will break portfolio functionality.
- */
 export default function ImageLightboxGallery({
   screenshots,
   heroSrc,
