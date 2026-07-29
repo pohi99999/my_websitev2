@@ -4,7 +4,6 @@ import StatsBar from "./components/StatsBar";
 import RoiCalculator from "./components/RoiCalculator";
 import HowItWorks from "./components/HowItWorks";
 import Testimonials from "./components/Testimonials";
-import ClientVideo from "./components/ClientVideo";
 import BemutatkozoVideo from "./components/BemutatkozoVideo";
 import ContactCapture from "./components/ContactCapture";
 import HomepageFAQ from "./components/HomepageFAQ";
@@ -78,7 +77,6 @@ export default function HomePage() {
       <RoiCalculator />
       <HowItWorks />
       <Testimonials />
-      <ClientVideo />
       <BemutatkozoVideo />
       <ContactCapture />
       <HomepageFAQ />
