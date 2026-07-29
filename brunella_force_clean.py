@@ -1,11 +1,10 @@
 import os
 import shutil
-import stat
 
 # BRUNELLA FORCE CLEAN v2.0 (Windows Path Fixer)
 
 def remove_readonly(func, path, excinfo):
-    os.chmod(path, stat.S_IWRITE)
+    os.chmod(path, 0o200) # 0o200 is equivalent to stat.S_IWRITE
     func(path)
 
 def force_clean():
