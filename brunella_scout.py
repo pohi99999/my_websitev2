@@ -1,5 +1,4 @@
 import os
-import json
 
 def scan_project_for_rescue(root_dir):
     report = {
