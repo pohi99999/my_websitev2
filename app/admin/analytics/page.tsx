@@ -264,15 +264,11 @@ function FunnelBar({
 function getWidthClass(percent: number): string {
     const p = Math.min(100, Math.max(0, percent));
     if (p >= 100) return 'w-full';
-    if (p >= 90) return 'w-[90%]';
-    if (p >= 80) return 'w-[80%]';
-    if (p >= 70) return 'w-[70%]';
-    if (p >= 60) return 'w-[60%]';
-    if (p >= 50) return 'w-1/2';
-    if (p >= 40) return 'w-[40%]';
-    if (p >= 30) return 'w-[30%]';
-    if (p >= 20) return 'w-1/5';
-    if (p >= 10) return 'w-[10%]';
-    if (p > 0) return 'w-[5%]';
-    return 'w-0';
+    if (p <= 0) return 'w-0';
+
+    const classes = [
+        'w-[5%]', 'w-[10%]', 'w-1/5', 'w-[30%]', 'w-[40%]',
+        'w-1/2', 'w-[60%]', 'w-[70%]', 'w-[80%]', 'w-[90%]'
+    ];
+    return classes[Math.floor(p / 10)];
 }
