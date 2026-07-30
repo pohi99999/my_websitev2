@@ -85,8 +85,9 @@ export async function POST(req: NextRequest) {
 
   const token = process.env.GITHUB_TOKEN;
   if (!token) {
+    console.error('CRITICAL: GITHUB_TOKEN is missing.');
     return NextResponse.json(
-      { error: 'AI konfiguráció hiányzik. Kérjük, vegye fel velünk a kapcsolatot.' },
+      { error: 'Belső szerverhiba.' },
       { status: 500 }
     );
   }
