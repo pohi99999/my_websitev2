@@ -61,20 +61,29 @@ export default function VideoShowcase() {
     let cancelled = false;
 
     async function checkAll() {
-      const checks = await Promise.all(
-        youTubeVideoIds.map(async (id) => {
-          const url = `https://www.youtube.com/oembed?url=${encodeURIComponent(
-            `https://www.youtube.com/watch?v=${id}`
-          )}&format=json`;
+      const checks = [];
+      const BATCH_SIZE = 3;
 
-          try {
-            const res = await fetch(url, { method: 'GET' });
-            return [id, res.ok];
-          } catch {
-            return [id, false];
-          }
-        })
-      );
+      for (let i = 0; i < youTubeVideoIds.length; i += BATCH_SIZE) {
+        if (cancelled) return;
+
+        const chunk = youTubeVideoIds.slice(i, i + BATCH_SIZE);
+        const chunkResults = await Promise.all(
+          chunk.map(async (id) => {
+            const url = `https://www.youtube.com/oembed?url=${encodeURIComponent(
+              `https://www.youtube.com/watch?v=${id}`
+            )}&format=json`;
+
+            try {
+              const res = await fetch(url, { method: 'GET' });
+              return [id, res.ok];
+            } catch {
+              return [id, false];
+            }
+          })
+        );
+        checks.push(...chunkResults);
+      }
 
       if (cancelled) return;
       setAvailability(Object.fromEntries(checks));

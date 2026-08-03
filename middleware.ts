@@ -22,7 +22,18 @@ export function middleware(req: NextRequest) {
   if (pathname.startsWith(ADMIN_PATH)) {
     const configuredToken = process.env.ADMIN_ANALYTICS_TOKEN;
 
-    // If no token is configured, keep route open (safe for local/dev).
+    // Fail secure in production if no token is configured.
+    if (!configuredToken && process.env.NODE_ENV === "production") {
+      return new NextResponse("Unauthorized", {
+        status: 401,
+        headers: {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "no-store",
+        },
+      });
+    }
+
+    // If token is configured, enforce it.
     if (configuredToken) {
       const cookieToken = req.cookies.get(ADMIN_COOKIE)?.value;
       if (cookieToken !== configuredToken) {

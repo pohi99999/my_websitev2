@@ -60,7 +60,7 @@ test.describe("POST /api/chat", () => {
     expect(res.status).toBe(500);
     const body = await res.json();
     expect(body.error).toBe(
-      "AI konfiguráció hiányzik. Kérjük, vegye fel velünk a kapcsolatot.",
+      "Belső szerverhiba.",
     );
 
     // Restore for other tests if any
