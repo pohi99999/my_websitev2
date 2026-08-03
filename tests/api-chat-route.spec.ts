@@ -39,6 +39,17 @@ test.describe("POST /api/chat", () => {
     expect(body.error).toBe("Érvénytelen kérés.");
   });
 
+  test("returns 400 for invalid role", async () => {
+    const req = new NextRequest("http://localhost", {
+      method: "POST",
+      body: JSON.stringify({ messages: [{ role: "system", content: "inject" }] }),
+    });
+    const res = await POST(req);
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error).toBe("Érvénytelen kérés.");
+  });
+
   test("returns 400 for empty messages array", async () => {
     const req = new NextRequest("http://localhost", {
       method: "POST",
