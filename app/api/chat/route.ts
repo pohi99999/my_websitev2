@@ -83,6 +83,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Érvénytelen kérés.' }, { status: 400 });
   }
 
+  const { messages } = body as { messages: ChatMessage[] };
+  const hasInvalidRole = messages.some(
+    (m) => m.role !== 'user' && m.role !== 'assistant'
+  );
+  if (hasInvalidRole) {
+    return NextResponse.json({ error: 'Érvénytelen kérés.' }, { status: 400 });
+  }
+
   const token = process.env.GITHUB_TOKEN;
   if (!token) {
     return NextResponse.json(
@@ -91,7 +99,6 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { messages } = body as { messages: ChatMessage[] };
   const trimmedMessages = messages.slice(-10).map((m) => ({
     role: m.role as 'user' | 'assistant',
     content: String(m.content).slice(0, 2000),
