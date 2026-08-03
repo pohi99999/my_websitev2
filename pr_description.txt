@@ -1,5 +1,0 @@
-🎯 What: Fixed a fail-open authentication vulnerability in `middleware.ts` for the `/admin/analytics` route. Previously, if `ADMIN_ANALYTICS_TOKEN` was not configured, the route would remain open, which is unsafe for production environments.
-
-⚠️ Risk: If the `ADMIN_ANALYTICS_TOKEN` environment variable is accidentally omitted or misconfigured in production, any user could access the `/admin/analytics` route without authorization, potentially exposing sensitive analytics data or administrative functions.
-
-🛡️ Solution: Updated `middleware.ts` to explicitly check if the token is missing and `NODE_ENV === "production"`. If both conditions are met, it now returns a 401 Unauthorized response (fail secure). If a token is configured, it correctly validates the authentication cookie as before. Added `sinon` to `devDependencies` to fix failing tests.
