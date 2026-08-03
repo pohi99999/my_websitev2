@@ -1,0 +1,7 @@
+🔒 Fix missing input validation on webhook payload
+
+🎯 **What:** The `app/api/instant-responder/demo/route.ts` API endpoint previously did not validate the incoming payload for `message` and `tone`. It blindly accepted these properties and forwarded them to the `N8N_WEBHOOK_URL`. This fix implements stringent type and length checks on both inputs, ensuring they conform to our expected data constraints.
+
+⚠️ **Risk:** By not validating the inputs, the API was susceptible to various injection attacks and abuse. Malicious actors could send abnormally large payloads (Denial of Service/Resource Exhaustion), or inject unexpected data types that could cause downstream services (like n8n and the eventual LLM integration) to fail, error out unpredictably, or potentially be manipulated if downstream systems also lacked strict validation.
+
+🛡️ **Solution:** The solution introduces robust validation logic right after the JSON parsing step. It ensures that `message` is a required non-empty string, strictly under 2000 characters. It also checks that `tone` is either undefined/absent or a string under 100 characters. If any payload violates these rules, the API correctly short-circuits and returns a `400 Bad Request` HTTP status. Comprehensive Playwright test coverage has been added to guarantee these validations work correctly and prevent future regressions.
