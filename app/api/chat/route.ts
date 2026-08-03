@@ -92,10 +92,17 @@ export async function POST(req: NextRequest) {
   }
 
   const { messages } = body as { messages: ChatMessage[] };
-  const trimmedMessages = messages.slice(-10).map((m) => ({
-    role: m.role as 'user' | 'assistant',
-    content: String(m.content).slice(0, 2000),
-  }));
+  const len = messages.length;
+  const startIdx = len > 10 ? len - 10 : 0;
+  const count = len - startIdx;
+  const trimmedMessages = new Array(count);
+  for (let i = 0; i < count; i++) {
+    const m = messages[startIdx + i];
+    trimmedMessages[i] = {
+      role: m.role as 'user' | 'assistant',
+      content: String(m.content).slice(0, 2000),
+    };
+  }
 
   try {
     const response = await fetch('https://models.inference.ai.azure.com/chat/completions', {
