@@ -7,6 +7,8 @@ import { getBlogPostMeta } from '../blogPosts.meta';
 import { renderMarkdownToHtml } from '../../../lib/markdown';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
+import parse from 'html-react-parser';
+import DOMPurify from 'isomorphic-dompurify';
 
 // Valós Blog Tartalmak
 const blogPosts = {
@@ -1138,12 +1140,9 @@ export default async function BlogPostPage({ params }) {
         <div className="max-w-3xl mx-auto">
           <GsapFadeIn delay={0.3}>
             <div className="glass-panel p-8 sm:p-12 rounded-2xl bg-black/20 border border-white/5 backdrop-blur-sm">
-              <div
-                className="text-gray-300 leading-relaxed space-y-6 text-lg blog-content"
-                dangerouslySetInnerHTML={{
-                  __html: renderedContent,
-                }}
-              />
+              <div className="text-gray-300 leading-relaxed space-y-6 text-lg blog-content">
+                {parse(DOMPurify.sanitize(renderedContent))}
+              </div>
             </div>
           </GsapFadeIn>
         </div>
