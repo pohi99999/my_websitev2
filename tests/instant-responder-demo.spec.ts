@@ -106,4 +106,55 @@ test.describe('Instant Responder Demo API', () => {
     expect(data.ok).toBe(true);
     expect(data.reply).toBe('Hiba történt a válasz generálása során.');
   });
+
+  test('POST handles request json parsing error', async () => {
+    const req = new Request('http://localhost/api/instant-responder/demo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: 'invalid json', // This will cause req.json() to throw
+    });
+
+    // Create a mock request that throws on json()
+    const mockReq = {
+      json: async () => { throw new Error('Invalid JSON'); }
+    };
+
+    const res = await POST(mockReq as any);
+
+    expect(res.status).toBe(500);
+    const data = await res.json();
+    expect(data.ok).toBe(false);
+    expect(data.error).toBe('Internal Server Error');
+  });
+
+
+  test('POST uses custom N8N_WEBHOOK_URL from environment', async () => {
+    const originalEnv = process.env.N8N_WEBHOOK_URL;
+    process.env.N8N_WEBHOOK_URL = 'http://custom-url.com/webhook';
+
+    const mockN8nResponse = { response: 'Sikeres válasz' };
+    fetchStub.resolves({
+      ok: true,
+      json: async () => mockN8nResponse
+    } as any);
+
+    const req = createRequest({ message: 'Hello' });
+    const res = await POST(req as any);
+
+    expect(res.status).toBe(200);
+
+    expect(fetchStub.calledOnce).toBe(true);
+    const fetchArgs = fetchStub.firstCall.args;
+    expect(fetchArgs[0]).toBe('http://custom-url.com/webhook');
+
+    // Restore environment variable
+    if (originalEnv === undefined) {
+      delete process.env.N8N_WEBHOOK_URL;
+    } else {
+      process.env.N8N_WEBHOOK_URL = originalEnv;
+    }
+  });
+
 });
