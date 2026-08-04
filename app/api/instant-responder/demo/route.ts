@@ -4,8 +4,7 @@ export async function POST(req: Request) {
   try {
     const { message, tone } = await req.json();
 
-    // Call the n8n webhook instead of Gemini directly
-    // This allows tracking, CRM integration, and easier workflow changes
+    // Call the n8n webhook for tracking, CRM integration, and easier workflow changes
     const n8nWebhookUrl = process.env.N8N_WEBHOOK_URL || 'http://localhost:5678/webhook/instant-responder';
     
     const response = await fetch(n8nWebhookUrl, {
