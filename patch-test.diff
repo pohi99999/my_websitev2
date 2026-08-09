@@ -1,0 +1,39 @@
+--- tests/instant-responder-demo.spec.ts
++++ tests/instant-responder-demo.spec.ts
+@@ -2,6 +2,7 @@
+ import * as sinon from 'sinon';
+ import { POST } from '../app/api/instant-responder/demo/route';
++import { rateMemory } from '../app/api/chat/rate-limiter';
+
+ test.describe('Instant Responder Demo API', () => {
+   let fetchStub: sinon.SinonStub;
+
+   test.beforeEach(() => {
+     fetchStub = sinon.stub(global, 'fetch');
++    rateMemory.clear();
+   });
+
+   test.afterEach(() => {
+@@ -102,4 +104,22 @@
+     expect(data.ok).toBe(true);
+     expect(data.reply).toBe('Hiba történt a válasz generálása során.');
+   });
++
++  test('POST applies rate limiting', async () => {
++    const req = createRequest({ message: 'Hello' });
++    Object.defineProperty(req, 'headers', {
++      value: new Headers({ 'x-forwarded-for': '192.168.1.1' }),
++    });
++
++    // Make 20 requests (the limit)
++    for (let i = 0; i < 20; i++) {
++      await POST(req as any);
++    }
++
++    // The 21st request should be rate limited
++    const res = await POST(req as any);
++    expect(res.status).toBe(429);
++    const data = await res.json();
++    expect(data.error).toBe('Too many requests. Please try again shortly.');
++  });
+ });

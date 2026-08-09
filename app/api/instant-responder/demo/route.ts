@@ -1,6 +1,21 @@
 import { NextResponse } from 'next/server';
+import { checkRateLimit } from '../../chat/rate-limiter';
+
+function getClientIp(req: Request): string {
+  const forwarded = req.headers.get('x-forwarded-for');
+  if (forwarded) return forwarded.split(',')[0]?.trim() ?? 'unknown';
+  return req.headers.get('x-real-ip') ?? 'unknown';
+}
 
 export async function POST(req: Request) {
+  const ip = getClientIp(req);
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json(
+      { ok: false, error: 'Too many requests. Please try again shortly.' },
+      { status: 429 }
+    );
+  }
+
   try {
     const { message, tone } = await req.json();
 
