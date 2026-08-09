@@ -4,6 +4,22 @@ export async function POST(req: Request) {
   try {
     const { message, tone } = await req.json();
 
+    if (!message || typeof message !== 'string' || message.trim() === '') {
+      return NextResponse.json({ ok: false, error: 'Érvénytelen kérés: a message mező kötelező és szövegnek kell lennie.' }, { status: 400 });
+    }
+
+    if (message.length > 2000) {
+      return NextResponse.json({ ok: false, error: 'Érvénytelen kérés: a message túl hosszú (maximum 2000 karakter).' }, { status: 400 });
+    }
+
+    if (tone !== undefined && typeof tone !== 'string') {
+      return NextResponse.json({ ok: false, error: 'Érvénytelen kérés: a tone mezőnek szövegnek kell lennie.' }, { status: 400 });
+    }
+
+    if (tone && tone.length > 100) {
+      return NextResponse.json({ ok: false, error: 'Érvénytelen kérés: a tone túl hosszú (maximum 100 karakter).' }, { status: 400 });
+    }
+
     // Call the n8n webhook instead of Gemini directly
     // This allows tracking, CRM integration, and easier workflow changes
     const n8nWebhookUrl = process.env.N8N_WEBHOOK_URL || 'http://localhost:5678/webhook/instant-responder';
