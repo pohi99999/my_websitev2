@@ -126,7 +126,13 @@ export default function AgentNetworkDemo() {
     });
   }, [agents]);
 
-  const hoveredAgent = hovered ? positionedAgents.find((a) => a.id === hovered) : null;
+  const agentsById = useMemo(() => {
+    const map = new Map();
+    positionedAgents.forEach(a => map.set(a.id, a));
+    return map;
+  }, [positionedAgents]);
+
+  const hoveredAgent = hovered ? agentsById.get(hovered) : null;
 
   const reduceAnimations = shouldReduceMotion || isSmallScreen;
 
