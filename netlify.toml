@@ -1,8 +1,0 @@
-# Netlify build configuration for Next.js
-[build]
-  command = "npm run build"
-  publish = ".next"
-
-[build.environment]
-  NODE_VERSION = "18"
-

@@ -2,6 +2,8 @@
 
 Ez a dokumentum a projekt jelenlegi állapotát, az eddig elvégzett feladatokat és a javasolt következő lépéseket tartalmazza.
 
+> **Megjegyzés (utólagos):** ez egy korábbi (Gemini CLI) munkamenet naplója, történeti kontextusként hagyva. Az alábbi `npm run test` / `npm run test:e2e` / `npm run ux:check` parancsok nem léteznek — a tényleges lint/build parancsokat lásd a `CLAUDE.md`-ben, a teszteket pedig közvetlenül `npx playwright test`-tel kell futtatni.
+
 ## Fejlesztési Napló - Elvégzett Fejlesztések és Javítások
 
 ### 1. Framer Motion -> GSAP Refaktorálás és Vizuális Finomítások
