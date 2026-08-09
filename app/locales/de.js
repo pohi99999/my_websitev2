@@ -3,6 +3,7 @@ const de = {
     home: 'Startseite',
     services: 'KI-Systeme',
     products: 'Produkte',
+    webAiKkv: 'Website + KI',
     portfolio: 'Portfolio',
     blog: 'Blog',
     about: 'Über uns',

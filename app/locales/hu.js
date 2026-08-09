@@ -3,6 +3,7 @@ const hu = {
     home: 'Kezdőoldal',
     services: 'AI rendszerek',
     products: 'Termékek',
+    webAiKkv: 'Weboldal + AI',
     portfolio: 'Portfólió',
     blog: 'Blog',
     about: 'Rólunk',

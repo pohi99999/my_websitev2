@@ -293,7 +293,7 @@ export default function Header ()
     { label: t( 'navbar.home' ), href: withLang( '/' ) },
     { label: t( 'navbar.services' ), href: withLang( '/szolgaltatasok' ) },
     { label: t( 'navbar.products' ), href: withLang( '/termekek' ) },
-    { label: 'Weboldal + AI KKV-knak', href: withLang( '/weboldal-ai-kkv' ) },
+    { label: t( 'navbar.webAiKkv' ), href: withLang( '/weboldal-ai-kkv' ) },
     { label: t( 'navbar.portfolio' ), href: withLang( '/portfolio' ) },
     { label: t( 'navbar.blog' ), href: withLang( '/blog' ) },
     { label: t( 'navbar.about' ), href: withLang( '/rolunk' ) },
@@ -326,7 +326,7 @@ export default function Header ()
           </Link>
 
           {/* ── Desktop Navigation ── */}
-          <nav className="hidden lg:flex items-center gap-0" role="navigation" aria-label={a11yLabels.mainNav}>
+          <nav className="hidden xl:flex items-center gap-0" role="navigation" aria-label={a11yLabels.mainNav}>
             {navItems.map( ( item ) =>
             {
               const currentPath = pathname || '/';
@@ -362,7 +362,7 @@ export default function Header ()
                       id={`mega-trigger-${ megaKey }`}
                       type="button"
                       className={`
-                        relative px-4 py-6 text-sm font-medium tracking-widest uppercase
+                        relative px-2.5 py-6 text-sm font-medium tracking-widest uppercase
                         transition-colors duration-200 group flex items-center gap-1 whitespace-nowrap
                         ${ isActive || isExpanded ? 'text-[#00e5ff]' : 'text-gray-400 hover:text-white' }
                       `}
@@ -380,7 +380,7 @@ export default function Header ()
                       {/* Animated underline */}
                       <span
                         className={`
-                          absolute bottom-4 left-4 right-4 h-px
+                          absolute bottom-4 left-2.5 right-2.5 h-px
                           bg-[#00e5ff] transition-all duration-300 origin-left
                           ${ isActive || megaMenuOpen === megaKey
                             ? 'scale-x-100 opacity-100 shadow-[0_0_8px_#00e5ff]'
@@ -493,7 +493,7 @@ export default function Header ()
                     } )
                   }
                   className={`
-                    relative px-4 py-6 text-sm font-medium tracking-widest uppercase
+                    relative px-2.5 py-6 text-sm font-medium tracking-widest uppercase
                     transition-colors duration-200 group whitespace-nowrap
                     ${ isActive ? 'text-[#00e5ff]' : 'text-gray-400 hover:text-white' }
                   `}
@@ -502,7 +502,7 @@ export default function Header ()
                   {/* Animated underline */}
                   <span
                     className={`
-                      absolute bottom-4 left-4 right-4 h-px
+                      absolute bottom-4 left-2.5 right-2.5 h-px
                       bg-[#00e5ff] transition-all duration-300 origin-left
                       ${ isActive
                         ? 'scale-x-100 opacity-100 shadow-[0_0_8px_#00e5ff]'
@@ -516,7 +516,7 @@ export default function Header ()
           </nav>
 
           {/* ── Right side: Language + CTA ── */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden xl:flex items-center gap-3">
             <LanguageSwitcher />
             <Link
               href={withLang( '/kapcsolat' )}
@@ -529,7 +529,7 @@ export default function Header ()
                 } )
               }
               className="
-                inline-flex px-5 py-2.5 text-xs font-bold uppercase tracking-widest
+                inline-flex shrink-0 px-4 py-2.5 text-xs font-bold uppercase tracking-widest
                 text-[#00e5ff] border border-[#00e5ff]/40
                 hover:border-[#00e5ff] hover:bg-[#00e5ff]/5 hover:scale-[1.03]
                 transition-all duration-300
@@ -553,7 +553,7 @@ export default function Header ()
             aria-label={isMenuOpen ? a11yLabels.closeMenu : a11yLabels.openMenu}
             aria-expanded={isMenuOpen ? 'true' : 'false'}
             aria-controls="mobile-menu"
-            className="lg:hidden relative z-50 p-2 text-white hover:text-[#00e5ff] transition-colors"
+            className="xl:hidden relative z-50 p-2 text-white hover:text-[#00e5ff] transition-colors"
           >
             {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
           </motion.button>
@@ -572,7 +572,7 @@ export default function Header ()
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
-            className="fixed inset-0 z-40 flex flex-col justify-start px-6 py-24 sm:px-10 lg:hidden overflow-y-auto"
+            className="fixed inset-0 z-40 flex flex-col justify-start px-6 py-24 sm:px-10 xl:hidden overflow-y-auto"
             style={{ background: 'rgba(0, 0, 0, 0.97)', backdropFilter: 'blur(24px)' }}
             role="dialog"
             aria-modal="true"

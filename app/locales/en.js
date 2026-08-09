@@ -3,6 +3,7 @@ const en = {
     home: 'Home',
     services: 'AI Systems',
     products: 'Products',
+    webAiKkv: 'Website + AI',
     portfolio: 'Portfolio',
     blog: 'Blog',
     about: 'About',
