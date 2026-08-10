@@ -8,6 +8,7 @@ import { renderMarkdownToHtml } from '../../../lib/markdown';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 
+import DOMPurify from "isomorphic-dompurify";
 // Valós Blog Tartalmak
 const blogPosts = {
   'automatizalt-bongeszo-agensek': {
@@ -1141,7 +1142,7 @@ export default async function BlogPostPage({ params }) {
               <div
                 className="text-gray-300 leading-relaxed space-y-6 text-lg blog-content"
                 dangerouslySetInnerHTML={{
-                  __html: renderedContent,
+                  __html: DOMPurify.sanitize(renderedContent),
                 }}
               />
             </div>
