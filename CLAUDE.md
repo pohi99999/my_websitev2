@@ -28,6 +28,7 @@ npx playwright test
 - **Root `components/` is empty** — real page components live in `app/components/`. Don't be misled by the empty root folder.
 - **SEO files are static, not generated**: `public/robots.txt` and `public/sitemap.xml` are plain files, not `app/robots.ts`/`app/sitemap.ts`. They must be manually updated whenever routes change.
 - **Locale routing is custom**, not Next.js i18n routing: `middleware.ts` detects `en`/`de`/`hu` via a `site-language` cookie/header, and 308-redirects `/hu` → root. `app/de/` and `app/en/` are route folders, not an i18n plugin.
+- **`app/en/[[...slug]]` and `app/de/[[...slug]]` duplicate their routing logic by hand** and must be kept in sync manually: every top-level static page (e.g. `app/weboldal-ai-kkv/`) needs a matching case in both catch-alls' switch statements, and every portfolio case-study that lives as its own static route (`brunella-bas`, `pohi-ai-pro`, `tartalom-gyartas`, `web-robotpilota`, `palyazat-radar` — as opposed to an entry in `app/portfolio/[id]/page.jsx`'s hardcoded map) needs an explicit case too, or `/en/portfolio/<slug>` and `/de/portfolio/<slug>` 404 silently. This exact bug shipped undetected until a Search Console audit caught it (fixed 2026-08-11).
 - `middleware.ts` gates `/admin/analytics` behind `ADMIN_ANALYTICS_TOKEN`: fails secure (401) in production if unset, but is open in non-production if unset.
 - `netlify.toml`, `vite.config.js`, and `deploy-build.sh` at the repo root are leftovers from earlier/alternate deploy setups — the real deploy path is Vercel + `next build`, not these.
 - `AGENTS.md` at the repo root is **not** general agent guidance — it's an auto-generated n8n-as-code bootstrap file about n8n workflow sync commands and explicitly says it isn't a source of truth. `README.md` and `docs/GEMINI.md` also contain stale/aspirational info (e.g. reference `npm run test`/`npm run test:e2e`/`npm run ux:check` scripts that don't exist) — verify against actual code before trusting them.
@@ -38,8 +39,16 @@ npx playwright test
 
 Other env vars referenced in code: `GITHUB_TOKEN` (chat route, GitHub Models API), `N8N_WEBHOOK_URL` / `NEXT_PUBLIC_N8N_WEBHOOK_URL` (lead/instant-responder forms), `ADMIN_ANALYTICS_TOKEN`, `ANALYTICS_KPI_SNAPSHOT_JSON`, `NEXT_PUBLIC_TAWK_EMBED_URL`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`. `.env.example` does not list `ADMIN_ANALYTICS_TOKEN` or `NEXT_PUBLIC_TAWK_EMBED_URL` even though code uses them.
 
+**`N8N_WEBHOOK_URL` (server-only) is not set in Vercel** — only `NEXT_PUBLIC_N8N_WEBHOOK_URL` is. Any server-side route reading `process.env.N8N_WEBHOOK_URL` needs its own fallback (to the public var, or fail fast) or it silently falls back to a `localhost` dev URL in production. Bit `/api/instant-responder/demo` this way until 2026-08-11.
+
 ## Commit style
 
 Recent history mixes emoji-tagged commits (`🔒` security, `⚡` performance, `🧪` testing, `🧹 [Code Health]`) with conventional-commit prefixes (`feat(...)`, `fix(...)`, `chore(...)`). Follow whichever pattern fits the change.
 
 There is no CI (`.github/workflows/` doesn't exist) — Vercel builds directly from pushes to `main`, so a passing `npm run build` locally is the only pre-push safety net.
+
+## Jules branch backlog
+
+`google-labs-jules[bot]` continuously opens PRs (dozens can accumulate between reviews — 71 were open as of 2026-08-11). When triaging: use `git diff main..origin/<branch>` (two dots — current main tip) not `main...origin/<branch>` (three dots — stale merge-base), or already-fixed branches will look unfixed. Many branches predate the Netlify/Vite cleanup and will show huge unrelated diffs (`desktop.ini`, `hello-world-*/`, README reverts) if compared carelessly — check `--stat` first. `gh pr close <n> --comment "..." --delete-branch` closes and cleans up in one step. See `CHANGELOG.md` for the disposition of the 2026-08-11 batch.
+
+CHANGELOG.md tracks notable changes (manually maintained, not auto-generated) — update it alongside significant fixes.
