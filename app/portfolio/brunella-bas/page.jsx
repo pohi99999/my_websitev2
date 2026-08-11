@@ -1,15 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import ImageLightboxGallery from '../../components/ImageLightboxGallery';
 import SpotlightCard from '../../components/SpotlightCard';
 import { headers } from 'next/headers';
 import {
   ArrowLeft, ArrowRight, CheckCircle, Zap, Brain, Globe,
-  Shield, Users, BarChart3, Cpu, Code2, Target, Lightbulb,
+  Shield, BarChart3, Cpu, Code2, Target, Lightbulb,
   TrendingUp, Server, Cloud, Database, FileText, Star,
-  Layers, Activity, Bot, Mail, Truck, Search, Building2
+  Layers, Activity, Bot, Building2
 } from 'lucide-react';
 
 export async function generateMetadata() {
