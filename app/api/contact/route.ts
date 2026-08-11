@@ -9,7 +9,7 @@ const RATE_LIMIT_WINDOW_MS = 2 * 60 * 1000; // 2 perc
 const RATE_LIMIT_MAX = 2; // 2 kérés / 2 perc / IP
 const DAILY_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000; // 1 nap
 const DAILY_LIMIT_MAX = 10; // 10 email / nap (összesen)
-const rateMemory = new Map<string, RateWindow>();
+export const rateMemory = new Map<string, RateWindow>();
 
 const upstashUrl = process.env.UPSTASH_REDIS_REST_URL;
 const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN;
@@ -54,7 +54,7 @@ function getClientIp(req: Request): string {
   return 'unknown';
 }
 
-function checkRateLimitFixed(
+export function checkRateLimitFixed(
   key: string,
   windowMs: number,
   max: number
