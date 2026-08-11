@@ -1,0 +1,5 @@
+🧪 [LanguageContext tests] Unit tests for LanguageProvider context
+
+🎯 **What:** The testing gap addressed: LanguageProvider and useLanguage context had no tests.
+📊 **Coverage:** Test coverage includes defaults, overriding via prop, reading fallback from localStorage, browser navigator language fallback, toggling languages correctly (hu -> en -> de -> hu), translations resolution (t function), and writing preference to localStorage.
+✨ **Result:** The LanguageContext logic is now fully verified by unit tests in Playwright (using JSDOM to simulate the DOM environment and verify the React component behavior).
