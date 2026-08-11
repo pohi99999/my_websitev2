@@ -16,6 +16,12 @@ import AdatvedelemPage from '../../adatvedelmi-nyilatkozat/page';
 import ImpresszumPage from '../../impresszum/page';
 import AszfPage from '../../aszf/page';
 import PohiAiProPage from '../../termekek/pohi-ai-pro/page';
+import WeboldalAiKkvPage from '../../weboldal-ai-kkv/page';
+import BrunellaBasPage from '../../portfolio/brunella-bas/page';
+import PortfolioPohiAiProPage from '../../portfolio/pohi-ai-pro/page';
+import TartalomGyartasPage from '../../portfolio/tartalom-gyartas/page';
+import WebRobotpilotaPage from '../../portfolio/web-robotpilota/page';
+import PalyazatRadarPage from '../../portfolio/palyazat-radar/page';
 
 export const dynamic = 'force-dynamic';
 
@@ -108,6 +114,13 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
                 return {
                     title: 'AGB | Pohánka AI',
                     description: 'Allgemeine Geschäftsbedingungen.',
+                    ogType: 'website',
+                };
+            case 'weboldal-ai-kkv':
+                return {
+                    title: 'Website + KI für KMU | Pohánka AI',
+                    description:
+                        'Moderne, leadgenerierende Websites kombiniert mit KI-gestützter Automatisierung für ungarische KMU.',
                     ogType: 'website',
                 };
             default:
@@ -242,6 +255,8 @@ export default async function DeCatchAllPage({ params }: { params: Promise<Param
                 return <ImpresszumPage />;
             case 'aszf':
                 return <AszfPage />;
+            case 'weboldal-ai-kkv':
+                return <WeboldalAiKkvPage />;
             default:
                 return notFound();
         }
@@ -257,7 +272,20 @@ export default async function DeCatchAllPage({ params }: { params: Promise<Param
     }
 
     if (slug[0] === 'portfolio' && slug.length === 2) {
-        return <PortfolioDetailPage params={{ id: slug[1] }} />;
+        switch (slug[1]) {
+            case 'brunella-bas':
+                return <BrunellaBasPage />;
+            case 'pohi-ai-pro':
+                return <PortfolioPohiAiProPage />;
+            case 'tartalom-gyartas':
+                return <TartalomGyartasPage />;
+            case 'web-robotpilota':
+                return <WebRobotpilotaPage />;
+            case 'palyazat-radar':
+                return <PalyazatRadarPage />;
+            default:
+                return <PortfolioDetailPage params={{ id: slug[1] }} />;
+        }
     }
 
     return notFound();
