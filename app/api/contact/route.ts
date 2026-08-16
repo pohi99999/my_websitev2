@@ -42,14 +42,16 @@ function asNonEmptyString(value: unknown): string | null {
 }
 
 function getClientIp(req: Request): string {
-  const forwardedFor = req.headers.get('x-forwarded-for');
-  if (forwardedFor) {
-    const first = forwardedFor.split(',')[0]?.trim();
-    if (first) return first;
-  }
-
   const realIp = req.headers.get('x-real-ip');
   if (realIp) return realIp.trim();
+
+  const forwardedFor = req.headers.get('x-forwarded-for');
+  if (forwardedFor) {
+    const ips = forwardedFor.split(',');
+    // The closest proxy adds the real IP at the end. The first IP can be spoofed.
+    const last = ips[ips.length - 1]?.trim();
+    if (last) return last;
+  }
 
   return 'unknown';
 }
