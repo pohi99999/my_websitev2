@@ -20,12 +20,14 @@ export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_
       <Script
         id="google-analytics"
         strategy="afterInteractive"
+        data-measurement-id={GA_MEASUREMENT_ID}
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
+            var measurementId = document.getElementById('google-analytics').getAttribute('data-measurement-id');
+            gtag('config', measurementId, {
               page_path: window.location.pathname,
             });
           `,
