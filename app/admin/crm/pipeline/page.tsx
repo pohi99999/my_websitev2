@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, User, Phone, Globe, MessageSquare, CheckCircle, XCircle, Clock } from 'lucide-react';
-import { DndContext, closestCorners, KeyboardSensor, PointerSensor, useSensor, useSensors, DragOverlay, defaultDropAnimationSideEffects } from '@dnd-kit/core';
+import { DndContext, closestCorners, KeyboardSensor, PointerSensor, useSensor, useSensors, DragOverlay, defaultDropAnimationSideEffects, DragEndEvent } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
@@ -146,7 +146,7 @@ useEffect(() => {
     }
   };
 
-  const handleDragEnd = async (event: any) => {
+  const handleDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event;
     setActiveId(null);
 
@@ -157,7 +157,7 @@ useEffect(() => {
 
     if (STAGES.some(s => s.id === overId)) {
         if (active.data.current.deal_stage !== overId) {
-            await updateLeadFields(leadId, { deal_stage: overId as string });
+            await updateLeadFields(leadId as number, { deal_stage: overId as string });
         }
     }
   };
