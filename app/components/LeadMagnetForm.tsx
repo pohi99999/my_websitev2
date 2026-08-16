@@ -30,12 +30,8 @@ export default function LeadMagnetForm() {
     e.preventDefault();
     setStatus('submitting');
     try {
-      // POST to n8n webhook
-      const n8nWebhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL;
-      if (!n8nWebhookUrl) {
-        throw new Error('N8N_WEBHOOK_URL is not configured');
-      }
-      const res = await fetch(`${n8nWebhookUrl}/webhook/lead-magnet-audit`, {
+      // POST to local API route for rate-limiting
+      const res = await fetch('/api/lead-magnet-audit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
