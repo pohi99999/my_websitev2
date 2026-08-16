@@ -3,14 +3,15 @@
 import React, { useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
+import { TargetAndTransition, VariantLabels } from 'framer-motion';
 
 const SpotlightCardMotion = dynamic(() => import('./SpotlightCardMotion'), { ssr: false });
 
 interface SpotlightCardProps {
   children: React.ReactNode;
   className?: string;
-  whileHover?: any;
-  whileTap?: any;
+  whileHover?: TargetAndTransition | VariantLabels;
+  whileTap?: TargetAndTransition | VariantLabels;
   delay?: number;
 }
 
