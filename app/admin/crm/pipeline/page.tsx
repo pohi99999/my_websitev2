@@ -32,7 +32,15 @@ const STAGES = [
   { id: 'lost', title: 'Elvesztve', color: 'bg-red-500/10 border-red-500/20' },
 ];
 
-function SortableItem({ lead, moveStage, setSelectedAudit, editingNotes, setEditingNotes, updateLeadFields }: any) {
+interface SortableItemProps {
+  lead: Lead;
+  setSelectedAudit: (lead: Lead | null) => void;
+  editingNotes: { id: number; text: string } | null;
+  setEditingNotes: (notes: { id: number; text: string } | null) => void;
+  updateLeadFields: (id: number, fields: Partial<Lead>) => Promise<void>;
+}
+
+function SortableItem({ lead, setSelectedAudit, editingNotes, setEditingNotes, updateLeadFields }: SortableItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: lead.id, data: lead });
 
   const style = {
