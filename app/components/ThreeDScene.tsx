@@ -132,37 +132,38 @@ const ThreeDScene: React.FC<ThreeDSceneProps> = ( { className } ) =>
 
       if ( objectRef.current )
       {
-        gsap.to( objectRef.current.rotation, {
-          x: Math.PI * 2,
-          y: Math.PI * 4,
-          scrollTrigger: {
-            trigger: mountRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        } );
-
-        const servicesSection = document.querySelector( '#services-section' );
-        if ( servicesSection )
-        {
-          gsap.to( objectRef.current.position, {
-            x: 2,
-            y: -1,
-            z: 0,
+        const ctx = gsap.context(() => {
+          gsap.to( objectRef.current!.rotation, {
+            x: Math.PI * 2,
+            y: Math.PI * 4,
             scrollTrigger: {
-              trigger: servicesSection,
-              start: 'top center',
-              end: 'bottom center',
+              trigger: mountRef.current,
+              start: 'top top',
+              end: 'bottom top',
               scrub: true,
             },
           } );
-        }
+
+          const servicesSection = document.querySelector( '#services-section' );
+          if ( servicesSection )
+          {
+            gsap.to( objectRef.current!.position, {
+              x: 2,
+              y: -1,
+              z: 0,
+              scrollTrigger: {
+                trigger: servicesSection,
+                start: 'top center',
+                end: 'bottom center',
+                scrub: true,
+              },
+            } );
+          }
+        });
 
         killGsap = () =>
         {
-          ScrollTrigger.getAll().forEach( ( t ) => t.kill() );
-          gsap.killTweensOf( objectRef.current );
+          ctx.revert();
         };
       }
     } )();

@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, User, Phone, Globe, MessageSquare, CheckCircle, XCircle, Clock } from 'lucide-react';
-import { DndContext, closestCorners, KeyboardSensor, PointerSensor, useSensor, useSensors, DragOverlay, defaultDropAnimationSideEffects } from '@dnd-kit/core';
+import { DndContext, closestCorners, KeyboardSensor, PointerSensor, useSensor, useSensors, DragOverlay, defaultDropAnimationSideEffects, DragEndEvent } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
@@ -32,7 +32,15 @@ const STAGES = [
   { id: 'lost', title: 'Elvesztve', color: 'bg-red-500/10 border-red-500/20' },
 ];
 
-function SortableItem({ lead, moveStage, setSelectedAudit, editingNotes, setEditingNotes, updateLeadFields }: any) {
+interface SortableItemProps {
+  lead: Lead;
+  setSelectedAudit: (lead: Lead | null) => void;
+  editingNotes: { id: number; text: string } | null;
+  setEditingNotes: (notes: { id: number; text: string } | null) => void;
+  updateLeadFields: (id: number, fields: Partial<Lead>) => Promise<void>;
+}
+
+function SortableItem({ lead, setSelectedAudit, editingNotes, setEditingNotes, updateLeadFields }: SortableItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: lead.id, data: lead });
 
   const style = {
@@ -146,7 +154,7 @@ useEffect(() => {
     }
   };
 
-  const handleDragEnd = async (event: any) => {
+  const handleDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event;
     setActiveId(null);
 
@@ -156,8 +164,8 @@ useEffect(() => {
     const overId = over.id; // This will be the stage ID if dropped on a column
 
     if (STAGES.some(s => s.id === overId)) {
-        if (active.data.current.deal_stage !== overId) {
-            await updateLeadFields(leadId, { deal_stage: overId as string });
+        if (active.data.current?.deal_stage !== overId) {
+            await updateLeadFields(leadId as number, { deal_stage: overId as string });
         }
     }
   };

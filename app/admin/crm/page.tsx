@@ -66,55 +66,48 @@ export default function CrmAdminPage() {
     }
   };
 
-  // Analytics Calculations
-  const getStatusData = () => {
-    const counts = leads.reduce((acc, lead) => {
-      acc[lead.status] = (acc[lead.status] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
-    
-    return Object.keys(counts).map(status => ({
-      name: status.toUpperCase(),
-      value: counts[status]
-    }));
-  };
-
-  const getIndustryData = () => {
-    const counts = leads.reduce((acc, lead) => {
-      // Very naive categorization based on query for visual placeholder
-      const cat = lead.query?.split(' ')[0] || 'Egyéb';
-      acc[cat] = (acc[cat] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
-    
-    return Object.keys(counts).map(cat => ({
-      name: cat.toUpperCase(),
-      Leadek: counts[cat]
-    }));
-  };
-
-  // Memoized stats to prevent redundant filtering on every render
-  const stats = useMemo(() => {
+  // Memoized stats and chart data to prevent redundant loops on every render
+  const aggregatedData = useMemo(() => {
     let auditCount = 0;
-    let sentCount = 0;
-    let newCount = 0;
+    const statusCounts: Record<string, number> = {};
+    const industryCounts: Record<string, number> = {};
 
-    leads.forEach(l => {
+    for (let i = 0; i < leads.length; i++) {
+      const l = leads[i];
+
       if (l.audit) auditCount++;
-      if (l.status === 'sent') sentCount++;
-      if (l.status === 'new') newCount++;
-    });
+      statusCounts[l.status] = (statusCounts[l.status] || 0) + 1;
 
-    const total = leads.length || 1; // avoid division by zero
+      const cat = l.query ? l.query.split(' ')[0] : 'Egyéb';
+      industryCounts[cat] = (industryCounts[cat] || 0) + 1;
+    }
 
-    return {
+    const total = leads.length || 1;
+    const sentCount = statusCounts['sent'] || 0;
+    const newCount = statusCounts['new'] || 0;
+
+    const stats = {
       auditCount,
       auditPercent: Math.round((auditCount / total) * 100) || 0,
       sentCount,
       sentPercent: Math.round((sentCount / total) * 100) || 0,
-      newCount
+      newCount,
     };
+
+    const statusData = Object.keys(statusCounts).map((status) => ({
+      name: status.toUpperCase(),
+      value: statusCounts[status],
+    }));
+
+    const industryData = Object.keys(industryCounts).map((cat) => ({
+      name: cat.toUpperCase(),
+      Leadek: industryCounts[cat],
+    }));
+
+    return { stats, statusData, industryData };
   }, [leads]);
+
+  const { stats, statusData, industryData } = aggregatedData;
 
   return (
     <div className="container mx-auto p-6 bg-slate-950 min-h-screen text-white relative">
@@ -168,7 +161,7 @@ export default function CrmAdminPage() {
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
-                      data={getStatusData()}
+                      data={statusData}
                       cx="50%"
                       cy="50%"
                       innerRadius={60}
@@ -176,7 +169,7 @@ export default function CrmAdminPage() {
                       paddingAngle={5}
                       dataKey="value"
                     >
-                      {getStatusData().map((entry, index) => (
+                      {statusData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
@@ -188,7 +181,7 @@ export default function CrmAdminPage() {
              <div className="bg-slate-900 border border-slate-800 p-4 rounded-lg shadow-xl h-80">
                 <h3 className="text-lg font-semibold text-slate-300 mb-4">Iparági Eloszlás (Keresések)</h3>
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={getIndustryData()}>
+                  <BarChart data={industryData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                     <XAxis dataKey="name" stroke="#94a3b8" />
                     <YAxis stroke="#94a3b8" />

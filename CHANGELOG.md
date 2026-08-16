@@ -2,6 +2,24 @@
 
 Notable changes to the Pohánka és Társa Kft. website. Not auto-generated — kept manually, in reverse-chronological order.
 
+## 2026-08-16 — Jules branch integration, rate limiting hardening, performance & test upgrades
+
+Integrated reviewed fixes and improvements from Jules AI branches:
+
+### Security & Hardening
+- **IP Spoofing Rate Limit Bypass Fix**: In `app/api/chat/route.ts`, `app/api/contact/route.ts`, `app/api/instant-responder/demo/route.ts`, and `app/api/lead-magnet-audit/route.ts`, rate limiters now prioritize the trusted `x-real-ip` header from the proxy and take the last hop of `x-forwarded-for` to prevent header spoofing bypasses.
+- **Lead Magnet Audit Server Route & Rate Limiting**: Moved lead magnet audit submissions from client-side direct n8n webhook calls to a new server-side endpoint (`/api/lead-magnet-audit`) with IP rate limiting and environment variable fallback (`N8N_WEBHOOK_URL` / `NEXT_PUBLIC_N8N_WEBHOOK_URL`).
+- **Google Analytics Script Sanitization**: Hardened GA Measurement ID handling in `app/components/GoogleAnalytics.tsx` with `JSON.stringify` interpolation.
+
+### Bug Fixes & Performance
+- **GSAP ScrollTrigger Cleanup in `ThreeDScene.tsx`**: Wrapped component animations in `gsap.context()` and replaced dangerous global `ScrollTrigger.getAll().forEach(t => t.kill())` with `ctx.revert()`, preventing other page animations from being destroyed on unmount.
+- **CRM Dashboard Performance**: Consolidated multiple `.reduce()` calculations in `app/admin/crm/page.tsx` into a single memoized `useMemo` aggregation loop.
+
+### Code Health & Testing
+- **CRM Pipeline Types**: Replaced `any` with `DragEndEvent` from `@dnd-kit/core` and typed `SortableItemProps` in `app/admin/crm/pipeline/page.tsx`.
+- **Portfolio Project Meta Unit Tests**: Added `tests/projects.meta.spec.ts` for unit testing `getPortfolioProjectMeta`.
+- **Analytics Spec Fix**: Updated `tests/analytics.spec.ts` to test error-free execution of analytics helper functions.
+
 ## 2026-08-11 — Jules branch review, live-site bug fixes, SEO/infra audit
 
 A full review of the accumulated Jules AI (`google-labs-jules[bot]`) branches and PRs, plus a Google Search Console and Vercel project audit.

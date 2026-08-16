@@ -25,7 +25,7 @@ export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
+            gtag('config', ${JSON.stringify(GA_MEASUREMENT_ID)}, {
               page_path: window.location.pathname,
             });
           `,
