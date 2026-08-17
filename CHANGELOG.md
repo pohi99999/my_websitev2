@@ -2,6 +2,22 @@
 
 Notable changes to the Pohánka és Társa Kft. website. Not auto-generated — kept manually, in reverse-chronological order.
 
+## 2026-08-17 — Production outage fix: every blog post + `/en` + `/de` were 500ing
+
+Google Search Console flagged a new "Server error (5xx)" indexing issue (first detected 2026-08-15); a Vercel Runtime Logs check confirmed **every `/blog/[slug]` post, and the `/en` and `/de` locale homepages, were returning HTTP 500 in production**.
+
+### Fixed
+
+- **Root cause**: `isomorphic-dompurify` (added 2026-08-11 as a defense-in-depth wrapper around `dangerouslySetInnerHTML` in `app/blog/[slug]/page.jsx`, on top of the already-sanitizing `rehype-sanitize` pass in `lib/markdown.ts`) uses `jsdom` on the server. `jsdom`'s `html-encoding-sniffer@6.0.0` dependency does a CJS `require()` of `@exodus/bytes/encoding-lite.js`, which is a pure-ESM package (`"type": "module"`, no `require` export condition) — this throws `ERR_REQUIRE_ESM` at runtime. This is an upstream bug: even the latest `jsdom@30.0.1` still pins `html-encoding-sniffer@^6.0.0`, so bumping jsdom would not have fixed it. Since `jsdom` is on Next.js's default `serverExternalPackages` list, it's `require()`'d directly by the Node runtime instead of being bundled (where a bundler's CJS/ESM interop would likely have masked the bug) — explaining why this only broke at request time, not at build time. `/en` and `/de` hit the same crash because their catch-all routes render the same blog content path.
+  - Fix: removed `isomorphic-dompurify` entirely (`app/blog/[slug]/page.jsx`, `package.json`). The `rehype-sanitize` pass in `lib/markdown.ts` (AST-level allow-list sanitization, not string-based) already sanitizes the HTML before it reaches `dangerouslySetInnerHTML` — DOMPurify was a redundant second layer, not the only one. If a second layer is wanted again in future, prefer a jsdom-free sanitizer (e.g. `sanitize-html`) over `isomorphic-dompurify`.
+- **Separately found while investigating**: all `opengraph-image`/`twitter-image` routes site-wide (`/opengraph-image`, `/blog/opengraph-image`, `/portfolio/opengraph-image`, etc.) were returning HTTP 200 with an **empty body** — broken Open Graph previews on every share. `app/_og/fonts.ts` fetched Inter from Google Fonts requesting `.woff2` (spoofing a modern Chrome User-Agent), but `next/og`'s `ImageResponse` (Satori) can only parse ttf/otf/woff — not woff2. Fixed by switching the Google Fonts request to an old-Firefox User-Agent, which makes Google return legacy `.woff` sources instead.
+
+### Verification
+
+- `npm run build` — clean, no prerender errors.
+- `npm run start -- -p 3333` + manual curl: `/blog/<slug>`, `/de`, `/en` → 200; `/opengraph-image` and `/blog/opengraph-image` → 200 with a valid non-empty PNG body.
+- `npx playwright test` — 182 passed. 44 failures were homepage-load timeouts across unrelated specs (design/menu/motion-hook tests) reproducing resource contention from running the full suite locally, not a regression — confirmed by re-running one failing spec in isolation (passed).
+
 ## 2026-08-16 — Jules branch integration, rate limiting hardening, performance & test upgrades
 
 Integrated reviewed fixes and improvements from Jules AI branches:

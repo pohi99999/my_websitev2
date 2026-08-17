@@ -7,7 +7,6 @@ import { getBlogPostMeta } from '../blogPosts.meta';
 import { renderMarkdownToHtml } from '../../../lib/markdown';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
-import DOMPurify from 'isomorphic-dompurify';
 
 // Valós Blog Tartalmak
 const blogPosts = {
@@ -1142,7 +1141,8 @@ export default async function BlogPostPage({ params }) {
               <div
                 className="text-gray-300 leading-relaxed space-y-6 text-lg blog-content"
                 dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(renderedContent),
+                  // renderedContent is already sanitized by rehype-sanitize in lib/markdown.ts
+                __html: renderedContent,
                 }}
               />
             </div>

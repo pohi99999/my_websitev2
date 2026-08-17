@@ -1,6 +1,6 @@
 const fontCache = new Map<string, ArrayBuffer>();
 
-async function fetchGoogleFontWoff2(family: string, weight: number) {
+async function fetchGoogleFontWoff(family: string, weight: number) {
   const cacheKey = `${family}-${weight}`;
   const cached = fontCache.get(cacheKey);
   if (cached) return cached;
@@ -9,9 +9,9 @@ async function fetchGoogleFontWoff2(family: string, weight: number) {
 
   const cssResponse = await fetch(cssUrl, {
     headers: {
-      // Ensures Google Fonts returns woff2 sources consistently.
-      'User-Agent':
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+      // An old UA makes Google Fonts return legacy .woff sources instead of
+      // .woff2 — next/og's Satori renderer can only parse ttf/otf/woff, not woff2.
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:96.0) Gecko/20100101 Firefox/96.0'
     }
   });
 
@@ -20,10 +20,10 @@ async function fetchGoogleFontWoff2(family: string, weight: number) {
   }
 
   const css = await cssResponse.text();
-  const match = css.match(/src:\s*url\((https:\/\/fonts\.gstatic\.com\/[^)]+\.woff2)\)\s*format\('woff2'\)/);
+  const match = css.match(/src:\s*url\((https:\/\/fonts\.gstatic\.com\/[^)]+\.woff)\)\s*format\('woff'\)/);
 
   if (!match?.[1]) {
-    throw new Error(`Could not find woff2 font URL in Google Fonts CSS (${family} ${weight})`);
+    throw new Error(`Could not find woff font URL in Google Fonts CSS (${family} ${weight})`);
   }
 
   const fontResponse = await fetch(match[1]);
@@ -37,5 +37,5 @@ async function fetchGoogleFontWoff2(family: string, weight: number) {
 }
 
 export async function getInterFont(weight: 500 | 700 | 800) {
-  return fetchGoogleFontWoff2('Inter', weight);
+  return fetchGoogleFontWoff('Inter', weight);
 }
