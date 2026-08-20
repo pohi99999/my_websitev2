@@ -2,6 +2,18 @@
 
 Notable changes to the Pohánka és Társa Kft. website. Not auto-generated — kept manually, in reverse-chronological order.
 
+## 2026-08-20 — Portfolio: added P-BAG and Cimbi Szakrajz case studies; full-site audit
+
+### Added
+- Two new cards in the "Weboldal Referenciák" section of `app/components/Portfolio.tsx` (shared by `/portfolio`, `/en/portfolio`, `/de/portfolio` — no catch-all sync needed since this section lives in the shared component, not the hardcoded `en`/`de` switch statements):
+  - **P-BAG — Csomagmegőrző Platform** (`https://csomagmegorzo-projekt.vercel.app/`, image `public/p-bag.jpg`) — the team's own luggage-storage booking marketplace (P-BAG, internal client).
+  - **Szakrajz & Modellező Program** (`https://szakrajz-s-modellez-program.vercel.app/`, image `public/szakrajz.jpg`) — Vision-AI-assisted furniture technical-drawing/3D-modeling tool built for Czimber Tibor (Cimbi), reusing the existing `PortfolioReferenceExternal` CTA-tracking location.
+
+### Verified
+- `npm run build` clean; `npm run start -- -p 3333` + curl confirmed HTTP 200 and correct rendered HTML (image `srcSet`, alt text, title, CTA links) on `/portfolio`, `/en/portfolio`, `/de/portfolio`.
+- Production spot-check (`https://www.pohankaestarsa.com`): `/`, `/portfolio`, `/en`, `/de`, `/blog`, `/kapcsolat`, `/szolgaltatasok`, `/termekek`, `/rolunk`, two portfolio case studies, and both root/`portfolio` `opengraph-image` routes all return 200 — the 2026-08-17 outage fix and OG-image fix are holding in production.
+- Noted (informational, no action needed): `robots.txt` served over the public domain includes a Cloudflare-injected "Content Signals" preamble (blocks GPTBot/CCBot/Google-Extended/ClaudeBot/etc. from AI training, allows search indexing) ahead of the site's own static `public/robots.txt` content — this is added at the Cloudflare edge for the proxied zone, not part of the repo's file.
+
 ## 2026-08-17 — Production outage fix: every blog post + `/en` + `/de` were 500ing
 
 Google Search Console flagged a new "Server error (5xx)" indexing issue (first detected 2026-08-15); a Vercel Runtime Logs check confirmed **every `/blog/[slug]` post, and the `/en` and `/de` locale homepages, were returning HTTP 500 in production**.
