@@ -2,12 +2,14 @@
 
 Notable changes to the Pohánka és Társa Kft. website. Not auto-generated — kept manually, in reverse-chronological order.
 
-## 2026-08-20 — Portfolio: added P-BAG and Cimbi Szakrajz case studies; full-site audit
+## 2026-08-20 — Portfolio: added P-BAG, Cimbi Szakrajz and P-Search Mobil case studies; full-site audit
 
 ### Added
-- Two new cards in the "Weboldal Referenciák" section of `app/components/Portfolio.tsx` (shared by `/portfolio`, `/en/portfolio`, `/de/portfolio` — no catch-all sync needed since this section lives in the shared component, not the hardcoded `en`/`de` switch statements):
+- Three new cards in the "Weboldal Referenciák" section of `app/components/Portfolio.tsx` (shared by `/portfolio`, `/en/portfolio`, `/de/portfolio` — no catch-all sync needed since this section lives in the shared component, not the hardcoded `en`/`de` switch statements):
   - **P-BAG — Csomagmegőrző Platform** (`https://csomagmegorzo-projekt.vercel.app/`, image `public/p-bag.jpg`) — the team's own luggage-storage booking marketplace (P-BAG, internal client).
-  - **Szakrajz & Modellező Program** (`https://szakrajz-s-modellez-program.vercel.app/`, image `public/szakrajz.jpg`) — Vision-AI-assisted furniture technical-drawing/3D-modeling tool built for Czimber Tibor (Cimbi), reusing the existing `PortfolioReferenceExternal` CTA-tracking location.
+  - **Szakrajz & Modellező Program** (`https://szakrajz-s-modellez-program.vercel.app/`, image `public/szakrajz.jpg`) — Vision-AI-assisted furniture technical-drawing/3D-modeling tool built for Czimber Tibor (Cimbi).
+  - **P-Search — Pályázatkereső App** (`https://p-search-mobil.vercel.app/`, image `public/p-search.jpg`) — web export of the P-Search Mobil React Native/Expo app (internal project); AI-agent grant/loan matching for Hungarian SMEs with a Copilot-mode document assistant.
+  - All three reuse the existing `PortfolioReferenceExternal` CTA-tracking location.
 
 ### Verified
 - `npm run build` clean; `npm run start -- -p 3333` + curl confirmed HTTP 200 and correct rendered HTML (image `srcSet`, alt text, title, CTA links) on `/portfolio`, `/en/portfolio`, `/de/portfolio`.
