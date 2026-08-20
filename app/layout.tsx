@@ -84,6 +84,9 @@ export const metadata: Metadata = {
     statusBarStyle: 'black-translucent',
     title: 'Pohánka és Társa',
   },
+  other: {
+    'p:domain_verify': '90d4274ae6a50195179afc7d5e1ad5d3',
+  },
 };
 
 const organizationSchema = {
