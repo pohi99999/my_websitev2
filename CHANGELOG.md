@@ -2,6 +2,18 @@
 
 Notable changes to the Pohánka és Társa Kft. website. Not auto-generated — kept manually, in reverse-chronological order.
 
+## 2026-08-20 (2) — Fixed slow/missing image on Ecomud portfolio card (missing `sizes` on all 12 reference images)
+
+A user reported the Ecomud card image not appearing on `/portfolio`. Investigated with a real browser (not just curl): the file, the static route, and the Next.js Image Optimization endpoint all served the image correctly (200, valid JPEG) at every breakpoint, and forcing `loading="eager"` on the exact DOM element loaded it instantly — so the resource itself was never broken.
+
+**Root cause**: none of the 12 `<Image fill .../>` cards in the "Weboldal Referenciák" grid passed a `sizes` prop, so Next.js defaulted to `sizes="100vw"` for every one of them — even though each card renders at roughly 1/3 of the viewport width on desktop (`grid-cols-1 md:grid-cols-3`). This made the browser request the full-viewport-width image variant (often the largest available, up to 3840w) for a ~390px-wide card, needlessly slowing every reference-image load and making the native `loading="lazy"` fetch more likely to still be pending (showing a broken-image icon) when a user scrolls past, especially on a cold cache or slower connection. Ecomud was simply the one the reporting user happened to catch mid-load; the same inefficiency affected all 12 cards, including the three added earlier today (P-BAG, Szakrajz, P-Search).
+
+### Fixed
+- Added `sizes="(max-width: 767px) 100vw, 33vw"` to all 12 `fill` images in `app/components/Portfolio.tsx`'s "Weboldal Referenciák" section, matching the grid's `md:grid-cols-3` breakpoint (Tailwind `md` = 768px) — the same pattern already used by the certification badges lower on the same page.
+
+### Verified
+- `npm run build` clean; local `next start` + curl confirmed the rendered `srcSet`/`sizes` now offer much smaller candidate widths (e.g. 640w) instead of defaulting toward the 1920–3840w variants.
+
 ## 2026-08-20 — Portfolio: added P-BAG, Cimbi Szakrajz and P-Search Mobil case studies; full-site audit
 
 ### Added

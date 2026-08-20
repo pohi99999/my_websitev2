@@ -362,7 +362,7 @@ const Portfolio = () =>
             {/* Cimbi Weboldal */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/cimbi.jpg" alt="Cimbi Weboldal" fill className="object-cover object-top" />
+                <Image src="/cimbi.jpg" alt="Cimbi Weboldal" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Cimbi Weboldal</h3>
@@ -384,7 +384,7 @@ const Portfolio = () =>
             {/* Ecomud */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/edmund.jpg" alt="Ecomud" fill className="object-cover object-top" />
+                <Image src="/edmund.jpg" alt="Ecomud" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Ecomud</h3>
@@ -406,7 +406,7 @@ const Portfolio = () =>
             {/* Aronia */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/aaronia.jpg" alt="Aronia" fill className="object-cover object-top" />
+                <Image src="/aaronia.jpg" alt="Aronia" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Aronia</h3>
@@ -428,7 +428,7 @@ const Portfolio = () =>
             {/* Lumen Limited Series */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/lumen.jpg" alt="Lumen Limited Series" fill className="object-cover object-top" />
+                <Image src="/lumen.jpg" alt="Lumen Limited Series" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Lumen Limited Series</h3>
@@ -450,7 +450,7 @@ const Portfolio = () =>
             {/* Könyvelőiroda Weboldal */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/konyveloiroda.jpg" alt="Könyvelőiroda Weboldal" fill className="object-cover object-top" />
+                <Image src="/konyveloiroda.jpg" alt="Könyvelőiroda Weboldal" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Könyvelőiroda Weboldal</h3>
@@ -472,7 +472,7 @@ const Portfolio = () =>
             {/* Hetényi Renáta Kozmetikus */}
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/refreni.jpg" alt="Hetényi Renáta Kozmetikus" fill className="object-cover object-top" />
+                <Image src="/refreni.jpg" alt="Hetényi Renáta Kozmetikus" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Hetényi Renáta Kozmetikus</h3>
@@ -494,7 +494,7 @@ const Portfolio = () =>
             {/* HomolaMentor KFT */}
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/homola.jpg" alt="HomolaMentor KFT" fill className="object-cover object-top" />
+                <Image src="/homola.jpg" alt="HomolaMentor KFT" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">HomolaMentor KFT</h3>
@@ -516,7 +516,7 @@ const Portfolio = () =>
             {/* Cars99 */}
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/cars99.jpg" alt="Cars99" fill className="object-cover object-top" />
+                <Image src="/cars99.jpg" alt="Cars99" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Cars99</h3>
@@ -537,7 +537,7 @@ const Portfolio = () =>
             {/* Némethy Roland */}
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/roland.jpg" alt="Némethy Roland" fill className="object-cover object-top" />
+                <Image src="/roland.jpg" alt="Némethy Roland" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Némethy Roland</h3>
@@ -558,7 +558,7 @@ const Portfolio = () =>
             {/* P-BAG Csomagmegőrző Platform */}
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/p-bag.jpg" alt="P-BAG Csomagmegőrző Platform" fill className="object-cover object-top" />
+                <Image src="/p-bag.jpg" alt="P-BAG Csomagmegőrző Platform" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">P-BAG — Csomagmegőrző Platform</h3>
@@ -580,7 +580,7 @@ const Portfolio = () =>
             {/* Cimbi Szakrajz és Modellező Program */}
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/szakrajz.jpg" alt="Cimbi Szakrajz és Modellező Program" fill className="object-cover object-top" />
+                <Image src="/szakrajz.jpg" alt="Cimbi Szakrajz és Modellező Program" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Szakrajz & Modellező Program</h3>
@@ -602,7 +602,7 @@ const Portfolio = () =>
             {/* P-Search Mobil */}
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
-                <Image src="/p-search.jpg" alt="P-Search Mobil" fill className="object-cover object-top" />
+                <Image src="/p-search.jpg" alt="P-Search Mobil" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">P-Search — Pályázatkereső App</h3>
