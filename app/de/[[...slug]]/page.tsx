@@ -17,6 +17,7 @@ import ImpresszumPage from '../../impresszum/page';
 import AszfPage from '../../aszf/page';
 import PohiAiProPage from '../../termekek/pohi-ai-pro/page';
 import WeboldalAiKkvPage from '../../weboldal-ai-kkv/page';
+import HatekonysagiAuditPage from '../../hatekonysagi-audit/page';
 import BrunellaBasPage from '../../portfolio/brunella-bas/page';
 import PortfolioPohiAiProPage from '../../portfolio/pohi-ai-pro/page';
 import TartalomGyartasPage from '../../portfolio/tartalom-gyartas/page';
@@ -121,6 +122,13 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
                     title: 'Website + KI für KMU | Pohánka AI',
                     description:
                         'Moderne, leadgenerierende Websites kombiniert mit KI-gestützter Automatisierung für ungarische KMU.',
+                    ogType: 'website',
+                };
+            case 'hatekonysagi-audit':
+                return {
+                    title: 'Digitaler Effizienz-Audit | Pohánka AI',
+                    description:
+                        'Finden Sie in 3 Minuten heraus, wo Ihr Unternehmen monatlich 100+ Arbeitsstunden durch manuelle Prozesse verliert — und wie KI das stoppen kann.',
                     ogType: 'website',
                 };
             default:
@@ -257,6 +265,8 @@ export default async function DeCatchAllPage({ params }: { params: Promise<Param
                 return <AszfPage />;
             case 'weboldal-ai-kkv':
                 return <WeboldalAiKkvPage />;
+            case 'hatekonysagi-audit':
+                return <HatekonysagiAuditPage />;
             default:
                 return notFound();
         }

@@ -1,118 +1,251 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.pohankaestarsa.com/</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/szolgaltatasok</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/szolgaltatasok" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/szolgaltatasok" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/szolgaltatasok" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/szolgaltatasok" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/termekek</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/termekek" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/termekek" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/termekek" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/termekek" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/termekek/brunella-agents</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/termekek/pohi-ai-pro</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/termekek/pohi-ai-pro" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/termekek/pohi-ai-pro" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/termekek/pohi-ai-pro" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/termekek/pohi-ai-pro" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/weboldal-ai-kkv</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/weboldal-ai-kkv" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/weboldal-ai-kkv" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/weboldal-ai-kkv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/weboldal-ai-kkv" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/hatekonysagi-audit</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/hatekonysagi-audit" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/hatekonysagi-audit" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/hatekonysagi-audit" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/hatekonysagi-audit" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/portfolio</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/portfolio" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/portfolio" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/portfolio" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/portfolio" />
+  </url>
+  <url>
+    <loc>https://www.pohankaestarsa.com/portfolio/brunella-bas</loc>
+    <lastmod>2026-08-21</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/portfolio/brunella-bas" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/portfolio/brunella-bas" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/portfolio/brunella-bas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/portfolio/brunella-bas" />
+  </url>
+  <url>
+    <loc>https://www.pohankaestarsa.com/portfolio/pohi-ai-pro</loc>
+    <lastmod>2026-08-21</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/portfolio/pohi-ai-pro" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/portfolio/pohi-ai-pro" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/portfolio/pohi-ai-pro" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/portfolio/pohi-ai-pro" />
+  </url>
+  <url>
+    <loc>https://www.pohankaestarsa.com/portfolio/web-robotpilota</loc>
+    <lastmod>2026-08-21</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/portfolio/web-robotpilota" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/portfolio/web-robotpilota" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/portfolio/web-robotpilota" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/portfolio/web-robotpilota" />
+  </url>
+  <url>
+    <loc>https://www.pohankaestarsa.com/portfolio/palyazat-radar</loc>
+    <lastmod>2026-08-21</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/portfolio/palyazat-radar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/portfolio/palyazat-radar" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/portfolio/palyazat-radar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/portfolio/palyazat-radar" />
+  </url>
+  <url>
+    <loc>https://www.pohankaestarsa.com/portfolio/tartalom-gyartas</loc>
+    <lastmod>2026-08-21</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/portfolio/tartalom-gyartas" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/portfolio/tartalom-gyartas" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/portfolio/tartalom-gyartas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/portfolio/tartalom-gyartas" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog/automatizalt-bongeszo-agensek</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog/automatizalt-bongeszo-agensek" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog/automatizalt-bongeszo-agensek" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog/automatizalt-bongeszo-agensek" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog/automatizalt-bongeszo-agensek" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog/brunella-strategiai-white-paper</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog/brunella-strategiai-white-paper" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog/brunella-strategiai-white-paper" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog/brunella-strategiai-white-paper" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog/brunella-strategiai-white-paper" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog/bevezeto-a-mesterseges-intelligencia-vilagaba</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog/bevezeto-a-mesterseges-intelligencia-vilagaba" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog/bevezeto-a-mesterseges-intelligencia-vilagaba" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog/bevezeto-a-mesterseges-intelligencia-vilagaba" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog/bevezeto-a-mesterseges-intelligencia-vilagaba" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog/digitalis-lenyomat-anatomiaja</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog/digitalis-lenyomat-anatomiaja" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog/digitalis-lenyomat-anatomiaja" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog/digitalis-lenyomat-anatomiaja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog/digitalis-lenyomat-anatomiaja" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog/brunella-mi-csapatvezeto</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog/brunella-mi-csapatvezeto" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog/brunella-mi-csapatvezeto" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog/brunella-mi-csapatvezeto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog/brunella-mi-csapatvezeto" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog/fekete-doboz-vege-glass-box</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog/fekete-doboz-vege-glass-box" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog/fekete-doboz-vege-glass-box" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog/fekete-doboz-vege-glass-box" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog/fekete-doboz-vege-glass-box" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog/az-ido-a-legertekesebb-valuta</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog/az-ido-a-legertekesebb-valuta" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog/az-ido-a-legertekesebb-valuta" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog/az-ido-a-legertekesebb-valuta" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog/az-ido-a-legertekesebb-valuta" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog/brunella-agent-system-mukodese</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog/brunella-agent-system-mukodese" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog/brunella-agent-system-mukodese" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog/brunella-agent-system-mukodese" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog/brunella-agent-system-mukodese" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog/ai-automatizalas-kkv-knak</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog/ai-automatizalas-kkv-knak" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog/ai-automatizalas-kkv-knak" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog/ai-automatizalas-kkv-knak" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog/ai-automatizalas-kkv-knak" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog/chatbot-az-ugyfelszolgalatban</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog/chatbot-az-ugyfelszolgalatban" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog/chatbot-az-ugyfelszolgalatban" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog/chatbot-az-ugyfelszolgalatban" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog/chatbot-az-ugyfelszolgalatban" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/blog/folyamat-automatizalas-5-lepes</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/blog/folyamat-automatizalas-5-lepes" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/blog/folyamat-automatizalas-5-lepes" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/blog/folyamat-automatizalas-5-lepes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/blog/folyamat-automatizalas-5-lepes" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/fogalomtar</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/fogalomtar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/fogalomtar" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/fogalomtar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/fogalomtar" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/rolunk</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/rolunk" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/rolunk" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/rolunk" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/rolunk" />
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/kapcsolat</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/kapcsolat" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/kapcsolat" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.pohankaestarsa.com/de/kapcsolat" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pohankaestarsa.com/kapcsolat" />
   </url>
 </urlset>
