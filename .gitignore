@@ -1,6 +1,5 @@
 node_modules/
 .next/
-.netlify/
 .git/
 .vs/
 test-results/

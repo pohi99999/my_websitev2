@@ -81,7 +81,7 @@ export default function KapcsolatClient() {
     setStatus({ state: "sending", message: ui.sending });
 
     try {
-      // Default: same-origin Next API route (works on Netlify too)
+      // Default: same-origin Next API route (Vercel deployment)
       // Optional override: external backend base URL (without trailing slash)
       const externalApiBase = process.env.NEXT_PUBLIC_API_ENDPOINT?.trim();
       const contactUrl = externalApiBase
