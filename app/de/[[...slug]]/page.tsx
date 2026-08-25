@@ -273,7 +273,7 @@ export default async function DeCatchAllPage({ params }: { params: Promise<Param
     }
 
     if (slug[0] === 'termekek' && slug.length === 2) {
-        if (slug[1] === 'brunella-agents') return redirect('/portfolio/brunella-bas');
+        if (slug[1] === 'brunella-agents') return redirect('/de/portfolio/brunella-bas');
         if (slug[1] === 'pohi-ai-pro') return <PohiAiProPage />;
     }
 

@@ -77,6 +77,7 @@ export const metadata: Metadata = {
       'hu': 'https://www.pohankaestarsa.com/',
       'en': 'https://www.pohankaestarsa.com/en',
       'de': 'https://www.pohankaestarsa.com/de',
+      'x-default': 'https://www.pohankaestarsa.com/',
     }
   },
   appleWebApp: {
