@@ -51,6 +51,7 @@ export async function generateMetadata() {
         hu: 'https://www.pohankaestarsa.com/',
         en: 'https://www.pohankaestarsa.com/en',
         de: 'https://www.pohankaestarsa.com/de',
+        'x-default': 'https://www.pohankaestarsa.com/',
       },
     },
       openGraph: {

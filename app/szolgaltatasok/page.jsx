@@ -45,6 +45,7 @@ export async function generateMetadata() {
         hu: "/szolgaltatasok",
         en: "/en/szolgaltatasok",
         de: "/de/szolgaltatasok",
+        'x-default': "/szolgaltatasok",
       },
     },
     openGraph: {

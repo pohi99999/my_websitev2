@@ -208,6 +208,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
                 hu: huPath,
                 en: enPath,
                 de: dePath,
+                'x-default': huPath,
             },
         },
         openGraph: {

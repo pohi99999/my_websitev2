@@ -37,6 +37,7 @@ export async function generateMetadata() {
         hu: '/fogalomtar',
         en: '/en/fogalomtar',
         de: '/de/fogalomtar',
+        'x-default': '/fogalomtar',
       },
     },
     openGraph: {

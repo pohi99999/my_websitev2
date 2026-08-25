@@ -39,6 +39,7 @@ export async function generateMetadata() {
         hu: "/portfolio",
         en: "/en/portfolio",
         de: "/de/portfolio",
+        'x-default': "/portfolio",
       },
     },
     openGraph: {

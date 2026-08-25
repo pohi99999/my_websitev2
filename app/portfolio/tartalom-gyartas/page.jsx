@@ -45,6 +45,7 @@ export async function generateMetadata() {
         hu: '/portfolio/tartalom-gyartas',
         en: '/en/portfolio/tartalom-gyartas',
         de: '/de/portfolio/tartalom-gyartas',
+        'x-default': '/portfolio/tartalom-gyartas',
       },
     },
     openGraph: {

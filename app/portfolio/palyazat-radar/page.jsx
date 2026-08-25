@@ -45,6 +45,7 @@ export async function generateMetadata() {
         hu: '/portfolio/palyazat-radar',
         en: '/en/portfolio/palyazat-radar',
         de: '/de/portfolio/palyazat-radar',
+        'x-default': '/portfolio/palyazat-radar',
       },
     },
     openGraph: {

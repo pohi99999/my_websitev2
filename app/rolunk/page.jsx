@@ -34,6 +34,7 @@ export async function generateMetadata() {
         hu: "/rolunk",
         en: "/en/rolunk",
         de: "/de/rolunk",
+        'x-default': "/rolunk",
       },
     },
     openGraph: {

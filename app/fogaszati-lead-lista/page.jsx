@@ -34,6 +34,7 @@ export async function generateMetadata() {
         hu: '/fogaszati-lead-lista',
         en: '/en/fogaszati-lead-lista',
         de: '/de/fogaszati-lead-lista',
+        'x-default': '/fogaszati-lead-lista',
       },
     },
   };

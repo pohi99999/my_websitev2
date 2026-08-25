@@ -48,6 +48,7 @@ export async function generateMetadata() {
         hu: 'https://www.pohankaestarsa.com/weboldal-ai-kkv',
         en: 'https://www.pohankaestarsa.com/en/weboldal-ai-kkv',
         de: 'https://www.pohankaestarsa.com/de/weboldal-ai-kkv',
+        'x-default': 'https://www.pohankaestarsa.com/weboldal-ai-kkv',
       },
     },
   };

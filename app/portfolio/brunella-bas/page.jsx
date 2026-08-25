@@ -50,6 +50,7 @@ export async function generateMetadata() {
         hu: '/portfolio/brunella-bas',
         en: '/en/portfolio/brunella-bas',
         de: '/de/portfolio/brunella-bas',
+        'x-default': '/portfolio/brunella-bas',
       },
     },
     openGraph: {

@@ -41,6 +41,7 @@ export async function generateMetadata() {
         hu: "/termekek",
         en: "/en/termekek",
         de: "/de/termekek",
+        'x-default': "/termekek",
       },
     },
     openGraph: {

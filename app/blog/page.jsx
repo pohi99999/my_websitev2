@@ -45,6 +45,7 @@ export async function generateMetadata() {
         hu: '/blog',
         en: '/en/blog',
         de: '/de/blog',
+        'x-default': '/blog',
       },
     },
     openGraph: {

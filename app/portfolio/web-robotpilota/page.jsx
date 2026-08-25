@@ -45,6 +45,7 @@ export async function generateMetadata() {
         hu: '/portfolio/web-robotpilota',
         en: '/en/portfolio/web-robotpilota',
         de: '/de/portfolio/web-robotpilota',
+        'x-default': '/portfolio/web-robotpilota',
       },
     },
     openGraph: {

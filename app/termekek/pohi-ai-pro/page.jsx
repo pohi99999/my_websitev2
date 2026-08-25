@@ -44,6 +44,7 @@ export async function generateMetadata() {
         hu: '/termekek/pohi-ai-pro',
         en: '/en/termekek/pohi-ai-pro',
         de: '/de/termekek/pohi-ai-pro',
+        'x-default': '/termekek/pohi-ai-pro',
       },
     },
     openGraph: {

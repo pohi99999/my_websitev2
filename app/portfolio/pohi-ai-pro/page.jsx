@@ -51,6 +51,7 @@ export async function generateMetadata() {
         hu: '/portfolio/pohi-ai-pro',
         en: '/en/portfolio/pohi-ai-pro',
         de: '/de/portfolio/pohi-ai-pro',
+        'x-default': '/portfolio/pohi-ai-pro',
       },
     },
     openGraph: {
