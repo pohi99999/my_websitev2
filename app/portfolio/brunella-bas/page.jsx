@@ -3,6 +3,8 @@ import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import ImageLightboxGallery from '../../components/ImageLightboxGallery';
 import SpotlightCard from '../../components/SpotlightCard';
+import BrunellaBetaStory from '../../components/BrunellaBetaStory';
+import { brunellaBetaContent, brunellaBetaImageSrcs } from './brunellaBetaContent';
 import { headers } from 'next/headers';
 import {
   ArrowLeft, ArrowRight, CheckCircle, Zap, Brain, Globe,
@@ -427,6 +429,15 @@ export default async function BrunellaBASPage() {
           </div>
         </section>
 
+        <section className="px-6 py-16 bg-white/5">
+          <div className="max-w-4xl mx-auto">
+            <BrunellaBetaStory
+              blocks={brunellaBetaContent[language] ?? brunellaBetaContent.en}
+              imageSrcs={brunellaBetaImageSrcs}
+            />
+          </div>
+        </section>
+
         <section className="px-6 py-20">
           <div className="max-w-4xl mx-auto">
             <GsapFadeIn>
@@ -748,6 +759,13 @@ export default async function BrunellaBASPage() {
               </GsapFadeIn>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Brunella System · Béta — 13 képes bemutató */}
+      <section className="px-6 py-16 bg-white/5">
+        <div className="max-w-4xl mx-auto">
+          <BrunellaBetaStory blocks={brunellaBetaContent.hu} imageSrcs={brunellaBetaImageSrcs} />
         </div>
       </section>
 
