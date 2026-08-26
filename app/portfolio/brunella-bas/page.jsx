@@ -429,7 +429,7 @@ export default async function BrunellaBASPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 bg-white/5">
+        <section id="brunella-beta" className="px-6 py-16 bg-white/5">
           <div className="max-w-4xl mx-auto">
             <BrunellaBetaStory
               blocks={brunellaBetaContent[language] ?? brunellaBetaContent.en}
@@ -763,7 +763,7 @@ export default async function BrunellaBASPage() {
       </section>
 
       {/* Brunella System · Béta — 13 képes bemutató */}
-      <section className="px-6 py-16 bg-white/5">
+      <section id="brunella-beta" className="px-6 py-16 bg-white/5">
         <div className="max-w-4xl mx-auto">
           <BrunellaBetaStory blocks={brunellaBetaContent.hu} imageSrcs={brunellaBetaImageSrcs} />
         </div>
