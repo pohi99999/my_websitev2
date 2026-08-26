@@ -2,6 +2,24 @@
 
 Notable changes to the Pohánka és Társa Kft. website. Not auto-generated — kept manually, in reverse-chronological order.
 
+## 2026-08-26 — Added "Brunella System · Béta" 13-photo story section to the brunella-bas portfolio page
+
+The owner supplied 13 dashboard screenshots and final HU marketing copy describing how the Brunella agent team (product name for [[Brunella Core]]) works, learns, and communicates over Telegram, to be added below the existing sections on `/portfolio/brunella-bas`.
+
+### Added
+- `app/components/BrunellaBetaStory.tsx` — a new client component rendering a linear editorial layout (intro, then 13 photo+caption blocks interleaved with heading/paragraph/quote/team-list/stats blocks) with its own lightbox (click to enlarge, prev/next navigation, keyboard support, caption shown on the enlarged image). Built standalone rather than extending the existing `ImageLightboxGallery` component, since that one is a hero+grid layout and this content needed a linear, text-interleaved flow.
+- `app/portfolio/brunella-bas/brunellaBetaContent.js` — block-structured content (`intro`/`heading`/`paragraphs`/`quote`/`list`/`stats`/`image`/`closing`) fully written in all three locales (hu/en/de), matching the page's existing hreflang setup.
+- `public/images/brunella-system-beta/01.png`–`13.png`.
+
+### Fixed
+- **The 13 supplied image files were not in the order the copy expected** (e.g. what the owner's caption assumed was image #2 — a Telegram phone screenshot — was actually file `2.png`, a Kanban board screenshot; the real Telegram screenshot was `12.png`). Opened all 13 files directly and matched each to its correct narrative slot by actual content, then renamed the files on disk to the correct sequential order so the component can index them directly (`imageSrcs[block.index - 1]`) without a separate remapping layer.
+- Two slots ("10. Jóváhagyás" / approval-request screenshot, "12. Összekötés" / federation-view screenshot) had no matching photo among the 13 — the dashboard's sidebar shows both views exist in the product, but none of the supplied screenshots were of them. Asked the owner how to proceed (AskUserQuestion); chosen approach: use the closest thematically-related leftover screenshots (Vault/encrypted-keys view for "Összekötés" — both are about secrets never leaving/crossing the system; Token Monitor/cost view for "Jóváhagyás" — acknowledged as the weakest fit) and corrected the `alt` text on those two images to accurately describe what's actually shown, while leaving the owner's authored caption text unchanged. Follow-up: swap in real approval-request / federation screenshots when available.
+
+### Verified
+- `npm run build` and `npm run lint` clean (lint's 13 pre-existing warnings are all in unrelated files).
+- Verified all three locales render the full, correctly-ordered content via `get_page_text` against a local `next start -p 3333` production server; lightbox navigation (image 1/13 → 2/13, caption, arrows) confirmed in-browser.
+- Deployed: commit `8efc295` pushed to `main`, Vercel production deployment confirmed `READY` via the Vercel MCP. `sitemap.xml`/`robots.txt` needed no changes (existing route, content-only update). Requested indexing in Google Search Console for all three locale URLs.
+
 ## 2026-08-25 — SEO/analytics audit: fixed locale-dropping redirect, missing x-default hreflang, wired GA4 conversion events
 
 Full-stack review requested by the owner across the codebase, Vercel project, Google Search Console, GA4, and Google Business Profile.
