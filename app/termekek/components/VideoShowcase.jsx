@@ -47,6 +47,8 @@ const videos = [
   }
 ];
 
+const availabilityCache = new Map();
+
 export default function VideoShowcase() {
   const { t } = useLanguage();
 
@@ -63,28 +65,34 @@ export default function VideoShowcase() {
     async function checkAll() {
       const checks = [];
       const BATCH_SIZE = 3;
+      const uncachedIds = youTubeVideoIds.filter(id => !availabilityCache.has(id));
 
-      for (let i = 0; i < youTubeVideoIds.length; i += BATCH_SIZE) {
+      for (let i = 0; i < uncachedIds.length; i += BATCH_SIZE) {
         if (cancelled) return;
 
-        const chunk = youTubeVideoIds.slice(i, i + BATCH_SIZE);
-        const chunkResults = await Promise.all(
+        const chunk = uncachedIds.slice(i, i + BATCH_SIZE);
+        await Promise.all(
           chunk.map(async (id) => {
+            if (availabilityCache.has(id)) {
+              return;
+            }
             const url = `https://www.youtube.com/oembed?url=${encodeURIComponent(
               `https://www.youtube.com/watch?v=${id}`
             )}&format=json`;
 
-            try {
-              const res = await fetch(url, { method: 'GET' });
-              return [id, res.ok];
-            } catch {
-              return [id, false];
-            }
+            const promise = fetch(url, { method: 'GET' })
+              .then((res) => res.ok)
+              .catch(() => false);
+            availabilityCache.set(id, promise);
+            await promise;
           })
         );
-        checks.push(...chunkResults);
       }
 
+      if (cancelled) return;
+      for (const id of youTubeVideoIds) {
+        checks.push([id, await availabilityCache.get(id)]);
+      }
       if (cancelled) return;
       setAvailability(Object.fromEntries(checks));
     }
