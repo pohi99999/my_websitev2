@@ -22,14 +22,20 @@ declare global {
   }
 }
 
+// Export the adapter for testing
+export const analyticsAdapter = {
+  track: (eventName: string, properties?: EventProps) => track(eventName, properties),
+  gtag: (...args: unknown[]) => window.gtag?.(...args)
+};
+
 export function trackEvent(eventName: string, properties?: EventProps) {
   try {
-    track(eventName, properties);
+    analyticsAdapter.track(eventName, properties);
   } catch {
     // no-op: analytics should never break UX
   }
   try {
-    window.gtag?.("event", eventName, properties);
+    analyticsAdapter.gtag("event", eventName, properties);
   } catch {
     // no-op: analytics should never break UX
   }
