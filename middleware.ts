@@ -36,14 +36,36 @@ export function middleware(req: NextRequest) {
     // If token is configured, enforce it.
     if (configuredToken) {
       const cookieToken = req.cookies.get(ADMIN_COOKIE)?.value;
+
       if (cookieToken !== configuredToken) {
-        const urlToken = req.nextUrl.searchParams.get("token");
+        let isAuthenticated = false;
+        const authHeader = req.headers.get("authorization");
 
-        if (urlToken === configuredToken) {
-          const cleanUrl = req.nextUrl.clone();
-          cleanUrl.searchParams.delete("token");
+        if (authHeader) {
+          if (authHeader.startsWith("Bearer ")) {
+            const bearerToken = authHeader.split(" ")[1];
+            if (bearerToken === configuredToken) {
+              isAuthenticated = true;
+            }
+          } else if (authHeader.startsWith("Basic ")) {
+            try {
+              const base64Credentials = authHeader.split(" ")[1];
+              const credentials = atob(base64Credentials);
+              // Basic auth is usually "username:password". We'll just check if the password matches the token,
+              // or if the whole decoded string is just the token (some clients might only send the token).
+              const [, password] = credentials.split(":");
 
-          const response = NextResponse.redirect(cleanUrl);
+              if (password === configuredToken || credentials === configuredToken) {
+                isAuthenticated = true;
+              }
+            } catch (e) {
+              // Ignore invalid base64
+            }
+          }
+        }
+
+        if (isAuthenticated) {
+          const response = NextResponse.next();
           response.cookies.set(ADMIN_COOKIE, configuredToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
@@ -54,11 +76,12 @@ export function middleware(req: NextRequest) {
           return response;
         }
 
-        return new NextResponse("Unauthorized", {
+        return new NextResponse("Authentication required", {
           status: 401,
           headers: {
             "content-type": "text/plain; charset=utf-8",
             "cache-control": "no-store",
+            "www-authenticate": 'Basic realm="Secure Area"',
           },
         });
       }
