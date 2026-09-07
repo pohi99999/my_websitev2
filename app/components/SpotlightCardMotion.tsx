@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 
 interface SpotlightCardProps {
   children: React.ReactNode;
   className?: string;
-  whileHover?: any;
-  whileTap?: any;
+  whileHover?: HTMLMotionProps<"div">["whileHover"];
+  whileTap?: HTMLMotionProps<"div">["whileTap"];
   delay?: number;
 }
 
