@@ -115,7 +115,12 @@ export default function KanbanPage() {
       const res = await fetch('/api/v1/potential-clients');
       const data = await res.json();
       if (data.ok) {
-        const sentLeads = data.leads.filter((l: any) => l.status === 'sent' || l.deal_stage !== 'lead');
+        const sentLeads = data.leads.reduce((acc: any[], l: any) => {
+          if (l.status === 'sent' || l.deal_stage !== 'lead') {
+            acc.push(l);
+          }
+          return acc;
+        }, []);
         setLeads(sentLeads);
       }
     } catch (err) {
@@ -129,13 +134,14 @@ useEffect(() => {
     fetchLeads();
   }, []);
 
-  const leadsByStage = useMemo(() => {
+  const { leadsByStage, wonCount } = useMemo(() => {
     return leads.reduce((acc, lead) => {
       const stage = lead.deal_stage;
-      if (!acc[stage]) acc[stage] = [];
-      acc[stage].push(lead);
+      if (!acc.leadsByStage[stage]) acc.leadsByStage[stage] = [];
+      acc.leadsByStage[stage].push(lead);
+      if (stage === 'won') acc.wonCount++;
       return acc;
-    }, {} as Record<string, Lead[]>);
+    }, { leadsByStage: {} as Record<string, Lead[]>, wonCount: 0 });
   }, [leads]);
 
   const updateLeadFields = async (id: number, fields: Partial<Lead>) => {
@@ -180,7 +186,7 @@ useEffect(() => {
           <h1 className="text-3xl font-bold text-emerald-400">Sales Pipeline Kanban</h1>
         </div>
         <div className="bg-slate-900 border border-slate-800 px-4 py-2 rounded-lg text-sm text-slate-400">
-          Total Deals: {leads.length} | Won: {leads.filter(l => l.deal_stage === 'won').length}
+          Total Deals: {leads.length} | Won: {wonCount}
         </div>
       </div>
 
