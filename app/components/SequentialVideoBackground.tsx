@@ -44,6 +44,7 @@ const SequentialVideoBackground: React.FC = () =>
   const video0Ref = useRef<HTMLVideoElement>( null );
   const video1Ref = useRef<HTMLVideoElement>( null );
   const normalizedPath = pathname.replace( /^\/(en|de)(?=\/|$)/, '' ) || '/';
+  const hasInitialized = useRef(false);
 
   // Function to switch video with cross-fade
   const switchVideo = useCallback( ( newSrc: string ) =>
@@ -89,7 +90,12 @@ const SequentialVideoBackground: React.FC = () =>
   // Set initial video source on component mount
   useEffect( () =>
   {
-    if ( !richMediaEnabled ) return;
+    if ( !richMediaEnabled ) {
+      hasInitialized.current = false;
+      return;
+    }
+    if ( hasInitialized.current ) return;
+
     const initialSrc = getVideoForPath( pathname );
     const currentRef = activePlayer === 0 ? video0Ref : video1Ref;
     if ( currentRef.current )
@@ -100,9 +106,9 @@ const SequentialVideoBackground: React.FC = () =>
       {
         console.error( "Initial autoplay was prevented:", error );
       } );
+      hasInitialized.current = true;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [richMediaEnabled] ); // Only run once on mount (or when richMediaEnabled changes)
+  }, [richMediaEnabled, pathname, activePlayer, video0Ref, video1Ref] ); // Run once on mount (or when richMediaEnabled changes)
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
