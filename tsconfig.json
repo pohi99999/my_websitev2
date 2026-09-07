@@ -24,6 +24,7 @@
     "target": "ES2017"
   },
   "include": [
+    "global.d.ts",
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",

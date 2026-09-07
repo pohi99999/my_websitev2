@@ -18,7 +18,7 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     let rafId = 0;
 
     const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false;
-    const saveData = (navigator as any)?.connection?.saveData === true;
+    const saveData = navigator?.connection?.saveData === true;
 
     if (prefersReducedMotion || saveData) {
       return;
