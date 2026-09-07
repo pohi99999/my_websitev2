@@ -17,9 +17,27 @@ function isSupportedLanguage(value) {
   return value === 'hu' || value === 'en' || value === 'de';
 }
 
+const pathCache = new Map();
+const MAX_CACHE_SIZE = 10000;
+
 function getNestedValue(obj, path) {
   if (!obj || !path) return undefined;
-  return path.split('.').reduce((acc, key) => (acc && acc[key] != null ? acc[key] : undefined), obj);
+
+  let keys = pathCache.get(path);
+  if (!keys) {
+    if (pathCache.size >= MAX_CACHE_SIZE) {
+      pathCache.clear();
+    }
+    keys = path.split('.');
+    pathCache.set(path, keys);
+  }
+
+  let current = obj;
+  for (let i = 0; i < keys.length; i++) {
+    if (current == null) return undefined;
+    current = current[keys[i]];
+  }
+  return current;
 }
 
 const LanguageContext = createContext({
