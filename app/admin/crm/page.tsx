@@ -69,23 +69,38 @@ export default function CrmAdminPage() {
   // Memoized stats and chart data to prevent redundant loops on every render
   const aggregatedData = useMemo(() => {
     let auditCount = 0;
-    const statusCounts: Record<string, number> = {};
-    const industryCounts: Record<string, number> = {};
+    let sentCount = 0;
+    let newCount = 0;
+
+    const statusMap = new Map<string, { name: string; value: number }>();
+    const industryMap = new Map<string, { name: string; Leadek: number }>();
 
     for (let i = 0; i < leads.length; i++) {
       const l = leads[i];
-
       if (l.audit) auditCount++;
-      statusCounts[l.status] = (statusCounts[l.status] || 0) + 1;
 
-      const cat = l.query ? l.query.split(' ')[0] : 'Egyéb';
-      industryCounts[cat] = (industryCounts[cat] || 0) + 1;
+      if (l.status === 'sent') sentCount++;
+      else if (l.status === 'new') newCount++;
+
+      let s = statusMap.get(l.status);
+      if (!s) {
+        s = { name: l.status.toUpperCase(), value: 0 };
+        statusMap.set(l.status, s);
+      }
+      s.value++;
+
+      const spaceIdx = l.query ? l.query.indexOf(' ') : -1;
+      const catStr = l.query ? (spaceIdx === -1 ? l.query : l.query.substring(0, spaceIdx)) : 'Egyéb';
+
+      let ind = industryMap.get(catStr);
+      if (!ind) {
+        ind = { name: catStr.toUpperCase(), Leadek: 0 };
+        industryMap.set(catStr, ind);
+      }
+      ind.Leadek++;
     }
 
     const total = leads.length || 1;
-    const sentCount = statusCounts['sent'] || 0;
-    const newCount = statusCounts['new'] || 0;
-
     const stats = {
       auditCount,
       auditPercent: Math.round((auditCount / total) * 100) || 0,
@@ -94,15 +109,8 @@ export default function CrmAdminPage() {
       newCount,
     };
 
-    const statusData = Object.keys(statusCounts).map((status) => ({
-      name: status.toUpperCase(),
-      value: statusCounts[status],
-    }));
-
-    const industryData = Object.keys(industryCounts).map((cat) => ({
-      name: cat.toUpperCase(),
-      Leadek: industryCounts[cat],
-    }));
+    const statusData = Array.from(statusMap.values());
+    const industryData = Array.from(industryMap.values());
 
     return { stats, statusData, industryData };
   }, [leads]);
