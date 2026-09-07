@@ -3,6 +3,29 @@ import nodemailer from 'nodemailer';
 import { Redis } from '@upstash/redis';
 import { Ratelimit } from '@upstash/ratelimit';
 
+const ALLOWED_ORIGINS = [
+  'https://www.pohankaestarsa.com',
+  'https://pohankaestarsa.com',
+  'http://localhost:3000',
+];
+
+
+
+export async function OPTIONS(req: Request) {
+  const origin = req.headers.get('origin') || '';
+  if (origin && !ALLOWED_ORIGINS.includes(origin) && process.env.NODE_ENV === 'production') {
+    return new NextResponse('Forbidden', { status: 403 });
+  }
+
+  const res = new NextResponse(null, { status: 204 });
+  res.headers.set('Access-Control-Allow-Origin', origin || '*');
+  res.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+  res.headers.set('Access-Control-Max-Age', '86400');
+  return res;
+}
+
+
 type RateWindow = { count: number; resetAtMs: number };
 
 const RATE_LIMIT_WINDOW_MS = 2 * 60 * 1000; // 2 perc
@@ -107,18 +130,31 @@ async function checkDailyLimit(): Promise<{ ok: true } | { ok: false; retryAfter
 
 export async function POST(req: Request) {
   try {
+    const origin = req.headers.get('origin') || '';
+    if (origin && !ALLOWED_ORIGINS.includes(origin) && process.env.NODE_ENV === 'production') {
+      return NextResponse.json({ ok: false, error: 'Forbidden' }, { status: 403 });
+    }
+
+    // Allow Access-Control-Allow-Origin header to match request origin
+    const corsOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : '*';
+    const corsHeaders = {
+      'Access-Control-Allow-Origin': corsOrigin,
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With'
+    };
+
     const clientIp = getClientIp(req);
     const burstLimited = await checkBurstLimit(clientIp);
     if (burstLimited.ok === false) {
       return NextResponse.json(
         { ok: false, error: 'Too many requests. Please try again shortly.' },
-        { status: 429, headers: { 'Retry-After': String(burstLimited.retryAfterSec) } }
+        { status: 429, headers: { ...corsHeaders, 'Retry-After': String(burstLimited.retryAfterSec) } }
       );
     }
 
     const contentType = req.headers.get('content-type') || '';
     if (!contentType.includes('application/json')) {
-      return NextResponse.json({ ok: false, error: 'Invalid content-type' }, { status: 415 });
+      return NextResponse.json({ ok: false, error: 'Invalid content-type' }, { status: 415, headers: corsHeaders });
     }
 
     const body = (await req.json()) as {
@@ -130,7 +166,7 @@ export async function POST(req: Request) {
 
     const honeypot = asNonEmptyString(body.website);
     if (honeypot) {
-      return NextResponse.json({ ok: true }, { status: 200 });
+      return NextResponse.json({ ok: true }, { status: 200, headers: corsHeaders });
     }
 
     const name = asNonEmptyString(body.name);
@@ -138,18 +174,18 @@ export async function POST(req: Request) {
     const message = asNonEmptyString(body.message);
 
     if (!name || !email || !message) {
-      return NextResponse.json({ ok: false, error: 'Missing fields' }, { status: 400 });
+      return NextResponse.json({ ok: false, error: 'Missing fields' }, { status: 400, headers: corsHeaders });
     }
 
     if (name.length > 120 || email.length > 200 || message.length > 6000) {
-      return NextResponse.json({ ok: false, error: 'Input too long' }, { status: 400 });
+      return NextResponse.json({ ok: false, error: 'Input too long' }, { status: 400, headers: corsHeaders });
     }
 
     const dailyLimited = await checkDailyLimit();
     if (dailyLimited.ok === false) {
       return NextResponse.json(
         { ok: false, error: 'Daily message limit reached. Please try again tomorrow.' },
-        { status: 429, headers: { 'Retry-After': String(dailyLimited.retryAfterSec) } }
+        { status: 429, headers: { ...corsHeaders, 'Retry-After': String(dailyLimited.retryAfterSec) } }
       );
     }
 
@@ -168,13 +204,13 @@ export async function POST(req: Request) {
           error:
             'Email service not configured. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS (and optionally CONTACT_TO/CONTACT_FROM).'
         },
-        { status: 500 }
+        { status: 500, headers: corsHeaders }
       );
     }
 
     const smtpPort = Number(smtpPortRaw);
     if (!Number.isFinite(smtpPort)) {
-      return NextResponse.json({ ok: false, error: 'Invalid SMTP_PORT' }, { status: 500 });
+      return NextResponse.json({ ok: false, error: 'Invalid SMTP_PORT' }, { status: 500, headers: corsHeaders });
     }
 
     const transporter = nodemailer.createTransport({
@@ -203,9 +239,15 @@ export async function POST(req: Request) {
       text
     });
 
-    return NextResponse.json({ ok: true }, { status: 200 });
+    return NextResponse.json({ ok: true }, { status: 200, headers: corsHeaders });
   } catch {
     // Keep err variable so it doesn't complain about unused error, but ignore it.
-    return NextResponse.json({ ok: false, error: 'Unexpected error' }, { status: 500 });
+    // In case of catch, corsHeaders might not be defined if error happened early. Default to generous CORS.
+    const errCorsHeaders = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With'
+    };
+    return NextResponse.json({ ok: false, error: 'Unexpected error' }, { status: 500, headers: errCorsHeaders });
   }
 }

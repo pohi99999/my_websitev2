@@ -21,7 +21,41 @@ test.describe('Contact API', () => {
     });
   }
 
+
+  test('POST rejects unauthorized origins in production', async () => {
+    const originalEnv = process.env.NODE_ENV;
+    process.env.NODE_ENV = 'production';
+
+    try {
+      const req = createRequest({ name: 'John' }, { origin: 'https://evil.com' });
+      const res = await POST(req);
+
+      expect(res.status).toBe(403);
+      const data = await res.json();
+      expect(data.error).toBe('Forbidden');
+    } finally {
+      process.env.NODE_ENV = originalEnv;
+    }
+  });
+
+  test('POST allows authorized origins in production', async () => {
+    const originalEnv = process.env.NODE_ENV;
+    process.env.NODE_ENV = 'production';
+
+    try {
+      // Honeypot request to return early 200 without needing full setup
+      const req = createRequest({ website: 'spam' }, { origin: 'https://www.pohankaestarsa.com' });
+      const res = await POST(req);
+
+      expect(res.status).toBe(200);
+      expect(res.headers.get('Access-Control-Allow-Origin')).toBe('https://www.pohankaestarsa.com');
+    } finally {
+      process.env.NODE_ENV = originalEnv;
+    }
+  });
+
   test('POST missing fields returns 400', async () => {
+
     const req = createRequest({ name: 'John' }); // Missing email and message
     const res = await POST(req);
     expect(res.status).toBe(400);
