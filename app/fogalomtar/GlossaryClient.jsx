@@ -167,10 +167,11 @@ export default function GlossaryClient() {
     );
   }
 
+  const lowerSearchTerm = searchTerm.toLowerCase();
   const filteredTerms = glossaryTerms.filter(
     (item) =>
-      item.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.definition.toLowerCase().includes(searchTerm.toLowerCase())
+      item.term.toLowerCase().includes(lowerSearchTerm) ||
+      item.definition.toLowerCase().includes(lowerSearchTerm)
   );
 
   return (
