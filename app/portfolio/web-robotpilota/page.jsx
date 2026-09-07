@@ -2,60 +2,36 @@ import React from 'react';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
-import { headers } from 'next/headers';
+import { generatePortfolioMetadata } from '../../../utils/seo';
 import {
   ArrowLeft, ArrowRight, CheckCircle, Bot, Globe, Zap,
   Clock, Shield, ShoppingCart, Home, Users, Database, Monitor, Settings
 } from 'lucide-react';
 
 export async function generateMetadata() {
-  const headerStore = await headers();
-  const headerLang = headerStore.get('x-site-language');
-  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
-
-  const meta =
-    language === 'en'
-      ? {
-          title: 'Web Autopilot — AI Browser Automation | Pohánka AI',
-          description: 'AI-driven browser automation for scraping, form filling and monitoring, running 24/7.',
-          canonical: '/en/portfolio/web-robotpilota',
-          locale: 'en_US',
-        }
-      : language === 'de'
-      ? {
-          title: 'Web-Robotpilot — KI-Browser-Automatisierung | Pohánka AI',
-          description: 'KI-gestützte Browser-Automatisierung für Datenerfassung, Formulare und Monitoring, 24/7.',
-          canonical: '/de/portfolio/web-robotpilota',
-          locale: 'de_DE',
-        }
-      : {
-          title: 'Web Robotpilóta — AI Böngésző Automatizáció | Pohánka AI',
-          description:
-            'AI-vezérelt böngésző automatizáció: adatgyűjtés, form kitöltés, versenytárs monitoring — emberi felügyelet nélkül, 0-24-ben.',
-          canonical: '/portfolio/web-robotpilota',
-          locale: 'hu_HU',
-        };
-
-  return {
-    title: meta.title,
-    description: meta.description,
-    alternates: {
-      canonical: meta.canonical,
-      languages: {
-        hu: '/portfolio/web-robotpilota',
-        en: '/en/portfolio/web-robotpilota',
-        de: '/de/portfolio/web-robotpilota',
-        'x-default': '/portfolio/web-robotpilota',
+  return generatePortfolioMetadata({
+    id: 'web-robotpilota',
+    translations: {
+      en: {
+        title: 'Web Autopilot — AI Browser Automation | Pohánka AI',
+        description: 'AI-driven browser automation for scraping, form filling and monitoring, running 24/7.',
+        canonical: '/en/portfolio/web-robotpilota',
+        locale: 'en_US',
       },
-    },
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      url: meta.canonical,
-      type: 'article',
-      locale: meta.locale,
-    },
-  };
+      de: {
+        title: 'Web-Robotpilot — KI-Browser-Automatisierung | Pohánka AI',
+        description: 'KI-gestützte Browser-Automatisierung für Datenerfassung, Formulare und Monitoring, 24/7.',
+        canonical: '/de/portfolio/web-robotpilota',
+        locale: 'de_DE',
+      },
+      hu: {
+        title: 'Web Robotpilóta — AI Böngésző Automatizáció | Pohánka AI',
+        description: 'AI-vezérelt böngésző automatizáció: adatgyűjtés, form kitöltés, versenytárs monitoring — emberi felügyelet nélkül, 0-24-ben.',
+        canonical: '/portfolio/web-robotpilota',
+        locale: 'hu_HU',
+      }
+    }
+  });
 }
 
 const useCases = [
