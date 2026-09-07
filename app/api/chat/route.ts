@@ -2,14 +2,20 @@ import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimit } from './rate-limiter';
 
 function getClientIp(req: NextRequest): string {
-  const realIp = req.headers.get('x-real-ip');
-  if (realIp) return realIp.trim();
+  // Trust the platform's extracted IP first
+  const platformIp = (req as any).ip || req.headers.get('x-vercel-forwarded-for');
+  if (platformIp) return platformIp;
 
   const forwarded = req.headers.get('x-forwarded-for');
   if (forwarded) {
     const ips = forwarded.split(',');
-    return ips[ips.length - 1]?.trim() ?? 'unknown';
+    // The first IP is the original client, subsequent IPs are proxies
+    return ips[0]?.trim() ?? 'unknown';
   }
+
+  const realIp = req.headers.get('x-real-ip');
+  if (realIp) return realIp.trim();
+
   return 'unknown';
 }
 
