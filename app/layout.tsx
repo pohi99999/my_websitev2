@@ -222,7 +222,7 @@ export default async function RootLayout ( {
         {/* Service Worker regisztráció */}
         <Script id="sw-register" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `if ('serviceWorker' in navigator) {
               window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js').catch(function(err) {});
+                navigator.serviceWorker.register('/sw.js').catch(function(err) { console.error('Service Worker registration failed:', err); });
               });
             }` }} />
         {tawkEmbedUrl ? (
