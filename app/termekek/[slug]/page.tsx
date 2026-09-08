@@ -15,6 +15,9 @@ const iconMap: Record<string, any> = {
   TrendingUp: TrendingUp
 };
 
+// Create an O(1) lookup map for products
+const productMap = Object.fromEntries(productData.map(p => [p.slug, p]));
+
 export async function generateStaticParams() {
   return productData.map((product) => ({
     slug: product.slug,
@@ -22,7 +25,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const product = productData.find(p => p.slug === params.slug);
+  const product = productMap[params.slug];
   if (!product) return { title: 'Termék nem található' };
 
   return {
@@ -32,7 +35,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function DynamicProductPage({ params }: { params: { slug: string } }) {
-  const product = productData.find(p => p.slug === params.slug);
+  const product = productMap[params.slug];
 
   if (!product) {
     return <div className="min-h-screen flex items-center justify-center text-white">Termék nem található.</div>;
