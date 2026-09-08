@@ -72,6 +72,14 @@ export default function BrunellaChat() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
+  const initializedRef = useRef(initialized);
+  const messagesRef = useRef(messages);
+
+  useEffect(() => {
+    initializedRef.current = initialized;
+    messagesRef.current = messages;
+  }, [initialized, messages]);
+
   // Show welcome message on first open
   useEffect(() => {
     if (open && !initialized) {
@@ -82,11 +90,10 @@ export default function BrunellaChat() {
 
   // Update welcome message if language changes before any user interaction
   useEffect(() => {
-    if (initialized && messages.length === 1 && messages[0].role === 'assistant') {
+    if (initializedRef.current && messagesRef.current.length === 1 && messagesRef.current[0].role === 'assistant') {
       setMessages([{ role: 'assistant', content: L.welcome }]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language]);
+  }, [language, L.welcome]);
 
   // Scroll to bottom when messages change
   useEffect(() => {
