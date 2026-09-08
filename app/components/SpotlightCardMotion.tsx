@@ -2,12 +2,13 @@
 
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import type { TargetAndTransition, VariantLabels } from 'framer-motion';
 
 interface SpotlightCardProps {
   children: React.ReactNode;
   className?: string;
-  whileHover?: any;
-  whileTap?: any;
+  whileHover?: TargetAndTransition | VariantLabels;
+  whileTap?: TargetAndTransition | VariantLabels;
   delay?: number;
 }
 
