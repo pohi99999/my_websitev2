@@ -115,7 +115,7 @@ export default function KanbanPage() {
       const res = await fetch('/api/v1/potential-clients');
       const data = await res.json();
       if (data.ok) {
-        const sentLeads = data.leads.filter((l: any) => l.status === 'sent' || l.deal_stage !== 'lead');
+        const sentLeads = data.leads.filter((l: Lead) => l.status === 'sent' || l.deal_stage !== 'lead');
         setLeads(sentLeads);
       }
     } catch (err) {
