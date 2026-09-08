@@ -1,10 +1,61 @@
 import React from 'react';
+import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import LeadMagnetForm from '../components/LeadMagnetForm';
 
-export const metadata = {
-  title: 'Digitális Hatékonysági Audit',
-  description: 'Tudd meg 3 perc alatt, hol veszít a cég havonta 100+ munkaórát a manuális folyamatokon – és hogyan állíthatod meg ezt az MI segítségével!',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const headerStore = await headers();
+  const headerLang = headerStore.get('x-site-language');
+  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
+
+  const meta =
+    language === 'en'
+      ? {
+          title: 'Digital Efficiency Audit',
+          description:
+            'Find out in 3 minutes where your company loses 100+ working hours a month on manual processes — and how AI can stop it.',
+          canonical: '/en/hatekonysagi-audit',
+        }
+      : language === 'de'
+        ? {
+            title: 'Digitales Effizienz-Audit',
+            description:
+              'Finden Sie in 3 Minuten heraus, wo Ihr Unternehmen monatlich 100+ Arbeitsstunden durch manuelle Prozesse verliert — und wie KI das stoppt.',
+            canonical: '/de/hatekonysagi-audit',
+          }
+        : {
+            title: 'Digitális Hatékonysági Audit',
+            description:
+              'Tudd meg 3 perc alatt, hol veszít a cég havonta 100+ munkaórát a manuális folyamatokon – és hogyan állíthatod meg ezt az MI segítségével!',
+            canonical: '/hatekonysagi-audit',
+          };
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: meta.canonical,
+      languages: {
+        hu: '/hatekonysagi-audit',
+        en: '/en/hatekonysagi-audit',
+        de: '/de/hatekonysagi-audit',
+        'x-default': '/hatekonysagi-audit',
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: meta.canonical,
+      type: 'website',
+      images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title,
+      description: meta.description,
+    },
+  };
+}
 
 export default function AuditPage() {
   return (
