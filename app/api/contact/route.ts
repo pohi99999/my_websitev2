@@ -3,6 +3,87 @@ import nodemailer from 'nodemailer';
 import { Redis } from '@upstash/redis';
 import { Ratelimit } from '@upstash/ratelimit';
 
+// A kapcsolat-urlap csak a sajat oldalainkrol kuldheto be. Az ellenorzes
+// szandekosan NEM egy fix domain-lista: a Vercel-elonezetek hosztneve minden
+// deploynal mas, es egy fix lista miatt az urlap az elonezeteken 403-at kapna.
+// Ezert a sajat kiszolgalo deployment hosztneveit a Vercel rendszer-valtozoibol
+// vesszuk, ami pontosan a sajat elonezeteinket engedi at, es NEM a teljes
+// *.vercel.app nevteret (ott barki deployolhat).
+const PRODUCTION_ORIGINS = [
+  'https://www.pohankaestarsa.com',
+  'https://pohankaestarsa.com'
+];
+
+function allowedHosts(): string[] {
+  const hosts: string[] = [];
+  for (const origin of PRODUCTION_ORIGINS) {
+    hosts.push(new URL(origin).host);
+  }
+  // A kiszolgalo deployment sajat hosztnevei (scheme nelkul erkeznek).
+  for (const envHost of [
+    process.env.VERCEL_URL,
+    process.env.VERCEL_BRANCH_URL,
+    process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ]) {
+    if (envHost) hosts.push(envHost);
+  }
+  // Kezi bovites kod-valtoztatas nelkul, vesszovel elvalasztva.
+  const extra = process.env.CONTACT_ALLOWED_ORIGINS;
+  if (extra) {
+    for (const item of extra.split(',')) {
+      const trimmed = item.trim();
+      if (!trimmed) continue;
+      try {
+        hosts.push(new URL(trimmed).host);
+      } catch {
+        hosts.push(trimmed);
+      }
+    }
+  }
+  return hosts;
+}
+
+export function isAllowedOrigin(origin: string): boolean {
+  // Origin fejlec nelkuli keres nem bongeszobol jon (curl, szerver-szerver);
+  // a bongeszo POST-nal MINDIG kuld Origin-t, tehat a CSRF-eset le van fedve.
+  if (!origin) return true;
+
+  let url: URL;
+  try {
+    url = new URL(origin);
+  } catch {
+    return false;
+  }
+
+  // Helyi fejlesztes, barmilyen porton -- csak ha nem Vercelen futunk.
+  if (!process.env.VERCEL_ENV && (url.hostname === 'localhost' || url.hostname === '127.0.0.1')) {
+    return true;
+  }
+
+  return allowedHosts().includes(url.host);
+}
+
+function corsHeadersFor(origin: string): Record<string, string> {
+  if (!origin || !isAllowedOrigin(origin)) return {};
+  return {
+    'Access-Control-Allow-Origin': origin,
+    'Vary': 'Origin',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type'
+  };
+}
+
+export async function OPTIONS(req: Request) {
+  const origin = req.headers.get('origin') || '';
+  if (!isAllowedOrigin(origin)) {
+    return new NextResponse(null, { status: 403 });
+  }
+  return new NextResponse(null, {
+    status: 204,
+    headers: { ...corsHeadersFor(origin), 'Access-Control-Max-Age': '86400' }
+  });
+}
+
 type RateWindow = { count: number; resetAtMs: number };
 
 const RATE_LIMIT_WINDOW_MS = 2 * 60 * 1000; // 2 perc
@@ -106,19 +187,25 @@ async function checkDailyLimit(): Promise<{ ok: true } | { ok: false; retryAfter
 }
 
 export async function POST(req: Request) {
+  const origin = req.headers.get('origin') || '';
+  if (!isAllowedOrigin(origin)) {
+    return NextResponse.json({ ok: false, error: 'Forbidden' }, { status: 403 });
+  }
+  const cors = corsHeadersFor(origin);
+
   try {
     const clientIp = getClientIp(req);
     const burstLimited = await checkBurstLimit(clientIp);
     if (burstLimited.ok === false) {
       return NextResponse.json(
         { ok: false, error: 'Too many requests. Please try again shortly.' },
-        { status: 429, headers: { 'Retry-After': String(burstLimited.retryAfterSec) } }
+        { status: 429, headers: { ...cors, 'Retry-After': String(burstLimited.retryAfterSec) } }
       );
     }
 
     const contentType = req.headers.get('content-type') || '';
     if (!contentType.includes('application/json')) {
-      return NextResponse.json({ ok: false, error: 'Invalid content-type' }, { status: 415 });
+      return NextResponse.json({ ok: false, error: 'Invalid content-type' }, { status: 415, headers: cors });
     }
 
     const body = (await req.json()) as {
@@ -130,7 +217,7 @@ export async function POST(req: Request) {
 
     const honeypot = asNonEmptyString(body.website);
     if (honeypot) {
-      return NextResponse.json({ ok: true }, { status: 200 });
+      return NextResponse.json({ ok: true }, { status: 200, headers: cors });
     }
 
     const name = asNonEmptyString(body.name);
@@ -138,18 +225,18 @@ export async function POST(req: Request) {
     const message = asNonEmptyString(body.message);
 
     if (!name || !email || !message) {
-      return NextResponse.json({ ok: false, error: 'Missing fields' }, { status: 400 });
+      return NextResponse.json({ ok: false, error: 'Missing fields' }, { status: 400, headers: cors });
     }
 
     if (name.length > 120 || email.length > 200 || message.length > 6000) {
-      return NextResponse.json({ ok: false, error: 'Input too long' }, { status: 400 });
+      return NextResponse.json({ ok: false, error: 'Input too long' }, { status: 400, headers: cors });
     }
 
     const dailyLimited = await checkDailyLimit();
     if (dailyLimited.ok === false) {
       return NextResponse.json(
         { ok: false, error: 'Daily message limit reached. Please try again tomorrow.' },
-        { status: 429, headers: { 'Retry-After': String(dailyLimited.retryAfterSec) } }
+        { status: 429, headers: { ...cors, 'Retry-After': String(dailyLimited.retryAfterSec) } }
       );
     }
 
@@ -168,13 +255,13 @@ export async function POST(req: Request) {
           error:
             'Email service not configured. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS (and optionally CONTACT_TO/CONTACT_FROM).'
         },
-        { status: 500 }
+        { status: 500, headers: cors }
       );
     }
 
     const smtpPort = Number(smtpPortRaw);
     if (!Number.isFinite(smtpPort)) {
-      return NextResponse.json({ ok: false, error: 'Invalid SMTP_PORT' }, { status: 500 });
+      return NextResponse.json({ ok: false, error: 'Invalid SMTP_PORT' }, { status: 500, headers: cors });
     }
 
     const transporter = nodemailer.createTransport({
@@ -203,9 +290,9 @@ export async function POST(req: Request) {
       text
     });
 
-    return NextResponse.json({ ok: true }, { status: 200 });
+    return NextResponse.json({ ok: true }, { status: 200, headers: cors });
   } catch {
     // Keep err variable so it doesn't complain about unused error, but ignore it.
-    return NextResponse.json({ ok: false, error: 'Unexpected error' }, { status: 500 });
+    return NextResponse.json({ ok: false, error: 'Unexpected error' }, { status: 500, headers: cors });
   }
 }
