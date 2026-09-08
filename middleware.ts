@@ -3,7 +3,28 @@ import { NextResponse } from 'next/server';
 
 const PUBLIC_FILE = /\.(.*)$/;
 const ADMIN_PATH = "/admin/analytics";
+// The analytics API routes serve the same data as the admin page; until
+// 2026-09-08 they were reachable without any token (measured live: 200 on
+// /api/analytics/kpi-snapshot with no cookie). They are gated here, in one
+// place, with the same token: cookie (browser) or Authorization: Bearer (tools).
+const ADMIN_API_PATH = "/api/analytics";
 const ADMIN_COOKIE = "admin_analytics_auth";
+
+function unauthorized(asJson: boolean) {
+  return new NextResponse(asJson ? JSON.stringify({ error: "Unauthorized" }) : "Unauthorized", {
+    status: 401,
+    headers: {
+      "content-type": asJson ? "application/json; charset=utf-8" : "text/plain; charset=utf-8",
+      "cache-control": "no-store",
+    },
+  });
+}
+
+function bearerToken(req: NextRequest): string | undefined {
+  const header = req.headers.get("authorization") ?? "";
+  const match = /^Bearer\s+(.+)$/i.exec(header.trim());
+  return match?.[1];
+}
 
 function isBypassedPath(pathname: string) {
   return (
@@ -19,25 +40,25 @@ function isBypassedPath(pathname: string) {
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  if (pathname.startsWith(ADMIN_PATH)) {
+  const isAdminPage = pathname.startsWith(ADMIN_PATH);
+  const isAdminApi = pathname === ADMIN_API_PATH || pathname.startsWith(`${ADMIN_API_PATH}/`);
+
+  if (isAdminPage || isAdminApi) {
     const configuredToken = process.env.ADMIN_ANALYTICS_TOKEN;
 
     // Fail secure in production if no token is configured.
     if (!configuredToken && process.env.NODE_ENV === "production") {
-      return new NextResponse("Unauthorized", {
-        status: 401,
-        headers: {
-          "content-type": "text/plain; charset=utf-8",
-          "cache-control": "no-store",
-        },
-      });
+      return unauthorized(isAdminApi);
     }
 
     // If token is configured, enforce it.
     if (configuredToken) {
       const cookieToken = req.cookies.get(ADMIN_COOKIE)?.value;
-      if (cookieToken !== configuredToken) {
-        const urlToken = req.nextUrl.searchParams.get("token");
+      const presented = cookieToken === configuredToken || (isAdminApi && bearerToken(req) === configuredToken);
+      if (!presented) {
+        // The ?token= login flow (redirect + cookie) is for the admin PAGE only;
+        // an API client sends the token in a header, it never gets a redirect.
+        const urlToken = isAdminPage ? req.nextUrl.searchParams.get("token") : null;
 
         if (urlToken === configuredToken) {
           const cleanUrl = req.nextUrl.clone();
@@ -54,13 +75,7 @@ export function middleware(req: NextRequest) {
           return response;
         }
 
-        return new NextResponse("Unauthorized", {
-          status: 401,
-          headers: {
-            "content-type": "text/plain; charset=utf-8",
-            "cache-control": "no-store",
-          },
-        });
+        return unauthorized(isAdminApi);
       }
     }
   }
