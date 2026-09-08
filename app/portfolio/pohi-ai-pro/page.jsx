@@ -1,4 +1,5 @@
 import React from 'react';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 import Image from 'next/image';
 import GsapFadeIn from '../../components/GsapFadeIn';

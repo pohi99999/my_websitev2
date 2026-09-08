@@ -1,4 +1,5 @@
 import React from 'react';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import ImageLightboxGallery from '../../components/ImageLightboxGallery';
