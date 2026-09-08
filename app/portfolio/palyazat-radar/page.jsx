@@ -2,60 +2,36 @@ import React from 'react';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
-import { headers } from 'next/headers';
+import { generatePortfolioMetadata } from '../../../utils/seo';
 import {
   ArrowLeft, ArrowRight, CheckCircle, FileSearch, Bell, Scale,
   Target, Mail, Building2, Search, AlertTriangle
 } from 'lucide-react';
 
 export async function generateMetadata() {
-  const headerStore = await headers();
-  const headerLang = headerStore.get('x-site-language');
-  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
-
-  const meta =
-    language === 'en'
-      ? {
-          title: 'Grant Radar — Automated Grant & Regulation Monitoring | Pohánka AI',
-          description: 'AI monitoring of grants and regulation updates with structured weekly reports.',
-          canonical: '/en/portfolio/palyazat-radar',
-          locale: 'en_US',
-        }
-      : language === 'de'
-      ? {
-          title: 'Förder-Radar — Automatisches Förder- & Regelwerk-Monitoring | Pohánka AI',
-          description: 'KI-basierte Beobachtung von Förderungen und Regeländerungen mit wöchentlichen Reports.',
-          canonical: '/de/portfolio/palyazat-radar',
-          locale: 'de_DE',
-        }
-      : {
-          title: 'Pályázat Radar — Automatikus Pályázat & Jogszabály Figyelés | Pohánka AI',
-          description:
-            'Soha többé ne maradj le pályázatról. AI figyeli az EU/HU pályázatokat és jogszabály-változásokat — heti riport emailben.',
-          canonical: '/portfolio/palyazat-radar',
-          locale: 'hu_HU',
-        };
-
-  return {
-    title: meta.title,
-    description: meta.description,
-    alternates: {
-      canonical: meta.canonical,
-      languages: {
-        hu: '/portfolio/palyazat-radar',
-        en: '/en/portfolio/palyazat-radar',
-        de: '/de/portfolio/palyazat-radar',
-        'x-default': '/portfolio/palyazat-radar',
+  return generatePortfolioMetadata({
+    id: 'palyazat-radar',
+    translations: {
+      en: {
+        title: 'Grant Radar — Automated Grant & Regulation Monitoring | Pohánka AI',
+        description: 'AI monitoring of grants and regulation updates with structured weekly reports.',
+        canonical: '/en/portfolio/palyazat-radar',
+        locale: 'en_US',
       },
-    },
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      url: meta.canonical,
-      type: 'article',
-      locale: meta.locale,
-    },
-  };
+      de: {
+        title: 'Förder-Radar — Automatisches Förder- & Regelwerk-Monitoring | Pohánka AI',
+        description: 'KI-basierte Beobachtung von Förderungen und Regeländerungen mit wöchentlichen Reports.',
+        canonical: '/de/portfolio/palyazat-radar',
+        locale: 'de_DE',
+      },
+      hu: {
+        title: 'Pályázat Radar — Automatikus Pályázat & Jogszabály Figyelés | Pohánka AI',
+        description: 'Soha többé ne maradj le pályázatról. AI figyeli az EU/HU pályázatokat és jogszabály-változásokat — heti riport emailben.',
+        canonical: '/portfolio/palyazat-radar',
+        locale: 'hu_HU',
+      }
+    }
+  });
 }
 
 const features = [

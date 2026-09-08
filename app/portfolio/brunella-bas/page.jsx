@@ -5,7 +5,7 @@ import ImageLightboxGallery from '../../components/ImageLightboxGallery';
 import SpotlightCard from '../../components/SpotlightCard';
 import BrunellaBetaStory from '../../components/BrunellaBetaStory';
 import { brunellaBetaContent, brunellaBetaImageSrcs } from './brunellaBetaContent';
-import { headers } from 'next/headers';
+import { generatePortfolioMetadata } from '../../../utils/seo';
 import {
   ArrowLeft, ArrowRight, CheckCircle, Zap, Brain, Globe,
   Shield, BarChart3, Cpu, Code2, Target, Lightbulb,
@@ -14,56 +14,30 @@ import {
 } from 'lucide-react';
 
 export async function generateMetadata() {
-  const headerStore = await headers();
-  const headerLang = headerStore.get('x-site-language');
-  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
-
-  const meta =
-    language === 'en'
-      ? {
-          title: 'Brunella Agent System (BAS) | Portfolio | Pohánka AI',
-          description:
-            'Self-healing AI operating system with 57 agents, hybrid Node.js + Python architecture and end-to-end workflow automation.',
-          canonical: '/en/portfolio/brunella-bas',
-          locale: 'en_US',
-        }
-      : language === 'de'
-      ? {
-          title: 'Brunella Agent System (BAS) | Portfolio | Pohánka AI',
-          description:
-            'Selbstheilendes KI-Betriebssystem mit 57 Agenten, hybrider Node.js + Python Architektur und End-to-End-Automatisierung.',
-          canonical: '/de/portfolio/brunella-bas',
-          locale: 'de_DE',
-        }
-      : {
-          title: 'Brunella Agent System (BAS) | Portfólió | Pohánka AI',
-          description:
-            '57 AI ügynökből álló, öngyógyító operációs rendszer vállalkozásoknak. Node.js + Python + Cloudflare hibrid architektúra, teljes üzleti folyamat automatizálással.',
-          canonical: '/portfolio/brunella-bas',
-          locale: 'hu_HU',
-        };
-
-  return {
-    title: meta.title,
-    description: meta.description,
-    alternates: {
-      canonical: meta.canonical,
-      languages: {
-        hu: '/portfolio/brunella-bas',
-        en: '/en/portfolio/brunella-bas',
-        de: '/de/portfolio/brunella-bas',
-        'x-default': '/portfolio/brunella-bas',
+  return generatePortfolioMetadata({
+    id: 'brunella-bas',
+    translations: {
+      en: {
+        title: 'Brunella Agent System (BAS) | Portfolio | Pohánka AI',
+        description: 'Self-healing AI operating system with 57 agents, hybrid Node.js + Python architecture and end-to-end workflow automation.',
+        canonical: '/en/portfolio/brunella-bas',
+        locale: 'en_US',
       },
+      de: {
+        title: 'Brunella Agent System (BAS) | Portfolio | Pohánka AI',
+        description: 'Selbstheilendes KI-Betriebssystem mit 57 Agenten, hybrider Node.js + Python Architektur und End-to-End-Automatisierung.',
+        canonical: '/de/portfolio/brunella-bas',
+        locale: 'de_DE',
+      },
+      hu: {
+        title: 'Brunella Agent System (BAS) | Portfólió | Pohánka AI',
+        description: '57 AI ügynökből álló, öngyógyító operációs rendszer vállalkozásoknak. Node.js + Python + Cloudflare hibrid architektúra, teljes üzleti folyamat automatizálással.',
+        canonical: '/portfolio/brunella-bas',
+        locale: 'hu_HU',
+      }
     },
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      url: meta.canonical,
-      type: 'article',
-      locale: meta.locale,
-      images: [{ url: '/images/bas/bas-00.jpg', alt: 'Brunella Agent System' }],
-    },
-  };
+    imageSrc: '/images/bas/bas-00.jpg'
+  });
 }
 
 const agentFamilies = [

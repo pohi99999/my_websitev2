@@ -4,7 +4,7 @@ import Image from 'next/image';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import ImageLightboxGallery from '../../components/ImageLightboxGallery';
 import SpotlightCard from '../../components/SpotlightCard';
-import { headers } from 'next/headers';
+import { generatePortfolioMetadata } from '../../../utils/seo';
 import {
   ArrowLeft, ArrowRight, CheckCircle, Zap, Brain, Globe,
   Shield, Users, BarChart3, Cpu, Code2, Truck, Package,
@@ -13,56 +13,30 @@ import {
 } from 'lucide-react';
 
 export async function generateMetadata() {
-  const headerStore = await headers();
-  const headerLang = headerStore.get('x-site-language');
-  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
-
-  const meta =
-    language === 'en'
-      ? {
-          title: 'Pohi AI Pro | Portfolio | Pohánka AI',
-          description:
-            'B2B raw-material trading platform with AI-driven logistics planning, map intelligence and role-based operations.',
-          canonical: '/en/portfolio/pohi-ai-pro',
-          locale: 'en_US',
-        }
-      : language === 'de'
-      ? {
-          title: 'Pohi AI Pro | Portfolio | Pohánka AI',
-          description:
-            'B2B-Rohstoffhandelsplattform mit KI-gestützter Logistikplanung, Kartenintelligenz und rollenbasiertem Betrieb.',
-          canonical: '/de/portfolio/pohi-ai-pro',
-          locale: 'de_DE',
-        }
-      : {
-          title: 'Pohi AI Pro | Portfólió | Pohánka AI',
-          description:
-            'B2B nyersanyag-kereskedési platform Gemini AI-val. Automatikus logisztikai tervezés, interaktív térkép, 3 felhasználói szerepkör.',
-          canonical: '/portfolio/pohi-ai-pro',
-          locale: 'hu_HU',
-        };
-
-  return {
-    title: meta.title,
-    description: meta.description,
-    alternates: {
-      canonical: meta.canonical,
-      languages: {
-        hu: '/portfolio/pohi-ai-pro',
-        en: '/en/portfolio/pohi-ai-pro',
-        de: '/de/portfolio/pohi-ai-pro',
-        'x-default': '/portfolio/pohi-ai-pro',
+  return generatePortfolioMetadata({
+    id: 'pohi-ai-pro',
+    translations: {
+      en: {
+        title: 'Pohi AI Pro | Portfolio | Pohánka AI',
+        description: 'B2B raw-material trading platform with AI-driven logistics planning, map intelligence and role-based operations.',
+        canonical: '/en/portfolio/pohi-ai-pro',
+        locale: 'en_US',
       },
+      de: {
+        title: 'Pohi AI Pro | Portfolio | Pohánka AI',
+        description: 'B2B-Rohstoffhandelsplattform mit KI-gestützter Logistikplanung, Kartenintelligenz und rollenbasiertem Betrieb.',
+        canonical: '/de/portfolio/pohi-ai-pro',
+        locale: 'de_DE',
+      },
+      hu: {
+        title: 'Pohi AI Pro | Portfólió | Pohánka AI',
+        description: 'B2B nyersanyag-kereskedési platform Gemini AI-val. Automatikus logisztikai tervezés, interaktív térkép, 3 felhasználói szerepkör.',
+        canonical: '/portfolio/pohi-ai-pro',
+        locale: 'hu_HU',
+      }
     },
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      url: meta.canonical,
-      type: 'article',
-      locale: meta.locale,
-      images: [{ url: '/images/pohi-ai-pro/pro-01.jpg', alt: 'Pohi AI Pro' }],
-    },
-  };
+    imageSrc: '/images/pohi-ai-pro/pro-01.jpg'
+  });
 }
 
 const roles = [

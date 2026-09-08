@@ -2,60 +2,36 @@ import React from 'react';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
 import SpotlightCard from '../../components/SpotlightCard';
-import { headers } from 'next/headers';
+import { generatePortfolioMetadata } from '../../../utils/seo';
 import {
   ArrowLeft, ArrowRight, CheckCircle, PenTool, Instagram, Mail,
   Sparkles, Clock, Star, FileText, Users, MessageSquare, Palette, Share2, Megaphone
 } from 'lucide-react';
 
 export async function generateMetadata() {
-  const headerStore = await headers();
-  const headerLang = headerStore.get('x-site-language');
-  const language = headerLang === 'en' ? 'en' : headerLang === 'de' ? 'de' : 'hu';
-
-  const meta =
-    language === 'en'
-      ? {
-          title: 'AI Content Production — Social Media & Email Marketing | Pohánka AI',
-          description: 'Monthly social media, blog and email content tailored to your industry and brand voice.',
-          canonical: '/en/portfolio/tartalom-gyartas',
-          locale: 'en_US',
-        }
-      : language === 'de'
-      ? {
-          title: 'KI-Content-Produktion — Social Media & E-Mail Marketing | Pohánka AI',
-          description: 'Monatlicher Content für Social Media, Blog und E-Mail, abgestimmt auf Branche und Tonalität.',
-          canonical: '/de/portfolio/tartalom-gyartas',
-          locale: 'de_DE',
-        }
-      : {
-          title: 'AI Tartalom Gyártás — Social Media & Email Marketing | Pohánka AI',
-          description:
-            'Havi social media posztok, blog cikkek és email kampányok — AI-val generálva, a te iparágadra és hangnemedre szabva.',
-          canonical: '/portfolio/tartalom-gyartas',
-          locale: 'hu_HU',
-        };
-
-  return {
-    title: meta.title,
-    description: meta.description,
-    alternates: {
-      canonical: meta.canonical,
-      languages: {
-        hu: '/portfolio/tartalom-gyartas',
-        en: '/en/portfolio/tartalom-gyartas',
-        de: '/de/portfolio/tartalom-gyartas',
-        'x-default': '/portfolio/tartalom-gyartas',
+  return generatePortfolioMetadata({
+    id: 'tartalom-gyartas',
+    translations: {
+      en: {
+        title: 'AI Content Production — Social Media & Email Marketing | Pohánka AI',
+        description: 'Monthly social media, blog and email content tailored to your industry and brand voice.',
+        canonical: '/en/portfolio/tartalom-gyartas',
+        locale: 'en_US',
       },
-    },
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      url: meta.canonical,
-      type: 'article',
-      locale: meta.locale,
-    },
-  };
+      de: {
+        title: 'KI-Content-Produktion — Social Media & E-Mail Marketing | Pohánka AI',
+        description: 'Monatlicher Content für Social Media, Blog und E-Mail, abgestimmt auf Branche und Tonalität.',
+        canonical: '/de/portfolio/tartalom-gyartas',
+        locale: 'de_DE',
+      },
+      hu: {
+        title: 'AI Tartalom Gyártás — Social Media & Email Marketing | Pohánka AI',
+        description: 'Havi social media posztok, blog cikkek és email kampányok — AI-val generálva, a te iparágadra és hangnemedre szabva.',
+        canonical: '/portfolio/tartalom-gyartas',
+        locale: 'hu_HU',
+      }
+    }
+  });
 }
 
 const contentTypes = [
