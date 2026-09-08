@@ -3,8 +3,12 @@ import { SmartContactForm } from "../../../components/SmartContactForm";
 import seoTargets from "../../../../lib/data/seo_targets.json";
 import { cache } from "react";
 
+const targetMap = new Map(
+  seoTargets.map(t => [`${t.industry}|${t.city}`, t])
+);
+
 const getTarget = cache((industry: string, city: string) => {
-  return seoTargets.find(t => t.industry === industry && t.city === city) || {
+  return targetMap.get(`${industry}|${city}`) || {
     original_industry: industry,
     original_city: city
   };
