@@ -11,6 +11,7 @@ import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
 import BrunellaChat from './components/BrunellaChat';
 import GoogleAnalytics from './components/GoogleAnalytics';
+import CookieConsent from './components/CookieConsent';
 
 const inter = Inter( { subsets: ['latin'], display: 'swap', variable: '--font-inter' } );
 const syne = Syne( { subsets: ['latin'], display: 'swap', variable: '--font-syne', weight: ['600', '700', '800'] } );
@@ -217,6 +218,7 @@ export default async function RootLayout ( {
             <Footer />
           </LenisProvider>
           <BrunellaChat />
+          <CookieConsent />
         </LanguageProvider>
         {shouldLoadVercelAnalytics ? <Analytics /> : null}
         {/* Service Worker regisztráció */}
