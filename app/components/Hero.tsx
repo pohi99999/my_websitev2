@@ -59,9 +59,11 @@ const Hero = () =>
           {language === 'en' ? 'Digital workers & more revenue' : language === 'de' ? 'Digitale Mitarbeiter & mehr Umsatz' : 'Digitális munkatársak és több bevétel'}
         </div>
 
-        <h1 className="heading-display text-4xl md:text-6xl mb-6 leading-tight font-syne">
+        {/* 360 px alatt 30 px: 36 px-en a "Zalaegerszegen." 288 px, a H1 doboza 320 px-es
+            kijelzőn 256 px (mérve) -- a szó levágódott volna. */}
+        <h1 className="heading-display text-[1.875rem] min-[360px]:text-4xl md:text-6xl mb-6 leading-tight font-syne">
           <span className="text-white font-light block mb-2 tracking-tight">
-            {language === 'en' ? 'Stop manual admin.' : language === 'de' ? 'Schluss mit manuellem Admin.' : 'Weboldal készítés Zalaegerszegen.'}
+            {language === 'en' ? 'Web design in Zalaegerszeg.' : language === 'de' ? 'Schluss mit manuellem Admin.' : 'Weboldal készítés Zalaegerszegen.'}
           </span>{' '}
           <span
             className="block font-bold"
@@ -70,7 +72,7 @@ const Hero = () =>
               textShadow: '0 0 30px rgba(0, 229, 255, 0.5), 0 0 60px rgba(0, 229, 255, 0.2)',
             }}
           >
-            {language === 'en' ? 'Grow with AI Automation.' : language === 'de' ? 'Wachsen Sie mit KI.' : 'Növekedj AI automatizálással.'}
+            {language === 'en' ? 'AI automation and agent systems for businesses.' : language === 'de' ? 'Wachsen Sie mit KI.' : 'AI automatizálás és ügynök\u00ADrendszerek cégeknek.'}
           </span>
         </h1>
 

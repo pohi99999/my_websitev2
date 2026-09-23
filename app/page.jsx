@@ -36,9 +36,12 @@ export async function generateMetadata() {
           locale: 'de_DE',
         }
       : {
-          title: 'Weboldal készítés Zalaegerszeg és AI automatizálás | Pohánka és Társa',
+          // A három szolgáltatás + Zalaegerszeg; márkanévvel együtt már nem fér a találati
+          // lista ~600 px-es sorába (mérve Arial-metrikával: így 554 px, márkával 622+ px).
+          // A márkát az og:site_name viszi.
+          title: 'Weboldal, AI automatizálás és ügynökrendszer | Zalaegerszeg',
           description:
-            'Weboldal készítés Zalaegerszegen és Zala megyében (alapcsomag 150 000 Ft), Brunella AI ügynökök, ügynöki képviselet és AI-vezérelt folyamatautomatizálás KKV-knak.',
+            'Weboldal készítés Zalaegerszegen és Zala megyében (alapcsomag 150 000 Ft), AI automatizálás és AI ügynökrendszerek létrehozása, telepítése cégeknek.',
           canonical: 'https://www.pohankaestarsa.com/',
           locale: 'hu_HU',
         };
