@@ -41,9 +41,9 @@ function toPath(slug: string[]) {
 function enMetaForSlug(slug: string[]): MetaSpec | null {
   if (slug.length === 0) {
     return {
-      title: 'Pohánka AI | AI Agency & Software Development',
+      title: 'Websites, AI Automation and Agent Systems',
       description:
-        'AI solutions, Brunella Agent System, and custom software development for SMEs. Automate your workflows with a secure, ROI-focused approach.',
+        'Websites, AI automation and AI agent systems for businesses: we build and deploy them. Pohánka és Társa, Zalaegerszeg, Hungary.',
       ogType: 'website',
     };
   }
