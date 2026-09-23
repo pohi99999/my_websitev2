@@ -146,7 +146,7 @@ export default function WeboldalKeszitesZalaegerszeg ()
           <ul className="mt-5 space-y-3 text-gray-300">
             <li className="flex items-start gap-3">
               <MapPin className="w-5 h-5 mt-0.5 shrink-0 text-[#00e5ff]" aria-hidden="true" />
-              <span>8900 Zalaegerszeg, Kossuth Lajos u. 39.</span>
+              <span>Zalaegerszeg, Kossuth Lajos u. 39, 8900</span>
             </li>
             <li className="flex items-center gap-3">
               <Phone className="w-5 h-5 shrink-0 text-[#00e5ff]" aria-hidden="true" />

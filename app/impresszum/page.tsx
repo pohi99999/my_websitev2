@@ -16,7 +16,7 @@ export default function ImpresszumPage() {
         <div className="mt-8 space-y-4 text-gray-300 leading-relaxed">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <div className="text-white font-semibold">Pohánka és Társa Kft.</div>
-            <div>Székhely: 8900 Zalaegerszeg, Magyarország</div>
+            <div>Székhely: 8900 Zalaegerszeg, Berek utca 38.</div>
             <div>Email: peterpohankapersonal@gmail.com</div>
             <div>Telefon: +36 30 429 1227</div>
           </div>

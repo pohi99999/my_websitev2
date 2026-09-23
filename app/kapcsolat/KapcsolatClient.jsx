@@ -154,7 +154,7 @@ export default function KapcsolatClient() {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">{ui.location}</p>
-                  <p className="font-semibold">8900 Zalaegerszeg, Kossuth Lajos u. 39., {ui.country}</p>
+                  <p className="font-semibold">Zalaegerszeg, Kossuth Lajos u. 39, 8900</p>
                 </div>
               </div>
             </div>

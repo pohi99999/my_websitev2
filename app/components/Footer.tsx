@@ -80,7 +80,7 @@ const Footer = () =>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 text-gray-400">
                 <MapPin className="w-5 h-5 text-[#00e5ff]/50 mt-1 flex-shrink-0" />
-                <span>8900 Zalaegerszeg,<br />Kossuth Lajos u. 39.</span>
+                <span>Zalaegerszeg, Kossuth Lajos u. 39, 8900</span>
               </li>
               <li className="flex items-center space-x-3 text-gray-400">
                 <Phone className="w-5 h-5 text-[#00e5ff]/50 flex-shrink-0" />
