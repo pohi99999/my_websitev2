@@ -83,6 +83,13 @@ export default function Arcsomag ()
           </article>
         </div>
 
+        <p className="mt-8 text-center text-gray-400 text-sm">
+          Részletek és gyakori kérdések:{' '}
+          <a href="/weboldal-keszites-zalaegerszeg" className="text-[#00e5ff] hover:underline">
+            weboldal készítés Zalaegerszegen
+          </a>
+        </p>
+
         <div className="mt-10 text-center">
           <a
             href="#contact"

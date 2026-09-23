@@ -105,7 +105,9 @@ const organizationSchema = {
   email: 'peterpohankapersonal@gmail.com',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Zalaegerszeg',
+    // Irodai cím, betűre a Google Cégprofilon állóval (NAP-egyezés, helyi SEO). A székhely
+    // (Berek utca 38.) az impresszumba és az adatvédelmi tájékoztatóba tartozik.
+    streetAddress: 'Kossuth Lajos u. 39',
     addressLocality: 'Zalaegerszeg',
     postalCode: '8900',
     addressCountry: 'HU',
@@ -128,6 +130,10 @@ const organizationSchema = {
     'https://x.com/pohanka_peter',
     'https://www.youtube.com/@J%C3%B3zsefP%C3%A9terPoh%C3%A1nka',
     'https://g.dev/PohankaPeter',
+  ],
+  areaServed: [
+    { '@type': 'City', name: 'Zalaegerszeg' },
+    { '@type': 'AdministrativeArea', name: 'Zala megye' },
   ],
   priceRange: '$$',
   hasOfferCatalog: {
