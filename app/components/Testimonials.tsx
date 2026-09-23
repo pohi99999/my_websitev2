@@ -3,7 +3,7 @@
 import React from 'react';
 import { Star, Quote, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { googleReviews, GOOGLE_RATING, type GoogleReview } from './googleReviews';
+import { googleReviews, GOOGLE_RATING, GOOGLE_PROFILE_URL, type GoogleReview } from './googleReviews';
 
 /*
  * Google-vélemények (2026-09-23). A korábbi szekció kitalált ajánlásokat és igazolatlan
@@ -103,7 +103,15 @@ export default function Testimonials ()
           <div className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-2 rounded-full border border-white/10 bg-white/5 px-5 py-2">
             <span className="text-2xl font-bold text-white font-syne tabular-nums">{average[lang]}</span>
             <Stars label={t.stars} size="w-5 h-5" />
-            <span className="text-gray-300 text-sm">{t.count}</span>
+            <a
+              href={GOOGLE_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-gray-300 text-sm underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-[#00e5ff]"
+            >
+              {t.count}
+              <ExternalLink className="w-3 h-3" aria-hidden="true" />
+            </a>
           </div>
           {t.original && <p className="text-gray-500 text-sm mt-3">{t.original}</p>}
         </div>

@@ -36,9 +36,9 @@ export async function generateMetadata() {
           locale: 'de_DE',
         }
       : {
-          title: 'Pohánka és Társa - Professzionális Ügynöki Képviselet, Brunella AI és Termékvédelem',
+          title: 'Weboldal készítés Zalaegerszeg és AI automatizálás | Pohánka és Társa',
           description:
-            'Pohánka és Társa: Professzionális ügynöki képviselet, Brunella AI ügynökök, termékvédelem és AI-vezérelt folyamatautomatizálás magyar KKV-k számára azonnali ROI-val.',
+            'Weboldal készítés Zalaegerszegen és Zala megyében (alapcsomag 150 000 Ft), Brunella AI ügynökök, ügynöki képviselet és AI-vezérelt folyamatautomatizálás KKV-knak.',
           canonical: 'https://www.pohankaestarsa.com/',
           locale: 'hu_HU',
         };

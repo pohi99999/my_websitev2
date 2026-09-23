@@ -14,6 +14,9 @@ export type GoogleReview = {
   paragraphs: string[];
 };
 
+/** A nyilvános Google Cégprofil (Maps, place CID), Brunella mérése 2026-09-23. */
+export const GOOGLE_PROFILE_URL = 'https://www.google.com/maps?cid=12905258183432338232';
+
 /** A profil összesített értékelése a kimásoláskor: 5,0 átlag, 10 vélemény. */
 export const GOOGLE_RATING = { average: 5, count: 10 } as const;
 

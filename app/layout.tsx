@@ -105,29 +105,46 @@ const organizationSchema = {
   email: 'peterpohankapersonal@gmail.com',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Zalaegerszeg',
+    // Irodai cím, betűre a Google Cégprofilon állóval (NAP-egyezés, helyi SEO). A székhely
+    // (Berek utca 38.) az impresszumba és az adatvédelmi tájékoztatóba tartozik.
+    streetAddress: 'Kossuth Lajos u. 39',
     addressLocality: 'Zalaegerszeg',
     postalCode: '8900',
     addressCountry: 'HU',
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: '46.8417',
-    longitude: '16.8416',
+    // A Google Cégprofil place-koordinátája (Maps), Brunella mérése 2026-09-23.
+    latitude: '46.8392833',
+    longitude: '16.8454274',
   },
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '08:00',
-    closes: '18:00',
-  },
+  // Nyitvatartás a Google Cégprofil szerint (NAP-egyezés); vasárnap zárva.
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '17:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Saturday',
+      opens: '09:00',
+      closes: '11:30',
+    },
+  ],
   sameAs: [
+    'https://www.google.com/maps?cid=12905258183432338232',
     'https://www.linkedin.com/in/pohi99999/',
     'https://www.facebook.com/profile.php?id=61576881120445',
     'https://github.com/pohi99999',
     'https://x.com/pohanka_peter',
     'https://www.youtube.com/@J%C3%B3zsefP%C3%A9terPoh%C3%A1nka',
     'https://g.dev/PohankaPeter',
+  ],
+  areaServed: [
+    { '@type': 'City', name: 'Zalaegerszeg' },
+    { '@type': 'AdministrativeArea', name: 'Zala megye' },
   ],
   priceRange: '$$',
   hasOfferCatalog: {

@@ -61,8 +61,8 @@ const Hero = () =>
 
         <h1 className="heading-display text-4xl md:text-6xl mb-6 leading-tight font-syne">
           <span className="text-white font-light block mb-2 tracking-tight">
-            {language === 'en' ? 'Stop manual admin.' : language === 'de' ? 'Schluss mit manuellem Admin.' : 'Vége a manuális adminisztrációnak.'}
-          </span>
+            {language === 'en' ? 'Stop manual admin.' : language === 'de' ? 'Schluss mit manuellem Admin.' : 'Weboldal készítés Zalaegerszegen.'}
+          </span>{' '}
           <span
             className="block font-bold"
             style={{
