@@ -47,7 +47,7 @@ test.describe("POST /api/lead-magnet-audit", () => {
       headers: {
         "x-real-ip": ip,
       },
-      body: JSON.stringify({ website: "test.com" }),
+      body: JSON.stringify({ website: "test.com", email: "test@example.com" }),
     });
 
     const res = await POST(req);
@@ -62,7 +62,7 @@ test.describe("POST /api/lead-magnet-audit", () => {
 
     const req = new NextRequest("http://localhost", {
       method: "POST",
-      body: JSON.stringify({ website: "test.com" }),
+      body: JSON.stringify({ website: "test.com", email: "test@example.com" }),
     });
 
     const res = await POST(req);
@@ -80,7 +80,7 @@ test.describe("POST /api/lead-magnet-audit", () => {
 
     const req = new NextRequest("http://localhost", {
       method: "POST",
-      body: JSON.stringify({ website: "test.com" }),
+      body: JSON.stringify({ website: "test.com", email: "test@example.com" }),
     });
 
     const res = await POST(req);
@@ -94,7 +94,7 @@ test.describe("POST /api/lead-magnet-audit", () => {
 
     const req = new NextRequest("http://localhost", {
       method: "POST",
-      body: JSON.stringify({ website: "test.com" }),
+      body: JSON.stringify({ website: "test.com", email: "test@example.com" }),
     });
 
     const res = await POST(req);
@@ -121,9 +121,27 @@ test.describe("POST /api/lead-magnet-audit", () => {
 
     // Verify fetch was called with correct arguments
     expect(fetchStub.calledOnce).toBe(true);
-    expect(fetchStub.firstCall.args[0]).toBe("http://test-n8n.com/webhook/lead-magnet-audit");
+    expect(fetchStub.firstCall.args[0]).toBe("http://test-n8n.com/webhook/lead-magnet-audit-v2");
     expect(fetchStub.firstCall.args[1].method).toBe("POST");
-    expect(JSON.parse(fetchStub.firstCall.args[1].body)).toEqual({ website: "test.com", email: "test@example.com" });
+    // Only the form's own fields are forwarded (an unknown key like `website` is dropped).
+    expect(JSON.parse(fetchStub.firstCall.args[1].body)).toEqual({
+      industry: "", size: "", pain_points: "", goals: "", name: "", email: "test@example.com",
+    });
+  });
+
+  test("returns 400 and does not call the webhook when the email is missing", async () => {
+    fetchStub.resolves({ ok: true, status: 200 } as Response);
+
+    const req = new NextRequest("http://localhost", {
+      method: "POST",
+      body: JSON.stringify({ name: "Test User", industry: "Szolgáltatás" }),
+    });
+
+    const res = await POST(req);
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error).toBe("Hiányzó e-mail cím");
+    expect(fetchStub.called).toBe(false);
   });
 
   test("returns 500 when JSON parsing fails", async () => {
