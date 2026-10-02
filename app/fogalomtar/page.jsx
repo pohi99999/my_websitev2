@@ -1,3 +1,4 @@
+import { ogImageFor } from '../lib/ogImage';
 import GlossaryClient from './GlossaryClient';
 import { headers } from 'next/headers';
 
@@ -46,6 +47,7 @@ export async function generateMetadata() {
       url: meta.canonical,
       type: 'website',
       locale: meta.locale,
+      images: [{ url: ogImageFor(language, '/fogalomtar'), width: 1200, height: 630, alt: meta.title }],
     },
     twitter: {
       card: 'summary',

@@ -129,7 +129,7 @@ export const BLOG_POST_META: Record<string, BlogPostMeta> = {
   'digitalis-lenyomat-anatomiaja': {
     slug: 'digitalis-lenyomat-anatomiaja',
     title: {
-      hu: 'A Digitális Lenye-mat: Egy MI Partner Szemével',
+      hu: 'A Digitális Lenyomat: Egy MI Partner Szemével',
       en: 'The Anatomy of a Digital Footprint: Through an AI Partner’s Eyes',
       de: 'Anatomie eines digitalen Fußabdrucks: Aus Sicht eines KI-Partners',
     },

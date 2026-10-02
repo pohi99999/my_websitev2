@@ -170,7 +170,7 @@ export async function renderBrandImage({ size, theme, eyebrow, kicker, title, de
             color: 'rgba(255,255,255,0.55)'
           }}
         >
-          pohanka.vercel.app
+          pohankaestarsa.com
         </div>
       </div>
     ),

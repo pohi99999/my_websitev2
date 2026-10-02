@@ -1,3 +1,4 @@
+import { ogImageFor, ogLocale } from '../lib/ogImage';
 import React from 'react';
 import { headers } from "next/headers";
 
@@ -50,6 +51,14 @@ export async function generateMetadata() {
         de: 'https://www.pohankaestarsa.com/de/weboldal-ai-kkv',
         'x-default': 'https://www.pohankaestarsa.com/weboldal-ai-kkv',
       },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: meta.canonical,
+      type: 'website',
+      locale: ogLocale(language),
+      images: [{ url: ogImageFor(language, '/weboldal-ai-kkv'), width: 1200, height: 630, alt: meta.title }],
     },
   };
 }

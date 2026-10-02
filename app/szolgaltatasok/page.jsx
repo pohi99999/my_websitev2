@@ -1,3 +1,4 @@
+import { ogImageFor, ogLocale } from '../lib/ogImage';
 import Image from "next/image";
 import { headers } from "next/headers";
 import {
@@ -53,7 +54,8 @@ export async function generateMetadata() {
       description: meta.description,
       url: meta.canonical,
       type: "website",
-      images: [{ url: "/images/logo.png", alt: "Pohánka és Társa Kft. – logó" }],
+      locale: ogLocale(language),
+      images: [{ url: ogImageFor(language, '/szolgaltatasok'), width: 1200, height: 630, alt: meta.title }],
     },
     twitter: {
       card: "summary_large_image",
