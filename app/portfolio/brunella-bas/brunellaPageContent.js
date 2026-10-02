@@ -4,7 +4,8 @@
 // No prices on the page (Péter, Telegram 5752). Icons are lucide-react names; the page maps them.
 // Images refer to the beta gallery (public/images/brunella-system-beta/NN.png) by index. Only published
 // images may be used: 05, 08, 10, 11, 12 and 13 were taken off on 2026-10-02 (Péter, Telegram 5795); the
-// blurred 08 comes back here only after his yes.
+// blurred 08 is back in the day section only (Péter, Telegram 5811), under its own file name
+// (08-kitakart.png) so no cached copy of the old 08.png can stand in for it.
 
 // FAQ items waiting for a decision stay in the data but are not rendered while their flag is false.
 // elofizetes: waits for the lawyer's answer on the subscription model (Stratéga, chapter 3).
@@ -35,6 +36,7 @@ export const brunellaPageContent = {
       images: [
         { index: 2, alt: 'Telefon képernyője a Telegram-beszélgetéssel Brunellával', caption: 'A kezelőfelület: egy Telegram-beszélgetés' },
         { index: 9, alt: 'Az ütemezett feladatok listája, időzítésekkel', caption: 'Napi és heti körök' },
+        { index: 8, src: '/images/brunella-system-beta/08-kitakart.png', alt: 'A feladattábla oszlopokkal és kártyákkal; a kártyák szövege kitakarva', caption: 'A feladattábla (a projektnevek kitakarva)' },
       ],
     },
     team: {
@@ -126,6 +128,7 @@ export const brunellaPageContent = {
       images: [
         { index: 2, alt: 'Phone screen with the Telegram conversation with Brunella', caption: 'The interface: one Telegram conversation' },
         { index: 9, alt: 'The list of scheduled tasks, with their timing', caption: 'Daily and weekly cycles' },
+        { index: 8, src: '/images/brunella-system-beta/08-kitakart.png', alt: 'The task board with columns and cards; the card texts are blurred', caption: 'The task board (project names blurred)' },
       ],
     },
     team: {
@@ -218,6 +221,7 @@ export const brunellaPageContent = {
       images: [
         { index: 2, alt: 'Handybildschirm mit dem Telegram-Gespräch mit Brunella', caption: 'Die Oberfläche: ein Telegram-Gespräch' },
         { index: 9, alt: 'Die Liste der geplanten Aufgaben mit ihren Zeiten', caption: 'Tägliche und wöchentliche Runden' },
+        { index: 8, src: '/images/brunella-system-beta/08-kitakart.png', alt: 'Die Aufgabentafel mit Spalten und Karten; die Kartentexte sind unkenntlich gemacht', caption: 'Die Aufgabentafel (Projektnamen unkenntlich)' },
       ],
     },
     team: {

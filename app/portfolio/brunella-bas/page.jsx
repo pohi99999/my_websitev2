@@ -115,7 +115,7 @@ export default async function BrunellaBASPage() {
           </ol>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {c.day.images.map((im) => (
-              <BrunellaZoomImage key={im.index} src={img(im.index)} alt={im.alt} caption={im.caption} openLabel={ui.open} closeLabel={ui.close} />
+              <BrunellaZoomImage key={im.index} src={im.src || img(im.index)} alt={im.alt} caption={im.caption} openLabel={ui.open} closeLabel={ui.close} />
             ))}
           </div>
         </div>
