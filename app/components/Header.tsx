@@ -124,7 +124,7 @@ export default function Header ()
         title: 'Termékek',
         cta: { label: 'Összes termék', href: withLang( '/termekek' ) },
         items: [
-          { icon: Bot, label: 'Brunella / BAS rendszer', desc: 'Saját, élesben futó rendszerünk, amely valós vállalati AI bevezetéseket bizonyít.', href: withLang( '/termekek/brunella-agents' ) },
+          { icon: Bot, label: 'Brunella / BAS rendszer', desc: 'Saját, élesben futó AI-csapatunk.', href: withLang( '/termekek/brunella-agents' ) },
           { icon: Brain, label: 'Pohi AI Pro', desc: 'Személyes AI asszisztens csomag', href: withLang( '/termekek/pohi-ai-pro' ) },
           { icon: Code2, label: 'Egyedi fejlesztések', desc: 'Testreszabott szoftver és AI megoldások vállalkozásoknak', href: withLang( '/szolgaltatasok' ) },
           { icon: Package, label: 'AI Starter Pack', desc: 'Gyors bevezető csomag kis cégeknek', href: withLang( '/kapcsolat' ) },
@@ -134,7 +134,7 @@ export default function Header ()
         title: 'Products',
         cta: { label: 'All products', href: withLang( '/termekek' ) },
         items: [
-          { icon: Bot, label: 'Brunella / BAS system', desc: 'Our in-house system that proves real business AI rollouts.', href: withLang( '/termekek/brunella-agents' ) },
+          { icon: Bot, label: 'Brunella / BAS system', desc: 'Our own AI team, live in our company every day.', href: withLang( '/termekek/brunella-agents' ) },
           { icon: Brain, label: 'Pohi AI Pro', desc: 'Personal AI assistant package', href: withLang( '/termekek/pohi-ai-pro' ) },
           { icon: Code2, label: 'Custom Development', desc: 'Tailored software and AI solutions for companies', href: withLang( '/szolgaltatasok' ) },
           { icon: Package, label: 'AI Starter Pack', desc: 'Fast onboarding bundle for small teams', href: withLang( '/kapcsolat' ) },
@@ -144,7 +144,7 @@ export default function Header ()
         title: 'Produkte',
         cta: { label: 'Alle Produkte', href: withLang( '/termekek' ) },
         items: [
-          { icon: Bot, label: 'Brunella / BAS-System', desc: 'Unser eigenes System für reale KI-Rollouts in Unternehmen.', href: withLang( '/termekek/brunella-agents' ) },
+          { icon: Bot, label: 'Brunella / BAS-System', desc: 'Unser eigenes KI-Team, bei uns täglich im Einsatz.', href: withLang( '/termekek/brunella-agents' ) },
           { icon: Brain, label: 'Pohi AI Pro', desc: 'Persönliches KI-Assistenz-Paket', href: withLang( '/termekek/pohi-ai-pro' ) },
           { icon: Code2, label: 'Individuelle Entwicklung', desc: 'Maßgeschneiderte Software und KI-Lösungen für Unternehmen', href: withLang( '/szolgaltatasok' ) },
           { icon: Package, label: 'AI Starter Pack', desc: 'Schnelles Einführungspaket', href: withLang( '/kapcsolat' ) },

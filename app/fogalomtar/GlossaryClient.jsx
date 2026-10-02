@@ -8,11 +8,6 @@ import { useLanguage } from '../context/LanguageContext';
 
 const glossaryTerms = [
   {
-    term: 'Adapter',
-    definition:
-      'A BAS architektúrájában egy interfész modul, amely egy-egy integrált eszközhöz (pl. Git, Docker, Google Drive API) tartozik. Feladata az adott eszköz specifikus parancsainak kezelése és standardizált visszajelzés biztosítása az orchestrator számára.'
-  },
-  {
     term: 'Agent (Ügynök)',
     definition:
       'Egy autonóm entitás (pl. szoftverprogram), amely képes proaktívan cselekedni célok elérése érdekében, környezetével kölcsönhatásba lépve, anélkül, hogy állandó emberi irányításra szorulna.'
@@ -25,12 +20,7 @@ const glossaryTerms = [
   {
     term: 'BAS (Brunella Agent System)',
     definition:
-      'Egy autonóm, több ügynökből álló rendszer (multi-agent system), amelynek célja egy kooperatív MI operációs rendszer létrehozása. Komplex üzleti és technikai folyamatok automatizálására tervezték.'
-  },
-  {
-    term: 'BOV (Brunella Operations Visualizer)',
-    definition:
-      'Egy valós idejű vizualizációs és monitorozó réteg a BAS számára, amely egy dinamikus, gráf-alapú felületen ("gondolattérkép") teszi átláthatóvá és követhetővé az MI ügynökök működését.'
+      'A Brunella korábbi neve. Ma: AI-csapat, ami a cég saját gépén dolgozik. Telegramon lehet vele beszélni, elvégzi a napi, ismétlődő információs munkát, és amit a cégen kívülre küldene, azt előbb ember hagyja jóvá.'
   },
   {
     term: 'CEaaS (Content Ecosystem as a Service)',
@@ -70,7 +60,7 @@ const glossaryTerms = [
   {
     term: 'Micro-SaaS',
     definition:
-      'Kisméretű, specifikus problémát megoldó szoftver-mint-szolgáltatás termék. A Brunella rendszer "Őrszem" és "Piacfigyelő" szolgáltatásai ebbe a kategóriába tartoznak.'
+      'Kisméretű, specifikus problémát megoldó szoftver-mint-szolgáltatás termék.'
   },
   {
     term: 'MLOps',

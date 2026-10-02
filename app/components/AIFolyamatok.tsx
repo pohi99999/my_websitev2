@@ -156,7 +156,7 @@ export default function AIFolyamatok ()
     {
       icon: Shield,
       title: 'Brunella / BAS bizonyíték',
-      desc: 'Saját, élesben futó rendszerünkön bizonyítjuk, hogyan néz ki a valódi AI-orchestration és vállalati bevezetés.',
+      desc: 'A saját működésünkön mutatjuk meg, hogyan dolgozik egy AI-csapat a gyakorlatban.',
       bullets: ['Valós orchestration tapasztalat', 'Működésközpontú szemlélet', 'Testreszabható bevezetés'],
       refs: [{ text: 'Brunella / BAS rendszer', url: withLang( '/termekek/brunella-agents' ) }],
     },
@@ -254,7 +254,7 @@ export default function AIFolyamatok ()
             </div>
             <h3 className="text-white font-bold mb-2 text-sm">Brunella / BAS bizonyíték</h3>
             <ul className="space-y-1.5 mb-4">
-              {['Saját, élesben futó rendszer', 'Valós AI orchestration tapasztalat', 'Testreszabható vállalati bevezetés'].map( ( b ) => (
+              {['Saját, élesben futó rendszer', 'Valós AI orchestration tapasztalat', 'Testreszabható bevezetés'].map( ( b ) => (
                 <li key={b} className="flex items-start gap-1.5 text-xs text-gray-200">
                   <span className="text-[#00e5ff] shrink-0 font-bold mt-[1px]">■</span>
                   {b}
