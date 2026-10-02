@@ -21,7 +21,7 @@ const en = {
   footer: {
     companyName: 'Pohánka & Társa',
     tagline:
-      'We design, build, and roll out AI systems tailored to business operations — so repetitive work shrinks, decisions move faster, and results are measurable.',
+      'We design, build, and roll out AI systems tailored to business operations, so repetitive work shrinks, decisions move faster, and results are measurable.',
     sections: {
       solutions: 'Solutions',
       contact: 'Contact',

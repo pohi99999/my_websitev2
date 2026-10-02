@@ -1,3 +1,4 @@
+import { ogImageFor, ogLocale } from '../lib/ogImage';
 import React from 'react';
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
@@ -47,7 +48,8 @@ export async function generateMetadata(): Promise<Metadata> {
       description: meta.description,
       url: meta.canonical,
       type: 'website',
-      images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }],
+      locale: ogLocale(language),
+      images: [{ url: ogImageFor(language, '/hatekonysagi-audit'), width: 1200, height: 630, alt: meta.title }],
     },
     twitter: {
       card: 'summary_large_image',

@@ -1,3 +1,4 @@
+import { ogImageFor, ogLocale } from '../../lib/ogImage';
 import React from 'react';
 import Link from 'next/link';
 import GsapFadeIn from '../../components/GsapFadeIn';
@@ -52,7 +53,7 @@ export async function generateMetadata() {
       description: meta.description,
       url: meta.canonical,
       locale: meta.locale,
-      images: [{ url: '/images/logo.png', alt: 'Pohánka és Társa Kft. – logó' }],
+      images: [{ url: ogImageFor(language, '/termekek/pohi-ai-pro'), width: 1200, height: 630, alt: meta.title }],
     },
     twitter: {
       card: 'summary',

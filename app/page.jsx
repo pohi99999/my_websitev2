@@ -21,17 +21,17 @@ export async function generateMetadata() {
   const meta =
     language === 'en'
       ? {
-          title: 'Pohánka & Co. - Professional Agency Representation & Product Protection',
+          title: 'Websites, AI Automation and Agent Systems | Zalaegerszeg',
           description:
-            'Professional agency representation, Brunella AI agents, product protection, and business process automation for growing enterprises.',
+            'Websites, AI automation and AI agent systems for businesses: we build and deploy them. Pohánka és Társa, Zalaegerszeg, Hungary.',
           canonical: 'https://www.pohankaestarsa.com/en',
           locale: 'en_US',
         }
       : language === 'de'
       ? {
-          title: 'Pohánka & Co. - Professionelle Vertretung & Produktschutz',
+          title: 'Webseiten, KI-Automatisierung und Agentensysteme | Zalaegerszeg',
           description:
-            'Professionelle Vertretung, Brunella KI-Agenten, Produktschutz und KI-Prozessautomatisierung mit messbarem ROI.',
+            'Webseiten, KI-Automatisierung und KI-Agentensysteme für Unternehmen: wir entwickeln und führen sie ein. Pohánka és Társa, Zalaegerszeg, Ungarn.',
           canonical: 'https://www.pohankaestarsa.com/de',
           locale: 'de_DE',
         }

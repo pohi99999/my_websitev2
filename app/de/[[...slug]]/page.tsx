@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { localizedMetadata } from '../../lib/localizedRouteMeta';
 import { notFound, redirect } from 'next/navigation';
 
 import HomePage from '../../page';
@@ -41,9 +42,9 @@ function toPath(slug: string[]) {
 function deMetaForSlug(slug: string[]): MetaSpec | null {
     if (slug.length === 0) {
         return {
-            title: 'Pohánka AI | KI-Agentur & Softwareentwicklung',
+            title: 'Webseiten, KI-Automatisierung und Agentensysteme',
             description:
-                'KI-Lösungen, Brunella Agent System und individuelle Softwareentwicklung für KMU. Automatisieren Sie Ihre Abläufe mit einem sicheren, ROI-orientierten Ansatz.',
+                'Webseiten, KI-Automatisierung und KI-Agentensysteme für Unternehmen: wir entwickeln und führen sie ein. Pohánka és Társa, Zalaegerszeg, Ungarn.',
             ogType: 'website',
         };
     }
@@ -174,7 +175,7 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
     return null;
 }
 
-export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+async function fallbackMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
     const resolvedParams = await params;
     const slug = resolvedParams.slug ?? [];
     const spec = deMetaForSlug(slug);
@@ -217,12 +218,6 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
             type: spec.ogType ?? 'website',
             locale: 'de_DE',
             url: dePath,
-            images: [
-                {
-                    url: '/images/logo.png',
-                    alt: 'Pohánka AI',
-                },
-            ],
         },
         twitter: {
             card: 'summary_large_image',
@@ -300,4 +295,13 @@ export default async function DeCatchAllPage({ params }: { params: Promise<Param
     }
 
     return notFound();
+}
+
+// The target page's own localized metadata (title, description, canonical, hreflang); the map
+// above is only the fallback for pages without it and for unknown URLs (noindex).
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+  const fallback = await fallbackMetadata({ params });
+  const slug = (await params).slug ?? [];
+  if (!deMetaForSlug(slug)) return fallback;
+  return localizedMetadata(slug, 'de', fallback);
 }

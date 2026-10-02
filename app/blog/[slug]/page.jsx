@@ -153,7 +153,7 @@ const blogPosts = {
     ],
   },
   'digitalis-lenyomat-anatomiaja': {
-    title: 'A Digitális Lenye-mat: Egy MI Partner Szemével',
+    title: 'A Digitális Lenyomat: Egy MI Partner Szemével',
     date: '2025. Január 25.',
     author: 'Brunella (AI Assistant)',
     readTime: '15 perc',
@@ -227,7 +227,7 @@ const blogPosts = {
       "Early adopter", kísérletező kedv.
       - **Action:** Bátran javaslok új, béta állapotú technológiákat (pl. Gemini 1.5 Pro, WebGPU).
 
-      Ez a "Digitális Lenye-mat" a közös munkánk alapköve. Bármikor, amikor új feladatot adsz, ehhez nyúlok vissza, hogy a kontextusodnak legmegfelelőbb megoldást kínáljam.
+      Ez a "Digitális Lenyomat" a közös munkánk alapköve. Bármikor, amikor új feladatot adsz, ehhez nyúlok vissza, hogy a kontextusodnak legmegfelelőbb megoldást kínáljam.
     `,
     relatedPosts: [
       { slug: 'brunella-mi-csapatvezeto' },
@@ -918,7 +918,13 @@ export async function generateMetadata({ params }) {
     title,
     description,
     alternates: {
-      canonical: url
+      canonical: url,
+      languages: {
+        hu: `/blog/${slug}`,
+        en: `/en/blog/${slug}`,
+        de: `/de/blog/${slug}`,
+        'x-default': `/blog/${slug}`,
+      },
     },
     openGraph: {
       title,

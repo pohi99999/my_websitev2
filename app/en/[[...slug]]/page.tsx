@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { localizedMetadata } from '../../lib/localizedRouteMeta';
 import { notFound, redirect } from 'next/navigation';
 
 import HomePage from '../../page';
@@ -177,7 +178,7 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
   return null;
 }
 
-export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+async function fallbackMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const resolvedParams = await params;
   const slug = resolvedParams.slug ?? [];
   const spec = enMetaForSlug(slug);
@@ -220,12 +221,6 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
       type: spec.ogType ?? 'website',
       locale: 'en_US',
       url: enPath,
-      images: [
-        {
-          url: '/images/logo.png',
-          alt: 'Pohánka AI',
-        },
-      ],
     },
     twitter: {
       card: 'summary_large_image',
@@ -308,4 +303,13 @@ export default async function EnCatchAllPage({ params }: { params: Promise<Param
   }
 
   return notFound();
+}
+
+// The target page's own localized metadata (title, description, canonical, hreflang); the map
+// above is only the fallback for pages without it and for unknown URLs (noindex).
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+  const fallback = await fallbackMetadata({ params });
+  const slug = (await params).slug ?? [];
+  if (!enMetaForSlug(slug)) return fallback;
+  return localizedMetadata(slug, 'en', fallback);
 }

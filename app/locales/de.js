@@ -21,7 +21,7 @@ const de = {
   footer: {
     companyName: 'Pohánka & Társa',
     tagline:
-      'Wir entwerfen, bauen und führen KI-Systeme ein, die auf Unternehmensprozesse zugeschnitten sind — damit repetitive Arbeit sinkt, Entscheidungen schneller werden und Ergebnisse messbar sind.',
+      'Wir entwerfen, bauen und führen KI-Systeme ein, die auf Unternehmensprozesse zugeschnitten sind, damit repetitive Arbeit sinkt, Entscheidungen schneller werden und Ergebnisse messbar sind.',
     sections: {
       solutions: 'Lösungen',
       contact: 'Kontakt',

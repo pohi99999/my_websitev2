@@ -1,4 +1,5 @@
 import { headers } from 'next/headers';
+import { ogImageFor } from '../app/lib/ogImage';
 
 export async function generatePortfolioMetadata({ id, translations, imageSrc }) {
   const headerStore = await headers();
@@ -28,9 +29,8 @@ export async function generatePortfolioMetadata({ id, translations, imageSrc }) 
     }
   };
 
-  if (imageSrc) {
-    metadata.openGraph.images = [{ url: imageSrc, alt: meta.title }];
-  }
+  // Without a page image, the generated share image with the page's own title (not the layout logo).
+  metadata.openGraph.images = [{ url: imageSrc || ogImageFor(language, `/portfolio/${id}`), width: 1200, height: 630, alt: meta.title }];
 
   return metadata;
 }
