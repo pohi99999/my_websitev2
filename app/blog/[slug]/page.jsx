@@ -382,9 +382,9 @@ const blogPosts = {
 
       Sokan azt hiszik, szoftvert fejlesztünk. Pedig valójában **IDŐT adunk el**.
 
-      Amikor a **Pohi AI Pro** vagy a **Brunella Agent System** átvesz egy komplex kutatási feladatot, ami egy embernek 40 órába telne, és elvégzi 40 perc alatt, akkor mi nem csak hatékonyságot növeltünk.
+      Amikor egy AI-rendszer átvesz egy hosszú, ismétlődő kutatási feladatot, akkor nem csak hatékonyságot növelünk.
       
-      Mi ajándékoztunk Önnek **39 óra és 20 perc** szabadidőt. Időt, amit:
+      Időt adunk vissza. Időt, amit:
       - Stratégiai tervezéssel tölthet.
       - A családjára fordíthat.
       - Alkotásra használhat.
@@ -935,6 +935,10 @@ export async function generateMetadata({ params }) {
   };
 }
 
+// Posts that describe the 2025 Brunella/BAS system; today's Brunella works differently
+// (card 64d86031, Stratéga's draft chapter 5). The URLs stay for search engines.
+const ARCHIVED_BRUNELLA_POSTS = new Set(['brunella-agent-system-mukodese', 'brunella-strategiai-white-paper', 'brunella-mi-csapatvezeto']);
+
 export default async function BlogPostPage({ params }) {
   const resolvedParams = await params;
   const slug = resolvedParams?.slug ?? '';
@@ -954,6 +958,8 @@ export default async function BlogPostPage({ params }) {
           relatedTitle: 'Related Articles',
           relatedRead: 'Read article',
           contentNotice: 'This long-form article is currently available in Hungarian. EN/DE full translation is in progress.',
+          archiveNotice: 'Archived: this article describes our 2025 system. Today\'s Brunella works differently.',
+          archiveLink: 'See how it works today',
           homeCrumb: 'Home',
         }
       : language === 'de'
@@ -967,6 +973,8 @@ export default async function BlogPostPage({ params }) {
           relatedTitle: 'Verwandte Artikel',
           relatedRead: 'Artikel lesen',
           contentNotice: 'Dieser Longform-Artikel ist derzeit auf Ungarisch verfügbar. Die vollständige EN/DE-Übersetzung ist in Arbeit.',
+          archiveNotice: 'Archiv: Dieser Artikel beschreibt unser System von 2025. Die heutige Brunella arbeitet anders.',
+          archiveLink: 'So arbeitet sie heute',
           homeCrumb: 'Startseite',
         }
       : {
@@ -979,6 +987,8 @@ export default async function BlogPostPage({ params }) {
           relatedTitle: 'Kapcsolódó Cikkek',
           relatedRead: 'Olvassa el',
           contentNotice: null,
+          archiveNotice: 'Archív írás: a 2025-ös rendszerünket írja le. A mai Brunella másképp működik.',
+          archiveLink: 'Így működik ma',
           homeCrumb: 'Főoldal',
         };
   const postContent = blogPosts?.[slug];
@@ -1137,6 +1147,12 @@ export default async function BlogPostPage({ params }) {
       <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto">
           <GsapFadeIn delay={0.3}>
+            {ARCHIVED_BRUNELLA_POSTS.has(slug) ? (
+              <p className="mb-6 rounded-xl border border-amber-400/30 bg-amber-400/10 p-4 text-amber-100" role="note">
+                {ui.archiveNotice}{' '}
+                <Link href={`${prefix}/portfolio/brunella-bas`} className="underline hover:text-white">{ui.archiveLink}</Link>
+              </p>
+            ) : null}
             <div className="glass-panel p-8 sm:p-12 rounded-2xl bg-black/20 border border-white/5 backdrop-blur-sm">
               <div
                 className="text-gray-300 leading-relaxed space-y-6 text-lg blog-content"

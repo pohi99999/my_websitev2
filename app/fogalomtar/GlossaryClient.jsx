@@ -25,7 +25,7 @@ const glossaryTerms = [
   {
     term: 'BAS (Brunella Agent System)',
     definition:
-      'Egy autonóm, több ügynökből álló rendszer (multi-agent system), amelynek célja egy kooperatív MI operációs rendszer létrehozása. Komplex üzleti és technikai folyamatok automatizálására tervezték.'
+      'A Brunella korábbi neve. Ma: AI-csapat, ami a cég saját gépén dolgozik. Telegramon lehet vele beszélni, elvégzi a napi, ismétlődő információs munkát, és amit a cégen kívülre küldene, azt előbb ember hagyja jóvá.'
   },
   {
     term: 'BOV (Brunella Operations Visualizer)',

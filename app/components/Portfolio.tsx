@@ -32,6 +32,7 @@ const Portfolio = () =>
         turnover: 'Verified previous turnover',
         close: 'Close',
         certLarge: 'Certificate enlarged',
+        brunellaCard: 'An AI team that works inside your company. It runs live with us every day.',
       }
       : language === 'de'
         ? {
@@ -51,6 +52,7 @@ const Portfolio = () =>
           turnover: 'Verifizierter früherer Umsatz',
           close: 'Schließen',
           certLarge: 'Zertifikat vergrößert',
+          brunellaCard: 'Ein KI-Team, das in Ihrem Unternehmen arbeitet. Bei uns ist es jeden Tag im Einsatz.',
         }
         : {
           title: 'Kiemelt Projektjeink',
@@ -69,6 +71,7 @@ const Portfolio = () =>
           turnover: 'Igazolt korábbi forgalom',
           close: 'Bezárás',
           certLarge: 'Tanúsítvány nagyítva',
+          brunellaCard: 'AI-csapat, ami a cégeden belül dolgozik. Nálunk minden nap élesben fut.',
         };
 
   const badges = Array.from( { length: 12 }, ( _, i ) => ( {
@@ -113,11 +116,8 @@ const Portfolio = () =>
               <span className="text-4xl font-bold text-white">BAS</span>
             </div>
             <div className="p-8">
-              <h3 className="text-2xl font-bold text-white mb-3">Brunella Agent System</h3>
-              <p className="text-gray-400 mb-6">
-                Az első valódi AI Operációs Rendszer vállalkozásoknak. Nem csak egy chatbot, hanem egy
-                57 ügynökből álló, öngyógyító digitális munkaerő, ami lát, hall és cselekszik helyetted.
-              </p>
+              <h3 className="text-2xl font-bold text-white mb-3">Brunella</h3>
+              <p className="text-gray-400 mb-6">{ ui.brunellaCard }</p>
               <Link
                 href={ withLang( '/portfolio/brunella-bas' ) }
                 onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioFeaturedBrunella, language, target: '/portfolio/brunella-bas', page: PAGE_NAMES.Home } ) }
