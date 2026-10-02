@@ -1,5 +1,7 @@
 // Data for the "Brunella System · Béta" editorial section on the brunella-bas portfolio page.
-// One block list per locale, all sharing the same 13 images (public/images/brunella-system-beta/01.png..13.png).
+// One block list per locale, all sharing the same images (public/images/brunella-system-beta/NN.png).
+// 05, 08, 10, 11, 12 and 13 were taken off on 2026-10-02 (they showed non-public data: client and
+// person names, internal paths, costs, key names); their files are deleted, the indexes stay.
 // Block types: intro | heading | paragraphs | quote | list | stats | image | closing
 
 export const brunellaBetaContent = {
@@ -44,7 +46,6 @@ export const brunellaBetaContent = {
       'Ha egy feladat összetett, a koordinátor szétbontja, és a darabokat odaadja annak, aki ért hozzá. A szakértők egymásnak is tudnak üzenni, tehát a munka akkor is halad, ha én közben mással foglalkozom.',
     ]},
     { type: 'image', index: 4, eyebrow: '04. kép', label: 'A csapat', caption: '„A csapat. Mindenki külön fut, de ugyanazon dolgoznak."', alt: 'Az irányítópult ügynök-listája, ahol látszik, ki fut és ki mivel foglalkozik' },
-    { type: 'image', index: 5, eyebrow: '05. kép', label: 'Együttműködés', caption: '„Nem egyetlen program. Egy csapat, amelyik beszél egymással."', alt: 'Egy ügynökök közti üzenetváltás, ahol az egyik feladatot ad a másiknak' },
     { type: 'heading', title: 'Emlékezet', subtitle: 'Nem kell kétszer elmondani semmit' },
     { type: 'paragraphs', items: [
       'A legtöbb AI-val minden beszélgetés nulláról indul. Itt nem. A rendszernek háromféle emlékezete van, nagyjából úgy, ahogy az embernek: ami éppen most fontos, ami tartós szokás vagy beállítás, és ami tanulság egy régi hibából.',
@@ -65,7 +66,6 @@ export const brunellaBetaContent = {
       'A tábla jelez, ha egy kártya túl régóta áll egy helyben, és korlátozza, hány dolog mehet egyszerre, mert a párhuzamosan félig kész munka a legdrágább dolog egy vállalkozásban.',
       'És van egy szabály, amit fontosnak tartok. Ha az ügynök elakad és rám vár, akkor nem csendben áll meg. Ráír a kártyára, hogy pontosan mit kell eldöntenem, és átteszi a kártyát a nevemre, hogy a felelősség látható legyen.',
     ]},
-    { type: 'image', index: 8, eyebrow: '08. kép', label: 'Feladattábla', caption: '„A tábla nemcsak nyilvántart: szétbont, kioszt és jelez, ha valami beragadt."', alt: 'A kanban tábla oszlopokkal és néhány kártyával' },
     { type: 'heading', title: 'Éjszakai műszak', subtitle: 'Akkor is dolgozik, amikor senki nem nézi' },
     { type: 'paragraphs', items: [
       'A rendszer rendszeres időközönként magától körbenéz: van-e megválaszolatlan üzenet, történt-e valami, amit érdemes megjegyezni, tanult-e valami újat, ami receptbe kívánkozik.',
@@ -79,19 +79,16 @@ export const brunellaBetaContent = {
       'A válasz az, hogy a rendszerben minden művelettípusnak saját önállósági szintje van, amit én állítok be. Az első szinten csak szól, hogy mit csinálna. A másodikon engedélyt kér, és megvárja a válaszom. A harmadikon elvégzi, és utána jelent.',
       'Ami visszafordíthatatlan vagy kifelé hat, az mindig engedélyköteles. Levél kiküldése, adat törlése, fizetés, nyilvános közzététel: ezeket a rendszer előkészíti, de nem nyomja meg helyettem a gombot. Ez nem korlátozás, hanem az, amitől nyugodtan használható.',
     ]},
-    { type: 'image', index: 10, eyebrow: '10. kép', label: 'Jóváhagyás', caption: '„Ami visszafordíthatatlan, arra mindig ember mondja ki az igent."', alt: 'A Token Monitor nézet: ügynökönkénti token- és költségfelhasználás, idővonal grafikonnal' },
     { type: 'heading', title: 'Hozzáférés', subtitle: 'Nem elzárva a világtól' },
     { type: 'paragraphs', items: [
       'Egy asszisztens annyit ér, amennyi eszközt tényleg elér. A Brunella csatlakoztatható levelezéshez, naptárhoz, felhős tárhelyhez, kódtárhoz, jegyzetrendszerhez, böngészőhöz és automatizálási motorhoz, és ezeken keresztül valódi munkát végez, nem csak beszél róla.',
       'A hozzáféréseket egyesével kapcsolom be, és bármikor visszavonhatom. A jelszavak és a kulcsok titkosított tárolóban élnek, nem a beszélgetésben.',
     ]},
-    { type: 'image', index: 11, eyebrow: '11. kép', label: 'Kapcsolatok', caption: '„Levelezés, naptár, tárhely, kódtár, automatizálás. Egyesével engedélyezve."', alt: 'A csatlakoztatott szolgáltatások listája vagy a beállítási felület' },
     { type: 'heading', title: 'Több rendszer', subtitle: 'Két csapat, ha kell, összeér' },
     { type: 'paragraphs', items: [
       'Ha valakinek saját Brunella-rendszere van, a kettő összeköthető. Ilyenkor az én csapatom megkérdezhet egy szakértőt a másik oldalról, és fordítva, anélkül hogy bármelyik fél hozzáférést adna a saját adataihoz.',
       'A határ szigorú: csak a feladat szövege megy át, titok, jelszó és személyes adat soha. A rendszer a másik oldalról érkező kérést alapból adatként kezeli, nem parancsként.',
     ]},
-    { type: 'image', index: 12, eyebrow: '12. kép', label: 'Összekötés', caption: '„Külön rendszerek, közös munka, megosztott adatok nélkül."', alt: 'A Vault nézet: titkosítva tárolt kulcsok és API tokenek listája' },
     { type: 'heading', title: 'Számokban', subtitle: 'Ahol a béta most tart' },
     { type: 'stats', items: [
       { value: '8', label: 'szakértő ügynök a csapatban' },
@@ -99,7 +96,6 @@ export const brunellaBetaContent = {
       { value: '14', label: 'csatlakoztatható szolgáltatás' },
       { value: '12', label: 'önállóan futó ütemezett kör' },
     ], note: 'A rendszer a saját gépemen fut, nem egy külső szolgáltató szerverén. A beszélgetések, a jegyzetek és az ügyféladatok nálam maradnak.' },
-    { type: 'image', index: 13, eyebrow: '13. kép', label: 'Zárókép', caption: '„Brunella System, béta. Épül, tanul, dolgozik."', alt: 'Az irányítópult egy élő, dolgos pillanatban: futó ügynökök, mozgó feladatok' },
     { type: 'closing', title: 'Amit őszintén el kell mondani', body: 'Ez béta. Napról napra változik, és nem minden része egyformán kiforrott. Nem azt ígérem, hogy hibátlan, hanem azt, hogy nem hallgatja el, ha valami nem sikerült, és hogy a visszafordíthatatlan lépéseknél mindig ember dönt. Az elmúlt hónapok tapasztalata alapján a rendszer nem attól hasznos, hogy mindent tud, hanem attól, hogy emlékszik, tanul, és nem áll le, amikor becsukom a laptopot.' },
   ],
 
@@ -144,7 +140,6 @@ export const brunellaBetaContent = {
       "When a task is complex, the coordinator breaks it up and hands the pieces to whoever is best suited. The specialists can also message each other directly, so work keeps moving even while I'm dealing with something else.",
     ]},
     { type: 'image', index: 4, eyebrow: 'Image 04', label: 'The team', caption: '"The team. Everyone runs separately, but they work on the same thing."', alt: "The dashboard's agent list, showing who is running and what they're working on" },
-    { type: 'image', index: 5, eyebrow: 'Image 05', label: 'Collaboration', caption: '"Not a single program. A team that talks to itself."', alt: 'A message exchange between agents, where one hands off a task to another' },
     { type: 'heading', title: 'Memory', subtitle: 'Nothing needs to be said twice' },
     { type: 'paragraphs', items: [
       "With most AI tools, every conversation starts from zero. Not here. The system has three kinds of memory, roughly the way a person does: what matters right now, what's a lasting habit or setting, and what's a lesson learned from a past mistake.",
@@ -165,7 +160,6 @@ export const brunellaBetaContent = {
       "The board flags a card that's been sitting too long, and it caps how many things can be in progress at once — because half-finished work running in parallel is the most expensive thing in a business.",
       "And there's one rule I care about. If an agent gets stuck and needs me, it doesn't just quietly stop. It writes on the card exactly what I need to decide, and moves the card to my name, so the responsibility stays visible.",
     ]},
-    { type: 'image', index: 8, eyebrow: 'Image 08', label: 'Task board', caption: '"The board doesn\'t just track — it breaks down, assigns, and flags when something gets stuck."', alt: 'The kanban board with columns and a few cards' },
     { type: 'heading', title: 'Night shift', subtitle: "It keeps working even when nobody's watching" },
     { type: 'paragraphs', items: [
       "At regular intervals, the system looks around on its own: is there an unanswered message, did anything happen worth remembering, did it learn something new that deserves a recipe.",
@@ -179,19 +173,16 @@ export const brunellaBetaContent = {
       'The answer is that every type of action in the system has its own autonomy level, which I set myself. At the first level, it only tells me what it would do. At the second, it asks for permission and waits for my answer. At the third, it does the work and reports afterward.',
       "Anything irreversible or outward-facing always requires approval. Sending an email, deleting data, making a payment, publishing something publicly — the system prepares these, but it never presses the button for me. That's not a limitation; it's exactly what makes it safe to use with confidence.",
     ]},
-    { type: 'image', index: 10, eyebrow: 'Image 10', label: 'Approval', caption: '"Whatever is irreversible always gets a human yes."', alt: 'The Token Monitor view: per-agent token and cost usage, with a timeline chart' },
     { type: 'heading', title: 'Access', subtitle: 'Not cut off from the world' },
     { type: 'paragraphs', items: [
       "An assistant is only as good as the tools it can actually reach. Brunella can be connected to email, a calendar, cloud storage, a code repository, a notes system, a browser, and an automation engine — and through those it does real work, not just talks about it.",
       'I turn on each connection one at a time, and can revoke any of them at any time. Passwords and keys live in an encrypted vault, not in the conversation.',
     ]},
-    { type: 'image', index: 11, eyebrow: 'Image 11', label: 'Connections', caption: '"Email, calendar, storage, code repository, automation. Enabled one at a time."', alt: 'The list of connected services or the settings screen' },
     { type: 'heading', title: 'Multiple systems', subtitle: 'Two teams can connect when needed' },
     { type: 'paragraphs', items: [
       "If someone else has their own Brunella system, the two can be linked. In that case, my team can ask a specialist on the other side a question, and vice versa, without either side giving the other access to its own data.",
       'The boundary is strict: only the text of the task crosses over — never a secret, a password, or personal data. The system treats anything coming from the other side as data by default, never as a command.',
     ]},
-    { type: 'image', index: 12, eyebrow: 'Image 12', label: 'Federation', caption: '"Separate systems, shared work, no shared data."', alt: 'The Vault view: the list of encrypted keys and API tokens' },
     { type: 'heading', title: 'By the numbers', subtitle: 'Where the beta stands right now' },
     { type: 'stats', items: [
       { value: '8', label: 'specialist agents on the team' },
@@ -199,7 +190,6 @@ export const brunellaBetaContent = {
       { value: '14', label: 'connectable services' },
       { value: '12', label: 'autonomously running scheduled cycles' },
     ], note: "The system runs on my own machine, not on some external provider's server. The conversations, the notes, and the client data all stay with me." },
-    { type: 'image', index: 13, eyebrow: 'Image 13', label: 'Closing shot', caption: '"Brunella System, beta. Building, learning, working."', alt: 'The dashboard in a live, busy moment: agents running, tasks moving' },
     { type: 'closing', title: 'The honest part', body: "This is a beta. It changes day by day, and not every part of it is equally mature yet. I'm not promising it's flawless — I'm promising that it won't hide it when something didn't work, and that a human always makes the call on anything irreversible. Based on the last few months, the system isn't useful because it knows everything — it's useful because it remembers, it learns, and it doesn't stop when I close the laptop." },
   ],
 
@@ -244,7 +234,6 @@ export const brunellaBetaContent = {
       'Ist eine Aufgabe komplex, zerlegt die Koordinatorin sie und gibt die Teile an den jeweils zuständigen Spezialisten weiter. Die Spezialisten können sich auch gegenseitig Nachrichten schicken, sodass die Arbeit weitergeht, auch wenn ich mich gerade um etwas anderes kümmere.',
     ]},
     { type: 'image', index: 4, eyebrow: 'Bild 04', label: 'Das Team', caption: '„Das Team. Jeder läuft für sich, aber alle arbeiten am selben Ziel."', alt: 'Die Agenten-Liste im Dashboard, aus der hervorgeht, wer läuft und woran gerade gearbeitet wird' },
-    { type: 'image', index: 5, eyebrow: 'Bild 05', label: 'Zusammenarbeit', caption: '„Kein einzelnes Programm. Ein Team, das miteinander spricht."', alt: 'Ein Nachrichtenaustausch zwischen Agenten, bei dem einer dem anderen eine Aufgabe übergibt' },
     { type: 'heading', title: 'Gedächtnis', subtitle: 'Nichts muss zweimal gesagt werden' },
     { type: 'paragraphs', items: [
       'Bei den meisten KI-Systemen beginnt jedes Gespräch bei null. Hier nicht. Das System verfügt über drei Arten von Gedächtnis, ungefähr so wie ein Mensch: was gerade jetzt wichtig ist, was eine dauerhafte Gewohnheit oder Einstellung ist, und was eine Lehre aus einem früheren Fehler ist.',
@@ -265,7 +254,6 @@ export const brunellaBetaContent = {
       'Das Board meldet sich, wenn eine Karte zu lange an derselben Stelle liegt, und begrenzt, wie viele Dinge gleichzeitig laufen dürfen — denn parallel liegen gebliebene Halbfertigarbeit ist das Teuerste in einem Unternehmen.',
       'Und es gibt eine Regel, die mir wichtig ist. Kommt ein Agent nicht weiter und braucht meine Entscheidung, bleibt er nicht stillschweigend stehen. Er schreibt auf die Karte, genau was ich entscheiden muss, und weist die Karte mir zu, damit die Verantwortung sichtbar bleibt.',
     ]},
-    { type: 'image', index: 8, eyebrow: 'Bild 08', label: 'Aufgaben-Board', caption: '„Das Board verwaltet nicht nur: Es zerlegt, verteilt und meldet sich, wenn etwas hängen bleibt."', alt: 'Das Kanban-Board mit Spalten und einigen Karten' },
     { type: 'heading', title: 'Nachtschicht', subtitle: 'Arbeitet auch, wenn niemand hinschaut' },
     { type: 'paragraphs', items: [
       'In regelmäßigen Abständen schaut sich das System von selbst um: Gibt es eine unbeantwortete Nachricht, ist etwas passiert, das man sich merken sollte, hat es etwas Neues gelernt, das ein Rezept verdient.',
@@ -279,19 +267,16 @@ export const brunellaBetaContent = {
       'Die Antwort: Jeder Aktionstyp im System hat eine eigene Autonomiestufe, die ich selbst festlege. Auf der ersten Stufe meldet das System nur, was es tun würde. Auf der zweiten holt es die Erlaubnis ein und wartet auf meine Antwort. Auf der dritten erledigt es die Aufgabe und meldet sich danach.',
       'Was nicht rückgängig zu machen ist oder nach außen wirkt, braucht immer eine Freigabe. E-Mails versenden, Daten löschen, Zahlungen auslösen, öffentlich veröffentlichen: Das System bereitet all das vor, drückt aber nicht selbst den Knopf für mich. Das ist keine Einschränkung, sondern genau das, was das System vertrauensvoll nutzbar macht.',
     ]},
-    { type: 'image', index: 10, eyebrow: 'Bild 10', label: 'Freigabe', caption: '„Was nicht rückgängig zu machen ist, bekommt immer ein menschliches Ja."', alt: 'Die Token-Monitor-Ansicht: Token- und Kostenverbrauch pro Agent, mit Zeitverlaufsdiagramm' },
     { type: 'heading', title: 'Zugriff', subtitle: 'Nicht von der Welt abgeschnitten' },
     { type: 'paragraphs', items: [
       'Ein Assistent ist nur so gut wie die Werkzeuge, die er tatsächlich erreicht. Brunella lässt sich mit E-Mail, Kalender, Cloud-Speicher, Code-Repository, Notizsystem, Browser und Automatisierungs-Engine verbinden — und erledigt darüber echte Arbeit, statt nur darüber zu reden.',
       'Ich schalte die Zugriffe einzeln frei und kann sie jederzeit widerrufen. Passwörter und Schlüssel liegen in einem verschlüsselten Speicher, nicht in der Unterhaltung.',
     ]},
-    { type: 'image', index: 11, eyebrow: 'Bild 11', label: 'Verbindungen', caption: '„E-Mail, Kalender, Speicher, Code-Repository, Automatisierung. Einzeln freigeschaltet."', alt: 'Die Liste der verbundenen Dienste bzw. die Einstellungsoberfläche' },
     { type: 'heading', title: 'Mehrere Systeme', subtitle: 'Zwei Teams können bei Bedarf zusammenfinden' },
     { type: 'paragraphs', items: [
       'Hat jemand ein eigenes Brunella-System, lassen sich beide verbinden. Mein Team kann dann einen Spezialisten der anderen Seite um Rat fragen, und umgekehrt, ohne dass eine der beiden Seiten der anderen Zugriff auf die eigenen Daten gibt.',
       'Die Grenze ist strikt: Es überquert nur der Text der Aufgabe — nie ein Geheimnis, ein Passwort oder personenbezogene Daten. Das System behandelt eine von der anderen Seite eingehende Anfrage standardmäßig als Daten, nicht als Befehl.',
     ]},
-    { type: 'image', index: 12, eyebrow: 'Bild 12', label: 'Verbund', caption: '„Getrennte Systeme, gemeinsame Arbeit, ohne gemeinsame Daten."', alt: 'Die Vault-Ansicht: die Liste der verschlüsselt gespeicherten Schlüssel und API-Token' },
     { type: 'heading', title: 'In Zahlen', subtitle: 'Wo die Beta gerade steht' },
     { type: 'stats', items: [
       { value: '8', label: 'Spezialisten-Agenten im Team' },
@@ -299,11 +284,13 @@ export const brunellaBetaContent = {
       { value: '14', label: 'anbindbare Dienste' },
       { value: '12', label: 'selbstständig laufende geplante Zyklen' },
     ], note: 'Das System läuft auf meinem eigenen Rechner, nicht auf dem Server eines externen Anbieters. Die Gespräche, die Notizen und die Kundendaten bleiben bei mir.' },
-    { type: 'image', index: 13, eyebrow: 'Bild 13', label: 'Schlussbild', caption: '„Brunella System, Beta. Wird aufgebaut, lernt, arbeitet."', alt: 'Das Dashboard in einem lebendigen, arbeitsreichen Moment: laufende Agenten, sich bewegende Aufgaben' },
     { type: 'closing', title: 'Was ehrlich gesagt werden muss', body: 'Das ist eine Beta. Sie verändert sich von Tag zu Tag, und nicht jeder Teil ist gleich ausgereift. Ich verspreche nicht, dass sie fehlerfrei ist, sondern dass sie es nicht verschweigt, wenn etwas nicht geklappt hat, und dass bei nicht rückgängig zu machenden Schritten immer ein Mensch entscheidet. Nach den Erfahrungen der letzten Monate ist das System nicht deshalb nützlich, weil es alles weiß, sondern weil es sich erinnert, dazulernt und nicht aufhört, wenn ich den Laptop zuklappe.' },
   ],
 };
 
+// Only the published images get a URL: this list is passed to a client component, so every entry
+// ends up in the page source. A removed image keeps its slot (indexes stay stable) with no URL.
+const PUBLISHED_BETA_IMAGES = new Set([1, 2, 3, 4, 6, 7, 9]);
 export const brunellaBetaImageSrcs = Array.from({ length: 13 }, (_, i) =>
-  `/images/brunella-system-beta/${String(i + 1).padStart(2, '0')}.png`
+  PUBLISHED_BETA_IMAGES.has(i + 1) ? `/images/brunella-system-beta/${String(i + 1).padStart(2, '0')}.png` : ''
 );
