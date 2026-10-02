@@ -1,8 +1,31 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+
+// What the visitor is told after submitting. It must match what actually happens:
+// the lead is saved and we contact them by hand; no automatic audit is sent.
+const RESULT_TEXT = {
+  hu: {
+    title: 'Köszönjük!',
+    success: 'Megkaptuk az adataidat, hamarosan felvesszük veled a kapcsolatot.',
+    error: 'Hiba történt a küldés során. Kérjük, próbáld újra később, vagy keress minket az elérhetőségeinken!',
+  },
+  en: {
+    title: 'Thank you!',
+    success: 'We have received your details and will get in touch with you soon.',
+    error: 'Something went wrong while sending. Please try again later or reach us through our contact details.',
+  },
+  de: {
+    title: 'Vielen Dank!',
+    success: 'Wir haben Ihre Angaben erhalten und melden uns in Kürze bei Ihnen.',
+    error: 'Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns über unsere Kontaktdaten.',
+  },
+} as const;
 
 export default function LeadMagnetForm() {
+  const { language } = useLanguage();
+  const resultText = RESULT_TEXT[language as keyof typeof RESULT_TEXT] ?? RESULT_TEXT.hu;
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     industry: '',
@@ -57,11 +80,8 @@ export default function LeadMagnetForm() {
   if (status === 'success') {
     return (
       <div className="max-w-2xl mx-auto p-8 bg-black/50 border border-[#00ff9d]/30 rounded-2xl text-center backdrop-blur-sm">
-        <h2 className="text-3xl font-syne font-bold text-[#00ff9d] mb-4">Sikerült! 🎉</h2>
-        <p className="text-lg text-gray-300">
-          Az adataidat megkaptuk, a BAS MI ügynökeink már dolgoznak a személyre szabott Digitális Hatékonysági Auditodon. 
-          Hamarosan elküldjük a <b>{formData.email}</b> címre!
-        </p>
+        <h2 className="text-3xl font-syne font-bold text-[#00ff9d] mb-4">{resultText.title}</h2>
+        <p className="text-lg text-gray-300">{resultText.success}</p>
       </div>
     );
   }
@@ -210,7 +230,7 @@ export default function LeadMagnetForm() {
             
             {status === 'error' && (
               <div className="p-4 bg-red-900/50 border border-red-500 rounded-lg text-red-200" role="alert">
-                Hiba történt a küldés során. Kérjük, próbáld újra később, vagy keress minket az elérhetőségeinken!
+                {resultText.error}
               </div>
             )}
 
