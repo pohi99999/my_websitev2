@@ -70,16 +70,13 @@ function Placeholder({ children }: { children: string }) {
 }
 
 function MetaLine({ lang }: { lang: Lang }) {
-  const { effectiveDay, version } = PSEARCH_PRIVACY_META;
-  const day = effectiveDay ? String(effectiveDay) : <Placeholder>{lang === 'hu' ? '[nap]' : '[day]'}</Placeholder>;
+  const { effective, version } = PSEARCH_PRIVACY_META;
+  const date = effective ? effective[lang] : <Placeholder>{lang === 'hu' ? '[dátum]' : '[date]'}</Placeholder>;
   const ver = version ?? <Placeholder>{lang === 'hu' ? '[verziószám]' : '[version]'}</Placeholder>;
-  return lang === 'hu' ? (
+  return (
     <p className="mt-3 text-sm text-gray-400">
-      <strong className="text-white">Hatályos:</strong> 2026. szeptember {day}. · <strong className="text-white">Verzió:</strong> {ver}
-    </p>
-  ) : (
-    <p className="mt-3 text-sm text-gray-400">
-      <strong className="text-white">Effective:</strong> September {day}, 2026 · <strong className="text-white">Version:</strong> {ver}
+      <strong className="text-white">{lang === 'hu' ? 'Hatályos:' : 'Effective:'}</strong> {date} ·{' '}
+      <strong className="text-white">{lang === 'hu' ? 'Verzió:' : 'Version:'}</strong> {ver}
     </p>
   );
 }
