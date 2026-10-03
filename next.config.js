@@ -38,6 +38,15 @@ const nextConfig = {
   images: {
     formats: ['image/webp', 'image/avif'],
   },
+  // P-Search privacy notice: the language switcher builds /en/<hu-slug> and /de/<slug>, so the
+  // other spellings are sent to the real page. There is no German version: /de goes to English.
+  async redirects() {
+    return [
+      { source: '/p-search/privacy', destination: '/p-search/adatvedelem', permanent: true },
+      { source: '/en/p-search/adatvedelem', destination: '/en/p-search/privacy', permanent: true },
+      { source: '/de/p-search/:path*', destination: '/en/p-search/privacy', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
