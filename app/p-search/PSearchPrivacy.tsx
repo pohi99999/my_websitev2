@@ -52,10 +52,10 @@ function inline(text: string): React.ReactNode[] {
       return <strong key={k} className="text-white">{part.slice(2, -2)}</strong>;
     }
     if (part.startsWith('`') && part.endsWith('`')) {
-      return <code key={k} className="rounded bg-white/10 px-1 py-0.5 font-mono text-[0.85em] text-white break-all">{part.slice(1, -1)}</code>;
+      return <code key={k} className="rounded bg-white/10 px-1 py-0.5 font-mono text-[0.85em] text-white break-words">{part.slice(1, -1)}</code>;
     }
     if (/^[\w.+-]+@/.test(part)) return <a key={k} href={`mailto:${part}`} className={LINK}>{part}</a>;
-    if (part.startsWith('+36')) return <a key={k} href={`tel:${part.replace(/\s/g, '')}`} className={LINK}>{part}</a>;
+    if (part.startsWith('+36')) return <a key={k} href={`tel:${part.replace(/\s/g, '')}`} className={`${LINK} whitespace-nowrap`}>{part}</a>;
     if (part.startsWith('www.')) return <a key={k} href={`https://${part}`} className={LINK} rel="noopener noreferrer" target="_blank">{part}</a>;
     return <React.Fragment key={k}>{part}</React.Fragment>;
   });
