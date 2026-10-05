@@ -20,7 +20,7 @@ export async function generateMetadata() {
   const meta =
     language === 'en'
       ? {
-          title: 'Websites, AI Automation and Agent Systems | Zalaegerszeg',
+          title: 'Websites, Automation and AI | Zalaegerszeg',
           description:
             'Websites with booking or quote requests, workflow automation, web and mobile apps and an AI team for small businesses. Zalaegerszeg, Hungary.',
           canonical: 'https://www.pohankaestarsa.com/en',
@@ -28,7 +28,7 @@ export async function generateMetadata() {
         }
       : language === 'de'
       ? {
-          title: 'Webseiten, KI-Automatisierung und Agentensysteme | Zalaegerszeg',
+          title: 'Websites, Automatisierung, KI | Zalaegerszeg',
           description:
             'Websites mit Buchung oder Anfrageformular, Prozessautomatisierung, Web- und Mobile-Apps und ein KI-Team für kleine Firmen. Zalaegerszeg, Ungarn.',
           canonical: 'https://www.pohankaestarsa.com/de',

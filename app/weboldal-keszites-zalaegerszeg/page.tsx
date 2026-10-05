@@ -19,7 +19,7 @@ const PRICE = `150${ NBSP }000${ NBSP }Ft`;
 export const metadata: Metadata = {
   title: 'Weboldal készítés Zalaegerszeg',
   description:
-    'Weboldal és honlap készítés Zalaegerszegen és Zala megyében: bemutatkozó weboldal 150 000 Ft-ért (bruttó, egyszeri), két hét alatt, online foglaló rendszer szalonoknak.',
+    'Weboldal készítés Zalaegerszegen és Zala megyében: bemutatkozó weboldal 150 000 Ft-ért (bruttó, egyszeri), két hét alatt, online foglalással is.',
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: 'Weboldal készítés Zalaegerszeg | Pohánka és Társa',

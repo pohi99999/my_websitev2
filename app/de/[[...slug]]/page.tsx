@@ -53,81 +53,81 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
         switch (slug[0]) {
             case 'termekek':
                 return {
-                    title: 'Produkte | Pohánka AI',
+                    title: 'Produkte',
                     description:
                         'Brunella Agent System (BAS), Pohi AI Pro und weitere KI-Lösungen — Produkte und Plattformen für KMU.',
                     ogType: 'website',
                 };
             case 'szolgaltatasok':
                 return {
-                    title: 'Dienstleistungen | Pohánka AI',
+                    title: 'Dienstleistungen',
                     description:
                         'KI-Automatisierung, individuelle Softwareentwicklung und Beratung — mit Fokus auf Sicherheit und messbaren ROI.',
                     ogType: 'website',
                 };
             case 'portfolio':
                 return {
-                    title: 'Portfolio | Pohánka AI',
+                    title: 'Portfolio',
                     description:
                         'Ausgewählte Projekte und Fallstudien — praxisnahe KI- und Softwarelösungen für echte Geschäftsergebnisse.',
                     ogType: 'website',
                 };
             case 'blog':
                 return {
-                    title: 'Blog | Pohánka AI',
+                    title: 'Blog',
                     description:
                         'Artikel über KI, Automatisierung und den Aufbau zuverlässiger agentischer Systeme — mit Praxisbeispielen und technischer Perspektive.',
                     ogType: 'website',
                 };
             case 'rolunk':
                 return {
-                    title: 'Über uns | Pohánka AI',
+                    title: 'Über uns',
                     description:
                         'Lernen Sie Pohánka & Társa kennen — unseren Ansatz für KI, Automatisierung und robuste Softwaresysteme.',
                     ogType: 'website',
                 };
             case 'kapcsolat':
                 return {
-                    title: 'Kontakt | Pohánka AI',
+                    title: 'Kontakt',
                     description:
                         'Erzählen Sie uns von Ihren Abläufen und Zielen — wir schlagen einen konkreten KI-Automatisierungsplan mit schneller ROI vor.',
                     ogType: 'website',
                 };
             case 'fogalomtar':
                 return {
-                    title: 'Glossar | Pohánka AI',
+                    title: 'Glossar',
                     description:
                         'Ein praktisches Glossar zu KI- und Softwarebegriffen — klar für Business und Engineering erklärt.',
                     ogType: 'website',
                 };
             case 'adatvedelmi-nyilatkozat':
                 return {
-                    title: 'Datenschutzerklärung | Pohánka AI',
+                    title: 'Datenschutzerklärung',
                     description: 'Datenschutzerklärung und Informationen zur Datenverarbeitung.',
                     ogType: 'website',
                 };
             case 'impresszum':
                 return {
-                    title: 'Impressum | Pohánka AI',
+                    title: 'Impressum',
                     description: 'Unternehmensinformationen und rechtlicher Hinweis.',
                     ogType: 'website',
                 };
             case 'aszf':
                 return {
-                    title: 'AGB | Pohánka AI',
+                    title: 'AGB',
                     description: 'Allgemeine Geschäftsbedingungen.',
                     ogType: 'website',
                 };
             case 'weboldal-ai-kkv':
                 return {
-                    title: 'Website + KI für KMU | Pohánka AI',
+                    title: 'Website + KI für KMU',
                     description:
                         'Moderne, leadgenerierende Websites kombiniert mit KI-gestützter Automatisierung für ungarische KMU.',
                     ogType: 'website',
                 };
             case 'hatekonysagi-audit':
                 return {
-                    title: 'Digitaler Effizienz-Audit | Pohánka AI',
+                    title: 'Digitaler Effizienz-Audit',
                     description:
                         'Finden Sie in 3 Minuten heraus, wo Ihr Unternehmen monatlich 100+ Arbeitsstunden durch manuelle Prozesse verliert — und wie KI das stoppen kann.',
                     ogType: 'website',
@@ -140,7 +140,7 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
     if (slug[0] === 'termekek' && slug.length === 2) {
         if (slug[1] === 'brunella-agents') {
             return {
-                title: 'Brunella Agent System | Pohánka AI',
+                title: 'Brunella Agent System',
                 description:
                     'Ein praxisnahes agentisches System für Geschäftsautomatisierung — orchestrierte Workflows, Tool-Nutzung und sichere Bereitstellung.',
                 ogType: 'website',
@@ -148,7 +148,7 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
         }
         if (slug[1] === 'pohi-ai-pro') {
             return {
-                title: 'Pohi AI Pro | Pohánka AI',
+                title: 'Pohi AI Pro',
                 description:
                     'Ein individuell entwickeltes Portalsystem, das Kundendaten und Lagerdaten integriert — für Automatisierung und operative Klarheit.',
                 ogType: 'website',
@@ -158,7 +158,7 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
 
     if (slug[0] === 'blog' && slug.length === 2) {
         return {
-            title: 'Blogbeitrag | Pohánka AI',
+            title: 'Blogbeitrag',
             description: 'Einblicke zu KI, Automatisierung und dem Aufbau zuverlässiger Systeme.',
             ogType: 'article',
         };
@@ -166,7 +166,7 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
 
     if (slug[0] === 'portfolio' && slug.length === 2) {
         return {
-            title: 'Portfolio-Projekt | Pohánka AI',
+            title: 'Portfolio-Projekt',
             description: 'Projektinformationen und Ergebnisse.',
             ogType: 'website',
         };
@@ -186,7 +186,7 @@ async function fallbackMetadata({ params }: { params: Promise<Params> }): Promis
 
     if (!spec) {
         return {
-            title: 'Nicht gefunden | Pohánka AI',
+            title: 'Nicht gefunden',
             robots: { index: false, follow: false },
             alternates: {
                 canonical: huPath,

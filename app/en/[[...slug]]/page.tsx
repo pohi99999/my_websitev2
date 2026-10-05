@@ -53,81 +53,81 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
     switch (slug[0]) {
       case 'termekek':
         return {
-          title: 'Products | Pohánka AI',
+          title: 'Products',
           description:
             'Brunella Agent System (BAS), Pohi AI Pro, and additional AI solutions — products and platforms for SMEs.',
           ogType: 'website',
         };
       case 'szolgaltatasok':
         return {
-          title: 'Services | Pohánka AI',
+          title: 'Services',
           description:
             'AI automation, custom software development, and consulting — delivered with security and measurable ROI in mind.',
           ogType: 'website',
         };
       case 'portfolio':
         return {
-          title: 'Portfolio | Pohánka AI',
+          title: 'Portfolio',
           description:
             'Selected projects and case studies — practical AI and software solutions for real business outcomes.',
           ogType: 'website',
         };
       case 'blog':
         return {
-          title: 'Blog | Pohánka AI',
+          title: 'Blog',
           description:
             'Articles about AI, automation, and building reliable agentic systems — with practical examples and engineering perspective.',
           ogType: 'website',
         };
       case 'rolunk':
         return {
-          title: 'About | Pohánka AI',
+          title: 'About',
           description:
             'Learn about Pohánka & Társa — our approach to AI, automation, and building robust software systems.',
           ogType: 'website',
         };
       case 'kapcsolat':
         return {
-          title: 'Contact | Pohánka AI',
+          title: 'Contact',
           description:
             'Tell us about your workflows and goals — we’ll propose a concrete AI automation plan with fast ROI and safe rollout.',
           ogType: 'website',
         };
       case 'fogalomtar':
         return {
-          title: 'Glossary | Pohánka AI',
+          title: 'Glossary',
           description:
             'A practical glossary of AI and software terms — explained clearly for business and engineering.',
           ogType: 'website',
         };
       case 'adatvedelmi-nyilatkozat':
         return {
-          title: 'Privacy Policy | Pohánka AI',
+          title: 'Privacy Policy',
           description: 'Privacy policy and data processing information.',
           ogType: 'website',
         };
       case 'impresszum':
         return {
-          title: 'Imprint | Pohánka AI',
+          title: 'Imprint',
           description: 'Company information and legal notice.',
           ogType: 'website',
         };
       case 'aszf':
         return {
-          title: 'Terms (ÁSZF) | Pohánka AI',
+          title: 'Terms (ÁSZF)',
           description: 'General terms and conditions (ÁSZF).',
           ogType: 'website',
         };
       case 'weboldal-ai-kkv':
         return {
-          title: 'Website + AI for SMEs | Pohánka AI',
+          title: 'Website + AI for SMEs',
           description:
             'Modern, lead-generating websites combined with AI-driven automation for Hungarian SMEs.',
           ogType: 'website',
         };
       case 'hatekonysagi-audit':
         return {
-          title: 'Digital Efficiency Audit | Pohánka AI',
+          title: 'Digital Efficiency Audit',
           description:
             'Find out in 3 minutes where your company loses 100+ working hours a month to manual processes — and how AI can stop it.',
           ogType: 'website',
@@ -141,7 +141,7 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
   if (slug[0] === 'termekek' && slug.length === 2) {
     if (slug[1] === 'brunella-agents') {
       return {
-        title: 'Brunella Agent System | Pohánka AI',
+        title: 'Brunella Agent System',
         description:
           'A practical agentic system for business automation — orchestrated workflows, tool use, and secure-by-design deployment.',
         ogType: 'website',
@@ -149,7 +149,7 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
     }
     if (slug[1] === 'pohi-ai-pro') {
       return {
-        title: 'Pohi AI Pro | Pohánka AI',
+        title: 'Pohi AI Pro',
         description:
           'A custom-built portal system integrating customer and inventory data — designed for automation and operational clarity.',
         ogType: 'website',
@@ -160,7 +160,7 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
   // Dynamic: /en/blog/:slug
   if (slug[0] === 'blog' && slug.length === 2) {
     return {
-      title: 'Blog Post | Pohánka AI',
+      title: 'Blog Post',
       description: 'Insights on AI, automation, and building reliable systems.',
       ogType: 'article',
     };
@@ -169,7 +169,7 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
   // Dynamic: /en/portfolio/:id
   if (slug[0] === 'portfolio' && slug.length === 2) {
     return {
-      title: 'Portfolio Project | Pohánka AI',
+      title: 'Portfolio Project',
       description: 'Project details and outcomes.',
       ogType: 'website',
     };
@@ -189,7 +189,7 @@ async function fallbackMetadata({ params }: { params: Promise<Params> }): Promis
 
   if (!spec) {
     return {
-      title: 'Not Found | Pohánka AI',
+      title: 'Not Found',
       robots: { index: false, follow: false },
       alternates: {
         canonical: huPath,

@@ -14,19 +14,19 @@ export async function generateMetadata() {
     id: 'palyazat-radar',
     translations: {
       en: {
-        title: 'Grant Radar — Automated Grant & Regulation Monitoring | Pohánka AI',
+        title: 'Grant Radar: grant and regulation alerts',
         description: 'AI monitoring of grants and regulation updates with structured weekly reports.',
         canonical: '/en/portfolio/palyazat-radar',
         locale: 'en_US',
       },
       de: {
-        title: 'Förder-Radar — Automatisches Förder- & Regelwerk-Monitoring | Pohánka AI',
+        title: 'Förder-Radar: Förderungen im Blick',
         description: 'KI-basierte Beobachtung von Förderungen und Regeländerungen mit wöchentlichen Reports.',
         canonical: '/de/portfolio/palyazat-radar',
         locale: 'de_DE',
       },
       hu: {
-        title: 'Pályázat Radar — Automatikus Pályázat & Jogszabály Figyelés | Pohánka AI',
+        title: 'Pályázat Radar: pályázatok és jogszabályok',
         description: 'Soha többé ne maradj le pályázatról. AI figyeli az EU/HU pályázatokat és jogszabály-változásokat — heti riport emailben.',
         canonical: '/portfolio/palyazat-radar',
         locale: 'hu_HU',

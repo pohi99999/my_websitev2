@@ -14,19 +14,19 @@ export async function generateMetadata() {
     id: 'tartalom-gyartas',
     translations: {
       en: {
-        title: 'AI Content Production — Social Media & Email Marketing | Pohánka AI',
+        title: 'AI content: social media and email',
         description: 'Monthly social media, blog and email content tailored to your industry and brand voice.',
         canonical: '/en/portfolio/tartalom-gyartas',
         locale: 'en_US',
       },
       de: {
-        title: 'KI-Content-Produktion — Social Media & E-Mail Marketing | Pohánka AI',
+        title: 'KI-Content: Social Media und E-Mail',
         description: 'Monatlicher Content für Social Media, Blog und E-Mail, abgestimmt auf Branche und Tonalität.',
         canonical: '/de/portfolio/tartalom-gyartas',
         locale: 'de_DE',
       },
       hu: {
-        title: 'AI Tartalom Gyártás — Social Media & Email Marketing | Pohánka AI',
+        title: 'AI tartalomgyártás: social media és e-mail',
         description: 'Havi social media posztok, blog cikkek és email kampányok — AI-val generálva, az Ön iparágára és hangnemére szabva.',
         canonical: '/portfolio/tartalom-gyartas',
         locale: 'hu_HU',

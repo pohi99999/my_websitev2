@@ -14,19 +14,19 @@ export async function generateMetadata() {
     id: 'web-robotpilota',
     translations: {
       en: {
-        title: 'Web Autopilot — AI Browser Automation | Pohánka AI',
+        title: 'Web Autopilot: AI browser automation',
         description: 'AI-driven browser automation for scraping, form filling and monitoring, running 24/7.',
         canonical: '/en/portfolio/web-robotpilota',
         locale: 'en_US',
       },
       de: {
-        title: 'Web-Robotpilot — KI-Browser-Automatisierung | Pohánka AI',
+        title: 'Web-Robotpilot: KI-Browser-Automatisierung',
         description: 'KI-gestützte Browser-Automatisierung für Datenerfassung, Formulare und Monitoring, 24/7.',
         canonical: '/de/portfolio/web-robotpilota',
         locale: 'de_DE',
       },
       hu: {
-        title: 'Web Robotpilóta — AI Böngésző Automatizáció | Pohánka AI',
+        title: 'Web Robotpilóta: AI böngésző-automatizálás',
         description: 'AI-vezérelt böngésző automatizáció: adatgyűjtés, form kitöltés, versenytárs monitoring — emberi felügyelet nélkül, 0-24-ben.',
         canonical: '/portfolio/web-robotpilota',
         locale: 'hu_HU',

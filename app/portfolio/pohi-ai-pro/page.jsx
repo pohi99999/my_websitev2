@@ -18,19 +18,19 @@ export async function generateMetadata() {
     id: 'pohi-ai-pro',
     translations: {
       en: {
-        title: 'Pohi AI Pro | Portfolio | Pohánka AI',
+        title: 'Pohi AI Pro project: B2B trading platform',
         description: 'B2B raw-material trading platform with AI-driven logistics planning, map intelligence and role-based operations.',
         canonical: '/en/portfolio/pohi-ai-pro',
         locale: 'en_US',
       },
       de: {
-        title: 'Pohi AI Pro | Portfolio | Pohánka AI',
+        title: 'Pohi AI Pro Projekt: B2B-Handelsplattform',
         description: 'B2B-Rohstoffhandelsplattform mit KI-gestützter Logistikplanung, Kartenintelligenz und rollenbasiertem Betrieb.',
         canonical: '/de/portfolio/pohi-ai-pro',
         locale: 'de_DE',
       },
       hu: {
-        title: 'Pohi AI Pro | Portfólió | Pohánka AI',
+        title: 'Pohi AI Pro projekt: B2B kereskedési platform',
         description: 'B2B nyersanyag-kereskedési platform Gemini AI-val. Automatikus logisztikai tervezés, interaktív térkép, 3 felhasználói szerepkör.',
         canonical: '/portfolio/pohi-ai-pro',
         locale: 'hu_HU',

@@ -903,9 +903,10 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const title = postMeta.title;
+  // search-result title / description (BLOG_SEO); the article itself keeps its full title
+  const title = postMeta.seoTitle || postMeta.title;
   const description =
-    postMeta.excerpt ||
+    postMeta.seoDescription ||
     (language === 'en'
       ? 'Blog post from the Pohánka AI knowledge hub.'
       : language === 'de'
