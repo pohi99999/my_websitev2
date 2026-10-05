@@ -759,3 +759,17 @@ a {
     padding-bottom: var(--mobile-cta-h, 0px);
   }
 }
+
+/* Phones: long words in big headings ("Dienstleistungen", "Geschäftsprozessautomatisierung",
+   "Automatizáció,") were wider than a 360-390 px screen and widened the whole layout (418-626 px).
+   Hyphenate by the page language, and break the word as a last resort. Desktop is unchanged. */
+@media (max-width: 639.98px) {
+  h1,
+  h2,
+  h3 {
+    hyphens: auto;
+    /* only long words (10+ letters, 4+ on each side): short ones keep their line */
+    hyphenate-limit-chars: 10 4 4;
+    overflow-wrap: break-word;
+  }
+}
