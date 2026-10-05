@@ -19,7 +19,7 @@ const faqData = {
             a: 'Nem. A rendszert úgy tervezzük meg, hogy a csapata napi működéséhez illeszkedjen. A beállítást, a testreszabást és az induló betanítást mi végezzük.',
         },
         {
-            // owner/privacy check pending before release (Stratéga 2026-10-05)
+            // released 2026-10-05 (marveen 2901); a privacy expert review is a separate, non-blocking item
             q: 'Hogyan kezeli a rendszer az adatait?',
             a: 'Az adatokat az Ön tárhelyén vagy az általunk kezelt tárhelyen tároljuk. Ha egy folyamatban AI-modell is dolgozik, a feldolgozandó szöveg a modell szolgáltatójához kerül. Hogy ez pontosan milyen adat, azt az adatkezelési tájékoztató és a szerződés rögzíti.',
         },

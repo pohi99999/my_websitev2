@@ -41,10 +41,10 @@ export default function MobileCTA ()
     }, [] );
 
     const label = language === 'en'
-        ? 'Free Consultation'
+        ? 'Free design preview'
         : language === 'de'
-            ? 'Kostenlose Beratung'
-            : 'Ingyenes Konzultáció';
+            ? 'Kostenloser Entwurf'
+            : 'Ingyenes látványterv';
 
     const ctaLabel = language === 'en'
         ? 'Contact'
