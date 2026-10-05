@@ -66,42 +66,25 @@ test.describe('P0–P2 Design Upgrades Verification', () => {
   // P0: STATS BAR COMPONENT
   // ═══════════════════════════════════════════════════════════
 
-  test('P0 — StatsBar renders with 4 stats', async ({ page }) => {
+  // StatsBar left the home page on 2026-10-05 (unmeasured numbers); the hero now shows the Google
+  // rating, the two-week delivery and the free design preview, and the AI-team band follows it.
+  test('P0 — Hero stats show the Google rating, not the old 95+ / 24/7 numbers', async ({ page }) => {
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
-
-    // StatsBar renders after Hero. Look for the section or container with stat values.
-    // The component uses font-syne on the stat values and specific text like "95+", "53", "3", "24/7"
-    const statsSection = page.locator('text=95+').first();
-    await expect(statsSection).toBeVisible({ timeout: 10000 });
-
-    // Check all 4 stat values are present using exact text match
-    await expect(page.getByText('95+', { exact: true }).first()).toBeVisible();
-    await expect(page.getByText('24/7', { exact: true }).first()).toBeVisible();
-
-    // Check the stats section container exists with multiple stat values
-    const statsContainer = page.locator('section').filter({ hasText: '95+' }).first();
-    await expect(statsContainer).toBeVisible();
-
-    console.log('✅ StatsBar renders with all 4 stat values');
+    const hero = page.locator('#home');
+    await expect(hero.getByText(/5,0 ★|5\.0 ★/).first()).toBeVisible();
+    await expect(page.getByText('95+', { exact: true })).toHaveCount(0);
   });
 
-  test('P0 — StatsBar appears between Hero and AIFolyamatok', async ({ page }) => {
+  test('P0 — AI-team band appears right below the Hero', async ({ page }) => {
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
-
-    // The render order in page.jsx is: Hero → StatsBar → AIFolyamatok
-    // Hero has the #home id, StatsBar has 95+, AIFolyamatok has the services
-    const positions = await page.evaluate(() => {
-      const hero = document.querySelector('#home');
-      const stats = Array.from(document.querySelectorAll('section')).find(
-        s => s.textContent?.includes('95+') && s.textContent?.includes('24/7')
-      );
-      return {
-        heroBottom: hero?.getBoundingClientRect().bottom ?? -1,
-        statsTop: stats?.getBoundingClientRect().top ?? -1,
-      };
-    });
+    const positions = await page.evaluate(() => ({
+      heroBottom: document.querySelector('#home')?.getBoundingClientRect().bottom ?? -1,
+      bandTop: document.querySelector('#ai-csapat')?.getBoundingClientRect().top ?? -1,
+    }));
+    expect(positions.bandTop).toBeGreaterThan(positions.heroBottom - 50);
+  });
 
     // Stats section should be BELOW the Hero
     expect(positions.statsTop).toBeGreaterThan(positions.heroBottom - 50); // small tolerance for overlaps
@@ -314,35 +297,16 @@ test.describe('P0–P2 Design Upgrades Verification', () => {
     console.log(`✅ Page loaded in ${elapsed}ms`);
   });
 
-  test('Homepage has correct section order: Hero → StatsBar → Services → Testimonials → FAQ', async ({ page }) => {
+  test('Homepage has correct section order: Hero → AI-team band → FAQ', async ({ page }) => {
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
-
-    // Instead of fragile text matching, verify the key sections exist by
-    // checking vertical positions using stable identifiers
     const positions = await page.evaluate(() => {
-      const allSections = Array.from(document.querySelectorAll('section'));
       const getTop = (el: Element | null | undefined) => el?.getBoundingClientRect().top ?? -9999;
-
-      const hero = document.querySelector('#home');
-      // StatsBar: find section with both "95+" and "24/7" (unique to stats bar)
-      const stats = allSections.find(s => s.textContent?.includes('95+') && s.textContent?.includes('24/7'));
-      // FAQ: the last major section containing "Gyakran" 
-      const faq = allSections.find(s => s.textContent?.includes('Gyakran Ismételt'));
-
-      return {
-        hero: getTop(hero),
-        stats: getTop(stats),
-        faq: getTop(faq),
-      };
+      const faq = Array.from(document.querySelectorAll('section')).find(s => /gyakran ismételt/i.test(s.textContent ?? ''));
+      return { hero: getTop(document.querySelector('#home')), band: getTop(document.querySelector('#ai-csapat')), faq: getTop(faq) };
     });
-
-    console.log('Section positions:', positions);
-
-    // Core ordering: Hero < StatsBar < FAQ (beginning → end)
-    expect(positions.hero).toBeLessThan(positions.stats);
-    expect(positions.stats).toBeLessThan(positions.faq);
-    console.log('✅ Section order correct (Hero → StatsBar → ... → FAQ)');
+    expect(positions.hero).toBeLessThan(positions.band);
+    expect(positions.band).toBeLessThan(positions.faq);
   });
 
   test('Full homepage screenshot (visual regression baseline)', async ({ page }) => {

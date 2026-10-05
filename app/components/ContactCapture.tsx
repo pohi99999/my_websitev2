@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
-import { ArrowRight, Mail, MessageCircle, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Mail, MessageCircle } from 'lucide-react';
 import
 {
   CTA_LOCATIONS,
@@ -21,6 +21,7 @@ export default function ContactCapture ()
   const [name, setName] = useState( '' );
   const [email, setEmail] = useState( '' );
   const [challenge, setChallenge] = useState( 'lead' );
+  const [business, setBusiness] = useState( '' );
   const [status, setStatus] = useState<{ state: StatusState; message: string }>( {
     state: 'idle',
     message: '',
@@ -31,25 +32,25 @@ export default function ContactCapture ()
     if ( language === 'en' )
     {
       return {
-        badge: 'AI system review',
-        title: 'Tell us the biggest bottleneck in your business workflow',
+        badge: 'Free design preview',
+        title: 'Request a free, no-obligation design preview',
         subtitle:
-          'Leave your details and we will come back with a concrete AI system idea tailored to your workflow.',
+          'Tell us what your business does and we will get back to you with a design preview.',
         name: 'Name',
         email: 'Email',
-        challenge: 'Main challenge',
-        submit: 'Request AI system review',
+        challenge: 'What do you need?',
+        business: 'What does your business do? (optional)',
+        submit: 'Request a free design preview',
         sending: 'Sending...',
         success: 'Thank you! We saved your request and will get back to you shortly.',
         error:
           'We could not send your request right now. Please email us directly at peterpohankapersonal@gmail.com.',
         whatsapp: 'Write on WhatsApp',
-        reassurance: 'Business-first AI systems • transparent rollout • measured ROI',
         options: {
-          lead: 'Automation',
-          accounting: 'Decision support',
-          support: 'Integrations',
-          other: 'Other',
+          lead: 'Website with online booking',
+          accounting: 'Website with quote requests',
+          support: 'Online shop or app',
+          other: 'Automation or AI',
         },
       };
     }
@@ -57,49 +58,49 @@ export default function ContactCapture ()
     if ( language === 'de' )
     {
       return {
-        badge: 'KI-Systemprüfung',
-        title: 'Was bremst Ihren Geschäftsablauf aktuell am stärksten?',
+        badge: 'Kostenloser Entwurf',
+        title: 'Fordern Sie einen kostenlosen, unverbindlichen Entwurf an',
         subtitle:
-          'Hinterlassen Sie Ihre Daten und wir melden uns mit einem konkreten KI-Systemansatz für Ihren Workflow.',
+          'Schreiben Sie uns, womit sich Ihr Unternehmen beschäftigt, und wir melden uns mit einem Entwurf.',
         name: 'Name',
         email: 'E-Mail',
-        challenge: 'Größte Herausforderung',
-        submit: 'KI-Systemprüfung anfragen',
+        challenge: 'Was brauchen Sie?',
+        business: 'Womit beschäftigt sich Ihr Unternehmen? (optional)',
+        submit: 'Kostenlosen Entwurf anfordern',
         sending: 'Wird gesendet...',
         success: 'Danke! Ihre Anfrage wurde gespeichert und wir melden uns in Kürze.',
         error:
-          'Ihre Anfrage konnte gerade nicht gesendet werden. Schreiben Sie bitte direkt an peterpohankapersonal@gmail.com.',
+          'Ihre Anfrage konnte gerade nicht gesendet werden. Bitte schreiben Sie direkt an peterpohankapersonal@gmail.com.',
         whatsapp: 'Per WhatsApp schreiben',
-        reassurance: 'Business-first KI-Systeme • transparenter Rollout • messbarer ROI',
         options: {
-          lead: 'Automatisierung',
-          accounting: 'Entscheidungsunterstützung',
-          support: 'Integrationen',
-          other: 'Sonstiges',
+          lead: 'Website mit Online-Buchung',
+          accounting: 'Website mit Anfrageformular',
+          support: 'Onlineshop oder App',
+          other: 'Automatisierung oder KI',
         },
       };
     }
 
     return {
-      badge: 'AI rendszerfelmérés',
-      title: 'Mi a legnagyobb szűk keresztmetszet a működésetekben?',
+      badge: 'Ingyenes látványterv',
+      title: 'Kérjen ingyenes, kötelezettségmentes látványtervet',
       subtitle:
-        'Hagyd itt az elérhetőségedet, és visszajelzünk egy konkrét AI rendszerötlettel a folyamataidra szabva.',
+        'Írja meg, mivel foglalkozik a vállalkozása, és hamarosan jelentkezünk egy látványtervvel.',
       name: 'Név',
-      email: 'Email',
-      challenge: 'Fő kihívás',
-      submit: 'Kérek AI rendszerfelmérést',
+      email: 'E-mail',
+      challenge: 'Mire van szüksége?',
+      business: 'Mivel foglalkozik a vállalkozása? (nem kötelező)',
+      submit: 'Kérek ingyenes látványtervet',
       sending: 'Küldés...',
       success: 'Köszönjük! Elmentettük az érdeklődést, hamarosan jelentkezünk.',
       error:
-        'Most nem sikerült elküldeni az érdeklődést. Írj közvetlenül: peterpohankapersonal@gmail.com.',
+        'Most nem sikerült elküldeni az érdeklődést. Kérjük, írjon közvetlenül: peterpohankapersonal@gmail.com.',
       whatsapp: 'Írok WhatsAppon',
-      reassurance: 'Vállalati fókusz • transzparens bevezetés • mérhető ROI',
       options: {
-        lead: 'Automatizálás',
-        accounting: 'Döntéstámogatás',
-        support: 'Integrációk',
-        other: 'Egyéb',
+        lead: 'Weboldal időpontfoglalással',
+        accounting: 'Ajánlatkérő weboldal',
+        support: 'Webáruház vagy alkalmazás',
+        other: 'Automatizálás vagy AI',
       },
     };
   }, [language] );
@@ -109,10 +110,10 @@ export default function ContactCapture ()
     'https://wa.me/36304291227?text=' +
     encodeURIComponent(
       language === 'en'
-        ? 'Hi! I would like an AI system review for my business.'
+        ? 'Hello! I would like to request a free design preview for my business.'
         : language === 'de'
-          ? 'Hallo! Ich möchte eine KI-Systemprüfung für mein Unternehmen anfragen.'
-          : 'Szia! Szeretnék AI rendszerfelmérést kérni a vállalkozásomhoz.'
+          ? 'Guten Tag! Ich möchte einen kostenlosen Entwurf für mein Unternehmen anfragen.'
+          : 'Jó napot! Ingyenes látványtervet szeretnék kérni a vállalkozásomhoz.'
     );
 
   async function handleSubmit ( event: React.FormEvent<HTMLFormElement> )
@@ -121,12 +122,13 @@ export default function ContactCapture ()
     setStatus( { state: 'sending', message: ui.sending } );
 
     const challengeLabel = ui.options[challenge as keyof typeof ui.options] ?? ui.options.other;
+    const about = business.trim();
     const message =
       language === 'en'
-        ? `Homepage inquiry for an AI system review\nMain challenge: ${ challengeLabel }\nPreferred contact: ${ email }`
+        ? `Homepage request for a free design preview\nNeeds: ${ challengeLabel }${ about ? `\nBusiness: ${ about }` : '' }\nPreferred contact: ${ email }`
         : language === 'de'
-          ? `Homepage-Anfrage für eine KI-Systemprüfung\nGrößte Herausforderung: ${ challengeLabel }\nBevorzugter Kontakt: ${ email }`
-          : `Főoldali érdeklődés AI rendszerfelméréshez\nFő kihívás: ${ challengeLabel }\nKapcsolati email: ${ email }`;
+          ? `Homepage-Anfrage für einen kostenlosen Entwurf\nBedarf: ${ challengeLabel }${ about ? `\nUnternehmen: ${ about }` : '' }\nBevorzugter Kontakt: ${ email }`
+          : `Főoldali látványterv-kérés\nIgény: ${ challengeLabel }${ about ? `\nVállalkozás: ${ about }` : '' }\nKapcsolati e-mail: ${ email }`;
 
     try
     {
@@ -175,6 +177,7 @@ export default function ContactCapture ()
       setName( '' );
       setEmail( '' );
       setChallenge( 'lead' );
+      setBusiness( '' );
     } catch
     {
       setStatus( { state: 'error', message: ui.error } );
@@ -206,10 +209,6 @@ export default function ContactCapture ()
             <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
               <Mail className="h-5 w-5 text-[#00e5ff]" />
               <span className="text-sm text-white">peterpohankapersonal@gmail.com</span>
-            </div>
-            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-              <ShieldCheck className="h-5 w-5 text-emerald-300" />
-              <span className="text-sm text-white/80">{ui.reassurance}</span>
             </div>
             <a
               href={whatsappHref}
@@ -282,6 +281,21 @@ export default function ContactCapture ()
                 <option value="support">{ui.options.support}</option>
                 <option value="other">{ui.options.other}</option>
               </select>
+            </div>
+
+            <div>
+              <label htmlFor="home-contact-business" className="mb-2 block text-sm text-gray-300">
+                {ui.business}
+              </label>
+              <textarea
+                id="home-contact-business"
+                name="business"
+                rows={3}
+                maxLength={1000}
+                value={business}
+                onChange={( event ) => setBusiness( event.target.value )}
+                className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-[#00e5ff]/50 focus:shadow-[0_0_0_1px_rgba(0,229,255,0.2)]"
+              />
             </div>
 
             {status.state !== 'idle' ? (

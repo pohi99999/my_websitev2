@@ -15,8 +15,8 @@ const hu = {
     subheadline:
       'Nem csak automatizálunk: a vállalkozásod működésére tervezünk és építünk AI rendszereket, amelyek csökkentik az ismétlődő munkát, gyorsítják a folyamatokat és támogatják az intelligens döntéshozatalt.',
     cta: 'Kérek AI rendszerfelmérést',
-    ctaPrimary: 'Kérek AI rendszerfelmérést',
-    ctaSecondary: 'Megnézem a szolgáltatásokat',
+    ctaPrimary: 'Kérek ingyenes látványtervet',
+    ctaSecondary: 'Megnézem az elkészült oldalakat',
   },
   footer: {
     companyName: 'Pohánka & Társa',
@@ -55,11 +55,11 @@ const hu = {
         },
         analytics: {
           title: 'Adatelemzés másodpercek alatt',
-          desc: 'Felejtsd el a bonyolult képleteket. Kérdezz rá az adataidra magyarul!',
+          desc: 'Felejtse el a bonyolult képleteket. Kérdezzen rá az adataira magyarul!',
         },
         automation: {
           title: 'Irodai Automatizáció',
-          desc: 'Unatkozol a repetitív feladatoktól? Nézd meg, hogyan veszi át őket az AI.',
+          desc: 'Unja a monoton feladatokat? Nézze meg, hogyan veszi át őket az AI.',
         },
       },
     },

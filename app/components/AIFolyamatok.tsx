@@ -144,7 +144,7 @@ export default function AIFolyamatok ()
     {
       icon: Mail,
       title: 'CRM, email, ügyfélszolgálat és admin integráció',
-      desc: 'Összekötjük a napi üzleti rendszereket, hogy a csapatod egy egységes, automatizált működésben dolgozhasson.',
+      desc: 'Összekötjük a napi üzleti rendszereket, hogy a csapata egy egységes, automatizált működésben dolgozhasson.',
       bullets: ['CRM és belső rendszerek', 'Email és ügyfélszolgálat', 'Admin és dokumentumfolyamatok'],
     },
     {
@@ -178,7 +178,7 @@ export default function AIFolyamatok ()
               textShadow: '0 0 40px rgba(0, 229, 255, 0.25)',
             }}
           >
-            AI rendszer, ami a vállalkozásodra van szabva
+            AI-rendszer, ami az Ön vállalkozására van szabva
           </h2>
           <div className="flex justify-center mb-6">
             <div className="h-px w-16 bg-[#00e5ff]/50" aria-hidden="true" />
