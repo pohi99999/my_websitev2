@@ -15,8 +15,8 @@ const de = {
     subheadline:
       'Wir automatisieren nicht nur: Wir entwerfen und bauen KI-Systeme für Ihr Unternehmen, damit repetitive Arbeit sinkt, Prozesse schneller laufen und Entscheidungen intelligenter werden.',
     cta: 'KI-Systemprüfung anfragen',
-    ctaPrimary: 'KI-Systemprüfung anfragen',
-    ctaSecondary: 'Leistungen ansehen',
+    ctaPrimary: 'Kostenlose Beratung anfragen',
+    ctaSecondary: 'Referenzen',
   },
   footer: {
     companyName: 'Pohánka & Társa',

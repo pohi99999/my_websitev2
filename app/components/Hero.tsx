@@ -4,30 +4,33 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
-import CountUpNumber from './CountUpNumber';
+import { GOOGLE_RATING, GOOGLE_PROFILE_URL } from './googleReviews';
 
 const Hero = () =>
 {
   const { t, language } = useLanguage();
-  const liveBadgeLabel = language === 'en' ? 'Live' : language === 'de' ? 'Live' : 'Élő';
+  // Only things we can show or keep: the Google rating (googleReviews.ts), the two-week
+  // website delivery (Arcsomag) and the free first consultation (owner decision 2026-10-05).
+  const rating = GOOGLE_RATING.average.toFixed( 1 );
   const heroStats =
     language === 'en'
       ? [
-        { value: 95, suffix: '+', label: 'AI building blocks' },
-        { value: 53, label: 'Integrations' },
-        { value: '24/7', label: 'Live operation', live: true },
+        { value: `${ rating } ★`, label: `${ GOOGLE_RATING.count } Google reviews`, href: GOOGLE_PROFILE_URL },
+        { value: '2 weeks', label: 'website delivery' },
+        { value: 'Free', label: 'first consultation' },
       ]
       : language === 'de'
         ? [
-          { value: 95, suffix: '+', label: 'KI-Bausteine' },
-          { value: 53, label: 'Integrationen' },
-          { value: '24/7', label: 'Live-Betrieb', live: true },
+          { value: `${ rating.replace( '.', ',' ) } ★`, label: `${ GOOGLE_RATING.count } Google-Bewertungen`, href: GOOGLE_PROFILE_URL },
+          { value: '2 Wochen', label: 'Umsetzung einer Website' },
+          { value: 'Kostenlos', label: 'Erstberatung' },
         ]
         : [
-          { value: 95, suffix: '+', label: 'AI építőelem' },
-          { value: 53, label: 'Integrációs pont' },
-          { value: '24/7', label: 'Élő működés', live: true },
+          { value: `${ rating.replace( '.', ',' ) } ★`, label: `${ GOOGLE_RATING.count } Google-vélemény`, href: GOOGLE_PROFILE_URL },
+          { value: '2 hét', label: 'weboldal átfutása' },
+          { value: 'Ingyenes', label: 'első konzultáció' },
         ];
+  const portfolioHref = language === 'hu' ? '/portfolio' : `/${ language }/portfolio`;
 
   return (
     <section
@@ -56,14 +59,13 @@ const Hero = () =>
         {/* Context badge */}
         <div className="hud-badge mb-6 text-xs font-mono" data-testid="hero-context-badge">
           <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] animate-pulse" aria-hidden="true" />
-          {language === 'en' ? 'Digital workers & more revenue' : language === 'de' ? 'Digitale Mitarbeiter & mehr Umsatz' : 'Digitális munkatársak és több bevétel'}
+          Pohánka és Társa, Zalaegerszeg
         </div>
 
-        {/* 360 px alatt 30 px: 36 px-en a "Zalaegerszegen." 288 px, a H1 doboza 320 px-es
-            kijelzőn 256 px (mérve) -- a szó levágódott volna. */}
+        {/* 360 px alatt 30 px, hogy a leghosszabb szó (pl. "ajánlatot", "Kostenlosen") se lógjon ki. */}
         <h1 className="heading-display text-[1.875rem] min-[360px]:text-4xl md:text-6xl mb-6 leading-tight font-syne">
           <span className="text-white font-light block mb-2 tracking-tight">
-            {language === 'en' ? 'Web design in Zalaegerszeg.' : language === 'de' ? 'Schluss mit manuellem Admin.' : 'Weboldal készítés Zalaegerszegen.'}
+            {language === 'en' ? 'Websites, automation and an AI team' : language === 'de' ? 'Websites, Automatisierung und ein KI-Team' : 'Weboldal, automatizálás és AI-csapat'}
           </span>{' '}
           <span
             className="block font-bold"
@@ -72,7 +74,7 @@ const Hero = () =>
               textShadow: '0 0 30px rgba(0, 229, 255, 0.5), 0 0 60px rgba(0, 229, 255, 0.2)',
             }}
           >
-            {language === 'en' ? 'AI automation and agent systems for businesses.' : language === 'de' ? 'Wachsen Sie mit KI.' : 'AI automatizálás és ügynök\u00ADrendszerek cégeknek.'}
+            {language === 'en' ? 'for small businesses.' : language === 'de' ? 'für kleine Unternehmen.' : 'kisvállalkozásoknak.'}
           </span>
         </h1>
 
@@ -82,13 +84,13 @@ const Hero = () =>
         </div>
 
         <p className="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
-          {language === 'en' ? 'We build practical AI systems that save you 20+ hours a week and bring qualified leads automatically.' : language === 'de' ? 'Wir bauen KI-Systeme, die Ihnen wöchentlich 20+ Stunden sparen.' : 'Olyan MI rendszereket építünk, amik heti 20+ órát spórolnak neked és automatikusan hozzák az előminősített vevőket.'}
+          {language === 'en' ? 'We build websites where customers book or request a quote, and we take over part of your manual admin work. We start with a free, no-obligation consultation or design preview.' : language === 'de' ? 'Wir bauen Websites, auf denen Kunden buchen oder ein Angebot anfragen, und übernehmen einen Teil Ihrer manuellen Verwaltung. Wir beginnen mit einer kostenlosen, unverbindlichen Beratung oder einem Entwurf.' : 'Olyan weboldalt készítünk, amelyen a vevő foglal vagy ajánlatot kér, és átvesszük a kézi adminisztráció egy részét. Ingyenes, kötelezettségmentes konzultációval vagy látványtervvel kezdünk.'}
         </p>
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-6">
           {/* Primary CTA — HUD octagon */}
           <a
-            href="#contact"
+            href="#contact-form"
             className="group inline-flex items-center gap-3 rounded-full border border-[#00e5ff]/60 bg-[#00e5ff]/10 px-8 py-4 text-sm font-bold uppercase tracking-[0.15em] text-[#00e5ff] transition-all duration-300 hover:scale-105 hover:border-[#00e5ff] hover:bg-[#00e5ff]/15 hover:shadow-[0_0_35px_rgba(0,229,255,0.28)] animate-[pulse_3.4s_ease-in-out_infinite]"
             style={{
               clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))',
@@ -97,7 +99,7 @@ const Hero = () =>
               trackCtaClick( {
                 location: CTA_LOCATIONS.HeroPrimary,
                 language,
-                target: '#contact',
+                target: '#contact-form',
                 page: PAGE_NAMES.Home,
               } )
             }
@@ -108,13 +110,13 @@ const Hero = () =>
 
           {/* Secondary CTA — minimal with underline reveal */}
           <a
-            href="#ai-folyamatok"
+            href={portfolioHref}
             className="group inline-flex flex-col items-center gap-1 text-sm text-gray-400 hover:text-white transition-colors duration-200 uppercase tracking-widest"
             onClick={() =>
               trackCtaClick( {
                 location: CTA_LOCATIONS.HeroSecondaryScroll,
                 language,
-                target: '#ai-folyamatok',
+                target: portfolioHref,
                 page: PAGE_NAMES.Home,
               } )
             }
@@ -131,26 +133,23 @@ const Hero = () =>
         </div>
 
         <div className="mx-auto mt-12 grid max-w-5xl gap-4 sm:grid-cols-3">
-          {heroStats.map( ( stat ) => (
-            <div
-              key={stat.label}
-              className="surface-panel-elevated rounded-3xl border border-white/10 bg-black/45 px-6 py-5 backdrop-blur-sm"
-            >
-              <div className="heading-display mb-2 flex items-center justify-center gap-3 text-3xl font-bold text-white md:text-4xl">
-                {typeof stat.value === 'number' ? (
-                  <CountUpNumber value={stat.value} suffix={stat.suffix ?? ''} />
-                ) : (
-                  <span>{stat.value}</span>
-                )}
-                {stat.live ? (
-                  <span className="rounded-full border border-emerald-400/50 bg-emerald-400/20 px-2.5 py-1 text-xs font-bold uppercase tracking-[0.24em] text-emerald-100 animate-pulse">
-                    {liveBadgeLabel}
-                  </span>
-                ) : null}
-              </div>
-              <p className="text-xs uppercase tracking-[0.24em] text-gray-400">{stat.label}</p>
-            </div>
-          ) )}
+          {heroStats.map( ( stat ) =>
+          {
+            const body = (
+              <>
+                <div className="heading-display mb-2 text-3xl font-bold text-white md:text-4xl">{stat.value}</div>
+                <p className="text-xs uppercase tracking-[0.24em] text-gray-400">{stat.label}</p>
+              </>
+            );
+            const cls = 'surface-panel-elevated block rounded-3xl border border-white/10 bg-black/45 px-6 py-5 backdrop-blur-sm';
+            return stat.href ? (
+              <a key={stat.label} href={stat.href} target="_blank" rel="noopener noreferrer" className={`${ cls } transition-colors hover:border-[#00e5ff]/40`}>
+                {body}
+              </a>
+            ) : (
+              <div key={stat.label} className={cls}>{body}</div>
+            );
+          } )}
         </div>
       </div>
 

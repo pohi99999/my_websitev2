@@ -15,8 +15,8 @@ const en = {
     subheadline:
       'We do more than automate: we design and build AI systems around your business so repetitive work shrinks, workflows move faster, and decision-making becomes smarter.',
     cta: 'Request an AI system review',
-    ctaPrimary: 'Request an AI system review',
-    ctaSecondary: 'See the services',
+    ctaPrimary: 'Book a free consultation',
+    ctaSecondary: 'Our work',
   },
   footer: {
     companyName: 'Pohánka & Társa',

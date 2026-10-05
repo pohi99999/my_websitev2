@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: { industry: string,
 
   return {
     title: `Professzionális ${target.original_industry} weboldal készítés ${target.original_city} - Pohánka & Társa`,
-    description: `${target.original_city} területén működő ${target.original_industry} vállalkozások számára kínálunk MI-alapú weboldalakat és automatizációt mérhető ROI-val.`,
+    description: `${target.original_city} területén működő ${target.original_industry} vállalkozások számára kínálunk weboldalt és automatizálást.`,
   };
 }
 
@@ -45,7 +45,7 @@ export default function IndustryCityPage({ params }: { params: { industry: strin
             Professzionális {target.original_industry} weboldal készítés {target.original_city} területén
           </h1>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Segítünk a(z) {target.original_city} környéki {target.original_industry.toLowerCase()} cégeknek, hogy modern, MI-vel támogatott weboldallal és 0 manuális adatrögzítéssel növeljék hatékonyságukat.
+            Segítünk a(z) {target.original_city} környéki {target.original_industry.toLowerCase()} cégeknek, hogy modern weboldallal és kevesebb kézi adatrögzítéssel dolgozzanak.
           </p>
         </header>
 
@@ -53,12 +53,12 @@ export default function IndustryCityPage({ params }: { params: { industry: strin
           <h2 className="text-2xl font-bold text-slate-900 mb-6">Miért válassza a Pohánka & Társát?</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              "0 manuális adatrögzítés",
+              "Kevesebb kézi adatrögzítés",
               "Azonnali MI válaszadó az ügyfeleknek",
               "Lokális keresőoptimalizálás (SEO)",
               "Folyamatautomatizálás (n8n)",
               "Mobil-első, villámgyors design",
-              "Garantált megtérülés (ROI focus)"
+              "Közösen mért eredmény"
             ].map((benefit, i) => (
               <div key={i} className="flex items-center gap-3">
                 <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />

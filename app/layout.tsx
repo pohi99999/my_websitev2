@@ -27,11 +27,11 @@ export const metadata: Metadata = {
   metadataBase: new URL( 'https://www.pohankaestarsa.com' ),
   title: {
     template: '%s | Pohánka és Társa',
-    default: 'Pohánka és Társa - Professzionális Ügynöki Képviselet, AI Rendszerek és Termékvédelem'
+    default: 'Pohánka és Társa - Weboldal, automatizálás és AI-rendszerek vállalkozásoknak'
   },
   description:
-    'Pohánka & Társa: Professzionális ügynöki képviselet, Brunella AI ügynökök, termékvédelem és AI-vezérelt folyamatautomatizálás magyar KKV-k számára azonnali ROI-val.',
-  keywords: 'Brunella agents, professzionális ügynöki képviselet, termékvédelem, AI rendszerek vállalkozásoknak, mesterséges intelligencia vállalkozások számára, AI automatizálás, intelligens döntéstámogatás, egyedi AI rendszerfejlesztés, AI ügynökök és automatizálás, vállalati AI megoldások, weboldal fejlesztés, SEO optimalizálás',
+    'Időpontfoglaló és ajánlatkérő weboldal, webáruház, web- és mobilalkalmazás, automatizálás és AI-rendszerek vállalkozásoknak. Pohánka és Társa, Zalaegerszeg.',
+  keywords: 'weboldal készítés Zalaegerszeg, időpontfoglaló weboldal, ajánlatkérő weboldal, foglalási rendszer, webáruház készítés, portál fejlesztés, mobilalkalmazás fejlesztés, automatizálás vállalkozásoknak, AI rendszerek vállalkozásoknak, Brunella AI ügynökrendszer',
   creator: "Pohánka Péter",
   publisher: "Pohánka és Társa Kft.",
   icons: {
@@ -41,9 +41,9 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   openGraph: {
-    title: 'Pohánka és Társa - Professzionális Ügynöki Képviselet és Termékvédelem',
+    title: 'Pohánka és Társa - Weboldal, automatizálás és AI-rendszerek',
     description:
-      'Professzionális ügynöki képviselet, Brunella AI ügynökök, termékvédelem és AI-vezérelt folyamatautomatizálás magyar vállalkozásoknak.',
+      'Időpontfoglaló és ajánlatkérő weboldal két hét alatt, fix áron, valamint automatizálás és AI-rendszerek vállalkozásoknak.',
     type: 'website',
     siteName: 'Pohánka és Társa',
     locale: 'hu_HU',
@@ -52,13 +52,13 @@ export const metadata: Metadata = {
       url: '/images/logo.png',
       width: 1200,
       height: 630,
-      alt: 'Pohánka és Társa Kft. – Professzionális Ügynöki Képviselet és AI Rendszerek'
+      alt: 'Pohánka és Társa Kft.: weboldal, automatizálás és AI-rendszerek'
     }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pohánka és Társa - Professzionális Ügynöki Képviselet és Termékvédelem',
-    description: 'Professzionális ügynöki képviselet, Brunella AI ügynökök, termékvédelem és AI-vezérelt folyamatautomatizálás.',
+    title: 'Pohánka és Társa - Weboldal, automatizálás és AI-rendszerek',
+    description: 'Időpontfoglaló és ajánlatkérő weboldal két hét alatt, fix áron, valamint automatizálás és AI-rendszerek vállalkozásoknak.',
     images: ['/images/logo.png'],
   },
   robots: {
@@ -100,7 +100,7 @@ const organizationSchema = {
   url: 'https://www.pohankaestarsa.com',
   logo: 'https://www.pohankaestarsa.com/images/logo.png',
   image: 'https://www.pohankaestarsa.com/images/logo.png',
-  description: 'Professzionális ügynöki képviselet, Brunella AI ügynökök, termékvédelem és AI-vezérelt folyamatautomatizálás magyar KKV-k számára.',
+  description: 'Weboldal (időpontfoglalással vagy ajánlatkéréssel), webáruház, web- és mobilalkalmazás, automatizálás és AI-rendszerek vállalkozásoknak, Zalaegerszegről.',
   telephone: '+36304291227',
   email: 'peterpohankapersonal@gmail.com',
   address: {
@@ -155,24 +155,32 @@ const organizationSchema = {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Professzionális Ügynöki Képviselet és Termékvédelem',
-          description: 'Cégek és márkák professzionális ügynöki képviselete és védelme.',
+          name: 'Weboldal készítés',
+          description: 'Funkciógazdag weboldal időpontfoglalással vagy ajánlatkérő űrlappal, két hét alatt, fix áron.',
         },
       },
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Brunella AI Ügynökök',
-          description: 'Autonóm AI ügynökök vállalati folyamatok automatizálására.',
+          name: 'Automatizálás',
+          description: 'Az ajánlatkérés, a nyilvántartás, a válaszlevél és a számla közti kézi lépések automatizálása.',
         },
       },
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Egyedi AI Rendszerek és Weboldal Fejlesztés',
-          description: 'Mérhető ROI-val rendelkező AI alapú weboldalak és automatizációk.',
+          name: 'Webáruház, portál, web- és mobilalkalmazás',
+          description: 'Egyedi fejlesztés projektalapon.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Brunella AI ügynökrendszer',
+          description: 'A cég saját gépén futó AI-csapat a napi adminisztrációra, emberi jóváhagyással.',
         },
       },
     ],

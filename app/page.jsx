@@ -1,7 +1,6 @@
 import Hero from "./components/Hero";
 import AIFolyamatok from "./components/AIFolyamatok";
-import StatsBar from "./components/StatsBar";
-import RoiCalculator from "./components/RoiCalculator";
+import ServiceCards from "./components/ServiceCards";
 import HowItWorks from "./components/HowItWorks";
 import Testimonials from "./components/Testimonials";
 import Arcsomag from "./components/Arcsomag";
@@ -23,7 +22,7 @@ export async function generateMetadata() {
       ? {
           title: 'Websites, AI Automation and Agent Systems | Zalaegerszeg',
           description:
-            'Websites, AI automation and AI agent systems for businesses: we build and deploy them. Pohánka és Társa, Zalaegerszeg, Hungary.',
+            'Websites with booking or quote requests, workflow automation, web and mobile apps and an AI team for small businesses. Zalaegerszeg, Hungary.',
           canonical: 'https://www.pohankaestarsa.com/en',
           locale: 'en_US',
         }
@@ -31,7 +30,7 @@ export async function generateMetadata() {
       ? {
           title: 'Webseiten, KI-Automatisierung und Agentensysteme | Zalaegerszeg',
           description:
-            'Webseiten, KI-Automatisierung und KI-Agentensysteme für Unternehmen: wir entwickeln und führen sie ein. Pohánka és Társa, Zalaegerszeg, Ungarn.',
+            'Websites mit Buchung oder Anfrageformular, Prozessautomatisierung, Web- und Mobile-Apps und ein KI-Team für kleine Firmen. Zalaegerszeg, Ungarn.',
           canonical: 'https://www.pohankaestarsa.com/de',
           locale: 'de_DE',
         }
@@ -41,7 +40,7 @@ export async function generateMetadata() {
           // A márkát az og:site_name viszi.
           title: 'Weboldal, AI automatizálás és ügynökrendszer | Zalaegerszeg',
           description:
-            'Weboldal készítés Zalaegerszegen és Zala megyében (alapcsomag 150 000 Ft), AI automatizálás és AI ügynökrendszerek létrehozása, telepítése cégeknek.',
+            'Weboldal időpontfoglalással vagy ajánlatkéréssel, folyamat-automatizálás, web- és mobilalkalmazás, AI-csapat kisvállalkozásoknak. Zalaegerszeg, Zala megye.',
           canonical: 'https://www.pohankaestarsa.com/',
           locale: 'hu_HU',
         };
@@ -78,9 +77,10 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      {/* StatsBar and RoiCalculator left the home page (2026-10-05): their numbers (95+, 53, 24/7,
+          "90 days", 75 %) were not measured. The components stay for now. */}
+      <ServiceCards />
       <AIFolyamatok />
-      <StatsBar />
-      <RoiCalculator />
       <HowItWorks />
       <Testimonials />
       <Arcsomag />

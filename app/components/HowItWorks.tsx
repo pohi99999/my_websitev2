@@ -46,13 +46,13 @@ export default function HowItWorks ()
         badge: 'How it works',
         title: 'From discovery to always-on AI systems in four clear steps',
         subtitle:
-          'We keep the rollout simple, measurable and business-first so your team sees value fast.',
+          'A simple process: assessment, plan, rollout, handover.',
         steps: [
           {
             icon: ClipboardList,
             title: '1. Discovery',
             description:
-              'We map the workflows that drain the most time and identify the fastest ROI opportunities.',
+              'We map where most of the time goes and which workflow is worth starting with.',
           },
           {
             icon: BrainCircuit,
@@ -68,9 +68,9 @@ export default function HowItWorks ()
           },
           {
             icon: Activity,
-            title: '4. 24/7 Automation',
+            title: '4. Handover and operation',
             description:
-              'The live system keeps running, reporting and improving while you focus on higher-value work.',
+              'We hand over the system, show you how to use it, and check that it works as agreed.',
           },
         ],
       };
@@ -82,13 +82,13 @@ export default function HowItWorks ()
         badge: 'So funktioniert es',
         title: 'Von der Bedarfsklärung zu laufenden KI-Systemen in vier klaren Schritten',
         subtitle:
-          'Ein einfacher, messbarer Rollout mit Fokus auf schnelle Wirkung für Ihr Team.',
+          'Ein einfacher Ablauf: Erstgespräch, Plan, Einführung, Übergabe.',
         steps: [
           {
             icon: ClipboardList,
             title: '1. Bedarfsklärung',
             description:
-              'Wir analysieren Ihre zeitintensiven Abläufe und priorisieren die schnellsten ROI-Chancen.',
+              'Wir ermitteln, wo die meiste Zeit verloren geht und mit welchem Ablauf sich der Start lohnt.',
           },
           {
             icon: BrainCircuit,
@@ -104,9 +104,9 @@ export default function HowItWorks ()
           },
           {
             icon: Activity,
-            title: '4. 24/7-Automatisierung',
+            title: '4. Übergabe und Betrieb',
             description:
-              'Das System arbeitet live weiter, berichtet transparent und entlastet Ihr Team jeden Tag.',
+              'Wir übergeben das System, zeigen Ihnen die Bedienung und prüfen, ob es wie vereinbart läuft.',
           },
         ],
       };
@@ -116,31 +116,31 @@ export default function HowItWorks ()
       badge: 'Hogyan működik',
       title: 'Négy lépésben jutunk el az igényfelméréstől a futó AI rendszerekig',
       subtitle:
-        'Egyszerű, üzleti fókuszú folyamat: gyors felmérés, gyors bevezetés, gyors ROI.',
+        'Egyszerű folyamat: felmérés, terv, bevezetés, átadás.',
       steps: [
         {
           icon: ClipboardList,
           title: '1. Igényfelmérés',
           description:
-            'Feltérképezzük, hol ég el a legtöbb idő, és melyik folyamat hozza a leggyorsabb megtérülést.',
+            'Feltérképezzük, hol megy el a legtöbb idő, és melyik folyamattal érdemes kezdeni.',
         },
         {
           icon: BrainCircuit,
           title: '2. AI rendszertervezés',
           description:
-            'Az AI komponenseket, promptokat és szabályokat a vállalkozásod valós működéséhez hangoljuk.',
+            'Az AI komponenseket, promptokat és szabályokat a vállalkozása valós működéséhez hangoljuk.',
         },
         {
           icon: PlugZap,
           title: '3. Integráció',
           description:
-            'Összekötjük az emailjeidet, dokumentumaidat és rendszereidet, hogy az automatizálás végig tudja vinni a munkát.',
+            'Összekötjük az e-mailjeit, dokumentumait és rendszereit, hogy az automatizálás végig tudja vinni a munkát.',
         },
         {
           icon: Activity,
-          title: '4. 24/7 Automatizálás',
+          title: '4. Átadás és működés',
           description:
-            'Az élő rendszer folyamatosan dolgozik, riportol és tehermentesíti a csapatodat a monoton feladatok alól.',
+            'Átadjuk a rendszert, megmutatjuk a használatát, és figyeljük, hogy úgy működik-e, ahogy megbeszéltük.',
         },
       ],
     };

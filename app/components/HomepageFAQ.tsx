@@ -12,15 +12,16 @@ const faqData = {
         },
         {
             q: 'Mennyi idő alatt látok eredményt?',
-            a: 'A legtöbb ügyfelünknél 2-4 héten belül már működik az első pilot. A megtérülés általában 3 hónapon belül megmutatkozik, a pontos ütemezés pedig a folyamat összetettségétől függ.',
+            a: 'Egy weboldal két hét alatt elkészül, az ingyenes látványterv után. Egy automatizálásnál az első lépést és annak mérését a felmérésen közösen határozzuk meg.',
         },
         {
             q: 'Kell hozzá programozási tudás?',
-            a: 'Nem. A rendszert úgy tervezzük meg, hogy a csapatod napi működéséhez illeszkedjen. A beállítást, a testreszabást és az induló betanítást mi végezzük.',
+            a: 'Nem. A rendszert úgy tervezzük meg, hogy a csapata napi működéséhez illeszkedjen. A beállítást, a testreszabást és az induló betanítást mi végezzük.',
         },
         {
-            q: 'Hogyan kezeli az adataimat a rendszer?',
-            a: 'Az adataid EU-kompatibilis, biztonságos infrastruktúrán maradnak. Szükség esetén helyi (on-premise) vagy zárt vállalati környezetben is tudunk megoldást kialakítani.',
+            // released 2026-10-05 (marveen 2901); a privacy expert review is a separate, non-blocking item
+            q: 'Hogyan kezeli a rendszer az adatait?',
+            a: 'Az adatokat az Ön tárhelyén vagy az általunk kezelt tárhelyen tároljuk. Ha egy folyamatban AI-modell is dolgozik, a feldolgozandó szöveg a modell szolgáltatójához kerül. Hogy ez pontosan milyen adat, azt az adatkezelési tájékoztató és a szerződés rögzíti.',
         },
         {
             q: 'Milyen vállalkozásoknak ajánlott?',
@@ -38,15 +39,15 @@ const faqData = {
         },
         {
             q: 'How quickly will I see results?',
-            a: 'Most clients have their first pilot running within 2-4 weeks. ROI typically becomes visible within 3 months, depending on process complexity.',
+            a: 'A website is ready two weeks after the free design preview. For an automation, we agree on the first step and how to measure it together during the assessment.',
         },
         {
             q: 'Do I need programming skills?',
             a: 'No. We design the system so it fits your team’s day-to-day operations. We handle setup, customization and initial onboarding.',
         },
         {
-            q: 'How does the system handle my data?',
-            a: 'Your data stays on secure, EU-compliant infrastructure. We can also provide on-premise or private-company-environment deployments when needed.',
+            q: 'How does the system handle your data?',
+            a: 'Data is stored on your own hosting or on hosting we manage. If an AI model is part of a workflow, the text to be processed is sent to the model provider. Exactly which data that is, is set out in the privacy notice and the contract.',
         },
         {
             q: 'Which businesses is this for?',
@@ -64,15 +65,15 @@ const faqData = {
         },
         {
             q: 'Wie schnell sehe ich Ergebnisse?',
-            a: 'Bei den meisten Kunden läuft der erste Pilot innerhalb von 2-4 Wochen. Der ROI wird typischerweise innerhalb von 3 Monaten sichtbar, je nach Prozesskomplexität.',
+            a: 'Eine Website ist zwei Wochen nach dem kostenlosen Entwurf fertig. Bei einer Automatisierung legen wir den ersten Schritt und seine Messung gemeinsam im Erstgespräch fest.',
         },
         {
             q: 'Brauche ich Programmierkenntnisse?',
             a: 'Nein. Wir gestalten das System so, dass es zu den täglichen Abläufen Ihres Teams passt. Einrichtung, Anpassung und Onboarding übernehmen wir.',
         },
         {
-            q: 'Wie werden meine Daten behandelt?',
-            a: 'Ihre Daten bleiben auf sicherer, DSGVO-konformer Infrastruktur. Bei Bedarf bieten wir auch On-Premise- oder Private-Environment-Deployments an.',
+            q: 'Wie geht das System mit Ihren Daten um?',
+            a: 'Die Daten werden auf Ihrem eigenen Hosting oder auf von uns betreutem Hosting gespeichert. Wenn in einem Ablauf ein KI-Modell arbeitet, wird der zu verarbeitende Text an den Modellanbieter übermittelt. Welche Daten das genau sind, regeln die Datenschutzhinweise und der Vertrag.',
         },
         {
             q: 'Für welche Unternehmen ist das geeignet?',
