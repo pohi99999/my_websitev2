@@ -14,20 +14,20 @@ export async function generateMetadata() {
     id: 'palyazat-radar',
     translations: {
       en: {
-        title: 'Grant Radar — Automated Grant & Regulation Monitoring | Pohánka AI',
+        title: 'Grant Radar: grant and regulation alerts',
         description: 'AI monitoring of grants and regulation updates with structured weekly reports.',
         canonical: '/en/portfolio/palyazat-radar',
         locale: 'en_US',
       },
       de: {
-        title: 'Förder-Radar — Automatisches Förder- & Regelwerk-Monitoring | Pohánka AI',
+        title: 'Förder-Radar: Förderungen im Blick',
         description: 'KI-basierte Beobachtung von Förderungen und Regeländerungen mit wöchentlichen Reports.',
         canonical: '/de/portfolio/palyazat-radar',
         locale: 'de_DE',
       },
       hu: {
-        title: 'Pályázat Radar — Automatikus Pályázat & Jogszabály Figyelés | Pohánka AI',
-        description: 'Soha többé ne maradj le pályázatról. AI figyeli az EU/HU pályázatokat és jogszabály-változásokat — heti riport emailben.',
+        title: 'Pályázat Radar: pályázatok és jogszabályok',
+        description: 'AI figyeli az EU-s és hazai pályázatokat és jogszabály-változásokat, heti riporttal e-mailben.',
         canonical: '/portfolio/palyazat-radar',
         locale: 'hu_HU',
       }
@@ -50,12 +50,6 @@ const pricingPlans = [
   { name: 'Prémium', price: '29.990 Ft', period: '/hó', features: ['Teljes eligibility check', 'Korlátlan TEÁOR', 'Havi személyes konzultáció', 'Telefon support'], color: 'border-purple-500/50', highlight: false }
 ];
 
-const stats = [
-  { value: '73%', label: 'KKV lemarad pályázatról', icon: AlertTriangle, color: 'text-red-400' },
-  { value: '500+', label: 'Figyelt pályázat/év', icon: Search, color: 'text-amber-400' },
-  { value: '24h', label: 'Értesítés új pályázatra', icon: Bell, color: 'text-emerald-400' },
-  { value: '95%', label: 'Pontosság', icon: Target, color: 'text-blue-400' },
-];
 
 export default async function PalyazatRadarPage() {
   const headerStore = await headers();
@@ -71,9 +65,8 @@ export default async function PalyazatRadarPage() {
             badge: 'SME Service',
             available: '🟢 Available now',
             title: 'Grant Radar',
-            tagline: 'Automated grant monitoring — never miss a deadline again',
-            subtitle: '73% of SMEs miss grants they qualify for because they lack time to monitor them. We do it for you — AI watches grants and regulation changes and sends you a structured weekly digest.',
-            statsLabel: ['of SMEs miss eligible grants', 'grants monitored/year', 'new grant notification', 'accuracy rate'],
+            tagline: 'Automated grant monitoring with a weekly report',
+            subtitle: 'Many SMEs miss grants they qualify for because they lack time to monitor them. We do it for you: AI watches grants and regulation changes and sends you a structured weekly digest.',
             featuresTitle: 'What you get',
             features: [
               { title: 'Grant Search', desc: 'Automatic monitoring of EU and national grant portals. Filtering by sector code, company size and region.' },
@@ -111,8 +104,7 @@ export default async function PalyazatRadarPage() {
             available: '🟢 Sofort verfügbar',
             title: 'Förder-Radar',
             tagline: 'Automatisches Förder-Monitoring — keine Frist mehr verpassen',
-            subtitle: '73% der KMU verpassen Förderungen, für die sie berechtigt wären, weil ihnen die Zeit zur Beobachtung fehlt. Wir übernehmen das — KI überwacht Förderungen und Regeländerungen und sendet Ihnen wöchentlich einen strukturierten Bericht.',
-            statsLabel: ['der KMU verpassen Förderungen', 'Förderungen/Jahr beobachtet', 'Benachrichtigung bei neuer Förderung', 'Genauigkeitsrate'],
+            subtitle: 'Viele KMU verpassen Förderungen, für die sie berechtigt wären, weil ihnen die Zeit zur Beobachtung fehlt. Wir übernehmen das: KI überwacht Förderungen und Regeländerungen und sendet Ihnen wöchentlich einen strukturierten Bericht.',
             featuresTitle: 'Was Sie erhalten',
             features: [
               { title: 'Fördersuche', desc: 'Automatische Beobachtung von EU- und nationalen Förderportalen. Filterung nach Branche, Unternehmensgröße und Region.' },
@@ -154,13 +146,6 @@ export default async function PalyazatRadarPage() {
       { icon: Building2, color: 'text-cyan-400' },
     ];
 
-    const localStats = [
-      { value: '73%', icon: AlertTriangle, color: 'text-red-400' },
-      { value: '500+', icon: Search, color: 'text-amber-400' },
-      { value: '24h', icon: Bell, color: 'text-emerald-400' },
-      { value: '95%', icon: Target, color: 'text-blue-400' },
-    ];
-
     return (
       <div className="min-h-screen text-white">
         {/* Hero */}
@@ -185,13 +170,6 @@ export default async function PalyazatRadarPage() {
         </section>
 
         {/* Stats */}
-        <section className="px-6 pb-16">
-          <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-            {localStats.map((s, i) => { const Icon = s.icon; return (
-              <GsapFadeIn key={i} delay={0.1 * i}><SpotlightCard className="p-6 text-center"><Icon className={`w-6 h-6 mx-auto mb-3 ${s.color}`} /><div className={`text-3xl font-black mb-1 ${s.color}`}>{s.value}</div><div className="text-gray-400 text-sm">{ui.statsLabel[i]}</div></SpotlightCard></GsapFadeIn>
-            ); })}
-          </div>
-        </section>
 
         {/* Features */}
         <section className="px-6 py-16 bg-white/5">
@@ -281,21 +259,14 @@ export default async function PalyazatRadarPage() {
                   <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-sm border border-green-500/30">🟢 Azonnal elérhető</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-3">Pályázat Radar</h1>
-                <p className="text-gray-400 text-sm">Automatikus pályázat- és jogszabályfigyelés — soha többé ne maradj le</p>
+                <p className="text-gray-400 text-sm">Automatikus pályázat- és jogszabályfigyelés, heti riporttal</p>
               </div>
             </div>
-            <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">A magyar KKV-k <span className="text-white font-semibold">73%-a lemarad a számára releváns pályázatokról</span>, mert nincs idejük figyelni. Mi megtesszük Ön helyett: AI figyeli a pályázatokat és jogszabály-változásokat, és <span className="text-white font-semibold">heti emailben küldünk összefoglalót</span>.</p>
+            <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">Sok magyar KKV <span className="text-white font-semibold">lemarad a számára releváns pályázatokról</span>, mert nincs ideje figyelni. Mi megtesszük Ön helyett: AI figyeli a pályázatokat és jogszabály-változásokat, és <span className="text-white font-semibold">heti emailben küldünk összefoglalót</span>.</p>
           </GsapFadeIn>
         </div>
       </section>
 
-      <section className="px-6 pb-16">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          {stats.map((s, i) => { const Icon = s.icon; return (
-            <GsapFadeIn key={s.label} delay={0.1 * i}><SpotlightCard className="p-6 text-center"><Icon className={`w-6 h-6 mx-auto mb-3 ${s.color}`} /><div className={`text-3xl font-black mb-1 ${s.color}`}>{s.value}</div><div className="text-gray-400 text-sm">{s.label}</div></SpotlightCard></GsapFadeIn>
-          ); })}
-        </div>
-      </section>
 
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">

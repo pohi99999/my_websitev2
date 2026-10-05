@@ -14,20 +14,20 @@ export async function generateMetadata() {
     id: 'web-robotpilota',
     translations: {
       en: {
-        title: 'Web Autopilot — AI Browser Automation | Pohánka AI',
-        description: 'AI-driven browser automation for scraping, form filling and monitoring, running 24/7.',
+        title: 'Web Autopilot: AI browser automation',
+        description: 'AI-driven browser automation for data collection, form filling and monitoring, on a schedule.',
         canonical: '/en/portfolio/web-robotpilota',
         locale: 'en_US',
       },
       de: {
-        title: 'Web-Robotpilot — KI-Browser-Automatisierung | Pohánka AI',
-        description: 'KI-gestützte Browser-Automatisierung für Datenerfassung, Formulare und Monitoring, 24/7.',
+        title: 'Web-Robotpilot: KI-Browser-Automatisierung',
+        description: 'KI-gestützte Browser-Automatisierung für Datenerfassung, Formulare und Monitoring, nach Zeitplan.',
         canonical: '/de/portfolio/web-robotpilota',
         locale: 'de_DE',
       },
       hu: {
-        title: 'Web Robotpilóta — AI Böngésző Automatizáció | Pohánka AI',
-        description: 'AI-vezérelt böngésző automatizáció: adatgyűjtés, form kitöltés, versenytárs monitoring — emberi felügyelet nélkül, 0-24-ben.',
+        title: 'Web Robotpilóta: AI böngésző-automatizálás',
+        description: 'AI-vezérelt böngésző-automatizálás: adatgyűjtés, űrlapkitöltés és versenytárs-figyelés, ütemezett futtatással.',
         canonical: '/portfolio/web-robotpilota',
         locale: 'hu_HU',
       }
@@ -36,11 +36,11 @@ export async function generateMetadata() {
 }
 
 const useCases = [
-  { icon: ShoppingCart, color: 'text-cyan-400', title: 'Versenytárs Ár Monitoring', desc: '5 webshop, 500 termék — árak és készlet automatikus összehasonlítása naponta.', result: 'Átlag 15% jobb árazás' },
-  { icon: Home, color: 'text-emerald-400', title: 'Ingatlan Figyelő', desc: 'Ingatlan.com és jofogás.hu új hirdetések automatikus letöltése szűrők alapján.', result: '10x gyorsabb reakció' },
-  { icon: Users, color: 'text-purple-400', title: 'HR & Toborzás', desc: 'LinkedIn és Profession.hu álláshirdetések + CV-k automatikus gyűjtése.', result: 'HR csapat 60%-kal kevesebb munkája' },
-  { icon: Database, color: 'text-orange-400', title: 'Adatgyűjtés & Scraping', desc: 'Bármilyen weboldalról strukturált adat letöltése: cégadatok, termékek, árlisták.', result: 'Percek alatt ezer adat' },
-  { icon: Monitor, color: 'text-blue-400', title: 'Weboldal Monitoring', desc: 'Versenytársak vagy saját oldal figyelése: tartalom változás, leállás, SEO változások.', result: 'Azonnali értesítés ha valami változik' },
+  { icon: ShoppingCart, color: 'text-cyan-400', title: 'Versenytárs Ár Monitoring', desc: '5 webshop, 500 termék — árak és készlet automatikus összehasonlítása naponta.', result: 'Árak és készlet egy táblában' },
+  { icon: Home, color: 'text-emerald-400', title: 'Ingatlan Figyelő', desc: 'Ingatlan.com és jofogás.hu új hirdetések automatikus letöltése szűrők alapján.', result: 'Új hirdetések szűrve, egy helyen' },
+  { icon: Users, color: 'text-purple-400', title: 'HR & Toborzás', desc: 'LinkedIn és Profession.hu álláshirdetések + CV-k automatikus gyűjtése.', result: 'Hirdetések és CV-k egy helyen' },
+  { icon: Database, color: 'text-orange-400', title: 'Adatgyűjtés & Scraping', desc: 'Bármilyen weboldalról strukturált adat letöltése: cégadatok, termékek, árlisták.', result: 'Strukturált adat táblázatban' },
+  { icon: Monitor, color: 'text-blue-400', title: 'Weboldal Monitoring', desc: 'Versenytársak vagy saját oldal figyelése: tartalom változás, leállás, SEO változások.', result: 'Értesítés, ha valami változik' },
   { icon: Settings, color: 'text-pink-400', title: 'Form Kitöltés & Tesztelés', desc: 'Automatikus űrlap kitöltés, regisztráció teszt, checkout flow ellenőrzés.', result: 'QA és outreach automatizálva' },
 ];
 
@@ -48,15 +48,9 @@ const pricingPlans = [
   { name: 'Eseti', price: '5.000 Ft', period: '/feladat', features: ['1 konkrét feladat', 'Eredmény 24h-n belül', 'Email riport'], color: 'border-slate-600', highlight: false },
   { name: 'Starter', price: '14.990 Ft', period: '/hó', features: ['10 feladat/hó', 'Havi riport', 'Email támogatás', 'Ütemezett futtatás'], color: 'border-cyan-500/50', highlight: false },
   { name: 'Business', price: '29.000 Ft', period: '/hó', features: ['Korlátlan feladat', 'Prioritásos végrehajtás', 'Heti riport', 'Telefon támogatás'], color: 'border-cyan-400', highlight: true },
-  { name: 'Enterprise', price: '59.000 Ft', period: '/hó', features: ['Dedikált bot', 'Egyedi automatizáció', 'API hozzáférés', 'SLA garancia'], color: 'border-purple-500/50', highlight: false }
+  { name: 'Enterprise', price: '59.000 Ft', period: '/hó', features: ['Dedikált bot', 'Egyedi automatizáció', 'API hozzáférés', 'SLA a szerződés szerint'], color: 'border-purple-500/50', highlight: false }
 ];
 
-const stats = [
-  { value: '0-24', label: 'Éjjel-nappal fut', icon: Clock, color: 'text-cyan-400' },
-  { value: '500+', label: 'Oldal támogatva', icon: Globe, color: 'text-emerald-400' },
-  { value: '99.5%', label: 'Megbízhatóság', icon: Shield, color: 'text-green-400' },
-  { value: '<5mp', label: 'Átlag feladat idő', icon: Zap, color: 'text-orange-400' },
-];
 
 export default async function WebRobotpilotaPage() {
   const headerStore = await headers();
@@ -73,15 +67,14 @@ export default async function WebRobotpilotaPage() {
             available: '🟢 Available now',
             title: 'Web Autopilot',
             tagline: 'AI-driven browser automation — your personal web robot',
-            subtitle: 'We handle any web task with a robot — data collection, form filling, competitor monitoring — without human supervision, 24/7. First task FREE.',
-            statsLabel: ['runs around the clock', 'supported sites', 'reliability', 'avg. task time'],
+            subtitle: 'We run web tasks with a robot: data collection, form filling and competitor monitoring, on a schedule. First task FREE.',
             useCasesTitle: 'What can you use it for?',
             useCases: [
-              { title: 'Competitor Price Monitoring', desc: '5 webshops, 500 products — automatic daily price and stock comparison.', result: 'Avg. 15% better pricing' },
-              { title: 'Property Listing Tracker', desc: 'Auto-download new real estate listings matching your filters from listing sites.', result: '10× faster market response' },
-              { title: 'HR & Recruitment', desc: 'Automatic collection of job postings and CVs from LinkedIn and job boards.', result: '60% less HR team effort' },
-              { title: 'Data Collection & Scraping', desc: 'Structured data download from any website: company data, products, price lists.', result: 'Thousands of records in minutes' },
-              { title: 'Website Monitoring', desc: 'Monitor competitors or your own site: content changes, downtime, SEO shifts.', result: 'Instant alert when something changes' },
+              { title: 'Competitor Price Monitoring', desc: '5 webshops, 500 products — automatic daily price and stock comparison.', result: 'Prices and stock in one sheet' },
+              { title: 'Property Listing Tracker', desc: 'Auto-download new real estate listings matching your filters from listing sites.', result: 'New listings filtered, in one place' },
+              { title: 'HR & Recruitment', desc: 'Automatic collection of job postings and CVs from LinkedIn and job boards.', result: 'Postings and CVs in one place' },
+              { title: 'Data Collection & Scraping', desc: 'Structured data download from any website: company data, products, price lists.', result: 'Structured data in a spreadsheet' },
+              { title: 'Website Monitoring', desc: 'Monitor competitors or your own site: content changes, downtime, SEO shifts.', result: 'An alert when something changes' },
               { title: 'Form Filling & Testing', desc: 'Automated form submission, registration testing, checkout flow verification.', result: 'QA and outreach automated' },
             ],
             howTitle: 'How it works',
@@ -97,7 +90,7 @@ export default async function WebRobotpilotaPage() {
               { name: 'One-off', price: '5,000 HUF', period: '/task', features: ['1 specific task', 'Result within 24h', 'Email report'], highlight: false, color: 'border-slate-600' },
               { name: 'Starter', price: '14,990 HUF', period: '/mo', features: ['10 tasks/mo', 'Monthly report', 'Email support', 'Scheduled runs'], highlight: false, color: 'border-cyan-500/50' },
               { name: 'Business', price: '29,000 HUF', period: '/mo', features: ['Unlimited tasks', 'Priority execution', 'Weekly report', 'Phone support'], highlight: true, color: 'border-cyan-400' },
-              { name: 'Enterprise', price: '59,000 HUF', period: '/mo', features: ['Dedicated bot', 'Custom automation', 'API access', 'SLA guarantee'], highlight: false, color: 'border-purple-500/50' },
+              { name: 'Enterprise', price: '59,000 HUF', period: '/mo', features: ['Dedicated bot', 'Custom automation', 'API access', 'SLA per contract'], highlight: false, color: 'border-purple-500/50' },
             ],
             ctaBtn: 'Request free demo task',
             ctaTitle: 'Try it FREE',
@@ -109,15 +102,14 @@ export default async function WebRobotpilotaPage() {
             available: '🟢 Sofort verfügbar',
             title: 'Web-Robotpilot',
             tagline: 'KI-gestützte Browser-Automatisierung — Ihr persönlicher Web-Roboter',
-            subtitle: 'Wir erledigen beliebige Web-Aufgaben mit einem Roboter — Datenerfassung, Formulare, Wettbewerbs-Monitoring — ohne menschliche Aufsicht, 24/7. Erste Aufgabe KOSTENLOS.',
-            statsLabel: ['rund um die Uhr aktiv', 'unterstützte Seiten', 'Zuverlässigkeit', 'Ø Aufgabenzeit'],
+            subtitle: 'Wir erledigen Web-Aufgaben mit einem Roboter: Datenerfassung, Formulare und Wettbewerbs-Monitoring, nach Zeitplan. Erste Aufgabe KOSTENLOS.',
             useCasesTitle: 'Wofür können Sie es nutzen?',
             useCases: [
-              { title: 'Wettbewerbspreis-Monitoring', desc: '5 Webshops, 500 Produkte — automatischer täglicher Preis- und Lagervergleich.', result: 'Ø 15% bessere Preisgestaltung' },
-              { title: 'Immobilien-Inserat-Tracker', desc: 'Automatischer Download neuer Immobilieninserate nach Ihren Filtern von Portalen.', result: '10× schnellere Marktreaktion' },
-              { title: 'HR & Recruiting', desc: 'Automatische Sammlung von Stellenanzeigen und Lebensläufen von LinkedIn und Jobbörsen.', result: '60% weniger HR-Aufwand' },
-              { title: 'Datenerfassung & Scraping', desc: 'Strukturierter Daten-Download von beliebigen Websites: Firmendaten, Produkte, Preislisten.', result: 'Tausende Datensätze in Minuten' },
-              { title: 'Website-Monitoring', desc: 'Wettbewerber oder eigene Seite beobachten: Inhaltsänderungen, Ausfälle, SEO-Verschiebungen.', result: 'Sofortbenachrichtigung bei Änderungen' },
+              { title: 'Wettbewerbspreis-Monitoring', desc: '5 Webshops, 500 Produkte — automatischer täglicher Preis- und Lagervergleich.', result: 'Preise und Bestand in einer Tabelle' },
+              { title: 'Immobilien-Inserat-Tracker', desc: 'Automatischer Download neuer Immobilieninserate nach Ihren Filtern von Portalen.', result: 'Neue Inserate gefiltert an einem Ort' },
+              { title: 'HR & Recruiting', desc: 'Automatische Sammlung von Stellenanzeigen und Lebensläufen von LinkedIn und Jobbörsen.', result: 'Anzeigen und Lebensläufe an einem Ort' },
+              { title: 'Datenerfassung & Scraping', desc: 'Strukturierter Daten-Download von beliebigen Websites: Firmendaten, Produkte, Preislisten.', result: 'Strukturierte Daten in einer Tabelle' },
+              { title: 'Website-Monitoring', desc: 'Wettbewerber oder eigene Seite beobachten: Inhaltsänderungen, Ausfälle, SEO-Verschiebungen.', result: 'Benachrichtigung bei Änderungen' },
               { title: 'Formular-Ausfüllung & Testing', desc: 'Automatisierte Formularabgabe, Registrierungstests, Checkout-Flow-Prüfung.', result: 'QA und Outreach automatisiert' },
             ],
             howTitle: 'Wie funktioniert es?',
@@ -133,7 +125,7 @@ export default async function WebRobotpilotaPage() {
               { name: 'Einzelauftrag', price: '5.000 HUF', period: '/Aufgabe', features: ['1 konkrete Aufgabe', 'Ergebnis in 24h', 'E-Mail-Bericht'], highlight: false, color: 'border-slate-600' },
               { name: 'Starter', price: '14.990 HUF', period: '/Mo.', features: ['10 Aufgaben/Mo.', 'Monatsbericht', 'E-Mail-Support', 'Geplante Ausführung'], highlight: false, color: 'border-cyan-500/50' },
               { name: 'Business', price: '29.000 HUF', period: '/Mo.', features: ['Unbegrenzte Aufgaben', 'Prioritätsausführung', 'Wochenbericht', 'Telefon-Support'], highlight: true, color: 'border-cyan-400' },
-              { name: 'Enterprise', price: '59.000 HUF', period: '/Mo.', features: ['Dedizierter Bot', 'Individuelle Automatisierung', 'API-Zugang', 'SLA-Garantie'], highlight: false, color: 'border-purple-500/50' },
+              { name: 'Enterprise', price: '59.000 HUF', period: '/Mo.', features: ['Dedizierter Bot', 'Individuelle Automatisierung', 'API-Zugang', 'SLA laut Vertrag'], highlight: false, color: 'border-purple-500/50' },
             ],
             ctaBtn: 'Kostenlose Demo-Aufgabe anfragen',
             ctaTitle: 'Kostenlos ausprobieren',
@@ -147,13 +139,6 @@ export default async function WebRobotpilotaPage() {
       { icon: Database, color: 'text-orange-400' },
       { icon: Monitor, color: 'text-blue-400' },
       { icon: Settings, color: 'text-pink-400' },
-    ];
-
-    const localStats = [
-      { value: '24/7', icon: Clock, color: 'text-cyan-400' },
-      { value: '500+', icon: Globe, color: 'text-emerald-400' },
-      { value: '99.5%', icon: Shield, color: 'text-green-400' },
-      { value: '<5s', icon: Zap, color: 'text-orange-400' },
     ];
 
     return (
@@ -180,13 +165,6 @@ export default async function WebRobotpilotaPage() {
         </section>
 
         {/* Stats */}
-        <section className="px-6 pb-16">
-          <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-            {localStats.map((s, i) => { const Icon = s.icon; return (
-              <GsapFadeIn key={i} delay={0.1 * i}><SpotlightCard className="p-6 text-center"><Icon className={`w-6 h-6 mx-auto mb-3 ${s.color}`} /><div className={`text-3xl font-black mb-1 ${s.color}`}>{s.value}</div><div className="text-gray-400 text-sm">{ui.statsLabel[i]}</div></SpotlightCard></GsapFadeIn>
-            ); })}
-          </div>
-        </section>
 
         {/* Use cases */}
         <section className="px-6 py-16 bg-white/5">
@@ -284,25 +262,12 @@ export default async function WebRobotpilotaPage() {
               </div>
             </div>
             <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">
-              Bármilyen webes feladatot elvégzünk robot-tal — <span className="text-white font-semibold">adatgyűjtés, form kitöltés, versenytárs monitoring</span> — emberi felügyelet nélkül, 0-24-ben. Az első feladat INGYEN.
+              Webes feladatokat végzünk el robottal: <span className="text-white font-semibold">adatgyűjtés, űrlapkitöltés, versenytárs-figyelés</span>, ütemezett futtatással. Az első feladat INGYEN.
             </p>
           </GsapFadeIn>
         </div>
       </section>
 
-      <section className="px-6 pb-16">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          {stats.map((s, i) => { const Icon = s.icon; return (
-            <GsapFadeIn key={s.label} delay={0.1 * i}>
-              <SpotlightCard className="p-6 text-center">
-                <Icon className={`w-6 h-6 mx-auto mb-3 ${s.color}`} />
-                <div className={`text-3xl font-black mb-1 ${s.color}`}>{s.value}</div>
-                <div className="text-gray-400 text-sm">{s.label}</div>
-              </SpotlightCard>
-            </GsapFadeIn>
-          ); })}
-        </div>
-      </section>
 
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">

@@ -255,7 +255,7 @@ const Portfolio = () =>
                 <h3 className="text-lg font-bold text-white mb-2">Nova — AI Asszisztens</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">Vállalkozását megismerő, tanuló napi társ, hangalapú kommunikációval, munkaidőn túl is elérhetően.</p>
                 <ul className="space-y-1.5 mb-5">
-                  { ["Vállalkozás-specifikus tanulás", "Hangalapú kommunikáció", "24/7 operatív segítség"].map( b => (
+                  { ["Vállalkozás-specifikus tanulás", "Hangalapú kommunikáció", "Munkaidőn túl is elérhető operatív segítség"].map( b => (
                     <li key={ b } className="flex items-center gap-2 text-xs text-gray-400">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shrink-0" />{ b }
                     </li>
@@ -320,8 +320,8 @@ const Portfolio = () =>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Web Robotpilóta</h3>
               <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-                AI-vezérelt böngésző automatizáció. Adatgyűjtés, form kitöltés, versenytárs monitoring —
-                emberi felügyelet nélkül, 0-24-ben.
+                AI-vezérelt böngésző-automatizálás: adatgyűjtés, űrlapkitöltés és versenytárs-figyelés,
+                ütemezett futtatással.
               </p>
               <div className="flex items-center gap-2 mb-6">
                 <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">14.990 Ft/hó-tól</span>
@@ -348,8 +348,8 @@ const Portfolio = () =>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Pályázat Radar</h3>
               <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-                Soha többé ne maradj le pályázatról. Automatikusan figyeljük az EU/HU pályázatokat
-                és jogszabály-változásokat — heti riport emailben.
+                Automatikusan figyeljük az EU-s és hazai pályázatokat és jogszabály-változásokat,
+                heti riporttal e-mailben.
               </p>
               <div className="flex items-center gap-2 mb-6">
                 <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">9.990 Ft/hó-tól</span>

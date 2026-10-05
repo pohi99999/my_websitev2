@@ -14,7 +14,7 @@ export const brunellaFaqShow = { elofizetes: false };
 export const brunellaPageContent = {
   hu: {
     meta: {
-      title: 'Brunella: AI-csapat, ami az Ön cégén belül dolgozik | Pohánka AI',
+      title: 'Brunella: AI-csapat az Ön cégén belül',
       description: 'Telegramon beszél vele. Elvégzi a napi, ismétlődő információs munkát, és amit a cégen kívülre küldene, azt előbb Ön hagyja jóvá.',
     },
     back: 'Vissza a portfólióhoz',
@@ -106,7 +106,7 @@ export const brunellaPageContent = {
 
   en: {
     meta: {
-      title: 'Brunella: an AI team that works inside your company | Pohánka AI',
+      title: 'Brunella: an AI team inside your company',
       description: 'You talk to it on Telegram. It handles the daily, repetitive information work, and anything it would send outside the company, you approve first.',
     },
     back: 'Back to Portfolio',
@@ -199,7 +199,7 @@ export const brunellaPageContent = {
 
   de: {
     meta: {
-      title: 'Brunella: ein KI-Team, das in Ihrem Unternehmen arbeitet | Pohánka AI',
+      title: 'Brunella: ein KI-Team im eigenen Unternehmen',
       description: 'Sie sprechen mit ihm über Telegram. Es erledigt die tägliche, wiederkehrende Informationsarbeit, und was es nach außen senden würde, geben Sie zuerst frei.',
     },
     back: 'Zurück zum Portfolio',

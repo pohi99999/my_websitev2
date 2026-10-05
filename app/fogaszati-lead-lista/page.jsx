@@ -9,18 +9,18 @@ export async function generateMetadata() {
   const meta =
     language === 'en'
       ? {
-          title: 'Dental Lead List 2.0 | Pohánka AI',
+          title: 'Dental Lead List 2.0',
           description: 'AI-optimized list of 410 Hungarian dental clinics with segmented growth opportunities.',
           canonical: '/en/fogaszati-lead-lista',
         }
       : language === 'de'
       ? {
-          title: 'Dental Lead Liste 2.0 | Pohánka AI',
+          title: 'Dental Lead Liste 2.0',
           description: 'KI-optimierte Liste mit 410 ungarischen Zahnkliniken und segmentierten Wachstumschancen.',
           canonical: '/de/fogaszati-lead-lista',
         }
       : {
-          title: 'Fogászati Lead Lista 2.0 | Pohánka AI',
+          title: 'Fogászati Lead Lista 2.0',
           description: '410 magyarországi fogászat, AI-optimalizált lead lista, 47.490 Ft értékben csak 9.990 Ft-ért.',
           canonical: '/fogaszati-lead-lista',
         };

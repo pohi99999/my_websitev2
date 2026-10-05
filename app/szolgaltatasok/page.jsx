@@ -31,7 +31,7 @@ export async function generateMetadata() {
             canonical: "/de/szolgaltatasok",
           }
         : {
-            title: "Automatizált Rendszerek Vállalkozásoknak – Szolgáltatások",
+            title: "Automatizálás és AI vállalkozásoknak",
             description:
               "Vállalkozásokra szabott automatizálás, digitális munkatársak és rendszerek, amelyek csökkentik a kézi adatrögzítést.",
             canonical: "/szolgaltatasok",

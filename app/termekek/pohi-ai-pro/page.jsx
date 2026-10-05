@@ -14,7 +14,7 @@ export async function generateMetadata() {
   const meta =
     language === 'en'
       ? {
-          title: 'Pohi AI Pro | Pohánka AI',
+          title: 'Pohi AI Pro: AI portal for B2B trade',
           description:
             'Custom AI portal system for customer records, orders, inventory and logistics optimization.',
           canonical: '/en/termekek/pohi-ai-pro',
@@ -22,14 +22,14 @@ export async function generateMetadata() {
         }
       : language === 'de'
       ? {
-          title: 'Pohi AI Pro | Pohánka AI',
+          title: 'Pohi AI Pro: KI-Portal für den B2B-Handel',
           description:
             'Individuelles KI-Portalsystem für Kundendaten, Bestellungen, Lagerbestand und Logistikoptimierung.',
           canonical: '/de/termekek/pohi-ai-pro',
           locale: 'de_DE',
         }
       : {
-          title: 'Pohi AI Pro | Pohánka AI',
+          title: 'Pohi AI Pro: AI-portál B2B kereskedéshez',
           description:
             'Pohi AI Pro: egyedi, fejlett portál és automatizációs rendszer – vevői adatbázis, rendelésállomány és készletkezelés összefésülése AI támogatással.',
           canonical: '/termekek/pohi-ai-pro',

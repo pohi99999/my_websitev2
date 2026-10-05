@@ -14,19 +14,19 @@ export async function generateMetadata() {
     id: 'tartalom-gyartas',
     translations: {
       en: {
-        title: 'AI Content Production — Social Media & Email Marketing | Pohánka AI',
+        title: 'AI content: social media and email',
         description: 'Monthly social media, blog and email content tailored to your industry and brand voice.',
         canonical: '/en/portfolio/tartalom-gyartas',
         locale: 'en_US',
       },
       de: {
-        title: 'KI-Content-Produktion — Social Media & E-Mail Marketing | Pohánka AI',
+        title: 'KI-Content: Social Media und E-Mail',
         description: 'Monatlicher Content für Social Media, Blog und E-Mail, abgestimmt auf Branche und Tonalität.',
         canonical: '/de/portfolio/tartalom-gyartas',
         locale: 'de_DE',
       },
       hu: {
-        title: 'AI Tartalom Gyártás — Social Media & Email Marketing | Pohánka AI',
+        title: 'AI tartalomgyártás: social media és e-mail',
         description: 'Havi social media posztok, blog cikkek és email kampányok — AI-val generálva, az Ön iparágára és hangnemére szabva.',
         canonical: '/portfolio/tartalom-gyartas',
         locale: 'hu_HU',
@@ -57,12 +57,6 @@ const pricingPlans = [
   { name: 'Agency', price: '79.990 Ft', period: '/hó', features: ['White-label', 'Korlátlan tartalom', 'API hozzáférés', 'Multi-brand'], color: 'border-cyan-500/50', highlight: false },
 ];
 
-const stats = [
-  { value: '5 perc', label: 'Átlag generálási idő', icon: Clock, color: 'text-pink-400' },
-  { value: '10+', label: 'Támogatott iparág', icon: Users, color: 'text-emerald-400' },
-  { value: '3 nyelv', label: 'HU, EN, DE', icon: MessageSquare, color: 'text-blue-400' },
-  { value: '95%', label: 'Ügyfél-elégedettség', icon: Star, color: 'text-yellow-400' },
-];
 
 export default async function TartalomGyartasPage() {
   const headerStore = await headers();
@@ -80,7 +74,6 @@ export default async function TartalomGyartasPage() {
             title: 'AI Content Production',
             tagline: 'AI-generated, human-reviewed — in your brand voice',
             subtitle: 'Monthly social media posts, blog articles and email campaigns — tailored to your industry and tone. First 5 sample posts FREE.',
-            statsLabel: ['avg. generation time', 'supported industries', 'languages: EN, DE, HU', 'customer satisfaction'],
             sampleTitle: 'Sample posts',
             sampleNote: 'This is the kind of content we generate — ready to post',
             samples: [
@@ -117,7 +110,6 @@ export default async function TartalomGyartasPage() {
             title: 'KI-Content-Produktion',
             tagline: 'KI-generiert, redaktionell geprüft — in Ihrer Markensprache',
             subtitle: 'Monatlicher Content für Social Media, Blog und E-Mail — abgestimmt auf Ihre Branche und Tonalität. Die ersten 5 Muster-Posts KOSTENLOS.',
-            statsLabel: ['Ø Generierungszeit', 'unterstützte Branchen', 'Sprachen: EN, DE, HU', 'Kundenzufriedenheit'],
             sampleTitle: 'Muster-Posts',
             sampleNote: 'So sieht der Content aus, den wir erstellen — sofort postbar',
             samples: [
@@ -157,13 +149,6 @@ export default async function TartalomGyartasPage() {
       { icon: Share2, color: 'text-cyan-400' },
     ];
 
-    const localStats = [
-      { value: '5 min', icon: Clock, color: 'text-pink-400' },
-      { value: '10+', icon: Users, color: 'text-emerald-400' },
-      { value: '3', icon: MessageSquare, color: 'text-blue-400' },
-      { value: '95%', icon: Star, color: 'text-yellow-400' },
-    ];
-
     return (
       <div className="min-h-screen text-white">
         {/* Hero */}
@@ -188,13 +173,6 @@ export default async function TartalomGyartasPage() {
         </section>
 
         {/* Stats */}
-        <section className="px-6 pb-16">
-          <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-            {localStats.map((s, i) => { const Icon = s.icon; return (
-              <GsapFadeIn key={i} delay={0.1 * i}><SpotlightCard className="p-6 text-center"><Icon className={`w-6 h-6 mx-auto mb-3 ${s.color}`} /><div className={`text-3xl font-black mb-1 ${s.color}`}>{s.value}</div><div className="text-gray-400 text-sm">{ui.statsLabel[i]}</div></SpotlightCard></GsapFadeIn>
-            ); })}
-          </div>
-        </section>
 
         {/* Sample posts */}
         <section className="px-6 py-16 bg-white/5">
@@ -284,13 +262,6 @@ export default async function TartalomGyartasPage() {
         </div>
       </section>
 
-      <section className="px-6 pb-16">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          {stats.map((s, i) => { const Icon = s.icon; return (
-            <GsapFadeIn key={s.label} delay={0.1 * i}><SpotlightCard className="p-6 text-center"><Icon className={`w-6 h-6 mx-auto mb-3 ${s.color}`} /><div className={`text-3xl font-black mb-1 ${s.color}`}>{s.value}</div><div className="text-gray-400 text-sm">{s.label}</div></SpotlightCard></GsapFadeIn>
-          ); })}
-        </div>
-      </section>
 
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">

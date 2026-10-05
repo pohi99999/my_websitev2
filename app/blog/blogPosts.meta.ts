@@ -19,6 +19,8 @@ export type BlogPostMeta = {
 export type BlogPostMetaResolved = {
   slug: string;
   title: string;
+  seoTitle: string;
+  seoDescription: string;
   date: string;
   author: string;
   readTime: string;
@@ -230,6 +232,46 @@ export const BLOG_POST_META: Record<string, BlogPostMeta> = {
     },
 };
 
+
+// Shorter search-result title / description where the article's own title or excerpt is too long
+// (title <= 46 characters, because the layout template adds " | Pohánka és Társa"; description <= 155).
+// The article H1 and the blog list keep the full title and excerpt.
+export const BLOG_SEO: Record<string, { title?: Partial<LocalizedText>; description?: Partial<LocalizedText> }> = {
+  'automatizalt-bongeszo-agensek': {
+    title: { hu: 'Automatizált böngésző-ágensek a mindennapokban', en: 'Automated browser agents in everyday work', de: 'Browser-Agenten im Arbeitsalltag' },
+  },
+  'brunella-strategiai-white-paper': {
+    title: { hu: 'A Brunella-dosszié: stratégia és technológia', en: 'The Brunella Dossier: strategy and technology', de: 'Das Brunella-Dossier: Strategie und Technik' },
+    description: { hu: 'A teljes stratégiai jelentés kivonata: a projektalapú működéstől az AI-ügynökrendszerekig, helyzetértékeléssel, TRL 4 prototípussal és ütemtervvel.', en: 'Executive summary of the full strategy report: from project-based work to AI agent systems, with assessment, TRL-4 prototype and roadmap.', de: 'Zusammenfassung des Strategieberichts: von projektbasierter Arbeit zu KI-Agentensystemen, mit Bewertung, TRL-4-Prototyp und Roadmap.' },
+  },
+  'bevezeto-a-mesterseges-intelligencia-vilagaba': {
+    title: { hu: 'Bevezető a mesterséges intelligencia világába', en: 'Introduction to AI: from basics to practice', de: 'KI-Einführung: Grundlagen und Praxis' },
+    description: { de: 'Neuronale Netze, Prompt Engineering und die Partnerschaft der Zukunft: ein praxisnaher Leitfaden, wie die Maschine „denkt“ und wie man sie steuert.' },
+  },
+  'digitalis-lenyomat-anatomiaja': {
+    title: { en: 'The anatomy of a digital footprint', de: 'Anatomie eines digitalen Fußabdrucks' },
+    description: { hu: 'Egy AI-partner elemzése: a digitális lenyomat strukturált térképe, a jelenlét minden rétegével.', de: 'Die Analyse eines KI-Partners: eine strukturierte Karte des digitalen Fußabdrucks, mit allen Ebenen der Präsenz.' },
+  },
+  'brunella-mi-csapatvezeto': {
+    title: { hu: 'Brunella, az MI csapatvezető', en: 'Brunella: the AI team lead', de: 'Brunella: KI-Teamlead der Zukunft' },
+    description: { hu: 'Felejtse el a reaktív asszisztenseket! A Brunella belső monológgal, önkorrekcióval és „Gondolatfa” alapú döntéshozatallal dolgozik.' },
+  },
+  'fekete-doboz-vege-glass-box': {
+    title: { hu: 'A fekete doboz vége: miért az átláthatóság?', en: 'The end of the black box: why transparency', de: 'Das Ende der Black Box: warum Transparenz' },
+    description: { de: 'Warum haben wir Angst vor KI? Weil wir sie nicht verstehen. Unser „Glass Box“-Ansatz: Das System zeigt, WIE es entschieden hat.' },
+  },
+  'ai-automatizalas-kkv-knak': {
+    description: { hu: 'A legtöbb KKV nem tudja, hol kezdje az AI bevezetését. Megmutatunk egy egyszerű, 3 lépéses keretet az induláshoz.', de: 'Die meisten KMUs wissen nicht, wo sie mit KI anfangen sollen. Wir zeigen einen einfachen 3-Schritte-Rahmen für den Einstieg.' },
+  },
+  'chatbot-az-ugyfelszolgalatban': {
+    title: { hu: 'Chatbot az ügyfélszolgálatban' },
+    description: { hu: 'A chatbot nem helyettesíti az embert. Megnézzük, mi igaz és mi nem a chatbotokról szóló legendákból, és mikor érdemes bevezetni egyet.', de: 'Chatbots ersetzen keine Menschen. Wir prüfen, was an den Chatbot-Mythen stimmt und was nicht, und wann sich eine Einführung lohnt.' },
+  },
+  'folyamat-automatizalas-5-lepes': {
+    description: { hu: 'Az üzleti folyamatok automatizálása nem rakétatudomány, ha tudja, hol kezdje. 5 konkrét lépés a feltérképezéstől az élő AI-rendszerig.', de: 'Geschäftsprozessautomatisierung ist keine Raketenwissenschaft. 5 konkrete Schritte von der Prozesskartierung bis zum laufenden KI-System.' },
+  },
+};
+
 export function getBlogPostMeta(slug: string, language: BlogLanguage = 'hu'): BlogPostMetaResolved | undefined {
   const post = BLOG_POST_META[slug];
   if (!post) return undefined;
@@ -242,5 +284,7 @@ export function getBlogPostMeta(slug: string, language: BlogLanguage = 'hu'): Bl
     readTime: post.readTime[language] ?? post.readTime.hu,
     category: post.category[language] ?? post.category.hu,
     excerpt: post.excerpt[language] ?? post.excerpt.hu,
+    seoTitle: BLOG_SEO[slug]?.title?.[language] ?? post.title[language] ?? post.title.hu,
+    seoDescription: BLOG_SEO[slug]?.description?.[language] ?? post.excerpt[language] ?? post.excerpt.hu,
   };
 }

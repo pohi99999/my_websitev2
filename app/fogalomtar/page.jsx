@@ -10,20 +10,20 @@ export async function generateMetadata() {
   const meta =
     language === 'en'
       ? {
-          title: 'AI Glossary | Pohánka AI',
+          title: 'AI Glossary',
           description: 'Essential AI and technology concepts explained in clear business language.',
           canonical: '/en/fogalomtar',
           locale: 'en_US',
         }
       : language === 'de'
       ? {
-          title: 'KI-Glossar | Pohánka AI',
+          title: 'KI-Glossar',
           description: 'Wichtige KI- und Technologiebegriffe klar und verständlich erklärt.',
           canonical: '/de/fogalomtar',
           locale: 'de_DE',
         }
       : {
-          title: 'AI Fogalomtár | Pohánka AI',
+          title: 'AI Fogalomtár',
           description: 'A modern AI és technológiai fogalmak közérthetően magyarázva, a Brunella rendszer szemléletével.',
           canonical: '/fogalomtar',
           locale: 'hu_HU',
