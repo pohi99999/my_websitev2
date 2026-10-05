@@ -114,7 +114,7 @@ export const BLOG_POST_META: Record<string, BlogPostMeta> = {
   'brunella-mi-csapatvezeto': {
     slug: 'brunella-mi-csapatvezeto',
     title: {
-      hu: 'Brunella: Az MI csapatvezető és a jövő szervezete',
+      hu: 'Brunella: az AI-csapatvezető és a jövő szervezete',
       en: 'Brunella: The AI Team Lead and the Organization of the Future',
       de: 'Brunella: KI-Teamlead und die Organisation der Zukunft',
     },
@@ -208,9 +208,9 @@ export const BLOG_POST_META: Record<string, BlogPostMeta> = {
       readTime: { hu: '5 perc', en: '5 min', de: '5 Min.' },
       category: { hu: 'Elemzés', en: 'Analysis', de: 'Analyse' },
       excerpt: {
-        hu: 'A chatbotok nem helyettesítik az embert — de a kérdések 70%-át megoldják. Megnézzük, mi igaz és mi nem a chatbotokról szóló legendákból, és mikor érdemes bevezetni egyet.',
-        en: 'Chatbots do not replace humans — but they solve 70% of queries. We examine what is true and false about chatbot myths, and when it makes sense to deploy one.',
-        de: 'Chatbots ersetzen keine Menschen — aber sie lösen 70% der Anfragen. Wir untersuchen, was an den Chatbot-Mythen stimmt und was nicht, und wann eine Einführung sinnvoll ist.',
+        hu: 'A chatbotok nem helyettesítik az embert, de a kérdések 70%-át megoldják. Megnézzük, mi igaz és mi nem a chatbotokról szóló legendákból, és mikor érdemes bevezetni egyet.',
+        en: 'Chatbots do not replace humans, but they solve 70% of queries. We examine what is true and false about chatbot myths, and when it makes sense to deploy one.',
+        de: 'Chatbots ersetzen keine Menschen, aber sie lösen 70% der Anfragen. Wir untersuchen, was an den Chatbot-Mythen stimmt und was nicht, und wann eine Einführung sinnvoll ist.',
       },
     },
     'folyamat-automatizalas-5-lepes': {
@@ -225,9 +225,9 @@ export const BLOG_POST_META: Record<string, BlogPostMeta> = {
       readTime: { hu: '8 perc', en: '8 min', de: '8 Min.' },
       category: { hu: 'Stratégia', en: 'Strategy', de: 'Strategie' },
       excerpt: {
-        hu: 'Az üzleti folyamatok automatizálása nem rakétatudomány — ha tudod, honnét indulj el. 5 konkrét lépés: folyamat-feltérképezéstől az élő AI-rendszerig, valós példákkal.',
-        en: 'Business process automation is not rocket science — if you know where to start. 5 concrete steps: from process mapping to a live AI system, with real examples.',
-        de: 'Geschäftsprozessautomatisierung ist keine Raketenwissenschaft — wenn man weiß, wo man anfangen soll. 5 konkrete Schritte: von der Prozesskartierung bis zum Live-KI-System, mit realen Beispielen.',
+        hu: 'Az üzleti folyamatok automatizálása nem rakétatudomány, ha tudod, honnét indulj el. 5 konkrét lépés: folyamat-feltérképezéstől az élő AI-rendszerig, valós példákkal.',
+        en: 'Business process automation is not rocket science, if you know where to start. 5 concrete steps: from process mapping to a live AI system, with real examples.',
+        de: 'Geschäftsprozessautomatisierung ist keine Raketenwissenschaft, wenn man weiß, wo man anfangen soll. 5 konkrete Schritte: von der Prozesskartierung bis zum Live-KI-System, mit realen Beispielen.',
       },
     },
 };
@@ -242,7 +242,7 @@ export const BLOG_SEO: Record<string, { title?: Partial<LocalizedText>; descript
   },
   'brunella-strategiai-white-paper': {
     title: { hu: 'A Brunella-dosszié: stratégia és technológia', en: 'The Brunella Dossier: strategy and technology', de: 'Das Brunella-Dossier: Strategie und Technik' },
-    description: { hu: 'A teljes stratégiai jelentés kivonata: a projektalapú működéstől az AI-ügynökrendszerekig, helyzetértékeléssel, TRL 4 prototípussal és ütemtervvel.', en: 'Executive summary of the full strategy report: from project-based work to AI agent systems, with assessment, TRL-4 prototype and roadmap.', de: 'Zusammenfassung des Strategieberichts: von projektbasierter Arbeit zu KI-Agentensystemen, mit Bewertung, TRL-4-Prototyp und Roadmap.' },
+    description: { hu: 'A 2025-ös stratégiai jelentés kivonata: a projektalapú működéstől az AI-ügynökrendszerekig, helyzetértékeléssel, TRL 4 prototípussal és ütemtervvel.', en: 'Executive summary of the 2025 strategy report: from project-based work to AI agent systems, with assessment, TRL-4 prototype and roadmap.', de: 'Zusammenfassung des Strategieberichts 2025: von projektbasierter Arbeit zu KI-Agentensystemen, mit Bewertung, TRL-4-Prototyp und Roadmap.' },
   },
   'bevezeto-a-mesterseges-intelligencia-vilagaba': {
     title: { hu: 'Bevezető a mesterséges intelligencia világába', en: 'Introduction to AI: from basics to practice', de: 'KI-Einführung: Grundlagen und Praxis' },
@@ -253,8 +253,8 @@ export const BLOG_SEO: Record<string, { title?: Partial<LocalizedText>; descript
     description: { hu: 'Egy AI-partner elemzése: a digitális lenyomat strukturált térképe, a jelenlét minden rétegével.', de: 'Die Analyse eines KI-Partners: eine strukturierte Karte des digitalen Fußabdrucks, mit allen Ebenen der Präsenz.' },
   },
   'brunella-mi-csapatvezeto': {
-    title: { hu: 'Brunella, az MI csapatvezető', en: 'Brunella: the AI team lead', de: 'Brunella: KI-Teamlead der Zukunft' },
-    description: { hu: 'Felejtse el a reaktív asszisztenseket! A Brunella belső monológgal, önkorrekcióval és „Gondolatfa” alapú döntéshozatallal dolgozik.' },
+    title: { hu: 'Brunella, az AI-csapatvezető (2025)', en: 'Brunella: the AI team lead (2025)', de: 'Brunella: KI-Teamlead der Zukunft (2025)' },
+    description: { hu: 'A 2025-ös Brunella-koncepció: belső monológ, önkorrekció és „Gondolatfa” alapú döntéshozatal a reaktív asszisztensek helyett.' },
   },
   'fekete-doboz-vege-glass-box': {
     title: { hu: 'A fekete doboz vége: miért az átláthatóság?', en: 'The end of the black box: why transparency', de: 'Das Ende der Black Box: warum Transparenz' },

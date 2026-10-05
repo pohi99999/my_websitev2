@@ -69,7 +69,7 @@ const de = {
       badge: 'Büroautomatisierung',
       title: 'Tabellenanalyse (Gemini-Stil)',
       subtitle:
-        'Brunella füllt, prüft und prognostiziert Tabellenzellen automatisch — Entscheidungsunterstützung statt Dateneingabe.',
+        'Brunella füllt, prüft und prognostiziert Tabellenzellen automatisch: Entscheidungsunterstützung statt Dateneingabe.',
       filename: 'Q4_prognose.sheet',
       aiFill: 'KI-gestützte Befüllung',
       connected: 'Brunella Analyst verbunden',

@@ -14,14 +14,14 @@ export async function generateMetadata(): Promise<Metadata> {
       ? {
           title: 'Digital Efficiency Audit',
           description:
-            'Find out in 3 minutes where your company loses 100+ working hours a month on manual processes — and how AI can stop it.',
+            'Find out in 3 minutes where your company loses 100+ working hours a month on manual processes, and how AI can stop it.',
           canonical: '/en/hatekonysagi-audit',
         }
       : language === 'de'
         ? {
             title: 'Digitales Effizienz-Audit',
             description:
-              'Finden Sie in 3 Minuten heraus, wo Ihr Unternehmen monatlich 100+ Arbeitsstunden durch manuelle Prozesse verliert — und wie KI das stoppt.',
+              'Finden Sie in 3 Minuten heraus, wo Ihr Unternehmen monatlich 100+ Arbeitsstunden durch manuelle Prozesse verliert, und wie KI das stoppt.',
             canonical: '/de/hatekonysagi-audit',
           }
         : {

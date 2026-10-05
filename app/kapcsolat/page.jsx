@@ -11,13 +11,13 @@ export async function generateMetadata() {
     language === "en"
       ? {
           title: "Contact",
-          description: "Get in touch with Pohánka és Társa Kft. — business AI systems, automation and custom software development.",
+          description: "Get in touch with Pohánka és Társa Kft. about business AI systems, automation and custom software development.",
           canonical: "/en/kapcsolat",
         }
       : language === "de"
         ? {
             title: "Kontakt",
-            description: "Nehmen Sie Kontakt mit Pohánka és Társa Kft. auf — KI-Systeme, Automatisierung und individuelle Softwareentwicklung.",
+            description: "Nehmen Sie Kontakt mit Pohánka és Társa Kft. auf: KI-Systeme, Automatisierung und individuelle Softwareentwicklung.",
             canonical: "/de/kapcsolat",
           }
         : {

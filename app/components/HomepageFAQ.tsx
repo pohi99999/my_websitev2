@@ -35,7 +35,7 @@ const faqData = {
     en: [
         {
             q: 'What is the difference between an AI system and a chatbot?',
-            a: 'An AI system is not a standalone chat window — it is a solution built into your business operations to automate workflows, connect systems and support decision-making.',
+            a: 'An AI system is not a standalone chat window; it is a solution built into your business operations to automate workflows, connect systems and support decision-making.',
         },
         {
             q: 'How quickly will I see results?',

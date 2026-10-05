@@ -122,7 +122,7 @@ export default function AIFolyamatok ()
     {
       icon: Brain,
       title: 'AI rendszerek tervezése és kiépítése',
-      desc: 'Egyedi AI rendszerek, automatizálások és intelligens döntéstámogatás vállalkozások számára — az üzleti célokhoz igazítva.',
+      desc: 'Egyedi AI rendszerek, automatizálások és intelligens döntéstámogatás vállalkozások számára, az üzleti célokhoz igazítva.',
       bullets: [
         'Folyamatautomatizálás és workflow optimalizálás',
         'AI komponensek és üzleti folyamatok összekapcsolása',

@@ -24,7 +24,7 @@ export default function BemutatkozoVideo() {
               <div className="h-px w-16 bg-[#00e5ff]/50" aria-hidden="true" />
             </div>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-              Ismerje meg a Pohánka és Társa csapatát és megközelítésünket — hogyan tervezzük
+              Ismerje meg a Pohánka és Társa csapatát és megközelítésünket: hogyan tervezzük
               és valósítjuk meg az AI rendszereket vállalkozásoknak.
             </p>
           </div>

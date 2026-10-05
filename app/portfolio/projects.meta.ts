@@ -34,14 +34,14 @@ export const PORTFOLIO_PROJECT_META: Record<string, PortfolioProjectMeta> = {
     title: 'Web Robotpilóta',
     emoji: '🤖',
     industry: 'Automatizálás',
-    description: 'AI-vezérelt böngésző automatizáció — adatgyűjtés, form kitöltés, monitoring, emberi felügyelet nélkül.'
+    description: 'AI-vezérelt böngésző-automatizálás: adatgyűjtés, űrlapkitöltés, monitoring, ütemezett futtatással.'
   },
   'palyazat-radar': {
     id: 'palyazat-radar',
     title: 'Pályázat Radar',
     emoji: '📋',
     industry: 'KKV Szolgáltatás',
-    description: 'Automatikus pályázat- és jogszabályfigyelés KKV-knak — heti riport, TEÁOR szűrés, eligibility check.'
+    description: 'Automatikus pályázat- és jogszabályfigyelés KKV-knak: heti riport, TEÁOR szűrés, eligibility check.'
   },
   'tartalom-gyartas': {
     id: 'tartalom-gyartas',

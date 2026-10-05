@@ -95,7 +95,7 @@ export default function LeadListaClient() {
         <div className="max-w-4xl mx-auto relative z-10 text-center">
 
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-sm font-medium mb-8">
-            <Zap className="w-4 h-4" /> AI-alapú lead intelligencia — ingyenes minta
+            <Zap className="w-4 h-4" /> AI-alapú lead intelligencia: ingyenes minta
           </div>
 
           <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
@@ -109,7 +109,7 @@ export default function LeadListaClient() {
           <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-4">
             AI rendszerünk végigvizsgálta mind az 50 rendelőt. Minden céghez megkapja:
             weboldal állapot, HTTPS, Google értékelések száma és egy{' '}
-            <span className="text-white font-semibold">digitális fájdalompontszám</span> —
+            <span className="text-white font-semibold">digitális fájdalompontszám</span>:
             minél magasabb, annál valószínűbb, hogy azonnal igénybe veszi a szolgáltatását.
           </p>
           <p className="text-slate-400 text-sm">
@@ -202,9 +202,9 @@ export default function LeadListaClient() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-slate-300">
               {[
-                { step: '1', title: 'Google Places API', desc: 'AI rendszerünk automatikusan lekérdezte a budapesti fogászati rendelőket — cím, telefonszám, értékelések.' },
-                { step: '2', title: 'Digitális állapotfelmérés', desc: 'Minden rendelőnél ellenőriztük: van-e weboldal, fut-e HTTPS, hány Google értékelése van — mind automatikusan.' },
-                { step: '3', title: 'Fájdalompontszám', desc: 'Saját algoritmusunk 0–100 pontot ad minden cégnek. Minél magasabb, annál több digitális problémája van — annál jobb ügyféljelölt.' },
+                { step: '1', title: 'Google Places API', desc: 'AI rendszerünk automatikusan lekérdezte a budapesti fogászati rendelőket: cím, telefonszám, értékelések.' },
+                { step: '2', title: 'Digitális állapotfelmérés', desc: 'Minden rendelőnél ellenőriztük: van-e weboldal, fut-e HTTPS, hány Google értékelése van, mind automatikusan.' },
+                { step: '3', title: 'Fájdalompontszám', desc: 'Saját algoritmusunk 0–100 pontot ad minden cégnek. Minél magasabb, annál több digitális problémája van, annál jobb ügyféljelölt.' },
               ].map(s => (
                 <div key={s.step} className="flex gap-3">
                   <div className="shrink-0 w-7 h-7 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 font-black text-sm">{s.step}</div>
@@ -244,9 +244,9 @@ export default function LeadListaClient() {
           <p className="text-center text-slate-500 text-sm mb-8">Ez a lista egy nagyobb rendszer mintája</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
             {[
-              { icon: TrendingUp, color: 'text-blue-400',   title: 'Heti frissítés',      desc: 'Kozmetikusok, ügyvédek, ingatlanosok, könyvelők — bármely iparágra futtatható.' },
-              { icon: Zap,        color: 'text-purple-400', title: '100-200 lead / hét',   desc: 'Minden lead előminősített fájdalompontszámmal — nincs kézzel szűrés.' },
-              { icon: Star,       color: 'text-yellow-400', title: 'Azonnal hasznosítható',desc: 'Nem nyers adatbázis — hanem konkrét potenciális ügyfelek, rangsorolva.' },
+              { icon: TrendingUp, color: 'text-blue-400',   title: 'Heti frissítés',      desc: 'Kozmetikusok, ügyvédek, ingatlanosok, könyvelők: bármely iparágra futtatható.' },
+              { icon: Zap,        color: 'text-purple-400', title: '100-200 lead / hét',   desc: 'Minden lead előminősített fájdalompontszámmal, nincs kézzel szűrés.' },
+              { icon: Star,       color: 'text-yellow-400', title: 'Azonnal hasznosítható',desc: 'Nem nyers adatbázis, hanem konkrét potenciális ügyfelek, rangsorolva.' },
             ].map(item => {
               const I = item.icon;
               return (

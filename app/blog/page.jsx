@@ -73,14 +73,14 @@ export default async function BlogPage() {
       ? {
           title: 'Blog & Knowledge Hub',
           subtitle1: 'Thoughts on the future, technology and the human role in the AI era.',
-          subtitle2: 'Not just news — philosophy and practice.',
+          subtitle2: 'Not just news: philosophy and practice.',
           readMore: 'Read more',
         }
       : language === 'de'
       ? {
           title: 'Blog & Wissenszentrum',
           subtitle1: 'Gedanken über Zukunft, Technologie und die Rolle des Menschen im KI-Zeitalter.',
-          subtitle2: 'Nicht nur News — Philosophie und Praxis.',
+          subtitle2: 'Nicht nur News: Philosophie und Praxis.',
           readMore: 'Weiterlesen',
         }
       : {
