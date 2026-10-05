@@ -77,14 +77,15 @@ export default async function PalyazatRadarPage() {
               { title: 'Sector-Specific', desc: 'Customised for your industry: hospitality, IT, manufacturing, retail, healthcare, construction.' },
             ],
             sampleTitle: 'This is what your weekly report looks like',
+            sampleNote: 'Sample, illustrative data',
             sampleHeader: 'GRANT RADAR — Weekly Digest (2026 W10)',
             sampleNewGrants: 'NEW GRANTS (3):',
-            sampleGrant1Title: '[GINOP-PLUSZ-1.1.1-24] SME Digitalisation',
+            sampleGrant1Title: '[Sample] SME digitalisation grant',
             sampleGrant1Detail: 'Up to HUF 10M | ⏰ Deadline: 15 Apr 2026 | 🎯 Your relevance: 85%',
-            sampleGrant2Title: '[VEKOP-1.2.1] Business Development Grant',
+            sampleGrant2Title: '[Sample] Business development grant',
             sampleGrant2Detail: 'Up to HUF 50M | ⏰ Deadline: 30 May 2026 | 🎯 Your relevance: 70%',
             sampleReg: 'REGULATION CHANGE (1):',
-            sampleRegTitle: '[Govt. Decree 364/2026] Online cash register amendment',
+            sampleRegTitle: '[Sample] Government decree: online cash registers',
             sampleRegDetail: '💥 SME impact: MEDIUM — relevant if you operate in hospitality',
             pricingTitle: 'Pricing',
             pricingNote: 'First 2 weeks FREE — no card required',
@@ -115,14 +116,15 @@ export default async function PalyazatRadarPage() {
               { title: 'Branchenspezifisch', desc: 'Angepasst auf Ihre Branche: Gastronomie, IT, Fertigung, Handel, Gesundheit, Bau.' },
             ],
             sampleTitle: 'So sieht Ihr wöchentlicher Bericht aus',
+            sampleNote: 'Beispiel mit fiktiven Daten',
             sampleHeader: 'FÖRDER-RADAR — Wöchentlicher Bericht (2026 W10)',
             sampleNewGrants: 'NEUE FÖRDERUNGEN (3):',
-            sampleGrant1Title: '[GINOP-PLUSZ-1.1.1-24] KMU-Digitalisierung',
+            sampleGrant1Title: '[Beispiel] KMU-Digitalisierungsförderung',
             sampleGrant1Detail: 'Bis HUF 10 Mio. | ⏰ Frist: 15. Apr. 2026 | 🎯 Ihre Relevanz: 85%',
-            sampleGrant2Title: '[VEKOP-1.2.1] Unternehmensentwicklungsförderung',
+            sampleGrant2Title: '[Beispiel] Unternehmensentwicklungsförderung',
             sampleGrant2Detail: 'Bis HUF 50 Mio. | ⏰ Frist: 30. Mai 2026 | 🎯 Ihre Relevanz: 70%',
             sampleReg: 'REGELÄNDERUNG (1):',
-            sampleRegTitle: '[Regierungserlass 364/2026] Änderung Online-Kassensystem',
+            sampleRegTitle: '[Beispiel] Regierungserlass: Online-Kassen',
             sampleRegDetail: '💥 KMU-Auswirkung: MITTEL — betrifft Gastronomie-Betriebe',
             pricingTitle: 'Preise',
             pricingNote: 'Erste 2 Wochen KOSTENLOS — keine Kreditkarte erforderlich',
@@ -186,7 +188,7 @@ export default async function PalyazatRadarPage() {
         {/* Sample report */}
         <section className="px-6 py-16">
           <div className="max-w-3xl mx-auto">
-            <GsapFadeIn><h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">{ui.sampleTitle}</h2></GsapFadeIn>
+            <GsapFadeIn><h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">{ui.sampleTitle}</h2><p className="-mt-6 mb-6 text-sm text-gray-400">{ui.sampleNote}</p></GsapFadeIn>
             <GsapFadeIn delay={0.15}>
               <SpotlightCard className="p-8">
                 <div className="space-y-6 text-sm">
@@ -281,7 +283,7 @@ export default async function PalyazatRadarPage() {
 
       <section className="px-6 py-16">
         <div className="max-w-3xl mx-auto">
-          <GsapFadeIn><h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Ilyen riportot kap hetente</h2></GsapFadeIn>
+          <GsapFadeIn><h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Ilyen riportot kap hetente</h2><p className="-mt-6 mb-6 text-sm text-gray-400">Minta, kitalált adatokkal</p></GsapFadeIn>
           <GsapFadeIn delay={0.15}>
             <SpotlightCard className="p-8">
               <div className="space-y-6 text-sm">
@@ -289,13 +291,13 @@ export default async function PalyazatRadarPage() {
                 <div>
                   <div className="text-white font-semibold mb-3">📋 ÚJ PÁLYÁZATOK (3 db):</div>
                   <div className="space-y-3">
-                    <div className="p-3 bg-emerald-900/20 border border-emerald-500/20 rounded-lg"><div className="text-emerald-300 font-medium">[GINOP-PLUSZ-1.1.1-24] KKV digitalizáció</div><div className="text-gray-400 mt-1">Keretösszeg: max 10M Ft | ⏰ Határidő: 2026-04-15 | 🎯 Relevanciád: 85%</div></div>
-                    <div className="p-3 bg-blue-900/20 border border-blue-500/20 rounded-lg"><div className="text-blue-300 font-medium">[VEKOP-1.2.1] Vállalkozásfejlesztési támogatás</div><div className="text-gray-400 mt-1">Keretösszeg: max 50M Ft | ⏰ Határidő: 2026-05-30 | 🎯 Relevanciád: 70%</div></div>
+                    <div className="p-3 bg-emerald-900/20 border border-emerald-500/20 rounded-lg"><div className="text-emerald-300 font-medium">[Minta] KKV digitalizációs pályázat</div><div className="text-gray-400 mt-1">Keretösszeg: max 10M Ft | ⏰ Határidő: 2026-04-15 | 🎯 Relevanciád: 85%</div></div>
+                    <div className="p-3 bg-blue-900/20 border border-blue-500/20 rounded-lg"><div className="text-blue-300 font-medium">[Minta] Vállalkozásfejlesztési támogatás</div><div className="text-gray-400 mt-1">Keretösszeg: max 50M Ft | ⏰ Határidő: 2026-05-30 | 🎯 Relevanciád: 70%</div></div>
                   </div>
                 </div>
                 <div>
                   <div className="text-white font-semibold mb-3">⚖️ JOGSZABÁLY VÁLTOZÁS (1 db):</div>
-                  <div className="p-3 bg-red-900/20 border border-red-500/20 rounded-lg"><div className="text-red-300 font-medium">[364/2026. Korm. rendelet] Online pénztárgép módosítás</div><div className="text-gray-400 mt-1">💥 KKV hatás: KÖZEPES — érinti, ha vendéglátásban dolgozik</div></div>
+                  <div className="p-3 bg-red-900/20 border border-red-500/20 rounded-lg"><div className="text-red-300 font-medium">[Minta] Kormányrendelet: online pénztárgép</div><div className="text-gray-400 mt-1">💥 KKV hatás: KÖZEPES — érinti, ha vendéglátásban dolgozik</div></div>
                 </div>
               </div>
             </SpotlightCard>

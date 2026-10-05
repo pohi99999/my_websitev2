@@ -45,8 +45,8 @@ const contentTypes = [
 ];
 
 const samplePosts = [
-  { industry: '🦷 Fogorvos', posts: ['"Tudtad, hogy a fogínygyulladás 2x növeli a szívbetegség kockázatát? 🫀 Rendszeres szájhigiéniával megelőzheted. Foglalj időpontot: [link] #fogászat #megelőzés"', '"Fehérebb mosolyt szeretnél? 🔆 Professzionális fogfehérítésünk 1 alkalom alatt 3-8 árnyalatot világosít. Akció: -20% márciusban! 📞"'] },
-  { industry: '🏋️ Fitness', posts: ['"5 reggeli rutin ami 10x több energiát ad az edzéshez ⚡ Olvasd el a blogon: [link] #fitness #energy"', '"Új csoportos órarend márciustól! 🔥 HIIT, Yoga, CrossFit — válaszd ki a kedvencedet. Első alkalom INGYEN! 💪"'] },
+  { industry: '🦷 Fogorvos', posts: ['"Őszi szűrési napok 🦷 Foglalj időpontot online: [link] #fogászat #szűrés"', '"Fehérebb mosolyt szeretnél? 🔆 Fogfehérítés márciusban 20% kedvezménnyel. Hívj minket! 📞"'] },
+  { industry: '🏋️ Fitness', posts: ['"5 reggeli rutin edzés előtt ⚡ Olvasd el a blogon: [link] #fitness"', '"Új csoportos órarend márciustól! 🔥 HIIT, Yoga, CrossFit — válaszd ki a kedvencedet. Első alkalom INGYEN! 💪"'] },
   { industry: '🍕 Étterem', posts: ['"Heti menü előrendelés 📱 Rendeld meg péntek estig a jövő heti ebéded — házhoz visszük! Menü: [link] #ebédmenü"', '"Új szezonális kínálat! 🌿 Tavaszi saláták friss, helyi alapanyagokból. Kóstold meg a Farm-to-Table élményt! 🥗"'] }
 ];
 
@@ -77,8 +77,8 @@ export default async function TartalomGyartasPage() {
             sampleTitle: 'Sample posts',
             sampleNote: 'This is the kind of content we generate — ready to post',
             samples: [
-              { industry: '🦷 Dentist', posts: ['"Did you know gum disease doubles your risk of heart disease? 🫀 Regular oral hygiene can prevent it. Book an appointment: [link] #dentist #prevention"', '"Want a whiter smile? 🔆 Our professional whitening treatment brightens 3–8 shades in a single session. March special: 20% off! 📞"'] },
-              { industry: '🏋️ Fitness', posts: ['"5 morning habits that give you 10× more energy for your workout ⚡ Read on the blog: [link] #fitness #energy"', '"New group class schedule from March! 🔥 HIIT, Yoga, CrossFit — pick your favourite. First session FREE! 💪"'] },
+              { industry: '🦷 Dentist', posts: ['"Autumn check-up days 🦷 Book an appointment online: [link] #dentist #checkup"', '"Want a whiter smile? 🔆 Teeth whitening 20% off in March. Call us! 📞"'] },
+              { industry: '🏋️ Fitness', posts: ['"5 morning habits before your workout ⚡ Read on the blog: [link] #fitness"', '"New group class schedule from March! 🔥 HIIT, Yoga, CrossFit — pick your favourite. First session FREE! 💪"'] },
               { industry: '🍕 Restaurant', posts: ['"Pre-order your weekly lunch 📱 Order by Friday for next week — we deliver! Menu: [link] #lunch"', '"New seasonal menu! 🌿 Spring salads with fresh local produce. Taste the Farm-to-Table experience! 🥗"'] },
             ],
             contentTypesTitle: 'Types of content we create',
@@ -113,8 +113,8 @@ export default async function TartalomGyartasPage() {
             sampleTitle: 'Muster-Posts',
             sampleNote: 'So sieht der Content aus, den wir erstellen — sofort postbar',
             samples: [
-              { industry: '🦷 Zahnarzt', posts: ['"Wussten Sie, dass Zahnfleischerkrankungen das Herzinfarktrisiko verdoppeln können? 🫀 Regelmäßige Mundhygiene beugt vor. Termin buchen: [link] #Zahnarzt #Prävention"', '"Strahlend weiße Zähne? 🔆 Unser professionelles Bleaching hellt 3–8 Nuancen auf — in einer Sitzung. Märzaktion: 20% Rabatt! 📞"'] },
-              { industry: '🏋️ Fitness', posts: ['"5 Morgengewohnheiten für 10× mehr Energie beim Training ⚡ Jetzt im Blog lesen: [link] #Fitness #Energie"', '"Neuer Gruppenkurs-Plan ab März! 🔥 HIIT, Yoga, CrossFit — such dir deinen Favoriten. Erste Einheit GRATIS! 💪"'] },
+              { industry: '🦷 Zahnarzt', posts: ['"Herbstliche Vorsorgetage 🦷 Jetzt online Termin buchen: [link] #Zahnarzt #Vorsorge"', '"Strahlend weiße Zähne? 🔆 Bleaching im März mit 20% Rabatt. Rufen Sie uns an! 📞"'] },
+              { industry: '🏋️ Fitness', posts: ['"5 Morgengewohnheiten vor dem Training ⚡ Jetzt im Blog lesen: [link] #Fitness"', '"Neuer Gruppenkurs-Plan ab März! 🔥 HIIT, Yoga, CrossFit — such dir deinen Favoriten. Erste Einheit GRATIS! 💪"'] },
               { industry: '🍕 Restaurant', posts: ['"Mittagessen vorbestellen 📱 Bis Freitag für die nächste Woche bestellen — wir liefern! Menü: [link] #Mittagsmenü"', '"Neues Saisonmenü! 🌿 Frühlingsalate mit frischen regionalen Zutaten. Farm-to-Table genießen! 🥗"'] },
             ],
             contentTypesTitle: 'Welche Inhalte erstellen wir?',
