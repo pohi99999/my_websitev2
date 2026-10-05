@@ -751,3 +751,11 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
+/* Room for the fixed mobile bottom bar (MobileCTA, below lg): its measured height, so the last
+   content of every page stays above it. */
+@media (max-width: 1023.98px) {
+  body {
+    padding-bottom: var(--mobile-cta-h, 0px);
+  }
+}

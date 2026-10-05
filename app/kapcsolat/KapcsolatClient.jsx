@@ -134,7 +134,8 @@ export default function KapcsolatClient() {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">{ui.email}</p>
-                  <p className="font-semibold">peterpohankapersonal@gmail.com</p>
+                  {/* break-all: the address has no break point and widened the 360 px layout to 392 px */}
+                  <p className="font-semibold break-all">peterpohankapersonal@gmail.com</p>
                 </div>
               </div>
 

@@ -1007,7 +1007,9 @@ export default async function BlogPostPage({ params }) {
 
   const localizedBody =
     language === 'hu'
-      ? stripIndent(String(post.content ?? '').trim())
+      ? // stripIndent BEFORE trim: trimming first left the first line at indent 0, so nothing was
+        // dedented and the 6-space-indented body rendered as one monospace code block.
+        stripIndent(String(post.content ?? '')).trim()
       : stripIndent(localizedLongformBodies[language]?.[slug] ?? `\n## ${post.title}\n\n${post.excerpt}\n`);
 
   const renderedContent = await renderMarkdownToHtml(localizedBody);
