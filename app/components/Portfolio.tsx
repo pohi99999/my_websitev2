@@ -648,28 +648,6 @@ const Portfolio = () =>
               </div>
             </div>
 
-            {/* Cimbi Szakrajz és Modellező Program */}
-            <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
-              <div className="relative h-48 overflow-hidden">
-                <Image src="/szakrajz.jpg" alt="Cimbi Szakrajz és Modellező Program" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">Szakrajz & Modellező Program</h3>
-                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  Egyedi bútorgyártáshoz fejlesztett AI-alapú tervező eszköz — kézi vázlatból vagy helyszíni fotóból Vision AI
-                  ismeri fel a méreteket, majd valós idejű 3D modellt és nyomtatható szakrajzot generál az árajánlattal együtt.
-                </p>
-                <div className="flex flex-wrap items-center gap-2 mb-5">
-                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Next.js</span>
-                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Vision AI</span>
-                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">3D modellezés</span>
-                </div>
-                <a href="https://szakrajz-s-modellez-program.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://szakrajz-s-modellez-program.vercel.app/', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
-                  { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
-                </a>
-              </div>
-            </div>
-
             {/* P-Search Mobil */}
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
