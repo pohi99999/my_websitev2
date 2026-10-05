@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 import Hero from './components/Hero';
 import KinekSzol from './components/KinekSzol';
 import MitKapsz from './components/MitKapsz';
-import Csomagok from './components/Csomagok';
+import Arcsomag from '../components/Arcsomag';
 import HogyanDolgozunk from './components/HogyanDolgozunk';
 import Referenciak from './components/Referenciak';
 import FAQ from './components/FAQ';
@@ -21,22 +21,22 @@ export async function generateMetadata() {
   const meta =
     language === 'en'
       ? {
-          title: 'Website + AI for SMEs | Pohánka AI',
+          title: 'Website with booking or quote requests',
           description:
-            'Modern, lead-generating websites with built-in AI automation for Hungarian small and medium-sized businesses.',
+            'Websites with online booking or a quote request form for small businesses, ready in two weeks at a fixed price. We start with a free design preview.',
           canonical: '/en/weboldal-ai-kkv',
         }
       : language === 'de'
       ? {
-          title: 'Webseite + KI für KMU | Pohánka AI',
+          title: 'Website mit Buchung oder Anfrage',
           description:
-            'Moderne, Lead-generierende Webseiten mit integrierter KI-Automatisierung für ungarische KMU.',
+            'Websites mit Online-Buchung oder Anfrageformular für kleine Firmen, in zwei Wochen zum Festpreis. Wir starten mit einem kostenlosen Entwurf.',
           canonical: '/de/weboldal-ai-kkv',
         }
       : {
-          title: 'Weboldal + AI-automatizálás magyar KKV-knak | Pohánka AI',
+          title: 'Időpontfoglaló és ajánlatkérő weboldal',
           description:
-            'Modern, lead-generáló weboldalak és beépített AI folyamatautomatizálás magyar KKV-k számára. Időmegtakarítás és több vevő.',
+            'Weboldal időpontfoglalással vagy ajánlatkérő űrlappal kisvállalkozásoknak, két hét alatt, fix áron. Ingyenes, kötelezettségmentes látványtervvel kezdünk.',
           canonical: 'https://www.pohankaestarsa.com/weboldal-ai-kkv',
         };
 
@@ -69,7 +69,8 @@ export default function WeboldalAiKkvPage() {
       <Hero />
       <KinekSzol />
       <MitKapsz />
-      <Csomagok />
+      {/* the home page's price block, the single source (Péter 6312); it renders in Hungarian only */}
+      <Arcsomag contactHref="/kapcsolat" />
       <HogyanDolgozunk />
       <Referenciak />
       <FAQ />

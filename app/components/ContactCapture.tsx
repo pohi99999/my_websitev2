@@ -32,15 +32,15 @@ export default function ContactCapture ()
     if ( language === 'en' )
     {
       return {
-        badge: 'Free design preview',
-        title: 'Request a free, no-obligation design preview',
+        badge: 'Free consultation',
+        title: 'Request a free, no-obligation consultation or design preview',
         subtitle:
-          'Tell us what your business does and we will get back to you with a design preview.',
+          'Tell us what your business does and what you need, and we will get back to you shortly.',
         name: 'Name',
         email: 'Email',
         challenge: 'What do you need?',
         business: 'What does your business do? (optional)',
-        submit: 'Request a free design preview',
+        submit: 'Book a free consultation',
         sending: 'Sending...',
         success: 'Thank you! We saved your request and will get back to you shortly.',
         error:
@@ -58,15 +58,15 @@ export default function ContactCapture ()
     if ( language === 'de' )
     {
       return {
-        badge: 'Kostenloser Entwurf',
-        title: 'Fordern Sie einen kostenlosen, unverbindlichen Entwurf an',
+        badge: 'Kostenlose Beratung',
+        title: 'Fordern Sie eine kostenlose, unverbindliche Beratung oder einen Entwurf an',
         subtitle:
-          'Schreiben Sie uns, womit sich Ihr Unternehmen beschäftigt, und wir melden uns mit einem Entwurf.',
+          'Schreiben Sie uns, womit sich Ihr Unternehmen beschäftigt und was Sie brauchen, wir melden uns in Kürze.',
         name: 'Name',
         email: 'E-Mail',
         challenge: 'Was brauchen Sie?',
         business: 'Womit beschäftigt sich Ihr Unternehmen? (optional)',
-        submit: 'Kostenlosen Entwurf anfordern',
+        submit: 'Kostenlose Beratung anfragen',
         sending: 'Wird gesendet...',
         success: 'Danke! Ihre Anfrage wurde gespeichert und wir melden uns in Kürze.',
         error:
@@ -82,15 +82,15 @@ export default function ContactCapture ()
     }
 
     return {
-      badge: 'Ingyenes látványterv',
-      title: 'Kérjen ingyenes, kötelezettségmentes látványtervet',
+      badge: 'Ingyenes konzultáció',
+      title: 'Kérjen ingyenes, kötelezettségmentes konzultációt vagy látványtervet',
       subtitle:
-        'Írja meg, mivel foglalkozik a vállalkozása, és hamarosan jelentkezünk egy látványtervvel.',
+        'Írja meg, mivel foglalkozik a vállalkozása és mire van szüksége, és hamarosan jelentkezünk.',
       name: 'Név',
       email: 'E-mail',
       challenge: 'Mire van szüksége?',
       business: 'Mivel foglalkozik a vállalkozása? (nem kötelező)',
-      submit: 'Kérek ingyenes látványtervet',
+      submit: 'Kérek ingyenes konzultációt',
       sending: 'Küldés...',
       success: 'Köszönjük! Elmentettük az érdeklődést, hamarosan jelentkezünk.',
       error:
@@ -110,10 +110,10 @@ export default function ContactCapture ()
     'https://wa.me/36304291227?text=' +
     encodeURIComponent(
       language === 'en'
-        ? 'Hello! I would like to request a free design preview for my business.'
+        ? 'Hello! I would like to book a free consultation for my business.'
         : language === 'de'
-          ? 'Guten Tag! Ich möchte einen kostenlosen Entwurf für mein Unternehmen anfragen.'
-          : 'Jó napot! Ingyenes látványtervet szeretnék kérni a vállalkozásomhoz.'
+          ? 'Guten Tag! Ich möchte eine kostenlose Beratung für mein Unternehmen anfragen.'
+          : 'Jó napot! Ingyenes konzultációt szeretnék kérni a vállalkozásomhoz.'
     );
 
   async function handleSubmit ( event: React.FormEvent<HTMLFormElement> )
@@ -125,10 +125,10 @@ export default function ContactCapture ()
     const about = business.trim();
     const message =
       language === 'en'
-        ? `Homepage request for a free design preview\nNeeds: ${ challengeLabel }${ about ? `\nBusiness: ${ about }` : '' }\nPreferred contact: ${ email }`
+        ? `Homepage request for a free consultation or design preview\nNeeds: ${ challengeLabel }${ about ? `\nBusiness: ${ about }` : '' }\nPreferred contact: ${ email }`
         : language === 'de'
-          ? `Homepage-Anfrage für einen kostenlosen Entwurf\nBedarf: ${ challengeLabel }${ about ? `\nUnternehmen: ${ about }` : '' }\nBevorzugter Kontakt: ${ email }`
-          : `Főoldali látványterv-kérés\nIgény: ${ challengeLabel }${ about ? `\nVállalkozás: ${ about }` : '' }\nKapcsolati e-mail: ${ email }`;
+          ? `Homepage-Anfrage für Beratung oder Entwurf\nBedarf: ${ challengeLabel }${ about ? `\nUnternehmen: ${ about }` : '' }\nBevorzugter Kontakt: ${ email }`
+          : `Főoldali konzultáció- vagy látványterv-kérés\nIgény: ${ challengeLabel }${ about ? `\nVállalkozás: ${ about }` : '' }\nKapcsolati e-mail: ${ email }`;
 
     try
     {
@@ -230,7 +230,8 @@ export default function ContactCapture ()
           </div>
         </div>
 
-        <div className="surface-panel-premium p-8 md:p-10">
+        {/* the hero CTA lands here: on phones the intro panel above is ~740 px tall and hid the form */}
+        <div id="contact-form" className="surface-panel-premium scroll-mt-24 p-8 md:p-10">
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="grid gap-5 md:grid-cols-2">
               <div>

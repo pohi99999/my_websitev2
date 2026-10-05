@@ -10,25 +10,25 @@ const Hero = () =>
 {
   const { t, language } = useLanguage();
   // Only things we can show or keep: the Google rating (googleReviews.ts), the two-week
-  // delivery (Arcsomag) and the free design preview (owner decision 2026-10-05).
+  // website delivery (Arcsomag) and the free first consultation (owner decision 2026-10-05).
   const rating = GOOGLE_RATING.average.toFixed( 1 );
   const heroStats =
     language === 'en'
       ? [
         { value: `${ rating } ★`, label: `${ GOOGLE_RATING.count } Google reviews`, href: GOOGLE_PROFILE_URL },
-        { value: '2 weeks', label: 'delivery' },
-        { value: 'Free', label: 'design preview' },
+        { value: '2 weeks', label: 'website delivery' },
+        { value: 'Free', label: 'first consultation' },
       ]
       : language === 'de'
         ? [
           { value: `${ rating.replace( '.', ',' ) } ★`, label: `${ GOOGLE_RATING.count } Google-Bewertungen`, href: GOOGLE_PROFILE_URL },
-          { value: '2 Wochen', label: 'Umsetzung' },
-          { value: 'Kostenlos', label: 'Entwurf' },
+          { value: '2 Wochen', label: 'Umsetzung einer Website' },
+          { value: 'Kostenlos', label: 'Erstberatung' },
         ]
         : [
           { value: `${ rating.replace( '.', ',' ) } ★`, label: `${ GOOGLE_RATING.count } Google-vélemény`, href: GOOGLE_PROFILE_URL },
-          { value: '2 hét', label: 'átfutás' },
-          { value: 'Ingyenes', label: 'látványterv' },
+          { value: '2 hét', label: 'weboldal átfutása' },
+          { value: 'Ingyenes', label: 'első konzultáció' },
         ];
   const portfolioHref = language === 'hu' ? '/portfolio' : `/${ language }/portfolio`;
 
@@ -59,13 +59,13 @@ const Hero = () =>
         {/* Context badge */}
         <div className="hud-badge mb-6 text-xs font-mono" data-testid="hero-context-badge">
           <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] animate-pulse" aria-hidden="true" />
-          {language === 'en' ? 'Websites for small businesses, from Zalaegerszeg' : language === 'de' ? 'Websites für kleine Unternehmen, aus Zalaegerszeg' : 'Weboldal kisvállalkozásoknak, Zalaegerszegről'}
+          Pohánka és Társa, Zalaegerszeg
         </div>
 
         {/* 360 px alatt 30 px, hogy a leghosszabb szó (pl. "ajánlatot", "Kostenlosen") se lógjon ki. */}
         <h1 className="heading-display text-[1.875rem] min-[360px]:text-4xl md:text-6xl mb-6 leading-tight font-syne">
           <span className="text-white font-light block mb-2 tracking-tight">
-            {language === 'en' ? 'A website where customers book or request a quote.' : language === 'de' ? 'Eine Website, auf der Kunden buchen oder ein Angebot anfragen.' : 'Weboldal, amelyen a vevő foglal vagy ajánlatot kér.'}
+            {language === 'en' ? 'Websites, automation and an AI team' : language === 'de' ? 'Websites, Automatisierung und ein KI-Team' : 'Weboldal, automatizálás és AI-csapat'}
           </span>{' '}
           <span
             className="block font-bold"
@@ -74,7 +74,7 @@ const Hero = () =>
               textShadow: '0 0 30px rgba(0, 229, 255, 0.5), 0 0 60px rgba(0, 229, 255, 0.2)',
             }}
           >
-            {language === 'en' ? 'Ready in two weeks, at a fixed price.' : language === 'de' ? 'In zwei Wochen fertig, zum Festpreis.' : 'Két hét alatt, fix áron.'}
+            {language === 'en' ? 'for small businesses.' : language === 'de' ? 'für kleine Unternehmen.' : 'kisvállalkozásoknak.'}
           </span>
         </h1>
 
@@ -84,13 +84,13 @@ const Hero = () =>
         </div>
 
         <p className="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
-          {language === 'en' ? 'Online booking or a quote request form, price list and gallery, on phone and laptop. You edit the texts, prices and photos yourself. We start with a free, no-obligation design preview.' : language === 'de' ? 'Online-Terminbuchung oder Anfrageformular, Preisliste und Galerie, auf Handy und Laptop. Texte, Preise und Bilder bearbeiten Sie selbst. Wir beginnen mit einem kostenlosen, unverbindlichen Entwurf.' : 'Időpontfoglalás vagy ajánlatkérő űrlap, árlista és galéria, telefonon és laptopon. A szövegeket, az árakat és a képeket Ön szerkeszti. Ingyenes, kötelezettségmentes látványtervvel kezdünk.'}
+          {language === 'en' ? 'We build websites where customers book or request a quote, and we take over part of your manual admin work. We start with a free, no-obligation consultation or design preview.' : language === 'de' ? 'Wir bauen Websites, auf denen Kunden buchen oder ein Angebot anfragen, und übernehmen einen Teil Ihrer manuellen Verwaltung. Wir beginnen mit einer kostenlosen, unverbindlichen Beratung oder einem Entwurf.' : 'Olyan weboldalt készítünk, amelyen a vevő foglal vagy ajánlatot kér, és átvesszük a kézi adminisztráció egy részét. Ingyenes, kötelezettségmentes konzultációval vagy látványtervvel kezdünk.'}
         </p>
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-6">
           {/* Primary CTA — HUD octagon */}
           <a
-            href="#contact"
+            href="#contact-form"
             className="group inline-flex items-center gap-3 rounded-full border border-[#00e5ff]/60 bg-[#00e5ff]/10 px-8 py-4 text-sm font-bold uppercase tracking-[0.15em] text-[#00e5ff] transition-all duration-300 hover:scale-105 hover:border-[#00e5ff] hover:bg-[#00e5ff]/15 hover:shadow-[0_0_35px_rgba(0,229,255,0.28)] animate-[pulse_3.4s_ease-in-out_infinite]"
             style={{
               clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))',
@@ -99,7 +99,7 @@ const Hero = () =>
               trackCtaClick( {
                 location: CTA_LOCATIONS.HeroPrimary,
                 language,
-                target: '#contact',
+                target: '#contact-form',
                 page: PAGE_NAMES.Home,
               } )
             }

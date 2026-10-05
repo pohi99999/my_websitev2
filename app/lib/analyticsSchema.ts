@@ -9,7 +9,7 @@ export type PageName = (typeof PAGE_NAMES)[keyof typeof PAGE_NAMES];
 export const CTA_LOCATIONS = {
   HeroPrimary: "hero_primary",
   HeroSecondaryScroll: "hero_secondary_scroll",
-  HomeAiTeamBand: "home_ai_team_band",
+  HomeServiceCards: "home_service_cards",
   AiWorkflowServices: "ai_workflow_services",
   AiWorkflowContact: "ai_workflow_contact",
   AiWorkflowServicesHu: "ai_workflow_services_hu",

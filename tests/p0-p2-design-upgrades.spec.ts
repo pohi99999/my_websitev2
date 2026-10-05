@@ -67,7 +67,7 @@ test.describe('P0–P2 Design Upgrades Verification', () => {
   // ═══════════════════════════════════════════════════════════
 
   // StatsBar left the home page on 2026-10-05 (unmeasured numbers); the hero now shows the Google
-  // rating, the two-week delivery and the free design preview, and the AI-team band follows it.
+  // rating, the two-week delivery and the free design preview, and the service cards follows it.
   test('P0 — Hero stats show the Google rating, not the old 95+ / 24/7 numbers', async ({ page }) => {
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
@@ -76,12 +76,12 @@ test.describe('P0–P2 Design Upgrades Verification', () => {
     await expect(page.getByText('95+', { exact: true })).toHaveCount(0);
   });
 
-  test('P0 — AI-team band appears right below the Hero', async ({ page }) => {
+  test('P0 — service cards appears right below the Hero', async ({ page }) => {
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
     const positions = await page.evaluate(() => ({
       heroBottom: document.querySelector('#home')?.getBoundingClientRect().bottom ?? -1,
-      bandTop: document.querySelector('#ai-csapat')?.getBoundingClientRect().top ?? -1,
+      bandTop: document.querySelector('#szolgaltatas-kartyak')?.getBoundingClientRect().top ?? -1,
     }));
     expect(positions.bandTop).toBeGreaterThan(positions.heroBottom - 50);
   });
@@ -297,13 +297,13 @@ test.describe('P0–P2 Design Upgrades Verification', () => {
     console.log(`✅ Page loaded in ${elapsed}ms`);
   });
 
-  test('Homepage has correct section order: Hero → AI-team band → FAQ', async ({ page }) => {
+  test('Homepage has correct section order: Hero → service cards → FAQ', async ({ page }) => {
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
     const positions = await page.evaluate(() => {
       const getTop = (el: Element | null | undefined) => el?.getBoundingClientRect().top ?? -9999;
       const faq = Array.from(document.querySelectorAll('section')).find(s => /gyakran ismételt/i.test(s.textContent ?? ''));
-      return { hero: getTop(document.querySelector('#home')), band: getTop(document.querySelector('#ai-csapat')), faq: getTop(faq) };
+      return { hero: getTop(document.querySelector('#home')), band: getTop(document.querySelector('#szolgaltatas-kartyak')), faq: getTop(faq) };
     });
     expect(positions.hero).toBeLessThan(positions.band);
     expect(positions.band).toBeLessThan(positions.faq);

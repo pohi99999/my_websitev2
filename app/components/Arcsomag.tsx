@@ -21,7 +21,9 @@ const alap = [
   'A tulajdonos maga szerkeszti a szövegeket, árakat, galériát',
 ];
 
-export default function Arcsomag ()
+// Also shown on /weboldal-ai-kkv (Péter 6312: one price block, one source); there is no #contact
+// section on that page, so its button goes to the contact page.
+export default function Arcsomag ( { contactHref = '#contact' }: { contactHref?: string } = {} )
 {
   const { language } = useLanguage();
   if ( language === 'en' || language === 'de' ) return null;
@@ -30,7 +32,7 @@ export default function Arcsomag ()
     <section
       id="arcsomag"
       aria-labelledby="arcsomag-heading"
-      className="py-24 relative overflow-hidden"
+      className="scroll-mt-24 py-24 relative overflow-hidden"
       style={{ background: 'rgba(0,0,0,0.82)' }}
     >
       <div className="container mx-auto px-4 relative z-10">
@@ -93,7 +95,7 @@ export default function Arcsomag ()
 
         <div className="mt-10 text-center">
           <a
-            href="#contact"
+            href={ contactHref }
             className="inline-flex items-center rounded-full border border-[#00e5ff]/60 bg-[#00e5ff]/10 px-8 py-4 text-sm font-bold uppercase tracking-[0.15em] text-[#00e5ff] transition-colors duration-300 hover:border-[#00e5ff] hover:bg-[#00e5ff]/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00e5ff]"
           >
             Kapcsolat

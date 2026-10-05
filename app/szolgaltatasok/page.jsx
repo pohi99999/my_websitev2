@@ -33,7 +33,7 @@ export async function generateMetadata() {
         : {
             title: "Automatizált Rendszerek Vállalkozásoknak – Szolgáltatások",
             description:
-              "Vállalkozásokra szabott automatizáció, intelligens digitális munkatársak és 0 manuális adatrögzítést biztosító rendszerek mérhető ROI-val.",
+              "Vállalkozásokra szabott automatizálás, digitális munkatársak és rendszerek, amelyek csökkentik a kézi adatrögzítést.",
             canonical: "/szolgaltatasok",
           };
 
@@ -70,12 +70,12 @@ const categories = [
     id: "ai-rendszerek",
     icon: Brain,
     title: "Üzleti Automatizáció és Céges Memóriaközpont",
-    subtitle: "Egyedi rendszerek, amelyek kiváltják a monoton adminisztrációt és biztosítják a 0 manuális adatrögzítést.",
+    subtitle: "Egyedi rendszerek, amelyek átveszik a monoton adminisztráció egy részét, és csökkentik a kézi adatrögzítést.",
     services: [
       {
         name: "Folyamatautomatizálás (Automation-as-a-Service)",
-        desc: "Az ismétlődő folyamatokat és papírmunkát kiváltó megoldásokat építünk, amelyek heti 20+ órát takarítanak meg a csapatodnak.",
-        bullets: ["0 manuális adatrögzítés", "Workflow gyorsítás", "Adminisztrációs teher eltüntetése"],
+        desc: "Az ismétlődő folyamatokat és a papírmunkát kiváltó megoldásokat építünk, hogy a csapata a fontosabb munkára jusson.",
+        bullets: ["Kevesebb kézi adatrögzítés", "Gyorsabb ügymenet", "Kevesebb adminisztráció"],
       },
       {
         name: "Közvetlen kapcsolat az applikációid között",
@@ -93,9 +93,9 @@ const categories = [
         bullets: ["CRM és számlázó szinkronizáció", "Email és ügyfélszolgálat robot", "Ügyfélszerző csapdák kezelése"],
       },
       {
-        name: "Pilot projekt, garantált megtérüléssel",
-        desc: "Kis kockázatú pilottal indulunk, mérjük a megspórolt időt (ROI), majd fokozatosan skálázzuk a működő megoldást.",
-        bullets: ["90 napos megtérülési terv", "Kockázatmentes indulás", "Mérhető skálázás"],
+        name: "Pilot projekt, közösen mért eredménnyel",
+        desc: "Kis pilottal indulunk, közösen mérjük, mennyi időt takarít meg, és csak ezután bővítjük a működő megoldást.",
+        bullets: ["Előre rögzített mérőszám", "Kis kezdő lépés", "Bővítés a mérés után"],
       },
     ],
   },
@@ -103,7 +103,7 @@ const categories = [
     id: "nova",
     icon: Bot,
     title: "Nova — Intelligens Digitális Munkatárs",
-    subtitle: "Egy 24/7 dolgozó virtuális asszisztens, aki megismeri vállalkozásodat és leveszi a terhet a válladról.",
+    subtitle: "Virtuális asszisztens, amely megismeri a vállalkozása szabályait, és átvesz egy részt a napi teendőkből.",
     services: [
       {
         name: "Saját céges adatokból tanul",
@@ -113,10 +113,10 @@ const categories = [
       {
         name: "Hangalapú telefonos ügyfélszolgálat",
         desc: "Valódi telefonhívásokat kezel természetes hangon — időpontfoglalás és ügyfélszolgálati panaszkezelés emberi erőforrás nélkül.",
-        bullets: ["Automatikus telefonos recepció", "Természetes párbeszéd", "0-24 elérhetőség"],
+        bullets: ["Telefonos recepció", "Természetes párbeszéd", "Munkaidőn túl is fogadja a hívást"],
       },
       {
-        name: "24/7 Operatív Virtuális Részleg",
+        name: "Operatív virtuális részleg",
         desc: "Emailek megírása, riportok összefoglalása, feladatok priorizálása és naptárkezelés — mindez összehangoltan, a háttérben.",
         bullets: ["Bejövő emailek automatikus megválaszolása", "Napi teendők összefoglalója", "Naptárszinkronizáció"],
       },
@@ -149,10 +149,10 @@ const categories = [
     id: "psearch",
     icon: Award,
     title: "P-Search — Pályázat & Hitelkereső",
-    subtitle: "24/7 automatikus piacfigyelés a te cégedre szabott pályázatok és hitelek után.",
+    subtitle: "Naponta, automatikusan figyeli a vállalkozására szabott pályázatokat és hiteleket.",
     services: [
       {
-        name: "24/7 Automata pályázatfigyelem",
+        name: "Automatikus pályázatfigyelés",
         desc: "Nem kell hírleveleket bújnod. A rendszerünk napi szinten monitorozza az EU-s és hazai forrásokat, és csak a neked relevánsat küldi el.",
         bullets: ["Napi automatikus keresés a háttérben", "Csak a céged profiljába vágó találatok", "Azonnali értesítés új kiírásról"],
       },
@@ -172,14 +172,14 @@ const categories = [
     id: "lead",
     icon: Target,
     title: "Automata Érdeklődő-Mágnes & Ügyfélszerzés",
-    subtitle: "Nem Te keresed az ügyfeleket — a rendszer hozza őket. Minden nap, automatikusan.",
+    subtitle: "A rendszer naponta összegyűjti az Önnek releváns cégeket, Ön pedig a legjobbakkal kezdi a megkeresést.",
     services: [
       {
         name: "Automata potenciális vevő felkutatás",
         desc:
           "Rendszerünk naponta figyeli a piacot és kiszűri azokat a cégeket, akiknek a legnagyobb szükségük van rád. A jelölteket fájdalompontszámmal látjuk el (pl. rossz a weboldala, drága a könyvelője).",
         bullets: [
-          "Heti 100–200 előminősített, releváns üzleti partner",
+          "Előminősített, releváns üzleti partnerek listája",
           "Automatikus állapotjelentés minden érdeklődőhöz",
           "Priorizálás azonnali üzleti igény alapján",
           "Országos vagy lokális fókusz (pl. csak Debrecen vagy csak könyvelők)",
@@ -204,10 +204,10 @@ const categories = [
     id: "automation",
     icon: Zap,
     title: "Adminisztráció és Üzleti Folyamatok Automatizálása",
-    subtitle: "Szüntesd meg a papírmunkát. 0 manuális adatrögzítés, 100% pontosság.",
+    subtitle: "Kevesebb papírmunka, kevesebb kézi adatrögzítés.",
     services: [
       {
-        name: "Pénzügyi feldolgozás emberi hiba nélkül",
+        name: "Pénzügyi feldolgozás kevesebb kézi lépéssel",
         desc:
           "A rendszer beolvassa, kategorizálja és a számlázódba/könyvelődnek küldi a számlákat. Véget ér az adatok kézi pötyögése és a duplikáció.",
         bullets: [
@@ -242,7 +242,7 @@ const categories = [
         desc:
           "Egy rövid iránymutatás alapján az összehangolt robotcsapat megírja a posztokat, az e-mail sorozatot és a hirdetési szövegeket, majd időzítve közzé is teszi őket.",
         bullets: [
-          "Garantáltan a te célcsoportod nyelvén (B2B vagy B2C)",
+          "A célcsoportja nyelvén (B2B vagy B2C)",
           "Facebook / LinkedIn posztok 1 kattintással",
           "Hírlevél sorozatok és elhagyott kosár kampányok",
           "A/B tesztelés: a rendszer figyeli, melyik szöveg hoz több pénzt",
@@ -255,7 +255,7 @@ const categories = [
     id: "custom",
     icon: Building2,
     title: "Egyedi Rendszerfejlesztés & Integráció",
-    subtitle: "Meglévő szoftvereidet okosítjuk fel a garantált megtérülés érdekében.",
+    subtitle: "A meglévő szoftvereit kötjük össze és egészítjük ki, hogy kevesebb legyen a kézi munka.",
     services: [
       {
         name: "Testreszabott automatizációs megoldás",
@@ -283,8 +283,8 @@ const categories = [
           "Egy gyors, mobilbarát weboldal önmagában kevés. Mi beépítjük azokat az érdeklődő-mágneseket (webhookokat) és automata időpontfoglalókat, amik rögtön a naptáradba teszik a vevőt.",
         bullets: [
           "Weboldal Egészségügyi és Gyorsasági Teszt (Kiváló Google pontszám)",
-          "Beépített digitális munkatárs (Chatbot), ami 0-24 válaszol a vevőknek",
-          "0 manuális adatrögzítés: az űrlapkitöltő rögtön bekerül a számlázódba",
+          "Beépített digitális munkatárs (chatbot), amely munkaidőn túl is válaszol a vevőknek",
+          "Kevesebb kézi adatrögzítés: az űrlap adatai közvetlenül a nyilvántartásba kerülnek",
         ],
         forWho: "Aki a weboldalától azonnali bevételt vár, nem csak egy digitális névjegyet",
       },
@@ -304,16 +304,16 @@ export default async function SzolgaltatasokPage() {
         ? {
             title: 'Our Services',
             subtitle:
-              'We do more than software development — we automate your business workflows with practical, zero-data-entry AI systems.',
-            highlights: ['Guaranteed ROI', '0 Manual Data Entry', 'Transparent Operations'],
+              'We do more than software development: we automate your business workflows with practical AI systems that reduce manual data entry.',
+            highlights: ['Measured together', 'Less manual data entry', 'Transparent operations'],
             cards: [
               {
                 title: 'Automated Lead Generation',
-                desc: 'Client acquisition systems that bring in qualified leads every single day without manual effort.',
+                desc: 'Client acquisition systems that collect relevant prospects every day, so you start your outreach with the best ones.',
               },
               {
                 title: 'Business Process Automation',
-                desc: 'Invoice handling, support mailbox routing, and logistics monitoring running 24/7 in the background.',
+                desc: 'Invoice handling, support mailbox routing and logistics monitoring, running automatically in the background.',
               },
               {
                 title: 'Custom Integrations',
@@ -322,22 +322,22 @@ export default async function SzolgaltatasokPage() {
             ],
             whyTitle: 'Why choose us?',
             whyDesc:
-              'We deliver clear business outcomes: hours saved per week, costs reduced, and zero manual data entry. Everything is trackable and transparent.',
+              'We agree on what to measure up front: hours saved, costs, fewer manual steps. Everything is trackable and transparent.',
             cta: 'Free consultation',
           }
         : {
             title: 'Unsere Dienstleistungen',
             subtitle:
-              'Wir entwickeln nicht nur Software — wir automatisieren Ihre Geschäftsprozesse mit praxisnahen Systemen ohne manuelle Dateneingabe.',
-            highlights: ['Garantierter ROI', '0 manuelle Dateneingabe', 'Transparente Abläufe'],
+              'Wir entwickeln nicht nur Software: Wir automatisieren Ihre Geschäftsprozesse mit praxisnahen KI-Systemen, die manuelle Dateneingabe reduzieren.',
+            highlights: ['Gemeinsam gemessen', 'Weniger manuelle Dateneingabe', 'Transparente Abläufe'],
             cards: [
               {
                 title: 'Automatische Lead-Generierung',
-                desc: 'Kundengewinnungssysteme, die jeden Tag qualifizierte Leads ohne manuellen Aufwand liefern.',
+                desc: 'Systeme zur Kundengewinnung, die täglich relevante Interessenten sammeln, damit Sie mit den besten beginnen.',
               },
               {
                 title: 'Automatisierung von Geschäftsprozessen',
-                desc: 'Rechnungsverarbeitung, E-Mail-Routing und Logistik-Monitoring laufen rund um die Uhr im Hintergrund.',
+                desc: 'Rechnungsverarbeitung, E-Mail-Routing und Logistik-Monitoring laufen automatisch im Hintergrund.',
               },
               {
                 title: 'Individuelle Integrationen',
@@ -346,7 +346,7 @@ export default async function SzolgaltatasokPage() {
             ],
             whyTitle: 'Warum wir?',
             whyDesc:
-              'Wir liefern messbare Geschäftsergebnisse: eingesparte Stunden, reduzierte Kosten und null manuelle Dateneingabe.',
+              'Wir legen vorab fest, was gemessen wird: eingesparte Stunden, Kosten, weniger manuelle Schritte. Alles ist nachvollziehbar und transparent.',
             cta: 'Kostenlose Beratung',
           };
 
@@ -419,10 +419,10 @@ export default async function SzolgaltatasokPage() {
           </h1>
           <p className="text-xl text-gray-300 leading-relaxed">
             Mi nem szoftvert árulunk, hanem <span className="text-white font-semibold">időt és megtakarítást.</span>{" "}
-            Olyan rendszereket építünk, amelyek kiváltják az unalmas adminisztrációt, összekötik a szoftvereidet, és biztosítják a 0 manuális adatrögzítést.
+            Olyan rendszereket építünk, amelyek átveszik az unalmas adminisztráció egy részét, összekötik a szoftvereit, és csökkentik a kézi adatrögzítést.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-8">
-            {["Garantált Megtérülés (ROI)", "0 Manuális Adatrögzítés", "Glass Box (Teljes Átláthatóság)"].map((tag) => (
+            {["Közösen mért eredmény", "Kevesebb kézi adatrögzítés", "Átlátható működés"].map((tag) => (
               <span key={tag} className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-gray-200 backdrop-blur-sm">
                 <CheckCircle size={14} className="text-[#00e5ff]" />
                 {tag}
@@ -509,25 +509,24 @@ export default async function SzolgaltatasokPage() {
               {
                 title: "Basic Csomag",
                 desc: "Ideális kezdő lépés az időrabló adminisztráció megszüntetésére.",
-                price: "Megtakarítás: heti 10+ óra",
+                price: "Árajánlat felmérés után",
                 features: ["Alapvető szoftverek (pl. Email, Naptár, Számlázó) összekötése", "1 db Automata Érdeklődő-mágnes", "Havi rendszerkarbantartás"]
               },
               {
                 title: "Pro Csomag",
                 desc: "Azoknak, akik egy komplett virtuális részleget szeretnének építeni.",
-                price: "Megtakarítás: havi 1 teljes bér",
+                price: "Árajánlat felmérés után",
                 features: ["Saját Céges Memóriaközpont (szabályzatokból, PDF-ekből)", "Automata Árajánlat generáló és Follow-up rendszer", "Glass Box vezetői dashboard"],
                 highlight: true
               },
               {
                 title: "Enterprise",
                 desc: "Komplex, egyedi folyamatautomatizálás a legmagasabb biztonsági elvárásokkal.",
-                price: "Garantált 90 napos ROI",
+                price: "Egyedi ajánlat",
                 features: ["Teljes ERP és vállalatirányítási integráció", "Intelligens döntéstámogató robotok a vezetőségnek", "Dedikált technikai projektmenedzser"]
               }
             ].map((pack) => (
               <div key={pack.title} className={`p-6 rounded-2xl border backdrop-blur-md flex flex-col h-full ${pack.highlight ? 'border-[#00e5ff] bg-[#00e5ff]/10 shadow-[0_0_20px_rgba(0,229,255,0.15)] relative' : 'border-white/10 bg-black/30'}`}>
-                {pack.highlight && <div className="absolute top-0 right-6 -translate-y-1/2 bg-[#00e5ff] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Legnépszerűbb</div>}
                 <h3 className="text-2xl font-bold text-white mb-2">{pack.title}</h3>
                 <p className="text-gray-300 text-sm mb-4 min-h-[40px]">{pack.desc}</p>
                 <p className="text-[#00e5ff] font-semibold mb-6 flex items-center gap-2"><DollarSign size={18}/> {pack.price}</p>
@@ -554,10 +553,10 @@ export default async function SzolgaltatasokPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { icon: Clock,     title: "Garantált ROI és Időmegtakarítás", desc: "Minden fejlesztésünket az alapján mérjük, hogy hány munkaórát és mennyi pénzt spórol meg a cégednek." },
-              { icon: Zap,       title: "Nem tanácsadunk. Megcsináljuk.", desc: "Minden amit felsorolunk, élesben fut. Nem PowerPoint, hanem kulcsrakészen működő rendszer." },
-              { icon: Truck,     title: "0 Manuális Adatrögzítés", desc: "A rendszereink közötti kapcsolat megszünteti a dupla adatrögzítést és a felesleges Excel másolgatást." },
-              { icon: Shield,    title: "Átláthatóság — Glass Box", desc: "A robot dolgozik, de a kontroll a tiéd. Minden folyamatot látsz a vizuális Kanban táblákon." },
+              { icon: Clock,     title: "Mért eredmény", desc: "Minden fejlesztés előtt rögzítjük, mit mérünk: hány munkaórát és mennyi költséget takarít meg a cégének." },
+              { icon: Zap,       title: "Nem tanácsadunk. Megcsináljuk.", desc: "A felsorolt megoldásokat a saját működésünkben is használjuk, vagy ügyfélnél már átadtuk. Nem bemutató, hanem működő rendszer." },
+              { icon: Truck,     title: "Kevesebb kézi adatrögzítés", desc: "A rendszerek összekötése megszünteti a dupla adatrögzítést és a felesleges Excel-másolgatást." },
+              { icon: Shield,    title: "Átlátható működés", desc: "A rendszer dolgozik, de a döntés az Öné. Minden folyamatot lát a feladattáblán." },
             ].map((item) => {
               const I = item.icon;
               return (
