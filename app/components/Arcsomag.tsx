@@ -61,7 +61,8 @@ export default function Arcsomag ()
             <p className="mt-4 text-lg text-white leading-snug">
               Online időpontfoglalás + bankkártyás előleg vagy ajándékutalvány
             </p>
-            <p className="mt-3 text-[#00e5ff] font-semibold">Egyedi ajánlat szerint</p>
+            {/* Péter 2026-10-05 (6299): the hero promises a fixed price, so the add-on says the quote fixes it */}
+            <p className="mt-3 text-[#00e5ff] font-semibold">Egyedi ajánlat, az árat előre, fixen rögzítjük az ajánlatban.</p>
             <p className="mt-auto pt-6 text-gray-400 text-sm">
               Referencia:{' '}
               <a
