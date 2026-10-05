@@ -22,7 +22,7 @@ export async function generateMetadata() {
       ? {
           title: 'Websites, AI Automation and Agent Systems | Zalaegerszeg',
           description:
-            'Websites with online booking or quote requests for small businesses, ready in two weeks at a fixed price, plus automation and AI systems. Pohánka és Társa, Zalaegerszeg, Hungary.',
+            'Websites with online booking or quote requests for small businesses, ready in two weeks at a fixed price. Plus automation and AI. Zalaegerszeg, Hungary.',
           canonical: 'https://www.pohankaestarsa.com/en',
           locale: 'en_US',
         }
@@ -30,7 +30,7 @@ export async function generateMetadata() {
       ? {
           title: 'Webseiten, KI-Automatisierung und Agentensysteme | Zalaegerszeg',
           description:
-            'Websites mit Online-Buchung oder Anfrageformular für kleine Unternehmen, in zwei Wochen zum Festpreis, dazu Automatisierung und KI-Systeme. Pohánka és Társa, Zalaegerszeg, Ungarn.',
+            'Websites mit Online-Buchung oder Anfrageformular für kleine Firmen, in zwei Wochen zum Festpreis. Dazu Automatisierung und KI. Zalaegerszeg, Ungarn.',
           canonical: 'https://www.pohankaestarsa.com/de',
           locale: 'de_DE',
         }
