@@ -2,6 +2,14 @@
 
 Notable changes to the Pohánka és Társa Kft. website. Not auto-generated — kept manually, in reverse-chronological order.
 
+## 2026-10-05 — Removed the old "Szakrajz & Modellező Program" (Cimbi) portfolio card
+
+Owner decision (2026-10-05 13:26): the new P-Szakrajz card added the same day replaces it; both showed the same engine.
+
+### Removed
+- The "Szakrajz & Modellező Program" card from `app/components/Portfolio.tsx` (it linked `https://szakrajz-s-modellez-program.vercel.app/`).
+- `public/szakrajz.jpg`, used only by that card.
+
 ## 2026-08-26 — Added "Brunella System · Béta" 13-photo story section to the brunella-bas portfolio page
 
 The owner supplied 13 dashboard screenshots and final HU marketing copy describing how the Brunella agent team (product name for [[Brunella Core]]) works, learns, and communicates over Telegram, to be added below the existing sections on `/portfolio/brunella-bas`.
