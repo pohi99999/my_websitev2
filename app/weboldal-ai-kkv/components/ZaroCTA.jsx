@@ -6,7 +6,7 @@ export default function ZaroCTA() {
     <section className="py-20 px-6 bg-black">
       <div className="container mx-auto max-w-4xl">
         <div className="p-12 border border-[#00e5ff]/20 rounded-3xl bg-gradient-to-b from-[#00e5ff]/5 to-transparent text-center">
-          <h2 className="text-4xl font-bold mb-6">Indítsuk el a következő szintre a vállalkozása online jelenlétét</h2>
+          <h2 className="text-4xl font-bold mb-6">Vigyük a következő szintre vállalkozása online jelenlétét</h2>
           <p className="text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto">
             Ha olyan weboldalt szeretne, amely nem csak szép, hanem valóban dolgozik is Ön helyett,
             akkor beszéljünk egy rövid, kötetlen online konzultáción.

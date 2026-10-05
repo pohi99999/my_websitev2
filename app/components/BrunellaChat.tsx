@@ -32,7 +32,7 @@ const LABELS: Record<Lang, {
     subtitle: 'Pohánka & Társa asszisztens',
     placeholder: 'Írja be kérdését...',
     send: 'Küldés',
-    welcome: 'Szia! 👋 Brunella vagyok, a Pohánka és Társa Kft. AI asszisztense.\n\nKérdezzen bátran a Brunella rendszerről, automatizálási megoldásainkról, vagy foglaljon ingyenes konzultációt!',
+    welcome: 'Jó napot! 👋 Brunella vagyok, a Pohánka és Társa Kft. AI-asszisztense.\n\nKérdezzen bátran a Brunella rendszerről, automatizálási megoldásainkról, vagy foglaljon ingyenes konzultációt!',
     error: 'Sajnálom, hiba történt. Kérjük, próbálja újra.',
     thinking: 'Brunella gondolkodik…',
   },
