@@ -74,6 +74,53 @@ const Portfolio = () =>
           brunellaCard: 'AI-csapat, ami a cégeden belül dolgozik. Nálunk minden nap élesben fut.',
         };
 
+  // Newest web references (2026-10), localized: the older cards below are Hungarian-only.
+  type Lang = 'hu' | 'en' | 'de';
+  const newWebRefs: { id: string; img: string; href: string; ownProduct?: boolean; title: Record<Lang, string>; alt: Record<Lang, string>; desc: Record<Lang, string>; tags: Record<Lang, string[]> }[] = [
+    {
+      id: 'bdklima',
+      img: '/bdklima.webp',
+      href: 'https://bdklima.hu/',
+      title: { hu: 'Bé-Da Klíma', en: 'Bé-Da Klíma', de: 'Bé-Da Klíma' },
+      alt: { hu: 'A Bé-Da Klíma weboldalának nyitóképe', en: 'Home page of the Bé-Da Klíma website', de: 'Startseite der Website von Bé-Da Klíma' },
+      desc: {
+        hu: 'Debreceni klímaszerelő cég weboldala: hat márka katalógusa méretenkénti árakkal, akciós oldal áthúzott rendes árral, referenciagaléria és fotós ajánlatkérés. Az árakat és az akciókat az ügyfél maga szerkeszti, saját felületen.',
+        en: 'Website for an air-conditioning installer in Debrecen: a six-brand catalogue with prices by size, an offers page with the struck-through regular price, a reference gallery and quote requests with photos. The client edits prices and offers in their own editor.',
+        de: 'Website eines Klimatechnik-Betriebs in Debrecen: Katalog mit sechs Marken und Preisen je Leistungsgröße, Aktionsseite mit durchgestrichenem Normalpreis, Referenzgalerie und Angebotsanfrage mit Fotos. Preise und Aktionen pflegt der Kunde selbst in einem eigenen Editor.',
+      },
+      tags: { hu: [ 'Statikus oldal', 'Ügyfél-szerkesztő', 'Ajánlatkérés fotóval' ], en: [ 'Static site', 'Client editor', 'Quote request with photos' ], de: [ 'Statische Website', 'Kunden-Editor', 'Anfrage mit Fotos' ] },
+    },
+    {
+      id: 'p-szakrajz',
+      img: '/p-szakrajz.webp',
+      href: 'https://p-szakrajz.vercel.app/',
+      ownProduct: true,
+      title: { hu: 'P-Szakrajz', en: 'P-Szakrajz', de: 'P-Szakrajz' },
+      alt: { hu: 'A P-Szakrajz webalkalmazás projekt-felülete', en: 'Project screen of the P-Szakrajz web app', de: 'Projektansicht der Web-App P-Szakrajz' },
+      desc: {
+        hu: 'Saját webalkalmazásunk asztalosoknak: kézi vázlatból vagy helyszíni fotóból a Vision AI olvassa ki a méreteket, a program pedig méretarányos szakrajzot, valós idejű 3D modellt és árajánlatot készít belőle.',
+        en: 'Our own web app for joiners: Vision AI reads the dimensions from a hand sketch or an on-site photo, and the app turns them into a scaled technical drawing, a real-time 3D model and a quote.',
+        de: 'Unsere eigene Web-App für Tischler: Vision AI liest die Maße aus einer Handskizze oder einem Foto vor Ort, und die App erstellt daraus eine maßstabsgetreue technische Zeichnung, ein 3D-Modell in Echtzeit und ein Angebot.',
+      },
+      tags: { hu: [ 'Next.js', 'Vision AI', '3D (Three.js)' ], en: [ 'Next.js', 'Vision AI', '3D (Three.js)' ], de: [ 'Next.js', 'Vision AI', '3D (Three.js)' ] },
+    },
+    {
+      id: 'hari-attila',
+      img: '/hari-attila.webp',
+      href: 'https://hari-attila-web.vercel.app/',
+      title: { hu: 'Hári Attila', en: 'Hári Attila', de: 'Hári Attila' },
+      alt: { hu: 'Hári Attila térkő- és aszfaltozó vállalkozás weboldalának nyitóképe', en: 'Home page of the Hári Attila paving and asphalt website', de: 'Startseite der Website von Hári Attila (Pflaster und Asphalt)' },
+      desc: {
+        hu: 'Zalai térkő-, aszfalt- és támfalépítő vállalkozás bemutató oldala: hat szolgáltatás, munkafotó-galéria, a munka menete lépésenként, és ajánlatkérő űrlap fotófeltöltéssel.',
+        en: 'Showcase site for a paving, asphalt and retaining-wall contractor in Zala County: six services, a project photo gallery, the work process step by step, and a quote form with photo upload.',
+        de: 'Präsentationsseite eines Pflaster-, Asphalt- und Stützmauerbetriebs im Komitat Zala: sechs Leistungen, Projektgalerie, der Arbeitsablauf Schritt für Schritt und ein Anfrageformular mit Foto-Upload.',
+      },
+      tags: { hu: [ 'Statikus oldal', 'Galéria', 'Ajánlatkérő űrlap' ], en: [ 'Static site', 'Gallery', 'Quote form' ], de: [ 'Statische Website', 'Galerie', 'Anfrageformular' ] },
+    },
+  ];
+  const lang: Lang = language === 'en' || language === 'de' ? language : 'hu';
+  const ownProductLabel = { hu: 'Saját termék', en: 'Own product', de: 'Eigenes Produkt' }[ lang ];
+
   const badges = Array.from( { length: 12 }, ( _, i ) => ( {
     id: i + 1,
     src: `/images/google-dev-badge${ i + 1 }.png`,
@@ -359,6 +406,30 @@ const Portfolio = () =>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Newest references (localized): Bé-Da Klíma, P-Szakrajz, Hári Attila */ }
+            { newWebRefs.map( ( ref ) => (
+              <div key={ ref.id } className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
+                <div className="relative h-48 overflow-hidden">
+                  <Image src={ ref.img } alt={ ref.alt[ lang ] } fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-white mb-2">{ ref.title[ lang ] }</h3>
+                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">{ ref.desc[ lang ] }</p>
+                  <div className="flex flex-wrap items-center gap-2 mb-5">
+                    { ref.tags[ lang ].map( ( tag ) => (
+                      <span key={ tag } className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">{ tag }</span>
+                    ) ) }
+                    { ref.ownProduct && (
+                      <span className="bg-yellow-500/10 text-yellow-400 text-xs px-2 py-1 rounded border border-yellow-500/20">{ ownProductLabel }</span>
+                    ) }
+                  </div>
+                  <a href={ ref.href } target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: ref.href, page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
+                    { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            ) ) }
+
             {/* Cimbi Weboldal */ }
             <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
               <div className="relative h-48 overflow-hidden">
