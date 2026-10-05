@@ -5,8 +5,8 @@ import Link from 'next/link';
 import InstantResponderDemo from './InstantResponderDemo';
 
 export const metadata = {
-  title: 'Azonnali MI Válaszadó | 0-24 Ügyfélszolgálat Automatizálva',
-  description: 'Ne várakoztassa az ügyfeleit! Az MI Válaszadó 60 másodpercen belül professzionális, személyre szabott választ ad minden megkeresésre n8n és Gemini alapokon.',
+  title: 'Azonnali MI-válaszadó: automatizált ügyfélszolgálat',
+  description: 'Ne várakoztassa az ügyfeleit! Az MI-válaszadó gyorsan, személyre szabott választ ad a megkeresésekre, n8n és Gemini alapokon.',
 };
 
 export default function InstantResponderPage() {
@@ -23,8 +23,8 @@ export default function InstantResponderPage() {
             Azonnali MI Válaszadó
           </h1>
           <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            Az érdeklődők 50%-a annál vásárol, aki **először** válaszol. <br className="hidden md:block" /> 
-            Digitális munkatársunk 60 másodpercen belül reagál, mialatt Ön éppen pihen.
+            Aki gyorsan válaszol, nagyobb eséllyel kapja meg a munkát. <br className="hidden md:block" />
+            Digitális munkatársunk percek alatt reagál, mialatt Ön éppen pihen.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a href="#demo" className="px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)]">
@@ -40,7 +40,7 @@ export default function InstantResponderPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
           <div className="p-8 bg-slate-900/50 border border-slate-800 rounded-2xl hover:border-emerald-500/30 transition-colors">
             <Clock className="text-emerald-500 mb-6" size={32} />
-            <h3 className="text-xl font-bold mb-4">60 másodperces válasz</h3>
+            <h3 className="text-xl font-bold mb-4">Gyors válasz</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
               Nincs többé órákig (vagy napokig) tartó várakozás. Az MI azonnal feldolgozza az igényt és választ küld.
             </p>
@@ -115,7 +115,7 @@ export default function InstantResponderPage() {
         <section id="demo" className="text-center py-20 border-t border-slate-900">
            <h2 className="text-3xl font-bold font-syne mb-4">Próbálja ki élesben!</h2>
            <p className="text-slate-400 mb-12 max-w-2xl mx-auto">
-             Írja be az üzenetet, amelyet egy képzeletbeli ügyfél küldene Önnek, és nézze meg, mit válaszolna az MI 60 másodpercen belül.
+             Írja be az üzenetet, amelyet egy képzeletbeli ügyfél küldene Önnek, és nézze meg, mit válaszolna az MI.
            </p>
            <InstantResponderDemo />
         </section>

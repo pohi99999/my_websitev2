@@ -3,20 +3,20 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import {
-  CheckCircle, ExternalLink, Download, MapPin, Star, Globe,
+  CheckCircle, Download, MapPin, Star, Globe,
   Shield, AlertTriangle, TrendingUp, Users, Zap, ArrowRight,
   BarChart3, Lock, Mail, ChevronDown, ArrowLeft
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-const SHEETS_URL =
-  'https://docs.google.com/spreadsheets/d/1GCWVHcXmyHeytvI391pQSzltSmoW6RQU_4xY-IN9w-E/edit?usp=sharing';
+// The full list (a public Google Sheet with real practices' contact data) is no longer linked from
+// the page (marveen 2938, 2026-10-05); access goes through the contact page.
 const sampleData = [
-  { nev: 'Budavári Fogászat',      pont: 78, weboldal: '✅ Van',  https: '❌ Nincs', ertekelesek: 12,  fajdalom: 'MAGAS'  },
-  { nev: 'Smile Dental Center',    pont: 45, weboldal: '✅ Van',  https: '✅ Van',   ertekelesek: 8,   fajdalom: 'KÖZEPES'},
-  { nev: 'Dr. Kovács Fogászat',    pont: 92, weboldal: '❌ Nincs',https: '❌ Nincs', ertekelesek: 3,   fajdalom: 'KRITIKUS'},
-  { nev: 'Pest Dental Klinika',    pont: 34, weboldal: '✅ Van',  https: '✅ Van',   ertekelesek: 47,  fajdalom: 'ALACSONY'},
-  { nev: 'Angyalföld Fogászat',    pont: 81, weboldal: '✅ Van',  https: '❌ Nincs', ertekelesek: 5,   fajdalom: 'MAGAS'  },
+  { nev: 'Minta Fogászat A',       pont: 78, weboldal: '✅ Van',  https: '❌ Nincs', ertekelesek: 12,  fajdalom: 'MAGAS'  },
+  { nev: 'Minta Fogászat B',       pont: 45, weboldal: '✅ Van',  https: '✅ Van',   ertekelesek: 8,   fajdalom: 'KÖZEPES'},
+  { nev: 'Minta Fogászat C',       pont: 92, weboldal: '❌ Nincs',https: '❌ Nincs', ertekelesek: 3,   fajdalom: 'KRITIKUS'},
+  { nev: 'Példa Rendelő D',        pont: 34, weboldal: '✅ Van',  https: '✅ Van',   ertekelesek: 47,  fajdalom: 'ALACSONY'},
+  { nev: 'Példa Rendelő E',        pont: 81, weboldal: '✅ Van',  https: '❌ Nincs', ertekelesek: 5,   fajdalom: 'MAGAS'  },
 ];
 
 const fajdalomColor = {
@@ -27,9 +27,6 @@ const fajdalomColor = {
 };
 
 export default function LeadListaClient() {
-  const [email, setEmail] = useState('');
-  const [cegnev, setCegnev] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const { language } = useLanguage();
   const withLang = (href) => (language === 'hu' ? href : href === '/' ? `/${language}` : `/${language}${href}`);
@@ -43,7 +40,6 @@ export default function LeadListaClient() {
             subtitle:
               'AI-screened sample list of Budapest dental clinics with digital pain scoring for faster lead qualification.',
             bullets: ['50 screened clinics', 'Website/HTTPS profile checks', 'Pain score prioritization for outreach'],
-            sampleBtn: 'Open sample in Google Sheets',
             contactBtn: 'Request full list access',
           }
         : {
@@ -52,7 +48,6 @@ export default function LeadListaClient() {
             subtitle:
               'KI-geprüfte Beispielliste von Budapester Zahnkliniken mit digitalem Pain-Score für schnelle Lead-Qualifizierung.',
             bullets: ['50 geprüfte Kliniken', 'Website-/HTTPS-Profilchecks', 'Pain-Score-Priorisierung für Outreach'],
-            sampleBtn: 'Beispiel in Google Sheets öffnen',
             contactBtn: 'Vollzugang zur Liste anfragen',
           };
 
@@ -78,14 +73,6 @@ export default function LeadListaClient() {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <a
-              href={SHEETS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 font-semibold transition-colors"
-            >
-              <ExternalLink className="w-4 h-4" /> {ui.sampleBtn}
-            </a>
             <Link
               href={withLang('/kapcsolat')}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 hover:border-white/40 text-white font-semibold transition-colors"
@@ -98,13 +85,6 @@ export default function LeadListaClient() {
     );
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email || !cegnev) return;
-    setSubmitted(true);
-    // Itt lehetne egy API hívás — egyelőre a Sheets linket nyitjuk meg
-    window.open(SHEETS_URL, '_blank', 'noopener,noreferrer');
-  };
 
   return (
     <div className="min-h-screen text-white bg-slate-950">
@@ -168,7 +148,7 @@ export default function LeadListaClient() {
           >
             <span className="font-semibold text-white flex items-center gap-2">
               <BarChart3 className="w-5 h-5 text-blue-400" />
-              Minta — 5 rendelő az 50-ből (a teljes lista kérhető)
+              Minta: 5 rendelő (szemléltető, kitalált adatok)
             </span>
             <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform ${showTable ? 'rotate-180' : ''}`} />
           </button>
@@ -242,80 +222,19 @@ export default function LeadListaClient() {
       {/* Lead form vagy sikeres visszajelzés */}
       <section className="px-6 pb-24">
         <div className="max-w-xl mx-auto">
-          {!submitted ? (
-            <div className="bg-gradient-to-br from-slate-900 to-blue-950/30 border border-blue-500/20 rounded-3xl p-10">
-              <div className="text-center mb-8">
-                <Lock className="w-8 h-8 text-blue-400 mx-auto mb-3" />
-                <h2 className="text-2xl font-bold text-white mb-2">
-                  Kérem a teljes listát ingyen
-                </h2>
-                <p className="text-slate-400 text-sm">
-                  Adja meg a cégnevet és az e-mail-címét, és azonnal megnyílik a teljes 50 soros táblázat. Semmi spam: egyszer írok, ha heti frissített listát szeretne.
-                </p>
-              </div>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm text-slate-400 mb-1.5">Cég / Ügynökség neve *</label>
-                  <input
-                    type="text"
-                    value={cegnev}
-                    onChange={e => setCegnev(e.target.value)}
-                    placeholder="pl. Minta Marketing Kft."
-                    required
-                    className="w-full bg-white/5 border border-white/15 hover:border-blue-500/40 focus:border-blue-500/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 outline-none transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-slate-400 mb-1.5">Munkahelyi email *</label>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder="pl. te@ugynokseg.hu"
-                    required
-                    className="w-full bg-white/5 border border-white/15 hover:border-blue-500/40 focus:border-blue-500/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 outline-none transition-colors"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white font-bold py-4 rounded-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-blue-900/30"
-                >
-                  <Download className="w-5 h-5" /> Megnyitom a teljes listát
-                </button>
-                <p className="text-center text-slate-600 text-xs">
-                  Kattintás után megnyílik a Google táblázat új lapon.
-                </p>
-              </form>
-            </div>
-          ) : (
-            <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-3xl p-10 text-center">
-              <CheckCircle className="w-14 h-14 text-emerald-400 mx-auto mb-4" />
-              <h2 className="text-2xl font-bold text-white mb-3">Köszönöm, {cegnev}!</h2>
-              <p className="text-slate-300 mb-6 leading-relaxed">
-                A lista megnyílt egy új lapon. Ha nem nyílt meg automatikusan, kattintson ide:
-              </p>
-              <a
-                href={SHEETS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-8 py-4 rounded-full transition-all hover:scale-105 mb-8"
-              >
-                <ExternalLink className="w-5 h-5" /> Megnyitom a listát
-              </a>
-              <div className="border-t border-white/10 pt-6">
-                <p className="text-slate-400 text-sm mb-4">
-                  Érdekli a heti automatikus frissített lead lista más iparágakra is?
-                </p>
-                <Link
-                  href="/kapcsolat"
-                  className="inline-flex items-center gap-2 border border-blue-500/30 hover:border-blue-400/60 text-blue-300 hover:text-blue-200 font-semibold px-6 py-3 rounded-full transition-all"
-                >
-                  Egyeztetek Péterrel <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          )}
+          <div className="bg-gradient-to-br from-slate-900 to-blue-950/30 border border-blue-500/20 rounded-3xl p-10 text-center">
+            <Lock className="w-8 h-8 text-blue-400 mx-auto mb-3" />
+            <h2 className="text-2xl font-bold text-white mb-2">Kérje a teljes listát</h2>
+            <p className="text-slate-400 text-sm mb-6">
+              Írjon nekünk a kapcsolat oldalon, és egyeztetjük a hozzáférést, illetve a heti frissített listát más iparágakra is.
+            </p>
+            <Link
+              href="/kapcsolat"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white font-bold px-8 py-4 rounded-xl transition-all"
+            >
+              Kapcsolatfelvétel <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
