@@ -4,11 +4,11 @@ export default function FAQ() {
   const faqs = [
     {
       q: "Mennyi idő alatt készül el egy ilyen weboldal + AI rendszer?",
-      a: "A kisebb, „Starter” szintű projektek általában 1–2 hét alatt elkészülnek. A nagyobb, egyedi „System” megoldásoknál 3–6 hét átfutási idővel érdemes számolni."
+      a: "Az alapcsomag szerinti weboldal két hét alatt elkészül. Nagyobb, egyedi rendszereknél az átfutást a felmérés után az ajánlatban rögzítjük."
     },
     {
       q: "Nem értek az AI-hoz – ez nekem nem bonyolult?",
-      a: "Az a célunk, hogy a háttérben dolgozzon az AI, neked csak az eredményt kell látnod. Minden lépést érthető nyelven magyarázunk el."
+      a: "Az a célunk, hogy a háttérben dolgozzon az AI, Önnek csak az eredményt kell látnia. Minden lépést érthető nyelven magyarázunk el."
     },
     {
       q: "Mi van, ha később bővíteni szeretném a rendszert?",

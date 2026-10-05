@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
         : {
             title: 'Digitális Hatékonysági Audit',
             description:
-              'Tudd meg 3 perc alatt, hol veszít a cég havonta 100+ munkaórát a manuális folyamatokon – és hogyan állíthatod meg ezt az MI segítségével!',
+              'Tudja meg 3 perc alatt, hol veszít a cég munkaórákat a kézi folyamatokon, és hogyan állíthatja meg ezt az MI segítségével!',
             canonical: '/hatekonysagi-audit',
           };
 
@@ -71,7 +71,7 @@ export default function AuditPage() {
             Digitális Hatékonysági <span className="text-[#00ff9d]">Audit</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
-            Tudd meg 3 perc alatt, hol veszít a cég havonta 100+ munkaórát a manuális folyamatokon – és hogyan állíthatod meg ezt az MI segítségével!
+            Tudja meg 3 perc alatt, hol veszít a cég munkaórákat a kézi folyamatokon, és hogyan állíthatja meg ezt az MI segítségével!
           </p>
         </div>
 

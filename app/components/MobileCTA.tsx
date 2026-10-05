@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ArrowRight, MessageSquare, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
@@ -40,11 +41,15 @@ export default function MobileCTA ()
         return () => window.removeEventListener( CHAT_STATE_EVENT, onState );
     }, [] );
 
+    // The label follows the page's own offer (Péter 2026-10-05, 6328): the website page offers the
+    // design preview, every other page the free consultation.
+    const pathname = usePathname() || '/';
+    const websitePage = /\/weboldal-ai-kkv\/?$/.test( pathname );
     const label = language === 'en'
-        ? 'Free design preview'
+        ? ( websitePage ? 'Free design preview' : 'Free consultation' )
         : language === 'de'
-            ? 'Kostenloser Entwurf'
-            : 'Ingyenes látványterv';
+            ? ( websitePage ? 'Kostenloser Entwurf' : 'Kostenlose Beratung' )
+            : ( websitePage ? 'Ingyenes látványterv' : 'Ingyenes konzultáció' );
 
     const ctaLabel = language === 'en'
         ? 'Contact'

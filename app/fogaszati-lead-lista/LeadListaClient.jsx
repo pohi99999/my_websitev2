@@ -127,10 +127,10 @@ export default function LeadListaClient() {
           </h1>
 
           <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-4">
-            AI rendszerünk végigvizsgálta mind az 50 rendelőt. Minden céghez kapod:
+            AI rendszerünk végigvizsgálta mind az 50 rendelőt. Minden céghez megkapja:
             weboldal állapot, HTTPS, Google értékelések száma és egy{' '}
             <span className="text-white font-semibold">digitális fájdalompontszám</span> —
-            minél magasabb, annál valószínűbb, hogy azonnal igénybe veszi a szolgáltatásod.
+            minél magasabb, annál valószínűbb, hogy azonnal igénybe veszi a szolgáltatását.
           </p>
           <p className="text-slate-400 text-sm">
             <MapPin className="w-4 h-4 inline mr-1" />Budapest · Fogászati rendelők · 2026. február
@@ -250,7 +250,7 @@ export default function LeadListaClient() {
                   Kérem a teljes listát ingyen
                 </h2>
                 <p className="text-slate-400 text-sm">
-                  Add meg a cégnevet és email-ed — azonnal megnyílik a teljes 50 soros táblázat. Semmi spam, egyszer írok ha heti frissített listát szeretnél.
+                  Adja meg a cégnevet és az e-mail-címét, és azonnal megnyílik a teljes 50 soros táblázat. Semmi spam: egyszer írok, ha heti frissített listát szeretne.
                 </p>
               </div>
 
@@ -293,7 +293,7 @@ export default function LeadListaClient() {
               <CheckCircle className="w-14 h-14 text-emerald-400 mx-auto mb-4" />
               <h2 className="text-2xl font-bold text-white mb-3">Köszönöm, {cegnev}!</h2>
               <p className="text-slate-300 mb-6 leading-relaxed">
-                A lista megnyílt egy új lapon. Ha nem nyílt meg automatikusan, kattints ide:
+                A lista megnyílt egy új lapon. Ha nem nyílt meg automatikusan, kattintson ide:
               </p>
               <a
                 href={SHEETS_URL}

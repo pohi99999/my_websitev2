@@ -280,7 +280,7 @@ export default async function WebRobotpilotaPage() {
                   <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-sm border border-green-500/30">🟢 Azonnal elérhető</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-3">Web Robotpilóta</h1>
-                <p className="text-gray-400 text-sm">AI-vezérelt böngésző automatizáció — a te személyes web-robotod</p>
+                <p className="text-gray-400 text-sm">AI-vezérelt böngésző automatizáció — az Ön személyes web-robotja</p>
               </div>
             </div>
             <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">
@@ -306,7 +306,7 @@ export default async function WebRobotpilotaPage() {
 
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">
-          <GsapFadeIn><h2 className="text-3xl font-bold mb-10 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Mire használhatod?</h2></GsapFadeIn>
+          <GsapFadeIn><h2 className="text-3xl font-bold mb-10 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Mire használhatja?</h2></GsapFadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {useCases.map((uc, i) => { const Icon = uc.icon; return (
               <GsapFadeIn key={uc.title} delay={0.1 * i}>
@@ -326,7 +326,7 @@ export default async function WebRobotpilotaPage() {
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn><h2 className="text-3xl font-bold mb-10 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Hogyan működik?</h2></GsapFadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[{ step: '1', title: 'Mondd el mit csináljon', desc: 'Írd le szövegesen a feladatot — pl. "gyűjtsd össze az 5 versenytársam árait naponta"', color: 'text-cyan-400', bg: 'bg-cyan-900/30' }, { step: '2', title: 'A robot elvégzi', desc: 'A Playwright + AI hibrid rendszer megnyitja a böngészőt és végrehajtja a feladatot automatikusan.', color: 'text-blue-400', bg: 'bg-blue-900/30' }, { step: '3', title: 'Megkapod az eredményt', desc: 'Strukturált adat emailben, Google Sheets-ben vagy API-n — ahogy neked kényelmes.', color: 'text-purple-400', bg: 'bg-purple-900/30' }].map((s, i) => (
+            {[{ step: '1', title: 'Mondja el, mit csináljon', desc: 'Írja le szövegesen a feladatot, pl. "gyűjtsd össze az 5 versenytársam árait naponta"', color: 'text-cyan-400', bg: 'bg-cyan-900/30' }, { step: '2', title: 'A robot elvégzi', desc: 'A Playwright + AI hibrid rendszer megnyitja a böngészőt és végrehajtja a feladatot automatikusan.', color: 'text-blue-400', bg: 'bg-blue-900/30' }, { step: '3', title: 'Megkapja az eredményt', desc: 'Strukturált adat emailben, Google Sheets-ben vagy API-n — ahogy Önnek kényelmes.', color: 'text-purple-400', bg: 'bg-purple-900/30' }].map((s, i) => (
               <GsapFadeIn key={s.step} delay={0.15 * i}>
                 <SpotlightCard className="p-8 text-center">
                   <div className={`w-14 h-14 rounded-full ${s.bg} flex items-center justify-center mx-auto mb-4`}><span className={`text-2xl font-black ${s.color}`}>{s.step}</span></div>
@@ -341,7 +341,7 @@ export default async function WebRobotpilotaPage() {
 
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">
-          <GsapFadeIn><h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Árazás</h2><p className="text-gray-400 mb-10">Válaszd ki a neked megfelelő csomagot</p></GsapFadeIn>
+          <GsapFadeIn><h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Árazás</h2><p className="text-gray-400 mb-10">Válassza ki az Önnek megfelelő csomagot</p></GsapFadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {pricingPlans.map((plan, i) => (
               <GsapFadeIn key={plan.name} delay={0.1 * i}>
@@ -363,8 +363,8 @@ export default async function WebRobotpilotaPage() {
           <GsapFadeIn delay={0.2}>
             <SpotlightCard className="p-12 text-center">
               <Bot className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
-              <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Próbáld ki INGYEN</h2>
-              <p className="text-lg text-gray-300 mb-8 leading-relaxed">Az első feladat ajándék — írd meg mit csináljon a robotod, és 24 órán belül megkapod az eredményt.</p>
+              <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Próbálja ki INGYEN</h2>
+              <p className="text-lg text-gray-300 mb-8 leading-relaxed">Az első feladat ajándék: írja meg, mit csináljon a robotja, és 24 órán belül megkapja az eredményt.</p>
               <Link href={withLang('/kapcsolat')} className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105">Ingyenes próba feladat <ArrowRight size={18} /></Link>
             </SpotlightCard>
           </GsapFadeIn>

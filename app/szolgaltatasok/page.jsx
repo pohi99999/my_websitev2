@@ -78,8 +78,8 @@ const categories = [
         bullets: ["Kevesebb kézi adatrögzítés", "Gyorsabb ügymenet", "Kevesebb adminisztráció"],
       },
       {
-        name: "Közvetlen kapcsolat az applikációid között",
-        desc: "A szoftvereidet úgy illesztjük össze, hogy azok emberi beavatkozás nélkül kommunikáljanak egymással.",
+        name: "Közvetlen kapcsolat az alkalmazásai között",
+        desc: "A szoftvereit úgy illesztjük össze, hogy azok emberi beavatkozás nélkül kommunikáljanak egymással.",
         bullets: ["Szoftverek (CRM, Számlázó) összekötése", "Üzleti logika automatizálása", "Működésközpontú tervezés"],
       },
       {
@@ -89,7 +89,7 @@ const categories = [
       },
       {
         name: "CRM, email és ügyfélszolgálat automatizáció",
-        desc: "Összekötjük a rendszereidet egy Virtuális Részleggé, hogy a csapatod a valódi ügyfelekre koncentrálhasson.",
+        desc: "Összekötjük a rendszereit egy Virtuális Részleggé, hogy a csapata a valódi ügyfelekre koncentrálhasson.",
         bullets: ["CRM és számlázó szinkronizáció", "Email és ügyfélszolgálat robot", "Ügyfélszerző csapdák kezelése"],
       },
       {
@@ -107,8 +107,8 @@ const categories = [
     services: [
       {
         name: "Saját céges adatokból tanul",
-        desc: "Nova beolvassa a cég folyamatait és azonnal a céged hangján, a te szabályaid szerint válaszol az ügyfeleknek.",
-        bullets: ["Szabályzatok automatikus betartása", "Folyamatos tanulás a válaszokból", "Te ellenőrzöd az irányt (Glass Box)"],
+        desc: "Nova beolvassa a cég folyamatait, és a cége hangján, az Ön szabályai szerint válaszol az ügyfeleknek.",
+        bullets: ["Szabályzatok automatikus betartása", "Folyamatos tanulás a válaszokból", "Ön ellenőrzi az irányt (Glass Box)"],
       },
       {
         name: "Hangalapú telefonos ügyfélszolgálat",
@@ -126,7 +126,7 @@ const categories = [
     id: "psales",
     icon: FileSearch,
     title: "P-Sales — Ingatlan Értékesítő Platform",
-    subtitle: "Dokumentumfelmérés és piackutatás egy összehangolt robotcsapattal, ami helyetted dolgozik.",
+    subtitle: "Dokumentumfelmérés és piackutatás egy összehangolt robotcsapattal, amely Ön helyett dolgozik.",
     services: [
       {
         name: "Felmérő robot & dokumentáció",
@@ -140,8 +140,8 @@ const categories = [
       },
       {
         name: "Stratégia & Glass Box jóváhagyás",
-        desc: "A rendszer kialakítja az értékesítési tervet, majd egy átlátható felületen csak jóvá kell hagynod a lépéseket.",
-        bullets: ["Automatikus akciótervek", "Átlátható jóváhagyási folyamat", "Kontroll a te kezedben"],
+        desc: "A rendszer kialakítja az értékesítési tervet, majd egy átlátható felületen csak jóvá kell hagynia a lépéseket.",
+        bullets: ["Automatikus akciótervek", "Átlátható jóváhagyási folyamat", "Az irányítás az Ön kezében"],
       },
     ],
   },
@@ -153,18 +153,18 @@ const categories = [
     services: [
       {
         name: "Automatikus pályázatfigyelés",
-        desc: "Nem kell hírleveleket bújnod. A rendszerünk napi szinten monitorozza az EU-s és hazai forrásokat, és csak a neked relevánsat küldi el.",
-        bullets: ["Napi automatikus keresés a háttérben", "Csak a céged profiljába vágó találatok", "Azonnali értesítés új kiírásról"],
+        desc: "Nem kell hírleveleket böngésznie. A rendszerünk napi szinten figyeli az EU-s és hazai forrásokat, és csak az Önnek relevánsat küldi el.",
+        bullets: ["Napi automatikus keresés a háttérben", "Csak a cége profiljába vágó találatok", "Azonnali értesítés új kiírásról"],
       },
       {
         name: "Hitelkereső & ajánlategyeztetés",
-        desc: "Piaci banki konstrukciók automatikus összehasonlítása, hogy mindig a legolcsóbb finanszírozást találd meg.",
+        desc: "Piaci banki konstrukciók automatikus összehasonlítása, hogy a legkedvezőbb finanszírozást találja meg.",
         bullets: ["Banki ajánlatok azonnali összehasonlítása", "Rejtett költségek kiszűrése", "Személyre szabott javaslatok"],
       },
       {
         name: "Átlátható Kanban-követés",
         desc: "Minden beadott pályázat és hitel státusza egy átlátható táblán (Glass Box) követhető, automatikus határidő-emlékeztetőkkel.",
-        bullets: ["Vizuális státuszkövetés", "Automatikus emlékeztetők", "Soha nem csúszol le határidőről"],
+        bullets: ["Vizuális státuszkövetés", "Automatikus emlékeztetők", "Határidők egy helyen"],
       },
     ],
   },
@@ -177,7 +177,7 @@ const categories = [
       {
         name: "Automata potenciális vevő felkutatás",
         desc:
-          "Rendszerünk naponta figyeli a piacot és kiszűri azokat a cégeket, akiknek a legnagyobb szükségük van rád. A jelölteket fájdalompontszámmal látjuk el (pl. rossz a weboldala, drága a könyvelője).",
+          "Rendszerünk naponta figyeli a piacot és kiszűri azokat a cégeket, akiknek a legnagyobb szükségük van az Ön szolgáltatására. A jelölteket fájdalompontszámmal látjuk el (pl. rossz a weboldala, drága a könyvelője).",
         bullets: [
           "Előminősített, releváns üzleti partnerek listája",
           "Automatikus állapotjelentés minden érdeklődőhöz",
@@ -193,7 +193,7 @@ const categories = [
         bullets: [
           "Személyre szabott e-mailek emberi beavatkozás nélkül",
           "Ütemezett kiküldés a legjobb konverziós időpontokban",
-          "Átlátható követés Google Sheets-ben vagy a meglévő CRM-edben",
+          "Átlátható követés Google Sheets-ben vagy a meglévő CRM-jében",
           "Automata follow-up: ha nem válaszol 5 napig, a gép újra ír",
         ],
         forWho: "Bármilyen cégnek, aki stabil ügyfélkört akar építeni",
@@ -209,7 +209,7 @@ const categories = [
       {
         name: "Pénzügyi feldolgozás kevesebb kézi lépéssel",
         desc:
-          "A rendszer beolvassa, kategorizálja és a számlázódba/könyvelődnek küldi a számlákat. Véget ér az adatok kézi pötyögése és a duplikáció.",
+          "A rendszer beolvassa, kategorizálja, és a számlázójába, illetve a könyvelőjének küldi a számlákat. Véget ér az adatok kézi pötyögése és a duplikáció.",
         bullets: [
           "Bejövő számlák azonnali adatkinyerése (PDF, kép, email)",
           "Könyvelési kódok automatikus hozzárendelése",
@@ -221,7 +221,7 @@ const categories = [
       {
         name: "Ügyfélszolgálat és E-mail szűrés",
         desc:
-          "A bejövő leveleket egy intelligens digitális munkatárs azonnal szétválogatja: a spamet törli, a rutinkérdést megválaszolja, a sürgős panaszt pedig azonnal a telefonodra küldi.",
+          "A bejövő leveleket egy intelligens digitális munkatárs azonnal szétválogatja: a spamet törli, a rutinkérdést megválaszolja, a sürgős panaszt pedig azonnal a telefonjára küldi.",
         bullets: [
           "Levelek automatikus szétválogatása (sürgős / árajánlat / panasz)",
           "Azonnal kiküldhető, pontos válaszjavaslatok generálása",
@@ -260,12 +260,12 @@ const categories = [
       {
         name: "Testreszabott automatizációs megoldás",
         desc:
-          "Összekötjük a jelenlegi számlázódat (pl. Számlázz.hu), a CRM-edet és az e-mail fiókodat. Létrehozunk egy olyan egyedi rendszert, amivel radikálisan csökken a bérköltséged és nő a profitod.",
+          "Összekötjük a jelenlegi számlázóját (pl. Számlázz.hu), a CRM-jét és az e-mail fiókját. Létrehozunk egy egyedi rendszert, amely csökkenti a kézi adminisztrációt.",
         bullets: [
           "Ingyenes előzetes konzultáció és folyamattérkép készítés",
           "Zökkenőmentes és azonnali frissítések leállás nélkül",
           "Valós idejű, átlátható vezetői dashboard",
-          "Folyamatos karbantartás: mi üzemeltetjük, te csak használod",
+          "Folyamatos karbantartás: mi üzemeltetjük, Ön csak használja",
         ],
         forWho: "Növekedni vágyó KKV-knak, akiknél szűk keresztmetszet az adminisztráció",
       },
@@ -280,7 +280,7 @@ const categories = [
       {
         name: "Bevételtermelő Weboldalak",
         desc:
-          "Egy gyors, mobilbarát weboldal önmagában kevés. Mi beépítjük azokat az érdeklődő-mágneseket (webhookokat) és automata időpontfoglalókat, amik rögtön a naptáradba teszik a vevőt.",
+          "Egy gyors, mobilbarát weboldal önmagában kevés. Mi beépítjük azokat az érdeklődő-mágneseket (webhookokat) és automata időpontfoglalókat, amelyek rögtön a naptárába teszik a vevőt.",
         bullets: [
           "Weboldal Egészségügyi és Gyorsasági Teszt (Kiváló Google pontszám)",
           "Beépített digitális munkatárs (chatbot), amely munkaidőn túl is válaszol a vevőknek",
@@ -501,7 +501,7 @@ export default async function SzolgaltatasokPage() {
             "Automation-as-a-Service" Csomagok
           </h2>
           <p className="text-gray-300 text-center max-w-3xl mx-auto mb-10">
-            Fix havidíjas, kulcsrakész automatizációs rendszerek, amelyekkel azonnal látható költségcsökkenést és bevételnövekedést érhetsz el.
+            Fix havidíjas, kulcsrakész automatizációs rendszerek, amelyekkel csökkentheti a kézi adminisztrációt.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -549,7 +549,7 @@ export default async function SzolgaltatasokPage() {
         {/* Miért mi */}
         <section className="mt-24 max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-10 text-[#00e5ff]">
-            Miért minket válassz?
+            Miért minket válasszon?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
@@ -575,8 +575,8 @@ export default async function SzolgaltatasokPage() {
         {/* Interactive Demos */}
         <section className="mt-24 max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-[#00e5ff] mb-4">Próbáld ki élőben az Automatizációt!</h2>
-            <p className="text-gray-300">Válaszd ki a számodra érdekes demót, és tapasztald meg a működését azonnal.</p>
+            <h2 className="text-3xl font-bold text-[#00e5ff] mb-4">Próbálja ki élőben az automatizálást!</h2>
+            <p className="text-gray-300">Válassza ki az Önt érdeklő demót, és nézze meg a működését.</p>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
@@ -589,7 +589,7 @@ export default async function SzolgaltatasokPage() {
 
         {/* CTA */}
         <div className="text-center mt-20">
-          <p className="text-gray-400 mb-6 text-lg">Kérdésed van? Mutasd meg a problémád — megmutatjuk, mennyi időt és pénzt spórolunk meg neked.</p>
+          <p className="text-gray-400 mb-6 text-lg">Kérdése van? Mutassa meg a problémát, és megmutatjuk, hol takaríthat meg időt.</p>
           <a
             href="/kapcsolat"
             className="inline-flex items-center gap-2 border border-[#00e5ff] text-[#00e5ff] font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:bg-[#00e5ff]/10 hover:shadow-[#00e5ff]/20 hover:scale-105"

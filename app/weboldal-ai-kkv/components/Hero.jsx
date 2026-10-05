@@ -51,8 +51,7 @@ export default function Hero() {
   const lang = language === 'en' || language === 'de' ? language : 'hu';
   const c = COPY[lang];
   const contactHref = lang === 'hu' ? '/kapcsolat' : `/${lang}/kapcsolat`;
-  // the price block (Arcsomag) is shown on the Hungarian page only; EN/DE jump to the references
-  const secondaryHref = lang === 'hu' ? '#arcsomag' : '#referenciak';
+  const secondaryHref = '#arcsomag';
 
   return (
     <section className="relative py-20 px-6 container mx-auto">
