@@ -4,7 +4,7 @@ export default function MitKapsz() {
   return (
     <section className="py-20 px-6 container mx-auto">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-bold mb-6 text-center">Mit kapsz egy „Weboldal + AI” projekttől?</h2>
+        <h2 className="text-4xl font-bold mb-6 text-center">Mit kap egy „Weboldal + AI” projekttől?</h2>
         <p className="text-gray-300 text-center mb-16 max-w-2xl mx-auto">
           Nem csak egy sablon honlapot adunk át, hanem egy mini rendszert, ami segít abban, hogy kevesebb manuális munkával több megkeresést kezelj.
         </p>

@@ -69,7 +69,7 @@ export default function WeboldalAiKkvPage() {
       <Hero />
       <KinekSzol />
       <MitKapsz />
-      {/* the home page's price block, the single source (Péter 6312); it renders in Hungarian only */}
+      {/* the home page's price block, the single source (Péter 6312), in HU/EN/DE */}
       <Arcsomag contactHref="/kapcsolat" />
       <HogyanDolgozunk />
       <Referenciak />

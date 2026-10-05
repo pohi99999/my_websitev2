@@ -227,7 +227,7 @@ const Portfolio = () =>
               Új Alkalmazásaink
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Frissen érkező, specialiálisan fejlesztett AI megoldások vállalkozásod minden területére.
+              Frissen érkező, speciálisan fejlesztett AI-megoldások vállalkozása minden területére.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -253,7 +253,7 @@ const Portfolio = () =>
               <div className="p-6 pt-14">
                 <div className="p-2 rounded-xl bg-[#00e5ff]/10 w-fit mb-4"><Bot className="w-6 h-6 text-[#00e5ff]" /></div>
                 <h3 className="text-lg font-bold text-white mb-2">Nova — AI Asszisztens</h3>
-                <p className="text-gray-400 text-sm mb-4 leading-relaxed">Vállalkozásodat megismerő, tanuló napi társ — hangalapú kommunikációval és 24/7 elérhetőséggel.</p>
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">Vállalkozását megismerő, tanuló napi társ, hangalapú kommunikációval, munkaidőn túl is elérhetően.</p>
                 <ul className="space-y-1.5 mb-5">
                   { ["Vállalkozás-specifikus tanulás", "Hangalapú kommunikáció", "24/7 operatív segítség"].map( b => (
                     <li key={ b } className="flex items-center gap-2 text-xs text-gray-400">
@@ -377,7 +377,7 @@ const Portfolio = () =>
               <h3 className="text-2xl font-bold text-white mb-3">AI Tartalom Gyártás</h3>
               <p className="text-gray-400 mb-4 text-sm leading-relaxed">
                 Havi social media posztok, blog cikkek és email kampányok — AI-val generálva,
-                a te iparágadra és hangnemedre szabva.
+                az Ön iparágára és hangnemére szabva.
               </p>
               <div className="flex items-center gap-2 mb-6">
                 <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">9.990 Ft/hó-tól</span>

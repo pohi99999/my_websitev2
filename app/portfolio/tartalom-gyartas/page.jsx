@@ -27,7 +27,7 @@ export async function generateMetadata() {
       },
       hu: {
         title: 'AI Tartalom Gyártás — Social Media & Email Marketing | Pohánka AI',
-        description: 'Havi social media posztok, blog cikkek és email kampányok — AI-val generálva, a te iparágadra és hangnemedre szabva.',
+        description: 'Havi social media posztok, blog cikkek és email kampányok — AI-val generálva, az Ön iparágára és hangnemére szabva.',
         canonical: '/portfolio/tartalom-gyartas',
         locale: 'hu_HU',
       }
@@ -41,7 +41,7 @@ const contentTypes = [
   { icon: Mail, color: 'text-purple-400', title: 'Email Kampányok', desc: 'Welcome sorozat, heti hírlevél, remarketing email — automatikusan generálva.' },
   { icon: Megaphone, color: 'text-orange-400', title: 'Hirdetési Szövegek', desc: 'Google Ads, Facebook Ads szövegek. Több variáció, CTA optimalizálás.' },
   { icon: Palette, color: 'text-emerald-400', title: 'Landing Page Szövegek', desc: 'Konverzió-optimalizált landing page tartalom. Hero, feature blokkok, CTA.' },
-  { icon: Share2, color: 'text-cyan-400', title: 'White-Label (Ügynökségeknek)', desc: 'Tartalom generálás a te ügyfeled brandjére — a te nevedben, az ő hangnemükben.' },
+  { icon: Share2, color: 'text-cyan-400', title: 'White-Label (Ügynökségeknek)', desc: 'Tartalom generálás az Ön ügyfele márkájára, az Ön nevében, az ő hangnemükben.' },
 ];
 
 const samplePosts = [
@@ -276,10 +276,10 @@ export default async function TartalomGyartasPage() {
                   <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-sm border border-green-500/30">🟢 Azonnal elérhető</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent mb-3">AI Tartalom Gyártás</h1>
-                <p className="text-gray-400 text-sm">AI által generálva, ember által ellenőrizve — a te hangodban</p>
+                <p className="text-gray-400 text-sm">AI által generálva, ember által ellenőrizve, az Ön hangján</p>
               </div>
             </div>
-            <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">Havi social media posztok, blog cikkek és email kampányok — <span className="text-white font-semibold">a te iparágadra és hangnemedre szabva</span>. Az első 5 minta poszt INGYEN.</p>
+            <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">Havi social media posztok, blog cikkek és email kampányok — <span className="text-white font-semibold">az Ön iparágára és hangnemére szabva</span>. Az első 5 minta poszt INGYEN.</p>
           </GsapFadeIn>
         </div>
       </section>
@@ -321,7 +321,7 @@ export default async function TartalomGyartasPage() {
 
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">
-          <GsapFadeIn><h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">Árazás</h2><p className="text-gray-400 mb-10">Az első 5 minta poszt INGYEN — próbáld ki kockázatmentesen</p></GsapFadeIn>
+          <GsapFadeIn><h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">Árazás</h2><p className="text-gray-400 mb-10">Az első 5 minta poszt INGYEN, próbálja ki kockázatmentesen</p></GsapFadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {pricingPlans.map((plan, i) => (
               <GsapFadeIn key={plan.name} delay={0.1 * i}>
@@ -344,7 +344,7 @@ export default async function TartalomGyartasPage() {
             <SpotlightCard className="p-12 text-center">
               <Sparkles className="w-12 h-12 text-pink-400 mx-auto mb-4" />
               <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">5 minta poszt INGYEN</h2>
-              <p className="text-lg text-gray-300 mb-8 leading-relaxed">Írd meg az iparágadat és a céged hangnemét — 24 órán belül küldünk 5 kész, posztolható tartalmat.</p>
+              <p className="text-lg text-gray-300 mb-8 leading-relaxed">Írja meg az iparágát és a cége hangnemét, és 24 órán belül küldünk 5 kész, posztolható tartalmat.</p>
               <Link href={withLang('/kapcsolat')} className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105">Ingyenes minta kérése <ArrowRight size={18} /></Link>
             </SpotlightCard>
           </GsapFadeIn>

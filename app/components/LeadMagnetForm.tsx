@@ -8,8 +8,8 @@ import { useLanguage } from '../context/LanguageContext';
 const RESULT_TEXT = {
   hu: {
     title: 'Köszönjük!',
-    success: 'Megkaptuk az adataidat, hamarosan felvesszük veled a kapcsolatot.',
-    error: 'Hiba történt a küldés során. Kérjük, próbáld újra később, vagy keress minket az elérhetőségeinken!',
+    success: 'Megkaptuk az adatait, hamarosan felvesszük Önnel a kapcsolatot.',
+    error: 'Hiba történt a küldés során. Kérjük, próbálja újra később, vagy keressen minket az elérhetőségeinken!',
   },
   en: {
     title: 'Thank you!',
@@ -101,7 +101,7 @@ export default function LeadMagnetForm() {
         {step === 1 && (
           <div className="space-y-6">
             <div>
-              <label htmlFor="industry" className="block text-gray-400 mb-2 font-medium">1. Melyik iparágban tevékenykedtek?</label>
+              <label htmlFor="industry" className="block text-gray-400 mb-2 font-medium">1. Melyik iparágban tevékenykedik a cég?</label>
               <select 
                 id="industry"
                 name="industry" 
@@ -110,7 +110,7 @@ export default function LeadMagnetForm() {
                 required
                 className={inputClass}
               >
-                <option value="" disabled>Válassz iparágat...</option>
+                <option value="" disabled>Válasszon iparágat...</option>
                 <option value="E-kereskedelem">E-kereskedelem (Webshop)</option>
                 <option value="Szolgáltatás">Szolgáltató szektor</option>
                 <option value="Logisztika">Logisztika & Szállítmányozás</option>
@@ -157,7 +157,7 @@ export default function LeadMagnetForm() {
                 required
                 className={inputClass}
               >
-                <option value="" disabled>Válassz egyet...</option>
+                <option value="" disabled>Válasszon egyet...</option>
                 <option value="Ajánlatadás és számlázás">Ajánlatadás és számlázás</option>
                 <option value="Ügyfélszolgálat és GYIK">Ügyfélszolgálat és GYIK</option>
                 <option value="Adatrögzítés (pl. CRM, táblázatok)">Manuális adatrögzítés</option>
@@ -167,7 +167,7 @@ export default function LeadMagnetForm() {
             </div>
 
             <fieldset>
-              <legend className="block text-gray-400 mb-2 font-medium">4. Mi a legfőbb üzleti célod a következő 6 hónapban?</legend>
+              <legend className="block text-gray-400 mb-2 font-medium">4. Mi a legfőbb üzleti célja a következő 6 hónapban?</legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   'Költségek optimalizálása', 
@@ -201,7 +201,7 @@ export default function LeadMagnetForm() {
         {step === 3 && (
           <div className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-gray-400 mb-2 font-medium">5. Hogy szólíthatunk?</label>
+              <label htmlFor="name" className="block text-gray-400 mb-2 font-medium">5. Hogyan szólíthatjuk?</label>
               <input 
                 id="name"
                 type="text" 

@@ -37,11 +37,11 @@ export async function generateMetadata() {
 
 const features = [
   { icon: Search, color: 'text-amber-400', title: 'Pályázat Keresés', desc: 'Automatikusan figyeljük a palyazat.gov.hu, pafi.hu és EU pályázati portálokat. Szűrés TEÁOR kód, méret és régió alapján.' },
-  { icon: Scale, color: 'text-blue-400', title: 'Jogszabály Figyelés', desc: 'Magyar Közlöny napi elemzése — ha egy új jogszabály érinti a te iparágadat, azonnal értesítünk.' },
-  { icon: Target, color: 'text-emerald-400', title: 'Eligibility Check', desc: 'Minden pályázathoz automatikus megfelelőség ellenőrzés — megmondjuk, hogy a te céged jogosult-e rá.' },
-  { icon: Mail, color: 'text-purple-400', title: 'Heti Riport Email', desc: 'Minden hétfőn reggel kapsz egy összefoglalót: új pályázatok, közelgő határidők, jogszabály változások.' },
+  { icon: Scale, color: 'text-blue-400', title: 'Jogszabály Figyelés', desc: 'Magyar Közlöny napi elemzése — ha egy új jogszabály érinti az Ön iparágát, azonnal értesítjük.' },
+  { icon: Target, color: 'text-emerald-400', title: 'Eligibility Check', desc: 'Minden pályázathoz automatikus megfelelőség ellenőrzés — megmondjuk, hogy az Ön cége jogosult-e rá.' },
+  { icon: Mail, color: 'text-purple-400', title: 'Heti Riport Email', desc: 'Minden hétfőn reggel kap egy összefoglalót: új pályázatok, közelgő határidők, jogszabály változások.' },
   { icon: AlertTriangle, color: 'text-red-400', title: 'Határidő Riasztás', desc: 'Automatikus értesítés 30, 14 és 7 nappal a pályázati határidő előtt.' },
-  { icon: Building2, color: 'text-cyan-400', title: 'Iparág Specifikus', desc: 'Testreszabás a te iparágadra: vendéglátás, IT, gyártás, kereskedelem, egészségügy, építőipar.' },
+  { icon: Building2, color: 'text-cyan-400', title: 'Iparág Specifikus', desc: 'Testreszabás az Ön iparágára: vendéglátás, IT, gyártás, kereskedelem, egészségügy, építőipar.' },
 ];
 
 const pricingPlans = [
@@ -284,7 +284,7 @@ export default async function PalyazatRadarPage() {
                 <p className="text-gray-400 text-sm">Automatikus pályázat- és jogszabályfigyelés — soha többé ne maradj le</p>
               </div>
             </div>
-            <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">A magyar KKV-k <span className="text-white font-semibold">73%-a lemarad a számára releváns pályázatokról</span>, mert nincs idejük figyelni. Mi megtesszük helyetted — AI figyeli a pályázatokat és jogszabály-változásokat, és <span className="text-white font-semibold">heti emailben küldünk összefoglalót</span>.</p>
+            <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">A magyar KKV-k <span className="text-white font-semibold">73%-a lemarad a számára releváns pályázatokról</span>, mert nincs idejük figyelni. Mi megtesszük Ön helyett: AI figyeli a pályázatokat és jogszabály-változásokat, és <span className="text-white font-semibold">heti emailben küldünk összefoglalót</span>.</p>
           </GsapFadeIn>
         </div>
       </section>
@@ -299,7 +299,7 @@ export default async function PalyazatRadarPage() {
 
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">
-          <GsapFadeIn><h2 className="text-3xl font-bold mb-10 bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Mit kapsz?</h2></GsapFadeIn>
+          <GsapFadeIn><h2 className="text-3xl font-bold mb-10 bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Mit kap?</h2></GsapFadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f, i) => { const Icon = f.icon; return (
               <GsapFadeIn key={f.title} delay={0.1 * i}><SpotlightCard className="p-7 h-full"><Icon className={`w-8 h-8 mb-4 ${f.color}`} /><h3 className="font-bold text-white mb-2 text-lg">{f.title}</h3><p className="text-gray-300 text-sm leading-relaxed">{f.desc}</p></SpotlightCard></GsapFadeIn>
@@ -310,7 +310,7 @@ export default async function PalyazatRadarPage() {
 
       <section className="px-6 py-16">
         <div className="max-w-3xl mx-auto">
-          <GsapFadeIn><h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Ilyen riportot kapsz hetente</h2></GsapFadeIn>
+          <GsapFadeIn><h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Ilyen riportot kap hetente</h2></GsapFadeIn>
           <GsapFadeIn delay={0.15}>
             <SpotlightCard className="p-8">
               <div className="space-y-6 text-sm">
@@ -324,7 +324,7 @@ export default async function PalyazatRadarPage() {
                 </div>
                 <div>
                   <div className="text-white font-semibold mb-3">⚖️ JOGSZABÁLY VÁLTOZÁS (1 db):</div>
-                  <div className="p-3 bg-red-900/20 border border-red-500/20 rounded-lg"><div className="text-red-300 font-medium">[364/2026. Korm. rendelet] Online pénztárgép módosítás</div><div className="text-gray-400 mt-1">💥 KKV hatás: KÖZEPES — érint ha vendéglátásban dolgozol</div></div>
+                  <div className="p-3 bg-red-900/20 border border-red-500/20 rounded-lg"><div className="text-red-300 font-medium">[364/2026. Korm. rendelet] Online pénztárgép módosítás</div><div className="text-gray-400 mt-1">💥 KKV hatás: KÖZEPES — érinti, ha vendéglátásban dolgozik</div></div>
                 </div>
               </div>
             </SpotlightCard>
@@ -357,7 +357,7 @@ export default async function PalyazatRadarPage() {
             <SpotlightCard className="p-12 text-center">
               <FileSearch className="w-12 h-12 text-amber-400 mx-auto mb-4" />
               <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">2 hét INGYENES próba</h2>
-              <p className="text-lg text-gray-300 mb-8 leading-relaxed">Nincs kockázat — próbáld ki 2 hétig ingyen. Ha nem tetszik, egyszerűen lemondod.</p>
+              <p className="text-lg text-gray-300 mb-8 leading-relaxed">Nincs kockázat: próbálja ki 2 hétig ingyen. Ha nem tetszik, egyszerűen lemondja.</p>
               <Link href={withLang('/kapcsolat')} className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:scale-105">Ingyenes próba indítása <ArrowRight size={18} /></Link>
             </SpotlightCard>
           </GsapFadeIn>

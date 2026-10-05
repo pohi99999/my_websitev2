@@ -6,7 +6,7 @@ export default function NotFound() {
       <h1 className="text-6xl font-bold text-[#00ff9d] mb-4">404</h1>
       <h2 className="text-2xl font-semibold mb-6">A keresett oldal nem található</h2>
       <p className="text-slate-400 mb-8 max-w-md">
-        Sajnos az oldal, amit keresel, már nem létezik vagy áthelyezték.
+        Sajnos az oldal, amelyet keres, már nem létezik, vagy áthelyezték.
       </p>
       <Link 
         href="/"

@@ -4,7 +4,7 @@ export default function HogyanDolgozunk() {
   const steps = [
     {
       title: "Ingyenes online konzultáció",
-      desc: "Megismerjük a vállalkozásod, céljaid, és kiválasztjuk a hozzád illő csomagot."
+      desc: "Megismerjük a vállalkozását és a céljait, és kiválasztjuk az Önhöz illő megoldást."
     },
     {
       title: "Tervezés és kivitelezés",

@@ -19,7 +19,7 @@ export default function Error({
       <h1 className="text-6xl font-bold text-red-500 mb-4">Hiba</h1>
       <h2 className="text-2xl font-semibold mb-6">Valami váratlan hiba történt</h2>
       <p className="text-slate-400 mb-8 max-w-md">
-        A szerverünk nem tudta feldolgozni a kérést. Próbáld meg újra később vagy térj vissza a főoldalra.
+        A szerverünk nem tudta feldolgozni a kérést. Próbálja meg újra később, vagy térjen vissza a főoldalra.
       </p>
       <div className="flex gap-4">
         <button

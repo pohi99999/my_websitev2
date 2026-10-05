@@ -55,7 +55,7 @@ export default function KapcsolatClient() {
             country: "Ungarn",
           }
         : {
-            title: "Lépj Velünk Kapcsolatba",
+            title: "Lépjen velünk kapcsolatba",
             contactTitle: "Elérhetőségek",
             formTitle: "Üzenet Küldése",
             name: "Név",
@@ -63,14 +63,14 @@ export default function KapcsolatClient() {
             location: "Helyszín",
             phone: "Telefon",
             message: "Üzenet",
-            namePlaceholder: "Add meg a neved",
-            emailPlaceholder: "Add meg az email címed",
-            messagePlaceholder: "Írd le, miben segíthetünk...",
+            namePlaceholder: "Az Ön neve",
+            emailPlaceholder: "Az Ön e-mail-címe",
+            messagePlaceholder: "Írja le, miben segíthetünk...",
             sending: "Küldés folyamatban…",
             sendingBtn: "Küldés...",
             submitBtn: "Üzenet Küldése",
             success: "Köszönjük! Az üzenet elküldve.",
-            fail: "Nem sikerült elküldeni. Írj közvetlenül: peterpohankapersonal@gmail.com (vagy próbáld újra pár perc múlva).",
+            fail: "Nem sikerült elküldeni. Írjon közvetlenül: peterpohankapersonal@gmail.com (vagy próbálja újra pár perc múlva).",
             country: "Magyarország",
           };
 

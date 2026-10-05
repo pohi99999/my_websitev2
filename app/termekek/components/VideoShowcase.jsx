@@ -140,16 +140,14 @@ export default function VideoShowcase() {
                         />
 
                         <div className="absolute left-3 bottom-3 rounded-lg bg-black/50 border border-white/10 px-2 py-1 text-[11px] text-gray-200">
-                          Ha nem indul automatikusan, koppints a lejátszásra.
+                          Ha nem indul automatikusan, koppintson a lejátszásra.
                         </div>
                       </>
                     ) : isMp4 ? (
                       mediaError[video.src] ? (
                         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-                          <div className="text-white/90 font-semibold">A videó még nincs feltöltve</div>
-                          <div className="mt-1 text-xs text-gray-300">
-                            Tedd a fájlt ide: <span className="font-mono">public{video.src}</span>
-                          </div>
+                          {/* a missing file used to show a developer note ("put the file here: public/...") to visitors */}
+                          <div className="text-white/90 font-semibold">A videó hamarosan elérhető</div>
                           {video.fallbackUrl && (
                             <a
                               className="mt-4 inline-flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/15 border border-white/15 px-3 py-2 text-xs text-white"

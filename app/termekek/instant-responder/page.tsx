@@ -6,7 +6,7 @@ import InstantResponderDemo from './InstantResponderDemo';
 
 export const metadata = {
   title: 'Azonnali MI Válaszadó | 0-24 Ügyfélszolgálat Automatizálva',
-  description: 'Ne várakoztasd az ügyfeleid! Az MI Válaszadó 60 másodpercen belül professzionális, személyre szabott választ ad minden megkeresésre n8n és Gemini alapokon.',
+  description: 'Ne várakoztassa az ügyfeleit! Az MI Válaszadó 60 másodpercen belül professzionális, személyre szabott választ ad minden megkeresésre n8n és Gemini alapokon.',
 };
 
 export default function InstantResponderPage() {
@@ -24,7 +24,7 @@ export default function InstantResponderPage() {
           </h1>
           <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
             Az érdeklődők 50%-a annál vásárol, aki **először** válaszol. <br className="hidden md:block" /> 
-            Digitális munkatársunk 60 másodpercen belül reagál, mialatt Te éppen pihensz.
+            Digitális munkatársunk 60 másodpercen belül reagál, mialatt Ön éppen pihen.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a href="#demo" className="px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)]">
@@ -49,14 +49,14 @@ export default function InstantResponderPage() {
             <Bot className="text-emerald-500 mb-6" size={32} />
             <h3 className="text-xl font-bold mb-4">Emberi tónus</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Nem sablonokat használunk. Az MI értelmezi a kérdést és a Te céged stílusában fogalmazza meg a választ.
+              Nem sablonokat használunk. Az MI értelmezi a kérdést és az Ön cége stílusában fogalmazza meg a választ.
             </p>
           </div>
           <div className="p-8 bg-slate-900/50 border border-slate-800 rounded-2xl hover:border-emerald-500/30 transition-colors">
             <ShieldCheck className="text-emerald-500 mb-6" size={32} />
             <h3 className="text-xl font-bold mb-4">Mérhető eredmény</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              A válaszok azonnal rögzítésre kerülnek a CRM rendszeredben, így mindenről pontos képed van.
+              A válaszok azonnal rögzítésre kerülnek a CRM-rendszerében, így mindenről pontos képe van.
             </p>
           </div>
         </div>
@@ -92,7 +92,7 @@ export default function InstantResponderPage() {
                   <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center font-bold shrink-0">4</div>
                   <div>
                     <p className="font-bold mb-1">Véglegesítés</p>
-                    <p className="text-slate-400 text-sm">A válasz kimegy az ügyfélnek, Te pedig kapsz egy értesítést a telefonodra.</p>
+                    <p className="text-slate-400 text-sm">A válasz kimegy az ügyfélnek, Ön pedig értesítést kap a telefonjára.</p>
                   </div>
                 </div>
               </div>
@@ -113,18 +113,18 @@ export default function InstantResponderPage() {
 
         {/* Demo Section */}
         <section id="demo" className="text-center py-20 border-t border-slate-900">
-           <h2 className="text-3xl font-bold font-syne mb-4">Próbáld ki élesben!</h2>
+           <h2 className="text-3xl font-bold font-syne mb-4">Próbálja ki élesben!</h2>
            <p className="text-slate-400 mb-12 max-w-2xl mx-auto">
-             Írd be az üzenetet, amit egy képzeletbeli ügyfél küldene Neked, és nézd meg, mit válaszolna az MI 60 másodpercen belül.
+             Írja be az üzenetet, amelyet egy képzeletbeli ügyfél küldene Önnek, és nézze meg, mit válaszolna az MI 60 másodpercen belül.
            </p>
            <InstantResponderDemo />
         </section>
 
         {/* CTA Section */}
         <div className="mt-32 text-center bg-gradient-to-b from-emerald-500/10 to-transparent p-16 rounded-3xl border border-emerald-500/20">
-          <h2 className="text-4xl font-bold mb-6">Készen állsz az automatizálásra?</h2>
+          <h2 className="text-4xl font-bold mb-6">Készen áll az automatizálásra?</h2>
           <p className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
-            Telepítjük, beállítjuk és karbantartjuk. Neked csak az új ügyfelekkel kell foglalkoznod.
+            Telepítjük, beállítjuk és karbantartjuk. Önnek csak az új ügyfelekkel kell foglalkoznia.
           </p>
           <Link href="/kapcsolat" className="inline-flex items-center gap-2 px-10 py-5 bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-bold rounded-full transition-all">
             Kérem a bemutatót <ArrowRight size={20} />

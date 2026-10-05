@@ -193,7 +193,7 @@ export default function GlossaryClient() {
             <input
               type="text"
               className="block w-full pl-12 pr-4 py-4 bg-slate-900/50 border border-slate-700 rounded-full text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all"
-              placeholder="Keress a fogalmak között (pl. Agent, RAG)..."
+              placeholder="Keressen a fogalmak között (pl. Agent, RAG)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -222,7 +222,7 @@ export default function GlossaryClient() {
 
         {filteredTerms.length === 0 && (
           <div className="text-center py-20 text-slate-500">
-            Nem találtunk ilyen kifejezést. Próbálj másik kulcsszót!
+            Nem találtunk ilyen kifejezést. Próbáljon másik kulcsszót!
           </div>
         )}
       </div>

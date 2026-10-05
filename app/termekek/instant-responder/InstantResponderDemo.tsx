@@ -25,11 +25,11 @@ export default function InstantResponderDemo() {
       if (data.ok) {
         setReply(data.reply);
       } else {
-        setReply('Sajnálom, hiba történt a generálás közben. Kérlek próbáld újra!');
+        setReply('Sajnáljuk, hiba történt a generálás közben. Kérjük, próbálja újra!');
       }
     } catch (err) {
       console.error(err);
-      setReply('Hálózati hiba történt. Kérlek ellenőrizd a kapcsolatod!');
+      setReply('Hálózati hiba történt. Kérjük, ellenőrizze a kapcsolatát!');
     } finally {
       setLoading(false);
     }

@@ -22,7 +22,7 @@ export async function generateMetadata() {
           }
         : {
             title: "Kapcsolat",
-            description: "Vedd fel a kapcsolatot a Pohánka és Társa Kft.-vel — AI rendszerek, automatizálás és egyedi szoftverfejlesztés.",
+            description: "Vegye fel a kapcsolatot a Pohánka és Társa Kft.-vel: AI-rendszerek, automatizálás és egyedi szoftverfejlesztés.",
             canonical: "/kapcsolat",
           };
 
