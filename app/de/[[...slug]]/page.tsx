@@ -55,49 +55,49 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
                 return {
                     title: 'Produkte',
                     description:
-                        'Brunella Agent System (BAS), Pohi AI Pro und weitere KI-Lösungen — Produkte und Plattformen für KMU.',
+                        'Brunella Agent System (BAS), Pohi AI Pro und weitere KI-Lösungen: Produkte und Plattformen für KMU.',
                     ogType: 'website',
                 };
             case 'szolgaltatasok':
                 return {
                     title: 'Dienstleistungen',
                     description:
-                        'KI-Automatisierung, individuelle Softwareentwicklung und Beratung — mit Fokus auf Sicherheit und messbaren ROI.',
+                        'KI-Automatisierung, individuelle Softwareentwicklung und Beratung, mit Fokus auf Sicherheit und messbaren ROI.',
                     ogType: 'website',
                 };
             case 'portfolio':
                 return {
                     title: 'Portfolio',
                     description:
-                        'Ausgewählte Projekte und Fallstudien — praxisnahe KI- und Softwarelösungen für echte Geschäftsergebnisse.',
+                        'Ausgewählte Projekte und Fallstudien: praxisnahe KI- und Softwarelösungen für echte Geschäftsergebnisse.',
                     ogType: 'website',
                 };
             case 'blog':
                 return {
                     title: 'Blog',
                     description:
-                        'Artikel über KI, Automatisierung und den Aufbau zuverlässiger agentischer Systeme — mit Praxisbeispielen und technischer Perspektive.',
+                        'Artikel über KI, Automatisierung und den Aufbau zuverlässiger agentischer Systeme, mit Praxisbeispielen und technischer Perspektive.',
                     ogType: 'website',
                 };
             case 'rolunk':
                 return {
                     title: 'Über uns',
                     description:
-                        'Lernen Sie Pohánka & Társa kennen — unseren Ansatz für KI, Automatisierung und robuste Softwaresysteme.',
+                        'Lernen Sie Pohánka & Társa kennen: unseren Ansatz für KI, Automatisierung und robuste Softwaresysteme.',
                     ogType: 'website',
                 };
             case 'kapcsolat':
                 return {
                     title: 'Kontakt',
                     description:
-                        'Erzählen Sie uns von Ihren Abläufen und Zielen — wir schlagen einen konkreten KI-Automatisierungsplan mit schneller ROI vor.',
+                        'Erzählen Sie uns von Ihren Abläufen und Zielen: Wir schlagen einen konkreten KI-Automatisierungsplan mit schneller ROI vor.',
                     ogType: 'website',
                 };
             case 'fogalomtar':
                 return {
                     title: 'Glossar',
                     description:
-                        'Ein praktisches Glossar zu KI- und Softwarebegriffen — klar für Business und Engineering erklärt.',
+                        'Ein praktisches Glossar zu KI- und Softwarebegriffen: klar für Business und Engineering erklärt.',
                     ogType: 'website',
                 };
             case 'adatvedelmi-nyilatkozat':
@@ -129,7 +129,7 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
                 return {
                     title: 'Digitaler Effizienz-Audit',
                     description:
-                        'Finden Sie in 3 Minuten heraus, wo Ihr Unternehmen monatlich 100+ Arbeitsstunden durch manuelle Prozesse verliert — und wie KI das stoppen kann.',
+                        'Finden Sie in 3 Minuten heraus, wo Ihr Unternehmen monatlich 100+ Arbeitsstunden durch manuelle Prozesse verliert, und wie KI das stoppen kann.',
                     ogType: 'website',
                 };
             default:
@@ -142,7 +142,7 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
             return {
                 title: 'Brunella Agent System',
                 description:
-                    'Ein praxisnahes agentisches System für Geschäftsautomatisierung — orchestrierte Workflows, Tool-Nutzung und sichere Bereitstellung.',
+                    'Ein praxisnahes agentisches System für Geschäftsautomatisierung: orchestrierte Workflows, Tool-Nutzung und sichere Bereitstellung.',
                 ogType: 'website',
             };
         }
@@ -150,7 +150,7 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
             return {
                 title: 'Pohi AI Pro',
                 description:
-                    'Ein individuell entwickeltes Portalsystem, das Kundendaten und Lagerdaten integriert — für Automatisierung und operative Klarheit.',
+                    'Ein individuell entwickeltes Portalsystem, das Kundendaten und Lagerdaten integriert, für Automatisierung und operative Klarheit.',
                 ogType: 'website',
             };
         }

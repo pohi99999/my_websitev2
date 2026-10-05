@@ -55,49 +55,49 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
         return {
           title: 'Products',
           description:
-            'Brunella Agent System (BAS), Pohi AI Pro, and additional AI solutions — products and platforms for SMEs.',
+            'Brunella Agent System (BAS), Pohi AI Pro, and additional AI solutions: products and platforms for SMEs.',
           ogType: 'website',
         };
       case 'szolgaltatasok':
         return {
           title: 'Services',
           description:
-            'AI automation, custom software development, and consulting — delivered with security and measurable ROI in mind.',
+            'AI automation, custom software development, and consulting, delivered with security and measurable ROI in mind.',
           ogType: 'website',
         };
       case 'portfolio':
         return {
           title: 'Portfolio',
           description:
-            'Selected projects and case studies — practical AI and software solutions for real business outcomes.',
+            'Selected projects and case studies: practical AI and software solutions for real business outcomes.',
           ogType: 'website',
         };
       case 'blog':
         return {
           title: 'Blog',
           description:
-            'Articles about AI, automation, and building reliable agentic systems — with practical examples and engineering perspective.',
+            'Articles about AI, automation, and building reliable agentic systems, with practical examples and engineering perspective.',
           ogType: 'website',
         };
       case 'rolunk':
         return {
           title: 'About',
           description:
-            'Learn about Pohánka & Társa — our approach to AI, automation, and building robust software systems.',
+            'Learn about Pohánka & Társa: our approach to AI, automation, and building robust software systems.',
           ogType: 'website',
         };
       case 'kapcsolat':
         return {
           title: 'Contact',
           description:
-            'Tell us about your workflows and goals — we’ll propose a concrete AI automation plan with fast ROI and safe rollout.',
+            'Tell us about your workflows and goals: we’ll propose a concrete AI automation plan with fast ROI and safe rollout.',
           ogType: 'website',
         };
       case 'fogalomtar':
         return {
           title: 'Glossary',
           description:
-            'A practical glossary of AI and software terms — explained clearly for business and engineering.',
+            'A practical glossary of AI and software terms, explained clearly for business and engineering.',
           ogType: 'website',
         };
       case 'adatvedelmi-nyilatkozat':
@@ -129,7 +129,7 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
         return {
           title: 'Digital Efficiency Audit',
           description:
-            'Find out in 3 minutes where your company loses 100+ working hours a month to manual processes — and how AI can stop it.',
+            'Find out in 3 minutes where your company loses 100+ working hours a month to manual processes, and how AI can stop it.',
           ogType: 'website',
         };
       default:
@@ -143,7 +143,7 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
       return {
         title: 'Brunella Agent System',
         description:
-          'A practical agentic system for business automation — orchestrated workflows, tool use, and secure-by-design deployment.',
+          'A practical agentic system for business automation: orchestrated workflows, tool use, and secure-by-design deployment.',
         ogType: 'website',
       };
     }
@@ -151,7 +151,7 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
       return {
         title: 'Pohi AI Pro',
         description:
-          'A custom-built portal system integrating customer and inventory data — designed for automation and operational clarity.',
+          'A custom-built portal system integrating customer and inventory data, designed for automation and operational clarity.',
         ogType: 'website',
       };
     }

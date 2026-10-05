@@ -48,7 +48,7 @@ export default function BusinessLogicDemo() {
         title: 'LinkedIn – Poszt előnézet',
         subtitle: 'Cél: lead gen • Hook: piaci jelzés • CTA: komment + DM',
         body:
-          'Q3 piaci jelzés: a top versenytársak átlagosan ~5%-kal csökkentettek árat.\n\nA kérdés nem az, hogy olcsóbb leszel-e — hanem hogy gyorsabban tudsz-e végrehajtani.\n\nA Brunella Agents ezt csinálja helyetted:\n✅ versenytárs ajánlatok scan\n✅ trendek és pozicionálás összegzés\n✅ kampány és üzenetek generálása\n\nKéred a Q3 ár-térképet + playbookot?\nKomment: „PLAYBOOK” és küldjük DM-ben.'
+          'Q3 piaci jelzés: a top versenytársak átlagosan ~5%-kal csökkentettek árat.\n\nA kérdés nem az, hogy olcsóbb leszel-e, hanem hogy gyorsabban tudsz-e végrehajtani.\n\nA Brunella Agents ezt csinálja helyetted:\n✅ versenytárs ajánlatok scan\n✅ trendek és pozicionálás összegzés\n✅ kampány és üzenetek generálása\n\nKéred a Q3 ár-térképet + playbookot?\nKomment: „PLAYBOOK” és küldjük DM-ben.'
       }
     }),
     []

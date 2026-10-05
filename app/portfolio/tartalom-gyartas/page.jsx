@@ -27,7 +27,7 @@ export async function generateMetadata() {
       },
       hu: {
         title: 'AI tartalomgyártás: social media és e-mail',
-        description: 'Havi social media posztok, blog cikkek és email kampányok — AI-val generálva, az Ön iparágára és hangnemére szabva.',
+        description: 'Havi social media posztok, blog cikkek és email kampányok: AI-val generálva, az Ön iparágára és hangnemére szabva.',
         canonical: '/portfolio/tartalom-gyartas',
         locale: 'hu_HU',
       }
@@ -36,9 +36,9 @@ export async function generateMetadata() {
 }
 
 const contentTypes = [
-  { icon: Instagram, color: 'text-pink-400', title: 'Social Media Posztok', desc: 'Facebook, Instagram, LinkedIn — iparágra szabva, posztoló naptárral.' },
+  { icon: Instagram, color: 'text-pink-400', title: 'Social Media Posztok', desc: 'Facebook, Instagram, LinkedIn: iparágra szabva, posztoló naptárral.' },
   { icon: FileText, color: 'text-blue-400', title: 'Blog Cikkek', desc: 'SEO-optimalizált, 800-1500 szavas blog cikkek. Kulcsszó kutatás, meta leírás.' },
-  { icon: Mail, color: 'text-purple-400', title: 'Email Kampányok', desc: 'Welcome sorozat, heti hírlevél, remarketing email — automatikusan generálva.' },
+  { icon: Mail, color: 'text-purple-400', title: 'Email Kampányok', desc: 'Welcome sorozat, heti hírlevél, remarketing email: automatikusan generálva.' },
   { icon: Megaphone, color: 'text-orange-400', title: 'Hirdetési Szövegek', desc: 'Google Ads, Facebook Ads szövegek. Több variáció, CTA optimalizálás.' },
   { icon: Palette, color: 'text-emerald-400', title: 'Landing Page Szövegek', desc: 'Konverzió-optimalizált landing page tartalom. Hero, feature blokkok, CTA.' },
   { icon: Share2, color: 'text-cyan-400', title: 'White-Label (Ügynökségeknek)', desc: 'Tartalom generálás az Ön ügyfele márkájára, az Ön nevében, az ő hangnemükben.' },
@@ -46,8 +46,8 @@ const contentTypes = [
 
 const samplePosts = [
   { industry: '🦷 Fogorvos', posts: ['"Őszi szűrési napok 🦷 Foglalj időpontot online: [link] #fogászat #szűrés"', '"Fehérebb mosolyt szeretnél? 🔆 Fogfehérítés márciusban 20% kedvezménnyel. Hívj minket! 📞"'] },
-  { industry: '🏋️ Fitness', posts: ['"5 reggeli rutin edzés előtt ⚡ Olvasd el a blogon: [link] #fitness"', '"Új csoportos órarend márciustól! 🔥 HIIT, Yoga, CrossFit — válaszd ki a kedvencedet. Első alkalom INGYEN! 💪"'] },
-  { industry: '🍕 Étterem', posts: ['"Heti menü előrendelés 📱 Rendeld meg péntek estig a jövő heti ebéded — házhoz visszük! Menü: [link] #ebédmenü"', '"Új szezonális kínálat! 🌿 Tavaszi saláták friss, helyi alapanyagokból. Kóstold meg a Farm-to-Table élményt! 🥗"'] }
+  { industry: '🏋️ Fitness', posts: ['"5 reggeli rutin edzés előtt ⚡ Olvasd el a blogon: [link] #fitness"', '"Új csoportos órarend márciustól! 🔥 HIIT, Yoga, CrossFit: válaszd ki a kedvencedet. Első alkalom INGYEN! 💪"'] },
+  { industry: '🍕 Étterem', posts: ['"Heti menü előrendelés 📱 Rendeld meg péntek estig a jövő heti ebéded: házhoz visszük! Menü: [link] #ebédmenü"', '"Új szezonális kínálat! 🌿 Tavaszi saláták friss, helyi alapanyagokból. Kóstold meg a Farm-to-Table élményt! 🥗"'] }
 ];
 
 const pricingPlans = [
@@ -72,26 +72,26 @@ export default async function TartalomGyartasPage() {
             badge: 'Marketing',
             available: '🟢 Available now',
             title: 'AI Content Production',
-            tagline: 'AI-generated, human-reviewed — in your brand voice',
-            subtitle: 'Monthly social media posts, blog articles and email campaigns — tailored to your industry and tone. First 5 sample posts FREE.',
+            tagline: 'AI-generated, human-reviewed, in your brand voice',
+            subtitle: 'Monthly social media posts, blog articles and email campaigns, tailored to your industry and tone. First 5 sample posts FREE.',
             sampleTitle: 'Sample posts',
-            sampleNote: 'This is the kind of content we generate — ready to post',
+            sampleNote: 'This is the kind of content we generate, ready to post',
             samples: [
               { industry: '🦷 Dentist', posts: ['"Autumn check-up days 🦷 Book an appointment online: [link] #dentist #checkup"', '"Want a whiter smile? 🔆 Teeth whitening 20% off in March. Call us! 📞"'] },
-              { industry: '🏋️ Fitness', posts: ['"5 morning habits before your workout ⚡ Read on the blog: [link] #fitness"', '"New group class schedule from March! 🔥 HIIT, Yoga, CrossFit — pick your favourite. First session FREE! 💪"'] },
-              { industry: '🍕 Restaurant', posts: ['"Pre-order your weekly lunch 📱 Order by Friday for next week — we deliver! Menu: [link] #lunch"', '"New seasonal menu! 🌿 Spring salads with fresh local produce. Taste the Farm-to-Table experience! 🥗"'] },
+              { industry: '🏋️ Fitness', posts: ['"5 morning habits before your workout ⚡ Read on the blog: [link] #fitness"', '"New group class schedule from March! 🔥 HIIT, Yoga, CrossFit: pick your favourite. First session FREE! 💪"'] },
+              { industry: '🍕 Restaurant', posts: ['"Pre-order your weekly lunch 📱 Order by Friday for next week: we deliver! Menu: [link] #lunch"', '"New seasonal menu! 🌿 Spring salads with fresh local produce. Taste the Farm-to-Table experience! 🥗"'] },
             ],
             contentTypesTitle: 'Types of content we create',
             contentTypes: [
-              { title: 'Social Media Posts', desc: 'Facebook, Instagram, LinkedIn — industry-tailored with a full editorial calendar.' },
+              { title: 'Social Media Posts', desc: 'Facebook, Instagram, LinkedIn: industry-tailored with a full editorial calendar.' },
               { title: 'Blog Articles', desc: 'SEO-optimised articles of 800–1500 words. Includes keyword research and meta descriptions.' },
-              { title: 'Email Campaigns', desc: 'Welcome sequences, weekly newsletters, remarketing emails — automatically generated.' },
+              { title: 'Email Campaigns', desc: 'Welcome sequences, weekly newsletters, remarketing emails: automatically generated.' },
               { title: 'Ad Copy', desc: 'Google Ads and Facebook Ads copy. Multiple variants with CTA optimisation.' },
               { title: 'Landing Page Copy', desc: 'Conversion-optimised landing page content. Hero, feature blocks, CTAs.' },
-              { title: 'White-Label (for agencies)', desc: 'Content generated for your client\'s brand — under your name, in their voice.' },
+              { title: 'White-Label (for agencies)', desc: 'Content generated for your client\'s brand, under your name, in their voice.' },
             ],
             pricingTitle: 'Pricing',
-            pricingNote: 'First 5 sample posts FREE — try it risk-free',
+            pricingNote: 'First 5 sample posts FREE: try it risk-free',
             pricingPopular: 'POPULAR',
             plans: [
               { name: 'Social Basic', price: '9,990 HUF', period: '/mo', features: ['10 posts/mo (FB+IG)', 'Editorial calendar', 'Hashtag research'], highlight: false, color: 'border-slate-600' },
@@ -101,33 +101,33 @@ export default async function TartalomGyartasPage() {
             ],
             ctaBtn: 'Request free samples',
             ctaTitle: '5 sample posts FREE',
-            ctaBody: 'Tell us your industry and brand voice — we\'ll send 5 ready-to-post pieces within 24 hours.',
+            ctaBody: 'Tell us your industry and brand voice: we\'ll send 5 ready-to-post pieces within 24 hours.',
           }
         : {
             back: 'Zurück zum Portfolio',
             badge: 'Marketing',
             available: '🟢 Sofort verfügbar',
             title: 'KI-Content-Produktion',
-            tagline: 'KI-generiert, redaktionell geprüft — in Ihrer Markensprache',
-            subtitle: 'Monatlicher Content für Social Media, Blog und E-Mail — abgestimmt auf Ihre Branche und Tonalität. Die ersten 5 Muster-Posts KOSTENLOS.',
+            tagline: 'KI-generiert, redaktionell geprüft, in Ihrer Markensprache',
+            subtitle: 'Monatlicher Content für Social Media, Blog und E-Mail, abgestimmt auf Ihre Branche und Tonalität. Die ersten 5 Muster-Posts KOSTENLOS.',
             sampleTitle: 'Muster-Posts',
-            sampleNote: 'So sieht der Content aus, den wir erstellen — sofort postbar',
+            sampleNote: 'So sieht der Content aus, den wir erstellen, sofort postbar',
             samples: [
               { industry: '🦷 Zahnarzt', posts: ['"Herbstliche Vorsorgetage 🦷 Jetzt online Termin buchen: [link] #Zahnarzt #Vorsorge"', '"Strahlend weiße Zähne? 🔆 Bleaching im März mit 20% Rabatt. Rufen Sie uns an! 📞"'] },
-              { industry: '🏋️ Fitness', posts: ['"5 Morgengewohnheiten vor dem Training ⚡ Jetzt im Blog lesen: [link] #Fitness"', '"Neuer Gruppenkurs-Plan ab März! 🔥 HIIT, Yoga, CrossFit — such dir deinen Favoriten. Erste Einheit GRATIS! 💪"'] },
-              { industry: '🍕 Restaurant', posts: ['"Mittagessen vorbestellen 📱 Bis Freitag für die nächste Woche bestellen — wir liefern! Menü: [link] #Mittagsmenü"', '"Neues Saisonmenü! 🌿 Frühlingsalate mit frischen regionalen Zutaten. Farm-to-Table genießen! 🥗"'] },
+              { industry: '🏋️ Fitness', posts: ['"5 Morgengewohnheiten vor dem Training ⚡ Jetzt im Blog lesen: [link] #Fitness"', '"Neuer Gruppenkurs-Plan ab März! 🔥 HIIT, Yoga, CrossFit: such dir deinen Favoriten. Erste Einheit GRATIS! 💪"'] },
+              { industry: '🍕 Restaurant', posts: ['"Mittagessen vorbestellen 📱 Bis Freitag für die nächste Woche bestellen: Wir liefern! Menü: [link] #Mittagsmenü"', '"Neues Saisonmenü! 🌿 Frühlingsalate mit frischen regionalen Zutaten. Farm-to-Table genießen! 🥗"'] },
             ],
             contentTypesTitle: 'Welche Inhalte erstellen wir?',
             contentTypes: [
-              { title: 'Social-Media-Posts', desc: 'Facebook, Instagram, LinkedIn — branchenspezifisch mit vollständigem Redaktionsplan.' },
+              { title: 'Social-Media-Posts', desc: 'Facebook, Instagram, LinkedIn: branchenspezifisch mit vollständigem Redaktionsplan.' },
               { title: 'Blogartikel', desc: 'SEO-optimierte Artikel mit 800–1500 Wörtern. Inklusive Keyword-Recherche und Meta-Beschreibung.' },
-              { title: 'E-Mail-Kampagnen', desc: 'Welcome-Sequenzen, wöchentliche Newsletter, Remarketing-Mails — automatisch generiert.' },
+              { title: 'E-Mail-Kampagnen', desc: 'Welcome-Sequenzen, wöchentliche Newsletter, Remarketing-Mails: automatisch generiert.' },
               { title: 'Anzeigentexte', desc: 'Google Ads- und Facebook-Ads-Texte. Mehrere Varianten mit CTA-Optimierung.' },
               { title: 'Landing-Page-Texte', desc: 'Conversion-optimierter Landing-Page-Content. Hero, Feature-Blöcke, CTAs.' },
-              { title: 'White-Label (für Agenturen)', desc: 'Content unter Ihrer Marke für Ihren Kunden — in deren Tonalität, unter Ihrem Namen.' },
+              { title: 'White-Label (für Agenturen)', desc: 'Content unter Ihrer Marke für Ihren Kunden, in deren Tonalität, unter Ihrem Namen.' },
             ],
             pricingTitle: 'Preise',
-            pricingNote: 'Erste 5 Muster-Posts KOSTENLOS — risikofrei ausprobieren',
+            pricingNote: 'Erste 5 Muster-Posts KOSTENLOS: risikofrei ausprobieren',
             pricingPopular: 'BELIEBT',
             plans: [
               { name: 'Social Basic', price: '9.990 HUF', period: '/Mo.', features: ['10 Posts/Mo. (FB+IG)', 'Redaktionsplan', 'Hashtag-Recherche'], highlight: false, color: 'border-slate-600' },
@@ -137,7 +137,7 @@ export default async function TartalomGyartasPage() {
             ],
             ctaBtn: 'Kostenlose Muster anfordern',
             ctaTitle: '5 Muster-Posts KOSTENLOS',
-            ctaBody: 'Teilen Sie uns Ihre Branche und Markentonalität mit — wir senden Ihnen binnen 24 Stunden 5 sofort postbare Inhalte.',
+            ctaBody: 'Teilen Sie uns Ihre Branche und Markentonalität mit: Wir senden Ihnen binnen 24 Stunden 5 sofort postbare Inhalte.',
           };
 
     const localContentIcons = [
@@ -257,7 +257,7 @@ export default async function TartalomGyartasPage() {
                 <p className="text-gray-400 text-sm">AI által generálva, ember által ellenőrizve, az Ön hangján</p>
               </div>
             </div>
-            <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">Havi social media posztok, blog cikkek és email kampányok — <span className="text-white font-semibold">az Ön iparágára és hangnemére szabva</span>. Az első 5 minta poszt INGYEN.</p>
+            <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">Havi social media posztok, blog cikkek és email kampányok: <span className="text-white font-semibold">az Ön iparágára és hangnemére szabva</span>. Az első 5 minta poszt INGYEN.</p>
           </GsapFadeIn>
         </div>
       </section>
@@ -265,7 +265,7 @@ export default async function TartalomGyartasPage() {
 
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">
-          <GsapFadeIn><h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">Minta posztok</h2><p className="text-gray-400 mb-10">Ilyen tartalmakat generálunk — azonnal posztolható minőségben</p></GsapFadeIn>
+          <GsapFadeIn><h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">Minta posztok</h2><p className="text-gray-400 mb-10">Ilyen tartalmakat generálunk, azonnal posztolható minőségben</p></GsapFadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {samplePosts.map((sp, i) => (
               <GsapFadeIn key={sp.industry} delay={0.1 * i}>

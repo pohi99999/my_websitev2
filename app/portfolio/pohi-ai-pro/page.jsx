@@ -48,7 +48,7 @@ const roles = [
     border: 'border-blue-500/30',
     title: 'Vevők',
     features: [
-      'Részletes termékigények ("demands") beküldése — konkrét méretek, mennyiségek',
+      'Részletes termékigények ("demands") beküldése: konkrét méretek, mennyiségek',
       'AI-alapú segítség alternatív termékek kereséséhez és összehasonlításához',
       'AI-generált érdeklődő üzenetek fogalmazása',
       'Párosítások nyomon követése, üzlettárgyalás, szállítmánykövetés',
@@ -77,7 +77,7 @@ const roles = [
       'Vertex AI-alapú platformelemzés és piaci kereslet-előrejelzés',
       'Kereskedelmi mintázat anomália-detektálás',
       'Teljes felhasználókezelés',
-      'Logisztikai Irányítóközpont — a platform zászlóshajója',
+      'Logisztikai Irányítóközpont: a platform zászlóshajója',
     ],
   },
 ];
@@ -102,13 +102,13 @@ const challenges = [
     icon: Bot,
     color: 'text-yellow-400',
     title: 'Megbízható strukturált AI kimenet',
-    desc: 'Összetett feladatoknál (rakodási terv, anomáliajelentés) a Gemini válaszainak mindig érvényes JSON formátumban kellett lenniük. Megoldás: a Gemini API responseSchema funkciójának kiterjedt használata — a frontend kód így tisztább és ellenállóbb lett.',
+    desc: 'Összetett feladatoknál (rakodási terv, anomáliajelentés) a Gemini válaszainak mindig érvényes JSON formátumban kellett lenniük. Megoldás: a Gemini API responseSchema funkciójának kiterjedt használata: a frontend kód így tisztább és ellenállóbb lett.',
   },
   {
     icon: Users,
     color: 'text-blue-400',
     title: 'Intuitív AI élmény tervezése',
-    desc: 'El akartuk kerülni a "ráragasztottnak" érződő AI funkciókat. Kontextus-érzékeny AiFeatureButton komponenseket hoztunk létre — például az AI "alkalmazza" egy feltöltött fotó elemzését közvetlenül a termékűrlap mezőire.',
+    desc: 'El akartuk kerülni a "ráragasztottnak" érződő AI funkciókat. Kontextus-érzékeny AiFeatureButton komponenseket hoztunk létre: például az AI "alkalmazza" egy feltöltött fotó elemzését közvetlenül a termékűrlap mezőire.',
   },
   {
     icon: Layers,
@@ -129,7 +129,7 @@ const results = [
     icon: Truck,
     color: 'text-blue-400',
     title: 'Logisztikai Irányítóközpont',
-    desc: 'A zászlóshajó funkció. AI-alapú tervezéstől a vizuális interaktív térképes felületig — különböző technológiák kombinálása egy valós probléma megoldására.',
+    desc: 'A zászlóshajó funkció. AI-alapú tervezéstől a vizuális interaktív térképes felületig: különböző technológiák kombinálása egy valós probléma megoldására.',
   },
   {
     icon: Brain,
@@ -141,13 +141,13 @@ const results = [
     icon: Globe,
     color: 'text-emerald-400',
     title: 'Csiszolt, professzionális UI/UX',
-    desc: 'Következetes dizájnnyelv, reszponzív elrendezés, átgondolt interakciók — érett, gyártásra kész termék érzete, annak ellenére, hogy nincs backend.',
+    desc: 'Következetes dizájnnyelv, reszponzív elrendezés, átgondolt interakciók: érett, gyártásra kész termék érzete, annak ellenére, hogy nincs backend.',
   },
   {
     icon: Code2,
     color: 'text-orange-400',
     title: 'Teljesen interaktív prototípus',
-    desc: 'Funkcióban gazdag alkalmazás teljes backend nélkül — demonstrálja a modern frontend eszközök és a jól átgondolt architektúra erejét.',
+    desc: 'Funkcióban gazdag alkalmazás teljes backend nélkül: demonstrálja a modern frontend eszközök és a jól átgondolt architektúra erejét.',
   },
 ];
 
@@ -156,17 +156,17 @@ const pohiNarrative = {
   en: {
     badge: 'Executive Summary',
     tagline: 'Where AI meets raw-material commerce',
-    headline: 'A B2B marketplace that thinks, plans, and ships — autonomously.',
+    headline: 'A B2B marketplace that thinks, plans, and ships, autonomously.',
     body: `Pohi AI Pro is a fully interactive B2B trading and logistics platform built
-for the raw-materials industry. Three distinct user roles — Buyers, Manufacturers,
-and Administrators — each receive a tailored AI-assisted workspace. Buyers
+for the raw-materials industry. Three distinct user roles (Buyers, Manufacturers,
+and Administrators) each receive a tailored AI-assisted workspace. Buyers
 articulate complex sourcing demands and get instant AI-matched supplier proposals.
 Manufacturers list inventory with AI-generated descriptions, fair pricing guidance,
 and photorealistic product images (Imagen 3). Administrators command a real-time
 Logistics Control Centre that routes multi-stop shipments, generates CMR documents,
-and forecasts demand anomalies — all powered by Gemini and Vertex AI.`,
+and forecasts demand anomalies, all powered by Gemini and Vertex AI.`,
     pillars: [
-      { icon: Brain,       color: 'text-purple-400', title: 'Deep AI Integration',    body: 'AI is embedded at every touchpoint — not bolted on as an afterthought. From crafting supplier messages to autonomous truck loading, every workflow has a Gemini-powered step.' },
+      { icon: Brain,       color: 'text-purple-400', title: 'Deep AI Integration',    body: 'AI is embedded at every touchpoint, not bolted on as an afterthought. From crafting supplier messages to autonomous truck loading, every workflow has a Gemini-powered step.' },
       { icon: Truck,       color: 'text-blue-400',   title: 'Logistics Control Centre', body: 'The flagship feature: AI optimises multi-stop routes, auto-fills vehicles by volume & proximity, and generates legally valid shipping documents in seconds.' },
       { icon: BarChart3,   color: 'text-cyan-400',   title: 'Predictive Analytics',   body: 'Vertex AI detects demand anomalies and surfaces supply-chain bottlenecks before they become costly disruptions.' },
       { icon: Globe,       color: 'text-emerald-400', title: 'Scalable Architecture', body: 'Built entirely on the frontend today; designed for a seamless migration to Node.js, PostgreSQL, and WebSocket real-time channels tomorrow.' },
@@ -181,17 +181,17 @@ and forecasts demand anomalies — all powered by Gemini and Vertex AI.`,
   de: {
     badge: 'Management-Zusammenfassung',
     tagline: 'Wo KI auf Rohstoffhandel trifft',
-    headline: 'Ein B2B-Marktplatz, der denkt, plant und liefert — autonom.',
+    headline: 'Ein B2B-Marktplatz, der denkt, plant und liefert, autonom.',
     body: `Pohi AI Pro ist eine vollständig interaktive B2B-Handels- und Logistikplattform
-für die Rohstoffbranche. Drei Benutzerrollen — Käufer, Hersteller und Administratoren —
+für die Rohstoffbranche. Drei Benutzerrollen (Käufer, Hersteller und Administratoren)
 erhalten jeweils einen KI-gestützten Arbeitsbereich. Käufer formulieren komplexe
 Beschaffungsanforderungen und erhalten sofort KI-abgestimmte Lieferantenvorschläge.
 Hersteller listen Bestände mit KI-generierten Beschreibungen, fairen Preisempfehlungen
 und fotorealistischen Produktbildern (Imagen 3). Administratoren steuern ein
 Echtzeit-Logistikzentrum, das Mehrfachlieferungen plant, CMR-Dokumente erzeugt
-und Nachfrageanomalien erkennt — alles mit Gemini und Vertex AI.`,
+und Nachfrageanomalien erkennt, alles mit Gemini und Vertex AI.`,
     pillars: [
-      { icon: Brain,       color: 'text-purple-400', title: 'Tiefe KI-Integration',     body: 'KI ist an jedem Berührungspunkt eingebettet — keine nachträgliche Ergänzung. Von der Lieferantenkommunikation bis zur autonomen Lkw-Beladung steckt Gemini in jedem Schritt.' },
+      { icon: Brain,       color: 'text-purple-400', title: 'Tiefe KI-Integration',     body: 'KI ist an jedem Berührungspunkt eingebettet, keine nachträgliche Ergänzung. Von der Lieferantenkommunikation bis zur autonomen Lkw-Beladung steckt Gemini in jedem Schritt.' },
       { icon: Truck,       color: 'text-blue-400',   title: 'Logistik-Leitstelle',       body: 'Das Flaggschiff-Feature: KI optimiert Mehrfachrouten, füllt Fahrzeuge automatisch nach Volumen und Nähe auf und erstellt rechtsgültige Versanddokumente in Sekunden.' },
       { icon: BarChart3,   color: 'text-cyan-400',   title: 'Prädiktive Analytik',       body: 'Vertex AI erkennt Nachfrageanomalien und zeigt Engpässe in der Lieferkette auf, bevor sie kostspielig werden.' },
       { icon: Globe,       color: 'text-emerald-400', title: 'Skalierbare Architektur', body: 'Heute vollständig im Frontend; konzipiert für eine nahtlose Migration auf Node.js, PostgreSQL und WebSocket-Echtzeitsystem.' },
@@ -226,7 +226,7 @@ const pohiNarrativeHuLegacy = {
     executiveTitle: 'Vezetői összefoglaló',
     executiveBody: [
       'A Pohi AI Pro a Brunella ökoszisztéma egyik legfontosabb vertikális demonstrációja: egy teljes értékű B2B kereskedelmi és logisztikai platform, amely a vevői igényeket, a gyártói készleteket és a fuvarszervezést egy közös operatív rétegbe emeli.',
-      'A rendszer jelentősége abban áll, hogy a nyersanyag-kereskedelmet nem csupán digitalizálja, hanem intelligenssé teszi. Az AI nem különálló modul, hanem a folyamat minden pontján értéket ad — ajánl, előrejelez, optimalizál és dokumentál.',
+      'A rendszer jelentősége abban áll, hogy a nyersanyag-kereskedelmet nem csupán digitalizálja, hanem intelligenssé teszi. Az AI nem különálló modul, hanem a folyamat minden pontján értéket ad: ajánl, előrejelez, optimalizál és dokumentál.',
       'Ez a platform egyben minta arra is, hogyan lehet egy konkrét iparági problémából skálázható, több iparágra adaptálható, SaaS-képes megoldást építeni.',
     ],
     pillarsTitle: 'A platform kulcspilléreit',
@@ -264,7 +264,7 @@ const pohiNarrativeHuLegacy = {
         phase: 'Q3 2026',
         title: 'Backend és real-time réteg',
         description:
-          'Node.js/Express, PostgreSQL/Firebase, WebSocket-ek és jogosultsági modell bevezetése — teljes multi-user működés, valós idejű tárgyalás és értesítés.',
+          'Node.js/Express, PostgreSQL/Firebase, WebSocket-ek és jogosultsági modell bevezetése: teljes multi-user működés, valós idejű tárgyalás és értesítés.',
       },
       {
         phase: '2027',
@@ -278,7 +278,7 @@ const pohiNarrativeHuLegacy = {
     executiveTitle: 'Executive Summary',
     executiveBody: [
       'Pohi AI Pro is one of the strongest vertical demonstrations inside the Brunella ecosystem: a full B2B commerce and logistics platform unifying customer demand, supplier stock, and transport execution in a single operational layer.',
-      'Its importance lies in moving beyond digitization into intelligent operations. AI is not an add-on module here — it recommends, predicts, optimizes, and documents across the workflow.',
+      'Its importance lies in moving beyond digitization into intelligent operations. AI is not an add-on module here; it recommends, predicts, optimizes, and documents across the workflow.',
       'The platform also serves as a template for how a sector-specific operational problem can evolve into a scalable, SaaS-ready system adaptable across industries.',
     ],
     pillarsTitle: 'Key platform pillars',
@@ -343,7 +343,7 @@ const pohiNarrativeHuLegacy = {
       {
         title: 'KI-gestütztes Logistik-Kontrollzentrum',
         description:
-          'Die Leitfunktion der Plattform erzeugt optimierte Beladepläne, Mehrstopp-Routen und Dokumentenvorbereitung — das reduziert Leerkapazität und Planungsaufwand.',
+          'Die Leitfunktion der Plattform erzeugt optimierte Beladepläne, Mehrstopp-Routen und Dokumentenvorbereitung. Das reduziert Leerkapazität und Planungsaufwand.',
       },
       {
         title: 'Strukturierte KI und visuelle Entscheidungsunterstützung',
@@ -481,12 +481,12 @@ export default async function PohiAIProPage() {
                   Pohi AI Pro
                 </h1>
                 <p className="text-gray-400 text-sm">
-                  Pohánka & Társa — saját fejlesztés &nbsp;|&nbsp; Nyersanyag-kereskedési platform
+                  Pohánka & Társa, saját fejlesztés &nbsp;|&nbsp; Nyersanyag-kereskedési platform
                 </p>
               </div>
             </div>
             <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">
-              Egy teljes körű <span className="text-white font-semibold">B2B nyersanyag-kereskedési platform</span>, amely összekapcsolja a vevőket, gyártókat és logisztikát — Gemini AI-val, interaktív Google Maps alapú szállítástervezéssel, és automatikus dokumentumgenerálással.
+              Egy teljes körű <span className="text-white font-semibold">B2B nyersanyag-kereskedési platform</span>, amely összekapcsolja a vevőket, gyártókat és logisztikát: Gemini AI-val, interaktív Google Maps alapú szállítástervezéssel, és automatikus dokumentumgenerálással.
             </p>
           </GsapFadeIn>
         </div>
@@ -526,10 +526,10 @@ export default async function PohiAIProPage() {
           <GsapFadeIn delay={0.1}>
             <SpotlightCard className="p-8 mb-6">
               <p className="text-gray-300 leading-relaxed">
-                A Pohi AI Pro egy egyedi fejlesztésű <strong className="text-white">B2B kereskedési és logisztikai platform</strong>, amely egy vevői adatbázist és annak rendelésállományát, valamint a gyártók készletnyilvántartását összefésüli — és kezeli a vevői igényekkel, fuvarszervezéssel egybehangolva.
+                A Pohi AI Pro egy egyedi fejlesztésű <strong className="text-white">B2B kereskedési és logisztikai platform</strong>, amely egy vevői adatbázist és annak rendelésállományát, valamint a gyártók készletnyilvántartását összefésüli, és kezeli a vevői igényekkel, fuvarszervezéssel egybehangolva.
               </p>
               <p className="text-gray-300 leading-relaxed mt-4">
-                A platform testreszabott élményt nyújt három felhasználói szerepkörnek: <span className="text-blue-300 font-medium">vevőknek</span>, <span className="text-emerald-300 font-medium">gyártóknak</span> és <span className="text-purple-300 font-medium">adminisztrátoroknak</span>. Az AI nem kiegészítő funkció — a platform minden érintkezési pontján jelen van, kézzelfogható értéket nyújtva.
+                A platform testreszabott élményt nyújt három felhasználói szerepkörnek: <span className="text-blue-300 font-medium">vevőknek</span>, <span className="text-emerald-300 font-medium">gyártóknak</span> és <span className="text-purple-300 font-medium">adminisztrátoroknak</span>. Az AI nem kiegészítő funkció: a platform minden érintkezési pontján jelen van, kézzelfogható értéket nyújtva.
               </p>
             </SpotlightCard>
           </GsapFadeIn>
@@ -649,7 +649,7 @@ export default async function PohiAIProPage() {
             <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
               3 Felhasználói Szerepkör
             </h2>
-            <p className="text-gray-400 mb-10 text-sm">Mindenki megkapja, amire szüksége van — egy platformon belül</p>
+            <p className="text-gray-400 mb-10 text-sm">Mindenki megkapja, amire szüksége van, egy platformon belül</p>
           </GsapFadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {roles.map((role, i) => {
@@ -696,12 +696,12 @@ export default async function PohiAIProPage() {
           <GsapFadeIn delay={0.1}>
             <SpotlightCard className="p-8">
               <p className="text-gray-300 mb-6 leading-relaxed">
-                Az adminisztrátor leghatékonyabb eszköze — egy interaktív, AI-vezérelt logisztikai tervező, amely egyetlen képernyőn hoz össze mindent.
+                Az adminisztrátor leghatékonyabb eszköze: egy interaktív, AI-vezérelt logisztikai tervező, amely egyetlen képernyőn hoz össze mindent.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { icon: Map,       color: 'text-blue-400',   text: 'Összes hozzá nem rendelt megrendelés és telephely interaktív térképen' },
-                  { icon: Bot,       color: 'text-purple-400', text: 'AI automatikusan feltölti a teherautókat — optimális kombináció térfogat és földrajzi közelség alapján' },
+                  { icon: Bot,       color: 'text-purple-400', text: 'AI automatikusan feltölti a teherautókat: optimális kombináció térfogat és földrajzi közelség alapján' },
                   { icon: Truck,     color: 'text-emerald-400',text: 'Teljes, optimalizált rakodási terv és többmegállós szállítási útvonal generálás' },
                   { icon: FileText,  color: 'text-orange-400', text: 'AI-alapú szállítási dokumentumok (CMR, számla) automatikus generálása' },
                   { icon: BarChart3, color: 'text-cyan-400',   text: 'Szállítási költségbecslés és fuvarszervezési optimalizálási tippek' },
@@ -812,7 +812,7 @@ export default async function PohiAIProPage() {
               { icon: Layers,    color: 'text-blue-400',   title: 'Teljes körű backend',    desc: 'localStorage → Node.js/Express + PostgreSQL vagy Firebase, többfelhasználós hitelesítéssel' },
               { icon: Activity,  color: 'text-green-400',  title: 'Valós idejű funkciók',   desc: 'WebSockets: valós idejű csevegés, üzletkötési tárgyalások, azonnali riasztások' },
               { icon: TrendingUp,color: 'text-purple-400', title: 'Prediktív analitika',    desc: 'Piaci áringadozás előrejelzés, jövőbeli keresleti gócpontok, ellátási lánc szűk keresztmetszetei' },
-              { icon: FileText,  color: 'text-orange-400', title: 'Multimodális bemenetek', desc: 'Fuvarlevelek és tanúsítványok feltöltése — Gemini automatikusan kinyeri és ellenőrzi az adatokat' },
+              { icon: FileText,  color: 'text-orange-400', title: 'Multimodális bemenetek', desc: 'Fuvarlevelek és tanúsítványok feltöltése: Gemini automatikusan kinyeri és ellenőrzi az adatokat' },
               { icon: Globe,     color: 'text-cyan-400',   title: 'Mobilalkalmazás',        desc: 'Natív app: üzenetek, üzletkötési értesítések, valós idejű szállítmánykövetés' },
               { icon: Building2, color: 'text-pink-400',   title: 'Ipari általánosítás',    desc: 'Nyersanyag-logika adaptálása mezőgazdaságra, fémpiacra, textiliparra' },
             ].map((item, i) => {

@@ -26,7 +26,7 @@ const copyMap: Record<string, AboutCopy> = {
     en: {
         title: 'About Us',
         intro:
-            'We design and deliver business-ready AI systems that fit real operations — not generic tools, but practical solutions for teams that need measurable efficiency, better decisions and smoother workflows.',
+            'We design and deliver business-ready AI systems that fit real operations: not generic tools, but practical solutions for teams that need measurable efficiency, better decisions and smoother workflows.',
         valuesTitle: 'Values & Philosophy',
         valuesP1: 'Our core values are clarity, reliability, measurable impact and long-term partnership.',
         valuesP2: 'We combine business process thinking with modern software engineering and AI orchestration.',
@@ -49,7 +49,7 @@ const copyMap: Record<string, AboutCopy> = {
     de: {
         title: 'Über uns',
         intro:
-            'Wir entwerfen und liefern praxistaugliche KI-Systeme für Unternehmen — keine generischen Tools, sondern Lösungen, die sich in echte Abläufe einfügen und messbare Wirkung erzielen.',
+            'Wir entwerfen und liefern praxistaugliche KI-Systeme für Unternehmen: keine generischen Tools, sondern Lösungen, die sich in echte Abläufe einfügen und messbare Wirkung erzielen.',
         valuesTitle: 'Werte & Philosophie',
         valuesP1:
             'Unsere Grundwerte sind Klarheit, Zuverlässigkeit, messbare Wirkung und langfristige Partnerschaft.',

@@ -21,7 +21,7 @@ const Portfolio = () =>
         details: 'Details',
         detailsPricing: 'Details & Pricing',
         servicesTitle: 'Our Services',
-        servicesSubtitle: 'Ready-to-use AI solutions — available as subscription services.',
+        servicesSubtitle: 'Ready-to-use AI solutions, available as subscription services.',
         new: 'NEW',
         webRefsTitle: 'Website References',
         webRefsSubtitle: 'Live websites designed and developed by our team.',
@@ -60,10 +60,10 @@ const Portfolio = () =>
           details: 'Részletek',
           detailsPricing: 'Részletek & Árak',
           servicesTitle: 'Szolgáltatásaink',
-          servicesSubtitle: 'Kulcsrakész AI megoldások — azonnal elérhető, havidíjas szolgáltatások.',
+          servicesSubtitle: 'Kulcsrakész AI megoldások, azonnal elérhető, havidíjas szolgáltatások.',
           new: 'ÚJ',
           webRefsTitle: 'Weboldal Referenciák',
-          webRefsSubtitle: 'Élő, működő weboldalak — melyeket mi terveztünk és fejlesztettünk.',
+          webRefsSubtitle: 'Élő, működő weboldalak, melyeket mi terveztünk és fejlesztettünk.',
           view: 'Megtekintés',
           certTitle: 'Minősítéseink és Eredményeink',
           certSubtitle: 'Folyamatosan képezzük magunkat és rendszereinket, hogy a legfrissebb technológiát nyújthassuk.',
@@ -186,7 +186,7 @@ const Portfolio = () =>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">Pohi AI Pro</h3>
               <p className="text-gray-400 mb-6 text-sm leading-relaxed">
-                Egyedi fejlesztésű B2B kereskedési platform — vevői adatbázis, gyártói készlet és fuvarszervezés
+                Egyedi fejlesztésű B2B kereskedési platform: vevői adatbázis, gyártói készlet és fuvarszervezés
                 egy helyen, Gemini AI-val és Google Maps logisztikai tervezéssel.
                 <br /><br />
                 <span className="text-[#00e5ff]/70 font-medium">Fejlesztés alatt:</span> backend integráció,
@@ -252,7 +252,7 @@ const Portfolio = () =>
               <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">ÚJ</div>
               <div className="p-6 pt-14">
                 <div className="p-2 rounded-xl bg-[#00e5ff]/10 w-fit mb-4"><Bot className="w-6 h-6 text-[#00e5ff]" /></div>
-                <h3 className="text-lg font-bold text-white mb-2">Nova — AI Asszisztens</h3>
+                <h3 className="text-lg font-bold text-white mb-2">Nova: AI Asszisztens</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">Vállalkozását megismerő, tanuló napi társ, hangalapú kommunikációval, munkaidőn túl is elérhetően.</p>
                 <ul className="space-y-1.5 mb-5">
                   { ["Vállalkozás-specifikus tanulás", "Hangalapú kommunikáció", "Munkaidőn túl is elérhető operatív segítség"].map( b => (
@@ -268,7 +268,7 @@ const Portfolio = () =>
               <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">ÚJ</div>
               <div className="p-6 pt-14">
                 <div className="p-2 rounded-xl bg-[#00e5ff]/10 w-fit mb-4"><FileSearch className="w-6 h-6 text-[#00e5ff]" /></div>
-                <h3 className="text-lg font-bold text-white mb-2">P-Sales — Ingatlan Értékesítő</h3>
+                <h3 className="text-lg font-bold text-white mb-2">P-Sales: Ingatlan Értékesítő</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">Dokumentumfelmérés, piackutatás és egyedi értékesítési stratégia ügynöki megoldással.</p>
                 <ul className="space-y-1.5 mb-5">
                   { ["Felmérő & kutató ügynök", "Piaci árelemzés & stratégia", "Jóváhagyás utáni végrehajtás"].map( b => (
@@ -284,7 +284,7 @@ const Portfolio = () =>
               <div className="absolute top-4 right-4 bg-[#00e5ff]/10 text-[#00e5ff] px-3 py-1 rounded-full text-xs font-bold border border-[#00e5ff]/20">ÚJ</div>
               <div className="p-6 pt-14">
                 <div className="p-2 rounded-xl bg-[#00e5ff]/10 w-fit mb-4"><PenTool className="w-6 h-6 text-[#00e5ff]" /></div>
-                <h3 className="text-lg font-bold text-white mb-2">P-Search — Pályázat & Hitelkereső</h3>
+                <h3 className="text-lg font-bold text-white mb-2">P-Search: Pályázat & Hitelkereső</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">Folyamatos EU/HU pályázat- és hitelfigyelem személyre szabott találatokkal és Kanban követéssel.</p>
                 <ul className="space-y-1.5 mb-5">
                   { ["Folyamatos pályázatfigyelem", "Személyre szabott találatok", "Határidő értesítők"].map( b => (
@@ -376,7 +376,7 @@ const Portfolio = () =>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-white mb-3">AI Tartalom Gyártás</h3>
               <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-                Havi social media posztok, blog cikkek és email kampányok — AI-val generálva,
+                Havi social media posztok, blog cikkek és email kampányok: AI-val generálva,
                 az Ön iparágára és hangnemére szabva.
               </p>
               <div className="flex items-center gap-2 mb-6">
@@ -438,7 +438,7 @@ const Portfolio = () =>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Cimbi Weboldal</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  Modern, letisztult arculati weboldal — reszponzív dizájn, gyors betöltés és
+                  Modern, letisztult arculati weboldal: reszponzív dizájn, gyors betöltés és
                   mobilbarát megjelenés az első naptól fogva.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
@@ -460,7 +460,7 @@ const Portfolio = () =>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Ecomud</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  Prémium termék-bemutatkozó oldal — konverzióra optimalizált landing page,
+                  Prémium termék-bemutatkozó oldal: konverzióra optimalizált landing page,
                   képgaléria és integrált kapcsolatfelvételi form.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
@@ -482,7 +482,7 @@ const Portfolio = () =>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Aronia</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  Elegáns termékbemutató oldal természetes termékekhez — vizuális storytelling,
+                  Elegáns termékbemutató oldal természetes termékekhez: vizuális storytelling,
                   igényes UI dizájn és gördülékeny felhasználói élmény.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
@@ -504,7 +504,7 @@ const Portfolio = () =>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Lumen Limited Series</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  Exkluzív borászati bemutatkozó oldal — sorszámozott kollekcióhoz digitális
+                  Exkluzív borászati bemutatkozó oldal: sorszámozott kollekcióhoz digitális
                   hitelesítéssel, QR-kód alapú nyomonkövetéssel és elegáns vizuális identitással.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
@@ -526,7 +526,7 @@ const Portfolio = () =>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Könyvelőiroda Weboldal</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  Modern, letisztult könyvelőirodai weboldal — bizalomgerjesztő dizájn, átlátható szolgáltatások és
+                  Modern, letisztult könyvelőirodai weboldal: bizalomgerjesztő dizájn, átlátható szolgáltatások és
                   egyszerű kapcsolatfelvétel a leendő ügyfelek számára.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
@@ -548,7 +548,7 @@ const Portfolio = () =>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">Hetényi Renáta Kozmetikus</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  Prémium kozmetikai szolgáltató weboldala — elegáns, nőies dizájn, részletes szolgáltatásismertetők
+                  Prémium kozmetikai szolgáltató weboldala: elegáns, nőies dizájn, részletes szolgáltatásismertetők
                   és integrált online időpontfoglalási rendszer a zökkenőmentes vendégélményért.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
@@ -570,7 +570,7 @@ const Portfolio = () =>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">HomolaMentor KFT</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  Professzionális mentori és tanácsadói bemutatkozó oldal — bizalomépítő arculat, letisztult
+                  Professzionális mentori és tanácsadói bemutatkozó oldal: bizalomépítő arculat, letisztult
                   szolgáltatásbemutatás és közvetlen kapcsolatfelvételi lehetőség az ügyfelek számára.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
@@ -632,9 +632,9 @@ const Portfolio = () =>
                 <Image src="/p-bag.jpg" alt="P-BAG Csomagmegőrző Platform" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">P-BAG — Csomagmegőrző Platform</h3>
+                <h3 className="text-xl font-bold text-white mb-2">P-BAG: Csomagmegőrző Platform</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  Utazóknak szóló csomagmegőrző-foglalási platform — interaktív térkép a legközelebbi partner kávézókhoz
+                  Utazóknak szóló csomagmegőrző-foglalási platform: interaktív térkép a legközelebbi partner kávézókhoz
                   és üzletekhez, biztonságos online fizetés és azonnali QR-kódos check-in a csomagleadáshoz.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">
@@ -654,9 +654,9 @@ const Portfolio = () =>
                 <Image src="/p-search.jpg" alt="P-Search Mobil" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">P-Search — Pályázatkereső App</h3>
+                <h3 className="text-xl font-bold text-white mb-2">P-Search: Pályázatkereső App</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  AI-ügynök alapú mobilalkalmazás KKV-knak — a cégprofilhoz automatikusan illeszti a pályázatokat és
+                  AI-ügynök alapú mobilalkalmazás KKV-knak: a cégprofilhoz automatikusan illeszti a pályázatokat és
                   kedvezményes hiteleket, majd Copilot módban végigvezet a szükséges dokumentáció összeállításán.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mb-5">

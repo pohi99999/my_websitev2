@@ -37,8 +37,8 @@ export async function generateMetadata() {
 
 const features = [
   { icon: Search, color: 'text-amber-400', title: 'Pályázat Keresés', desc: 'Automatikusan figyeljük a palyazat.gov.hu, pafi.hu és EU pályázati portálokat. Szűrés TEÁOR kód, méret és régió alapján.' },
-  { icon: Scale, color: 'text-blue-400', title: 'Jogszabály Figyelés', desc: 'Magyar Közlöny napi elemzése — ha egy új jogszabály érinti az Ön iparágát, azonnal értesítjük.' },
-  { icon: Target, color: 'text-emerald-400', title: 'Eligibility Check', desc: 'Minden pályázathoz automatikus megfelelőség ellenőrzés — megmondjuk, hogy az Ön cége jogosult-e rá.' },
+  { icon: Scale, color: 'text-blue-400', title: 'Jogszabály Figyelés', desc: 'Magyar Közlöny napi elemzése: ha egy új jogszabály érinti az Ön iparágát, azonnal értesítjük.' },
+  { icon: Target, color: 'text-emerald-400', title: 'Eligibility Check', desc: 'Minden pályázathoz automatikus megfelelőség ellenőrzés: megmondjuk, hogy az Ön cége jogosult-e rá.' },
   { icon: Mail, color: 'text-purple-400', title: 'Heti Riport Email', desc: 'Minden hétfőn reggel kap egy összefoglalót: új pályázatok, közelgő határidők, jogszabály változások.' },
   { icon: AlertTriangle, color: 'text-red-400', title: 'Határidő Riasztás', desc: 'Automatikus értesítés 30, 14 és 7 nappal a pályázati határidő előtt.' },
   { icon: Building2, color: 'text-cyan-400', title: 'Iparág Specifikus', desc: 'Testreszabás az Ön iparágára: vendéglátás, IT, gyártás, kereskedelem, egészségügy, építőipar.' },
@@ -70,15 +70,15 @@ export default async function PalyazatRadarPage() {
             featuresTitle: 'What you get',
             features: [
               { title: 'Grant Search', desc: 'Automatic monitoring of EU and national grant portals. Filtering by sector code, company size and region.' },
-              { title: 'Regulation Watch', desc: 'Daily analysis of official government gazettes — instant alert if a new regulation affects your sector.' },
-              { title: 'Eligibility Check', desc: 'Automated eligibility assessment for every grant — know immediately whether your company qualifies.' },
-              { title: 'Weekly Report Email', desc: 'Every Monday morning: new grants, upcoming deadlines and regulation changes — all in one email.' },
+              { title: 'Regulation Watch', desc: 'Daily analysis of official government gazettes: instant alert if a new regulation affects your sector.' },
+              { title: 'Eligibility Check', desc: 'Automated eligibility assessment for every grant: know immediately whether your company qualifies.' },
+              { title: 'Weekly Report Email', desc: 'Every Monday morning: new grants, upcoming deadlines and regulation changes, all in one email.' },
               { title: 'Deadline Alerts', desc: 'Automatic reminders at 30, 14 and 7 days before each grant application deadline.' },
               { title: 'Sector-Specific', desc: 'Customised for your industry: hospitality, IT, manufacturing, retail, healthcare, construction.' },
             ],
             sampleTitle: 'This is what your weekly report looks like',
             sampleNote: 'Sample, illustrative data',
-            sampleHeader: 'GRANT RADAR — Weekly Digest (2026 W10)',
+            sampleHeader: 'GRANT RADAR: Weekly Digest (2026 W10)',
             sampleNewGrants: 'NEW GRANTS (3):',
             sampleGrant1Title: '[Sample] SME digitalisation grant',
             sampleGrant1Detail: 'Up to HUF 10M | ⏰ Deadline: 15 Apr 2026 | 🎯 Your relevance: 85%',
@@ -86,9 +86,9 @@ export default async function PalyazatRadarPage() {
             sampleGrant2Detail: 'Up to HUF 50M | ⏰ Deadline: 30 May 2026 | 🎯 Your relevance: 70%',
             sampleReg: 'REGULATION CHANGE (1):',
             sampleRegTitle: '[Sample] Government decree: online cash registers',
-            sampleRegDetail: '💥 SME impact: MEDIUM — relevant if you operate in hospitality',
+            sampleRegDetail: '💥 SME impact: MEDIUM, relevant if you operate in hospitality',
             pricingTitle: 'Pricing',
-            pricingNote: 'First 2 weeks FREE — no card required',
+            pricingNote: 'First 2 weeks FREE: no card required',
             pricingBest: 'BEST VALUE',
             plans: [
               { name: 'Grant Radar', price: '9,990 HUF', period: '/mo', features: ['Weekly grant digest', 'Email report', '1 sector filter', 'Deadline alerts'], highlight: false, color: 'border-slate-600' },
@@ -97,27 +97,27 @@ export default async function PalyazatRadarPage() {
             ],
             ctaBtn: 'Start free trial',
             ctaTitle: '2-week FREE trial',
-            ctaBody: 'No risk — try it for 2 weeks at no cost. If it\'s not for you, simply cancel.',
+            ctaBody: 'No risk: try it for 2 weeks at no cost. If it\'s not for you, simply cancel.',
           }
         : {
             back: 'Zurück zum Portfolio',
             badge: 'KMU-Service',
             available: '🟢 Sofort verfügbar',
             title: 'Förder-Radar',
-            tagline: 'Automatisches Förder-Monitoring — keine Frist mehr verpassen',
+            tagline: 'Automatisches Förder-Monitoring, keine Frist mehr verpassen',
             subtitle: 'Viele KMU verpassen Förderungen, für die sie berechtigt wären, weil ihnen die Zeit zur Beobachtung fehlt. Wir übernehmen das: KI überwacht Förderungen und Regeländerungen und sendet Ihnen wöchentlich einen strukturierten Bericht.',
             featuresTitle: 'Was Sie erhalten',
             features: [
               { title: 'Fördersuche', desc: 'Automatische Beobachtung von EU- und nationalen Förderportalen. Filterung nach Branche, Unternehmensgröße und Region.' },
-              { title: 'Regelwerk-Monitoring', desc: 'Tägliche Analyse amtlicher Gesetzblätter — sofortige Benachrichtigung, wenn eine neue Regelung Ihre Branche betrifft.' },
-              { title: 'Eignungsprüfung', desc: 'Automatische Eignungsbewertung für jede Förderung — erfahren Sie sofort, ob Ihr Unternehmen berechtigt ist.' },
-              { title: 'Wöchentlicher Report', desc: 'Jeden Montagmorgen: neue Förderungen, bevorstehende Fristen und Regeländerungen — alles in einer E-Mail.' },
+              { title: 'Regelwerk-Monitoring', desc: 'Tägliche Analyse amtlicher Gesetzblätter: sofortige Benachrichtigung, wenn eine neue Regelung Ihre Branche betrifft.' },
+              { title: 'Eignungsprüfung', desc: 'Automatische Eignungsbewertung für jede Förderung: Erfahren Sie sofort, ob Ihr Unternehmen berechtigt ist.' },
+              { title: 'Wöchentlicher Report', desc: 'Jeden Montagmorgen: neue Förderungen, bevorstehende Fristen und Regeländerungen, alles in einer E-Mail.' },
               { title: 'Fristenalerts', desc: 'Automatische Erinnerungen 30, 14 und 7 Tage vor jeder Antragsfrist.' },
               { title: 'Branchenspezifisch', desc: 'Angepasst auf Ihre Branche: Gastronomie, IT, Fertigung, Handel, Gesundheit, Bau.' },
             ],
             sampleTitle: 'So sieht Ihr wöchentlicher Bericht aus',
             sampleNote: 'Beispiel mit fiktiven Daten',
-            sampleHeader: 'FÖRDER-RADAR — Wöchentlicher Bericht (2026 W10)',
+            sampleHeader: 'FÖRDER-RADAR: Wöchentlicher Bericht (2026 W10)',
             sampleNewGrants: 'NEUE FÖRDERUNGEN (3):',
             sampleGrant1Title: '[Beispiel] KMU-Digitalisierungsförderung',
             sampleGrant1Detail: 'Bis HUF 10 Mio. | ⏰ Frist: 15. Apr. 2026 | 🎯 Ihre Relevanz: 85%',
@@ -125,9 +125,9 @@ export default async function PalyazatRadarPage() {
             sampleGrant2Detail: 'Bis HUF 50 Mio. | ⏰ Frist: 30. Mai 2026 | 🎯 Ihre Relevanz: 70%',
             sampleReg: 'REGELÄNDERUNG (1):',
             sampleRegTitle: '[Beispiel] Regierungserlass: Online-Kassen',
-            sampleRegDetail: '💥 KMU-Auswirkung: MITTEL — betrifft Gastronomie-Betriebe',
+            sampleRegDetail: '💥 KMU-Auswirkung: MITTEL, betrifft Gastronomie-Betriebe',
             pricingTitle: 'Preise',
-            pricingNote: 'Erste 2 Wochen KOSTENLOS — keine Kreditkarte erforderlich',
+            pricingNote: 'Erste 2 Wochen KOSTENLOS, keine Kreditkarte erforderlich',
             pricingBest: 'BESTES ANGEBOT',
             plans: [
               { name: 'Förder-Radar', price: '9.990 HUF', period: '/Mo.', features: ['Wöchentlicher Förderüberblick', 'E-Mail-Bericht', '1 Branchenfilter', 'Fristenalerts'], highlight: false, color: 'border-slate-600' },
@@ -136,7 +136,7 @@ export default async function PalyazatRadarPage() {
             ],
             ctaBtn: 'Kostenlose Testphase starten',
             ctaTitle: '2 Wochen KOSTENLOS testen',
-            ctaBody: 'Kein Risiko — testen Sie 2 Wochen kostenlos. Wenn es nicht passt, einfach kündigen.',
+            ctaBody: 'Kein Risiko: Testen Sie 2 Wochen kostenlos. Wenn es nicht passt, einfach kündigen.',
           };
 
     const localFeatures = [
@@ -287,7 +287,7 @@ export default async function PalyazatRadarPage() {
           <GsapFadeIn delay={0.15}>
             <SpotlightCard className="p-8">
               <div className="space-y-6 text-sm">
-                <div className="flex items-center gap-2 text-amber-400 font-bold text-base"><Bell className="w-5 h-5" /> PÁLYÁZAT RADAR — Heti összefoglaló (2026. W10)</div>
+                <div className="flex items-center gap-2 text-amber-400 font-bold text-base"><Bell className="w-5 h-5" /> PÁLYÁZAT RADAR: Heti összefoglaló (2026. W10)</div>
                 <div>
                   <div className="text-white font-semibold mb-3">📋 ÚJ PÁLYÁZATOK (3 db):</div>
                   <div className="space-y-3">
@@ -297,7 +297,7 @@ export default async function PalyazatRadarPage() {
                 </div>
                 <div>
                   <div className="text-white font-semibold mb-3">⚖️ JOGSZABÁLY VÁLTOZÁS (1 db):</div>
-                  <div className="p-3 bg-red-900/20 border border-red-500/20 rounded-lg"><div className="text-red-300 font-medium">[Minta] Kormányrendelet: online pénztárgép</div><div className="text-gray-400 mt-1">💥 KKV hatás: KÖZEPES — érinti, ha vendéglátásban dolgozik</div></div>
+                  <div className="p-3 bg-red-900/20 border border-red-500/20 rounded-lg"><div className="text-red-300 font-medium">[Minta] Kormányrendelet: online pénztárgép</div><div className="text-gray-400 mt-1">💥 KKV hatás: KÖZEPES, érinti, ha vendéglátásban dolgozik</div></div>
                 </div>
               </div>
             </SpotlightCard>
@@ -307,7 +307,7 @@ export default async function PalyazatRadarPage() {
 
       <section className="px-6 py-16 bg-white/5">
         <div className="max-w-5xl mx-auto">
-          <GsapFadeIn><h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Árazás</h2><p className="text-gray-400 mb-10">Az első 2 hét INGYENES — nem kérünk bankkártya adatot</p></GsapFadeIn>
+          <GsapFadeIn><h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Árazás</h2><p className="text-gray-400 mb-10">Az első 2 hét INGYENES, nem kérünk bankkártya adatot</p></GsapFadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {pricingPlans.map((plan, i) => (
               <GsapFadeIn key={plan.name} delay={0.1 * i}>

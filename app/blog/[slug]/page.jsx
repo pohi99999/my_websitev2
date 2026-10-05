@@ -23,7 +23,7 @@ const blogPosts = {
     content: `
       Képzelje el, hogy van egy láthatatlan asszisztense, aki leül a számítógép elé, megnyitja a böngészőt, megkeresi a konkurens árakat, letölti a havi számlákat, beírja őket egy táblázatba, majd küld egy értesítést, ha készen van. Nem hibázik, nem fárad el, és mindezt másodpercek alatt végzi el.
 
-      Ők az **automatizált böngésző ágensek** — és hamarosan alapjaiban változtatják meg, hogyan dolgozunk a mindennapokban.
+      Ők az **automatizált böngésző ágensek**, és hamarosan alapjaiban változtatják meg, hogyan dolgozunk a mindennapokban.
 
       ## Mi az a böngésző ágens és hogyan működik?
 
@@ -99,7 +99,7 @@ const blogPosts = {
     ],
   },
   'brunella-mi-csapatvezeto': {
-    title: 'Brunella: Az MI csapatvezető és a jövő szervezete',
+    title: 'Brunella: az AI-csapatvezető és a jövő szervezete',
     date: '2025. Január 20.',
     author: 'Pohánka József Péter',
     readTime: '12 perc',
@@ -445,7 +445,7 @@ const blogPosts = {
     videoId: '',
     excerpt: 'A legtöbb KKV pontosan nem tudja, hol kezdje az AI bevezetését. Megmutatjuk azt az egyszerű 3 lépéses keretet, amellyel 30 napon belül mérhető eredményeket érhet el.',
     content: `
-Az AI bevezetése nem a nagyvállalatoknak szóló luxus — hanem egy **versenyelőny, amelyet a kis- és középvállalkozások most tudnak megragadni**, mielőtt a piac ezt alapkövetelménnyé teszi.
+Az AI bevezetése nem a nagyvállalatoknak szóló luxus, hanem egy **versenyelőny, amelyet a kis- és középvállalkozások most tudnak megragadni**, mielőtt a piac ezt alapkövetelménnyé teszi.
 
 ## Miért most?
 
@@ -457,7 +457,7 @@ De az elérhető eszközök önmagukban nem elegendőek. A kérdés az: **hogyan
 
 ### 1. Lépés: Fájdalompontok azonosítása (1. hét)
 
-Ne az AI-tól indulj el — a problémádtól. Kérdezd meg magadtól:
+Ne az AI-tól indulj el, hanem a problémádtól. Kérdezd meg magadtól:
 - Mire megy el a legtöbb ideje a csapatodnak ismétlődő feladatokra?
 - Hol csúszik el a legtöbb ügyfélkommunikáció?
 - Melyik folyamatban van a legtöbb emberi hiba?
@@ -466,7 +466,7 @@ Tipikus KKV fájdalompontok: ajánlatküldés, ügyfél-visszajelzés kezelése,
 
 ### 2. Lépés: Egyetlen folyamat automatizálása (2-3. hét)
 
-Ne akarj mindent egyszerre. Válassz ki **egyetlen folyamatot** — azt, amelyik a legtöbb időt veszi el — és automatizáld azt egy AI ügynökkel.
+Ne akarj mindent egyszerre. Válassz ki **egyetlen folyamatot**, azt, amelyik a legtöbb időt veszi el, és automatizáld azt egy AI ügynökkel.
 
 Egy ügyfélszolgálati chatbot, amely a kérdések 70%-át megválaszolja, azonnal mérhető ROI-t termel: kevesebb elszalasztott lead, gyorsabb válaszidő.
 
@@ -493,17 +493,17 @@ Az AI-ba való belépés nem kell, hogy drága vagy bonyolult legyen. Egy jól m
     category: 'Elemzés',
     image: '🤖',
     videoId: '',
-    excerpt: 'A chatbotok nem helyettesítik az embert — de a kérdések 70%-át megoldják. Megnézzük, mi igaz és mi nem a chatbotokról szóló legendákból.',
+    excerpt: 'A chatbotok nem helyettesítik az embert, de a kérdések 70%-át megoldják. Megnézzük, mi igaz és mi nem a chatbotokról szóló legendákból.',
     content: `
 A chatbotról szóló vita sokszor két táborra osztja a vállalkozókat: az egyik tábor mindent lát bennük, a másik semmit. Az igazság, mint mindig, **valahol a kettő között van**.
 
 ## Ami igaz a chatbotokról
 
-**A kérdések 60-70%-a ismétlődő.** Nyitvatartási idő, árlista, rendelési státusz, alapvető szervizinfo — ezeket egy jól betanított chatbot tökéletesen megválaszolja, és 24/7-ben teszi.
+**A kérdések 60-70%-a ismétlődő.** Nyitvatartási idő, árlista, rendelési státusz, alapvető szervizinfo: ezeket egy jól betanított chatbot tökéletesen megválaszolja, és 24/7-ben teszi.
 
 **A válaszidő számít.** Tanulmányok szerint az ügyfelek 82%-a azonnali választ vár (5 percen belül). Egy chatbot ezt garantálja; egy emberi ügyfélszolgálat nem mindig.
 
-**Az ember felszabadul az értékes munkára.** Ha a bot kezeli a rutinkérdéseket, az emberek a bonyolult, empatikus interakciókra fókuszálhatnak — amelyek valódi értéket teremtenek.
+**Az ember felszabadul az értékes munkára.** Ha a bot kezeli a rutinkérdéseket, az emberek a bonyolult, empatikus interakciókra fókuszálhatnak, amelyek valódi értéket teremtenek.
 
 ## Ami nem igaz
 
@@ -515,7 +515,7 @@ A chatbotról szóló vita sokszor két táborra osztja a vállalkozókat: az eg
 
 ## Mikor NE vezess be chatbotot?
 
-Ha az ügyfélkommunikáció elsősorban komplex, érzelmi, vagy egyedi — például jogi- vagy egészségügyi tanácsadás — ott az emberi jelenlét pótolhatatlan. A chatbot **kiegészíti**, nem helyettesíti az embert.
+Ha az ügyfélkommunikáció elsősorban komplex, érzelmi, vagy egyedi (például jogi- vagy egészségügyi tanácsadás), ott az emberi jelenlét pótolhatatlan. A chatbot **kiegészíti**, nem helyettesíti az embert.
 
 ## Összefoglalás
 
@@ -534,13 +534,13 @@ A chatbot nem varázspálca, de nem is zsákutca. Egy jól tervezett, célzottan
     category: 'Stratégia',
     image: '⚙️',
     videoId: '',
-    excerpt: 'Az üzleti folyamatok automatizálása nem rakétatudomány — ha tudod, honnét indulj el. 5 konkrét lépés valós példákkal.',
+    excerpt: 'Az üzleti folyamatok automatizálása nem rakétatudomány, ha tudod, honnét indulj el. 5 konkrét lépés valós példákkal.',
     content: `
 Az üzleti folyamat automatizálás (BPA) az egyik legtöbbet emlegetett, de legkevésbé értett fogalom a KKV-k világában. Sokan azt hiszik, hogy ehhez hatalmas IT-csapat és milliós büdzsé kell. **Nem kell.**
 
 ## Miért érdemes automatizálni?
 
-Egy átlagos KKV munkaidejének 20-40%-a megy el ismétlődő, értéket nem termelő adminisztratív feladatokra. Ez nem hatékonysági probléma — ez **pénzügyi vérzés**, amit AI-jal el lehet állítani.
+Egy átlagos KKV munkaidejének 20-40%-a megy el ismétlődő, értéket nem termelő adminisztratív feladatokra. Ez nem hatékonysági probléma, ez **pénzügyi vérzés**, amit AI-jal el lehet állítani.
 
 ## Az 5 Lépés
 
@@ -565,7 +565,7 @@ Egy 8 fős tanácsadó cég esetében az ajánlatküldési folyamat (adatgyűjt�
 
 ## Összefoglalás
 
-Az automatizálás nem egyszeri projekt — hanem folyamatos fejlődés. Kezdd a legfájóbb ponttal, mérd, tanulj, és skálázz. A Brunella Consulting ebben az úton végigkísér.
+Az automatizálás nem egyszeri projekt, hanem folyamatos fejlődés. Kezdd a legfájóbb ponttal, mérd, tanulj, és skálázz. A Brunella Consulting ebben az úton végigkísér.
     `,
     relatedPosts: [
       { slug: 'ai-automatizalas-kkv-knak' },
@@ -596,7 +596,7 @@ Az automatizálás nem egyszeri projekt — hanem folyamatos fejlődés. Kezdd a
     'fekete-doboz-vege-glass-box': `
   ## Why transparency matters in AI
 
-  Most organizations do not struggle with AI capability — they struggle with trust. If people cannot see *why* a system reached a conclusion, adoption slows down.
+  Most organizations do not struggle with AI capability; they struggle with trust. If people cannot see *why* a system reached a conclusion, adoption slows down.
 
   ### The Black Box risk
 
@@ -633,7 +633,7 @@ Az automatizálás nem egyszeri projekt — hanem folyamatos fejlődés. Kezdd a
     'digitalis-lenyomat-anatomiaja': `
   ## Digital footprint as an operational asset
 
-  Your digital footprint is not just identity — it is an execution map: accounts, tools, repositories, workflows, and behavioral preferences.
+  Your digital footprint is not just identity; it is an execution map: accounts, tools, repositories, workflows, and behavioral preferences.
 
   ### Why this matters
 
@@ -756,7 +756,7 @@ Az automatizálás nem egyszeri projekt — hanem folyamatos fejlődés. Kezdd a
     'digitalis-lenyomat-anatomiaja': `
   ## Digitaler Fußabdruck als operativer Vorteil
 
-  Ein digitaler Fußabdruck ist mehr als Identität — er ist eine Ausführungskarte aus Konten, Tools, Repositories und Arbeitsmustern.
+  Ein digitaler Fußabdruck ist mehr als Identität, er ist eine Ausführungskarte aus Konten, Tools, Repositories und Arbeitsmustern.
 
   ### Warum das wichtig ist
 

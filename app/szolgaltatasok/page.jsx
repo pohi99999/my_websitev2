@@ -102,7 +102,7 @@ const categories = [
   {
     id: "nova",
     icon: Bot,
-    title: "Nova — Intelligens Digitális Munkatárs",
+    title: "Nova: Intelligens Digitális Munkatárs",
     subtitle: "Virtuális asszisztens, amely megismeri a vállalkozása szabályait, és átvesz egy részt a napi teendőkből.",
     services: [
       {
@@ -112,12 +112,12 @@ const categories = [
       },
       {
         name: "Hangalapú telefonos ügyfélszolgálat",
-        desc: "Valódi telefonhívásokat kezel természetes hangon — időpontfoglalás és ügyfélszolgálati panaszkezelés emberi erőforrás nélkül.",
+        desc: "Valódi telefonhívásokat kezel természetes hangon: időpontfoglalás és ügyfélszolgálati panaszkezelés emberi erőforrás nélkül.",
         bullets: ["Telefonos recepció", "Természetes párbeszéd", "Munkaidőn túl is fogadja a hívást"],
       },
       {
         name: "Operatív virtuális részleg",
-        desc: "Emailek megírása, riportok összefoglalása, feladatok priorizálása és naptárkezelés — mindez összehangoltan, a háttérben.",
+        desc: "Emailek megírása, riportok összefoglalása, feladatok priorizálása és naptárkezelés, mindez összehangoltan, a háttérben.",
         bullets: ["Bejövő emailek automatikus megválaszolása", "Napi teendők összefoglalója", "Naptárszinkronizáció"],
       },
     ],
@@ -125,7 +125,7 @@ const categories = [
   {
     id: "psales",
     icon: FileSearch,
-    title: "P-Sales — Ingatlan Értékesítő Platform",
+    title: "P-Sales: Ingatlan Értékesítő Platform",
     subtitle: "Dokumentumfelmérés és piackutatás egy összehangolt robotcsapattal, amely Ön helyett dolgozik.",
     services: [
       {
@@ -148,7 +148,7 @@ const categories = [
   {
     id: "psearch",
     icon: Award,
-    title: "P-Search — Pályázat & Hitelkereső",
+    title: "P-Search: Pályázat & Hitelkereső",
     subtitle: "Naponta, automatikusan figyeli a vállalkozására szabott pályázatokat és hiteleket.",
     services: [
       {
@@ -235,7 +235,7 @@ const categories = [
     id: "marketing",
     icon: TrendingUp,
     title: "Marketing Kampány & Tartalomgyártás",
-    subtitle: "Egyetlen mondatból kész havi marketing naptár — azonnal.",
+    subtitle: "Egyetlen mondatból kész havi marketing naptár, azonnal.",
     services: [
       {
         name: "Virtuális Marketing Részleg",

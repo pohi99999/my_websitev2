@@ -36,7 +36,7 @@ export async function generateMetadata() {
 }
 
 const useCases = [
-  { icon: ShoppingCart, color: 'text-cyan-400', title: 'Versenytárs Ár Monitoring', desc: '5 webshop, 500 termék — árak és készlet automatikus összehasonlítása naponta.', result: 'Árak és készlet egy táblában' },
+  { icon: ShoppingCart, color: 'text-cyan-400', title: 'Versenytárs Ár Monitoring', desc: '5 webshop, 500 termék: árak és készlet automatikus összehasonlítása naponta.', result: 'Árak és készlet egy táblában' },
   { icon: Home, color: 'text-emerald-400', title: 'Ingatlan Figyelő', desc: 'Ingatlan.com és jofogás.hu új hirdetések automatikus letöltése szűrők alapján.', result: 'Új hirdetések szűrve, egy helyen' },
   { icon: Users, color: 'text-purple-400', title: 'HR & Toborzás', desc: 'LinkedIn és Profession.hu álláshirdetések + CV-k automatikus gyűjtése.', result: 'Hirdetések és CV-k egy helyen' },
   { icon: Database, color: 'text-orange-400', title: 'Adatgyűjtés & Scraping', desc: 'Bármilyen weboldalról strukturált adat letöltése: cégadatok, termékek, árlisták.', result: 'Strukturált adat táblázatban' },
@@ -66,11 +66,11 @@ export default async function WebRobotpilotaPage() {
             badge: 'Automation',
             available: '🟢 Available now',
             title: 'Web Autopilot',
-            tagline: 'AI-driven browser automation — your personal web robot',
+            tagline: 'AI-driven browser automation: your personal web robot',
             subtitle: 'We run web tasks with a robot: data collection, form filling and competitor monitoring, on a schedule. First task FREE.',
             useCasesTitle: 'What can you use it for?',
             useCases: [
-              { title: 'Competitor Price Monitoring', desc: '5 webshops, 500 products — automatic daily price and stock comparison.', result: 'Prices and stock in one sheet' },
+              { title: 'Competitor Price Monitoring', desc: '5 webshops, 500 products: automatic daily price and stock comparison.', result: 'Prices and stock in one sheet' },
               { title: 'Property Listing Tracker', desc: 'Auto-download new real estate listings matching your filters from listing sites.', result: 'New listings filtered, in one place' },
               { title: 'HR & Recruitment', desc: 'Automatic collection of job postings and CVs from LinkedIn and job boards.', result: 'Postings and CVs in one place' },
               { title: 'Data Collection & Scraping', desc: 'Structured data download from any website: company data, products, price lists.', result: 'Structured data in a spreadsheet' },
@@ -79,9 +79,9 @@ export default async function WebRobotpilotaPage() {
             ],
             howTitle: 'How it works',
             howSteps: [
-              { step: '1', title: 'Tell it what to do', desc: 'Describe the task in plain text — e.g. "collect my 5 competitors\' prices every day"', color: 'text-cyan-400', bg: 'bg-cyan-900/30' },
+              { step: '1', title: 'Tell it what to do', desc: 'Describe the task in plain text, e.g. "collect my 5 competitors\' prices every day"', color: 'text-cyan-400', bg: 'bg-cyan-900/30' },
               { step: '2', title: 'The robot executes', desc: 'The Playwright + AI hybrid system opens a browser and carries out the task automatically.', color: 'text-blue-400', bg: 'bg-blue-900/30' },
-              { step: '3', title: 'You receive the result', desc: 'Structured data via email, Google Sheets or API — however is most convenient for you.', color: 'text-purple-400', bg: 'bg-purple-900/30' },
+              { step: '3', title: 'You receive the result', desc: 'Structured data via email, Google Sheets or API, however is most convenient for you.', color: 'text-purple-400', bg: 'bg-purple-900/30' },
             ],
             pricingTitle: 'Pricing',
             pricingNote: 'Choose the plan that fits you best',
@@ -94,18 +94,18 @@ export default async function WebRobotpilotaPage() {
             ],
             ctaBtn: 'Request free demo task',
             ctaTitle: 'Try it FREE',
-            ctaBody: 'The first task is on us — describe what your robot should do and receive the result within 24 hours.',
+            ctaBody: 'The first task is on us: describe what your robot should do and receive the result within 24 hours.',
           }
         : {
             back: 'Zurück zum Portfolio',
             badge: 'Automatisierung',
             available: '🟢 Sofort verfügbar',
             title: 'Web-Robotpilot',
-            tagline: 'KI-gestützte Browser-Automatisierung — Ihr persönlicher Web-Roboter',
+            tagline: 'KI-gestützte Browser-Automatisierung: Ihr persönlicher Web-Roboter',
             subtitle: 'Wir erledigen Web-Aufgaben mit einem Roboter: Datenerfassung, Formulare und Wettbewerbs-Monitoring, nach Zeitplan. Erste Aufgabe KOSTENLOS.',
             useCasesTitle: 'Wofür können Sie es nutzen?',
             useCases: [
-              { title: 'Wettbewerbspreis-Monitoring', desc: '5 Webshops, 500 Produkte — automatischer täglicher Preis- und Lagervergleich.', result: 'Preise und Bestand in einer Tabelle' },
+              { title: 'Wettbewerbspreis-Monitoring', desc: '5 Webshops, 500 Produkte: automatischer täglicher Preis- und Lagervergleich.', result: 'Preise und Bestand in einer Tabelle' },
               { title: 'Immobilien-Inserat-Tracker', desc: 'Automatischer Download neuer Immobilieninserate nach Ihren Filtern von Portalen.', result: 'Neue Inserate gefiltert an einem Ort' },
               { title: 'HR & Recruiting', desc: 'Automatische Sammlung von Stellenanzeigen und Lebensläufen von LinkedIn und Jobbörsen.', result: 'Anzeigen und Lebensläufe an einem Ort' },
               { title: 'Datenerfassung & Scraping', desc: 'Strukturierter Daten-Download von beliebigen Websites: Firmendaten, Produkte, Preislisten.', result: 'Strukturierte Daten in einer Tabelle' },
@@ -114,9 +114,9 @@ export default async function WebRobotpilotaPage() {
             ],
             howTitle: 'Wie funktioniert es?',
             howSteps: [
-              { step: '1', title: 'Aufgabe beschreiben', desc: 'Beschreiben Sie die Aufgabe in Klartext — z. B. „Sammle täglich die Preise meiner 5 Wettbewerber"', color: 'text-cyan-400', bg: 'bg-cyan-900/30' },
+              { step: '1', title: 'Aufgabe beschreiben', desc: 'Beschreiben Sie die Aufgabe in Klartext, z. B. „Sammle täglich die Preise meiner 5 Wettbewerber"', color: 'text-cyan-400', bg: 'bg-cyan-900/30' },
               { step: '2', title: 'Roboter führt aus', desc: 'Das Playwright + KI-Hybrid-System öffnet einen Browser und erledigt die Aufgabe vollautomatisch.', color: 'text-blue-400', bg: 'bg-blue-900/30' },
-              { step: '3', title: 'Ergebnis erhalten', desc: 'Strukturierte Daten per E-Mail, Google Sheets oder API — so wie es Ihnen am besten passt.', color: 'text-purple-400', bg: 'bg-purple-900/30' },
+              { step: '3', title: 'Ergebnis erhalten', desc: 'Strukturierte Daten per E-Mail, Google Sheets oder API, so wie es Ihnen am besten passt.', color: 'text-purple-400', bg: 'bg-purple-900/30' },
             ],
             pricingTitle: 'Preise',
             pricingNote: 'Wählen Sie das passende Paket',
@@ -129,7 +129,7 @@ export default async function WebRobotpilotaPage() {
             ],
             ctaBtn: 'Kostenlose Demo-Aufgabe anfragen',
             ctaTitle: 'Kostenlos ausprobieren',
-            ctaBody: 'Die erste Aufgabe ist gratis — beschreiben Sie, was Ihr Roboter tun soll, und erhalten Sie das Ergebnis binnen 24 Stunden.',
+            ctaBody: 'Die erste Aufgabe ist gratis: Beschreiben Sie, was Ihr Roboter tun soll, und erhalten Sie das Ergebnis binnen 24 Stunden.',
           };
 
     const localUseCaseIcons = [
@@ -258,7 +258,7 @@ export default async function WebRobotpilotaPage() {
                   <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-sm border border-green-500/30">🟢 Azonnal elérhető</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-3">Web Robotpilóta</h1>
-                <p className="text-gray-400 text-sm">AI-vezérelt böngésző automatizáció — az Ön személyes web-robotja</p>
+                <p className="text-gray-400 text-sm">AI-vezérelt böngésző automatizáció: az Ön személyes web-robotja</p>
               </div>
             </div>
             <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">
@@ -291,7 +291,7 @@ export default async function WebRobotpilotaPage() {
         <div className="max-w-5xl mx-auto">
           <GsapFadeIn><h2 className="text-3xl font-bold mb-10 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Hogyan működik?</h2></GsapFadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[{ step: '1', title: 'Mondja el, mit csináljon', desc: 'Írja le szövegesen a feladatot, pl. "gyűjtsd össze az 5 versenytársam árait naponta"', color: 'text-cyan-400', bg: 'bg-cyan-900/30' }, { step: '2', title: 'A robot elvégzi', desc: 'A Playwright + AI hibrid rendszer megnyitja a böngészőt és végrehajtja a feladatot automatikusan.', color: 'text-blue-400', bg: 'bg-blue-900/30' }, { step: '3', title: 'Megkapja az eredményt', desc: 'Strukturált adat emailben, Google Sheets-ben vagy API-n — ahogy Önnek kényelmes.', color: 'text-purple-400', bg: 'bg-purple-900/30' }].map((s, i) => (
+            {[{ step: '1', title: 'Mondja el, mit csináljon', desc: 'Írja le szövegesen a feladatot, pl. "gyűjtsd össze az 5 versenytársam árait naponta"', color: 'text-cyan-400', bg: 'bg-cyan-900/30' }, { step: '2', title: 'A robot elvégzi', desc: 'A Playwright + AI hibrid rendszer megnyitja a böngészőt és végrehajtja a feladatot automatikusan.', color: 'text-blue-400', bg: 'bg-blue-900/30' }, { step: '3', title: 'Megkapja az eredményt', desc: 'Strukturált adat emailben, Google Sheets-ben vagy API-n, ahogy Önnek kényelmes.', color: 'text-purple-400', bg: 'bg-purple-900/30' }].map((s, i) => (
               <GsapFadeIn key={s.step} delay={0.15 * i}>
                 <SpotlightCard className="p-8 text-center">
                   <div className={`w-14 h-14 rounded-full ${s.bg} flex items-center justify-center mx-auto mb-4`}><span className={`text-2xl font-black ${s.color}`}>{s.step}</span></div>

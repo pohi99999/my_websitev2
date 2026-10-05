@@ -12,14 +12,14 @@ export async function generateMetadata() {
     language === "en"
       ? {
           title: "Portfolio",
-          description: "Featured projects and case studies — AI automation, web development and business systems by Pohánka & Társa. See our work in action.",
+          description: "Featured projects and case studies: AI automation, web development and business systems by Pohánka & Társa. See our work in action.",
           locale: "en_US",
           canonical: "/en/portfolio",
         }
       : language === "de"
         ? {
             title: "Portfolio",
-            description: "Ausgewählte Projekte und Fallstudien — KI-Automatisierung, Webentwicklung und Geschäftssysteme von Pohánka & Társa.",
+            description: "Ausgewählte Projekte und Fallstudien: KI-Automatisierung, Webentwicklung und Geschäftssysteme von Pohánka & Társa.",
             locale: "de_DE",
             canonical: "/de/portfolio",
           }
