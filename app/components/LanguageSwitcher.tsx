@@ -5,6 +5,9 @@ import { Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { usePathname, useRouter } from 'next/navigation';
 
+// Pages that exist only in Hungarian (local SEO landing pages).
+const HU_ONLY_PATHS = new Set(['/weboldal-keszites-zalaegerszeg']);
+
 export default function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
   const pathname = usePathname();
@@ -21,6 +24,8 @@ export default function LanguageSwitcher() {
         : currentPath;
 
     if (targetLanguage === 'hu') return basePath;
+    // Hungarian-only pages have no /en or /de route (it would 404): go to that language's home page.
+    if (HU_ONLY_PATHS.has(basePath)) return `/${targetLanguage}`;
     if (targetLanguage === 'en') return basePath === '/' ? '/en' : `/en${basePath}`;
     return basePath === '/' ? '/de' : `/de${basePath}`;
   };

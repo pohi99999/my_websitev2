@@ -12,6 +12,12 @@ interface Message {
 
 type Lang = 'hu' | 'en' | 'de';
 
+// Below lg the floating button is hidden and the chat is toggled from the mobile bottom bar
+// (MobileCTA): a 56 px floating button on a 360-412 px screen always covered text and the
+// bar's own Kapcsolat button. The two components talk through these window events.
+export const CHAT_TOGGLE_EVENT = 'brunella-chat-toggle';
+export const CHAT_STATE_EVENT = 'brunella-chat-state';
+
 const LABELS: Record<Lang, {
   title: string;
   subtitle: string;
@@ -64,6 +70,16 @@ export default function BrunellaChat() {
   const L = LABELS[lang];
 
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const toggle = () => setOpen((o) => !o);
+    window.addEventListener(CHAT_TOGGLE_EVENT, toggle);
+    return () => window.removeEventListener(CHAT_TOGGLE_EVENT, toggle);
+  }, []);
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent(CHAT_STATE_EVENT, { detail: { open } }));
+  }, [open]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -154,7 +170,7 @@ export default function BrunellaChat() {
       {/* ── Floating toggle button ───────────────────────────────────────── */}
       <motion.button
         onClick={() => setOpen((o) => !o)}
-        className="fixed bottom-6 right-6 z-[9998] w-14 h-14 rounded-full flex items-center justify-center focus:outline-none"
+        className="fixed bottom-6 right-6 z-[9998] w-14 h-14 rounded-full hidden lg:flex items-center justify-center focus:outline-none"
         style={{
           background: 'linear-gradient(135deg, rgba(0,229,255,0.12), rgba(0,10,15,0.95))',
           border: '1px solid rgba(0,229,255,0.45)',
