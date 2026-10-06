@@ -3,6 +3,8 @@
  * (kimásolva 2026-09-23; Péter jóváhagyta a weboldalra emelést, Telegram 4311).
  * A helyesírást nem javítjuk. A Hóbor-vélemény két elírása a forrásban már javítva áll,
  * a tartalom változatlan. Pohánka József véleménye szándékosan NINCS itt (családi név).
+ * Bézi László (Bé-Da Klíma) véleménye 2026-10-06-án került be, a Cégprofil Vélemények nézetéből
+ * szó szerint (Péter kérése, Telegram 6408); a vessző előtti szóköz a forrásé.
  * Ez az egyetlen hely, ahol a szövegek élnek; a komponens csak megjeleníti őket.
  */
 export type GoogleReview = {
@@ -17,7 +19,7 @@ export type GoogleReview = {
 /** A nyilvános Google Cégprofil (Maps, place CID), Brunella mérése 2026-09-23. */
 export const GOOGLE_PROFILE_URL = 'https://www.google.com/maps?cid=12905258183432338232';
 
-/** A profil összesített értékelése a kimásoláskor: 5,0 átlag, 10 vélemény. */
+/** A profil összesített értékelése: 5,0 átlag, 10 vélemény (2026-09-23-án és 2026-10-06-án is ennyi). */
 export const GOOGLE_RATING = { average: 5, count: 10 } as const;
 
 export const googleReviews: GoogleReview[] = [
@@ -32,6 +34,15 @@ export const googleReviews: GoogleReview[] = [
       "Külön öröm számomra, hogy minden olyan funkciót sikerült megvalósítani, amit elképzeltem. Az online időpontfoglalás tökéletesen működik, az online ajándékutalvány-vásárlási lehetőség pedig szerintem óriási plusz, rengeteg vendégem használja és imádja.",
       "A weboldal nemcsak szép lett, hanem gyors, könnyen kezelhető és minden eszközön remekül működik. A közös munka során végig éreztem, hogy számára is fontos a végeredmény, mindig gyorsan reagált, jó ötletei voltak, és minden kérésemet megoldotta.",
       "Nagyon elégedett vagyok a végeredménnyel, és ha újra weboldalt kellene készíttetnem, gondolkodás nélkül őt választanám. Szívből ajánlom mindenkinek, aki igényes, profi és megbízható webfejlesztőt keres!"
+    ]
+  },
+  {
+    "name": "László Bézi",
+    "role": "Bé-Da Klíma, Debrecen",
+    "url": "https://bdklima.hu/",
+    "urlLabel": "bdklima.hu",
+    "paragraphs": [
+      "Szuper gyors weboldal fejlesztés és készítés ,tökéletes munka az elvárásaimnak!"
     ]
   },
   {

@@ -84,9 +84,9 @@ const Portfolio = () =>
       title: { hu: 'Bé-Da Klíma', en: 'Bé-Da Klíma', de: 'Bé-Da Klíma' },
       alt: { hu: 'A Bé-Da Klíma weboldalának nyitóképe', en: 'Home page of the Bé-Da Klíma website', de: 'Startseite der Website von Bé-Da Klíma' },
       desc: {
-        hu: 'Debreceni klímaszerelő cég weboldala: hat márka katalógusa méretenkénti árakkal, akciós oldal áthúzott rendes árral, referenciagaléria és fotós ajánlatkérés. Az árakat és az akciókat az ügyfél maga szerkeszti, saját felületen.',
-        en: 'Website for an air-conditioning installer in Debrecen: a six-brand catalogue with prices by size, an offers page with the struck-through regular price, a reference gallery and quote requests with photos. The client edits prices and offers in their own editor.',
-        de: 'Website eines Klimatechnik-Betriebs in Debrecen: Katalog mit sechs Marken und Preisen je Leistungsgröße, Aktionsseite mit durchgestrichenem Normalpreis, Referenzgalerie und Angebotsanfrage mit Fotos. Preise und Aktionen pflegt der Kunde selbst in einem eigenen Editor.',
+        hu: 'Debreceni klímaszerelő cég weboldala: hat márka katalógusa méretenkénti árakkal, akciós oldal áthúzott rendes árral, referenciagaléria és fotós ajánlatkérés. Az árakat és az akciókat az ügyfél maga szerkeszti, saját felületen, a referenciaképeket telefonról tölti fel, és zárva-jelzést kapcsolhat be minden oldal tetejére.',
+        en: 'Website for an air-conditioning installer in Debrecen: a six-brand catalogue with prices by size, an offers page with the struck-through regular price, a reference gallery and quote requests with photos. The client edits prices and offers in their own editor, uploads reference photos from a phone and can switch on a closed notice at the top of every page.',
+        de: 'Website eines Klimatechnik-Betriebs in Debrecen: Katalog mit sechs Marken und Preisen je Leistungsgröße, Aktionsseite mit durchgestrichenem Normalpreis, Referenzgalerie und Angebotsanfrage mit Fotos. Preise und Aktionen pflegt der Kunde selbst in einem eigenen Editor, lädt Referenzfotos vom Handy hoch und kann oben auf jeder Seite einen Hinweis „Geschlossen“ einblenden.',
       },
       tags: { hu: [ 'Statikus oldal', 'Ügyfél-szerkesztő', 'Ajánlatkérés fotóval' ], en: [ 'Static site', 'Client editor', 'Quote request with photos' ], de: [ 'Statische Website', 'Kunden-Editor', 'Anfrage mit Fotos' ] },
     },

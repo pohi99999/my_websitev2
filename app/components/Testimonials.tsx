@@ -131,7 +131,7 @@ export default function Testimonials ()
           {rest.map( ( review ) => (
             <article
               key={review.name}
-              className="relative flex flex-col bg-[#0c0c10] border border-white/5 p-6 hover:border-[#00e5ff]/30 transition-colors duration-300"
+              className="relative flex flex-col bg-[#0c0c10] border border-white/5 p-6 hover:border-[#00e5ff]/30 transition-colors duration-300 md:[&:last-child:nth-child(odd)]:col-span-2"
             >
               <Stars label={t.stars} />
               <Body review={review} className="mt-4 mb-6 space-y-3 text-gray-300 text-sm leading-relaxed" />

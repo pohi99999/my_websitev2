@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import Hero from './components/Hero';
 import KinekSzol from './components/KinekSzol';
 import MitKapsz from './components/MitKapsz';
+import Modulok from './components/Modulok';
 import Arcsomag from '../components/Arcsomag';
 import HogyanDolgozunk from './components/HogyanDolgozunk';
 import Referenciak from './components/Referenciak';
@@ -69,6 +70,7 @@ export default function WeboldalAiKkvPage() {
       <Hero />
       <KinekSzol />
       <MitKapsz />
+      <Modulok />
       {/* the home page's price block, the single source (Péter 6312), in HU/EN/DE */}
       <Arcsomag contactHref="/kapcsolat" />
       <HogyanDolgozunk />
