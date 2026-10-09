@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { SYSTEM_PROMPT } from "../app/api/chat/system-prompt";
+import { BASE_PRICE } from "../app/lib/basePrice";
 
 // Card 780eb834 (2026-10-09): asked "how much is a website?", the chat answered that the company does not
 // make websites. The prompt now carries the Weboldal + AI package, with facts ONLY from the live page.
@@ -40,11 +41,15 @@ test.describe("Brunella chat system prompt", () => {
       expect(SYSTEM_PROMPT).toContain(n);
   });
 
-  test("drift guard: the base price in the prompt is the one on the page's price component", () => {
-    const page = readFileSync(join(__dirname, "..", "app", "components", "Arcsomag.tsx"), "utf-8");
-    // the component writes the price as a template string with an NBSP constant: `150${ NBSP }000${ NBSP }Ft`
-    expect(page).toMatch(/150\$\{\s*NBSP\s*\}000\$\{\s*NBSP\s*\}Ft/);
-    expect(page).toMatch(/HUF\$\{\s*NBSP\s*\}150,000/);
-    expect(page).toContain("hetenyirenata.com");
+  test("drift guard: the base price in the prompt is the site's single BASE_PRICE (price card and FAQ use it)", () => {
+    const plain = (x: string) => x.replace(/\u00a0/g, " ");
+    expect(SYSTEM_PROMPT).toContain(`${plain(BASE_PRICE.hu)} gross`);
+    expect(SYSTEM_PROMPT).toContain(plain(BASE_PRICE.en));
+    // the price card and the FAQ read the same constant, so none of them can drift on its own
+    const card = readFileSync(join(__dirname, "..", "app", "components", "Arcsomag.tsx"), "utf-8");
+    const faq = readFileSync(join(__dirname, "..", "app", "weboldal-ai-kkv", "components", "FAQ.jsx"), "utf-8");
+    for (const lang of ["hu", "en", "de"]) expect(card).toContain(`price: BASE_PRICE.${lang},`);
+    expect(faq).toContain("${BASE_PRICE.hu}");
+    expect(card).toContain("hetenyirenata.com");
   });
 });

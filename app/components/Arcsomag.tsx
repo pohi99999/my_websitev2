@@ -3,6 +3,7 @@
 import React from 'react';
 import { Check, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { BASE_PRICE } from '../lib/basePrice';
 
 /*
  * Árcsomag (Péter döntése, Telegram 4311, 2026-09-23). Csak a jóváhagyott tételek:
@@ -11,7 +12,6 @@ import { useLanguage } from '../context/LanguageContext';
  * karbantartásra, az ide kerül, máshova nem.
  * EN/DE: Péter 2026-10-05 (6328, kártya b6ca4d9a); az ár Ft-ban marad, a szöveg Stratégával egyeztetve.
  */
-const NBSP = ' ';
 
 type Lang = 'hu' | 'en' | 'de';
 
@@ -22,7 +22,7 @@ const COPY: Record<Lang, {
   hu: {
     heading: 'Árcsomag',
     base: 'Alapcsomag',
-    price: `150${ NBSP }000${ NBSP }Ft`,
+    price: BASE_PRICE.hu,
     gross: 'bruttó, egyszeri',
     items: [
       'Bemutatkozó weboldal',
@@ -45,7 +45,7 @@ const COPY: Record<Lang, {
   en: {
     heading: 'Pricing',
     base: 'Base package',
-    price: `HUF${ NBSP }150,000`,
+    price: BASE_PRICE.en,
     gross: 'incl. VAT, one-off payment',
     items: [
       'Business website',
@@ -68,7 +68,7 @@ const COPY: Record<Lang, {
   de: {
     heading: 'Preise',
     base: 'Basispaket',
-    price: `150.000${ NBSP }Ft`,
+    price: BASE_PRICE.de,
     gross: 'inkl. MwSt., einmalig',
     items: [
       'Unternehmenswebsite',
