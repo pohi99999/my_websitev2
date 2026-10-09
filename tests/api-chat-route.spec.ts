@@ -150,6 +150,13 @@ test.describe("POST /api/chat", () => {
       expect(res.status).toBe(200);
       const body = await res.json();
       expect(body.content).toBe("Hello, I am Brunella.");
+      // 2026-10-09: the request goes to the current GitHub Models endpoint with a publisher-prefixed model
+      // (the old models.inference.ai.azure.com host no longer resolves).
+      expect(fetchStub.callCount).toBe(1);
+      const [url, init] = fetchStub.firstCall.args;
+      expect(String(url)).toBe("https://models.github.ai/inference/chat/completions");
+      expect(JSON.parse(String(init.body)).model).toBe("openai/gpt-4.1");
+      expect(init.headers.Authorization).toBe("Bearer test-token");
     });
   });
 });

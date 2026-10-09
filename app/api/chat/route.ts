@@ -63,6 +63,9 @@ interface ChatMessage {
   content: string;
 }
 
+const GITHUB_MODELS_URL = 'https://models.github.ai/inference/chat/completions';
+const GITHUB_MODELS_MODEL = 'openai/gpt-4.1';
+
 export async function POST(req: NextRequest) {
   const ip = getClientIp(req);
   if (!checkRateLimit(ip)) {
@@ -119,14 +122,16 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const response = await fetch('https://models.inference.ai.azure.com/chat/completions', {
+    // 2026-10-09: the old GitHub Models host (models.inference.ai.azure.com) is gone (ENOTFOUND in the
+    // Vercel runtime log, chat answered 500). The current endpoint takes publisher-prefixed model ids.
+    const response = await fetch(GITHUB_MODELS_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        model: 'gpt-4.1',
+        model: GITHUB_MODELS_MODEL,
         messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...trimmedMessages],
         max_tokens: 600,
         temperature: 0.7,
