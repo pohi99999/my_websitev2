@@ -47,9 +47,11 @@ test.describe("Brunella chat system prompt", () => {
     expect(SYSTEM_PROMPT).toContain(plain(BASE_PRICE.en));
     // the price card and the FAQ read the same constant, so none of them can drift on its own
     const card = readFileSync(join(__dirname, "..", "app", "components", "Arcsomag.tsx"), "utf-8");
-    const faq = readFileSync(join(__dirname, "..", "app", "weboldal-ai-kkv", "components", "FAQ.jsx"), "utf-8");
-    for (const lang of ["hu", "en", "de"]) expect(card).toContain(`price: BASE_PRICE.${lang},`);
-    expect(faq).toContain("${BASE_PRICE.hu}");
+    const faq = readFileSync(join(__dirname, "..", "app", "weboldal-ai-kkv", "components", "faqCopy.ts"), "utf-8");
+    for (const lang of ["hu", "en", "de"]) {
+      expect(card).toContain(`price: BASE_PRICE.${lang},`);
+      expect(faq).toContain("${BASE_PRICE." + lang + "}");
+    }
     expect(card).toContain("hetenyirenata.com");
   });
 });
