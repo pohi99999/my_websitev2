@@ -37,7 +37,15 @@ export function toGeminiContents(turns: ChatTurn[]): GeminiContent[] {
   return out;
 }
 
-export function buildGeminiBody(systemPrompt: string, turns: ChatTurn[]) {
+/**
+ * thinkingBudget is a Gemini 2.5 setting. gemini-3.5-flash-lite rejects it with 400 INVALID_ARGUMENT
+ * (measured 2026-10-09: the same request without it answered 200), so it is only sent to 2.5 models.
+ */
+export function usesThinkingBudget(model: string): boolean {
+  return model.startsWith('gemini-2.5-');
+}
+
+export function buildGeminiBody(systemPrompt: string, turns: ChatTurn[], model: string = GEMINI_MODEL) {
   return {
     systemInstruction: { parts: [{ text: systemPrompt }] },
     contents: toGeminiContents(turns),
@@ -46,7 +54,7 @@ export function buildGeminiBody(systemPrompt: string, turns: ChatTurn[]) {
       temperature: 0.7,
       // 2.5-flash thinks by default and the thinking tokens come out of maxOutputTokens:
       // an answer could end empty. A chat reply does not need it.
-      thinkingConfig: { thinkingBudget: 0 },
+      ...(usesThinkingBudget(model) ? { thinkingConfig: { thinkingBudget: 0 } } : {}),
     },
   };
 }

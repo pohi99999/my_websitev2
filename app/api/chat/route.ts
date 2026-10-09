@@ -84,7 +84,8 @@ export async function POST(req: NextRequest) {
     );
 
   try {
-    const requestBody = JSON.stringify(buildGeminiBody(systemPromptFor(lang), trimmedMessages));
+    const systemPrompt = systemPromptFor(lang);
+    // the body is built per model: the fallback model does not accept thinkingBudget
     const callGemini = (model: string) =>
       fetch(geminiUrl(model), {
         method: 'POST',
@@ -93,7 +94,7 @@ export async function POST(req: NextRequest) {
           // The key goes in a header, never in the URL: URLs end up in logs.
           'x-goog-api-key': apiKey,
         },
-        body: requestBody,
+        body: JSON.stringify(buildGeminiBody(systemPrompt, trimmedMessages, model)),
       });
 
     // Free tier (2026-10-09): on a 429 the same request goes once to the fallback model, which has

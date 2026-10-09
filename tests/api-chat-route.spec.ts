@@ -214,7 +214,15 @@ test.describe("POST /api/chat", () => {
       expect(fetchStub.callCount).toBe(2);
       expect(String(fetchStub.getCall(0).args[0])).toContain("/models/gemini-2.5-flash:generateContent");
       expect(String(fetchStub.getCall(1).args[0])).toContain("/models/gemini-3.5-flash-lite:generateContent");
-      expect(fetchStub.getCall(1).args[1].body).toBe(fetchStub.getCall(0).args[1].body);
+      // same conversation and prompt; the fallback gets no thinkingConfig (gemini-3.5-flash-lite answers
+      // 400 INVALID_ARGUMENT to thinkingBudget, measured live 2026-10-09)
+      const first = JSON.parse(String(fetchStub.getCall(0).args[1].body));
+      const second = JSON.parse(String(fetchStub.getCall(1).args[1].body));
+      expect(second.contents).toEqual(first.contents);
+      expect(second.systemInstruction).toEqual(first.systemInstruction);
+      expect(first.generationConfig.thinkingConfig).toEqual({ thinkingBudget: 0 });
+      expect(second.generationConfig.thinkingConfig).toBeUndefined();
+      expect(second.generationConfig.maxOutputTokens).toBe(600);
     });
 
     test("a 429 on both models answers 200 with the busy text and the page link in the site language", async () => {
