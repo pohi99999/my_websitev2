@@ -138,7 +138,8 @@ export default function BrunellaChat() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages }),
+        // the site language picks the page link the answer gives (card 780eb834)
+        body: JSON.stringify({ messages: newMessages, lang }),
       });
 
       const data = await res.json();
@@ -149,7 +150,7 @@ export default function BrunellaChat() {
     } finally {
       setLoading(false);
     }
-  }, [input, messages, loading, L.error]);
+  }, [input, messages, loading, L.error, lang]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
