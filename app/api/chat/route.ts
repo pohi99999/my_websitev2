@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimit } from './rate-limiter';
-import { GEMINI_URL, buildGeminiBody, readGeminiText } from './gemini';
-import { SYSTEM_PROMPT } from './system-prompt';
+import { GEMINI_MODEL, GEMINI_FALLBACK_MODEL, geminiUrl, buildGeminiBody, readGeminiText } from './gemini';
+import { busyMessage, parseSiteLang, systemPromptFor } from './site-lang';
 
 function getClientIp(req: NextRequest): string {
   const realIp = req.headers.get('x-real-ip');
@@ -50,6 +50,7 @@ export async function POST(req: NextRequest) {
   }
 
   const { messages } = body as { messages: ChatMessage[] };
+  const lang = parseSiteLang((body as { lang?: unknown }).lang);
   const hasInvalidRole = messages.some(
     (m) => m.role !== 'user' && m.role !== 'assistant'
   );
@@ -83,15 +84,30 @@ export async function POST(req: NextRequest) {
     );
 
   try {
-    const response = await fetch(GEMINI_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        // The key goes in a header, never in the URL: URLs end up in logs.
-        'x-goog-api-key': apiKey,
-      },
-      body: JSON.stringify(buildGeminiBody(SYSTEM_PROMPT, trimmedMessages)),
-    });
+    const requestBody = JSON.stringify(buildGeminiBody(systemPromptFor(lang), trimmedMessages));
+    const callGemini = (model: string) =>
+      fetch(geminiUrl(model), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // The key goes in a header, never in the URL: URLs end up in logs.
+          'x-goog-api-key': apiKey,
+        },
+        body: requestBody,
+      });
+
+    // Free tier (2026-10-09): on a 429 the same request goes once to the fallback model, which has
+    // its own quota. If that is out too, a friendly answer with HTTP 200 (a 5xx would be replaced by
+    // the Cloudflare edge's own error page). Every other failure stays a 502.
+    let response = await callGemini(GEMINI_MODEL);
+    if (response.status === 429) {
+      console.warn('Gemini quota exhausted on', GEMINI_MODEL, '-> fallback', GEMINI_FALLBACK_MODEL);
+      response = await callGemini(GEMINI_FALLBACK_MODEL);
+      if (response.status === 429) {
+        console.error('Gemini quota exhausted on both models; answering with the busy message.');
+        return NextResponse.json({ content: busyMessage(lang), busy: true });
+      }
+    }
 
     if (!response.ok) {
       const text = await response.text();

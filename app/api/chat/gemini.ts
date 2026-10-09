@@ -4,7 +4,12 @@
 // The site has its OWN Gemini key (GEMINI_API_KEY, Vercel Production only).
 
 export const GEMINI_MODEL = 'gemini-2.5-flash';
-export const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+// The site's key is on the free tier (owner decision 2026-10-09): gemini-2.5-flash allows 20 requests a
+// day there. gemini-3.5-flash-lite has its own quota (measured 200 while 2.5-flash was exhausted, Marveen 3249).
+export const GEMINI_FALLBACK_MODEL = 'gemini-3.5-flash-lite';
+export const geminiUrl = (model: string) =>
+  `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+export const GEMINI_URL = geminiUrl(GEMINI_MODEL);
 
 export interface ChatTurn {
   role: 'user' | 'assistant';
