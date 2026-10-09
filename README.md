@@ -63,7 +63,7 @@ Lásd `.env.example`. A legfontosabbak:
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | Kapcsolati űrlap email küldése (nodemailer) |
 | `CONTACT_TO`, `CONTACT_FROM` | Opcionális, van fallback |
 | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | Opcionális rate limit backend |
-| `GITHUB_TOKEN` | A Brunella chat route-hoz (GitHub Models API) |
+| `GEMINI_API_KEY` | A Brunella chat route-hoz (Google Gemini, gemini-2.5-flash; a weboldal saját kulcsa, csak Production) |
 | `ADMIN_ANALYTICS_TOKEN` | Az `/admin/analytics` oldal védelme |
 | `NEXT_PUBLIC_N8N_WEBHOOK_URL` | Lead capture / instant responder formok |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics (van hardcoded fallback) |
