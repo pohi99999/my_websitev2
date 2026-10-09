@@ -1,4 +1,5 @@
 import React from 'react';
+import { BASE_PRICE } from '../../lib/basePrice';
 
 export default function FAQ() {
   const faqs = [
@@ -16,7 +17,9 @@ export default function FAQ() {
     },
     {
       q: "Mennyibe kerül egy ilyen megoldás?",
-      a: "Az ár függ a vállalkozás méretétől. Ingyenes konzultáció után átlátható, tételes ajánlatot adunk, rejtett költségek nélkül."
+      // Péter, Telegram 6926 (2026-10-09, card 780eb834): the old "depends on the size of the business"
+      // contradicted the fixed base package on the price card. The price comes from BASE_PRICE.
+      a: `Az alapcsomag ára fix ${BASE_PRICE.hu} bruttó, egyszeri díj. Az online időpontfoglalásra és bankkártyás előlegre, illetve a nagyobb, egyedi rendszerekre ingyenes konzultáció után tételes, fix áras ajánlatot adunk, rejtett költségek nélkül.`
     }
   ];
 
