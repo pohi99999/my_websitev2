@@ -22,6 +22,19 @@ test.describe("Brunella chat system prompt", () => {
     expect(SYSTEM_PROMPT).toMatch(/never say that the company does not make websites/);
   });
 
+  test("format, link-language and Hungarian address rules (Marveen 3244)", () => {
+    // plain text: the widget renders raw text, so ** showed up literally on the live site
+    expect(SYSTEM_PROMPT).toMatch(/OUTPUT FORMAT: plain text only/);
+    expect(SYSTEM_PROMPT).toMatch(/Never use Markdown: no \*\* or __ for bold, no # headings/);
+    // the link follows the language of the answer
+    expect(SYSTEM_PROMPT).toMatch(/answer in Hungarian -> https:\/\/www\.pohankaestarsa\.com\/weboldal-ai-kkv/);
+    expect(SYSTEM_PROMPT).toMatch(/answer in English\s+-> https:\/\/www\.pohankaestarsa\.com\/en\/weboldal-ai-kkv/);
+    expect(SYSTEM_PROMPT).toMatch(/Never put the Hungarian link in an English or German answer/);
+    // Hungarian: always magázás
+    expect(SYSTEM_PROMPT).toMatch(/in Hungarian ALWAYS use the formal address \(magázás/);
+    expect(SYSTEM_PROMPT).toMatch(/Never use the informal tegezés/);
+  });
+
   test("the AI automation part and its numbers are unchanged", () => {
     for (const n of ["95+ specialized AI agents", "Average 80% time savings", "within 3 months", "Free 30-minute consultation"])
       expect(SYSTEM_PROMPT).toContain(n);
