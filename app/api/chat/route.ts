@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimit } from './rate-limiter';
+import { GEMINI_URL, buildGeminiBody, readGeminiText } from './gemini';
 
 function getClientIp(req: NextRequest): string {
   const realIp = req.headers.get('x-real-ip');
@@ -63,9 +64,6 @@ interface ChatMessage {
   content: string;
 }
 
-const GITHUB_MODELS_URL = 'https://models.github.ai/inference/chat/completions';
-const GITHUB_MODELS_MODEL = 'openai/gpt-4.1';
-
 export async function POST(req: NextRequest) {
   const ip = getClientIp(req);
   if (!checkRateLimit(ip)) {
@@ -100,9 +98,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Érvénytelen kérés.' }, { status: 400 });
   }
 
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) {
-    console.error('CRITICAL: GITHUB_TOKEN is missing.');
+  // Trimmed: the key was stored with surrounding whitespace once, and a stray newline in a header
+  // value makes the request fail in a way that looks like a provider outage.
+  const apiKey = process.env.GEMINI_API_KEY?.trim();
+  if (!apiKey) {
+    console.error('CRITICAL: GEMINI_API_KEY is missing.');
     return NextResponse.json(
       { error: 'Belső szerverhiba.' },
       { status: 500 }
@@ -111,44 +111,50 @@ export async function POST(req: NextRequest) {
 
   const len = messages.length;
   const startIdx = len > 10 ? len - 10 : 0;
-  const count = len - startIdx;
-  const trimmedMessages = new Array(count);
-  for (let i = 0; i < count; i++) {
-    const m = messages[startIdx + i];
-    trimmedMessages[i] = {
-      role: m.role as 'user' | 'assistant',
-      content: String(m.content).slice(0, 2000),
-    };
+  const trimmedMessages: ChatMessage[] = [];
+  for (let i = startIdx; i < len; i++) {
+    const m = messages[i];
+    trimmedMessages.push({ role: m.role, content: String(m.content).slice(0, 2000) });
   }
 
+  const unavailable = () =>
+    NextResponse.json(
+      { error: 'AI szolgáltatás nem elérhető. Kérjük, próbálja később.' },
+      { status: 502 }
+    );
+
   try {
-    // 2026-10-09: the old GitHub Models host (models.inference.ai.azure.com) is gone (ENOTFOUND in the
-    // Vercel runtime log, chat answered 500). The current endpoint takes publisher-prefixed model ids.
-    const response = await fetch(GITHUB_MODELS_URL, {
+    const response = await fetch(GEMINI_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        // The key goes in a header, never in the URL: URLs end up in logs.
+        'x-goog-api-key': apiKey,
       },
-      body: JSON.stringify({
-        model: GITHUB_MODELS_MODEL,
-        messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...trimmedMessages],
-        max_tokens: 600,
-        temperature: 0.7,
-      }),
+      body: JSON.stringify(buildGeminiBody(SYSTEM_PROMPT, trimmedMessages)),
     });
 
     if (!response.ok) {
       const text = await response.text();
-      console.error('GitHub Models error:', response.status, text);
-      return NextResponse.json(
-        { error: 'AI szolgáltatás nem elérhető. Kérjük, próbálja később.' },
-        { status: 502 }
-      );
+      console.error('Gemini error:', response.status, text.slice(0, 500));
+      return unavailable();
     }
 
-    const data = await response.json();
-    const content: string = data?.choices?.[0]?.message?.content ?? '';
+    // A provider that answers 200 with something that is not a reply (2026-10-09: GitHub Models
+    // answered "OK" in text/plain) is an unavailable service, not an internal error.
+    let data: unknown;
+    try {
+      data = await response.json();
+    } catch (err) {
+      console.error('Gemini returned a non-JSON body:', err);
+      return unavailable();
+    }
+    const content = readGeminiText(data);
+    if (!content) {
+      const finish = (data as { candidates?: { finishReason?: string }[] })?.candidates?.[0]?.finishReason;
+      console.error('Gemini returned no text, finishReason:', finish ?? 'none');
+      return unavailable();
+    }
     return NextResponse.json({ content });
   } catch (err) {
     console.error('Brunella chat error:', err);

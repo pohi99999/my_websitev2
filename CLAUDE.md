@@ -39,7 +39,7 @@ npx playwright test
 
 `app/api/contact/route.ts` sends mail via **nodemailer over SMTP** (not Resend/SendGrid). Rate-limited via `@upstash/ratelimit` + `@upstash/redis` when `UPSTASH_REDIS_REST_URL`/`UPSTASH_REDIS_REST_TOKEN` are set, otherwise falls back to in-memory limiting. Relevant env vars: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `CONTACT_TO` (default `peterpohankapersonal@gmail.com`), `CONTACT_FROM`.
 
-Other env vars referenced in code: `GITHUB_TOKEN` (chat route, GitHub Models API), `N8N_WEBHOOK_URL` / `NEXT_PUBLIC_N8N_WEBHOOK_URL` (lead/instant-responder forms), `ADMIN_ANALYTICS_TOKEN`, `ANALYTICS_KPI_SNAPSHOT_JSON`, `NEXT_PUBLIC_TAWK_EMBED_URL`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`. `.env.example` does not list `ADMIN_ANALYTICS_TOKEN` or `NEXT_PUBLIC_TAWK_EMBED_URL` even though code uses them.
+Other env vars referenced in code: `GEMINI_API_KEY` (chat route, Google Gemini; GitHub Models stopped answering on 2026-10-09), `N8N_WEBHOOK_URL` / `NEXT_PUBLIC_N8N_WEBHOOK_URL` (lead/instant-responder forms), `ADMIN_ANALYTICS_TOKEN`, `ANALYTICS_KPI_SNAPSHOT_JSON`, `NEXT_PUBLIC_TAWK_EMBED_URL`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`. `.env.example` does not list `ADMIN_ANALYTICS_TOKEN` or `NEXT_PUBLIC_TAWK_EMBED_URL` even though code uses them.
 
 **`N8N_WEBHOOK_URL` (server-only) is not set in Vercel** — only `NEXT_PUBLIC_N8N_WEBHOOK_URL` is. Any server-side route reading `process.env.N8N_WEBHOOK_URL` needs its own fallback (to the public var, or fail fast) or it silently falls back to a `localhost` dev URL in production. Bit `/api/instant-responder/demo` this way until 2026-08-11.
 
