@@ -33,8 +33,8 @@ ${PAGE_LINK[lang]}`;
 }
 
 /**
- * Shown when both models are out of quota (429 twice). Sent with HTTP 200 so the Cloudflare edge
- * does not replace it with its own "error code: 502" page. Text: Marveen 3249.
+ * Shown when Claude is rate limited, overloaded or out of credit. Sent with HTTP 200 so the
+ * Cloudflare edge does not replace it with its own "error code: 502" page. Text: Marveen 3249.
  */
 export function busyMessage(lang: SiteLang): string {
   if (lang === 'en') {
@@ -44,4 +44,15 @@ export function busyMessage(lang: SiteLang): string {
     return `Derzeit ist die Nachfrage sehr hoch, und der Chat kann gerade nicht antworten. Fordern Sie einen kostenlosen Entwurf an oder schreiben Sie uns: ${PAGE_LINK.de} oder die Kontaktseite: ${CONTACT_LINK.de}`;
   }
   return `Most nagy az érdeklődés, és a chat pillanatnyilag nem tud válaszolni. Kérjen ingyenes látványtervet vagy írjon nekünk: ${PAGE_LINK.hu} vagy a Kapcsolat oldal: ${CONTACT_LINK.hu}`;
+}
+
+/** Any other Claude failure: the same way forward, without claiming high demand (card 63a125ae). */
+export function unavailableMessage(lang: SiteLang): string {
+  if (lang === 'en') {
+    return `The chat cannot answer at the moment. Request a free design preview or write to us: ${PAGE_LINK.en} or the Contact page: ${CONTACT_LINK.en}`;
+  }
+  if (lang === 'de') {
+    return `Der Chat kann gerade nicht antworten. Fordern Sie einen kostenlosen Entwurf an oder schreiben Sie uns: ${PAGE_LINK.de} oder die Kontaktseite: ${CONTACT_LINK.de}`;
+  }
+  return `A chat most nem tud válaszolni. Kérjen ingyenes látványtervet vagy írjon nekünk: ${PAGE_LINK.hu} vagy a Kapcsolat oldal: ${CONTACT_LINK.hu}`;
 }

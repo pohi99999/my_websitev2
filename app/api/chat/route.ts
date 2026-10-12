@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimit } from './rate-limiter';
-import { GEMINI_MODEL, GEMINI_FALLBACK_MODEL, geminiUrl, buildGeminiBody, readGeminiText } from './gemini';
-import { busyMessage, parseSiteLang, systemPromptFor } from './site-lang';
+import { CLAUDE_URL, ANTHROPIC_VERSION, DEFAULT_MODEL, TIMEOUT_MS, buildClaudeBody, readClaudeText, isBusy } from './claude';
+import { busyMessage, parseSiteLang, systemPromptFor, unavailableMessage } from './site-lang';
 
 function getClientIp(req: NextRequest): string {
   const realIp = req.headers.get('x-real-ip');
@@ -60,14 +60,15 @@ export async function POST(req: NextRequest) {
 
   // Trimmed: the key was stored with surrounding whitespace once, and a stray newline in a header
   // value makes the request fail in a way that looks like a provider outage.
-  const apiKey = process.env.GEMINI_API_KEY?.trim();
+  const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
   if (!apiKey) {
-    console.error('CRITICAL: GEMINI_API_KEY is missing.');
+    console.error('CRITICAL: ANTHROPIC_API_KEY is missing.');
     return NextResponse.json(
       { error: 'Belső szerverhiba.' },
       { status: 500 }
     );
   }
+  const model = process.env.ANTHROPIC_MODEL?.trim() || DEFAULT_MODEL;
 
   const len = messages.length;
   const startIdx = len > 10 ? len - 10 : 0;
@@ -77,63 +78,44 @@ export async function POST(req: NextRequest) {
     trimmedMessages.push({ role: m.role, content: String(m.content).slice(0, 2000) });
   }
 
-  const unavailable = () =>
-    NextResponse.json(
-      { error: 'AI szolgáltatás nem elérhető. Kérjük, próbálja később.' },
-      { status: 502 }
-    );
+  // Every Claude failure answers HTTP 200 with a way forward (the page and contact links): a 5xx
+  // would be replaced by the Cloudflare edge's own error page, and the widget's own error text has
+  // no contact. The log line names the provider and the reason; never the question or the answer.
+  const fallback = (reason: string, busy: boolean) => {
+    console.log(`chat provider=claude model=${model} fallback reason=${reason}`);
+    return NextResponse.json({ content: busy ? busyMessage(lang) : unavailableMessage(lang), busy: true });
+  };
 
+  let response: Response;
   try {
-    const systemPrompt = systemPromptFor(lang);
-    // the body is built per model: the fallback model does not accept thinkingBudget
-    const callGemini = (model: string) =>
-      fetch(geminiUrl(model), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // The key goes in a header, never in the URL: URLs end up in logs.
-          'x-goog-api-key': apiKey,
-        },
-        body: JSON.stringify(buildGeminiBody(systemPrompt, trimmedMessages, model)),
-      });
-
-    // Free tier (2026-10-09): on a 429 the same request goes once to the fallback model, which has
-    // its own quota. If that is out too, a friendly answer with HTTP 200 (a 5xx would be replaced by
-    // the Cloudflare edge's own error page). Every other failure stays a 502.
-    let response = await callGemini(GEMINI_MODEL);
-    if (response.status === 429) {
-      console.warn('Gemini quota exhausted on', GEMINI_MODEL, '-> fallback', GEMINI_FALLBACK_MODEL);
-      response = await callGemini(GEMINI_FALLBACK_MODEL);
-      if (response.status === 429) {
-        console.error('Gemini quota exhausted on both models; answering with the busy message.');
-        return NextResponse.json({ content: busyMessage(lang), busy: true });
-      }
-    }
-
-    if (!response.ok) {
-      const text = await response.text();
-      console.error('Gemini error:', response.status, text.slice(0, 500));
-      return unavailable();
-    }
-
-    // A provider that answers 200 with something that is not a reply (2026-10-09: GitHub Models
-    // answered "OK" in text/plain) is an unavailable service, not an internal error.
-    let data: unknown;
-    try {
-      data = await response.json();
-    } catch (err) {
-      console.error('Gemini returned a non-JSON body:', err);
-      return unavailable();
-    }
-    const content = readGeminiText(data);
-    if (!content) {
-      const finish = (data as { candidates?: { finishReason?: string }[] })?.candidates?.[0]?.finishReason;
-      console.error('Gemini returned no text, finishReason:', finish ?? 'none');
-      return unavailable();
-    }
-    return NextResponse.json({ content });
+    response = await fetch(CLAUDE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': ANTHROPIC_VERSION },
+      body: JSON.stringify(buildClaudeBody(systemPromptFor(lang), trimmedMessages, model)),
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
   } catch (err) {
-    console.error('Brunella chat error:', err);
-    return NextResponse.json({ error: 'Belső szerverhiba.' }, { status: 500 });
+    const timeout = err instanceof Error && (err.name === 'TimeoutError' || err.name === 'AbortError');
+    return fallback(timeout ? 'timeout' : 'network', false);
   }
+
+  if (!response.ok) {
+    const text = await response.text().catch(() => '');
+    // the error body goes to the function log only; it never contains the key
+    console.error('Claude error:', response.status, text.slice(0, 300));
+    return fallback(`claude_${response.status}`, isBusy(response.status, text));
+  }
+
+  // A provider that answers 200 with something that is not a reply (2026-10-09: GitHub Models
+  // answered "OK" in text/plain) is an unavailable service, not an internal error.
+  let data: unknown;
+  try {
+    data = await response.json();
+  } catch {
+    return fallback('bad_json', false);
+  }
+  const content = readClaudeText(data);
+  if (!content) return fallback('empty_or_truncated', false);
+  console.log(`chat provider=claude model=${model} ok`);
+  return NextResponse.json({ content });
 }
