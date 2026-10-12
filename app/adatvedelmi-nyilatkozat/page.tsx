@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = '2026. szeptember 13.';
+const LAST_UPDATED = '2026. október 12.';
 
 const CONTACT_EMAIL = 'peterpohankapersonal@gmail.com';
 const CONTACT_PHONE = '+36 30 429 1227';
@@ -70,8 +70,8 @@ const PROCESSINGS: Processing[] = [
     purpose: 'Általános tájékoztatás a szolgáltatásainkról, a kérdések azonnali megválaszolása.',
     legalBasis: 'GDPR 6. cikk (1) f) pont (jogos érdekünk a látogatók tájékoztatása); a csevegő használata önkéntes.',
     retention:
-      'A beszélgetést nem tároljuk a saját rendszereinkben; a válasz előállításához az üzenetet a Microsoft Azure AI szolgáltatása dolgozza fel, amely azt a saját szabályzata szerint, legfeljebb a visszaélés-szűréshez szükséges ideig őrzi.',
-    processors: 'Vercel Inc. (tárhely), Microsoft Corporation (GitHub Models, Azure AI inference).',
+      'A beszélgetést nem tároljuk a saját rendszereinkben; a válasz előállításához az üzenetet és a beszélgetés előzményét az Anthropic Claude szolgáltatása dolgozza fel, amely azt a saját szabályzata szerint őrzi.',
+    processors: 'Vercel Inc. (tárhely), Anthropic Ireland, Limited (Claude).',
   },
   {
     name: 'Visszaélés- és spam-védelem',
@@ -116,9 +116,10 @@ const PROCESSORS = [
     location: 'USA; a felhasznált adatbázis EU-régióban. Adattovábbítás: SCC.',
   },
   {
-    name: 'Microsoft Corporation',
-    role: 'A Brunella csevegő válaszainak előállítása (GitHub Models, Azure AI inference)',
-    location: 'One Microsoft Way, Redmond, WA 98052, USA. Adattovábbítás: DPF és SCC.',
+    // anthropic.com/legal/privacy (read 2026-10-12): for the EEA the provider is Anthropic Ireland, Limited
+    name: 'Anthropic Ireland, Limited',
+    role: 'A Brunella csevegő válaszainak előállítása (Claude)',
+    location: '6th Floor, South Bank House, Barrow Street, Dublin 4, D04 TR29, Írország.',
   },
   {
     name: 'Saját üzemeltetésű n8n automatizálás',
