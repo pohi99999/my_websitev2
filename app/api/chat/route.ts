@@ -3,6 +3,7 @@ import { checkRateLimit } from './rate-limiter';
 import { CLAUDE_URL, ANTHROPIC_VERSION, DEFAULT_MODEL, TIMEOUT_MS, buildClaudeBody, readClaudeText, isBusy } from './claude';
 import { busyMessage, parseSiteLang, systemPromptFor, unavailableMessage } from './site-lang';
 import { isAllowedOrigin } from '../../lib/allowedOrigin';
+import { checkDailyBudget } from './budget';
 
 function getClientIp(req: NextRequest): string {
   const realIp = req.headers.get('x-real-ip');
@@ -93,6 +94,8 @@ export async function POST(req: NextRequest) {
     console.log(`chat provider=claude model=${model} fallback reason=${reason}`);
     return NextResponse.json({ content: busy ? busyMessage(lang) : unavailableMessage(lang), busy: true });
   };
+
+  if (!(await checkDailyBudget())) return fallback('daily_budget', true);
 
   let response: Response;
   try {
