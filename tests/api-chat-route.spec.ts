@@ -19,6 +19,32 @@ test.describe("POST /api/chat", () => {
     }
   });
 
+  test("a cross-site Origin is refused before any work (no paid call from a foreign page)", async () => {
+    const fetchStub = sinon.stub(global, "fetch");
+    try {
+      const req = new NextRequest("http://localhost", {
+        method: "POST",
+        headers: { origin: "https://evil.example", "content-type": "text/plain" },
+        body: JSON.stringify({ messages: [{ role: "user", content: "hi" }] }),
+      });
+      const res = await POST(req);
+      expect(res.status).toBe(403);
+      expect(fetchStub.callCount).toBe(0);
+    } finally {
+      fetchStub.restore();
+    }
+  });
+
+  test("the site's own Origin passes the Origin check", async () => {
+    const req = new NextRequest("http://localhost", {
+      method: "POST",
+      headers: { origin: "https://www.pohankaestarsa.com" },
+      body: "invalid json",
+    });
+    const res = await POST(req);
+    expect(res.status).toBe(400);
+  });
+
   test("returns 400 for invalid JSON", async () => {
     const req = new NextRequest("http://localhost", {
       method: "POST",

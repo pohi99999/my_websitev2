@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimit } from './rate-limiter';
 import { CLAUDE_URL, ANTHROPIC_VERSION, DEFAULT_MODEL, TIMEOUT_MS, buildClaudeBody, readClaudeText, isBusy } from './claude';
 import { busyMessage, parseSiteLang, systemPromptFor, unavailableMessage } from './site-lang';
+import { isAllowedOrigin } from '../../lib/allowedOrigin';
 
 function getClientIp(req: NextRequest): string {
   const realIp = req.headers.get('x-real-ip');
@@ -24,6 +25,13 @@ interface ChatMessage {
 }
 
 export async function POST(req: NextRequest) {
+  // A foreign page could make its visitors' browsers post here (req.json() parses a text/plain
+  // body too, so there is no CORS preflight): every visitor's IP is a fresh rate-limit bucket and
+  // every request a paid Claude call. Browsers always send Origin on POST; no Origin is curl.
+  if (!isAllowedOrigin(req.headers.get('origin') || '')) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
+
   const ip = getClientIp(req);
   if (!checkRateLimit(ip)) {
     return NextResponse.json(
