@@ -2,6 +2,14 @@
 
 Notable changes to the Pohánka és Társa Kft. website. Not auto-generated — kept manually, in reverse-chronological order.
 
+## 2026-10-15 — Security audit; chat cost-abuse fixes
+
+Full report: `SECURITY_AUDIT.md` (15 findings, 2 fixed here, the rest are recommendations).
+
+### Security
+- `/api/chat` refuses a cross-site `Origin` (403). The contact form's allow-list moved to `app/lib/allowedOrigin.ts` and is shared.
+- `/api/chat` has a site-wide ceiling of 500 Claude calls/day (`app/api/chat/budget.ts`; Upstash when configured, otherwise in memory). Over it, the chat answers with the existing busy text.
+
 ## 2026-10-05 — Removed the old "Szakrajz & Modellező Program" (Cimbi) portfolio card
 
 Owner decision (2026-10-05 13:26): the new P-Szakrajz card added the same day replaces it; both showed the same engine.
