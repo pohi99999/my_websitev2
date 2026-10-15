@@ -19,7 +19,7 @@ Secret values are named by variable only. None appear in this report.
 | 7 | Medium | Tawk.to chat script loads before any consent | Recommendation (if `NEXT_PUBLIC_TAWK_EMBED_URL` is set) |
 | 8 | Medium | Old lead list: named dental clinics plus a public Google Sheet link remain in git history | Recommendation |
 | 9 | Low | No Content-Security-Policy | Recommendation |
-| 10 | Low | `/admin/crm*` is not behind the admin token | Recommendation |
+| 10 | Low | `/admin/crm*` is not behind the admin token | Fixed: pages deleted |
 | 11 | Low | Admin token handling: the cookie holds the raw token, the compare is not constant-time, the token is accepted in the URL | Recommendation |
 | 12 | Low | `instant-responder/demo` has no Origin check, posts to the bare n8n base URL, and falls back to `localhost` | Recommendation |
 | 13 | Low | Minor input-handling and information leaks in the API routes | Recommendation |
@@ -106,7 +106,7 @@ Secret values are named by variable only. None appear in this report.
 - **Context:** no XSS sink fed by user input was found. Blog markdown is repo content, sanitized by `rehype-sanitize`. Every `dangerouslySetInnerHTML` is `JSON.stringify` of static JSON-LD or fixed inline script. The chat reply is rendered as text. So this is defence in depth only.
 - **Fix:** start with `Content-Security-Policy-Report-Only` allowing `self`, `www.googletagmanager.com`, `*.google-analytics.com`, `va.vercel-scripts.com` and `embed.tawk.to`/`*.tawk.to`, plus `frame-ancestors 'self'`. Enforce it once no reports come in. Nonce-based CSP in Next.js needs dynamic rendering, so allow-list hosts first.
 
-### 10. Low: `/admin/crm*` is not protected
+### 10. Low: `/admin/crm*` is not protected (fixed: the dead CRM pages were deleted)
 - **Where:** `middleware.ts:5` guards only `/admin/analytics` and `/api/analytics`. `app/admin/crm/page.tsx` and `app/admin/crm/pipeline/page.tsx` are public. They fetch and PATCH `/api/v1/potential-clients`, which does not exist in this app, so nothing leaks today.
 - **Risk:** the day someone adds that API, the CRM, with scraped names and phone numbers, would be public and editable.
 - **Fix:** change the page guard to `pathname.startsWith('/admin')`, or delete the dead CRM pages. Any future `/api/v1/*` must sit behind the same token.
