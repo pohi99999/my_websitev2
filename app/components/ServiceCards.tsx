@@ -76,7 +76,7 @@ export default function ServiceCards ()
                 <Link
                   href={ href }
                   onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.HomeServiceCards, language, target: href, page: PAGE_NAMES.Home } ) }
-                  className="group surface-panel-elevated flex h-full flex-col rounded-3xl border border-white/10 bg-black/50 p-6 backdrop-blur-sm transition-colors hover:border-[#00e5ff]/50 focus-visible:border-[#00e5ff]"
+                  className="group surface-panel-elevated flex h-full flex-col rounded-3xl p-6 backdrop-blur-sm transition-colors hover:border-[#00e5ff]/50 focus-visible:border-[#00e5ff]"
                 >
                   <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00e5ff]/30 bg-[#00e5ff]/10" aria-hidden="true">
                     <Icon className="h-5 w-5 text-[#00e5ff]" />
