@@ -2,6 +2,15 @@
 
 Notable changes to the Pohánka és Társa Kft. website. Not auto-generated — kept manually, in reverse-chronological order.
 
+## 2026-10-22 — Experimental WebMCP `request_quote` tool (progressive enhancement)
+
+Details: `docs/webmcp.md`.
+
+### Added
+- When the browser exposes `document.modelContext` (WebMCP), the homepage quote-request form (`ContactCapture`) also registers one tool, `request_quote`. It submits only after the user confirms the filled data in an on-page dialog, through the same `/api/contact` route and payload as the form (Origin check, rate limit, server validation unchanged). Without `document.modelContext` nothing is registered and the page is unchanged.
+- `app/lib/quoteRequest.ts`: the form's field labels, rules and message text, shared by the form and the tool.
+- `webmcp-types` devDependency (types only).
+
 ## 2026-10-15 — Security audit; chat cost-abuse fixes
 
 Full report: `SECURITY_AUDIT.md` (15 findings, 2 fixed here, the rest are recommendations).

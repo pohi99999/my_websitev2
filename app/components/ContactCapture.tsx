@@ -12,6 +12,8 @@ import
   trackFormSubmit,
 } from '../lib/analytics';
 import { useLanguage } from '../context/LanguageContext';
+import { buildQuoteMessage, QUOTE_NEED_LABELS } from '../lib/quoteRequest';
+import WebMcpQuoteTool from './WebMcpQuoteTool';
 
 type StatusState = 'idle' | 'sending' | 'success' | 'error';
 
@@ -46,12 +48,7 @@ export default function ContactCapture ()
         error:
           'We could not send your request right now. Please email us directly at peterpohankapersonal@gmail.com.',
         whatsapp: 'Write on WhatsApp',
-        options: {
-          lead: 'Website with online booking',
-          accounting: 'Website with quote requests',
-          support: 'Online shop or app',
-          other: 'Automation or AI',
-        },
+        options: QUOTE_NEED_LABELS.en,
       };
     }
 
@@ -72,12 +69,7 @@ export default function ContactCapture ()
         error:
           'Ihre Anfrage konnte gerade nicht gesendet werden. Bitte schreiben Sie direkt an peterpohankapersonal@gmail.com.',
         whatsapp: 'Per WhatsApp schreiben',
-        options: {
-          lead: 'Website mit Online-Buchung',
-          accounting: 'Website mit Anfrageformular',
-          support: 'Onlineshop oder App',
-          other: 'Automatisierung oder KI',
-        },
+        options: QUOTE_NEED_LABELS.de,
       };
     }
 
@@ -96,12 +88,7 @@ export default function ContactCapture ()
       error:
         'Most nem sikerült elküldeni az érdeklődést. Kérjük, írjon közvetlenül: peterpohankapersonal@gmail.com.',
       whatsapp: 'Írok WhatsAppon',
-      options: {
-        lead: 'Weboldal időpontfoglalással',
-        accounting: 'Ajánlatkérő weboldal',
-        support: 'Webáruház vagy alkalmazás',
-        other: 'Automatizálás vagy AI',
-      },
+      options: QUOTE_NEED_LABELS.hu,
     };
   }, [language] );
 
@@ -122,13 +109,7 @@ export default function ContactCapture ()
     setStatus( { state: 'sending', message: ui.sending } );
 
     const challengeLabel = ui.options[challenge as keyof typeof ui.options] ?? ui.options.other;
-    const about = business.trim();
-    const message =
-      language === 'en'
-        ? `Homepage request for a free consultation or design preview\nNeeds: ${ challengeLabel }${ about ? `\nBusiness: ${ about }` : '' }\nPreferred contact: ${ email }`
-        : language === 'de'
-          ? `Homepage-Anfrage für Beratung oder Entwurf\nBedarf: ${ challengeLabel }${ about ? `\nUnternehmen: ${ about }` : '' }\nBevorzugter Kontakt: ${ email }`
-          : `Főoldali konzultáció- vagy látványterv-kérés\nIgény: ${ challengeLabel }${ about ? `\nVállalkozás: ${ about }` : '' }\nKapcsolati e-mail: ${ email }`;
+    const message = buildQuoteMessage( language, challengeLabel, business, email );
 
     try
     {
@@ -325,6 +306,7 @@ export default function ContactCapture ()
           </form>
         </div>
       </div>
+      <WebMcpQuoteTool />
     </section>
   );
 }
