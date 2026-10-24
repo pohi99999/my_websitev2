@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 type Lang = 'hu' | 'en' | 'de';
 
-const copy: Record<Lang, { badge: string; heading: string; accent: string; lead: string; frameTitle: string }> = {
+const copy: Record<Lang, { badge: string; heading: string; accent: string; lead: string; original?: string; frameTitle: string }> = {
   hu: {
     badge: 'Bemutató videó',
     heading: 'Pohánka és Társa ',
@@ -18,6 +18,7 @@ const copy: Record<Lang, { badge: string; heading: string; accent: string; lead:
     heading: 'Meet ',
     accent: 'Pohánka és Társa',
     lead: 'Meet the Pohánka és Társa team and our approach: how we design and build AI systems for businesses.',
+    original: 'Original video, in Hungarian.',
     frameTitle: 'Pohánka és Társa introduction',
   },
   de: {
@@ -25,6 +26,7 @@ const copy: Record<Lang, { badge: string; heading: string; accent: string; lead:
     heading: 'Pohánka és Társa ',
     accent: 'stellt sich vor',
     lead: 'Lernen Sie das Team von Pohánka és Társa und unsere Arbeitsweise kennen: wie wir KI-Systeme für Unternehmen planen und umsetzen.',
+    original: 'Originalvideo auf Ungarisch.',
     frameTitle: 'Pohánka és Társa stellt sich vor',
   },
 };
@@ -71,6 +73,7 @@ export default function BemutatkozoVideo() {
               allowFullScreen
             />
           </div>
+          {t.original && <p className="text-gray-500 text-sm mt-3 text-center">{t.original}</p>}
         </GsapFadeIn>
       </div>
     </section>

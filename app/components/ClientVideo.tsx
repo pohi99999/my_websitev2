@@ -7,7 +7,7 @@ type Lang = 'hu' | 'en' | 'de';
 
 type Card = { icon: string; title: string; text: string };
 
-const copy: Record<Lang, { heading: string; lead: string; frameTitle: string; cards: Card[] }> = {
+const copy: Record<Lang, { heading: string; lead: string; original?: string; frameTitle: string; cards: Card[] }> = {
   hu: {
     heading: 'Interjú pár elégedett ügyfelünkkel',
     lead: 'Nézze meg, mit gondolnak rólunk azok, akik már bevezették az MI automatizációt. (Figyelem: a videó nyomokban humort tartalmaz!)',
@@ -21,6 +21,7 @@ const copy: Record<Lang, { heading: string; lead: string; frameTitle: string; ca
   en: {
     heading: 'Interviews with a few happy clients',
     lead: 'See what people who have already introduced AI automation think of us. (Warning: the video contains traces of humour!)',
+    original: 'Original video, in Hungarian.',
     frameTitle: 'Pohánka és Társa - client interviews',
     cards: [
       { icon: '🦁', title: 'Bold Solutions', text: 'We are not afraid to bring order with automation, even in the wild.' },
@@ -31,6 +32,7 @@ const copy: Record<Lang, { heading: string; lead: string; frameTitle: string; ca
   de: {
     heading: 'Interviews mit einigen zufriedenen Kunden',
     lead: 'Sehen Sie, was Kunden über uns sagen, die KI-Automatisierung bereits eingeführt haben. (Achtung: Das Video enthält Spuren von Humor!)',
+    original: 'Originalvideo auf Ungarisch.',
     frameTitle: 'Pohánka és Társa - Kundeninterviews',
     cards: [
       { icon: '🦁', title: 'Mutige Lösungen', text: 'Wir scheuen uns nicht, mit Automatisierung selbst in der Wildnis Ordnung zu schaffen.' },
@@ -70,6 +72,7 @@ export default function ClientVideo() {
               allowFullScreen
             ></iframe>
           </div>
+          {t.original && <p className="text-gray-500 text-sm mt-3 text-center">{t.original}</p>}
         </GsapFadeIn>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
