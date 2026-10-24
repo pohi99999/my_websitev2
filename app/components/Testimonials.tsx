@@ -113,7 +113,7 @@ export default function Testimonials ()
               <ExternalLink className="w-3 h-3" aria-hidden="true" />
             </a>
           </div>
-          {t.original && <p className="text-gray-500 text-sm mt-3">{t.original}</p>}
+          {t.original && <p className="text-gray-400 text-sm mt-3">{t.original}</p>}
         </div>
 
         {featured && (

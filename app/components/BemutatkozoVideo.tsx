@@ -73,7 +73,7 @@ export default function BemutatkozoVideo() {
               allowFullScreen
             />
           </div>
-          {t.original && <p className="text-gray-500 text-sm mt-3 text-center">{t.original}</p>}
+          {t.original && <p className="text-gray-400 text-sm mt-3 text-center">{t.original}</p>}
         </GsapFadeIn>
       </div>
     </section>
