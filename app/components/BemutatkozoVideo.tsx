@@ -17,7 +17,7 @@ const copy: Record<Lang, { badge: string; heading: string; accent: string; lead:
     badge: 'Introduction video',
     heading: 'Meet ',
     accent: 'Pohánka és Társa',
-    lead: 'Meet the Pohánka és Társa team and our approach: how we design and build AI systems for businesses.',
+    lead: 'Get to know our team and our approach: how we design and build AI systems for businesses.',
     original: 'Original video, in Hungarian.',
     frameTitle: 'Pohánka és Társa introduction',
   },

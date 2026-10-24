@@ -20,7 +20,7 @@ const copy: Record<Lang, { heading: string; lead: string; original?: string; fra
   },
   en: {
     heading: 'Interviews with a few happy clients',
-    lead: 'See what people who have already introduced AI automation think of us. (Warning: the video contains traces of humour!)',
+    lead: 'See what people who have already introduced AI automation think of us. (Warning: the video contains traces of humor!)',
     original: 'Original video, in Hungarian.',
     frameTitle: 'Pohánka és Társa - client interviews',
     cards: [
