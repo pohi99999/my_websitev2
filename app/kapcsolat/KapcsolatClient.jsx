@@ -3,7 +3,7 @@
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { trackFormSubmit } from "../lib/analytics";
+import { FORM_STATUSES, FORMS, PAGE_NAMES, trackFormSubmit } from "../lib/analytics";
 
 export default function KapcsolatClient() {
   const { language } = useLanguage();
@@ -96,18 +96,23 @@ export default function KapcsolatClient() {
 
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data?.ok) {
-        trackFormSubmit({ form: "contact_main", status: "error_response", language, page: "contact" });
-        throw new Error(data?.error || ui.fail);
+        // Reported here only; returning (not throwing) keeps it from also counting as error_exception.
+        trackFormSubmit({ form: FORMS.ContactMain, status: FORM_STATUSES.ErrorResponse, language, page: PAGE_NAMES.Contact });
+        setStatus({ state: "error", message: ui.fail });
+        return;
       }
 
       setStatus({ state: "success", message: ui.success });
-      trackFormSubmit({ form: "contact_main", status: "success", language, page: "contact" });
+      // The API answers ok to a filled honeypot on purpose; that is a bot, not a lead.
+      if (!website) {
+        trackFormSubmit({ form: FORMS.ContactMain, status: FORM_STATUSES.Success, language, page: PAGE_NAMES.Contact });
+      }
       setName("");
       setEmail("");
       setMessage("");
       setWebsite("");
     } catch (err) {
-      trackFormSubmit({ form: "contact_main", status: "error_exception", language, page: "contact" });
+      trackFormSubmit({ form: FORMS.ContactMain, status: FORM_STATUSES.ErrorException, language, page: PAGE_NAMES.Contact });
       setStatus({
         state: "error",
         message:
