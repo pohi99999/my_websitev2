@@ -72,7 +72,9 @@ export default function ClientVideo() {
               allowFullScreen
             ></iframe>
           </div>
-          {t.original && <p className="text-gray-500 text-sm mt-3 text-center">{t.original}</p>}
+          {/* gray-200: this note sits over the moving page video (the section is only bg-white/5); measured over 9 frames,
+              gray-400 fell to 3.3:1 and gray-300 to 4.3:1 on the brightest pixel, gray-200 stayed above 5.1:1 */}
+          {t.original && <p className="text-gray-200 text-sm mt-3 text-center">{t.original}</p>}
         </GsapFadeIn>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
