@@ -46,8 +46,10 @@ export default function ClientVideo() {
   const { language } = useLanguage();
   const t = copy[(language === 'en' || language === 'de') ? language : 'hu'];
 
+  // The same dark layer as the introduction-video section: over the fixed page video, the old
+  // bg-white/5 let the lead and card text fall to ~2:1 on bright frames.
   return (
-    <section className="py-20 px-4 bg-white/5 relative overflow-hidden">
+    <section className="py-20 px-4 relative overflow-hidden" style={{ background: 'rgba(0,0,0,0.82)' }}>
       <div className="max-w-6xl mx-auto relative z-10">
         <GsapFadeIn>
           <div className="text-center mb-12">
@@ -72,9 +74,7 @@ export default function ClientVideo() {
               allowFullScreen
             ></iframe>
           </div>
-          {/* gray-200: this note sits over the moving page video (the section is only bg-white/5); measured over 9 frames,
-              gray-400 fell to 3.3:1 and gray-300 to 4.3:1 on the brightest pixel, gray-200 stayed above 5.1:1 */}
-          {t.original && <p className="text-gray-200 text-sm mt-3 text-center">{t.original}</p>}
+          {t.original && <p className="text-gray-400 text-sm mt-3 text-center">{t.original}</p>}
         </GsapFadeIn>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
