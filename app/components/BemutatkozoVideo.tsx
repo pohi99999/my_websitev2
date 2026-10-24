@@ -1,8 +1,38 @@
 'use client';
 
 import GsapFadeIn from './GsapFadeIn';
+import { useLanguage } from '../context/LanguageContext';
+
+type Lang = 'hu' | 'en' | 'de';
+
+const copy: Record<Lang, { badge: string; heading: string; accent: string; lead: string; frameTitle: string }> = {
+  hu: {
+    badge: 'Bemutató videó',
+    heading: 'Pohánka és Társa ',
+    accent: 'bemutató',
+    lead: 'Ismerje meg a Pohánka és Társa csapatát és megközelítésünket: hogyan tervezzük és valósítjuk meg az AI rendszereket vállalkozásoknak.',
+    frameTitle: 'Pohánka és Társa bemutató',
+  },
+  en: {
+    badge: 'Introduction video',
+    heading: 'Meet ',
+    accent: 'Pohánka és Társa',
+    lead: 'Meet the Pohánka és Társa team and our approach: how we design and build AI systems for businesses.',
+    frameTitle: 'Pohánka és Társa introduction',
+  },
+  de: {
+    badge: 'Vorstellungsvideo',
+    heading: 'Pohánka és Társa ',
+    accent: 'stellt sich vor',
+    lead: 'Lernen Sie das Team von Pohánka és Társa und unsere Arbeitsweise kennen: wie wir KI-Systeme für Unternehmen planen und umsetzen.',
+    frameTitle: 'Pohánka és Társa stellt sich vor',
+  },
+};
 
 export default function BemutatkozoVideo() {
+  const { language } = useLanguage();
+  const t = copy[(language === 'en' || language === 'de') ? language : 'hu'];
+
   return (
     <section className="py-20 px-4 relative overflow-hidden" style={{ background: 'rgba(0,0,0,0.82)' }}>
       {/* Background glows */}
@@ -15,17 +45,16 @@ export default function BemutatkozoVideo() {
             {/* HUD badge */}
             <div className="hud-badge text-sm font-medium mb-6 inline-flex">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] animate-pulse" aria-hidden="true" />
-              Bemutató videó
+              {t.badge}
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 font-syne tracking-tight">
-              Pohánka és Társa <span style={{ color: '#00e5ff' }}>bemutató</span>
+              {t.heading}<span style={{ color: '#00e5ff' }}>{t.accent}</span>
             </h2>
             <div className="flex justify-center mb-6">
               <div className="h-px w-16 bg-[#00e5ff]/50" aria-hidden="true" />
             </div>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-              Ismerje meg a Pohánka és Társa csapatát és megközelítésünket: hogyan tervezzük
-              és valósítjuk meg az AI rendszereket vállalkozásoknak.
+              {t.lead}
             </p>
           </div>
         </GsapFadeIn>
@@ -35,7 +64,7 @@ export default function BemutatkozoVideo() {
             <iframe
               className="absolute inset-0 w-full h-full"
               src="https://www.youtube.com/embed/dZ3H49-OJfE"
-              title="Pohánka és Társa bemutató"
+              title={t.frameTitle}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
