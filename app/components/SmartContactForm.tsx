@@ -1,8 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import { FORM_STATUSES, FORMS, PAGE_NAMES, trackFormSubmit } from '../lib/analytics';
+import { useLanguage } from '../context/LanguageContext';
 
 export function SmartContactForm() {
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,13 +36,17 @@ export function SmartContactForm() {
       });
 
       if (!response.ok) {
-        throw new Error('Hálózati hiba történt');
+        trackFormSubmit({ form: FORMS.SmartContact, status: FORM_STATUSES.ErrorResponse, language, page: PAGE_NAMES.Services });
+        setStatus('error');
+        return;
       }
 
       setStatus('success');
+      trackFormSubmit({ form: FORMS.SmartContact, status: FORM_STATUSES.Success, language, page: PAGE_NAMES.Services });
       setFormData({ name: '', email: '', project_description: '', budget: '' });
     } catch (error) {
       console.error('Submission error:', error);
+      trackFormSubmit({ form: FORMS.SmartContact, status: FORM_STATUSES.ErrorException, language, page: PAGE_NAMES.Services });
       setStatus('error');
     }
   };

@@ -32,7 +32,7 @@ test.describe('LeadMagnetForm Component', () => {
 
     const postData = request.postDataJSON();
 
-    await expect(page.locator('text=Megkaptuk az adataidat, hamarosan felvesszük veled a kapcsolatot.')).toBeVisible();
+    await expect(page.locator('text=Megkaptuk az adatait, hamarosan felvesszük Önnel a kapcsolatot.')).toBeVisible();
     // The old promise of an automatic BAS audit must not come back.
     await expect(page.locator('text=BAS MI ügynökeink')).toHaveCount(0);
 
@@ -68,6 +68,6 @@ test.describe('LeadMagnetForm Component', () => {
 
     await page.click('button[type="submit"]:has-text("Audit Kérése")');
 
-    await expect(page.locator('text=Hiba történt a küldés során. Kérjük, próbáld újra később, vagy keress minket az elérhetőségeinken!')).toBeVisible();
+    await expect(page.locator('text=Hiba történt a küldés során. Kérjük, próbálja újra később, vagy keressen minket az elérhetőségeinken!')).toBeVisible();
   });
 });

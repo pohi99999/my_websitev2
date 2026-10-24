@@ -1,6 +1,8 @@
 export const PAGE_NAMES = {
   Home: "home",
   Contact: "contact",
+  Services: "services",
+  EfficiencyAudit: "efficiency_audit",
   Global: "global",
 } as const;
 
@@ -48,6 +50,8 @@ export type AnalyticsEventName = (typeof ANALYTICS_EVENTS)[keyof typeof ANALYTIC
 export const FORMS = {
   ContactMain: "contact_main",
   ContactHomeQuick: "contact_home_quick",
+  SmartContact: "smart_contact",
+  LeadMagnet: "lead_magnet",
 } as const;
 
 export type FormName = (typeof FORMS)[keyof typeof FORMS];

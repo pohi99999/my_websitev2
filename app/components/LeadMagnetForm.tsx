@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { FORM_STATUSES, FORMS, PAGE_NAMES, trackFormSubmit } from '../lib/analytics';
 
 // What the visitor is told after submitting. It must match what actually happens:
 // the lead is saved and we contact them by hand; no automatic audit is sent.
@@ -64,11 +65,14 @@ export default function LeadMagnetForm() {
       
       if (res.ok) {
         setStatus('success');
+        trackFormSubmit({ form: FORMS.LeadMagnet, status: FORM_STATUSES.Success, language, page: PAGE_NAMES.EfficiencyAudit });
       } else {
+        trackFormSubmit({ form: FORMS.LeadMagnet, status: FORM_STATUSES.ErrorResponse, language, page: PAGE_NAMES.EfficiencyAudit });
         setStatus('error');
       }
     } catch (err) {
       console.error(err);
+      trackFormSubmit({ form: FORMS.LeadMagnet, status: FORM_STATUSES.ErrorException, language, page: PAGE_NAMES.EfficiencyAudit });
       setStatus('error');
     }
   };
