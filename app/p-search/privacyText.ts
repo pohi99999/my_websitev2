@@ -1,16 +1,17 @@
 // P-Search privacy notice (hu + en), shown at /p-search/adatvedelem and /en/p-search/privacy.
 // The text is copied VERBATIM by a script from the P-Search app repo:
-//   pohi99999/p-search-mobil, docs/legal/adatvedelmi-tajekoztato.md @ 67d93b5 (1.2, 2026-10-25)
-// Since 1.2 the source itself has no draft marks and no "[in the app: ...]" brackets, so the body is
+//   pohi99999/p-search-mobil, docs/legal/adatvedelmi-tajekoztato.md @ 8d5f049 (1.3, 2026-10-25)
+// Since 1.3 the source itself has no draft marks and no "[in the app: ...]" brackets, so the body is
 // the source verbatim; only the "Hatályos / Verzió" line is left out here, because the page builds it
 // from PSEARCH_PRIVACY_META below (keep the two in step with the source header).
 // To update the text, regenerate from the source file instead of editing it by hand.
 
 // null = not given yet; the page shows a clearly marked placeholder until it is filled in.
 export const PSEARCH_PRIVACY_META: { effective: { hu: string; en: string } | null; version: string | null } = {
-  // 1.2 (2026-10-25, owner GO Telegram 10617, p-search-mobil #226): Anthropic Claude for every text AI task, and the usage events
+  // 1.3 (2026-10-25, owner GO Telegram 10617, p-search-mobil #226): Anthropic Claude for every text AI task, and the usage events.
+  // Not 1.2: the 2026-10-12 notice (Copilot chat only on Anthropic) was already published as 1.2 (Marveen 4981).
   effective: { hu: '2026. október 25.', en: 'October 25, 2026' },
-  version: '1.2',
+  version: '1.3',
 };
 
 export const PSEARCH_PRIVACY = {
