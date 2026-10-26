@@ -2,6 +2,14 @@
 
 Notable changes to the Pohánka és Társa Kft. website. Not auto-generated — kept manually, in reverse-chronological order.
 
+## 2026-10-26 — Dependency security updates (`npm audit` 8 → 0)
+
+### Security
+- `nodemailer` `^9.0.5` → `^10.2.1` (11 advisories, 9.x has no fixed release). The only 10.0.0 breaking change is "Node.js 20 or newer"; the contact route's `createTransport`/`sendMail` calls are unchanged and the contact form behaviour and env vars are untouched.
+- Lockfile-only bumps within existing ranges: `zod` 4.4.3 → 4.6.7, `js-yaml` 4.3.1 → 4.3.2, `source-map-js` 1.2.1 → 1.2.2, `browserslist` 4.28.2 → 4.29.4, `baseline-browser-mapping` 2.10.29 → 2.11.33, `brace-expansion` 1.1.18 → 1.1.21 and 5.0.9 → 5.0.12.
+- New `overrides` entry `postcss-selector-parser: ^7.1.7` (6.1.2 → 7.1.7): `tailwindcss` 3.4.19 is the last v3 and still pins `^6.1.2`, and there is no fixed 6.x. The built CSS is byte-identical before and after.
+- Next.js stays at 16.4.1, React at 19.2.6.
+
 ## 2026-10-22 — Experimental WebMCP `request_quote` tool (progressive enhancement)
 
 Details: `docs/webmcp.md`.
