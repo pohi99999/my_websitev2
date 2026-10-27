@@ -105,7 +105,7 @@ const SequentialVideoBackground: React.FC = () =>
   }, [richMediaEnabled] ); // Only run once on mount (or when richMediaEnabled changes)
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
       { videoError || !richMediaEnabled ? (
         <div
           aria-hidden="true"

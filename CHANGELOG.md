@@ -2,6 +2,17 @@
 
 Notable changes to the Pohánka és Társa Kft. website. Not auto-generated — kept manually, in reverse-chronological order.
 
+## 2026-10-27 — E2E coverage for the main user paths, axe accessibility checks
+
+### Added
+- `tests/a11y.spec.ts` (`@axe-core/playwright`, new devDependency): homepage, `/weboldal-ai-kkv` and `/blog`, fails on serious/critical violations.
+- `tests/homepage-navigation.spec.ts`, `tests/weboldal-ai-kkv.spec.ts`, `tests/language-switch.spec.ts`, `tests/contact-form-validation.spec.ts` (client-side validation only; `/api/contact` is intercepted and aborted, nothing is ever sent).
+- `playwright.config.ts` honours `BASE_URL` (e.g. `BASE_URL=http://localhost:3000` against `npm start`); without it the :3333 webServer starts as before.
+
+### Fixed
+- `tests/p0-p2-design-upgrades.spec.ts` had a syntax error (orphaned lines from the removed StatsBar test) that stopped Playwright from loading the whole suite; its screenshot-only tests are now real assertions, and two stale assertions (Syne class name, hero badge text) match the current page.
+- Accessibility: the HU/EN/DE buttons' `aria-label`s now contain their visible text (`label-content-name-mismatch`, serious); the decorative background video is `aria-hidden`; `/blog` and `/kapcsolat` no longer open a second `<main>` inside the layout's.
+
 ## 2026-10-26 — Dependency security updates (`npm audit` 8 → 0)
 
 ### Security

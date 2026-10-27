@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-const BASE_URL = 'http://localhost:3333';
+// Relative to the config's baseURL (BASE_URL env or the :3333 webServer).
+const BASE_URL = '';
 
 test.describe('Dark HUD Design Verification', () => {
 

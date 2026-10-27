@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-const BASE_URL = 'http://localhost:3333';
+// Relative to the config's baseURL (BASE_URL env or the :3333 webServer).
+const BASE_URL = '/';
 
 test.describe('P0–P2 Design Upgrades Verification', () => {
 
@@ -12,9 +13,9 @@ test.describe('P0–P2 Design Upgrades Verification', () => {
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
 
-    const bodyClasses = await page.evaluate(() => document.body.className);
-    // Syne variable class should be present (Next.js generates __className_xxx)
-    expect(bodyClasses).toMatch(/syne|__variable/i);
+    // Next.js hashes the class names (e.g. "-T-KAq_variable"), so check the variable itself.
+    const syneVar = await page.evaluate(() => getComputedStyle(document.body).getPropertyValue('--font-syne').trim());
+    expect(syneVar).toMatch(/syne/i);
     console.log('✅ Syne font variable present on body');
   });
 
@@ -86,11 +87,6 @@ test.describe('P0–P2 Design Upgrades Verification', () => {
     expect(positions.bandTop).toBeGreaterThan(positions.heroBottom - 50);
   });
 
-    // Stats section should be BELOW the Hero
-    expect(positions.statsTop).toBeGreaterThan(positions.heroBottom - 50); // small tolerance for overlaps
-    console.log('✅ StatsBar renders below Hero', positions);
-  });
-
   // ═══════════════════════════════════════════════════════════
   // P1: HERO CONTEXT BADGE
   // ═══════════════════════════════════════════════════════════
@@ -99,9 +95,9 @@ test.describe('P0–P2 Design Upgrades Verification', () => {
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
 
-    // The badge contains "AI-Vezérelt" (Hungarian default) or "AI-Powered" (English) or "KI-gestützte" (German)
-    const badge = page.locator('text=AI-Vezérelt Vállalati Megoldások').first();
+    const badge = page.getByTestId('hero-context-badge');
     await expect(badge).toBeVisible({ timeout: 5000 });
+    await expect(badge).toContainText('Pohánka és Társa, Zalaegerszeg');
 
     // Check it has the pulsing dot
     const heroSection = page.locator('#home');
@@ -309,28 +305,51 @@ test.describe('P0–P2 Design Upgrades Verification', () => {
     expect(positions.band).toBeLessThan(positions.faq);
   });
 
-  test('Full homepage screenshot (visual regression baseline)', async ({ page }) => {
+  // These two used to only save screenshots (no assertion could fail); they now check
+  // what the screenshots were meant to show.
+  test('Full homepage: hero heading, primary CTA and section headings render', async ({ page }) => {
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(1000); // Let animations settle
 
-    await page.screenshot({
-      path: 'tests/screenshots/homepage-p0p2-full.png',
-      fullPage: true,
-    });
-    console.log('✅ Full homepage screenshot saved');
+    const h1 = page.locator('#home h1');
+    await expect(h1).toBeVisible();
+    await expect(h1).toContainText('kisvállalkozásoknak');
+    await expect(page.locator('h1')).toHaveCount(1);
+
+    const sectionHeadings = page.locator('main h2');
+    expect(await sectionHeadings.count()).toBeGreaterThanOrEqual(3);
+    await expect(sectionHeadings.first()).toBeVisible();
+
+    const primaryCta = page.locator('#home a[href="#contact-form"]');
+    await expect(primaryCta).toBeVisible();
+    await expect(primaryCta).toBeEnabled();
+    await primaryCta.click();
+    await expect(page).toHaveURL(/#contact-form$/);
+    await expect(page.locator('#contact-form')).toBeInViewport();
   });
 
-  test('Mobile homepage screenshot', async ({ page }) => {
+  test('Mobile homepage (390px): headings and CTAs visible, no horizontal overflow', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(1000);
 
-    await page.screenshot({
-      path: 'tests/screenshots/homepage-p0p2-mobile.png',
-      fullPage: true,
-    });
-    console.log('✅ Mobile homepage screenshot saved');
+    await expect(page.locator('#home h1')).toBeVisible();
+    await expect(page.getByRole('button', { name: /Menü megnyitása|Open menu|Menü öffnen/ })).toBeVisible();
+
+    const primaryCta = page.locator('#home a[href="#contact-form"]');
+    await expect(primaryCta).toBeVisible();
+    const box = await primaryCta.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(390);
+
+    const overflow = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      innerWidth: window.innerWidth,
+    }));
+    expect(overflow.scrollWidth, `page is ${overflow.scrollWidth}px wide at ${overflow.innerWidth}px`).toBeLessThanOrEqual(overflow.innerWidth);
+
+    await primaryCta.click();
+    await expect(page.locator('#contact-form')).toBeInViewport();
   });
 });
