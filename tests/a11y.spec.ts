@@ -16,7 +16,10 @@ for (const { name, path } of PAGES) {
     await page.goto(path);
     await page.waitForLoadState('networkidle');
 
+    // The embedded YouTube player is third-party markup we can't fix; whether it loads
+    // depends on the network, so scanning it would make the result environment-dependent.
     const results = await new AxeBuilder({ page })
+      .exclude('iframe[src*="youtube"]')
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'])
       .analyze();
 
