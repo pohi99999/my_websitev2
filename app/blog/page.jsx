@@ -93,7 +93,7 @@ export default async function BlogPage() {
   const posts = BLOG_POST_ORDER.map((slug) => getBlogPostMeta(slug, language)).filter((post) => Boolean(post));
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-center">
+    <div className="relative min-h-screen flex flex-col items-center justify-center">
       {/* Breadcrumb Schema */}
       <script
         type="application/ld+json"
@@ -148,6 +148,6 @@ export default async function BlogPage() {
           ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 }

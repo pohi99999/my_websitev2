@@ -52,7 +52,7 @@ export default function LanguageSwitcher() {
         type="button"
         onClick={() => handleSwitch('hu')}
         className={buttonClass('hu')}
-        aria-label="Magyar nyelv"
+        aria-label="HU – Magyar nyelv"
         aria-current={language === 'hu' ? 'true' : undefined}
       >
         HU
@@ -61,7 +61,7 @@ export default function LanguageSwitcher() {
         type="button"
         onClick={() => handleSwitch('en')}
         className={buttonClass('en')}
-        aria-label="English language"
+        aria-label="EN – English language"
         aria-current={language === 'en' ? 'true' : undefined}
       >
         EN
@@ -70,7 +70,7 @@ export default function LanguageSwitcher() {
         type="button"
         onClick={() => handleSwitch('de')}
         className={buttonClass('de')}
-        aria-label="Deutsch Sprache"
+        aria-label="DE – Deutsch Sprache"
         aria-current={language === 'de' ? 'true' : undefined}
       >
         DE
