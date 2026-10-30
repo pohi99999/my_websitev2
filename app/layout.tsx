@@ -1,4 +1,6 @@
+/// <reference types="react/canary" />
 import type { Metadata, Viewport } from "next";
+import { ViewTransition } from 'react';
 import { Inter, Syne } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
@@ -238,7 +240,8 @@ export default async function RootLayout ( {
             <DeferredLayoutEnhancements />
             <Header />
             <main id="main-content" className="pt-20">
-              {children}
+              {/* page-to-page crossfade on client navigation (direction C); the header stays put */}
+              <ViewTransition>{children}</ViewTransition>
             </main>
             <Footer />
           </LenisProvider>
