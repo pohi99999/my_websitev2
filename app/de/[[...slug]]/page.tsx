@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { localizedMetadata } from '../../lib/localizedRouteMeta';
-import { notFound, redirect } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 
 import HomePage from '../../page';
 import TermekekPage from '../../termekek/page';
@@ -67,7 +67,7 @@ function deMetaForSlug(slug: string[]): MetaSpec | null {
                 };
             case 'portfolio':
                 return {
-                    title: 'Portfolio',
+                    title: 'Portfolio: Ausgewählte Projekte',
                     description:
                         'Ausgewählte Projekte und Fallstudien: praxisnahe KI- und Softwarelösungen für echte Geschäftsergebnisse.',
                     ogType: 'website',
@@ -269,7 +269,7 @@ export default async function DeCatchAllPage({ params }: { params: Promise<Param
     }
 
     if (slug[0] === 'termekek' && slug.length === 2) {
-        if (slug[1] === 'brunella-agents') return redirect('/de/portfolio/brunella-bas');
+        if (slug[1] === 'brunella-agents') return permanentRedirect('/de/portfolio/brunella-bas');
         if (slug[1] === 'pohi-ai-pro') return <PohiAiProPage />;
     }
 
