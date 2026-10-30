@@ -3,7 +3,9 @@ import { checkRateLimit } from './rate-limiter';
 import { CLAUDE_URL, ANTHROPIC_VERSION, DEFAULT_MODEL, TIMEOUT_MS, buildClaudeBody, readClaudeText, isBusy } from './claude';
 import { busyMessage, parseSiteLang, systemPromptFor, unavailableMessage } from './site-lang';
 import { isAllowedOrigin } from '../../lib/allowedOrigin';
-import { checkDailyBudget } from './budget';
+import { checkConfiguratorBudget, checkDailyBudget } from './budget';
+import { CONFIGURATOR_PROMPT, answer, keywordAnswer, parseModelChoice, readText } from './configurator';
+import type { FallbackReason } from '../../lib/configurator';
 
 function getClientIp(req: NextRequest): string {
   const realIp = req.headers.get('x-real-ip');
@@ -35,6 +37,7 @@ export async function POST(req: NextRequest) {
 
   const ip = getClientIp(req);
   if (!checkRateLimit(ip)) {
+    if (await isConfiguratorRequest(req)) return NextResponse.json({ ok: false, reason: 'rate_limited' }, { status: 429 });
     return NextResponse.json(
       { error: 'Túl sok kérés. Kérjük, várjon egy percet. / Too many requests. Please wait a minute.' },
       { status: 429 }
@@ -46,6 +49,10 @@ export async function POST(req: NextRequest) {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: 'Érvénytelen kérés.' }, { status: 400 });
+  }
+
+  if (body && typeof body === 'object' && (body as { mode?: unknown }).mode === 'configurator') {
+    return configurator(body as { text?: unknown });
   }
 
   if (
@@ -129,4 +136,58 @@ export async function POST(req: NextRequest) {
   if (!content) return fallback('empty_or_truncated', false);
   console.log(`chat provider=claude model=${model} ok`);
   return NextResponse.json({ content });
+}
+
+// ── The hero configurator (card ff1d7435) ───────────────────────────────────────────────────
+// Same Origin check and rate limit as the chat (above). Every HTTP 200 is the full answer shape:
+// from the model's keys when it gave valid ones, otherwise from the keyword rules, with the reason.
+// The log names the source and the reason, never the visitor's sentence.
+async function isConfiguratorRequest(req: NextRequest): Promise<boolean> {
+  try {
+    const b = (await req.clone().json()) as { mode?: unknown };
+    return b?.mode === 'configurator';
+  } catch {
+    return false;
+  }
+}
+
+async function configurator(body: { text?: unknown }) {
+  const text = readText(body.text);
+  const keywords = (reason: FallbackReason, detail: string = reason) => {
+    console.log(`configurator source=keywords reason=${detail}`);
+    return NextResponse.json(keywordAnswer(text, reason));
+  };
+  if (!text) return keywords('empty');
+  const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
+  if (!apiKey) return keywords('no_key');
+  if (!(await checkConfiguratorBudget())) return keywords('daily_budget');
+  const model = process.env.ANTHROPIC_MODEL?.trim() || DEFAULT_MODEL;
+
+  let response: Response;
+  try {
+    response = await fetch(CLAUDE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': ANTHROPIC_VERSION },
+      body: JSON.stringify(buildClaudeBody(CONFIGURATOR_PROMPT, [{ role: 'user', content: text }], model)),
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
+  } catch (err) {
+    const timeout = err instanceof Error && (err.name === 'TimeoutError' || err.name === 'AbortError');
+    return keywords('model_error', timeout ? 'timeout' : 'network');
+  }
+  if (!response.ok) {
+    const body = await response.text().catch(() => '');
+    console.error('Claude error (configurator):', response.status, body.slice(0, 300));
+    return keywords('model_error', `claude_${response.status}`);
+  }
+  let data: unknown;
+  try {
+    data = await response.json();
+  } catch {
+    return keywords('model_error', 'bad_json');
+  }
+  const choice = parseModelChoice(readClaudeText(data) ?? '');
+  if (!choice) return keywords('invalid');
+  console.log(`configurator source=ai model=${model} ok`);
+  return NextResponse.json(answer(choice.industry, choice.features, 'ai'));
 }
