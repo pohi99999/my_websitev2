@@ -38,6 +38,13 @@ const nextConfig = {
   images: {
     formats: ['image/webp', 'image/avif'],
   },
+  // The stylesheet goes into the HTML as a <style> tag. On a slow mobile line the 17 KB CSS file
+  // shared the bandwidth with the font preloads and the JS chunks, and the first paint waited for
+  // it (mobile LCP 2.76-3.07 s, card ff1d7435). Most visitors are first-time, so caching it across
+  // pages buys little.
+  experimental: {
+    inlineCss: true,
+  },
   // P-Search privacy notice: the language switcher builds /en/<hu-slug> and /de/<slug>, so the
   // other spellings are sent to the real page. There is no German version: /de goes to English.
   async redirects() {
