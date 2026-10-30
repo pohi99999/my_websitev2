@@ -140,9 +140,9 @@ export default function About ()
                             <span className="w-2 h-2 rounded-full bg-[#00e5ff]" />
                             {language === 'en' ? 'About Pohánka AI' : language === 'de' ? 'Über Pohánka AI' : 'Pohánka AI bemutatkozás'}
                         </div>
-                        <h2 className="heading-display text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                        <h1 className="heading-display text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
                             {copy.title}
-                        </h2>
+                        </h1>
                         <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10 max-w-2xl">
                             {copy.intro}
                         </p>

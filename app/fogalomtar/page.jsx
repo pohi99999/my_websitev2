@@ -18,7 +18,7 @@ export async function generateMetadata() {
       : language === 'de'
       ? {
           title: 'KI-Glossar',
-          description: 'Wichtige KI- und Technologiebegriffe klar und verständlich erklärt.',
+          description: 'Glossar der wichtigsten KI- und Technologiebegriffe, klar und verständlich erklärt: von Automatisierung bis KI-Agenten, für kleine und mittlere Unternehmen.',
           canonical: '/de/fogalomtar',
           locale: 'de_DE',
         }
