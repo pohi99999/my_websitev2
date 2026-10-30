@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
 import { GOOGLE_RATING, GOOGLE_PROFILE_URL } from './googleReviews';
+import ConfiguratorHero from './ConfiguratorHero';
 
 const Hero = () =>
 {
@@ -86,6 +87,8 @@ const Hero = () =>
         <p className="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
           {language === 'en' ? 'We build websites where customers book or request a quote, and we take over part of your manual admin work. We start with a free, no-obligation consultation or design preview.' : language === 'de' ? 'Wir bauen Websites, auf denen Kunden buchen oder ein Angebot anfragen, und übernehmen einen Teil Ihrer manuellen Verwaltung. Wir beginnen mit einer kostenlosen, unverbindlichen Beratung oder einem Entwurf.' : 'Olyan weboldalt készítünk, amelyen a vevő foglal vagy ajánlatot kér, és átvesszük a kézi adminisztráció egy részét. Ingyenes, kötelezettségmentes konzultációval vagy látványtervvel kezdünk.'}
         </p>
+
+        <ConfiguratorHero />
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-6">
           {/* Primary CTA — HUD octagon */}
