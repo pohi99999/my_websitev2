@@ -43,3 +43,36 @@ export async function checkDailyBudget(): Promise<boolean> {
   }
   return checkMemory();
 }
+
+// The configurator's own ceiling (card ff1d7435, Péter 11929: "50 beírás / nap"): at most 50 paid
+// model calls a day for the whole site, counted apart from the chat's 500. Over it the configurator
+// answers from its keyword rules (configurator.ts), the visitor still gets a complete answer.
+export const DAILY_CONFIGURATOR_MAX = 50;
+export const configuratorMemory = { count: 0, resetAtMs: 0 };
+
+const upstashConfigurator =
+  url && token
+    ? new Ratelimit({
+        redis: new Redis({ url, token }),
+        limiter: Ratelimit.fixedWindow(DAILY_CONFIGURATOR_MAX, `${DAY_MS / 1000} s`),
+        prefix: 'chat:configurator:daily',
+      })
+    : null;
+
+export async function checkConfiguratorBudget(): Promise<boolean> {
+  if (upstashConfigurator) {
+    try {
+      return (await upstashConfigurator.limit('global')).success;
+    } catch {
+      // Upstash down: the in-memory ceiling, never an unlimited model.
+    }
+  }
+  const now = Date.now();
+  if (now >= configuratorMemory.resetAtMs) {
+    configuratorMemory.count = 0;
+    configuratorMemory.resetAtMs = now + DAY_MS;
+  }
+  if (configuratorMemory.count >= DAILY_CONFIGURATOR_MAX) return false;
+  configuratorMemory.count++;
+  return true;
+}

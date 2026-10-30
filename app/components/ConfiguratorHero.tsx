@@ -2,33 +2,32 @@
 
 // The homepage configurator (card ff1d7435): one sentence about the business, and a sketch of the
 // visitor's own website builds up layer by layer, with the suggested package from the fixed price
-// table. The /api/chat "configurator" mode picks the keys; until it answers (or when it fails) the
-// keyword match in lib/configurator.ts does. The sketch is CSS 3D, no WebGL, and it loads with the
-// hero, so the h1 stays the LCP element.
+// table. The /api/chat "configurator" mode (Kenshin, PR #163) answers with keys only; on 200 it always
+// has an answer (its own keyword rules when the model cannot), and on 403/429 or a network failure
+// the hero shows the general sketch. The sketch is CSS 3D, no WebGL, and it loads with the hero, so
+// the h1 stays the LCP element.
 
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 import { CTA_LOCATIONS, PAGE_NAMES, trackConfiguratorStart, trackCtaClick } from '../lib/analytics';
+import { MAX_TEXT, PACKAGE_LABEL, offerTitle, packagePrice, type ConfiguratorLang } from '../lib/configurator';
 import {
   CONFIGURATOR_PREFILL_EVENT,
-  CONFIGURATOR_TEXT_MAX,
-  PACKAGE_ROWS,
-  classifyLocally,
+  OTHER_RESULT,
   contactNeedFor,
   parseConfiguratorResponse,
   profileFor,
-  type ConfiguratorLang,
   type ConfiguratorPrefill,
   type ConfiguratorResult,
-} from '../lib/configurator';
+} from '../lib/configuratorUi';
 
 const UI: Record<ConfiguratorLang, {
   label: string; placeholder: string; submit: string; samplesLabel: string; samples: [ string, string ][];
   privacy: string; stage: string; industry: string; feature: string; sketch: string; sketchQuote: string;
-  sketchBooking: string; packageLine: string; offerTitle: string; base: string; baseAddon: string;
-  source: string; offerCta: string; packagePrefix: string;
+  sketchBooking: string; packageLine: string; offerTitle: string; source: string; offerCta: string;
+  packagePrefix: string;
 }> = {
   hu: {
     label: 'Írja le egy mondatban, mivel foglalkozik, és megmutatjuk a weboldalát',
@@ -51,8 +50,6 @@ const UI: Record<ConfiguratorLang, {
     sketchBooking: 'fejléc, nyitókép, foglalási blokk, mobilnézet',
     packageLine: 'Csomag',
     offerTitle: 'Javasolt csomag',
-    base: 'Alapcsomag',
-    baseAddon: 'Alapcsomag + bővítmény',
     source: 'Az árak a weboldal árlistájából jönnek, nem az MI-től.',
     offerCta: 'Kérem a látványtervet',
     packagePrefix: 'Javasolt csomag',
@@ -78,8 +75,6 @@ const UI: Record<ConfiguratorLang, {
     sketchBooking: 'header, hero image, booking block, mobile view',
     packageLine: 'Package',
     offerTitle: 'Suggested package',
-    base: 'Base package',
-    baseAddon: 'Base package + add-on',
     source: 'The prices come from our price list, not from the AI.',
     offerCta: 'Request the design preview',
     packagePrefix: 'Suggested package',
@@ -105,8 +100,6 @@ const UI: Record<ConfiguratorLang, {
     sketchBooking: 'Kopfzeile, Titelbild, Buchungsblock, Mobilansicht',
     packageLine: 'Paket',
     offerTitle: 'Empfohlenes Paket',
-    base: 'Basispaket',
-    baseAddon: 'Basispaket + Erweiterung',
     source: 'Die Preise stammen aus unserer Preisliste, nicht von der KI.',
     offerCta: 'Entwurf anfordern',
     packagePrefix: 'Empfohlenes Paket',
@@ -165,7 +158,7 @@ export default function ConfiguratorHero ()
 
   async function build ( sentence: string, source: 'typed' | 'sample' )
   {
-    const clean = sentence.trim().slice( 0, CONFIGURATOR_TEXT_MAX );
+    const clean = sentence.trim().slice( 0, MAX_TEXT );
     if ( clean.length < 3 || busy ) return;
     const run = ++runRef.current;
     timersRef.current.forEach( clearTimeout );
@@ -173,7 +166,7 @@ export default function ConfiguratorHero ()
     setBusy( true );
     setStep( 0 );
     trackConfiguratorStart( { language: lang, source, page: PAGE_NAMES.Home } );
-    const answer = ( await askEndpoint( clean, lang ) ) ?? classifyLocally( clean );
+    const answer = ( await askEndpoint( clean, lang ) ) ?? OTHER_RESULT;
     if ( run !== runRef.current ) return;
     setResult( answer );
     setBusy( false );
@@ -183,8 +176,7 @@ export default function ConfiguratorHero ()
 
   const profile = profileFor( result?.industry ?? 'hair_salon', lang );
   const packages = result?.packages ?? [];
-  const hasAddon = packages.some( ( p ) => p === 'booking' || p === 'deposit' || p === 'voucher' );
-  const packageName = hasAddon ? ui.baseAddon : ui.base;
+  const packageName = offerTitle( packages, lang );
   const logLines = result
     ? [
       [ ui.industry, profile.kind ],
@@ -197,7 +189,7 @@ export default function ConfiguratorHero ()
   function requestPreview ()
   {
     if ( !result ) return;
-    const rows = result.packages.map( ( k ) => `- ${ PACKAGE_ROWS[ lang ][ k ][ 0 ] }: ${ PACKAGE_ROWS[ lang ][ k ][ 1 ] }` ).join( '\n' );
+    const rows = result.packages.map( ( k ) => `- ${ PACKAGE_LABEL[ k ][ lang ] }: ${ packagePrice( k, lang ) }` ).join( '\n' );
     const detail: ConfiguratorPrefill = { need: contactNeedFor( result ), business: `${ text.trim() }\n\n${ ui.packagePrefix }:\n${ rows }`.slice( 0, 1000 ) };
     window.dispatchEvent( new CustomEvent( CONFIGURATOR_PREFILL_EVENT, { detail } ) );
     trackCtaClick( { location: CTA_LOCATIONS.HeroConfiguratorOffer, language: lang, target: '#contact-form', page: PAGE_NAMES.Home } );
@@ -226,7 +218,7 @@ export default function ConfiguratorHero ()
                 id="configurator-text"
                 name="configurator"
                 rows={2}
-                maxLength={CONFIGURATOR_TEXT_MAX}
+                maxLength={MAX_TEXT}
                 value={text}
                 onChange={( e ) => setText( e.target.value )}
                 onKeyDown={( e ) => { if ( e.key === 'Enter' && !e.shiftKey ) { e.preventDefault(); build( text, 'typed' ); } }}
@@ -301,8 +293,8 @@ export default function ConfiguratorHero ()
             <ul className="grid gap-1 text-sm text-gray-300">
               {packages.map( ( k ) => (
                 <li key={k} className="flex flex-col gap-0.5 border-b border-dashed border-white/10 py-1 sm:flex-row sm:justify-between sm:gap-3">
-                  <span>{PACKAGE_ROWS[ lang ][ k ][ 0 ]}</span>
-                  <strong className="font-semibold text-white sm:whitespace-nowrap">{PACKAGE_ROWS[ lang ][ k ][ 1 ]}</strong>
+                  <span>{PACKAGE_LABEL[ k ][ lang ]}</span>
+                  <strong className="font-semibold text-white">{packagePrice( k, lang )}</strong>
                 </li>
               ) )}
             </ul>

@@ -13,7 +13,7 @@ import
 } from '../lib/analytics';
 import { useLanguage } from '../context/LanguageContext';
 import { buildQuoteMessage, QUOTE_LIMITS, QUOTE_NEED_LABELS, QUOTE_NEEDS } from '../lib/quoteRequest';
-import { CONFIGURATOR_PREFILL_EVENT, type ConfiguratorPrefill } from '../lib/configurator';
+import { CONFIGURATOR_PREFILL_EVENT, type ConfiguratorPrefill } from '../lib/configuratorUi';
 import WebMcpQuoteTool from './WebMcpQuoteTool';
 
 type StatusState = 'idle' | 'sending' | 'success' | 'error';

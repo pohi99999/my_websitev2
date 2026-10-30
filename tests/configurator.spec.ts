@@ -1,28 +1,14 @@
 import { test, expect } from '@playwright/test';
-import {
-  FEATURES,
-  INDUSTRIES,
-  PACKAGE_ROWS,
-  classifyLocally,
-  derivePackages,
-  parseConfiguratorResponse,
-} from '../app/lib/configurator';
+import { PACKAGES, packagePrice } from '../app/lib/configurator';
+import { OTHER_RESULT, parseConfiguratorResponse } from '../app/lib/configuratorUi';
 import { BASE_PRICE } from '../app/lib/basePrice';
 
-// The homepage configurator (card ff1d7435): the model picks keys only, the page writes the texts
-// and every price from fixed tables.
+// The homepage configurator (card ff1d7435): the endpoint (Kenshin, PR #163) answers with keys only,
+// the page writes the texts and every price from the shared fixed table (lib/configurator.ts).
 
-test.describe('configurator logic', () => {
-  test('packages follow from the features: base always, a deposit needs booking, care last', () => {
-    expect(derivePackages([])).toEqual(['base', 'care']);
-    expect(derivePackages(['quote'])).toEqual(['base', 'care']);
-    expect(derivePackages(['booking'])).toEqual(['base', 'booking', 'care']);
-    expect(derivePackages(['deposit'])).toEqual(['base', 'booking', 'deposit', 'care']);
-    expect(derivePackages(['voucher', 'booking'])).toEqual(['base', 'booking', 'voucher', 'care']);
-  });
-
+test.describe('configurator answer reader', () => {
   test('a valid answer is read; unknown values are dropped and the packages are recomputed', () => {
-    expect(parseConfiguratorResponse({ ok: true, industry: 'beauty', features: ['booking', 'deposit'] })).toEqual({
+    expect(parseConfiguratorResponse({ ok: true, source: 'ai', industry: 'beauty', features: ['booking', 'deposit'] })).toEqual({
       industry: 'beauty', features: ['booking', 'deposit'], packages: ['base', 'booking', 'deposit', 'care'],
     });
     const hostile = parseConfiguratorResponse({
@@ -33,37 +19,18 @@ test.describe('configurator logic', () => {
     expect(Object.keys(hostile!).sort()).toEqual(['features', 'industry', 'packages']);
   });
 
-  test('anything that is not a success is null, so the page falls back to the keyword match', () => {
-    for (const bad of [null, undefined, 'ok', [], {}, { ok: false, reason: 'daily_budget' }, { ok: 'true', industry: 'beauty' }, { reply: 'Szia!' }]) {
+  test('anything that is not a success is null, so the page shows the general sketch', () => {
+    for (const bad of [null, undefined, 'ok', [], {}, { ok: false, reason: 'rate_limited' }, { ok: 'true', industry: 'beauty' }, { reply: 'Szia!' }]) {
       expect(parseConfiguratorResponse(bad)).toBeNull();
     }
+    expect(OTHER_RESULT.packages).toEqual(['base', 'care']);
   });
 
-  test('the keyword fallback recognises the five samples in three languages, the rest is "other"', () => {
-    const cases: [string, string][] = [
-      ['Fodrászszalonom van Zalaegerszegen.', 'hair_salon'],
-      ['I run a car service.', 'car_service'],
-      ['Ich betreibe ein Gästehaus am Balaton.', 'guesthouse'],
-      ['Kozmetikus vagyok.', 'beauty'],
-      ['Ich bin Tischler.', 'carpentry'],
-      ['Nail care studio', 'beauty'],
-      ['Villanyszerelő vagyok.', 'other'],
-      ['Könyvelőiroda vagyunk.', 'other'],
-    ];
-    for (const [text, industry] of cases) expect(classifyLocally(text).industry, text).toBe(industry);
-    expect(classifyLocally('Könyvelőiroda vagyunk.').packages).toEqual(['base', 'care']);
-  });
-
-  test('every package row has a text in every language, and the base price is the one on the price card', () => {
+  test('every package has a price in every language, and the base price is the one on the price card', () => {
     for (const lang of ['hu', 'en', 'de'] as const) {
-      expect(PACKAGE_ROWS[lang].base[1]).toContain(BASE_PRICE[lang]);
-      for (const [label, price] of Object.values(PACKAGE_ROWS[lang])) {
-        expect(label.length).toBeGreaterThan(3);
-        expect(price.length).toBeGreaterThan(3);
-      }
+      expect(packagePrice('base', lang)).toContain(BASE_PRICE[lang]);
+      for (const k of PACKAGES) expect(packagePrice(k, lang).length).toBeGreaterThan(3);
     }
-    expect(INDUSTRIES).toContain('other');
-    expect(FEATURES).toContain('quote');
   });
 });
 
@@ -73,7 +40,7 @@ test.describe('configurator on the homepage', () => {
   });
 
   test('a sample builds the sketch and the offer; the button prefills the contact form', async ({ page }) => {
-    // the endpoint mode is not live yet: whatever it answers, the keyword match takes over
+    // the real endpoint: without a model key it answers from its own keyword rules (source "keywords")
     await page.goto('/');
     const box = page.getByTestId('configurator');
     await box.getByRole('button', { name: 'Kozmetika' }).click();
@@ -101,6 +68,16 @@ test.describe('configurator on the homepage', () => {
     await expect(page.getByTestId('configurator')).toContainText('asztalosműhely');
     await expect(page.getByTestId('configurator')).not.toContainText('9 Ft');
     await expect(page.getByTestId('configurator')).not.toContainText('HACK');
+  });
+
+  test('a refused request (403) shows the general sketch with the base package only', async ({ page }) => {
+    await page.route('**/api/chat', (route) => route.fulfill({ status: 403, json: { error: 'Forbidden' } }));
+    await page.goto('/');
+    await page.getByTestId('configurator').getByRole('button', { name: 'Fodrász' }).click();
+    const offer = page.getByTestId('configurator-offer');
+    await expect(offer).toBeVisible({ timeout: 10_000 });
+    await expect(page.getByTestId('configurator')).toContainText('helyi szolgáltató');
+    await expect(offer).not.toContainText('Bővítmény');
   });
 
   test('English page, reduced motion: the whole sketch shows at once', async ({ browser }) => {
