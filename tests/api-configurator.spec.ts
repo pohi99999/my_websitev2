@@ -235,6 +235,9 @@ test.describe("configurator contract (app/lib/configurator.ts)", () => {
     expect(packagesFor([])).toEqual(["base", "care"]);
     expect(packagesFor(["quote"])).toEqual(["base", "care"]);
     expect(packagesFor(["voucher", "booking"])).toEqual(["base", "booking", "voucher", "care"]);
+    // A card deposit is taken when booking (Arcsomag), so it brings the booking add-on (Lumen 5549).
+    expect(packagesFor(["deposit"])).toEqual(["base", "booking", "deposit", "care"]);
+    expect(packagesFor(["booking", "deposit"])).toEqual(["base", "booking", "deposit", "care"]);
     expect(offerTitle(packagesFor(["quote"]), "hu")).toBe("Alapcsomag");
     expect(offerTitle(packagesFor(["deposit"]), "de")).toBe("Basispaket + Erweiterung");
   });
