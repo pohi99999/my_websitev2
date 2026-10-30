@@ -773,3 +773,71 @@ a {
     overflow-wrap: break-word;
   }
 }
+
+/* Direction C, depth and micro-interactions (card ff1d7435). CSS only where the browser supports it;
+   elsewhere everything simply stays still. Reduced motion switches all of it off. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* the service cards rise from the depth as they scroll in. No opacity fade: a card still
+       waiting below the fold would fail the colour-contrast check (axe measures it there). */
+    .depth-rise {
+      animation: depth-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
+    }
+    @keyframes depth-rise {
+      from { translate: 0 56px; scale: 0.94; }
+      to { translate: 0 0; scale: 1; }
+    }
+    /* hero layers drift at different speeds while the hero scrolls away */
+    .hero-parallax,
+    .hero-parallax-near {
+      animation: hero-drift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+    .hero-parallax { --drift: 90px; }
+    .hero-parallax-near { --drift: -40px; }
+    @keyframes hero-drift {
+      to { translate: 0 var(--drift); }
+    }
+  }
+}
+
+/* tilt toward the pointer + a glow that follows it; the variables come from ServiceCards (desktop) */
+.depth-grid {
+  perspective: 1200px;
+}
+.depth-card {
+  isolation: isolate;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out, border-color 0.15s;
+}
+.depth-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%), rgba(0, 229, 255, 0.12), transparent 60%);
+  transition: opacity 0.2s;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .depth-card:hover .depth-glow {
+    opacity: 1;
+  }
+}
+
+/* page-to-page crossfade (React ViewTransition around <main>); none with reduced motion */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.22s;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

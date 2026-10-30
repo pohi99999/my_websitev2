@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Bot, Globe, Smartphone, Workflow } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -56,9 +56,54 @@ const CARDS: { icon: typeof Globe; path: string; title: Record<Lang, string>; bo
 
 const HEADING: Record<Lang, string> = { hu: 'Szolgáltatásaink', en: 'What we do', de: 'Unsere Leistungen' };
 
+// Desktop only (a fine pointer that can hover), and never with reduced motion: the card tilts toward
+// the pointer and a cyan glow follows it (direction C, card ff1d7435). Writes two CSS variables per
+// frame; the CSS in globals.css does the rest.
+function useTiltGlow ()
+{
+  const listRef = useRef<HTMLUListElement>( null );
+  useEffect( () =>
+  {
+    const list = listRef.current;
+    if ( !list || !window.matchMedia( '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)' ).matches ) return;
+    let frame = 0;
+    const onMove = ( e: PointerEvent ) =>
+    {
+      const card = ( e.target as HTMLElement ).closest<HTMLElement>( '.depth-card' );
+      if ( !card ) return;
+      cancelAnimationFrame( frame );
+      frame = requestAnimationFrame( () =>
+      {
+        const r = card.getBoundingClientRect();
+        const x = ( e.clientX - r.left ) / r.width;
+        const y = ( e.clientY - r.top ) / r.height;
+        card.style.setProperty( '--mx', `${ ( x * 100 ).toFixed( 1 ) }%` );
+        card.style.setProperty( '--my', `${ ( y * 100 ).toFixed( 1 ) }%` );
+        card.style.setProperty( '--ry', `${ ( ( x - 0.5 ) * 8 ).toFixed( 2 ) }deg` );
+        card.style.setProperty( '--rx', `${ ( ( 0.5 - y ) * 8 ).toFixed( 2 ) }deg` );
+      } );
+    };
+    const onLeave = ( e: PointerEvent ) =>
+    {
+      const card = ( e.target as HTMLElement ).closest<HTMLElement>( '.depth-card' );
+      if ( card && !card.contains( e.relatedTarget as Node | null ) ) [ '--rx', '--ry' ].forEach( ( v ) => card.style.setProperty( v, '0deg' ) );
+    };
+    list.addEventListener( 'pointermove', onMove );
+    list.addEventListener( 'pointerout', onLeave );
+    return () =>
+    {
+      cancelAnimationFrame( frame );
+      list.removeEventListener( 'pointermove', onMove );
+      list.removeEventListener( 'pointerout', onLeave );
+    };
+  }, [] );
+  return listRef;
+}
+
 export default function ServiceCards ()
 {
   const { language } = useLanguage();
+  const listRef = useTiltGlow();
   const lang: Lang = language === 'en' || language === 'de' ? language : 'hu';
   const withLang = ( path: string ) => ( lang === 'hu' ? path : `/${ lang }${ path }` );
 
@@ -66,18 +111,19 @@ export default function ServiceCards ()
     <section id="szolgaltatas-kartyak" className="relative px-4 py-16 md:px-6" aria-labelledby="szolgaltatas-kartyak-cim">
       <div className="container mx-auto max-w-6xl">
         <h2 id="szolgaltatas-kartyak-cim" className="sr-only">{ HEADING[ lang ] }</h2>
-        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul ref={ listRef } className="depth-grid grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           { CARDS.map( ( card ) =>
           {
             const Icon = card.icon;
             const href = withLang( card.path );
             return (
-              <li key={ card.path }>
+              <li key={ card.path } className="depth-rise">
                 <Link
                   href={ href }
                   onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.HomeServiceCards, language, target: href, page: PAGE_NAMES.Home } ) }
-                  className="group surface-panel-elevated flex h-full flex-col rounded-3xl p-6 backdrop-blur-sm transition-colors hover:border-[#00e5ff]/50 focus-visible:border-[#00e5ff]"
+                  className="depth-card group surface-panel-elevated relative flex h-full flex-col rounded-3xl p-6 backdrop-blur-sm transition-colors hover:border-[#00e5ff]/50 focus-visible:border-[#00e5ff]"
                 >
+                  <span className="depth-glow" aria-hidden="true" />
                   <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl border border-[#00e5ff]/30 bg-[#00e5ff]/10" aria-hidden="true">
                     <Icon className="h-5 w-5 text-[#00e5ff]" />
                   </span>
