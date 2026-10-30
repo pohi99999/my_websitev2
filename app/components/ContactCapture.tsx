@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ArrowRight, Mail, MessageCircle } from 'lucide-react';
 import
 {
@@ -12,7 +12,8 @@ import
   trackFormSubmit,
 } from '../lib/analytics';
 import { useLanguage } from '../context/LanguageContext';
-import { buildQuoteMessage, QUOTE_NEED_LABELS } from '../lib/quoteRequest';
+import { buildQuoteMessage, QUOTE_LIMITS, QUOTE_NEED_LABELS, QUOTE_NEEDS } from '../lib/quoteRequest';
+import { CONFIGURATOR_PREFILL_EVENT, type ConfiguratorPrefill } from '../lib/configurator';
 import WebMcpQuoteTool from './WebMcpQuoteTool';
 
 type StatusState = 'idle' | 'sending' | 'success' | 'error';
@@ -24,6 +25,8 @@ export default function ContactCapture ()
   const [email, setEmail] = useState( '' );
   const [challenge, setChallenge] = useState( 'lead' );
   const [business, setBusiness] = useState( '' );
+  // set when the hero configurator filled the form: the submit is then reported as "configurator"
+  const [fromConfigurator, setFromConfigurator] = useState( false );
   const [status, setStatus] = useState<{ state: StatusState; message: string }>( {
     state: 'idle',
     message: '',
@@ -92,6 +95,21 @@ export default function ContactCapture ()
     };
   }, [language] );
 
+  useEffect( () =>
+  {
+    const onPrefill = ( event: Event ) =>
+    {
+      const detail = ( event as CustomEvent<ConfiguratorPrefill> ).detail;
+      if ( !detail || !( QUOTE_NEEDS as readonly string[] ).includes( detail.need ) || typeof detail.business !== 'string' ) return;
+      setChallenge( detail.need );
+      setBusiness( detail.business.slice( 0, QUOTE_LIMITS.businessMax ) );
+      setFromConfigurator( true );
+    };
+    window.addEventListener( CONFIGURATOR_PREFILL_EVENT, onPrefill );
+    return () => window.removeEventListener( CONFIGURATOR_PREFILL_EVENT, onPrefill );
+  }, [] );
+
+  const formName = fromConfigurator ? FORMS.Configurator : FORMS.ContactHomeQuick;
   const isSending = status.state === 'sending';
   const whatsappHref =
     'https://wa.me/36304291227?text=' +
@@ -123,7 +141,7 @@ export default function ContactCapture ()
       if ( !response.ok || !data?.ok )
       {
         trackFormSubmit( {
-          form: FORMS.ContactHomeQuick,
+          form: formName,
           status: FORM_STATUSES.ErrorResponse,
           language,
           page: PAGE_NAMES.Home,
@@ -150,7 +168,7 @@ export default function ContactCapture ()
 
       setStatus( { state: 'success', message: ui.success } );
       trackFormSubmit( {
-        form: FORMS.ContactHomeQuick,
+        form: formName,
         status: FORM_STATUSES.Success,
         language,
         page: PAGE_NAMES.Home,
@@ -159,11 +177,12 @@ export default function ContactCapture ()
       setEmail( '' );
       setChallenge( 'lead' );
       setBusiness( '' );
+      setFromConfigurator( false );
     } catch
     {
       setStatus( { state: 'error', message: ui.error } );
       trackFormSubmit( {
-        form: FORMS.ContactHomeQuick,
+        form: formName,
         status: FORM_STATUSES.ErrorException,
         language,
         page: PAGE_NAMES.Home,

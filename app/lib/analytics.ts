@@ -50,6 +50,14 @@ export function trackCtaClick(payload: {
   trackEvent(ANALYTICS_EVENTS.CtaClick, payload);
 }
 
+export function trackConfiguratorStart(payload: {
+  language: string;
+  source: "typed" | "sample";
+  page?: PageName;
+}) {
+  trackEvent(ANALYTICS_EVENTS.ConfiguratorStart, payload);
+}
+
 export function trackFormSubmit(payload: {
   form: FormName;
   status: FormStatus;
