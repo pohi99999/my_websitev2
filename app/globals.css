@@ -773,3 +773,9 @@ a {
     overflow-wrap: break-word;
   }
 }
+
+/* The cookie banner is in the server HTML; a visitor who already chose is marked on <html> by the inline
+   head script (lib/consentFlag.ts) before the first paint, so the banner never flashes for them. */
+html[data-consent='set'] #cookie-consent {
+  display: none;
+}
