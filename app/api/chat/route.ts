@@ -4,7 +4,8 @@ import { CLAUDE_URL, ANTHROPIC_VERSION, DEFAULT_MODEL, TIMEOUT_MS, buildClaudeBo
 import { busyMessage, parseSiteLang, systemPromptFor, unavailableMessage } from './site-lang';
 import { isAllowedOrigin } from '../../lib/allowedOrigin';
 import { checkConfiguratorBudget, checkDailyBudget } from './budget';
-import { CONFIGURATOR_PROMPT, buildAnswer, keywordAnswer, parseModelChoice, readDescription } from './configurator';
+import { CONFIGURATOR_PROMPT, answer, keywordAnswer, parseModelChoice, readText } from './configurator';
+import type { FallbackReason } from '../../lib/configurator';
 
 function getClientIp(req: NextRequest): string {
   const realIp = req.headers.get('x-real-ip');
@@ -36,6 +37,7 @@ export async function POST(req: NextRequest) {
 
   const ip = getClientIp(req);
   if (!checkRateLimit(ip)) {
+    if (await isConfiguratorRequest(req)) return NextResponse.json({ ok: false, reason: 'rate_limited' }, { status: 429 });
     return NextResponse.json(
       { error: 'Túl sok kérés. Kérjük, várjon egy percet. / Too many requests. Please wait a minute.' },
       { status: 429 }
@@ -50,7 +52,7 @@ export async function POST(req: NextRequest) {
   }
 
   if (body && typeof body === 'object' && (body as { mode?: unknown }).mode === 'configurator') {
-    return configurator(body as { lang?: unknown; description?: unknown });
+    return configurator(body as { text?: unknown });
   }
 
   if (
@@ -137,17 +139,25 @@ export async function POST(req: NextRequest) {
 }
 
 // ── The hero configurator (card ff1d7435) ───────────────────────────────────────────────────
-// Same Origin check and rate limit as the chat (above). Always HTTP 200 with the full answer shape:
-// from the model's keys when it gave valid ones, otherwise from the keyword rules. The log names
-// the source and the reason, never the visitor's sentence.
-async function configurator(body: { lang?: unknown; description?: unknown }) {
-  const lang = parseSiteLang(body.lang);
-  const description = readDescription(body.description);
-  const keywords = (reason: string) => {
-    console.log(`configurator source=keywords reason=${reason}`);
-    return NextResponse.json(keywordAnswer(description, lang));
+// Same Origin check and rate limit as the chat (above). Every HTTP 200 is the full answer shape:
+// from the model's keys when it gave valid ones, otherwise from the keyword rules, with the reason.
+// The log names the source and the reason, never the visitor's sentence.
+async function isConfiguratorRequest(req: NextRequest): Promise<boolean> {
+  try {
+    const b = (await req.clone().json()) as { mode?: unknown };
+    return b?.mode === 'configurator';
+  } catch {
+    return false;
+  }
+}
+
+async function configurator(body: { text?: unknown }) {
+  const text = readText(body.text);
+  const keywords = (reason: FallbackReason, detail: string = reason) => {
+    console.log(`configurator source=keywords reason=${detail}`);
+    return NextResponse.json(keywordAnswer(text, reason));
   };
-  if (!description) return keywords('empty');
+  if (!text) return keywords('empty');
   const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
   if (!apiKey) return keywords('no_key');
   if (!(await checkConfiguratorBudget())) return keywords('daily_budget');
@@ -158,26 +168,26 @@ async function configurator(body: { lang?: unknown; description?: unknown }) {
     response = await fetch(CLAUDE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': ANTHROPIC_VERSION },
-      body: JSON.stringify(buildClaudeBody(CONFIGURATOR_PROMPT, [{ role: 'user', content: description }], model)),
+      body: JSON.stringify(buildClaudeBody(CONFIGURATOR_PROMPT, [{ role: 'user', content: text }], model)),
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
   } catch (err) {
     const timeout = err instanceof Error && (err.name === 'TimeoutError' || err.name === 'AbortError');
-    return keywords(timeout ? 'timeout' : 'network');
+    return keywords('model_error', timeout ? 'timeout' : 'network');
   }
   if (!response.ok) {
-    const text = await response.text().catch(() => '');
-    console.error('Claude error (configurator):', response.status, text.slice(0, 300));
-    return keywords(`claude_${response.status}`);
+    const body = await response.text().catch(() => '');
+    console.error('Claude error (configurator):', response.status, body.slice(0, 300));
+    return keywords('model_error', `claude_${response.status}`);
   }
   let data: unknown;
   try {
     data = await response.json();
   } catch {
-    return keywords('bad_json');
+    return keywords('model_error', 'bad_json');
   }
   const choice = parseModelChoice(readClaudeText(data) ?? '');
-  if (!choice) return keywords('invalid_choice');
+  if (!choice) return keywords('invalid');
   console.log(`configurator source=ai model=${model} ok`);
-  return NextResponse.json(buildAnswer(choice.industry, choice.features, lang, 'ai'));
+  return NextResponse.json(answer(choice.industry, choice.features, 'ai'));
 }

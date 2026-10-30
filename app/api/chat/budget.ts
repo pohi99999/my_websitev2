@@ -55,7 +55,7 @@ const upstashConfigurator =
     ? new Ratelimit({
         redis: new Redis({ url, token }),
         limiter: Ratelimit.fixedWindow(DAILY_CONFIGURATOR_MAX, `${DAY_MS / 1000} s`),
-        prefix: 'configurator:daily',
+        prefix: 'chat:configurator:daily',
       })
     : null;
 
