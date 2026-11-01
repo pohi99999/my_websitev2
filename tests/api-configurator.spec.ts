@@ -314,6 +314,20 @@ test.describe("configurator contract (app/lib/configurator.ts)", () => {
     expect(k("Autó klímatöltést vállalok.")).toBe("car_service");
   });
 
+  // Lumen's independent acceptance set (5732): 57 sentences in HU/EN/DE with the expected industry;
+  // "either" names a second acceptable answer. On the 72bb92f rules 13 rows gave a wrong industry.
+  test("Lumen's 57-sentence acceptance set: no sentence gets a wrong industry", () => {
+    const set = JSON.parse(fs.readFileSync(path.resolve("tests/fixtures/keyword-acceptance.json"), "utf8")) as {
+      cases: { t: string; expect: string; either?: string }[];
+    };
+    expect(set.cases.length).toBe(57);
+    const wrong = set.cases
+      .map((c) => ({ ...c, got: keywordAnswer(c.t, "no_key").industry }))
+      .filter((c) => c.got !== c.expect && c.got !== c.either)
+      .map((c) => `${c.t} -> ${c.got} (expected ${c.expect})`);
+    expect(wrong).toEqual([]);
+  });
+
   test("every sample button on the page lands on its own industry", () => {
     const src = fs.readFileSync(path.resolve("app/components/ConfiguratorHero.tsx"), "utf8");
     const samples = [...src.matchAll(/\[ '([^']+)', '([^']+)' \]/g)].map((m) => [m[1], m[2]]);

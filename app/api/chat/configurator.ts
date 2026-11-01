@@ -18,12 +18,16 @@ export function answer(industry: Industry, features: readonly Feature[], source:
 // "szerel" is not a car word on its own ("Szerelem a lovakat" is love, not a repair shop), and a
 // driving school is not a car service. Words that many trades share decide nothing on their own
 // (Lumen 5728): "egyedi" (custom cakes, custom software), "konyha"/"kitchen" (a restaurant kitchen),
-// "Balaton" (a restaurant by the lake), "éjszaka" (a painter working nights).
+// "Balaton" (a restaurant by the lake), "éjszaka" (a painter working nights). The same for a bare
+// "szerviz" (air conditioning, boilers, phones, bikes), "gumi" (gummy sweets), "garage door",
+// "beautiful", "nails" (screws), "pension advisor" and "hotel transfer" (Lumen 5732): only the
+// compound or the context that names the trade decides. Tested against Lumen's 57-sentence set
+// (tests/fixtures/keyword-acceptance.json).
 const PROFILES: Array<{ industry: Industry; re: RegExp; features: Feature[] }> = [
   { industry: 'hair_salon', re: /fodr|hajvág|hajszalon|borbély|barber|\bhair|friseur|coiffeur/i, features: ['booking'] },
-  { industry: 'beauty', re: /kozmet|köröm|körm|manikűr|pedikűr|szempilla|smink|szépség|masszázs|masszőr|masszőz|masszíroz|bérlet|beaut|cosmetic|nail|manicure|pedicure|\blash|make-?up|facial|massage|masseu|\bspa\b|kosmetik|nagel|wimpern/i, features: ['booking', 'deposit'] },
-  { industry: 'car_service', re: /autó(?!siskol)|gépjármű|autószerel|szerelőműhely|szerviz|gumi|\bcars?\b|garage|mechanic|tyre|\btires?\b|werkstatt|kfz|reifen/i, features: ['quote', 'booking'] },
-  { industry: 'guesthouse', re: /vendégház|vendégszob|szállás|panzió|apartman|szobakiad|guest ?house|b&b|bed and breakfast|hotel|holiday (?:home|let|rental)|rooms? to (?:let|rent)|pension|gästehaus|ferienwohnung|unterkunft|übernacht/i, features: ['booking', 'voucher'] },
+  { industry: 'beauty', re: /kozmet|köröm|körm|manikűr|pedikűr|szempilla|smink|szépség|masszázs|masszőr|masszőz|masszíroz|bérlet|\bbeaut(?:y|ician)|cosmetic|\bnails? ?(?:salon|studio|bar|art|tech)|manicur|pedicure|\blash|make-?up|facial|massage|masseu|\bspa\b|kosmetik|nagel|wimpern/i, features: ['booking', 'deposit'] },
+  { industry: 'car_service', re: /autó(?!siskol)|gépjármű|szerelőműhely|gumiszerviz|gumiabroncs|gumicser|gumijav|\bgumis\b|\bcars?\b|\bgarage\b(?!\s*doors?)|mechanic|tyre|\btires?\b|werkstatt|kfz|reifen/i, features: ['quote', 'booking'] },
+  { industry: 'guesthouse', re: /vendégház|vendégszob|szállás|panzió|apartman|szobakiad|guest ?house|b&b|bed and breakfast|hotel(?![- ]?(?:fürdő|transfer|shuttle))|holiday (?:home|let|rental)|rooms? to (?:let|rent)|\bpension\b(?!\s*(?:advis|fund|plan|scheme))|gästehaus|ferienwohnung|unterkunft|übernacht/i, features: ['booking', 'voucher'] },
   { industry: 'carpentry', re: /asztalos|bútor|konyhaszekrény|carpent|joiner|furniture|cabinetmak|wardrobe|fitted kitchen|kitchen (?:cabinet|fitter)|tischler|schreiner|möbel/i, features: ['quote'] },
 ];
 const OTHER_FEATURES: Feature[] = ['quote'];
