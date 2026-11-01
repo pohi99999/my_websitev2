@@ -1,7 +1,7 @@
 // Localized share image for Hungarian URLs (referenced from the pages' own metadata via
 // app/lib/ogImage.js). Outside /en and /de the middleware sets x-site-language to hu, so the page's
 // own generateMetadata answers in Hungarian. "index" is the home page.
-import { renderBrandImage, type BrandTheme } from '../../_og/brand';
+import { renderBrandImage, shareTitle, type BrandTheme } from '../../_og/brand';
 import { pageMetadataFor, titleText } from '../../lib/localizedRouteMeta';
 
 const size = { width: 1200, height: 630 };
@@ -18,7 +18,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ slug: s
   const raw = (await params).slug ?? [];
   const slug = raw.length === 1 && raw[0] === 'index' ? [] : raw;
   const meta = await pageMetadataFor(slug);
-  const title = titleText(meta?.title).replace(/\s*\|\s*Pohánka AI.*$/, '') || 'Pohánka AI';
+  const { title, kicker } = shareTitle(titleText(meta?.title));
   const description = typeof meta?.description === 'string' ? meta.description : undefined;
-  return renderBrandImage({ size, theme: themeFor(slug), kicker: 'Pohánka AI', title, description });
+  return renderBrandImage({ size, theme: themeFor(slug), kicker, title, description });
 }

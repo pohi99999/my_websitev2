@@ -46,6 +46,14 @@ const THEMES: Record<BrandTheme, { a: string; b: string; label: string; badge: s
   }
 };
 
+// Page titles end in a title-tag suffix (" | Zalaegerszeg", " | Pohánka AI"). On the share image the brand
+// suffix is dropped and any other one moves to the kicker line, so it does not take a title line of its own
+// (the home page title wrapped to three lines and its last word was clamped off).
+export function shareTitle(raw: string) {
+  const [title, ...rest] = raw.replace(/\s*\|\s*Pohánka AI.*$/, '').split(/\s+\|\s+/);
+  return { title: title || 'Pohánka AI', kicker: rest.join(' · ') || 'Pohánka AI' };
+}
+
 export async function renderBrandImage({ size, theme, eyebrow, kicker, title, description, tags }: BrandImageOptions) {
   const t = THEMES[theme];
   const isTwitter = size.height <= 600;
@@ -56,9 +64,11 @@ export async function renderBrandImage({ size, theme, eyebrow, kicker, title, de
   const pad = 72;
 
   const titleSize = isTwitter ? 78 : 82;
+  const titleGutter = Math.ceil(titleSize * 0.14);
   const descSize = isTwitter ? 28 : 30;
 
-  const titleClamp = isTwitter ? 3 : 2;
+  // three title lines and a three-line description do not fit the 600 px Twitter card together
+  const titleClamp = isTwitter && !description ? 3 : 2;
 
   return new ImageResponse(
     (
@@ -113,10 +123,18 @@ export async function renderBrandImage({ size, theme, eyebrow, kicker, title, de
             fontWeight: 800,
             letterSpacing: -2.2,
             lineHeight: 1.05,
-            maxWidth: 1040,
-            display: '-webkit-box',
-            WebkitLineClamp: titleClamp,
-            WebkitBoxOrient: 'vertical',
+            // the tight line box ends above Inter's descenders; without room below, overflow: hidden cut
+            // off the g/j/p/y tails of the last line
+            paddingBottom: titleGutter,
+            // likewise on the right: the clamp's trailing dots ran a few pixels past the box and lost the last
+            // one; maxWidth counts the padding, so it grows with it and the lines break where they did before
+            paddingRight: titleGutter,
+            maxWidth: 1040 + titleGutter,
+            // Satori ignored the -webkit-box clamp (it wants textOverflow: ellipsis as well), so a long title
+            // ran on over the description; block + lineClamp clamps, and the three dots are in every font,
+            // unlike the ellipsis character
+            display: 'block',
+            lineClamp: `${titleClamp} "..."`,
             overflow: 'hidden'
           }}
         >
@@ -131,9 +149,8 @@ export async function renderBrandImage({ size, theme, eyebrow, kicker, title, de
               maxWidth: 980,
               lineHeight: 1.25,
               color: 'rgba(255,255,255,0.88)',
-              display: '-webkit-box',
-              WebkitLineClamp: 3,
-              WebkitBoxOrient: 'vertical',
+              display: 'block',
+              lineClamp: '3 "..."',
               overflow: 'hidden'
             }}
           >
