@@ -46,11 +46,15 @@ const SequentialVideoBackground: React.FC = () =>
   const normalizedPath = pathname.replace( /^\/(en|de)(?=\/|$)/, '' ) || '/';
   // /labor draws its own 3D scene and poster behind the page: no video there, not even a download
   const noVideo = normalizedPath === '/labor';
+  // /portfolio on a phone: the static gradient, not the video (the page's own section shows a still there)
+  const [phone] = useState( () => window.matchMedia( '(max-width: 767.98px)' ).matches );
+  const stillOnly = normalizedPath === '/portfolio' && phone;
+  const videoOn = richMediaEnabled && !stillOnly;
 
   // Function to switch video with cross-fade
   const switchVideo = useCallback( ( newSrc: string ) =>
   {
-    if ( !richMediaEnabled ) return;
+    if ( !videoOn ) return;
 
     const currentPlayerRef = activePlayer === 0 ? video0Ref : video1Ref;
     if ( currentPlayerRef.current && currentPlayerRef.current.src.endsWith( newSrc ) )
@@ -78,20 +82,20 @@ const SequentialVideoBackground: React.FC = () =>
       // The CSS transition will handle the fade
       setActivePlayer( inactivePlayer );
     }
-  }, [activePlayer, richMediaEnabled, video0Ref, video1Ref] );
+  }, [activePlayer, videoOn, video0Ref, video1Ref] );
 
   // Main effect to handle route changes
   useEffect( () =>
   {
-    if ( !richMediaEnabled || noVideo ) return;
+    if ( !videoOn || noVideo ) return;
     const targetVideo = getVideoForPath( pathname );
     switchVideo( targetVideo );
-  }, [pathname, switchVideo, richMediaEnabled, noVideo] );
+  }, [pathname, switchVideo, videoOn, noVideo] );
 
   // Set initial video source on component mount
   useEffect( () =>
   {
-    if ( !richMediaEnabled || noVideo ) return;
+    if ( !videoOn || noVideo ) return;
     const initialSrc = getVideoForPath( pathname );
     const currentRef = activePlayer === 0 ? video0Ref : video1Ref;
     if ( currentRef.current )
@@ -104,13 +108,13 @@ const SequentialVideoBackground: React.FC = () =>
       } );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [richMediaEnabled] ); // Only run once on mount (or when richMediaEnabled changes)
+  }, [videoOn] ); // Only run once on mount (or when videoOn changes)
 
   if ( noVideo ) return null;
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      { videoError || !richMediaEnabled ? (
+      { videoError || !videoOn ? (
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(0,229,255,0.16)_0%,transparent_60%),radial-gradient(ellipse_at_80%_80%,rgba(0,229,255,0.08)_0%,transparent_58%),linear-gradient(160deg,#000000_0%,#02060a_55%,#000000_100%)]"
