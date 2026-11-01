@@ -110,7 +110,7 @@ const organizationSchema = {
   image: 'https://www.pohankaestarsa.com/images/logo.png',
   description: 'Weboldal (időpontfoglalással vagy ajánlatkéréssel), webáruház, web- és mobilalkalmazás, automatizálás és AI-rendszerek vállalkozásoknak, Zalaegerszegről.',
   telephone: '+36304291227',
-  email: 'peterpohankapersonal@gmail.com',
+  email: 'info@pohankaestarsa.com',
   address: {
     '@type': 'PostalAddress',
     // Irodai cím, betűre a Google Cégprofilon állóval (NAP-egyezés, helyi SEO). A székhely

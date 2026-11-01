@@ -49,7 +49,7 @@ export default function ContactCapture ()
         sending: 'Sending...',
         success: 'Thank you! We saved your request and will get back to you shortly.',
         error:
-          'We could not send your request right now. Please email us directly at peterpohankapersonal@gmail.com.',
+          'We could not send your request right now. Please email us directly at info@pohankaestarsa.com.',
         whatsapp: 'Write on WhatsApp',
         options: QUOTE_NEED_LABELS.en,
       };
@@ -70,7 +70,7 @@ export default function ContactCapture ()
         sending: 'Wird gesendet...',
         success: 'Danke! Ihre Anfrage wurde gespeichert und wir melden uns in Kürze.',
         error:
-          'Ihre Anfrage konnte gerade nicht gesendet werden. Bitte schreiben Sie direkt an peterpohankapersonal@gmail.com.',
+          'Ihre Anfrage konnte gerade nicht gesendet werden. Bitte schreiben Sie direkt an info@pohankaestarsa.com.',
         whatsapp: 'Per WhatsApp schreiben',
         options: QUOTE_NEED_LABELS.de,
       };
@@ -89,7 +89,7 @@ export default function ContactCapture ()
       sending: 'Küldés...',
       success: 'Köszönjük! Elmentettük az érdeklődést, hamarosan jelentkezünk.',
       error:
-        'Most nem sikerült elküldeni az érdeklődést. Kérjük, írjon közvetlenül: peterpohankapersonal@gmail.com.',
+        'Most nem sikerült elküldeni az érdeklődést. Kérjük, írjon közvetlenül: info@pohankaestarsa.com.',
       whatsapp: 'Írok WhatsAppon',
       options: QUOTE_NEED_LABELS.hu,
     };
@@ -208,7 +208,7 @@ export default function ContactCapture ()
           <div className="space-y-4">
             <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
               <Mail className="h-5 w-5 text-[#00e5ff]" />
-              <span className="text-sm text-white">peterpohankapersonal@gmail.com</span>
+              <span className="text-sm text-white">info@pohankaestarsa.com</span>
             </div>
             <a
               href={whatsappHref}
