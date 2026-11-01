@@ -6,8 +6,9 @@ export const alt = 'Portfólió esettanulmány – Pohánka AI';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-export default function OpenGraphImage({ params }: { params: { id: string } }) {
-  const id = params?.id ?? '';
+// Next 16 passes params as a Promise (as in app/blog/[slug]): read synchronously, the id was undefined
+export default async function OpenGraphImage({ params }: { params: Promise<{ id: string }> }) {
+  const id = (await params)?.id ?? '';
   const meta = getPortfolioProjectMeta(id);
   const title = meta?.title ?? `Portfólió esettanulmány #${id || '?'}`;
   const emoji = meta?.emoji ?? '⭐';
