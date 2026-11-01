@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { CONSENT_STORAGE_KEY } from '../lib/consentFlag';
 
@@ -78,6 +78,32 @@ export default function CookieConsent() {
     return () => window.removeEventListener(CONSENT_RESET_EVENT, onReset);
   }, []);
 
+  // While the banner is shown it covers the bottom of the screen (110-217 px depending on the width),
+  // more than the room globals.css reserves for the phone's sticky bar: a keyboard focus scroll keeps
+  // the focused element above the banner instead, with 16 px to spare (WCAG 2.4.11; Lumen 5769).
+  // Removed with the banner, so the stylesheet's value applies again.
+  const banner = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = banner.current;
+    if (!visible || !el) return;
+    const root = document.documentElement;
+    const sync = () => {
+      const { top, height } = el.getBoundingClientRect();
+      // hidden before paint for a returning visitor (lib/consentFlag.ts): nothing to keep clear
+      if (!height) root.style.removeProperty('scroll-padding-bottom');
+      else root.style.setProperty('scroll-padding-bottom', `${Math.ceil(window.innerHeight - top) + 16}px`);
+    };
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    window.addEventListener('resize', sync);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', sync);
+      root.style.removeProperty('scroll-padding-bottom');
+    };
+  }, [visible]);
+
   if (!visible) return null;
 
   const copy = COPY[(language as keyof typeof COPY) in COPY ? (language as keyof typeof COPY) : 'hu'];
@@ -96,6 +122,7 @@ export default function CookieConsent() {
 
   return (
     <div
+      ref={banner}
       id="cookie-consent"
       role="dialog"
       aria-live="polite"

@@ -211,3 +211,57 @@ test('on a wide screen the cookie choices are equal too', async ({ browser }) =>
   expect(a.h).toBeGreaterThanOrEqual(44);
   await ctx.close();
 });
+
+// Lumen 5769: on a first visit, with the cookie banner open, the focused sample button scrolled under
+// the banner (375 px HU: 688-732 px, the banner's top at 686), at 640-1023 px too, where it grows to
+// 217 px. Real Tab, measured once the animated focus scroll settles, against the higher of the banner
+// and the sticky bar.
+for (const [width, height] of [[360, 812], [375, 812], [412, 915], [768, 1024]]) {
+  test(`first visit, banner open: keyboard focus on the sample buttons stays above it at ${width} px`, async ({ browser }) => {
+    for (const path of ['/', '/en', '/de']) {
+      const ctx = await browser.newContext({ viewport: { width, height } });
+      const page = await ctx.newPage();
+      await page.goto(path);
+      await expect(page.locator('#cookie-consent')).toBeVisible();
+      const covered: string[] = [];
+      let seen = 0;
+      for (let i = 0; i < 80 && seen < 5; i++) {
+        await page.keyboard.press('Tab');
+        const r = await page.evaluate(async () => {
+          const a = document.activeElement as HTMLElement | null;
+          if (!a || !a.closest('[aria-labelledby="configurator-samples-label"]')) return null;
+          let last = scrollY;
+          for (let still = 0, t = 0; still < 400 && t < 3000; t += 50) {
+            await new Promise((res) => setTimeout(res, 50));
+            still = scrollY === last ? still + 50 : 0;
+            last = scrollY;
+          }
+          const tops = [document.querySelector('#cookie-consent')?.firstElementChild, document.querySelector('[data-testid="mobile-sticky-cta"]')]
+            .filter((e): e is Element => !!e && e.getBoundingClientRect().height > 0)
+            .map((e) => e.getBoundingClientRect().top);
+          const cover = Math.min(innerHeight, ...tops);
+          return { text: a.textContent?.trim(), overlap: Math.max(0, Math.round(a.getBoundingClientRect().bottom + 4 - cover)) };
+        });
+        if (!r) continue;
+        seen++;
+        if (r.overlap > 0) covered.push(`${path} ${r.text}: ${r.overlap} px under`);
+      }
+      expect(seen, path).toBe(5);
+      expect(covered).toEqual([]);
+      await ctx.close();
+    }
+  });
+}
+
+test('the banner\'s scroll padding goes away with the banner', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/');
+  await expect(page.locator('#cookie-consent')).toBeVisible();
+  const open = await page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).scrollPaddingBottom));
+  await page.locator('#cookie-consent').getByRole('button').first().click();
+  await expect(page.locator('#cookie-consent')).toHaveCount(0);
+  const closed = await page.evaluate(() => ({ inline: document.documentElement.style.scrollPaddingBottom, value: parseFloat(getComputedStyle(document.documentElement).scrollPaddingBottom) }));
+  expect(open).toBeGreaterThan(110);
+  expect(closed.inline).toBe('');
+  expect(closed.value).toBe(80); // globals.css below lg: 5rem (+ the safe area, 0 here)
+});
