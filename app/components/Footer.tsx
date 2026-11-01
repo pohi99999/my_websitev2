@@ -39,7 +39,7 @@ const Footer = () =>
             <ul className="space-y-3">
               <li>
                 <a
-                  href={withLang( '/termekek/brunella-agents' )}
+                  href={withLang( '/portfolio/brunella-bas' )}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   {t( 'footer.solutions.brunella' )}
@@ -80,7 +80,7 @@ const Footer = () =>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 text-gray-400">
                 <MapPin className="w-5 h-5 text-[#00e5ff]/50 mt-1 flex-shrink-0" />
-                <span>Zalaegerszeg, Kossuth Lajos u. 39, 8900</span>
+                <span>{ language === 'en' ? 'Office' : language === 'de' ? 'Büro' : 'Iroda' }: Zalaegerszeg, Kossuth Lajos u. 39, 8900</span>
               </li>
               <li className="flex items-center space-x-3 text-gray-400">
                 <Phone className="w-5 h-5 text-[#00e5ff]/50 flex-shrink-0" />

@@ -8,7 +8,7 @@ import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
 
 // Home page: the umbrella message in the hero, then one card per service line
 // (positioning decision 2026-10-05, copy by Stratéga, szoveg-v2.md). Targets follow the header menu;
-// the AI-team card links straight to the Brunella page (the /termekek/brunella-agents path redirects there).
+// the AI-team card links straight to the Brunella page (the old /termekek/brunella-agents path 308-redirects there).
 type Lang = 'hu' | 'en' | 'de';
 
 const CARDS: { icon: typeof Globe; path: string; title: Record<Lang, string>; body: Record<Lang, string> }[] = [

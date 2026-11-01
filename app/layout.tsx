@@ -12,6 +12,7 @@ import Script from 'next/script';
 import BrunellaChat from './components/BrunellaChat';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import CookieConsent from './components/CookieConsent';
+import { CONSENT_FLAG_SCRIPT } from './lib/consentFlag';
 
 const inter = Inter( { subsets: ['latin'], display: 'swap', variable: '--font-inter' } );
 const syne = Syne( { subsets: ['latin'], display: 'swap', variable: '--font-syne', weight: ['600', '700', '800'] } );
@@ -216,8 +217,10 @@ export default async function RootLayout ( {
   const gaId = isProductionHost ? (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-BZQL39E3RD') : undefined;
 
   return (
-    <html lang={initialLanguage} className="scroll-smooth">
+    // suppressHydrationWarning: the consent flag script may set data-consent on <html> before React hydrates.
+    <html lang={initialLanguage} className="scroll-smooth" suppressHydrationWarning>
       <head>
+        <script id="consent-flag" dangerouslySetInnerHTML={{ __html: CONSENT_FLAG_SCRIPT }} />
         <script
           id="organization-jsonld"
           type="application/ld+json"

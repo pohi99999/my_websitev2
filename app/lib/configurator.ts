@@ -33,9 +33,14 @@ export type ConfiguratorAnswer = {
   packages: PackageKey[];
 };
 
-/** Packages from features, deterministically: base always, one add-on per paid feature, care always (optional). */
+/**
+ * Packages from features, deterministically: base always, one add-on per paid feature, care always
+ * (optional). A card deposit is taken when booking ("Online booking with card deposit", Arcsomag),
+ * so a deposit brings the booking add-on with it (Lumen 5549).
+ */
 export function packagesFor(features: readonly Feature[]): PackageKey[] {
-  return ['base', ...(['booking', 'deposit', 'voucher'] as const).filter((f) => features.includes(f)), 'care'];
+  const needs = (f: Feature) => features.includes(f) || (f === 'booking' && features.includes('deposit'));
+  return ['base', ...(['booking', 'deposit', 'voucher'] as const).filter(needs), 'care'];
 }
 
 type Text = Record<ConfiguratorLang, string>;
