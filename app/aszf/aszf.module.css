@@ -1,0 +1,90 @@
+/* The ÁSZF text as the site's other legal pages look (impresszum, adatvédelmi tájékoztató): gray body
+   text on slate, white headings, bordered tables. Scoped to this page, the shared stylesheet stays as is. */
+.doc {
+  /* about 70 characters a line on a wide screen (Lumen 5849: at 768 px a line was ~100). Measured, not
+     in ch: 70ch (the width of seventy zeros) gave 90 characters of this text a line */
+  max-width: 35rem;
+  margin-inline: auto;
+  color: rgb(209 213 219);
+  line-height: 1.625;
+}
+.doc :global(h1) {
+  margin-bottom: 1.5rem;
+}
+.doc :global(h2) {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+.doc :global(p) {
+  margin-top: 0.75rem;
+}
+.doc :global(strong) {
+  color: #fff;
+}
+.doc :global(ul) {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+.doc :global(ul ul) {
+  list-style: circle;
+}
+.doc :global(li) {
+  margin-top: 0.25rem;
+}
+.doc :global(hr) {
+  margin: 2rem 0;
+  border-color: rgb(255 255 255 / 0.1);
+}
+.doc :global(a) {
+  color: #00e5ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+.doc :global(table) {
+  margin-top: 1rem;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.doc :global(thead) {
+  display: none;
+}
+.doc :global(td) {
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.doc :global(td:first-child) {
+  width: 11rem;
+  font-weight: 600;
+  color: #fff;
+}
+/* phones: label above value, so a long value (the full company name) keeps the whole width */
+@media (max-width: 639.98px) {
+  .doc :global(td) {
+    display: block;
+    padding-right: 0;
+  }
+  .doc :global(td:first-child) {
+    width: auto;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+}
+
+.doc :global(blockquote) {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 2px solid rgb(0 229 255 / 0.6);
+  background: rgb(255 255 255 / 0.05);
+  border-radius: 0.5rem;
+}
+.doc :global(blockquote p) {
+  margin-top: 0;
+}

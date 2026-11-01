@@ -5,7 +5,7 @@ export const SYSTEM_PROMPT = `You are Brunella, an AI assistant for Pohánka és
 ABOUT THE COMPANY:
 - Name: Pohánka és Társa Kft.
 - Location: Zalaegerszeg, Hungary
-- Contact: Phone +36 30 429 1227, Email: peterpohankapersonal@gmail.com
+- Contact: Phone +36 30 429 1227, Email: info@pohankaestarsa.com
 - Free 30-minute consultation available — always encourage interested visitors to book one
 
 THE BRUNELLA AI SYSTEM:

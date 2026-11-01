@@ -31,7 +31,7 @@ export default function KapcsolatClient() {
           sendingBtn: "Sending...",
           submitBtn: "Send Message",
           success: "Thank you! Your message has been sent.",
-          fail: "Sending failed. Please email us directly: peterpohankapersonal@gmail.com (or try again in a few minutes).",
+          fail: "Sending failed. Please email us directly: info@pohankaestarsa.com (or try again in a few minutes).",
           country: "Hungary",
         }
       : language === "de"
@@ -51,7 +51,7 @@ export default function KapcsolatClient() {
             sendingBtn: "Senden...",
             submitBtn: "Nachricht senden",
             success: "Danke! Ihre Nachricht wurde gesendet.",
-            fail: "Senden fehlgeschlagen. Schreiben Sie direkt an: peterpohankapersonal@gmail.com (oder versuchen Sie es in ein paar Minuten erneut).",
+            fail: "Senden fehlgeschlagen. Schreiben Sie direkt an: info@pohankaestarsa.com (oder versuchen Sie es in ein paar Minuten erneut).",
             country: "Ungarn",
           }
         : {
@@ -70,7 +70,7 @@ export default function KapcsolatClient() {
             sendingBtn: "Küldés...",
             submitBtn: "Üzenet Küldése",
             success: "Köszönjük! Az üzenet elküldve.",
-            fail: "Nem sikerült elküldeni. Írjon közvetlenül: peterpohankapersonal@gmail.com (vagy próbálja újra pár perc múlva).",
+            fail: "Nem sikerült elküldeni. Írjon közvetlenül: info@pohankaestarsa.com (vagy próbálja újra pár perc múlva).",
             country: "Magyarország",
           };
 
@@ -140,7 +140,7 @@ export default function KapcsolatClient() {
                 <div>
                   <p className="text-gray-400 text-sm">{ui.email}</p>
                   {/* break-all: the address has no break point and widened the 360 px layout to 392 px */}
-                  <p className="font-semibold break-all">peterpohankapersonal@gmail.com</p>
+                  <p className="font-semibold break-all">info@pohankaestarsa.com</p>
                 </div>
               </div>
 

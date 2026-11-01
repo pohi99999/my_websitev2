@@ -10,9 +10,10 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = '2026. október 12.';
+// the go-live date of this version, with the ÁSZF (Peter GO 12491)
+const LAST_UPDATED = '2026. november 1.';
 
-const CONTACT_EMAIL = 'peterpohankapersonal@gmail.com';
+const CONTACT_EMAIL = 'info@pohankaestarsa.com';
 const CONTACT_PHONE = '+36 30 429 1227';
 
 type Row = { label: string; value: React.ReactNode };
