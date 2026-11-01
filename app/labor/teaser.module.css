@@ -1,0 +1,78 @@
+/* The /labor link at the bottom of the Portfolio page (LaborTeaser). */
+
+.teaser {
+  padding: 0 1rem 6rem;
+}
+
+.box {
+  position: relative;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 2rem;
+  background:
+    radial-gradient(70% 120% at 85% 50%, rgba(0, 229, 255, 0.16) 0%, transparent 60%),
+    rgba(6, 8, 12, 0.85);
+  border: 1px solid rgba(0, 229, 255, 0.28);
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+}
+
+.kicker {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #00e5ff;
+}
+
+.title {
+  margin-top: 0.75rem;
+  font-size: clamp(1.625rem, 4vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.body {
+  margin-top: 0.75rem;
+  max-width: 34rem;
+  line-height: 1.65;
+  color: #d1d5db;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #00e5ff;
+  text-underline-offset: 4px;
+}
+
+.cta:hover {
+  text-decoration: underline;
+}
+
+.cta:focus-visible {
+  outline: 2px solid #00e5ff;
+  outline-offset: 4px;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (min-width: 768px) {
+  .teaser {
+    padding: 0 1.5rem 8rem;
+  }
+
+  .box {
+    padding: 2.5rem 3rem;
+  }
+}
