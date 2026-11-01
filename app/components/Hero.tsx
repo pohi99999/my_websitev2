@@ -36,7 +36,7 @@ const Hero = () =>
   return (
     <section
       id="home"
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-transparent px-4 pb-12 pt-24 md:min-h-screen md:px-6"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-transparent px-4 pb-12 pt-24 max-sm:pt-16 md:min-h-screen md:px-6"
     >
       {/* Ambient glow only — keep the video visible; drifts slower than the page (parallax, direction C) */}
       <div

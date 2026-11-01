@@ -160,3 +160,54 @@ test('the hero intro paragraph holds no link or button (nothing focusable), in e
     expect(n, path).toBe(0);
   }
 });
+
+// Marveen 5766: on a first visit the cookie banner must leave the hero title and the configurator
+// button visible on a phone, and its two choices must be equal (size and emphasis, GDPR / NMHH), each
+// a 44 px touch target, with the privacy notice still linked.
+const bannerCheck = () => {
+  const card = document.querySelector('#cookie-consent')!.firstElementChild as HTMLElement;
+  const btns = [...card.querySelectorAll('button')].map((b) => {
+    const r = b.getBoundingClientRect();
+    const cs = getComputedStyle(b);
+    return { w: Math.round(r.width), h: Math.round(r.height), top: Math.round(r.top), look: [cs.backgroundColor, cs.color, cs.fontWeight, cs.fontSize, cs.borderTopColor, cs.borderTopWidth].join(' ') };
+  });
+  const link = card.querySelector('a');
+  return {
+    top: Math.round(card.getBoundingClientRect().top),
+    title: Math.round(document.querySelector('#home h1')!.getBoundingClientRect().bottom),
+    button: Math.round(document.querySelector('[data-testid="configurator"] button[type="submit"]')!.getBoundingClientRect().bottom),
+    btns,
+    link: link ? { href: link.getAttribute('href'), visible: link.getBoundingClientRect().height > 0 } : null,
+  };
+};
+
+for (const width of [360, 375, 390, 412]) {
+  test(`first visit at ${width} px: the hero title and the button are above the cookie banner, its choices equal`, async ({ browser }) => {
+    for (const path of ['/', '/en', '/de']) {
+      const ctx = await browser.newContext({ viewport: { width, height: 812 } });
+      const page = await ctx.newPage();
+      await page.goto(path);
+      await expect(page.locator('#cookie-consent')).toBeVisible();
+      const m = await page.evaluate(bannerCheck);
+      expect(m.title, `${path} title`).toBeLessThanOrEqual(m.top);
+      expect(m.button, `${path} button`).toBeLessThanOrEqual(m.top);
+      expect(m.btns, `${path} two choices`).toHaveLength(2);
+      const [a, b] = m.btns;
+      expect([b.w, b.h, b.top, b.look], `${path} equal, one row`).toEqual([a.w, a.h, a.top, a.look]);
+      expect(a.h, `${path} touch target`).toBeGreaterThanOrEqual(44);
+      expect(m.link?.visible, `${path} privacy link`).toBe(true);
+      expect(m.link?.href, `${path} privacy link`).toMatch(/adatvedelmi-nyilatkozat$/);
+      await ctx.close();
+    }
+  });
+}
+
+test('on a wide screen the cookie choices are equal too', async ({ browser }) => {
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await ctx.newPage();
+  await page.goto('/de');
+  const [a, b] = (await page.evaluate(bannerCheck)).btns;
+  expect([b.w, b.h, b.top, b.look]).toEqual([a.w, a.h, a.top, a.look]);
+  expect(a.h).toBeGreaterThanOrEqual(44);
+  await ctx.close();
+});

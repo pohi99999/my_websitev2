@@ -87,34 +87,33 @@ export default function CookieConsent() {
     setVisible(false);
   };
 
+  // The two choices are equal in size and emphasis (GDPR / NMHH: refusing is as easy as accepting), each
+  // at least 44 px tall. On a phone the banner is docked to the bottom edge and compact (12 px text,
+  // tight spacing), so on a first visit at 360-412 px the hero title and the configurator button stay
+  // above it (Marveen 5766); the text itself is unchanged.
+  const choice =
+    'min-h-[44px] rounded-lg border border-[#00e5ff]/60 bg-[#00e5ff]/10 px-3 text-sm font-semibold text-white transition hover:bg-[#00e5ff]/20 sm:px-4';
+
   return (
     <div
       id="cookie-consent"
       role="dialog"
       aria-live="polite"
       aria-label={copy.link}
-      className="fixed inset-x-0 bottom-0 z-[9998] px-4 pb-4 sm:px-6"
+      className="fixed inset-x-0 bottom-0 z-[9998] sm:px-6 sm:pb-4"
     >
-      <div className="mx-auto flex max-w-4xl flex-col gap-4 rounded-2xl border border-white/10 bg-slate-900/95 p-5 text-sm text-gray-200 shadow-2xl backdrop-blur sm:flex-row sm:items-center">
-        <p className="flex-1 leading-relaxed">
+      <div className="mx-auto flex max-w-4xl flex-col gap-2 rounded-t-2xl border-t border-white/10 bg-slate-900/95 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] text-sm text-gray-200 shadow-2xl backdrop-blur sm:flex-row sm:items-center sm:gap-4 sm:rounded-2xl sm:border sm:p-5">
+        <p className="flex-1 text-xs leading-snug sm:text-sm sm:leading-relaxed">
           {copy.text}{' '}
           <a href={copy.href} className="underline decoration-[#00e5ff]/60 underline-offset-2 hover:text-white">
             {copy.link}
           </a>
         </p>
-        <div className="flex flex-shrink-0 gap-2">
-          <button
-            type="button"
-            onClick={() => choose('necessary')}
-            className="rounded-lg border border-white/20 px-4 py-2 font-semibold text-white transition hover:bg-white/10"
-          >
+        <div className="grid flex-shrink-0 grid-cols-2 gap-2">
+          <button type="button" onClick={() => choose('necessary')} className={choice}>
             {copy.necessary}
           </button>
-          <button
-            type="button"
-            onClick={() => choose('all')}
-            className="rounded-lg bg-[#00e5ff] px-4 py-2 font-bold text-black transition hover:bg-[#33ebff]"
-          >
+          <button type="button" onClick={() => choose('all')} className={choice}>
             {copy.accept}
           </button>
         </div>
