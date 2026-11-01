@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Pohánka és Társa - Weboldal, automatizálás és AI-rendszerek',
     description: 'Időpontfoglaló és ajánlatkérő weboldal két hét alatt, fix áron, valamint automatizálás és AI-rendszerek vállalkozásoknak.',
-    images: ['/images/logo.png'],
+    // no layout image: a page without its own twitter:image falls back to its og:image on X, not to the logo
   },
   robots: {
     index: true,

@@ -61,6 +61,8 @@ export async function generateMetadata() {
       locale: ogLocale(language),
       images: [{ url: ogImageFor(language, '/weboldal-ai-kkv'), width: 1200, height: 630, alt: meta.title }],
     },
+    // the same image on X (it was the layout logo)
+    twitter: { card: 'summary_large_image', title: meta.title, description: meta.description, images: [ogImageFor(language, '/weboldal-ai-kkv')] },
   };
 }
 
