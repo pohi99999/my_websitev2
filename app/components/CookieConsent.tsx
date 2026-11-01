@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { CONSENT_STORAGE_KEY } from '../lib/consentFlag';
 
-export const CONSENT_STORAGE_KEY = 'pt-cookie-consent';
+export { CONSENT_STORAGE_KEY };
 export const CONSENT_EVENT = 'pt-cookie-consent-change';
 export const CONSENT_RESET_EVENT = 'pt-cookie-consent-reset';
 
@@ -63,11 +64,16 @@ const COPY = {
 
 export default function CookieConsent() {
   const { language } = useLanguage();
-  const [visible, setVisible] = useState(false);
+  // Visible in the server HTML, so a first visit paints the banner with the page; a visitor who already chose
+  // never sees it (the head script + CSS in lib/consentFlag.ts hide it before paint), and it leaves the DOM here.
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     setVisible(readConsent() === null);
-    const onReset = () => setVisible(true);
+    const onReset = () => {
+      document.documentElement.removeAttribute('data-consent');
+      setVisible(true);
+    };
     window.addEventListener(CONSENT_RESET_EVENT, onReset);
     return () => window.removeEventListener(CONSENT_RESET_EVENT, onReset);
   }, []);
@@ -83,6 +89,7 @@ export default function CookieConsent() {
 
   return (
     <div
+      id="cookie-consent"
       role="dialog"
       aria-live="polite"
       aria-label={copy.link}

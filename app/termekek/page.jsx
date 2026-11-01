@@ -147,7 +147,7 @@ export default async function TermekekPage() {
               {ui.basDesc}
             </p>
             <Link
-              href={withLang('/termekek/brunella-agents')}
+              href={withLang('/portfolio/brunella-bas')}
               className="inline-flex items-center text-[#00e5ff] font-bold hover:text-[#00e5ff]/80 transition-colors"
             >
               {ui.details} <ArrowRight className="ml-2" size={20} />

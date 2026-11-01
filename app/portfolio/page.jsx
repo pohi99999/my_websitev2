@@ -11,14 +11,14 @@ export async function generateMetadata() {
   const meta =
     language === "en"
       ? {
-          title: "Portfolio",
+          title: "Portfolio: Featured Projects",
           description: "Featured projects and case studies: AI automation, web development and business systems by Pohánka & Társa. See our work in action.",
           locale: "en_US",
           canonical: "/en/portfolio",
         }
       : language === "de"
         ? {
-            title: "Portfolio",
+            title: "Portfolio: Ausgewählte Projekte",
             description: "Ausgewählte Projekte und Fallstudien: KI-Automatisierung, Webentwicklung und Geschäftssysteme von Pohánka & Társa.",
             locale: "de_DE",
             canonical: "/de/portfolio",
