@@ -37,10 +37,15 @@ export const metadata: Metadata = {
   keywords: 'weboldal készítés Zalaegerszeg, időpontfoglaló weboldal, ajánlatkérő weboldal, foglalási rendszer, webáruház készítés, portál fejlesztés, mobilalkalmazás fejlesztés, automatizálás vállalkozásoknak, AI rendszerek vállalkozásoknak, Brunella AI ügynökrendszer',
   creator: "Pohánka Péter",
   publisher: "Pohánka és Társa Kft.",
+  // square brand mark (black tile, cyan P in the hero's corner frames); logo.png is a 1035x828 photo
+  // of 148 KB that every first visit downloaded as the tab icon
   icons: {
-    icon: '/images/logo.png',
-    shortcut: '/images/logo.png',
-    apple: '/images/logo.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16 32x32 48x48' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
   manifest: '/manifest.json',
   openGraph: {
