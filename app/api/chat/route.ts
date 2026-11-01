@@ -3,7 +3,7 @@ import { checkRateLimit } from './rate-limiter';
 import { CLAUDE_URL, ANTHROPIC_VERSION, DEFAULT_MODEL, TIMEOUT_MS, buildClaudeBody, readClaudeText, isBusy } from './claude';
 import { busyMessage, parseSiteLang, systemPromptFor, unavailableMessage } from './site-lang';
 import { isAllowedOrigin } from '../../lib/allowedOrigin';
-import { checkConfiguratorBudget, checkDailyBudget } from './budget';
+import { configuratorBudget, dailyBudget, type BudgetSource } from './budget';
 import { CONFIGURATOR_PROMPT, answer, keywordAnswer, parseModelChoice, readText } from './configurator';
 import type { FallbackReason } from '../../lib/configurator';
 
@@ -97,12 +97,22 @@ export async function POST(req: NextRequest) {
   // Every Claude failure answers HTTP 200 with a way forward (the page and contact links): a 5xx
   // would be replaced by the Cloudflare edge's own error page, and the widget's own error text has
   // no contact. The log line names the provider and the reason; never the question or the answer.
+  // X-Budget-Source names where the daily ceiling was counted (upstash / memory / memory-fallback),
+  // nothing else: no key, no count. It is there to check the store wiring on a deployment.
+  let budgetSource: BudgetSource | null = null;
+  const withSource = (res: NextResponse) => {
+    if (budgetSource) res.headers.set('X-Budget-Source', budgetSource);
+    return res;
+  };
   const fallback = (reason: string, busy: boolean) => {
     console.log(`chat provider=claude model=${model} fallback reason=${reason}`);
-    return NextResponse.json({ content: busy ? busyMessage(lang) : unavailableMessage(lang), busy: true });
+    return withSource(NextResponse.json({ content: busy ? busyMessage(lang) : unavailableMessage(lang), busy: true }));
   };
 
-  if (!(await checkDailyBudget())) return fallback('daily_budget', true);
+  const budget = await dailyBudget();
+  budgetSource = budget.source;
+  console.log(`chat budget source=${budget.source}`);
+  if (!budget.ok) return fallback('daily_budget', true);
 
   let response: Response;
   try {
@@ -135,7 +145,7 @@ export async function POST(req: NextRequest) {
   const content = readClaudeText(data);
   if (!content) return fallback('empty_or_truncated', false);
   console.log(`chat provider=claude model=${model} ok`);
-  return NextResponse.json({ content });
+  return withSource(NextResponse.json({ content }));
 }
 
 // ── The hero configurator (card ff1d7435) ───────────────────────────────────────────────────
@@ -153,14 +163,22 @@ async function isConfiguratorRequest(req: NextRequest): Promise<boolean> {
 
 async function configurator(body: { text?: unknown }) {
   const text = readText(body.text);
+  let budgetSource: BudgetSource | null = null;
+  const withSource = (res: NextResponse) => {
+    if (budgetSource) res.headers.set('X-Budget-Source', budgetSource);
+    return res;
+  };
   const keywords = (reason: FallbackReason, detail: string = reason) => {
     console.log(`configurator source=keywords reason=${detail}`);
-    return NextResponse.json(keywordAnswer(text, reason));
+    return withSource(NextResponse.json(keywordAnswer(text, reason)));
   };
   if (!text) return keywords('empty');
   const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
   if (!apiKey) return keywords('no_key');
-  if (!(await checkConfiguratorBudget())) return keywords('daily_budget');
+  const budget = await configuratorBudget();
+  budgetSource = budget.source;
+  console.log(`configurator budget source=${budget.source}`);
+  if (!budget.ok) return keywords('daily_budget');
   const model = process.env.ANTHROPIC_MODEL?.trim() || DEFAULT_MODEL;
 
   let response: Response;
@@ -189,5 +207,5 @@ async function configurator(body: { text?: unknown }) {
   const choice = parseModelChoice(readClaudeText(data) ?? '');
   if (!choice) return keywords('invalid');
   console.log(`configurator source=ai model=${model} ok`);
-  return NextResponse.json(answer(choice.industry, choice.features, 'ai'));
+  return withSource(NextResponse.json(answer(choice.industry, choice.features, 'ai')));
 }

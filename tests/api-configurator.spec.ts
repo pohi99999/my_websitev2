@@ -116,6 +116,9 @@ test.describe("POST /api/chat mode=configurator", () => {
       expect(sent.messages).toEqual([{ role: "user", content: "We rent two apartments by Lake Balaton" }]);
       expect(logStub.calledWith(sinon.match(/configurator source=ai/))).toBe(true);
       expect(logStub.calledWith(sinon.match(/Balaton/))).toBe(false);
+      // where the ceiling was counted; in tests there is no store, so memory (card 61082ddd)
+      expect(res.headers.get("x-budget-source")).toBe("memory");
+      expect(logStub.calledWith("configurator budget source=memory")).toBe(true);
     } finally {
       fetchStub.restore();
       logStub.restore();
