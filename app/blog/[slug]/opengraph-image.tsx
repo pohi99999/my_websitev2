@@ -15,8 +15,10 @@ function titleFromSlug(slug: string) {
     .join(' ');
 }
 
-export default function OpenGraphImage({ params }: { params: { slug: string } }) {
-  const slug = params?.slug ?? '';
+// Next 16 passes params as a Promise: read synchronously, the slug was undefined and every post's image
+// said "Blog bejegyzés" (Lumen 5806)
+export default async function OpenGraphImage({ params }: { params: Promise<{ slug: string }> }) {
+  const slug = (await params)?.slug ?? '';
   const meta = getBlogPostMeta(slug);
   const title = meta?.title ?? titleFromSlug(slug);
   const subtitle = meta ? `${meta.category} · ${meta.date}` : 'Pohánka AI Blog';

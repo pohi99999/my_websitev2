@@ -200,7 +200,7 @@ export default function AdatvedelmiPage() {
             rows={[
               { label: 'Név', value: 'Pohánka és Társa Könyvelő Iroda Kft. (rövidített név: Pohánka és Társa Kft.)' },
               { label: 'Székhely', value: '8900 Zalaegerszeg, Berek utca 38.' },
-              { label: 'Cégjegyzékszám', value: '20-09-069482 (Zala Vármegyei Törvényszék Cégbírósága)' },
+              { label: 'Cégjegyzékszám', value: '20-09-069482 (Zalaegerszegi Törvényszék Cégbírósága)' },
               { label: 'Adószám', value: '14728864-2-20' },
               { label: 'Képviseli', value: 'Pohánka Józsefné és Pohánka József ügyvezetők' },
               {

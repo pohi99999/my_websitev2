@@ -31,6 +31,8 @@ export async function generatePortfolioMetadata({ id, translations, imageSrc }) 
 
   // Without a page image, the generated share image with the page's own title (not the layout logo).
   metadata.openGraph.images = [{ url: imageSrc || ogImageFor(language, `/portfolio/${id}`), width: 1200, height: 630, alt: meta.title }];
+  // the same image on X; without it these pages showed the parent's generic /portfolio card or the layout logo
+  metadata.twitter = { card: 'summary_large_image', title: meta.title, description: meta.description, images: [metadata.openGraph.images[0].url] };
 
   return metadata;
 }

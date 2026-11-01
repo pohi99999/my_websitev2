@@ -129,7 +129,8 @@ const Portfolio = () =>
 
   return (
     <section id="portfolio" className="py-24 bg-black relative overflow-hidden">
-      {/* Background video */ }
+      {/* Background video. Phones get its first frame as a still (34 KB, preloaded by the page): the 4.7 MB video was the phone's
+          LCP element (6.8 s, Lumen 5800). The media query on the source keeps phones from downloading it. */ }
       <video
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
@@ -137,9 +138,10 @@ const Portfolio = () =>
         muted
         playsInline
         preload="none"
+        poster="/images/portfolio-poster.webp"
         aria-hidden="true"
       >
-        <source src="/portfolio.mp4" type="video/mp4" />
+        <source src="/portfolio.mp4" type="video/mp4" media="(min-width: 768px)" />
       </video>
 
       {/* Dark overlay */ }
@@ -163,7 +165,7 @@ const Portfolio = () =>
               <span className="text-4xl font-bold text-white">BAS</span>
             </div>
             <div className="p-8">
-              <h3 className="text-2xl font-bold text-white mb-3">Brunella</h3>
+              <h2 className="text-2xl font-bold text-white mb-3">Brunella</h2>
               <p className="text-gray-400 mb-6">{ ui.brunellaCard }</p>
               <Link
                 href={ withLang( '/portfolio/brunella-bas' ) }
@@ -184,7 +186,7 @@ const Portfolio = () =>
               <span className="text-4xl font-bold text-white">Pohi AI Pro</span>
             </div>
             <div className="p-8">
-              <h3 className="text-2xl font-bold text-white mb-3">Pohi AI Pro</h3>
+              <h2 className="text-2xl font-bold text-white mb-3">Pohi AI Pro</h2>
               <p className="text-gray-400 mb-6 text-sm leading-relaxed">
                 Egyedi fejlesztésű B2B kereskedési platform: vevői adatbázis, gyártói készlet és fuvarszervezés
                 egy helyen, Gemini AI-val és Google Maps logisztikai tervezéssel.
@@ -208,7 +210,7 @@ const Portfolio = () =>
               <TrendingUp className="w-16 h-16 text-[#00e5ff]" />
             </div>
             <div className="p-8">
-              <h3 className="text-2xl font-bold text-white mb-3">Üzleti Folyamatok</h3>
+              <h2 className="text-2xl font-bold text-white mb-3">Üzleti Folyamatok</h2>
               <p className="text-gray-400 mb-6">
                 Üzleti folyamatok teljes körű automatizálása a BAS rendszer segítségével.
                 A repetitív feladatok kiváltása intelligens ügynökökkel.

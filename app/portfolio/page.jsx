@@ -1,6 +1,7 @@
 import Portfolio from "../components/Portfolio";
 import LaborTeaser from "../labor/LaborTeaser";
 import { headers } from "next/headers";
+import { preload } from "react-dom";
 
 export const revalidate = 3600;
 
@@ -59,6 +60,8 @@ export async function generateMetadata() {
 }
 
 export default function PortfolioPage() {
+  // the background video's still is the phone's LCP element (the video itself is desktop only): fetch it early
+  preload("/images/portfolio-poster.webp", { as: "image", fetchPriority: "high" });
   return (
     <>
       {/* Breadcrumb Schema */}
