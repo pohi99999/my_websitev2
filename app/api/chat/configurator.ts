@@ -21,12 +21,15 @@ export function answer(industry: Industry, features: readonly Feature[], source:
 // "Balaton" (a restaurant by the lake), "éjszaka" (a painter working nights). The same for a bare
 // "szerviz" (air conditioning, boilers, phones, bikes), "gumi" (gummy sweets), "garage door",
 // "beautiful", "nails" (screws), "pension advisor" and "hotel transfer" (Lumen 5732): only the
-// compound or the context that names the trade decides. Tested against Lumen's 57-sentence set
-// (tests/fixtures/keyword-acceptance.json).
+// compound or the context that names the trade decides. A word decides only with a context that
+// names the trade ("Werkstatt" after Auto/Kfz/Reifen, "beauty" as a salon/studio/treatment, not
+// insurance or rental around "car"/"Kfz"); when in doubt the answer is "other", which is always
+// acceptable, never a wrong industry (Lumen 5736). Tested against Lumen's two independent sets
+// (tests/fixtures/keyword-acceptance.json, keyword-acceptance-2.json).
 const PROFILES: Array<{ industry: Industry; re: RegExp; features: Feature[] }> = [
   { industry: 'hair_salon', re: /fodr|hajvág|hajszalon|borbély|barber|\bhair|friseur|coiffeur/i, features: ['booking'] },
-  { industry: 'beauty', re: /kozmet|köröm|körm|manikűr|pedikűr|szempilla|smink|szépség|masszázs|masszőr|masszőz|masszíroz|bérlet|\bbeaut(?:y|ician)|cosmetic|\bnails? ?(?:salon|studio|bar|art|tech)|manicur|pedicure|\blash|make-?up|facial|massage|masseu|\bspa\b|kosmetik|nagel|wimpern/i, features: ['booking', 'deposit'] },
-  { industry: 'car_service', re: /autó(?!siskol)|gépjármű|szerelőműhely|gumiszerviz|gumiabroncs|gumicser|gumijav|\bgumis\b|\bcars?\b|\bgarage\b(?!\s*doors?)|mechanic|tyre|\btires?\b|werkstatt|kfz|reifen/i, features: ['quote', 'booking'] },
+  { industry: 'beauty', re: /kozmet|köröm|körm|manikűr|pedikűr|szempilla|smink|szépség|masszázs|masszőr|masszőz|masszíroz|\bbeauty ?(?:salon|studio|clinic|treatment|parlou?r|spa)|\bbeautician|\bcosmetician|\bcosmetics? ?(?:salon|studio|clinic|treatment)|\bnails? ?(?:salon|studio|bar|art|tech)|manicur|pedicure|\blash|make-?up|facial|massage|masseu|\bspa\b|kosmetik|nagel|wimpern/i, features: ['booking', 'deposit'] },
+  { industry: 'car_service', re: /autó(?!siskol|biztosít|kölcsönz|bérl|hitel)|gépjármű(?!-?(?:biztosít|kölcsönz|bérl))|szerelőműhely|gumiszerviz|gumiabroncs|gumicser|gumijav|\bgumis\b|\bcars?\b(?!\s*(?:insurance|loan|leasing|rental|hire|sharing))|\bgarage\b(?!\s*doors?)|mechanic|tyre|\btires?\b|(?:auto|kfz|reifen)-?werkstatt|kfz(?!-?(?:versicher|makler|zulassung))|reifen/i, features: ['quote', 'booking'] },
   { industry: 'guesthouse', re: /vendégház|vendégszob|szállás|panzió|apartman|szobakiad|guest ?house|b&b|bed and breakfast|hotel(?![- ]?(?:fürdő|transfer|shuttle))|holiday (?:home|let|rental)|rooms? to (?:let|rent)|\bpension\b(?!\s*(?:advis|fund|plan|scheme))|gästehaus|ferienwohnung|unterkunft|übernacht/i, features: ['booking', 'voucher'] },
   { industry: 'carpentry', re: /asztalos|bútor|konyhaszekrény|carpent|joiner|furniture|cabinetmak|wardrobe|fitted kitchen|kitchen (?:cabinet|fitter)|tischler|schreiner|möbel/i, features: ['quote'] },
 ];
