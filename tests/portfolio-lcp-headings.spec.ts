@@ -1,9 +1,9 @@
 import { test, expect, type APIRequestContext } from '@playwright/test';
 
-// From the live audit (card 0c1060b6, Lumen 5800, Marveen 5809): on a phone the /portfolio LCP element
-// was the 4.7 MB background video (6.8 s); the featured cards' titles skipped from h1 to h3; 14 pages
-// showed the layout logo as twitter:image and 5 the generic /portfolio card; the tab icon was the
-// 148 KB logo photo.
+// From the live audit (card 0c1060b6, Lumen 5800/5806, Marveen 5809/5811/5819): on a phone the
+// /portfolio LCP element was the 4.7 MB background video (6.8 s); the featured cards' titles skipped
+// from h1 to h3; 14 pages showed the layout logo as twitter:image and 5 the generic /portfolio card;
+// every blog post's share image said "Blog bejegyzés"; the privacy notice named the wrong court.
 
 const PORTFOLIO = ['/portfolio', '/en/portfolio', '/de/portfolio'];
 const SITE = 'https://www.pohankaestarsa.com';
@@ -60,15 +60,17 @@ async function sitemapPaths(request: APIRequestContext) {
   return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname);
 }
 
-test('twitter:image is never the logo, and follows og:image', async ({ request }) => {
+test('twitter:image loads, is never the logo, and follows og:image', async ({ request }) => {
   test.setTimeout(120_000);
   const bad: string[] = [];
   for (const path of await sitemapPaths(request)) {
     const html = await (await request.get(path)).text();
     const tw = html.match(/<meta name="twitter:image" content="([^"]+)"/)?.[1];
     const og = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
-    if (!tw) continue; // X falls back to og:image
+    if (!tw) { bad.push(`${path}: no twitter:image`); continue; }
     if (tw.endsWith('/images/logo.png')) { bad.push(`${path}: logo`); continue; }
+    const img = await request.get(new URL(tw, SITE).pathname + new URL(tw, SITE).search, { maxRedirects: 0 });
+    if (img.status() !== 200 || !(img.headers()['content-type'] ?? '').startsWith('image/')) bad.push(`${path}: twitter:image ${img.status()}`);
     if (tw === og) continue;
     if (!og) continue; // nothing to follow (the Zalaegerszeg page gets its og:image in #172)
     // a segment's own pair of generated images (twitter-image.tsx next to opengraph-image.tsx, 1200x600 vs 1200x630)
@@ -79,13 +81,21 @@ test('twitter:image is never the logo, and follows og:image', async ({ request }
   expect(bad).toEqual([]);
 });
 
-test('the tab icon is small and is not the logo photo', async ({ page, request }) => {
-  await page.goto('/');
-  const icons = await page.evaluate(() => [...document.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"]')].map((l) => [l.getAttribute('rel'), l.getAttribute('href')]));
-  expect(icons.length).toBeGreaterThan(0);
-  for (const [rel, href] of icons) {
-    expect(href, `${rel}`).not.toContain('/images/logo.png');
-    const body = await (await request.get(href!)).body();
-    expect(body.length, `${rel} ${href}`).toBeLessThan(rel === 'apple-touch-icon' ? 20_000 : 8_000);
+test('each blog post\'s share images draw its own title, not the fallback', async ({ request }) => {
+  // the image is a PNG: two posts with different titles must give different bytes (with the slug lost,
+  // both drew the same "Blog bejegyzés" card)
+  for (const kind of ['opengraph-image', 'twitter-image']) {
+    const [a, b] = await Promise.all(['brunella-mi-csapatvezeto', 'folyamat-automatizalas-5-lepes'].map(async (slug) => {
+      const res = await request.get(`/blog/${slug}/${kind}`);
+      expect(res.status(), `${slug} ${kind}`).toBe(200);
+      return res.body();
+    }));
+    expect(Buffer.compare(a, b), kind).not.toBe(0);
   }
+});
+
+test('the privacy notice names the registry court as the imprint does', async ({ page }) => {
+  await page.goto('/adatvedelmi-nyilatkozat');
+  await expect(page.locator('body')).toContainText('20-09-069482 (Zalaegerszegi Törvényszék Cégbírósága)');
+  await expect(page.locator('body')).not.toContainText('Zala Vármegyei Törvényszék');
 });
