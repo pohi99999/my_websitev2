@@ -131,10 +131,9 @@ export async function renderBrandImage({ size, theme, eyebrow, kicker, title, de
             paddingRight: titleGutter,
             maxWidth: 1040 + titleGutter,
             // Satori ignored the -webkit-box clamp (it wants textOverflow: ellipsis as well), so a long title
-            // ran on over the description; block + lineClamp clamps, and the three dots are in every font,
-            // unlike the ellipsis character
+            // ran on over the description; block + lineClamp clamps it
             display: 'block',
-            lineClamp: `${titleClamp} "..."`,
+            lineClamp: `${titleClamp} "…"`,
             overflow: 'hidden'
           }}
         >
@@ -150,7 +149,7 @@ export async function renderBrandImage({ size, theme, eyebrow, kicker, title, de
               lineHeight: 1.25,
               color: 'rgba(255,255,255,0.88)',
               display: 'block',
-              lineClamp: '3 "..."',
+              lineClamp: '3 "…"',
               overflow: 'hidden'
             }}
           >
@@ -194,8 +193,8 @@ export async function renderBrandImage({ size, theme, eyebrow, kicker, title, de
     {
       ...size,
       fonts: [
-        { name: 'Inter', data: inter500, style: 'normal', weight: 500 },
-        { name: 'Inter', data: inter800, style: 'normal', weight: 800 }
+        ...inter500.map((data) => ({ name: 'Inter', data, style: 'normal' as const, weight: 500 as const })),
+        ...inter800.map((data) => ({ name: 'Inter', data, style: 'normal' as const, weight: 800 as const }))
       ]
     }
   );
