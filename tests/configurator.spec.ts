@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { PACKAGES, packagePrice } from '../app/lib/configurator';
-import { OTHER_RESULT, parseConfiguratorResponse } from '../app/lib/configuratorUi';
+import { OTHER_RESULT, featureSummary, parseConfiguratorResponse } from '../app/lib/configuratorUi';
 import { BASE_PRICE } from '../app/lib/basePrice';
 
 // The homepage configurator (card ff1d7435): the endpoint (Kenshin, PR #163) answers with keys only,
@@ -24,6 +24,15 @@ test.describe('configurator answer reader', () => {
       expect(parseConfiguratorResponse(bad)).toBeNull();
     }
     expect(OTHER_RESULT.packages).toEqual(['base', 'care']);
+  });
+
+  test('the "Main feature" line names what the offer contains, not the industry sample text', () => {
+    // a guesthouse that asked for a card deposit: the offer has booking, deposit and voucher
+    expect(featureSummary(['base', 'booking', 'deposit', 'voucher', 'care'], 'en')).toBe('online booking + card deposit + gift voucher');
+    expect(featureSummary(['base', 'booking', 'deposit', 'care'], 'hu')).toBe('online időpontfoglalás + bankkártyás előleg');
+    expect(featureSummary(['base', 'booking', 'care'], 'de')).toBe('Online-Terminbuchung');
+    // no add-on: the base package's quote form
+    expect(featureSummary(OTHER_RESULT.packages, 'hu')).toBe('ajánlatkérő űrlap');
   });
 
   test('every package has a price in every language, and the base price is the one on the price card', () => {
@@ -78,6 +87,15 @@ test.describe('configurator on the homepage', () => {
     await expect(offer).toBeVisible({ timeout: 10_000 });
     await expect(page.getByTestId('configurator')).toContainText('helyi szolgáltató');
     await expect(offer).not.toContainText('Bővítmény');
+  });
+
+  test('English free text with a card deposit: the summary says so, as the offer does', async ({ page }) => {
+    // keyword rules (no model key): a guesthouse defaults to booking + voucher, the text adds the deposit
+    await page.goto('/en');
+    await page.locator('#configurator-text').fill('I run a guesthouse and want online booking with a card deposit.');
+    await page.getByTestId('configurator').getByRole('button', { name: 'Show me' }).click();
+    await expect(page.getByTestId('configurator-offer')).toContainText('Add-on: card deposit', { timeout: 10_000 });
+    await expect(page.getByTestId('configurator').locator('[aria-live="polite"]')).toContainText('card deposit');
   });
 
   test('English page, reduced motion: the whole sketch shows at once', async ({ browser }) => {

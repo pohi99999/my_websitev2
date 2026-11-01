@@ -17,6 +17,7 @@ import {
   CONFIGURATOR_PREFILL_EVENT,
   OTHER_RESULT,
   contactNeedFor,
+  featureSummary,
   parseConfiguratorResponse,
   profileFor,
   type ConfiguratorPrefill,
@@ -180,7 +181,7 @@ export default function ConfiguratorHero ()
   const logLines = result
     ? [
       [ ui.industry, profile.kind ],
-      [ ui.feature, profile.why ],
+      [ ui.feature, featureSummary( packages, lang ) ],
       [ ui.sketch, packages.includes( 'booking' ) ? ui.sketchBooking : ui.sketchQuote ],
       [ ui.packageLine, packageName ],
     ]
@@ -263,7 +264,7 @@ export default function ConfiguratorHero ()
           ref={stageRef}
           className={`cfg-stage scroll-mt-24${ result ? ' has-result' : '' }`}
           role="img"
-          aria-label={result ? `${ ui.stage }: ${ profile.name }, ${ profile.why }` : ui.stage}
+          aria-label={result ? `${ ui.stage }: ${ profile.name }, ${ featureSummary( packages, lang ) }` : ui.stage}
           style={{ '--cfg-brand': profile.color } as React.CSSProperties}
         >
           <span className="cfg-corner cfg-c1" /><span className="cfg-corner cfg-c2" /><span className="cfg-corner cfg-c3" /><span className="cfg-corner cfg-c4" />

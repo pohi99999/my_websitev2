@@ -3,6 +3,7 @@
 // fixed price table live in the shared contract, lib/configurator.ts (Kenshin, PR #163).
 import {
   FEATURES,
+  FEATURE_LABEL,
   INDUSTRIES,
   packagesFor,
   type ConfiguratorLang,
@@ -72,6 +73,21 @@ const PROFILE_TEXT: Record<ConfiguratorLang, Record<Industry, Omit<Profile, 'col
 export function profileFor ( industry: Industry, lang: ConfiguratorLang ): Profile
 {
   return { ...PROFILE_TEXT[ lang ][ industry ], color: COLORS[ industry ] };
+}
+
+/**
+ * The "Main feature" line: what the offer below actually contains, not the industry's sample text.
+ * Read from the packages (the same source as the offer), so "a guesthouse with a card deposit" says
+ * booking + card deposit + gift voucher instead of the guesthouse default "booking + gift vouchers".
+ * No add-on means the base package's quote form. Hungarian and English start lower-case after the
+ * label; German nouns keep their capital.
+ */
+export function featureSummary ( packages: readonly PackageKey[], lang: ConfiguratorLang ): string
+{
+  const order: Feature[] = [ 'booking', 'deposit', 'voucher' ];
+  const present = order.filter( ( f ) => packages.includes( f as PackageKey ) );
+  const labels = ( present.length ? present : [ 'quote' as Feature ] ).map( ( f ) => FEATURE_LABEL[ f ][ lang ] );
+  return labels.map( ( l ) => ( lang === 'de' ? l : l.charAt( 0 ).toLowerCase() + l.slice( 1 ) ) ).join( ' + ' );
 }
 
 /** The contact form's "What do you need?" option that fits the result (QUOTE_NEEDS in quoteRequest.ts). */
