@@ -46,9 +46,10 @@ const SequentialVideoBackground: React.FC = () =>
   const normalizedPath = pathname.replace( /^\/(en|de)(?=\/|$)/, '' ) || '/';
   // /labor draws its own 3D scene and poster behind the page: no video there, not even a download
   const noVideo = normalizedPath === '/labor';
-  // /portfolio on a phone: the static gradient, not the video (the page's own section shows a still there)
+  // /portfolio and its subpages on a phone: the static gradient, not the 4.7 MB portfolio.mp4 (on /portfolio
+  // the page's own section shows a still)
   const [phone] = useState( () => window.matchMedia( '(max-width: 767.98px)' ).matches );
-  const stillOnly = normalizedPath === '/portfolio' && phone;
+  const stillOnly = ( normalizedPath === '/portfolio' || normalizedPath.startsWith( '/portfolio/' ) ) && phone;
   const videoOn = richMediaEnabled && !stillOnly;
 
   // Function to switch video with cross-fade
