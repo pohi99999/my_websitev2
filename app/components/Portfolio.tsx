@@ -215,9 +215,7 @@ const Portfolio = () =>
                 Üzleti folyamatok teljes körű automatizálása a BAS rendszer segítségével.
                 A repetitív feladatok kiváltása intelligens ügynökökkel.
               </p>
-              <a href="#" className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors">
-                { ui.details } <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
+              {/* no "Details" link: there is no page for this card yet (it pointed to "#") */ }
             </div>
           </div>
         </div>

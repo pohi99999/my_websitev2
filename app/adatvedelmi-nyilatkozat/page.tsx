@@ -178,7 +178,8 @@ const RIGHTS = [
 
 export default function AdatvedelmiPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white pt-24 pb-16 px-6">
+    // a div, not a second <main>: the layout's #main-content is the page's main landmark
+    <div className="min-h-screen bg-slate-950 text-white pt-24 pb-16 px-6">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-extrabold gradient-text">Adatvédelmi tájékoztató</h1>
         <p className="mt-3 text-sm text-gray-400">Hatályos: {LAST_UPDATED}</p>
@@ -388,6 +389,6 @@ export default function AdatvedelmiPage() {
           </p>
         </section>
       </div>
-    </main>
+    </div>
   );
 }
