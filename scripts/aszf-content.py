@@ -3,7 +3,8 @@
 # looks. Each language's sha256 goes next to its text, so a test can tell that the published text is
 # the approved one.
 #
-#   python3 scripts/aszf-content.py <dir with ASZF-VEGLEGES-HU.md [ASZF-EN.md ASZF-DE.md]>
+#   ASZF_WITH_TRANSLATIONS=1 python3 scripts/aszf-content.py <dir with ASZF-VEGLEGES-HU.md, ASZF-EN.md, ASZF-DE.md>
+#   (without the variable only the Hungarian text is written)
 import hashlib, json, os, sys
 
 src = sys.argv[1]

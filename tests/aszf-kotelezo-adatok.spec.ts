@@ -5,7 +5,11 @@ import { ASZF } from '../app/aszf/content';
 // The approved ÁSZF and the mandatory company data (card 0c1060b6, Marveen 5829, Péter's approval:
 // Telegram 12456).
 
-const APPROVED_HU_SHA256 = '85590ed54dedb23eb5dd2884a9b01253d109439bdf784afed9e772370a689ba0';
+const APPROVED_SHA256 = {
+  hu: '85590ed54dedb23eb5dd2884a9b01253d109439bdf784afed9e772370a689ba0', // Péter, Telegram 12456
+  en: 'cee4784f1304fb585e14e7b12a0d2ece48cbda76151c46ba02c8df2909d6d55e', // Aura's translation, Marveen 5832
+  de: '53421b0625e03228c8f55932e4bd33de789bd9a46523a9d0aee9c284d2a2d7f4', // Aura's translation, Marveen 5832
+} as const;
 const GMAIL = 'peterpohankapersonal@gmail.com';
 const LEGAL = ['/impresszum', '/adatvedelmi-nyilatkozat', '/aszf'].flatMap((p) => [p, `/en${p}`, `/de${p}`]);
 // The P-Search app's privacy policy names its developer as a private person; its contact address is a
@@ -30,33 +34,38 @@ test('no page, and no script a page loads, shows the gmail address', async ({ re
   expect(bad).toEqual([]);
 });
 
-test('the Hungarian ÁSZF is the approved text, byte for byte', async () => {
-  const hu = ASZF.hu!;
-  expect(hu.sha256).toBe(APPROVED_HU_SHA256);
-  expect(createHash('sha256').update(hu.markdown, 'utf8').digest('hex')).toBe(APPROVED_HU_SHA256);
-});
+for (const lang of ['hu', 'en', 'de'] as const) {
+  test(`the ${lang} ÁSZF is the approved text, byte for byte`, async () => {
+    const doc = ASZF[lang]!;
+    expect(doc.sha256).toBe(APPROVED_SHA256[lang]);
+    expect(createHash('sha256').update(doc.markdown, 'utf8').digest('hex')).toBe(APPROVED_SHA256[lang]);
+  });
+}
 
 /** The words of a markdown text as a reader sees them: markdown syntax out, whitespace collapsed. */
 function markdownWords(md: string) {
   return md
     .split('\n')
     .filter((l) => !/^\s*\|?\s*-{3,}/.test(l) && !/^\s*-{3,}\s*$/.test(l)) // table separator rows, rules
-    .map((l) => l.replace(/^\s*#+\s*/, '').replace(/^\s*[-*]\s+/, '').replace(/\|/g, ' '))
+    .map((l) => l.replace(/^\s*>\s?/, '').replace(/^\s*#+\s*/, '').replace(/^\s*[-*]\s+/, '').replace(/\|/g, ' '))
     .join(' ')
     .replace(/\*\*|\*/g, '')
     .split(/\s+/)
     .filter(Boolean);
 }
 
-test('/aszf draws exactly the words of the approved text', async ({ page }) => {
-  await page.goto('/aszf');
+for (const [path, lang] of [['/aszf', 'hu'], ['/en/aszf', 'en'], ['/de/aszf', 'de']] as const) {
+test(`${path} draws exactly the words of the approved ${lang} text`, async ({ page }) => {
+  await page.goto(path);
+  await expect(page.getByTestId('aszf-doc')).toHaveAttribute('lang', lang);
   const shown = (await page.getByTestId('aszf-doc').innerText()).split(/\s+/).filter(Boolean);
-  const source = markdownWords(ASZF.hu!.markdown);
+  const source = markdownWords(ASZF[lang]!.markdown);
   // first difference, for a readable failure
   const at = shown.findIndex((w, i) => w !== source[i]);
   expect(at === -1 ? null : { at, shown: shown.slice(Math.max(0, at - 5), at + 5).join(' '), source: source.slice(Math.max(0, at - 5), at + 5).join(' ') }).toBeNull();
   expect(shown.length).toBe(source.length);
 });
+}
 
 for (const [path, labels] of [
   ['/impresszum', ['Teljes cégnév', 'Ügyvezetők', 'Tárhelyszolgáltató', 'Békéltető testület']],
