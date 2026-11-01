@@ -98,6 +98,25 @@ test.describe('configurator on the homepage', () => {
     await expect(page.getByTestId('configurator').locator('[aria-live="polite"]')).toContainText('card deposit');
   });
 
+  test('the offer rows line up in two columns; the mock phone button is one whole word', async ({ browser }) => {
+    // Lumen 5718: at 1024 px the price column started at 491/279/268/559 px (flex rows), and the phone
+    // showed the first word of the CTA ("KEZELÉST"). Now a grid column, and Foglalás / Ajánlat.
+    const ctx = await browser.newContext({ viewport: { width: 1024, height: 900 }, reducedMotion: 'reduce' });
+    const p = await ctx.newPage();
+    await p.addInitScript(() => window.localStorage.setItem('pt-cookie-consent', 'necessary'));
+    await p.goto('/');
+    await p.locator('#configurator-text').fill('Kozmetikus vagyok, foglalást, bankkártyás előleget és ajándékutalványt szeretnék.');
+    await p.getByTestId('configurator').getByRole('button', { name: 'Mutassa' }).click();
+    const offer = p.getByTestId('configurator-offer');
+    await expect(offer.locator('li')).toHaveCount(5, { timeout: 10_000 });
+    const xs = await offer.locator('li strong').evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().left)));
+    expect(new Set(xs).size).toBe(1);
+    await expect(p.locator('.cfg-p-btn')).toHaveText('Foglalás');
+    await p.getByTestId('configurator').getByRole('button', { name: 'Asztalos' }).click();
+    await expect(p.locator('.cfg-p-btn')).toHaveText('Ajánlat', { timeout: 10_000 });
+    await ctx.close();
+  });
+
   test('English page, reduced motion: the whole sketch shows at once', async ({ browser }) => {
     const ctx = await browser.newContext({ reducedMotion: 'reduce' });
     const p = await ctx.newPage();

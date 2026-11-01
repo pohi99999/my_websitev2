@@ -1,4 +1,6 @@
 import { test, expect } from "@playwright/test";
+import fs from "node:fs";
+import path from "node:path";
 import sinon from "sinon";
 import { NextRequest } from "next/server";
 import { POST } from "../app/api/chat/route";
@@ -270,6 +272,42 @@ test.describe("configurator contract (app/lib/configurator.ts)", () => {
     expect(k("Könyvelőiroda")).toBe("other");
     expect(k("Spanish lessons")).toBe("other");
     expect(keywordAnswer("Könyvelő vagyok, ajándékutalványt is árulnék", "daily_budget").features).toEqual(["quote", "voucher"]);
+  });
+
+  // Lumen 5718: sentences the preview classified wrongly with the first-match order (guesthouse before
+  // beauty, a bare "vendég"/"guest", "szerel" in "Szerelem"). Each line failed on the previous rules.
+  test("salon clients called guests stay salons; lodging needs a lodging word; love is not a repair", () => {
+    const k = (s: string) => keywordAnswer(s, "daily_budget").industry;
+    expect(k("Kozmetikus vagyok Zalaegerszegen, szeretném, ha a vendégek online foglalnának és ajándékutalványt vehetnének.")).toBe("beauty");
+    expect(k("Kozmetikus vagyok, a vendégeim online foglalnának.")).toBe("beauty");
+    expect(k("Körmös vagyok, a vendégek időpontot foglalnának.")).toBe("beauty");
+    expect(k("I run a beauty salon and my guests book online.")).toBe("beauty");
+    expect(k("Masszőr vagyok, online foglalást szeretnék.")).toBe("beauty");
+    expect(k("Szerelem a lovakat, lovardám van.")).toBe("other");
+    expect(k("Fodrász vagyok, a vendégeim online foglalnának.")).toBe("hair_salon");
+    expect(k("I make chairs to order.")).toBe("other"); // "chairs" is not "hair"
+    expect(k("I make custom furniture, chairs too.")).toBe("carpentry");
+    // the other direction: lodging and repair words still decide
+    expect(k("Vendégházam van a Balatonnál.")).toBe("guesthouse");
+    expect(k("Szállást adok ki, a vendégek online foglalnának.")).toBe("guesthouse");
+    expect(k("We run a guest house with four rooms.")).toBe("guesthouse");
+    expect(k("Wir haben ein Gästehaus am See.")).toBe("guesthouse");
+    expect(k("Autószerelő műhelyem van.")).toBe("car_service");
+    expect(k("Vendégeket fogadok.")).toBe("other");
+  });
+
+  test("every sample button on the page lands on its own industry", () => {
+    const src = fs.readFileSync(path.resolve("app/components/ConfiguratorHero.tsx"), "utf8");
+    const samples = [...src.matchAll(/\[ '([^']+)', '([^']+)' \]/g)].map((m) => [m[1], m[2]]);
+    const expected: Record<string, string> = {
+      Fodrász: "hair_salon", "Hair salon": "hair_salon", Friseur: "hair_salon",
+      Autószerviz: "car_service", "Car service": "car_service", Autowerkstatt: "car_service",
+      Vendégház: "guesthouse", Guesthouse: "guesthouse", "Gästehaus": "guesthouse",
+      Kozmetika: "beauty", Beauty: "beauty", Kosmetik: "beauty",
+      Asztalos: "carpentry", Carpenter: "carpentry", Tischler: "carpentry",
+    };
+    expect(samples.length).toBe(15);
+    for (const [label, text] of samples) expect(`${label}: ${keywordAnswer(text, "no_key").industry}`).toBe(`${label}: ${expected[label]}`);
   });
 
   test("parseModelChoice keeps only a valid industry and listed features", () => {

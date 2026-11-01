@@ -777,6 +777,14 @@ a {
 /* Homepage configurator sketch (ConfiguratorHero, card ff1d7435): a laptop and a phone in CSS 3D
    whose layers drop into place one by one. No WebGL. Before the first answer the desktop shows a
    faint sample; phones hide the stage until there is something to show. */
+/* The configurator's own headings (the offer title, "Javasolt csomag: Alapcsomag + bővítmény") are not
+   hyphenated: every word in them fits a 360 px line (measured), so automatic hyphenation only split
+   words that would have fitted ("Alap-csomag", Lumen 5718). The site-wide phone rule above stays. */
+.cfg h2,
+.cfg h3 {
+  hyphens: manual;
+  text-wrap: balance;
+}
 .cfg-field:focus-within {
   border-color: #00e5ff;
   box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.15);

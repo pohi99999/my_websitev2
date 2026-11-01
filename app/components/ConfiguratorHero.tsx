@@ -29,6 +29,8 @@ const UI: Record<ConfiguratorLang, {
   privacy: string; stage: string; industry: string; feature: string; sketch: string; sketchQuote: string;
   sketchBooking: string; packageLine: string; offerTitle: string; source: string; offerCta: string;
   packagePrefix: string;
+  /** the mock phone's button: one short word, chosen by whether the offer has booking */
+  phoneBook: string; phoneQuote: string;
 }> = {
   hu: {
     label: 'Írja le egy mondatban, mivel foglalkozik, és megmutatjuk a weboldalát',
@@ -54,6 +56,8 @@ const UI: Record<ConfiguratorLang, {
     source: 'Az árak a weboldal árlistájából jönnek, nem az MI-től.',
     offerCta: 'Kérem a látványtervet',
     packagePrefix: 'Javasolt csomag',
+    phoneBook: 'Foglalás',
+    phoneQuote: 'Ajánlat',
   },
   en: {
     label: 'Describe your business in one sentence, and we show you your website',
@@ -79,6 +83,8 @@ const UI: Record<ConfiguratorLang, {
     source: 'The prices come from our price list, not from the AI.',
     offerCta: 'Request the design preview',
     packagePrefix: 'Suggested package',
+    phoneBook: 'Book',
+    phoneQuote: 'Quote',
   },
   de: {
     label: 'Beschreiben Sie Ihr Unternehmen in einem Satz, und wir zeigen Ihnen Ihre Website',
@@ -104,6 +110,8 @@ const UI: Record<ConfiguratorLang, {
     source: 'Die Preise stammen aus unserer Preisliste, nicht von der KI.',
     offerCta: 'Entwurf anfordern',
     packagePrefix: 'Empfohlenes Paket',
+    phoneBook: 'Buchen',
+    phoneQuote: 'Angebot',
   },
 };
 
@@ -230,7 +238,7 @@ export default function ConfiguratorHero ()
                 type="submit"
                 disabled={busy}
                 aria-busy={busy}
-                className="inline-flex min-h-12 items-center justify-center gap-2 bg-[#00e5ff] px-6 text-sm font-bold uppercase tracking-[0.12em] text-black transition hover:shadow-[0_0_24px_rgba(0,229,255,0.4)] disabled:opacity-60"
+                className="inline-flex min-h-12 items-center justify-center gap-2 bg-[#00e5ff] px-6 text-sm font-bold uppercase tracking-[0.12em] text-black transition hover:shadow-[0_0_24px_rgba(0,229,255,0.4)] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 {ui.submit}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -244,7 +252,7 @@ export default function ConfiguratorHero ()
                   type="button"
                   disabled={busy}
                   onClick={() => { setText( sentence ); build( sentence, 'sample' ); }}
-                  className="min-h-11 rounded-full border border-transparent bg-[#00e5ff]/15 px-4 text-sm font-medium text-[#00e5ff] transition hover:border-[#00e5ff]/40 disabled:opacity-60"
+                  className="min-h-11 rounded-full border border-transparent bg-[#00e5ff]/15 px-4 text-sm font-medium text-[#00e5ff] transition hover:border-[#00e5ff]/40 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   {chip}
                 </button>
@@ -281,7 +289,7 @@ export default function ConfiguratorHero ()
               <div className={`cfg-layer cfg-p-top${ on( 1 ) }`}>{txt( profile.name )}</div>
               <div className={`cfg-layer cfg-p-img${ on( 2 ) }`} />
               <div className={`cfg-layer cfg-p-cal${ on( 3 ) }`}>{[ 0, 1, 2, 3, 4, 5, 6, 7 ].map( ( i ) => <i key={i} className={i === 2 ? 'sel' : ''} /> )}</div>
-              <div className={`cfg-layer cfg-p-btn${ on( 4 ) }`}>{txt( profile.cta.split( ' ' )[ 0 ] )}</div>
+              <div className={`cfg-layer cfg-p-btn${ on( 4 ) }`}>{txt( packages.includes( 'booking' ) ? ui.phoneBook : ui.phoneQuote )}</div>
             </div></div>
           </div>
         </div>
@@ -293,7 +301,7 @@ export default function ConfiguratorHero ()
             <h2 className="mb-2 text-lg font-bold text-white">{ui.offerTitle}: {packageName}</h2>
             <ul className="grid gap-1 text-sm text-gray-300">
               {packages.map( ( k ) => (
-                <li key={k} className="flex flex-col gap-0.5 border-b border-dashed border-white/10 py-1 sm:flex-row sm:justify-between sm:gap-3">
+                <li key={k} className="grid gap-0.5 border-b border-dashed border-white/10 py-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,16rem)] sm:gap-4">
                   <span>{PACKAGE_LABEL[ k ][ lang ]}</span>
                   <strong className="font-semibold text-white">{packagePrice( k, lang )}</strong>
                 </li>
@@ -304,7 +312,7 @@ export default function ConfiguratorHero ()
           <button
             type="button"
             onClick={requestPreview}
-            className="inline-flex min-h-12 items-center justify-center gap-2 bg-[#00e5ff] px-6 text-sm font-bold uppercase tracking-[0.12em] text-black transition hover:shadow-[0_0_24px_rgba(0,229,255,0.4)]"
+            className="inline-flex min-h-12 items-center justify-center gap-2 bg-[#00e5ff] px-6 text-sm font-bold uppercase tracking-[0.12em] text-black transition hover:shadow-[0_0_24px_rgba(0,229,255,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             {ui.offerCta}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

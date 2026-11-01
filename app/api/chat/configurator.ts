@@ -12,11 +12,15 @@ export function answer(industry: Industry, features: readonly Feature[], source:
 }
 
 // ── The keyword rules (the prototype's, plus English and German words) ─────────────────────────
+// The first rule that matches wins, so the order matters (Lumen 5718, measured on the preview):
+// salons call their clients "vendég" / "guest" too, so hair and beauty come before the guesthouse,
+// and a bare "vendég" / "guest" decides nothing: the guesthouse needs a word about lodging.
+// "szerel" is not a car word on its own ("Szerelem a lovakat" is love, not a repair shop).
 const PROFILES: Array<{ industry: Industry; re: RegExp; features: Feature[] }> = [
-  { industry: 'hair_salon', re: /fodr|hajvág|borbély|barber|hair|friseur|coiffeur/i, features: ['booking'] },
-  { industry: 'car_service', re: /autó|szerel|szerviz|gumi|\bcars?\b|garage|mechanic|tyre|\btires?\b|werkstatt|kfz|reifen/i, features: ['quote', 'booking'] },
-  { industry: 'guesthouse', re: /vendég|szállás|panzió|apartman|balaton|guest|hotel|b&b|pension|ferienwohnung|unterkunft/i, features: ['booking', 'voucher'] },
-  { industry: 'beauty', re: /kozmet|köröm|szépség|masszázs|bérlet|beauty|nail|massage|\bspa\b|kosmetik/i, features: ['booking', 'deposit'] },
+  { industry: 'hair_salon', re: /fodr|hajvág|hajszalon|borbély|barber|\bhair|friseur|coiffeur/i, features: ['booking'] },
+  { industry: 'beauty', re: /kozmet|köröm|körm|manikűr|pedikűr|szempilla|smink|szépség|masszázs|masszőr|masszőz|masszíroz|bérlet|beaut|cosmetic|nail|manicure|pedicure|\blash|make-?up|facial|massage|masseu|\bspa\b|kosmetik|nagel|wimpern/i, features: ['booking', 'deposit'] },
+  { industry: 'car_service', re: /autó|gépjármű|autószerel|szerelőműhely|szerviz|gumi|\bcars?\b|garage|mechanic|tyre|\btires?\b|werkstatt|kfz|reifen/i, features: ['quote', 'booking'] },
+  { industry: 'guesthouse', re: /vendégház|vendégszob|szállás|panzió|apartman|szobakiad|éjszak|balaton|guest ?house|b&b|bed and breakfast|hotel|holiday (?:home|let|rental)|rooms? to (?:let|rent)|pension|gästehaus|ferienwohnung|unterkunft|übernacht/i, features: ['booking', 'voucher'] },
   { industry: 'carpentry', re: /asztalos|bútor|konyha|egyedi|carpent|joiner|furniture|kitchen|tischler|schreiner|möbel/i, features: ['quote'] },
 ];
 const OTHER_FEATURES: Feature[] = ['quote'];
