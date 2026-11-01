@@ -6,6 +6,9 @@ import SpotlightCard from '../../components/SpotlightCard';
 import { ArrowLeft, CheckCircle, Zap, Layers, Code, Database, Shield, Cpu } from 'lucide-react';
 import { headers } from 'next/headers';
 
+// the "Fejlesztés alatt" badge of the portfolio page (app/portfolio/pohi-ai-pro/page.jsx); the product is not on sale
+const STATUS_PILL = 'inline-block px-3 py-1 rounded-full bg-orange-500/20 text-orange-300 text-sm border border-orange-500/30';
+
 export async function generateMetadata() {
   const headerStore = await headers();
   const headerLang = headerStore.get('x-site-language');
@@ -76,7 +79,8 @@ export default async function PohiAIProPage() {
             back: 'Back to products',
             title: 'Pohi AI Pro',
             desc: 'A custom AI-enabled operations portal for customer data, orders, inventory and logistics coordination.',
-            cta: 'Start free trial',
+            status: 'In development',
+            cta: 'Get in touch',
             sectionTitle: 'Core capabilities',
             sectionSubtitle: 'Designed for practical deployment and measurable business impact.',
             bullets: [
@@ -90,7 +94,8 @@ export default async function PohiAIProPage() {
             back: 'Zurück zu Produkten',
             title: 'Pohi AI Pro',
             desc: 'Ein individuelles KI-Portal für Kundendaten, Bestellungen, Lagerbestände und Logistikkoordination.',
-            cta: 'Kostenlos testen',
+            status: 'In Entwicklung',
+            cta: 'Kontakt aufnehmen',
             sectionTitle: 'Kernfunktionen',
             sectionSubtitle: 'Für produktive Einführung und messbaren geschäftlichen Nutzen konzipiert.',
             bullets: [
@@ -113,6 +118,12 @@ export default async function PohiAIProPage() {
               </Link>
               <GsapFadeIn>
                 <div className="text-6xl mb-6">🤖</div>
+                <p className="mb-6">
+                  <span className={STATUS_PILL}>
+                    <span aria-hidden="true" className="mr-2">⚙️</span>
+                    {ui.status}
+                  </span>
+                </p>
                 <h1 className="text-5xl sm:text-6xl font-bold mb-6 gradient-text">{ui.title}</h1>
                 <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">{ui.desc}</p>
                 <Link href={withLang('/kapcsolat')} className="btn-primary">{ui.cta}</Link>
@@ -201,48 +212,6 @@ export default async function PohiAIProPage() {
     },
   ];
 
-  const plans = [
-    {
-      name: 'Starter',
-      price: '$99',
-      period: '/hó',
-      description: 'Kis projektekhez és fejlesztéshez',
-      features: [
-        '10,000 API hívás/hó',
-        '3 egyéni modell',
-        'Email támogatás',
-        'Szokásos támogatás órák',
-      ],
-    },
-    {
-      name: 'Professional',
-      price: '$499',
-      period: '/hó',
-      description: 'Termelési használatra',
-      features: [
-        '100,000 API hívás/hó',
-        'Korlátlan modellek',
-        'Prioritás email + chat',
-        '24/5 támogatás',
-        'API monitoring',
-      ],
-      popular: true,
-    },
-    {
-      name: 'Enterprise',
-      price: 'Egyedi',
-      period: '',
-      description: 'Nagyvállalati megoldás',
-      features: [
-        'Korlátlan API hívások',
-        'Dedikált infrastruktúra',
-        '24/7 telefonos támogatás',
-        'SLA garancia',
-        'On-premise opció',
-      ],
-    },
-  ];
-
   return (
     <div className="relative min-h-screen bg-transparent text-white overflow-hidden">
       {/* YouTube background (fixed + full-bleed cover) */}
@@ -273,6 +242,12 @@ export default async function PohiAIProPage() {
 
             <GsapFadeIn>
               <div className="text-6xl mb-6">🤖</div>
+              <p className="mb-6">
+                <span className={STATUS_PILL}>
+                  <span aria-hidden="true" className="mr-2">⚙️</span>
+                  Fejlesztés alatt
+                </span>
+              </p>
               <h1 className="text-5xl sm:text-6xl font-bold mb-6 gradient-text">
                 Pohi AI Pro
               </h1>
@@ -281,7 +256,7 @@ export default async function PohiAIProPage() {
                 Fejlesztőknek, adattudomány szakértőknek és vállalkozásoknak.
               </p>
               <Link href="/kapcsolat" className="btn-primary">
-                Ingyenes Próba Indítása
+                Érdeklődöm
               </Link>
             </GsapFadeIn>
           </div>
@@ -339,61 +314,6 @@ export default async function PohiAIProPage() {
           </div>
         </section>
 
-        {/* Pricing Section */}
-        <section className="py-24 px-6">
-          <div className="max-w-7xl mx-auto">
-            <GsapFadeIn>
-              <div className="text-center mb-16">
-                <h2 className="section-title">Árazás</h2>
-                <p className="section-subtitle">
-                  Válassza ki a legjobban megfelelő tervet
-                </p>
-              </div>
-            </GsapFadeIn>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {plans.map((plan, idx) => (
-                <GsapFadeIn key={idx} delay={idx * 0.2}>
-                  <SpotlightCard
-                    className={`p-8 flex flex-col h-full ${
-                      plan.popular ? 'ring-2 ring-blue-400 scale-105' : ''
-                    }`}
-                  >
-                    {plan.popular && (
-                      <div className="mb-4 inline-block">
-                        <span className="px-3 py-1 rounded-full bg-blue-500/30 text-blue-300 text-xs font-bold">
-                          NÉPSZERŰ
-                        </span>
-                      </div>
-                    )}
-                    
-                    <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                    <p className="text-gray-300 mb-4">{plan.description}</p>
-                    
-                    <div className="mb-6">
-                      <span className="text-4xl font-bold">{plan.price}</span>
-                      <span className="text-gray-400">{plan.period}</span>
-                    </div>
-
-                    <button className={`${plan.popular ? 'btn-primary' : 'btn-secondary'} mb-6`}>
-                      Válassza ezt a tervet
-                    </button>
-
-                    <ul className="space-y-3 flex-1">
-                      {plan.features.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-300">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </SpotlightCard>
-                </GsapFadeIn>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Integration Section */}
         <section className="py-24 px-6 bg-white/5">
           <div className="max-w-4xl mx-auto">
@@ -423,27 +343,6 @@ export default async function PohiAIProPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-24 px-6">
-          <div className="max-w-4xl mx-auto">
-            <GsapFadeIn>
-              <SpotlightCard className="p-12 sm:p-16 text-center">
-                <h2 className="text-4xl font-bold mb-6 gradient-text">
-                  Kezdje el ma ingyen!
-                </h2>
-                <p className="text-lg text-gray-300 mb-8">
-                  Próbálja ki a Pohi AI Pro-t 14 napig díjmentesen. Nincs szükség bankkártyára.
-                </p>
-                <Link
-                  href="/kapcsolat"
-                  className="btn-primary text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4 h-auto whitespace-normal text-center leading-tight"
-                >
-                  Ingyenes Próba Indítása
-                </Link>
-              </SpotlightCard>
-            </GsapFadeIn>
-          </div>
-        </section>
       </div>
     </div>
   );
