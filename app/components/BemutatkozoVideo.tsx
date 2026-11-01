@@ -67,6 +67,7 @@ export default function BemutatkozoVideo() {
               className="absolute inset-0 w-full h-full"
               src="https://www.youtube.com/embed/dZ3H49-OJfE"
               title={t.frameTitle}
+              loading="lazy"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"

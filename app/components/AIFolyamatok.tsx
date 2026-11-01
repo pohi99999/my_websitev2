@@ -158,7 +158,7 @@ export default function AIFolyamatok ()
       title: 'Brunella / BAS bizonyíték',
       desc: 'A saját működésünkön mutatjuk meg, hogyan dolgozik egy AI-csapat a gyakorlatban.',
       bullets: ['Valós orchestration tapasztalat', 'Működésközpontú szemlélet', 'Testreszabható bevezetés'],
-      refs: [{ text: 'Brunella / BAS rendszer', url: withLang( '/termekek/brunella-agents' ) }],
+      refs: [{ text: 'Brunella / BAS rendszer', url: withLang( '/portfolio/brunella-bas' ) }],
     },
   ];
 
@@ -262,7 +262,7 @@ export default function AIFolyamatok ()
               ) )}
             </ul>
             <Link
-              href={withLang( '/termekek/brunella-agents' )}
+              href={withLang( '/portfolio/brunella-bas' )}
               className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#00e5ff] hover:text-white transition-colors"
             >
               Brunella / BAS rendszer
