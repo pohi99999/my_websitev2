@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 import { FORM_STATUSES, FORMS, PAGE_NAMES, trackFormSubmit } from '../lib/analytics';
 import { useLanguage } from '../context/LanguageContext';
 
+// The "Projekt Egyeztetés" form on /szolgaltatasok. It sends through the site's own /api/contact (SMTP: the
+// same recipient, rate limit and honeypot as the /kapcsolat form; Marveen 5871). Until 11-01 it posted to the
+// n8n 'lead-form' webhook, whose workflow scored the lead and kept nothing, while the webhook's instant 200
+// showed the visitor a success. Success is shown only when the server says the mail went out.
 export function SmartContactForm() {
   const { language } = useLanguage();
   const [formData, setFormData] = useState({
@@ -12,6 +16,7 @@ export function SmartContactForm() {
     project_description: '',
     budget: ''
   });
+  const [website, setWebsite] = useState(''); // honeypot, as on /kapcsolat
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -23,26 +28,36 @@ export function SmartContactForm() {
     setStatus('submitting');
 
     try {
-      const n8nWebhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL;
-      if (!n8nWebhookUrl) {
-        throw new Error('N8N_WEBHOOK_URL is not configured');
-      }
-      const response = await fetch(`${n8nWebhookUrl}/webhook/lead-form`, {
+      // the same endpoint as KapcsolatClient (optionally an external backend base)
+      const externalApiBase = process.env.NEXT_PUBLIC_API_ENDPOINT?.trim();
+      const contactUrl = externalApiBase ? `${externalApiBase.replace(/\/$/, '')}/api/contact` : '/api/contact';
+      // /api/contact takes name, email and message: the budget and the description go into the message
+      const message = [
+        'Projekt Egyeztetés (Szolgáltatások oldal)',
+        `Tervezett büdzsé: ${formData.budget}`,
+        '',
+        formData.project_description,
+      ].join('\n');
+      const response = await fetch(contactUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ name: formData.name, email: formData.email, message, website }),
       });
+      const data = await response.json().catch(() => ({}));
 
-      if (!response.ok) {
+      if (!response.ok || !data?.ok) {
         trackFormSubmit({ form: FORMS.SmartContact, status: FORM_STATUSES.ErrorResponse, language, page: PAGE_NAMES.Services });
         setStatus('error');
         return;
       }
 
       setStatus('success');
-      trackFormSubmit({ form: FORMS.SmartContact, status: FORM_STATUSES.Success, language, page: PAGE_NAMES.Services });
+      // the API answers ok to a filled honeypot on purpose; that is a bot, not a lead
+      if (!website) {
+        trackFormSubmit({ form: FORMS.SmartContact, status: FORM_STATUSES.Success, language, page: PAGE_NAMES.Services });
+      }
       setFormData({ name: '', email: '', project_description: '', budget: '' });
     } catch (error) {
       console.error('Submission error:', error);
@@ -120,6 +135,19 @@ export function SmartContactForm() {
               <option value="300.000 - 1.000.000 Ft">300.000 - 1.000.000 Ft (Komplex)</option>
               <option value="1.000.000 Ft felett">1.000.000 Ft felett (Vállalati)</option>
             </select>
+          </div>
+
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="smart-honeypot-website">Website</label>
+            <input
+              id="smart-honeypot-website"
+              name="website"
+              type="text"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
           </div>
 
           {status === 'error' && (

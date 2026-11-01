@@ -58,10 +58,10 @@ const CASES: FormCase[] = [
   {
     name: 'smart contact form',
     path: '/szolgaltatasok',
-    endpoint: '**/webhook/lead-form',
+    endpoint: '**/api/contact',
     form: 'smart_contact',
     page: 'services',
-    okBody: 'ok',
+    okBody: JSON.stringify({ ok: true }),
     fill: async (page) => {
       await page.fill('input[name="name"]', 'Test User');
       await page.fill('input[name="email"]', 'test@example.com');
