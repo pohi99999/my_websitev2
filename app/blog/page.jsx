@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { BLOG_POST_ORDER, getBlogPostMeta } from './blogPosts.meta';
 import { headers } from 'next/headers';
+import { softHyphens } from '../lib/softHyphens';
 
 export const revalidate = 3600;
 
@@ -135,7 +136,7 @@ export default async function BlogPage() {
                   </div>
                 </div>
 
-                <h2 className="text-2xl font-bold mb-4 group-hover:text-[#00e5ff] transition-colors leading-tight">{post.title}</h2>
+                <h2 className="text-2xl font-bold mb-4 group-hover:text-[#00e5ff] transition-colors leading-tight">{softHyphens(post.title)}</h2>
 
                 <p className="text-gray-400 mb-8 flex-grow leading-relaxed">{post.excerpt}</p>
 

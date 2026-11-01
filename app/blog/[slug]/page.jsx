@@ -7,6 +7,7 @@ import { getBlogPostMeta } from '../blogPosts.meta';
 import { renderMarkdownToHtml } from '../../../lib/markdown';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
+import { softHyphens } from '../../lib/softHyphens';
 
 // Valós Blog Tartalmak
 const blogPosts = {
@@ -1011,7 +1012,7 @@ export default async function BlogPostPage({ params }) {
       ? // stripIndent BEFORE trim: trimming first left the first line at indent 0, so nothing was
         // dedented and the 6-space-indented body rendered as one monospace code block.
         stripIndent(String(post.content ?? '')).trim()
-      : stripIndent(localizedLongformBodies[language]?.[slug] ?? `\n## ${post.title}\n\n${post.excerpt}\n`);
+      : stripIndent(localizedLongformBodies[language]?.[slug] ?? `\n## ${softHyphens(post.title)}\n\n${post.excerpt}\n`);
 
   const renderedContent = await renderMarkdownToHtml(localizedBody);
 
@@ -1103,7 +1104,7 @@ export default async function BlogPostPage({ params }) {
             </Link>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 gradient-text leading-tight">
-              {post.title}
+              {softHyphens(post.title)}
             </h1>
 
             <div className="flex flex-wrap gap-6 text-gray-400 mb-8 text-sm sm:text-base">
@@ -1206,7 +1207,7 @@ export default async function BlogPostPage({ params }) {
               <GsapFadeIn key={idx} delay={0.5 + idx * 0.1}>
                 <SpotlightCard className="p-8 h-full flex flex-col justify-between hover:border-blue-500/50 transition-colors">
                   <h3 className="text-xl font-bold mb-4">
-                    {getBlogPostMeta(relatedPost.slug, language)?.title ?? relatedPost.title ?? relatedPost.slug}
+                    {softHyphens(getBlogPostMeta(relatedPost.slug, language)?.title ?? relatedPost.title ?? relatedPost.slug)}
                   </h3>
                   <Link
                     href={`${prefix}/blog/${relatedPost.slug}`}
