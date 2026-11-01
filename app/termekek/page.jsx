@@ -117,7 +117,8 @@ export default async function TermekekPage() {
           };
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-center">
+    // a div, not a second <main>: the layout's #main-content is the page's main landmark
+    <div className="relative min-h-screen flex flex-col items-center justify-center">
       {/* Breadcrumb Schema */}
       <script
         type="application/ld+json"
@@ -207,6 +208,6 @@ export default async function TermekekPage() {
           </div>
         </section>
       </div>
-    </main>
+    </div>
   );
 }

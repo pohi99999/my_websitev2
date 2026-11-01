@@ -350,8 +350,9 @@ export default async function SzolgaltatasokPage() {
             cta: 'Kostenlose Beratung',
           };
 
+    // a div, not a second <main>: the layout's #main-content is the page's main landmark
     return (
-      <main className="relative min-h-screen">
+      <div className="relative min-h-screen">
         <div className="absolute inset-0 bg-black/70 z-[1]" />
         <div className="relative z-10 container mx-auto px-4 pt-28 pb-20 text-white">
           <div className="text-center mb-14 max-w-3xl mx-auto">
@@ -390,12 +391,12 @@ export default async function SzolgaltatasokPage() {
             </a>
           </section>
         </div>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="relative min-h-screen">
+    <div className="relative min-h-screen">
       {/* Breadcrumb Schema */}
       <script
         type="application/ld+json"
@@ -600,6 +601,6 @@ export default async function SzolgaltatasokPage() {
         </div>
 
       </div>
-    </main>
+    </div>
   );
 }

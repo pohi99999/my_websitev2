@@ -130,7 +130,8 @@ export default function PSearchPrivacy({ lang }: { lang: Lang }) {
   const { title, body } = PSEARCH_PRIVACY[lang];
   const blocks = parse(body);
   return (
-    <main lang={lang} className="min-h-screen bg-slate-950 text-white pt-24 pb-16 px-6">
+    // a div, not a second <main>: the layout's #main-content is the page's main landmark
+    <div lang={lang} className="min-h-screen bg-slate-950 text-white pt-24 pb-16 px-6">
       <article className="max-w-3xl mx-auto text-gray-300 leading-relaxed">
         <h1 className="text-3xl md:text-4xl font-extrabold gradient-text [text-wrap:balance]">{title}</h1>
         <MetaLine lang={lang} />
@@ -151,6 +152,6 @@ export default function PSearchPrivacy({ lang }: { lang: Lang }) {
           }
         })}
       </article>
-    </main>
+    </div>
   );
 }
