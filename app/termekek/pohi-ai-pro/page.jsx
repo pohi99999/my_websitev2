@@ -120,7 +120,7 @@ export default async function PohiAIProPage() {
                 <div className="text-6xl mb-6">🤖</div>
                 <p className="mb-6">
                   <span className={STATUS_PILL}>
-                    <span aria-hidden="true">⚙️ </span>
+                    <span aria-hidden="true" className="mr-2">⚙️</span>
                     {ui.status}
                   </span>
                 </p>
@@ -244,7 +244,7 @@ export default async function PohiAIProPage() {
               <div className="text-6xl mb-6">🤖</div>
               <p className="mb-6">
                 <span className={STATUS_PILL}>
-                  <span aria-hidden="true">⚙️ </span>
+                  <span aria-hidden="true" className="mr-2">⚙️</span>
                   Fejlesztés alatt
                 </span>
               </p>
