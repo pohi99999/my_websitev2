@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CTA_LOCATIONS, PAGE_NAMES, trackCtaClick } from '../lib/analytics';
 import { GOOGLE_RATING, GOOGLE_PROFILE_URL } from './googleReviews';
+import ConfiguratorHero from './ConfiguratorHero';
 
 const Hero = () =>
 {
@@ -37,9 +38,9 @@ const Hero = () =>
       id="home"
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-transparent px-4 pb-12 pt-24 md:min-h-screen md:px-6"
     >
-      {/* Ambient glow only — keep the video visible */}
+      {/* Ambient glow only — keep the video visible; drifts slower than the page (parallax, direction C) */}
       <div
-        className="absolute inset-0 w-full h-full pointer-events-none"
+        className="hero-parallax absolute inset-0 w-full h-full pointer-events-none"
         aria-hidden="true"
         style={{
           background:
@@ -48,7 +49,7 @@ const Hero = () =>
       />
 
       {/* HUD corner brackets */}
-      <div className="absolute inset-8 md:inset-16 pointer-events-none z-10" aria-hidden="true">
+      <div className="hero-parallax-near absolute inset-8 md:inset-16 pointer-events-none z-10" aria-hidden="true">
         <div className="absolute top-0 left-0 w-10 h-10 border-t border-l border-[#00e5ff]/40" />
         <div className="absolute top-0 right-0 w-10 h-10 border-t border-r border-[#00e5ff]/40" />
         <div className="absolute bottom-0 left-0 w-10 h-10 border-b border-l border-[#00e5ff]/40" />
@@ -62,8 +63,10 @@ const Hero = () =>
           Pohánka és Társa, Zalaegerszeg
         </div>
 
-        {/* 360 px alatt 30 px, hogy a leghosszabb szó (pl. "ajánlatot", "Kostenlosen") se lógjon ki. */}
-        <h1 className="heading-display text-[1.875rem] min-[360px]:text-4xl md:text-6xl mb-6 leading-tight font-syne">
+        {/* Mobilon a betűméret a szélességgel nő (26-36 px), így a leghosszabb szó ("kisvállalkozásoknak.")
+            is kifér egy sorba, és nem kell elválasztani: 360-412 px-en 0 megtört szó (Lumen 5728, mérve).
+            360 px alatt marad az automatikus elválasztás tartaléknak. */}
+        <h1 className="heading-display text-[clamp(1.625rem,7.4vw,2.25rem)] md:text-6xl mb-6 leading-tight font-syne [hyphens:manual] [text-wrap:balance] max-[359px]:[hyphens:auto]">
           <span className="text-white font-light block mb-2 tracking-tight">
             {language === 'en' ? 'Websites, automation and an AI team' : language === 'de' ? 'Websites, Automatisierung und ein KI-Team' : 'Weboldal, automatizálás és AI-csapat'}
           </span>{' '}
@@ -86,6 +89,8 @@ const Hero = () =>
         <p className="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
           {language === 'en' ? 'We build websites where customers book or request a quote, and we take over part of your manual admin work. We start with a free, no-obligation consultation or design preview.' : language === 'de' ? 'Wir bauen Websites, auf denen Kunden buchen oder ein Angebot anfragen, und übernehmen einen Teil Ihrer manuellen Verwaltung. Wir beginnen mit einer kostenlosen, unverbindlichen Beratung oder einem Entwurf.' : 'Olyan weboldalt készítünk, amelyen a vevő foglal vagy ajánlatot kér, és átvesszük a kézi adminisztráció egy részét. Ingyenes, kötelezettségmentes konzultációval vagy látványtervvel kezdünk.'}
         </p>
+
+        <ConfiguratorHero />
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-6">
           {/* Primary CTA — HUD octagon */}

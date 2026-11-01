@@ -11,6 +11,7 @@ export type PageName = (typeof PAGE_NAMES)[keyof typeof PAGE_NAMES];
 export const CTA_LOCATIONS = {
   HeroPrimary: "hero_primary",
   HeroSecondaryScroll: "hero_secondary_scroll",
+  HeroConfiguratorOffer: "hero_configurator_offer",
   HomeServiceCards: "home_service_cards",
   AiWorkflowServices: "ai_workflow_services",
   AiWorkflowContact: "ai_workflow_contact",
@@ -43,6 +44,7 @@ export type CtaLocation = (typeof CTA_LOCATIONS)[keyof typeof CTA_LOCATIONS];
 export const ANALYTICS_EVENTS = {
   CtaClick: "cta_click",
   FormSubmit: "form_submit",
+  ConfiguratorStart: "configurator_start",
 } as const;
 
 export type AnalyticsEventName = (typeof ANALYTICS_EVENTS)[keyof typeof ANALYTICS_EVENTS];
@@ -52,6 +54,7 @@ export const FORMS = {
   ContactHomeQuick: "contact_home_quick",
   SmartContact: "smart_contact",
   LeadMagnet: "lead_magnet",
+  Configurator: "configurator",
 } as const;
 
 export type FormName = (typeof FORMS)[keyof typeof FORMS];

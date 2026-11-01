@@ -1,0 +1,33 @@
+{
+  "_leiras": "Lumen 2. független készlete (4. kapu, 2026-11-01 12:45), a 83db707 szabályainak megnézése ELŐTT rögzítve. 'expect' = egyetlen helyes válasz; 'either' = két elfogadható válasz. Főleg csapdaszavak: kulcsszó-részletek idegen kontextusban.",
+  "cases": [
+    {"t": "Autóbérlést kínálok, online foglalással.", "expect": "car_service", "either": "other"},
+    {"t": "Szervizdíjat számolok el a társasházaknak, közös képviselő vagyok.", "expect": "other"},
+    {"t": "Kozmetikai termékeket gyártok és nagykereskedelemben árulok.", "expect": "other", "either": "beauty"},
+    {"t": "Fodrászkellékeket árulok webshopban.", "expect": "other", "either": "hair_salon"},
+    {"t": "Asztalitenisz-klubot vezetek, edzésidőpontokat foglalnának.", "expect": "other"},
+    {"t": "Bútorszállítással és költöztetéssel foglalkozom.", "expect": "other", "either": "carpentry"},
+    {"t": "Masszázsfotelt forgalmazok bemutatóteremben.", "expect": "other", "either": "beauty"},
+    {"t": "Szállítmányozó cégem van, fuvarajánlatot kérnek.", "expect": "other"},
+    {"t": "Vendégmunkásokat közvetítek külföldre.", "expect": "other"},
+    {"t": "Ablaktisztító vállalkozás vagyunk, éjszakai műszakkal is.", "expect": "other"},
+    {"t": "Állatorvosi rendelőm van, időpontfoglalással.", "expect": "other"},
+    {"t": "Tetőfedő vagyok, árajánlatot kérnek tőlem.", "expect": "other"},
+    {"t": "Gumiból készült játszótéri burkolatot telepítünk.", "expect": "other"},
+    {"t": "Szempillaspirált és sminkeszközöket árulok online.", "expect": "other", "either": "beauty"},
+    {"t": "I run a hotel booking comparison website.", "expect": "other", "either": "guesthouse"},
+    {"t": "We service HVAC systems and boilers.", "expect": "other"},
+    {"t": "I'm a nail technician working from home.", "expect": "beauty"},
+    {"t": "Our garage sells and repairs used cars.", "expect": "car_service"},
+    {"t": "We build custom kitchens and wardrobes.", "expect": "carpentry"},
+    {"t": "Beauty of nature photography prints for sale.", "expect": "other"},
+    {"t": "Pension fund consulting for small firms.", "expect": "other"},
+    {"t": "We sell hair dryers and straighteners online.", "expect": "other", "either": "hair_salon"},
+    {"t": "Wir sind eine Fahrradwerkstatt in Graz.", "expect": "other"},
+    {"t": "Ich betreibe ein Nagelstudio in Wien.", "expect": "beauty"},
+    {"t": "Wir vermieten Ferienwohnungen an der Ostsee.", "expect": "guesthouse"},
+    {"t": "Schreinerei für Treppen und Türen.", "expect": "carpentry"},
+    {"t": "Kfz-Versicherungsmakler mit Online-Terminen.", "expect": "other"},
+    {"t": "Pensionierter Lehrer, ich gebe Nachhilfe.", "expect": "other"}
+  ]
+}

@@ -774,6 +774,317 @@ a {
   }
 }
 
+/* Homepage configurator sketch (ConfiguratorHero, card ff1d7435): a laptop and a phone in CSS 3D
+   whose layers drop into place one by one. No WebGL. Before the first answer the desktop shows a
+   faint sample; phones hide the stage until there is something to show. */
+/* The configurator's own headings (the offer title, "Javasolt csomag: Alapcsomag + bővítmény") are not
+   hyphenated: every word in them fits a 360 px line (measured), so automatic hyphenation only split
+   words that would have fitted ("Alap-csomag", Lumen 5718). The site-wide phone rule above stays. */
+.cfg h2,
+.cfg h3 {
+  hyphens: manual;
+  text-wrap: balance;
+}
+.cfg-field:focus-within {
+  border-color: #00e5ff;
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.15);
+}
+.cfg-stage {
+  position: relative;
+  aspect-ratio: 1.15 / 1;
+  max-width: 100%;
+  perspective: 1400px;
+}
+.cfg-scene {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(14deg) rotateY(-18deg);
+}
+.cfg-laptop {
+  position: absolute;
+  left: 4%;
+  top: 8%;
+  width: 78%;
+  aspect-ratio: 16 / 10;
+  transform-style: preserve-3d;
+}
+.cfg-phone {
+  position: absolute;
+  right: 2%;
+  bottom: 4%;
+  width: 27%;
+  aspect-ratio: 9 / 19;
+  transform-style: preserve-3d;
+  transform: translateZ(90px);
+}
+.cfg-screen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 10px;
+  background: #0a0a0e;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px #000;
+}
+.cfg-phone .cfg-screen {
+  border-radius: 18px;
+}
+.cfg-layer {
+  position: absolute;
+  opacity: 0;
+  transform: translateZ(160px) scale(0.96);
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.5s;
+}
+.cfg-layer.is-on {
+  opacity: 1;
+  transform: translateZ(0) scale(1);
+}
+.cfg-stage:not(.has-result) .cfg-layer {
+  opacity: 0.18;
+  transform: none;
+}
+.cfg-stage:not(.has-result) .cfg-l-hero {
+  background: linear-gradient(#1c1c26 0 22%, transparent 22% 34%, #1c1c26 34% 46%, transparent 46% 70%, #1c1c26 70% 86%, transparent 86%);
+  background-size: 70% 100%;
+  background-repeat: no-repeat;
+}
+.cfg-l-nav {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 11%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font: 700 clamp(8px, 1.1vw, 13px) var(--font-syne), sans-serif;
+}
+.cfg-l-nav em {
+  font: 500 clamp(6px, 0.75vw, 9px) var(--font-inter), sans-serif;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a0a0a0;
+}
+.cfg-l-hero {
+  left: 4%;
+  top: 16%;
+  width: 52%;
+  bottom: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6%;
+}
+.cfg-l-hero h4 {
+  margin: 0;
+  font: 700 clamp(11px, 1.9vw, 24px) / 1.05 var(--font-syne), sans-serif;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.cfg-l-hero p {
+  margin: 0;
+  font-size: clamp(6px, 0.8vw, 10px);
+  line-height: 1.4;
+  color: #a0a0a0;
+}
+.cfg-l-hero span {
+  align-self: flex-start;
+  padding: 0.6em 1em;
+  background: var(--cfg-brand, #00e5ff);
+  color: #000;
+  font: 700 clamp(6px, 0.7vw, 9px) var(--font-inter), sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.cfg-l-img {
+  right: 4%;
+  top: 16%;
+  width: 36%;
+  bottom: 30%;
+  overflow: hidden;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--cfg-brand, #00e5ff) -40%, #16161f 60%);
+}
+.cfg-l-img::after {
+  content: "";
+  position: absolute;
+  inset: 18% 14%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50% 50% 8px 8px;
+}
+.cfg-l-book {
+  left: 4%;
+  right: 4%;
+  bottom: 5%;
+  height: 20%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2.5%;
+}
+.cfg-l-book div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 8%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  background: #13131a;
+  font-size: clamp(5px, 0.7vw, 9px);
+  color: #a0a0a0;
+}
+.cfg-l-book div b {
+  font: 700 clamp(7px, 0.95vw, 12px) var(--font-syne), sans-serif;
+  color: #fff;
+}
+.cfg-l-book div.sel {
+  border-color: var(--cfg-brand, #00e5ff);
+  box-shadow: inset 0 0 0 1px var(--cfg-brand, #00e5ff);
+}
+.cfg-p-top {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font: 700 clamp(6px, 0.8vw, 10px) var(--font-syne), sans-serif;
+  color: #fff;
+}
+.cfg-p-img {
+  left: 7%;
+  right: 7%;
+  top: 13%;
+  height: 30%;
+  border-radius: 8px;
+  background: linear-gradient(160deg, var(--cfg-brand, #00e5ff) -30%, #16161f 70%);
+}
+.cfg-p-cal {
+  left: 7%;
+  right: 7%;
+  top: 47%;
+  height: 30%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-content: start;
+  gap: 5%;
+}
+.cfg-p-cal i {
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  background: #13131a;
+}
+.cfg-p-cal i.sel {
+  background: var(--cfg-brand, #00e5ff);
+}
+.cfg-p-btn {
+  left: 7%;
+  right: 7%;
+  bottom: 6%;
+  height: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: var(--cfg-brand, #00e5ff);
+  color: #000;
+  font: 700 clamp(5px, 0.6vw, 8px) var(--font-inter), sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.cfg-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 0 solid rgba(0, 229, 255, 0.3);
+  pointer-events: none;
+}
+.cfg-c1 { top: 0; left: 0; border-width: 1px 0 0 1px; }
+.cfg-c2 { top: 0; right: 0; border-width: 1px 1px 0 0; }
+.cfg-c3 { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+.cfg-c4 { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+@media (max-width: 1023.98px) {
+  .cfg-stage {
+    aspect-ratio: 1.3 / 1;
+  }
+  .cfg-stage:not(.has-result) {
+    display: none;
+  }
+}
+
+/* Direction C, depth and micro-interactions (card ff1d7435). CSS only where the browser supports it;
+   elsewhere everything simply stays still. Reduced motion switches all of it off. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* the service cards rise from the depth as they scroll in. No opacity fade: a card still
+       waiting below the fold would fail the colour-contrast check (axe measures it there). */
+    .depth-rise {
+      animation: depth-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
+    }
+    @keyframes depth-rise {
+      from { translate: 0 56px; scale: 0.94; }
+      to { translate: 0 0; scale: 1; }
+    }
+    /* hero layers drift at different speeds while the hero scrolls away */
+    .hero-parallax,
+    .hero-parallax-near {
+      animation: hero-drift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+    .hero-parallax { --drift: 90px; }
+    .hero-parallax-near { --drift: -40px; }
+    @keyframes hero-drift {
+      to { translate: 0 var(--drift); }
+    }
+  }
+}
+
+/* tilt toward the pointer + a glow that follows it; the variables come from ServiceCards (desktop) */
+.depth-grid {
+  perspective: 1200px;
+}
+.depth-card {
+  isolation: isolate;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out, border-color 0.15s;
+}
+.depth-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%), rgba(0, 229, 255, 0.12), transparent 60%);
+  transition: opacity 0.2s;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .depth-card:hover .depth-glow {
+    opacity: 1;
+  }
+}
+
+/* page-to-page crossfade (React ViewTransition around <main>); none with reduced motion */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.22s;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
 /* The cookie banner is in the server HTML; a visitor who already chose is marked on <html> by the inline
    head script (lib/consentFlag.ts) before the first paint, so the banner never flashes for them. */
 html[data-consent='set'] #cookie-consent {

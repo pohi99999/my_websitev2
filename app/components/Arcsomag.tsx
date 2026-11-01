@@ -3,7 +3,7 @@
 import React from 'react';
 import { Check, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { BASE_PRICE } from '../lib/basePrice';
+import { BASE_PRICE, PRICE_TERMS } from '../lib/basePrice';
 
 /*
  * Árcsomag (Péter döntése, Telegram 4311, 2026-09-23). Csak a jóváhagyott tételek:
@@ -23,7 +23,7 @@ const COPY: Record<Lang, {
     heading: 'Árcsomag',
     base: 'Alapcsomag',
     price: BASE_PRICE.hu,
-    gross: 'bruttó, egyszeri',
+    gross: PRICE_TERMS.hu.gross,
     items: [
       'Bemutatkozó weboldal',
       'Telefonon és laptopon',
@@ -34,11 +34,11 @@ const COPY: Record<Lang, {
     addon: 'Bővítmény',
     addonDesc: 'Online időpontfoglalás + bankkártyás előleg vagy ajándékutalvány',
     // Péter 2026-10-05 (6299): the hero promises a fixed price, so the add-on says the quote fixes it
-    addonPrice: 'Egyedi ajánlat, az árat előre, fixen rögzítjük az ajánlatban.',
+    addonPrice: PRICE_TERMS.hu.addonPrice,
     reference: 'Referencia:',
     care: 'Karbantartás',
     careDesc: 'Karbantartás és tartalomfrissítés, igény szerint',
-    optional: 'Opcionális',
+    optional: PRICE_TERMS.hu.optional,
     details: true,
     contact: 'Kapcsolat',
   },
@@ -46,7 +46,7 @@ const COPY: Record<Lang, {
     heading: 'Pricing',
     base: 'Base package',
     price: BASE_PRICE.en,
-    gross: 'incl. VAT, one-off payment',
+    gross: PRICE_TERMS.en.gross,
     items: [
       'Business website',
       'On phone and laptop',
@@ -56,11 +56,11 @@ const COPY: Record<Lang, {
     ],
     addon: 'Add-on',
     addonDesc: 'Online booking with card deposit, or gift vouchers',
-    addonPrice: 'Priced individually: the price is fixed up front in your quote.',
+    addonPrice: PRICE_TERMS.en.addonPrice,
     reference: 'Reference:',
     care: 'Maintenance',
     careDesc: 'Maintenance and content updates, as needed',
-    optional: 'Optional',
+    optional: PRICE_TERMS.en.optional,
     // the FAQ page (/weboldal-keszites-zalaegerszeg) exists in Hungarian only
     details: false,
     contact: 'Free consultation',
@@ -69,7 +69,7 @@ const COPY: Record<Lang, {
     heading: 'Preise',
     base: 'Basispaket',
     price: BASE_PRICE.de,
-    gross: 'inkl. MwSt., einmalig',
+    gross: PRICE_TERMS.de.gross,
     items: [
       'Unternehmenswebsite',
       'Auf Handy und Laptop',
@@ -79,11 +79,11 @@ const COPY: Record<Lang, {
     ],
     addon: 'Erweiterung',
     addonDesc: 'Online-Terminbuchung mit Anzahlung per Karte oder Geschenkgutschein',
-    addonPrice: 'Individuelles Angebot: Der Preis wird vorab verbindlich im Angebot festgelegt.',
+    addonPrice: PRICE_TERMS.de.addonPrice,
     reference: 'Referenz:',
     care: 'Wartung',
     careDesc: 'Wartung und Inhaltspflege nach Bedarf',
-    optional: 'Optional',
+    optional: PRICE_TERMS.de.optional,
     details: false,
     contact: 'Kostenlose Beratung',
   },
