@@ -61,6 +61,14 @@ const Footer = () =>
                   {t( 'footer.solutions.customDev' )}
                 </a>
               </li>
+              <li>
+                <a
+                  href={withLang( '/labor' )}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  { language === 'en' ? 'Lab (3D showcase)' : language === 'de' ? 'Labor (3D-Präsentation)' : 'Labor (3D-bemutató)' }
+                </a>
+              </li>
               {/* Helyi SEO-aloldal: csak magyarul létezik, ezért csak a magyar láblécben linkeljük. */}
               {language === 'hu' && (
                 <li>
