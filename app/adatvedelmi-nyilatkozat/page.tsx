@@ -10,9 +10,10 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = '2026. október 12.';
+// the go-live date of this version (with the ÁSZF, Marveen 5829): set before merging
+const LAST_UPDATED = '[ÉLESÍTÉSKOR KITÖLTENDŐ DÁTUM]';
 
-const CONTACT_EMAIL = 'peterpohankapersonal@gmail.com';
+const CONTACT_EMAIL = 'info@pohankaestarsa.com';
 const CONTACT_PHONE = '+36 30 429 1227';
 
 type Row = { label: string; value: React.ReactNode };
@@ -63,6 +64,17 @@ const PROCESSINGS: Processing[] = [
     legalBasis: 'GDPR 6. cikk (1) b) pont (az Ön kérésére tett, szerződést megelőző lépések).',
     retention: 'Az utolsó kapcsolatfelvételt követő 2 év, szerződés esetén a fenti szabályok szerint.',
     processors: 'Vercel Inc. (tárhely), saját üzemeltetésű n8n automatizálási rendszer, Google LLC (levelezés).',
+  },
+  {
+    // app/components/AbandonedCartDemo.tsx: the browser posts the address straight to the n8n webhook
+    // (/webhook/abandoned-cart) with a fixed name and product; the site itself stores nothing. How long
+    // n8n keeps it depends on that workflow, which is not in this repo: to be set before merging.
+    name: 'Kosárelhagyás-demó (Szolgáltatások oldal)',
+    data: 'Az Ön által megadott e-mail cím. Nevet és terméket a demó nem kér: rögzített értékkel („Érdeklődő”, „Próba Termék (Demó)”) küldi.',
+    purpose: 'A kért bemutató levél (kosárelhagyó emlékeztető kuponnal) automatikus elküldése az Ön e-mail címére.',
+    legalBasis: 'GDPR 6. cikk (1) b) pont (az Ön kérésére nyújtott ingyenes bemutató, ÁSZF 5. pont).',
+    retention: '[MEGŐRZÉSI IDŐ: AZ N8N-MUNKAFOLYAMAT BEÁLLÍTÁSA SZERINT, ÉLESÍTÉS ELŐTT KITÖLTENDŐ]',
+    processors: 'Saját üzemeltetésű n8n automatizálási rendszer (az adat fogadása és a levél kiküldése).',
   },
   {
     name: 'Brunella asszisztens (webes csevegő)',
@@ -123,7 +135,7 @@ const PROCESSORS = [
   },
   {
     name: 'Saját üzemeltetésű n8n automatizálás',
-    role: 'Az audit-kérések feldolgozása és továbbítása a munkatársainknak',
+    role: 'Az audit-kérések feldolgozása és továbbítása a munkatársainknak; a kosárelhagyás-demó levelének kiküldése',
     location: 'Az adatkezelő saját infrastruktúráján, az Európai Unión belül.',
   },
 ];
