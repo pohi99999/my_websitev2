@@ -1,10 +1,13 @@
 import Link from 'next/link';
 import { headers } from 'next/headers';
 import { ArrowRight } from 'lucide-react';
-import { ogImageFor, ogLocale } from '../lib/ogImage';
 import LaborScene from './LaborScene';
 import LaborPoster from './LaborPoster';
 import styles from './labor.module.css';
+
+// metadata in its own module (no client imports): localizedRouteMeta imports it for the share image, and
+// pulling this page in there put its client components into the /en and /de homepage JS
+export { generateMetadata } from './meta';
 
 // /labor (card 0c1060b6, Péter 10-30 + 11-01, visual approved 11-01): the 3D showcase of the four
 // service lines, on its own page so the homepage's bundle and LCP stay untouched. Everything a visitor
@@ -16,16 +19,11 @@ import styles from './labor.module.css';
 type Lang = 'hu' | 'en' | 'de';
 
 const COPY: Record<Lang, {
-  meta: { title: string; description: string };
   kicker: string; title: string; titleAccent: string; lead: string; scroll: string;
   steps: { title: string; body: string; href: string }[];
   more: string; outroTitle: string; outroBody: string; cta: string; ctaHref: string;
 }> = {
   hu: {
-    meta: {
-      title: 'Labor: négy modul, egy rendszer',
-      description: 'Weboldal, automatizálás, alkalmazás és AI-csapat egy rendszerben, térbeli bemutatóban. Pohánka és Társa, Zalaegerszeg.',
-    },
     kicker: 'Labor',
     title: 'Négy modul,',
     titleAccent: 'egy rendszer.',
@@ -44,10 +42,6 @@ const COPY: Record<Lang, {
     ctaHref: '/kapcsolat',
   },
   en: {
-    meta: {
-      title: 'Lab: four modules, one system',
-      description: 'Website, automation, apps and an AI team as one system, shown in 3D. Pohánka & Társa, Zalaegerszeg, Hungary.',
-    },
     kicker: 'Lab',
     title: 'Four modules,',
     titleAccent: 'one system.',
@@ -66,10 +60,6 @@ const COPY: Record<Lang, {
     ctaHref: '/en/kapcsolat',
   },
   de: {
-    meta: {
-      title: 'Labor: vier Module, ein System',
-      description: 'Website, Automatisierung, Apps und ein KI-Team als ein System, in 3D gezeigt. Pohánka & Társa, Zalaegerszeg, Ungarn.',
-    },
     kicker: 'Labor',
     title: 'Vier Module,',
     titleAccent: 'ein System.',
@@ -94,28 +84,6 @@ async function pageLanguage(): Promise<Lang> {
   return h === 'en' ? 'en' : h === 'de' ? 'de' : 'hu';
 }
 
-export async function generateMetadata() {
-  const language = await pageLanguage();
-  const { title, description } = COPY[language].meta;
-  const canonical = language === 'hu' ? '/labor' : `/${language}/labor`;
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-      languages: { hu: '/labor', en: '/en/labor', de: '/de/labor', 'x-default': '/labor' },
-    },
-    openGraph: {
-      title,
-      description,
-      url: canonical,
-      type: 'website',
-      locale: ogLocale(language),
-      images: [{ url: ogImageFor(language, '/labor'), width: 1200, height: 630, alt: title }],
-    },
-    twitter: { card: 'summary_large_image', title, description },
-  };
-}
 
 export default async function LaborPage() {
   const lang = await pageLanguage();
