@@ -574,8 +574,8 @@ export default async function SzolgaltatasokPage() {
         {/* Interactive Demos */}
         <section className="mt-24 max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-[#00e5ff] mb-4">Próbálja ki élőben az automatizálást!</h2>
-            <p className="text-gray-300">Válassza ki az Önt érdeklő demót, és nézze meg a működését.</p>
+            <h2 className="text-3xl font-bold text-[#00e5ff] mb-4">Projekt egyeztetés</h2>
+            <p className="text-gray-300">Írja le röviden, miben segíthetünk, és küldje el ajánlatkérését az űrlapon.</p>
           </div>
           
           {/* the cart-abandonment demo was here; it never worked live (its n8n workflow is inactive) and was
