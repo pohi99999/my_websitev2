@@ -6,6 +6,10 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Impresszum',
   description: 'Céginformációk és elérhetőségek – Pohánka és Társa Kft.',
+  // without its own canonical the page inherited the layout's, which is the home page
+  alternates: {
+    canonical: '/impresszum',
+  },
 };
 
 // Company data from the company register extract (cégkivonat, CK 5/1, 21/3, 49/1); the seat and the
