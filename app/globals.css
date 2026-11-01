@@ -760,6 +760,15 @@ a {
   }
 }
 
+/* Below lg the sticky call-to-action bar (MobileCTA, lg:hidden) covers the bottom of the screen: when
+   the keyboard focus scrolls an element into view, keep it above the bar, with its focus ring
+   (WCAG 2.4.11; Lumen 5758 measured the configurator samples up to 44 px under it at 375 px). */
+@media (max-width: 1023.98px) {
+  html {
+    scroll-padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  }
+}
+
 /* Phones: long words in big headings ("Dienstleistungen", "Geschäftsprozessautomatisierung",
    "Automatizáció,") were wider than a 360-390 px screen and widened the whole layout (418-626 px).
    Automatic hyphenation fixed that, but it also split 91 words that would have fitted on the next

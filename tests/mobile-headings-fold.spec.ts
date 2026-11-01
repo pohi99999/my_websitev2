@@ -85,3 +85,78 @@ for (const width of [375, 390]) {
     });
   }
 }
+
+// Lumen 5758: with the keyboard, after the cookie choice, the configurator's sample buttons scrolled
+// under the sticky call-to-action bar (up to 44 px, the focus ring hidden too).
+for (const path of ['/', '/en', '/de']) {
+  test(`keyboard focus on the sample buttons stays above the bottom bar, with its ring: ${path} at 375 px`, async ({ browser }) => {
+    const ctx = await browser.newContext({ viewport: { width: 375, height: 812 } });
+    const page = await ctx.newPage();
+    await page.addInitScript(() => window.localStorage.setItem('pt-cookie-consent', 'necessary'));
+    await page.goto(path);
+    const samples = page.locator('[role="group"][aria-labelledby="configurator-samples-label"] button');
+    const count = await samples.count();
+    expect(count).toBe(5);
+    const covered: string[] = [];
+    let seen = 0;
+    for (let i = 0; i < 80 && seen < count; i++) {
+      await page.keyboard.press('Tab');
+      const r = await page.evaluate(async () => {
+        const a = document.activeElement as HTMLElement | null;
+        if (!a || !a.closest('[aria-labelledby="configurator-samples-label"]')) return null;
+        // the focus scroll is animated (scroll-behavior: smooth, Lenis 1.2 s): measure once it has
+        // been still for 400 ms
+        let last = scrollY;
+        for (let still = 0, t = 0; still < 400 && t < 3000; t += 50) {
+          await new Promise((res) => setTimeout(res, 50));
+          still = scrollY === last ? still + 50 : 0;
+          last = scrollY;
+        }
+        const bar = [...document.querySelectorAll('body *')].find((e) => {
+          const b = e.getBoundingClientRect();
+          return getComputedStyle(e).position === 'fixed' && b.bottom >= innerHeight - 1 && b.height < 200 && b.width > innerWidth * 0.8;
+        });
+        const barTop = bar ? bar.getBoundingClientRect().top : innerHeight;
+        // the ring: 2 px offset + 2 px ring outside the box
+        return { text: a.textContent?.trim(), overlap: Math.max(0, Math.round(a.getBoundingClientRect().bottom + 4 - barTop)) };
+      });
+      if (!r) continue;
+      seen++;
+      if (r.overlap > 0) covered.push(`${r.text}: ${r.overlap} px under the bar`);
+    }
+    expect(seen).toBe(count);
+    expect(covered).toEqual([]);
+    await ctx.close();
+  });
+}
+
+test('on a phone the keyboard reaches the skip link and the header before the sticky bar', async ({ browser }) => {
+  const ctx = await browser.newContext({ viewport: { width: 375, height: 812 } });
+  const page = await ctx.newPage();
+  await page.addInitScript(() => window.localStorage.setItem('pt-cookie-consent', 'necessary'));
+  await page.goto('/');
+  // the bar is a client-only dynamic import: wait until it is in the page, or the order is not tested
+  await page.getByTestId('mobile-sticky-cta').waitFor();
+  const where: string[] = [];
+  for (let i = 0; i < 3; i++) {
+    await page.keyboard.press('Tab');
+    where.push(await page.evaluate(() => {
+      const a = document.activeElement as HTMLElement;
+      if (a.closest('header')) return 'header';
+      if (a.matches('a[href="#main-content"]')) return 'skip';
+      const fixed = (e: Element | null): boolean => !!e && (getComputedStyle(e).position === 'fixed' || fixed(e.parentElement));
+      return fixed(a) ? 'fixed-bar' : 'other';
+    }));
+  }
+  expect(where[0]).toBe('skip');
+  expect(where.slice(1)).toEqual(['header', 'header']);
+  await ctx.close();
+});
+
+test('the hero intro paragraph holds no link or button (nothing focusable), in every language', async ({ page }) => {
+  for (const path of ['/', '/en', '/de']) {
+    await page.goto(path);
+    const n = await page.locator('#home h1 ~ p').evaluate((p) => p.querySelectorAll('a, button, input, select, textarea, [tabindex]').length);
+    expect(n, path).toBe(0);
+  }
+});
