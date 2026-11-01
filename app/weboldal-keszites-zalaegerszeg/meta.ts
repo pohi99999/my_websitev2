@@ -22,4 +22,10 @@ export const metadata: Metadata = {
     // the share image (app/og/[...slug]) draws this page's title; without it the layout's image was lost
     images: [{ url: ogImageFor('hu', '/weboldal-keszites-zalaegerszeg'), width: 1200, height: 630, alt: 'Weboldal készítés Zalaegerszeg' }],
   },
+  // the same image on X (the layout sets none, and the root twitter-image would be the generic card)
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Weboldal készítés Zalaegerszeg | Pohánka és Társa',
+    images: [ogImageFor('hu', '/weboldal-keszites-zalaegerszeg')],
+  },
 };
