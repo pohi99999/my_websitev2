@@ -1,4 +1,5 @@
 import Portfolio from "../components/Portfolio";
+import LaborTeaser from "../labor/LaborTeaser";
 import { headers } from "next/headers";
 
 export const revalidate = 3600;
@@ -73,6 +74,7 @@ export default function PortfolioPage() {
         })}}
       />
       <Portfolio />
+      <LaborTeaser />
     </>
   );
 }

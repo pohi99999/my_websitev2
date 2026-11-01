@@ -18,6 +18,7 @@ import { generateMetadata as fogalomtarMeta } from '../fogalomtar/page';
 import { generateMetadata as termekPohiAiProMeta } from '../termekek/pohi-ai-pro/page';
 import { generateMetadata as weboldalAiKkvMeta } from '../weboldal-ai-kkv/page';
 import { generateMetadata as hatekonysagiAuditMeta } from '../hatekonysagi-audit/page';
+import { generateMetadata as laborMeta } from '../labor/meta';
 import { generateMetadata as brunellaBasMeta } from '../portfolio/brunella-bas/page';
 import { generateMetadata as portfolioPohiAiProMeta } from '../portfolio/pohi-ai-pro/page';
 import { generateMetadata as tartalomGyartasMeta } from '../portfolio/tartalom-gyartas/page';
@@ -38,6 +39,7 @@ const SINGLE: Record<string, MetaFn> = {
   fogalomtar: fogalomtarMeta,
   'weboldal-ai-kkv': weboldalAiKkvMeta,
   'hatekonysagi-audit': hatekonysagiAuditMeta,
+  labor: laborMeta,
 };
 
 const PORTFOLIO_PAGES: Record<string, MetaFn> = {

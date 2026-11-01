@@ -44,6 +44,8 @@ const SequentialVideoBackground: React.FC = () =>
   const video0Ref = useRef<HTMLVideoElement>( null );
   const video1Ref = useRef<HTMLVideoElement>( null );
   const normalizedPath = pathname.replace( /^\/(en|de)(?=\/|$)/, '' ) || '/';
+  // /labor draws its own 3D scene and poster behind the page: no video there, not even a download
+  const noVideo = normalizedPath === '/labor';
 
   // Function to switch video with cross-fade
   const switchVideo = useCallback( ( newSrc: string ) =>
@@ -81,15 +83,15 @@ const SequentialVideoBackground: React.FC = () =>
   // Main effect to handle route changes
   useEffect( () =>
   {
-    if ( !richMediaEnabled ) return;
+    if ( !richMediaEnabled || noVideo ) return;
     const targetVideo = getVideoForPath( pathname );
     switchVideo( targetVideo );
-  }, [pathname, switchVideo, richMediaEnabled] );
+  }, [pathname, switchVideo, richMediaEnabled, noVideo] );
 
   // Set initial video source on component mount
   useEffect( () =>
   {
-    if ( !richMediaEnabled ) return;
+    if ( !richMediaEnabled || noVideo ) return;
     const initialSrc = getVideoForPath( pathname );
     const currentRef = activePlayer === 0 ? video0Ref : video1Ref;
     if ( currentRef.current )
@@ -103,6 +105,8 @@ const SequentialVideoBackground: React.FC = () =>
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [richMediaEnabled] ); // Only run once on mount (or when richMediaEnabled changes)
+
+  if ( noVideo ) return null;
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
