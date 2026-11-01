@@ -19,7 +19,6 @@ import AszfPage from '../../aszf/page';
 import PohiAiProPage from '../../termekek/pohi-ai-pro/page';
 import WeboldalAiKkvPage from '../../weboldal-ai-kkv/page';
 import HatekonysagiAuditPage from '../../hatekonysagi-audit/page';
-import LaborPage from '../../labor/page';
 import BrunellaBasPage from '../../portfolio/brunella-bas/page';
 import PortfolioPohiAiProPage from '../../portfolio/pohi-ai-pro/page';
 import TartalomGyartasPage from '../../portfolio/tartalom-gyartas/page';
@@ -131,12 +130,6 @@ function enMetaForSlug(slug: string[]): MetaSpec | null {
           title: 'Digital Efficiency Audit',
           description:
             'Find out in 3 minutes where your company loses 100+ working hours a month to manual processes, and how AI can stop it.',
-          ogType: 'website',
-        };
-      case 'labor':
-        return {
-          title: 'Lab: four modules, one system',
-          description: 'Website, automation, apps and an AI team as one system, shown in 3D. Pohánka & Társa, Zalaegerszeg, Hungary.',
           ogType: 'website',
         };
       default:
@@ -275,8 +268,6 @@ export default async function EnCatchAllPage({ params }: { params: Promise<Param
         return <WeboldalAiKkvPage />;
       case 'hatekonysagi-audit':
         return <HatekonysagiAuditPage />;
-      case 'labor':
-        return <LaborPage />;
       default:
         return notFound();
     }
