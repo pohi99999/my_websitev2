@@ -75,14 +75,21 @@ export default function LaborScene() {
       });
 
       const started = performance.now();
+      let prev = 0;
       function loop(now: number) {
         raf = 0;
         if (!scene || disposed || !visible) return;
         scene.setProgress(readProgress(steps));
-        const ms = scene.frame(now);
-        // guard: in the first 2 s, if most frames take over 24 ms, go back to the poster
-        if (now - started < 2000) {
-          slow.push(ms);
+        scene.frame(now);
+        // guard: the time between frames (CPU and GPU together, unlike the render call's own time);
+        // after a 0.5 s warm-up (shader compilation), if most frames of the next 2 s come over 24 ms
+        // apart, the device cannot keep up: back to the poster
+        const gap = prev ? now - prev : 0;
+        prev = now;
+        if (now - started < 500) {
+          // warm-up
+        } else if (now - started < 2500) {
+          slow.push(gap);
         } else if (slow.length) {
           const over = slow.filter((x) => x > 24).length / slow.length;
           slow.length = 0;

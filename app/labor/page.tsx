@@ -67,7 +67,7 @@ const COPY: Record<Lang, {
     scroll: 'Weiter scrollen',
     steps: [
       { title: 'Website und Buchung', body: 'Eine Website mit Online-Buchung oder Anfrageformular, in zwei Wochen zum Festpreis.', href: '/de/weboldal-ai-kkv' },
-      { title: 'Prozessautomatisierung', body: 'Wir automatisieren die manuellen Schritte zwischen Anfrage, Erfassung, Antwort und Rechnung.', href: '/de/szolgaltatasok' },
+      { title: 'Prozess\u00ADautomatisierung', body: 'Wir automatisieren die manuellen Schritte zwischen Anfrage, Erfassung, Antwort und Rechnung.', href: '/de/szolgaltatasok' },
       { title: 'Web- und Mobile-Apps', body: 'Individuelle Web-Apps, Portale oder Onlineshops, projektbezogen. Beispiel: die Web-App P-Szakrajz.', href: '/de/portfolio' },
       { title: 'KI-Team (Brunella)', body: 'Ein KI-Team auf dem eigenen Rechner Ihres Unternehmens für E-Mails, Angebotsverfolgung und eine tägliche Zusammenfassung. Was nach außen geht, geben Sie vorher frei.', href: '/de/portfolio/brunella-bas' },
     ],
@@ -115,7 +115,10 @@ export default async function LaborPage() {
               <h2 className={`heading-display ${styles.cardTitle}`}>{s.title}</h2>
               <p className={styles.cardBody}>{s.body}</p>
               <Link href={s.href} className={styles.more}>
-                {c.more} <ArrowRight className={styles.icon} aria-hidden="true" />
+                {c.more}
+                {/* the four links share one word; screen readers list them with the service name */}
+                <span className="sr-only">: {s.title}</span>
+                <ArrowRight className={styles.icon} aria-hidden="true" />
               </Link>
             </article>
           </div>
