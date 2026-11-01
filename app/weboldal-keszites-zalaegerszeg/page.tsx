@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Check, ExternalLink, MapPin, Phone } from 'lucide-react';
 import { googleReviews } from '../components/googleReviews';
 
@@ -12,25 +11,11 @@ import { googleReviews } from '../components/googleReviews';
  * ami nincs jóváhagyva (pl. a bővítmény ára, havidíj), az "egyedi ajánlat szerint" vagy
  * nem szerepel.
  */
-const PAGE_URL = 'https://www.pohankaestarsa.com/weboldal-keszites-zalaegerszeg';
 const NBSP = ' ';
 const PRICE = `150${ NBSP }000${ NBSP }Ft`;
 
-export const metadata: Metadata = {
-  title: 'Weboldal készítés Zalaegerszeg',
-  description:
-    'Weboldal készítés Zalaegerszegen és Zala megyében: bemutatkozó weboldal 150 000 Ft-ért (bruttó, egyszeri), két hét alatt, online foglalással is.',
-  alternates: { canonical: PAGE_URL },
-  openGraph: {
-    title: 'Weboldal készítés Zalaegerszeg | Pohánka és Társa',
-    description:
-      'Bemutatkozó weboldal 150 000 Ft-ért (bruttó, egyszeri), két hét alatt; online időpontfoglalás és ajándékutalvány szalonoknak.',
-    url: PAGE_URL,
-    type: 'website',
-    locale: 'hu_HU',
-    siteName: 'Pohánka és Társa',
-  },
-};
+// metadata in its own module (no client imports), so localizedRouteMeta can hand it to the share-image route
+export { metadata } from './meta';
 
 const alapcsomag = [
   'Bemutatkozó weboldal',
