@@ -8,7 +8,6 @@ import {
   Bot, FileSearch, Award, Clock, DollarSign
 } from "lucide-react";
 import { SmartContactForm } from "../components/SmartContactForm";
-import { AbandonedCartDemo } from "../components/AbandonedCartDemo";
 
 export async function generateMetadata() {
   const headerStore = await headers();
@@ -579,11 +578,10 @@ export default async function SzolgaltatasokPage() {
             <p className="text-gray-300">Válassza ki az Önt érdeklő demót, és nézze meg a működését.</p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          {/* the cart-abandonment demo was here; it never worked live (its n8n workflow is inactive) and was
+              taken out (Peter, Telegram 12485) */ }
+          <div className="max-w-2xl mx-auto">
             <SmartContactForm />
-            <div className="space-y-8">
-              <AbandonedCartDemo />
-            </div>
           </div>
         </section>
 

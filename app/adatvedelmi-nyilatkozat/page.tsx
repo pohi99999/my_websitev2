@@ -66,17 +66,6 @@ const PROCESSINGS: Processing[] = [
     processors: 'Vercel Inc. (tárhely), saját üzemeltetésű n8n automatizálási rendszer, Google LLC (levelezés).',
   },
   {
-    // app/components/AbandonedCartDemo.tsx: the browser posts the address straight to the n8n webhook
-    // (/webhook/abandoned-cart) with a fixed name and product; the site itself stores nothing. How long
-    // n8n keeps it depends on that workflow, which is not in this repo: to be set before merging.
-    name: 'Kosárelhagyás-demó (Szolgáltatások oldal)',
-    data: 'Az Ön által megadott e-mail cím. Nevet és terméket a demó nem kér: rögzített értékkel („Érdeklődő”, „Próba Termék (Demó)”) küldi.',
-    purpose: 'A kért bemutató levél (kosárelhagyó emlékeztető kuponnal) automatikus elküldése az Ön e-mail címére.',
-    legalBasis: 'GDPR 6. cikk (1) b) pont (az Ön kérésére nyújtott ingyenes bemutató, ÁSZF 5. pont).',
-    retention: '[MEGŐRZÉSI IDŐ: AZ N8N-MUNKAFOLYAMAT BEÁLLÍTÁSA SZERINT, ÉLESÍTÉS ELŐTT KITÖLTENDŐ]',
-    processors: 'Saját üzemeltetésű n8n automatizálási rendszer (az adat fogadása és a levél kiküldése).',
-  },
-  {
     name: 'Brunella asszisztens (webes csevegő)',
     data: 'A csevegőbe beírt üzenetek. Kérjük, ne adjon meg személyes vagy bizalmas adatot a csevegőben.',
     purpose: 'Általános tájékoztatás a szolgáltatásainkról, a kérdések azonnali megválaszolása.',
@@ -135,7 +124,7 @@ const PROCESSORS = [
   },
   {
     name: 'Saját üzemeltetésű n8n automatizálás',
-    role: 'Az audit-kérések feldolgozása és továbbítása a munkatársainknak; a kosárelhagyás-demó levelének kiküldése',
+    role: 'Az audit-kérések feldolgozása és továbbítása a munkatársainknak',
     location: 'Az adatkezelő saját infrastruktúráján, az Európai Unión belül.',
   },
 ];

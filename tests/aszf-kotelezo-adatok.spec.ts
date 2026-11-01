@@ -81,8 +81,17 @@ for (const [path, labels] of [
   });
 }
 
-test('the privacy notice covers the cart-abandonment demo', async ({ page }) => {
+test('the cart-abandonment demo is gone: privacy notice, and /szolgaltatasok HTML and scripts', async ({ page, request }) => {
+  // Peter, Telegram 12485: the demo never worked live (its n8n workflow is inactive) and was taken out
   await page.goto('/adatvedelmi-nyilatkozat');
-  await expect(page.locator('#main-content')).toContainText('Kosárelhagyás-demó (Szolgáltatások oldal)');
-  await expect(page.locator('#main-content')).toContainText('rögzített értékkel („Érdeklődő”, „Próba Termék (Demó)”)');
+  await expect(page.locator('#main-content')).not.toContainText('Kosárelhagyás');
+  const bad: string[] = [];
+  for (const path of ['/szolgaltatasok', '/en/szolgaltatasok', '/de/szolgaltatasok']) {
+    const html = await (await request.get(path)).text();
+    if (html.includes('abandoned-cart')) bad.push(`${path} html`);
+    for (const src of new Set([...html.matchAll(/\/_next\/static\/[^"'\\\s]+?\.js/g)].map((m) => m[0]))) {
+      if ((await (await request.get(src)).text()).includes('abandoned-cart')) bad.push(`${path} ${src}`);
+    }
+  }
+  expect(bad).toEqual([]);
 });

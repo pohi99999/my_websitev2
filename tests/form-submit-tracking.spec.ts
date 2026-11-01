@@ -3,7 +3,7 @@ import { test, expect, type Page, type Route } from '@playwright/test';
 // Every real lead form reports exactly one `form_submit` gtag event per submit, and `success`
 // only after the server answered ok. `generate_lead` is derived in GA from form_submit+success,
 // so the code must never send it itself (it would double the conversions).
-// The demo forms (AbandonedCartDemo, InstantResponderDemo, BrunellaDemoForm) are not leads.
+// The demo forms (InstantResponderDemo, BrunellaDemoForm) are not leads.
 
 type GtagCall = unknown[];
 
