@@ -5,10 +5,13 @@ import { ASZF } from '../app/aszf/content';
 // The approved ÁSZF and the mandatory company data (card 0c1060b6, Marveen 5829, Péter's approval:
 // Telegram 12456).
 
+// The approved texts with only their effective-date line filled in (2026-11-01, Péter GO 12491); the
+// approved files themselves: hu 85590ed5... (Telegram 12456), en cee4784f..., de 53421b06... (Aura, Marveen
+// 5832). A one-line diff each, in Aura's folder as ASZF-*-20261101.md.
 const APPROVED_SHA256 = {
-  hu: '85590ed54dedb23eb5dd2884a9b01253d109439bdf784afed9e772370a689ba0', // Péter, Telegram 12456
-  en: 'cee4784f1304fb585e14e7b12a0d2ece48cbda76151c46ba02c8df2909d6d55e', // Aura's translation, Marveen 5832
-  de: '53421b0625e03228c8f55932e4bd33de789bd9a46523a9d0aee9c284d2a2d7f4', // Aura's translation, Marveen 5832
+  hu: '6e03f2ac0fadb94709471f8557c229662636412763f1d3b37175c94396eef553',
+  en: '7acbe54a54ac390f7bb73291ff6db994327fe6fb3e94401a3fe921a8e91315b8',
+  de: '7e7c45225171a9034beb6ea74e7d1c6d861e67de09efcb752bd89fcbdcbcb277',
 } as const;
 const GMAIL = 'peterpohankapersonal@gmail.com';
 const LEGAL = ['/impresszum', '/adatvedelmi-nyilatkozat', '/aszf'].flatMap((p) => [p, `/en${p}`, `/de${p}`]);

@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   },
 };
 
-// the go-live date of this version (with the ÁSZF, Marveen 5829): set before merging
-const LAST_UPDATED = '[ÉLESÍTÉSKOR KITÖLTENDŐ DÁTUM]';
+// the go-live date of this version, with the ÁSZF (Peter GO 12491)
+const LAST_UPDATED = '2026. november 1.';
 
 const CONTACT_EMAIL = 'info@pohankaestarsa.com';
 const CONTACT_PHONE = '+36 30 429 1227';

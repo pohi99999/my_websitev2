@@ -3,12 +3,15 @@
 # looks. Each language's sha256 goes next to its text, so a test can tell that the published text is
 # the approved one.
 #
-#   ASZF_WITH_TRANSLATIONS=1 python3 scripts/aszf-content.py <dir with ASZF-VEGLEGES-HU.md, ASZF-EN.md, ASZF-DE.md>
-#   (without the variable only the Hungarian text is written)
+#   ASZF_WITH_TRANSLATIONS=1 python3 scripts/aszf-content.py <dir> [suffix]
+#   reads ASZF-VEGLEGES-HU<suffix>.md, ASZF-EN<suffix>.md, ASZF-DE<suffix>.md (without the variable only the
+#   Hungarian text). The suffix picks the dated copies (e.g. -20261101: the approved files with only the
+#   effective-date line filled in, Peter GO 12491); the approved files themselves are never rewritten.
 import hashlib, json, os, sys
 
 src = sys.argv[1]
-files = {'hu': 'ASZF-VEGLEGES-HU.md', 'en': 'ASZF-EN.md', 'de': 'ASZF-DE.md'}
+suffix = sys.argv[2] if len(sys.argv) > 2 else ''
+files = {'hu': f'ASZF-VEGLEGES-HU{suffix}.md', 'en': f'ASZF-EN{suffix}.md', 'de': f'ASZF-DE{suffix}.md'}
 langs = {}
 for lang, name in files.items():
     path = os.path.join(src, name)
