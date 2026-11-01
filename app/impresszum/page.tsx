@@ -66,13 +66,13 @@ export default async function ImpresszumPage() {
             <div>{c.phone}: +36 30 429 1227</div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <div className="text-white font-semibold">{c.host}</div>
+            <h2 className="text-white font-semibold">{c.host}</h2>
             <div>Vercel Inc., {c.hostAddr}</div>
             <div>{c.email}: privacy@vercel.com</div>
             <div>{c.web}: https://vercel.com</div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <div className="text-white font-semibold">{c.adr}</div>
+            <h2 className="text-white font-semibold">{c.adr}</h2>
             <div>Győr-Moson-Sopron Vármegyei Békéltető Testület</div>
             <div>{c.adrAddr}</div>
             <div>{c.phone}: +36 96 520 200</div>

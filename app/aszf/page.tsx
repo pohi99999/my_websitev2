@@ -31,7 +31,7 @@ export default async function AszfPage() {
   return (
     // a div, not a second <main>: the layout's #main-content is the page's main landmark
     <div className="min-h-screen bg-slate-950 text-white pt-24 pb-16 px-6">
-      <div lang={ lang } data-testid="aszf-doc" className={ `max-w-3xl mx-auto ${ styles.doc }` } dangerouslySetInnerHTML={ { __html: html } } />
+      <div lang={ lang } data-testid="aszf-doc" className={ styles.doc } dangerouslySetInnerHTML={ { __html: html } } />
     </div>
   );
 }
