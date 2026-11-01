@@ -37,11 +37,8 @@ export const metadata: Metadata = {
   keywords: 'weboldal készítés Zalaegerszeg, időpontfoglaló weboldal, ajánlatkérő weboldal, foglalási rendszer, webáruház készítés, portál fejlesztés, mobilalkalmazás fejlesztés, automatizálás vállalkozásoknak, AI rendszerek vállalkozásoknak, Brunella AI ügynökrendszer',
   creator: "Pohánka Péter",
   publisher: "Pohánka és Társa Kft.",
-  icons: {
-    icon: '/images/logo.png',
-    shortcut: '/images/logo.png',
-    apple: '/images/logo.png',
-  },
+  // the tab and home-screen icons are app/icon.png (32 px, 3 KB) and app/apple-icon.jpg (180 px): the
+  // 148 KB, 1035x828 logo photo was downloaded by every first visit just for the tab icon
   manifest: '/manifest.json',
   openGraph: {
     title: 'Pohánka és Társa - Weboldal, automatizálás és AI-rendszerek',
