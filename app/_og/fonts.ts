@@ -1,4 +1,6 @@
-const fontCache = new Map<string, ArrayBuffer[]>();
+export type FontFile = { subset: string; data: ArrayBuffer };
+
+const fontCache = new Map<string, FontFile[]>();
 
 // Google Fonts answers with one @font-face per unicode subset, each behind a /* subset */ comment, and
 // cyrillic-ext comes first. Taking the first .woff loaded a cyrillic subset, so the Latin text fell back
@@ -34,21 +36,22 @@ async function fetchGoogleFontWoffs(family: string, weight: number) {
     if (url) bySubset.set(name, url);
   }
   // without subset comments the answer is a single, complete font
-  const urls = bySubset.size
-    ? SUBSETS.map((s) => bySubset.get(s)).filter((u): u is string => !!u)
-    : [css.match(woffUrl)?.[1]].filter((u): u is string => !!u);
+  const fullUrl = css.match(woffUrl)?.[1];
+  const files = bySubset.size
+    ? SUBSETS.filter((s) => bySubset.has(s)).map((s) => ({ subset: s, url: bySubset.get(s)! }))
+    : fullUrl ? [{ subset: 'latin', url: fullUrl }] : [];
 
-  if (!urls.length) {
+  if (!files.length) {
     throw new Error(`Could not find a latin woff font URL in Google Fonts CSS (${family} ${weight})`);
   }
 
   const data = await Promise.all(
-    urls.map(async (url) => {
+    files.map(async ({ subset, url }) => {
       const fontResponse = await fetch(url);
       if (!fontResponse.ok) {
         throw new Error(`Failed to fetch font file (${family} ${weight}): ${fontResponse.status}`);
       }
-      return fontResponse.arrayBuffer();
+      return { subset, data: await fontResponse.arrayBuffer() };
     })
   );
   fontCache.set(cacheKey, data);
