@@ -760,17 +760,50 @@ a {
   }
 }
 
+/* Below lg the sticky call-to-action bar (MobileCTA, lg:hidden) covers the bottom of the screen: when
+   the keyboard focus scrolls an element into view, keep it above the bar, with its focus ring
+   (WCAG 2.4.11; Lumen 5758 measured the configurator samples up to 44 px under it at 375 px). */
+@media (max-width: 1023.98px) {
+  html {
+    scroll-padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  }
+}
+
 /* Phones: long words in big headings ("Dienstleistungen", "Geschäftsprozessautomatisierung",
    "Automatizáció,") were wider than a 360-390 px screen and widened the whole layout (418-626 px).
-   Hyphenate by the page language, and break the word as a last resort. Desktop is unchanged. */
+   Automatic hyphenation fixed that, but it also split 91 words that would have fitted on the next
+   line ("auto-matizálás"). Now, as on the homepage title: the big heading sizes follow the screen
+   width, so the long words fit; nothing is hyphenated automatically; lines are balanced; a word
+   that still cannot fit breaks at its own hyphen or at a soft hyphen (&shy;) written into it.
+   overflow-wrap stays as the last resort against overflow. Desktop is unchanged. */
 @media (max-width: 639.98px) {
   h1,
   h2,
   h3 {
-    hyphens: auto;
-    /* only long words (10+ letters, 4+ on each side): short ones keep their line */
-    hyphenate-limit-chars: 10 4 4;
+    hyphens: manual;
+    text-wrap: balance;
     overflow-wrap: break-word;
+  }
+  :is(h1, h2, h3):is(.text-6xl, .text-5xl) {
+    font-size: clamp(2rem, 9.4vw, 3rem);
+    line-height: 1.15;
+  }
+  :is(h1, h2, h3).text-4xl {
+    font-size: clamp(1.625rem, 7.4vw, 2.25rem);
+    line-height: 1.2;
+  }
+  :is(h1, h2, h3).text-3xl,
+  .blog-content h2 {
+    font-size: clamp(1.375rem, 6.4vw, 1.875rem);
+    line-height: 1.2;
+  }
+}
+/* Narrower than 360 px: automatic hyphenation as the fallback */
+@media (max-width: 359.98px) {
+  h1,
+  h2,
+  h3 {
+    hyphens: auto;
   }
 }
 

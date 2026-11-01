@@ -36,7 +36,7 @@ const Hero = () =>
   return (
     <section
       id="home"
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-transparent px-4 pb-12 pt-24 md:min-h-screen md:px-6"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-transparent px-4 pb-12 pt-24 max-sm:pt-16 md:min-h-screen md:px-6"
     >
       {/* Ambient glow only — keep the video visible; drifts slower than the page (parallax, direction C) */}
       <div
@@ -56,9 +56,12 @@ const Hero = () =>
         <div className="absolute bottom-0 right-0 w-10 h-10 border-b border-r border-[#00e5ff]/40" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10 text-center">
+      {/* Phones: the configurator comes right after the title and the intro paragraph after it (CSS order,
+          same DOM and text), so the "Mutassa" button is on the first screen above the sticky bottom bar
+          (375 px: button bottom 647 px, visible area 743 px; before 922 px). Desktop keeps the order. */}
+      <div className="container mx-auto px-4 relative z-10 text-center max-sm:flex max-sm:flex-col">
         {/* Context badge */}
-        <div className="hud-badge mb-6 text-xs font-mono" data-testid="hero-context-badge">
+        <div className="hud-badge mb-6 text-xs font-mono max-sm:self-center" data-testid="hero-context-badge">
           <span className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] animate-pulse" aria-hidden="true" />
           Pohánka és Társa, Zalaegerszeg
         </div>
@@ -86,13 +89,13 @@ const Hero = () =>
           <div className="h-px w-20 bg-[#00e5ff]/60" aria-hidden="true" />
         </div>
 
-        <p className="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
+        <p className="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto mb-12 leading-relaxed font-light max-sm:order-1">
           {language === 'en' ? 'We build websites where customers book or request a quote, and we take over part of your manual admin work. We start with a free, no-obligation consultation or design preview.' : language === 'de' ? 'Wir bauen Websites, auf denen Kunden buchen oder ein Angebot anfragen, und übernehmen einen Teil Ihrer manuellen Verwaltung. Wir beginnen mit einer kostenlosen, unverbindlichen Beratung oder einem Entwurf.' : 'Olyan weboldalt készítünk, amelyen a vevő foglal vagy ajánlatot kér, és átvesszük a kézi adminisztráció egy részét. Ingyenes, kötelezettségmentes konzultációval vagy látványtervvel kezdünk.'}
         </p>
 
         <ConfiguratorHero />
 
-        <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-6 max-sm:order-2">
           {/* Primary CTA — HUD octagon */}
           <a
             href="#contact-form"
@@ -137,7 +140,7 @@ const Hero = () =>
           </a>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-4 sm:grid-cols-3">
+        <div className="mx-auto mt-12 grid max-w-5xl gap-4 sm:grid-cols-3 max-sm:order-2">
           {heroStats.map( ( stat ) =>
           {
             const body = (

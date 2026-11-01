@@ -240,13 +240,16 @@ export default async function RootLayout ( {
         </a>
         <LanguageProvider initialLanguage={initialLanguage}>
           <LenisProvider>
-            <DeferredLayoutEnhancements />
             <Header />
             <main id="main-content" className="pt-20">
               {/* page-to-page crossfade on client navigation (direction C); the header stays put */}
               <ViewTransition>{children}</ViewTransition>
             </main>
             <Footer />
+            {/* the video background and the phone's sticky call-to-action bar are both position: fixed, so
+                their place in the DOM changes only the Tab order: after the footer, the keyboard reaches
+                the header and the page first, not the bar (Lumen 5758) */}
+            <DeferredLayoutEnhancements />
           </LenisProvider>
           <BrunellaChat />
           <CookieConsent />
