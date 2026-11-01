@@ -4,6 +4,5 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /internal/
 
-# Host and Sitemap
-Host: https://www.pohankaestarsa.com
+# Sitemap
 Sitemap: https://www.pohankaestarsa.com/sitemap.xml
