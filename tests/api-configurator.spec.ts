@@ -296,6 +296,24 @@ test.describe("configurator contract (app/lib/configurator.ts)", () => {
     expect(k("Vendégeket fogadok.")).toBe("other");
   });
 
+  // Lumen 5728: words many trades share must not decide on their own. Each "other" line below got a
+  // wrong industry from the previous rules (6dcee67).
+  test("custom, kitchen, Balaton, night and a driving school do not pick an industry by themselves", () => {
+    const k = (s: string) => keywordAnswer(s, "daily_budget").industry;
+    expect(k("Egyedi tortákat sütök.")).toBe("other");
+    expect(k("Egyedi szoftvert fejlesztek.")).toBe("other");
+    expect(k("Balatoni éttermem van.")).toBe("other");
+    expect(k("Szobafestő vagyok, éjszaka is dolgozom.")).toBe("other");
+    expect(k("Autósiskolám van.")).toBe("other");
+    expect(k("Éttermi konyha felszerelést forgalmazok.")).toBe("other");
+    // the trades themselves are still recognised
+    expect(k("Egyedi bútorokat és konyhabútort készítek.")).toBe("carpentry");
+    expect(k("We build fitted kitchens and wardrobes.")).toBe("carpentry");
+    expect(k("Szállást adok ki a Balatonnál.")).toBe("guesthouse");
+    expect(k("Autószervizem van.")).toBe("car_service");
+    expect(k("Autó klímatöltést vállalok.")).toBe("car_service");
+  });
+
   test("every sample button on the page lands on its own industry", () => {
     const src = fs.readFileSync(path.resolve("app/components/ConfiguratorHero.tsx"), "utf8");
     const samples = [...src.matchAll(/\[ '([^']+)', '([^']+)' \]/g)].map((m) => [m[1], m[2]]);

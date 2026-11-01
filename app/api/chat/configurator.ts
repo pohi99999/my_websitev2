@@ -15,13 +15,16 @@ export function answer(industry: Industry, features: readonly Feature[], source:
 // The first rule that matches wins, so the order matters (Lumen 5718, measured on the preview):
 // salons call their clients "vendég" / "guest" too, so hair and beauty come before the guesthouse,
 // and a bare "vendég" / "guest" decides nothing: the guesthouse needs a word about lodging.
-// "szerel" is not a car word on its own ("Szerelem a lovakat" is love, not a repair shop).
+// "szerel" is not a car word on its own ("Szerelem a lovakat" is love, not a repair shop), and a
+// driving school is not a car service. Words that many trades share decide nothing on their own
+// (Lumen 5728): "egyedi" (custom cakes, custom software), "konyha"/"kitchen" (a restaurant kitchen),
+// "Balaton" (a restaurant by the lake), "éjszaka" (a painter working nights).
 const PROFILES: Array<{ industry: Industry; re: RegExp; features: Feature[] }> = [
   { industry: 'hair_salon', re: /fodr|hajvág|hajszalon|borbély|barber|\bhair|friseur|coiffeur/i, features: ['booking'] },
   { industry: 'beauty', re: /kozmet|köröm|körm|manikűr|pedikűr|szempilla|smink|szépség|masszázs|masszőr|masszőz|masszíroz|bérlet|beaut|cosmetic|nail|manicure|pedicure|\blash|make-?up|facial|massage|masseu|\bspa\b|kosmetik|nagel|wimpern/i, features: ['booking', 'deposit'] },
-  { industry: 'car_service', re: /autó|gépjármű|autószerel|szerelőműhely|szerviz|gumi|\bcars?\b|garage|mechanic|tyre|\btires?\b|werkstatt|kfz|reifen/i, features: ['quote', 'booking'] },
-  { industry: 'guesthouse', re: /vendégház|vendégszob|szállás|panzió|apartman|szobakiad|éjszak|balaton|guest ?house|b&b|bed and breakfast|hotel|holiday (?:home|let|rental)|rooms? to (?:let|rent)|pension|gästehaus|ferienwohnung|unterkunft|übernacht/i, features: ['booking', 'voucher'] },
-  { industry: 'carpentry', re: /asztalos|bútor|konyha|egyedi|carpent|joiner|furniture|kitchen|tischler|schreiner|möbel/i, features: ['quote'] },
+  { industry: 'car_service', re: /autó(?!siskol)|gépjármű|autószerel|szerelőműhely|szerviz|gumi|\bcars?\b|garage|mechanic|tyre|\btires?\b|werkstatt|kfz|reifen/i, features: ['quote', 'booking'] },
+  { industry: 'guesthouse', re: /vendégház|vendégszob|szállás|panzió|apartman|szobakiad|guest ?house|b&b|bed and breakfast|hotel|holiday (?:home|let|rental)|rooms? to (?:let|rent)|pension|gästehaus|ferienwohnung|unterkunft|übernacht/i, features: ['booking', 'voucher'] },
+  { industry: 'carpentry', re: /asztalos|bútor|konyhaszekrény|carpent|joiner|furniture|cabinetmak|wardrobe|fitted kitchen|kitchen (?:cabinet|fitter)|tischler|schreiner|möbel/i, features: ['quote'] },
 ];
 const OTHER_FEATURES: Feature[] = ['quote'];
 

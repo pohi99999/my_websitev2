@@ -63,8 +63,10 @@ const Hero = () =>
           Pohánka és Társa, Zalaegerszeg
         </div>
 
-        {/* 360 px alatt 30 px, hogy a leghosszabb szó (pl. "ajánlatot", "Kostenlosen") se lógjon ki. */}
-        <h1 className="heading-display text-[1.875rem] min-[360px]:text-4xl md:text-6xl mb-6 leading-tight font-syne">
+        {/* Mobilon a betűméret a szélességgel nő (26-36 px), így a leghosszabb szó ("kisvállalkozásoknak.")
+            is kifér egy sorba, és nem kell elválasztani: 360-412 px-en 0 megtört szó (Lumen 5728, mérve).
+            360 px alatt marad az automatikus elválasztás tartaléknak. */}
+        <h1 className="heading-display text-[clamp(1.625rem,7.4vw,2.25rem)] md:text-6xl mb-6 leading-tight font-syne [hyphens:manual] [text-wrap:balance] max-[359px]:[hyphens:auto]">
           <span className="text-white font-light block mb-2 tracking-tight">
             {language === 'en' ? 'Websites, automation and an AI team' : language === 'de' ? 'Websites, Automatisierung und ein KI-Team' : 'Weboldal, automatizálás és AI-csapat'}
           </span>{' '}
