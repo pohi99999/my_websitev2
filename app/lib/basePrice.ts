@@ -1,4 +1,5 @@
 // The base package price, in ONE place (Péter, Telegram 4311, 2026-09-23; EN/DE 6328, 2026-10-05).
+// Net price plus VAT since Péter, Telegram 12800 (2026-11-03): "150.000 + áfa legyen az alapdíj mindenhol".
 // Used by the price card (Arcsomag), the /weboldal-ai-kkv FAQ and checked by the chat prompt's
 // drift guard. Change the price here and nowhere else.
 export const NBSP = ' ';
@@ -13,17 +14,17 @@ export const BASE_PRICE = {
 // table (app/api/chat/configurator.ts) shows exactly what the card shows. Péter 4311 / 6299 / 6328.
 export const PRICE_TERMS = {
   hu: {
-    gross: 'bruttó, egyszeri',
+    vat: '+ áfa, egyszeri',
     addonPrice: 'Egyedi ajánlat, az árat előre, fixen rögzítjük az ajánlatban.',
     optional: 'Opcionális',
   },
   en: {
-    gross: 'incl. VAT, one-off payment',
+    vat: '+ VAT, one-off payment',
     addonPrice: 'Priced individually: the price is fixed up front in your quote.',
     optional: 'Optional',
   },
   de: {
-    gross: 'inkl. MwSt., einmalig',
+    vat: 'zzgl. MwSt., einmalig',
     addonPrice: 'Individuelles Angebot: Der Preis wird vorab verbindlich im Angebot festgelegt.',
     optional: 'Optional',
   },

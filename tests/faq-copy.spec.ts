@@ -17,7 +17,7 @@ test.describe("FAQ copy", () => {
 
   test("the Hungarian price answer is the owner's text (Telegram 6926)", () => {
     expect(FAQ_COPY.hu.items[3].a.replace(/ /g, " ")).toBe(
-      "Az alapcsomag ára fix 150 000 Ft bruttó, egyszeri díj. Az online időpontfoglalásra és bankkártyás előlegre, illetve a nagyobb, egyedi rendszerekre ingyenes konzultáció után tételes, fix áras ajánlatot adunk, rejtett költségek nélkül.",
+      "Az alapcsomag ára fix 150 000 Ft + áfa, egyszeri díj. Az online időpontfoglalásra és bankkártyás előlegre, illetve a nagyobb, egyedi rendszerekre ingyenes konzultáció után tételes, fix áras ajánlatot adunk, rejtett költségek nélkül.",
     );
   });
 

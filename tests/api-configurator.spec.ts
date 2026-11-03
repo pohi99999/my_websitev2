@@ -229,11 +229,11 @@ test.describe("POST /api/chat mode=configurator", () => {
 test.describe("configurator contract (app/lib/configurator.ts)", () => {
   test("the price table is the price card's wording, in every language", () => {
     for (const lang of ["hu", "en", "de"] as const) {
-      expect(packagePrice("base", lang)).toBe(`${BASE_PRICE[lang]} ${PRICE_TERMS[lang].gross}`);
+      expect(packagePrice("base", lang)).toBe(`${BASE_PRICE[lang]} ${PRICE_TERMS[lang].vat}`);
       for (const addon of ["booking", "deposit", "voucher"] as const) expect(packagePrice(addon, lang)).toBe(PRICE_TERMS[lang].addonPrice);
       expect(packagePrice("care", lang)).toBe(PRICE_TERMS[lang].optional);
     }
-    expect(packagePrice("base", "hu")).toBe("150 000 Ft bruttó, egyszeri");
+    expect(packagePrice("base", "hu")).toBe("150 000 Ft + áfa, egyszeri");
   });
 
   test("packages: base always, an add-on per paid feature, the quote form inside base, care always last", () => {

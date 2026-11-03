@@ -75,7 +75,7 @@ export const PACKAGE_LABEL: Record<PackageKey, Text> = {
 
 /** The fixed price table: the only place a configurator price comes from (the price card's wording). */
 export function packagePrice(key: PackageKey, lang: ConfiguratorLang): string {
-  if (key === 'base') return `${BASE_PRICE[lang]} ${PRICE_TERMS[lang].gross}`;
+  if (key === 'base') return `${BASE_PRICE[lang]} ${PRICE_TERMS[lang].vat}`;
   if (key === 'care') return PRICE_TERMS[lang].optional;
   return PRICE_TERMS[lang].addonPrice;
 }
