@@ -16,14 +16,14 @@ import { BASE_PRICE, PRICE_TERMS } from '../lib/basePrice';
 type Lang = 'hu' | 'en' | 'de';
 
 const COPY: Record<Lang, {
-  heading: string; base: string; price: string; gross: string; items: string[]; addon: string; addonDesc: string; addonPrice: string;
+  heading: string; base: string; price: string; vat: string; items: string[]; addon: string; addonDesc: string; addonPrice: string;
   reference: string; care: string; careDesc: string; optional: string; details: boolean; contact: string;
 }> = {
   hu: {
     heading: 'Árcsomag',
     base: 'Alapcsomag',
     price: BASE_PRICE.hu,
-    gross: PRICE_TERMS.hu.gross,
+    vat: PRICE_TERMS.hu.vat,
     items: [
       'Bemutatkozó weboldal',
       'Telefonon és laptopon',
@@ -46,7 +46,7 @@ const COPY: Record<Lang, {
     heading: 'Pricing',
     base: 'Base package',
     price: BASE_PRICE.en,
-    gross: PRICE_TERMS.en.gross,
+    vat: PRICE_TERMS.en.vat,
     items: [
       'Business website',
       'On phone and laptop',
@@ -69,7 +69,7 @@ const COPY: Record<Lang, {
     heading: 'Preise',
     base: 'Basispaket',
     price: BASE_PRICE.de,
-    gross: PRICE_TERMS.de.gross,
+    vat: PRICE_TERMS.de.vat,
     items: [
       'Unternehmenswebsite',
       'Auf Handy und Laptop',
@@ -118,7 +118,7 @@ export default function Arcsomag ( { contactHref = '#contact' }: { contactHref?:
             <p className={ `mt-4 ${ c.price.length > 10 ? 'text-4xl lg:text-[1.75rem] xl:text-4xl' : 'text-4xl md:text-5xl lg:text-[1.75rem] xl:text-5xl' } font-bold text-white font-syne tabular-nums` }>
               { c.price }
             </p>
-            <p className="mt-1 text-gray-400 text-sm">{ c.gross }</p>
+            <p className="mt-1 text-gray-400 text-sm">{ c.vat }</p>
             <ul className="mt-6 space-y-3">
               {c.items.map( ( item ) => (
                 <li key={item} className="flex gap-3 text-gray-200 text-sm leading-relaxed">

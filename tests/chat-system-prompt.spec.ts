@@ -12,7 +12,7 @@ test.describe("Brunella chat system prompt", () => {
     expect(firstLine).toMatch(/AI automation/);
     expect(firstLine).toMatch(/websites/);
     for (const fact of [
-      "150 000 Ft gross", "HUF 150,000", "one-off", "two weeks", "fixed price", "Hungarian + English",
+      "150 000 Ft + VAT", "HUF 150,000 + VAT", "one-off", "two weeks", "fixed price", "Hungarian + English",
       "látványterv", "design preview", "gift vouchers", "hetenyirenata.com", "bdklima.hu",
       "https://www.pohankaestarsa.com/weboldal-ai-kkv", "https://www.pohankaestarsa.com/en/weboldal-ai-kkv",
     ]) expect(SYSTEM_PROMPT, fact).toContain(fact);
@@ -43,7 +43,9 @@ test.describe("Brunella chat system prompt", () => {
 
   test("drift guard: the base price in the prompt is the site's single BASE_PRICE (price card and FAQ use it)", () => {
     const plain = (x: string) => x.replace(/\u00a0/g, " ");
-    expect(SYSTEM_PROMPT).toContain(`${plain(BASE_PRICE.hu)} gross`);
+    expect(SYSTEM_PROMPT).toContain(`${plain(BASE_PRICE.hu)} + VAT`);
+    // Péter 12800 (2026-11-03): the base price is net + VAT; the old gross wording must not come back
+    expect(SYSTEM_PROMPT).not.toMatch(/150 000 Ft gross|incl\. VAT/);
     expect(SYSTEM_PROMPT).toContain(plain(BASE_PRICE.en));
     // the price card and the FAQ read the same constant, so none of them can drift on its own
     const card = readFileSync(join(__dirname, "..", "app", "components", "Arcsomag.tsx"), "utf-8");

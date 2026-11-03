@@ -24,7 +24,7 @@ export const FAQ_COPY: Record<FaqLang, FaqCopy> = {
       {
         // Péter, Telegram 6926: the fixed base price, not "depends on the size of the business"
         q: 'Mennyibe kerül egy ilyen megoldás?',
-        a: `Az alapcsomag ára fix ${BASE_PRICE.hu} bruttó, egyszeri díj. Az online időpontfoglalásra és bankkártyás előlegre, illetve a nagyobb, egyedi rendszerekre ingyenes konzultáció után tételes, fix áras ajánlatot adunk, rejtett költségek nélkül.`,
+        a: `Az alapcsomag ára fix ${BASE_PRICE.hu} + áfa, egyszeri díj. Az online időpontfoglalásra és bankkártyás előlegre, illetve a nagyobb, egyedi rendszerekre ingyenes konzultáció után tételes, fix áras ajánlatot adunk, rejtett költségek nélkül.`,
       },
     ],
   },
@@ -45,7 +45,7 @@ export const FAQ_COPY: Record<FaqLang, FaqCopy> = {
       },
       {
         q: 'How much does a solution like this cost?',
-        a: `The base package has a fixed price of ${BASE_PRICE.en} incl. VAT, as a one-off payment. For online booking with a card deposit, and for larger, custom systems, we give you an itemised, fixed-price quote after a free consultation, with no hidden costs.`,
+        a: `The base package has a fixed price of ${BASE_PRICE.en} + VAT, as a one-off payment. For online booking with a card deposit, and for larger, custom systems, we give you an itemised, fixed-price quote after a free consultation, with no hidden costs.`,
       },
     ],
   },
@@ -66,7 +66,7 @@ export const FAQ_COPY: Record<FaqLang, FaqCopy> = {
       },
       {
         q: 'Was kostet eine solche Lösung?',
-        a: `Das Basispaket kostet fest ${BASE_PRICE.de} inkl. MwSt., als Einmalzahlung. Für die Online-Terminbuchung mit Anzahlung per Karte sowie für größere, individuelle Systeme erstellen wir nach einer kostenlosen Beratung ein detailliertes Festpreisangebot, ohne versteckte Kosten.`,
+        a: `Das Basispaket kostet fest ${BASE_PRICE.de} zzgl. MwSt., als Einmalzahlung. Für die Online-Terminbuchung mit Anzahlung per Karte sowie für größere, individuelle Systeme erstellen wir nach einer kostenlosen Beratung ein detailliertes Festpreisangebot, ohne versteckte Kosten.`,
       },
     ],
   },

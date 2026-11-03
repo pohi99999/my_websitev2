@@ -28,7 +28,7 @@ const alapcsomag = [
 const faq = [
   {
     q: 'Mennyibe kerül egy weboldal?',
-    a: `Az alapcsomag ${ PRICE }, bruttó, egyszeri díj. Az online időpontfoglalás és a bankkártyás előleg vagy ajándékutalvány bővítmény ára egyedi ajánlat szerint alakul.`,
+    a: `Az alapcsomag ${ PRICE } + áfa, egyszeri díj. Az online időpontfoglalás és a bankkártyás előleg vagy ajándékutalvány bővítmény ára egyedi ajánlat szerint alakul.`,
   },
   { q: 'Mennyi idő alatt készül el?', a: 'Az alapcsomag átfutása két hét.' },
   { q: 'Módosíthatom később magam a weboldalt?', a: 'Igen: a szövegeket, az árakat és a galériát Ön szerkeszti.' },
@@ -69,7 +69,7 @@ export default function WeboldalKeszitesZalaegerszeg ()
         <section aria-labelledby="alapcsomag" className="mt-14 border border-[#00e5ff]/40 bg-[#0c0c10] p-6 md:p-10">
           <h2 id="alapcsomag" className="text-2xl md:text-3xl font-bold font-syne">Mit kap az alapcsomagban?</h2>
           <p className="mt-5 text-4xl md:text-5xl font-bold font-syne tabular-nums">{PRICE}</p>
-          <p className="mt-1 text-gray-400 text-sm">bruttó, egyszeri</p>
+          <p className="mt-1 text-gray-400 text-sm">+ áfa, egyszeri</p>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {alapcsomag.map( ( item ) => (
               <li key={item} className="flex gap-3 text-gray-200 leading-relaxed">
