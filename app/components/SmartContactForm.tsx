@@ -68,15 +68,15 @@ export function SmartContactForm() {
 
   return (
     <div className="w-full max-w-xl mx-auto p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl">
-      <h3 className="text-2xl font-bold text-white mb-6">Projekt Egyeztetés</h3>
-      
+      {/* no visible title of its own: the section's <h2> "Projekt egyeztetés" on /szolgaltatasok already names
+          it (the card's <h3> repeated it word for word); the form keeps its accessible name via aria-label */}
       {status === 'success' ? (
         <div className="p-4 rounded-xl bg-green-500/20 border border-green-500/50 text-green-200">
           <p className="font-semibold text-lg">Köszönjük a megkeresést!</p>
           <p>Munkatársunk (vagy MI asszisztensünk) hamarosan felveszi Önnel a kapcsolatot.</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} aria-label="Projekt egyeztetés" className="space-y-5">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Név</label>
             <input
