@@ -8,6 +8,12 @@ import { useLanguage } from '../context/LanguageContext';
 // same recipient, rate limit and honeypot as the /kapcsolat form; Marveen 5871). Until 11-01 it posted to the
 // n8n 'lead-form' webhook, whose workflow scored the lead and kept nothing, while the webhook's instant 200
 // showed the visitor a success. Success is shown only when the server says the mail went out.
+// /api/contact rejects a message above 6000 characters. The message is the header line (41), the budget line
+// (at most 42, with the longest option) and a blank line, three line breaks, then the description: 5800 + 86 =
+// 5886, under 6000 with room to spare. The visitor sees what is left from 300 characters before the cap.
+const DESCRIPTION_MAX = 5800;
+const DESCRIPTION_WARN_FROM = 300;
+
 export function SmartContactForm() {
   const { language } = useLanguage();
   const [formData, setFormData] = useState({
@@ -18,6 +24,7 @@ export function SmartContactForm() {
   });
   const [website, setWebsite] = useState(''); // honeypot, as on /kapcsolat
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const descriptionLeft = DESCRIPTION_MAX - formData.project_description.length;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -68,15 +75,15 @@ export function SmartContactForm() {
 
   return (
     <div className="w-full max-w-xl mx-auto p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl">
-      <h3 className="text-2xl font-bold text-white mb-6">Projekt Egyeztetés</h3>
-      
+      {/* no visible title of its own: the section's <h2> "Projekt egyeztetés" on /szolgaltatasok already names
+          it (the card's <h3> repeated it word for word); the form keeps its accessible name via aria-label */}
       {status === 'success' ? (
         <div className="p-4 rounded-xl bg-green-500/20 border border-green-500/50 text-green-200">
           <p className="font-semibold text-lg">Köszönjük a megkeresést!</p>
           <p>Munkatársunk (vagy MI asszisztensünk) hamarosan felveszi Önnel a kapcsolatot.</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} aria-label="Projekt egyeztetés" className="space-y-5">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Név</label>
             <input
@@ -112,11 +119,18 @@ export function SmartContactForm() {
               name="project_description"
               required
               rows={4}
+              maxLength={DESCRIPTION_MAX}
+              aria-describedby="project_description_left"
               value={formData.project_description}
               onChange={handleChange}
               className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
               placeholder="Miben segíthetünk? (pl. Weboldal készítés, MI automatizáció...)"
             />
+            <div id="project_description_left" aria-live="polite">
+              {descriptionLeft <= DESCRIPTION_WARN_FROM && (
+                <p className="mt-1 text-xs text-gray-400">Még {descriptionLeft} karakter írható.</p>
+              )}
+            </div>
           </div>
 
           <div>

@@ -42,9 +42,11 @@ function parse(body: string): Block[] {
 }
 
 const LINK = 'text-[#00e5ff] hover:underline break-words';
+// a link inside a sentence is underlined at rest, not told apart by colour alone (WCAG 1.4.1)
+const LINK_IN_TEXT = 'text-[#00e5ff] underline underline-offset-4 break-words';
 
 // **bold**, `code`, e-mail addresses, the phone number and www. addresses; the visible text is unchanged.
-function inline(text: string): React.ReactNode[] {
+function inline(text: string, link: string = LINK): React.ReactNode[] {
   const re = /(\*\*[^*]+\*\*|`[^`]+`|[\w.+-]+@[\w-]+(?:\.[\w-]+)+|\+36 30 429 1227|www\.[\w-]+\.[a-z]{2,})/g;
   return text.split(re).map((part, k) => {
     if (!part) return null;
@@ -54,9 +56,9 @@ function inline(text: string): React.ReactNode[] {
     if (part.startsWith('`') && part.endsWith('`')) {
       return <code key={k} className="rounded bg-white/10 px-1 py-0.5 font-mono text-[0.85em] text-white break-words">{part.slice(1, -1)}</code>;
     }
-    if (/^[\w.+-]+@/.test(part)) return <a key={k} href={`mailto:${part}`} className={LINK}>{part}</a>;
-    if (part.startsWith('+36')) return <a key={k} href={`tel:${part.replace(/\s/g, '')}`} className={`${LINK} whitespace-nowrap`}>{part}</a>;
-    if (part.startsWith('www.')) return <a key={k} href={`https://${part}`} className={LINK} rel="noopener noreferrer" target="_blank">{part}</a>;
+    if (/^[\w.+-]+@/.test(part)) return <a key={k} href={`mailto:${part}`} className={link}>{part}</a>;
+    if (part.startsWith('+36')) return <a key={k} href={`tel:${part.replace(/\s/g, '')}`} className={`${link} whitespace-nowrap`}>{part}</a>;
+    if (part.startsWith('www.')) return <a key={k} href={`https://${part}`} className={link} rel="noopener noreferrer" target="_blank">{part}</a>;
     return <React.Fragment key={k}>{part}</React.Fragment>;
   });
 }
@@ -140,7 +142,7 @@ export default function PSearchPrivacy({ lang }: { lang: Lang }) {
             case 'h2':
               return <h2 key={k} className="mt-10 text-xl font-bold text-white">{b.text}</h2>;
             case 'p':
-              return <p key={k} className="mt-4">{inline(b.text)}</p>;
+              return <p key={k} className="mt-4">{inline(b.text, LINK_IN_TEXT)}</p>;
             case 'ul':
               return (
                 <ul key={k} className="mt-4 list-disc space-y-1 pl-5">

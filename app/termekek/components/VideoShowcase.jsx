@@ -39,8 +39,9 @@ const videos = [
     descKey: 'products.videoShowcase.videos.analytics.desc',
   },
   {
+    // no src on purpose: /showcase/automation-loop.mp4 was never added to public/ and every visit got a 404
+    // for it. Without a src the card shows its fallback (the original post); add `src` back with the file.
     type: 'mp4',
-    src: '/showcase/automation-loop.mp4',
     fallbackUrl: 'https://x.com/antigravity/status/1990813606217236828?s=20',
     titleKey: 'products.videoShowcase.videos.automation.title',
     descKey: 'products.videoShowcase.videos.automation.desc',
@@ -114,7 +115,7 @@ export default function VideoShowcase() {
             const isX = video.type === 'x';
             const isMp4 = video.type === 'mp4';
 
-            const cardKey = isYouTube ? video.id : isMp4 ? video.src : video.url;
+            const cardKey = isYouTube ? video.id : isMp4 ? video.src ?? video.fallbackUrl : video.url;
 
             return (
               <SpotlightCard
@@ -144,7 +145,7 @@ export default function VideoShowcase() {
                         </div>
                       </>
                     ) : isMp4 ? (
-                      mediaError[video.src] ? (
+                      !video.src || mediaError[video.src] ? (
                         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
                           {/* a missing file used to show a developer note ("put the file here: public/...") to visitors */}
                           <div className="text-white/90 font-semibold">A videó hamarosan elérhető</div>
