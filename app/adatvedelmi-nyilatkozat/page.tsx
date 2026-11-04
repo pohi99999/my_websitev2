@@ -346,7 +346,7 @@ export default function AdatvedelmiPage() {
                     Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)<br />
                     1055 Budapest, Falk Miksa utca 9–11.; postacím: 1363 Budapest, Pf. 9.<br />
                     Telefon: +36 1 391 1400; e-mail: ugyfelszolgalat@naih.hu; web:{' '}
-                    <a href="https://www.naih.hu" className="text-[#00e5ff] hover:underline" rel="noopener noreferrer" target="_blank">
+                    <a href="https://www.naih.hu" className="text-[#00e5ff] underline underline-offset-4" rel="noopener noreferrer" target="_blank">
                       naih.hu
                     </a>
                   </>
