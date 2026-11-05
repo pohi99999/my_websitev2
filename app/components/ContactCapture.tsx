@@ -46,6 +46,7 @@ export default function ContactCapture ()
         challenge: 'What do you need?',
         business: 'What does your business do? (optional)',
         submit: 'Book a free consultation',
+        submitPreview: 'Request the design preview',
         sending: 'Sending...',
         success: 'Thank you! We saved your request and will get back to you shortly.',
         error:
@@ -67,6 +68,7 @@ export default function ContactCapture ()
         challenge: 'Was brauchen Sie?',
         business: 'Womit beschäftigt sich Ihr Unternehmen? (optional)',
         submit: 'Kostenlose Beratung anfragen',
+        submitPreview: 'Entwurf anfordern',
         sending: 'Wird gesendet...',
         success: 'Danke! Ihre Anfrage wurde gespeichert und wir melden uns in Kürze.',
         error:
@@ -86,6 +88,7 @@ export default function ContactCapture ()
       challenge: 'Mire van szüksége?',
       business: 'Mivel foglalkozik a vállalkozása? (nem kötelező)',
       submit: 'Kérek ingyenes konzultációt',
+      submitPreview: 'Kérem a látványtervet',
       sending: 'Küldés...',
       success: 'Köszönjük! Elmentettük az érdeklődést, hamarosan jelentkezünk.',
       error:
@@ -311,7 +314,7 @@ export default function ContactCapture ()
               disabled={isSending}
               className="group inline-flex w-full items-center justify-center gap-3 rounded-full border border-[#00e5ff]/40 bg-[#00e5ff]/10 px-7 py-4 text-sm font-bold uppercase tracking-[0.18em] text-[#00e5ff] transition duration-300 hover:scale-[1.02] hover:border-[#00e5ff] hover:bg-[#00e5ff]/15 hover:shadow-[0_0_35px_rgba(0,229,255,0.28)] disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {isSending ? ui.sending : ui.submit}
+              {isSending ? ui.sending : fromConfigurator ? ui.submitPreview : ui.submit}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </form>
