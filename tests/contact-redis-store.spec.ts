@@ -62,11 +62,11 @@ test.describe('the contact limits use the store whichever name it has', () => {
     });
   }
 
-  test('the daily limit is one count: the 11th message is refused', async () => {
+  test('the daily limit is one count: the 51st message is refused', async () => {
     const store = fakeStore();
     try {
       const l = contactLimiters({ KV_REST_API_URL: HOST, KV_REST_API_TOKEN: 'tok', VERCEL_ENV: 'production' } as unknown as NodeJS.ProcessEnv);
-      for (let i = 0; i < 10; i++) expect(await checkDailyLimit(l)).toEqual({ ok: true });
+      for (let i = 0; i < 50; i++) expect(await checkDailyLimit(l)).toEqual({ ok: true });
       expect((await checkDailyLimit(l)).ok).toBe(false);
       expect(store.calls[0].key).toContain('contact:production:daily');
     } finally {

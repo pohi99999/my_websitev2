@@ -5,21 +5,21 @@ import { useLanguage } from '../context/LanguageContext';
 import { FORM_STATUSES, FORMS, PAGE_NAMES, trackFormSubmit } from '../lib/analytics';
 
 // What the visitor is told after submitting. It must match what actually happens:
-// the lead is saved and we contact them by hand; no automatic audit is sent.
+// the lead is saved and we reply by hand; no automatic audit or PDF is sent.
 const RESULT_TEXT = {
   hu: {
     title: 'Köszönjük!',
-    success: 'Megkaptuk az adatait, hamarosan felvesszük Önnel a kapcsolatot.',
+    success: 'Átnézzük az adatait, és 1 munkanapon belül visszaírunk.',
     error: 'Hiba történt a küldés során. Kérjük, próbálja újra később, vagy keressen minket az elérhetőségeinken!',
   },
   en: {
     title: 'Thank you!',
-    success: 'We have received your details and will get in touch with you soon.',
+    success: 'We will review your details and reply within 1 working day.',
     error: 'Something went wrong while sending. Please try again later or reach us through our contact details.',
   },
   de: {
     title: 'Vielen Dank!',
-    success: 'Wir haben Ihre Angaben erhalten und melden uns in Kürze bei Ihnen.',
+    success: 'Wir prüfen Ihre Angaben und antworten innerhalb von 1 Arbeitstag.',
     error: 'Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns über unsere Kontaktdaten.',
   },
 } as const;
@@ -46,11 +46,11 @@ const FORM_TEXT = {
     goals: ['Költségek optimalizálása', 'Cég skálázása (növekedés)', 'Vezetői idő felszabadítása', 'Versenyelőny megszerzése'],
     nameQ: '5. Hogyan szólíthatjuk?',
     namePh: 'Pl. Nagy Péter',
-    emailQ: '6. Hova küldjük a személyre szabott Audit PDF-et?',
+    emailQ: '6. Hova írjunk vissza?',
     emailPh: 'ceges.email@vallalkozas.hu',
     next: 'Tovább',
     back: 'Vissza',
-    sending: 'Generálás és küldés...',
+    sending: 'Küldés...',
     submit: 'Audit Kérése',
   },
   en: {
@@ -68,11 +68,11 @@ const FORM_TEXT = {
     goals: ['Optimising costs', 'Scaling the company (growth)', 'Freeing up management time', 'Gaining a competitive edge'],
     nameQ: '5. How should we address you?',
     namePh: 'E.g. Peter Nagy',
-    emailQ: '6. Where should we send your personalised Audit PDF?',
+    emailQ: '6. Where should we reply?',
     emailPh: 'company.email@business.com',
     next: 'Next',
     back: 'Back',
-    sending: 'Generating and sending...',
+    sending: 'Sending...',
     submit: 'Request the audit',
   },
   de: {
@@ -90,11 +90,11 @@ const FORM_TEXT = {
     goals: ['Kosten optimieren', 'Unternehmen skalieren (Wachstum)', 'Zeit der Führung freimachen', 'Wettbewerbsvorteil gewinnen'],
     nameQ: '5. Wie dürfen wir Sie ansprechen?',
     namePh: 'Z. B. Peter Nagy',
-    emailQ: '6. Wohin sollen wir Ihr personalisiertes Audit-PDF senden?',
+    emailQ: '6. Wohin dürfen wir antworten?',
     emailPh: 'firmen.email@unternehmen.de',
     next: 'Weiter',
     back: 'Zurück',
-    sending: 'Wird erstellt und gesendet...',
+    sending: 'Wird gesendet...',
     submit: 'Audit anfordern',
   },
 } as const;

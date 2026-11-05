@@ -4,13 +4,13 @@ import { test, expect } from '@playwright/test';
 // 404), and the 404 page spoke Hungarian on /en and /de. The product pages that really exist stay untouched.
 
 test.describe('/termekek/[slug] does not answer 200 for a page it cannot show', () => {
-  for (const path of ['/termekek/nincs-ilyen', '/termekek/lead-kvalifikator', '/termekek/web-rescue']) {
+  for (const path of ['/termekek/nincs-ilyen', '/termekek/lead-kvalifikator', '/termekek/web-rescue', '/termekek/instant-responder']) {
     test(`${path} is a real 404`, async ({ request }) => {
       expect((await request.get(path)).status()).toBe(404);
     });
   }
 
-  for (const path of ['/termekek', '/termekek/pohi-ai-pro', '/termekek/instant-responder', '/termekek/brunella-agents']) {
+  for (const path of ['/termekek', '/termekek/pohi-ai-pro', '/termekek/brunella-agents']) {
     test(`${path} stays 200`, async ({ request }) => {
       expect((await request.get(path)).status()).toBe(200);
     });

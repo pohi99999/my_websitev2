@@ -33,7 +33,7 @@ type RateWindow = { count: number; resetAtMs: number };
 const RATE_LIMIT_WINDOW_MS = 2 * 60 * 1000; // 2 perc
 const RATE_LIMIT_MAX = 2; // 2 kérés / 2 perc / IP
 const DAILY_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000; // 1 nap
-const DAILY_LIMIT_MAX = 10; // 10 email / nap (összesen)
+const DAILY_LIMIT_MAX = 50; // 50 email / nap (összesen)
 export const rateMemory = new Map<string, RateWindow>();
 
 type ContactLimiters = { burst: Ratelimit | null; daily: Ratelimit | null };
@@ -68,7 +68,13 @@ function asNonEmptyString(value: unknown): string | null {
   return trimmed.length ? trimmed : null;
 }
 
+// Behind Cloudflare x-real-ip is one of its exit addresses, so one visitor spread over several keys and strangers shared
+// one (measured 2026-11-05: a browser got 4 messages through instead of 2). On the vercel.app address nothing sets this
+// header, so a caller can forge it there and step around the per-visitor limit; the daily limit counts all of them.
 function getClientIp(req: Request): string {
+  const cfIp = req.headers.get('cf-connecting-ip')?.trim();
+  if (cfIp) return cfIp;
+
   const realIp = req.headers.get('x-real-ip');
   if (realIp) return realIp.trim();
 
