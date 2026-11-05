@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Bot, BrainCircuit, ArrowRight } from "lucide-react";
-import VideoShowcase from "./components/VideoShowcase";
+import { Bot, BrainCircuit, ArrowRight, PenTool } from "lucide-react";
 import { headers } from "next/headers";
 
 export const revalidate = 3600;
@@ -14,20 +13,20 @@ export async function generateMetadata() {
     language === "en"
       ? {
           title: "Products",
-          description: "Brunella Agent System (BAS), Pohi AI Pro and additional AI solutions for SMEs. Discover our platforms and products.",
+          description: "Our own products: Brunella, an AI team running on your company's own computer, P-Szakrajz for joiners, and Pohi AI Pro, in development.",
           locale: "en_US",
           canonical: "/en/termekek",
         }
       : language === "de"
         ? {
             title: "Produkte",
-            description: "Brunella Agent System (BAS), Pohi AI Pro und weitere KI-Lösungen für KMU. Entdecken Sie unsere Plattformen und Produkte.",
+            description: "Unsere eigenen Produkte: Brunella, ein KI-Team auf dem eigenen Rechner Ihres Unternehmens, P-Szakrajz für Tischler und Pohi AI Pro, in Entwicklung.",
             locale: "de_DE",
             canonical: "/de/termekek",
           }
         : {
             title: "Termékek",
-            description: "Brunella Agent System (BAS), Pohi AI Pro és további AI megoldások – termékek és platformok KKV-k számára. Fedezze fel egyedi megoldásainkat!",
+            description: "Saját termékeink: Brunella, a cég saját gépén futó AI-csapat, a P-Szakrajz asztalosoknak és a fejlesztés alatt álló Pohi AI Pro.",
             locale: "hu_HU",
             canonical: "/termekek",
           };
@@ -67,52 +66,46 @@ export default async function TermekekPage() {
   const ui =
     language === "en"
       ? {
-          title: "Products & Solutions",
+          title: "Our own products",
           basDesc:
-            "The Brunella Agent System: a practical AI operating layer for businesses. Not just a chatbot, but a digital workforce that can perceive, decide and act.",
+            "An AI team running on your company's own computer for emails, quote follow-up and a daily summary. Anything it would send out is approved by you first.",
+          szakDesc:
+            "Our own web app for joiners: Vision AI reads the dimensions from a hand sketch or an on-site photo, and the app turns them into a scaled technical drawing, a real-time 3D model and a quote.",
+          status: "In development",
           pohiDesc:
             "A custom portal that unifies customer data, order flow, manufacturer stock, and transport planning, with AI-assisted automation.",
-          moreTitle: "More Solutions",
-          moreDesc:
-            "Additional practical methods and AI patterns to improve innovation and competitiveness.",
           details: "Details",
           open: "Open",
-          ctaTitle: "Need a better-fit solution?",
-          ctaDesc:
-            "Describe your process in a few lines and we will propose a concrete AI automation plan (fast ROI, secure rollout).",
+          ctaTitle: "No matching solution? Request a free consultation.",
           ctaBtn: "Request consultation",
         }
       : language === "de"
         ? {
-            title: "Produkte & Lösungen",
+            title: "Unsere eigenen Produkte",
             basDesc:
-              "Das Brunella Agent System: eine praxisnahe KI-Betriebsschicht für Unternehmen. Nicht nur Chatbot, sondern eine digitale Workforce, die wahrnimmt, entscheidet und handelt.",
+              "Ein KI-Team auf dem eigenen Rechner Ihres Unternehmens für E-Mails, Angebotsverfolgung und eine tägliche Zusammenfassung. Was nach außen geht, geben Sie vorher frei.",
+            szakDesc:
+              "Unsere eigene Web-App für Tischler: Vision AI liest die Maße aus einer Handskizze oder einem Foto vor Ort, und die App erstellt daraus eine maßstabsgetreue technische Zeichnung, ein 3D-Modell in Echtzeit und ein Angebot.",
+            status: "In Entwicklung",
             pohiDesc:
               "Ein individuelles Portal, das Kundendaten, Bestellfluss, Herstellerbestände und Transportplanung mit KI-gestützter Automatisierung verbindet.",
-            moreTitle: "Weitere Lösungen",
-            moreDesc:
-              "Zusätzliche praxisnahe Methoden und KI-Muster für mehr Innovation und Wettbewerbsfähigkeit.",
             details: "Details",
             open: "Öffnen",
-            ctaTitle: "Keine passende Lösung gefunden?",
-            ctaDesc:
-              "Beschreiben Sie Ihren Prozess in wenigen Sätzen, und wir schlagen einen konkreten KI-Automatisierungsplan vor (schneller ROI, sichere Einführung).",
+            ctaTitle: "Keine passende Lösung? Fordern Sie eine kostenlose Beratung an.",
             ctaBtn: "Beratung anfragen",
           }
         : {
-            title: "Termékeink & Megoldásaink",
+            title: "Saját termékeink",
             basDesc:
-              "A Brunella Agent System: Az első valódi AI Operációs Rendszer vállalkozásoknak. Nem csak egy chatbot, hanem egy teljes digitális munkaerő, ami lát, hall és cselekszik helyetted.",
+              "A cég saját gépén futó AI-csapat levelekre, ajánlatkövetésre és napi összefoglalóra. Amit kifelé küldene, azt Ön hagyja jóvá.",
+            szakDesc:
+              "Saját webalkalmazásunk asztalosoknak: kézi vázlatból vagy helyszíni fotóból a Vision AI olvassa ki a méreteket, a program pedig méretarányos szakrajzot, valós idejű 3D modellt és árajánlatot készít belőle.",
+            status: "Fejlesztés alatt",
             pohiDesc:
               "Egyedi fejlesztésű, teljes portál rendszer amely egy vevői adatbázis és annak rendelés állományát valamint a gyártok készletnyilvántartását összefésüli és kezeli a vevői igényekkel, fuvarszervezéssel egybe hangolva. Még fejlesztés alatt , tesztelés a Mesterséges Intelligencia által vezérelt automatizálása bevezetése a gyorsabb és átláthatóbb nyilvántartás érdekében.",
-            moreTitle: "További Megoldások",
-            moreDesc:
-              "További Fantasztikus Megoldások, melyek a Vállalkozások számára az Innováció és Versenyképesség élvonalába tartozásához Segítséget Nyújt, az alábbi linken mutatok pár praktikát, és módszert betekintést gyanánt",
             details: "Részletek",
             open: "Megnyitás",
-            ctaTitle: "Nincs megfelelő megoldás?",
-            ctaDesc:
-              "Írja le pár mondatban a folyamatait, és javaslunk egy konkrét AI automatizálási tervet (gyors ROI fókusz, biztonságos bevezetés).",
+            ctaTitle: "Nincs megfelelő megoldás? Kérjen ingyenes konzultációt.",
             ctaBtn: "Kérjen konzultációt",
           };
 
@@ -142,7 +135,7 @@ export default async function TermekekPage() {
               <div className="p-4 bg-[#00e5ff]/10 rounded-full text-[#00e5ff] mr-4 group-hover:rotate-12 transition-transform">
                 <BrainCircuit size={32} />
               </div>
-              <h2 className="text-3xl font-bold">BAS System</h2>
+              <h2 className="text-3xl font-bold">Brunella</h2>
             </div>
             <p className="text-gray-300 mb-6 flex-grow">
               {ui.basDesc}
@@ -158,10 +151,35 @@ export default async function TermekekPage() {
           <div className="glass-panel p-8 rounded-2xl border border-white/8 hover:border-[#00e5ff]/30 transition-all duration-300 backdrop-blur-md bg-black/40 flex flex-col group">
             <div className="flex items-center mb-6">
               <div className="p-4 bg-[#00e5ff]/10 rounded-full text-[#00e5ff] mr-4 group-hover:rotate-12 transition-transform">
+                <PenTool size={32} />
+              </div>
+              <h2 className="text-3xl font-bold">P-Szakrajz</h2>
+            </div>
+            <p className="text-gray-300 mb-6 flex-grow">
+              {ui.szakDesc}
+            </p>
+            <a
+              href="https://p-szakrajz.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-[#00e5ff] font-bold hover:text-[#00e5ff]/80 transition-colors"
+            >
+              {ui.open} <ArrowRight className="ml-2" size={20} />
+            </a>
+          </div>
+
+          <div className="glass-panel p-8 rounded-2xl border border-white/8 hover:border-[#00e5ff]/30 transition-all duration-300 backdrop-blur-md bg-black/40 flex flex-col group">
+            <div className="flex items-center mb-6">
+              <div className="p-4 bg-[#00e5ff]/10 rounded-full text-[#00e5ff] mr-4 group-hover:rotate-12 transition-transform">
                 <Bot size={32} />
               </div>
               <h2 className="text-3xl font-bold">Pohi AI Pro</h2>
             </div>
+            <p className="mb-4">
+              <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/20 px-3 py-1 text-xs font-semibold text-orange-300">
+                {ui.status}
+              </span>
+            </p>
             <p className="text-gray-300 mb-6 flex-grow">
               {ui.pohiDesc}
             </p>
@@ -173,34 +191,12 @@ export default async function TermekekPage() {
             </Link>
           </div>
 
-          <div className="glass-panel p-8 rounded-2xl border border-white/8 hover:border-[#00e5ff]/30 transition-all duration-300 backdrop-blur-md bg-black/40 flex flex-col group">
-            <div className="flex items-center mb-6">
-              <div className="p-4 bg-[#00e5ff]/10 rounded-full text-[#00e5ff] mr-4 group-hover:rotate-12 transition-transform">
-                <BrainCircuit size={32} />
-              </div>
-              <h2 className="text-3xl font-bold">{ui.moreTitle}</h2>
-            </div>
-            <p className="text-gray-300 mb-6 flex-grow">
-              {ui.moreDesc}
-            </p>
-            <Link
-              href={withLang('/szolgaltatasok')}
-              className="inline-flex items-center text-[#00e5ff] font-bold hover:text-[#00e5ff]/80 transition-colors"
-            >
-              {ui.open} <ArrowRight className="ml-2" size={20} />
-            </Link>
-          </div>
         </div>
-
-        <VideoShowcase />
 
         <section className="mt-20">
           <div className="max-w-4xl mx-auto">
             <div className="glass-panel p-10 rounded-2xl border border-white/10 backdrop-blur-md bg-black/40 text-center">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">{ui.ctaTitle}</h2>
-              <p className="text-gray-300 mb-8 leading-relaxed">
-                {ui.ctaDesc}
-              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-8">{ui.ctaTitle}</h2>
               <Link href={withLang('/kapcsolat')} className="btn-primary inline-flex items-center gap-2">
                 {ui.ctaBtn} <ArrowRight size={18} />
               </Link>

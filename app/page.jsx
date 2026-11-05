@@ -1,5 +1,5 @@
 import Hero from "./components/Hero";
-import AIFolyamatok from "./components/AIFolyamatok";
+import AiTeaserCard from "./components/AiTeaserCard";
 import ServiceCards from "./components/ServiceCards";
 import HowItWorks from "./components/HowItWorks";
 import Testimonials from "./components/Testimonials";
@@ -80,13 +80,13 @@ export default function HomePage() {
       {/* StatsBar and RoiCalculator left the home page (2026-10-05): their numbers (95+, 53, 24/7,
           "90 days", 75 %) were not measured. The components stay for now. */}
       <ServiceCards />
-      <AIFolyamatok />
-      <HowItWorks />
       <Testimonials />
       <Arcsomag />
+      <ContactCapture />
+      <HowItWorks />
+      <AiTeaserCard />
       <ClientVideo />
       <BemutatkozoVideo />
-      <ContactCapture />
       <HomepageFAQ />
     </>
   );

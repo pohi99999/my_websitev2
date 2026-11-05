@@ -57,14 +57,29 @@ export function buildQuoteMessage(
   language: string,
   needLabel: string,
   business: string,
-  email: string
+  email: string,
+  source: 'home' | 'contact' = 'home'
 ): string {
   const about = business.trim();
+  const fromContact = source === 'contact';
   return language === 'en'
-    ? `Homepage request for a free consultation or design preview\nNeeds: ${ needLabel }${ about ? `\nBusiness: ${ about }` : '' }\nPreferred contact: ${ email }`
+    ? `${ fromContact ? 'Contact page' : 'Homepage' } request for a free consultation or design preview\nNeeds: ${ needLabel }${ about ? `\nBusiness: ${ about }` : '' }\nPreferred contact: ${ email }`
     : language === 'de'
-      ? `Homepage-Anfrage für Beratung oder Entwurf\nBedarf: ${ needLabel }${ about ? `\nUnternehmen: ${ about }` : '' }\nBevorzugter Kontakt: ${ email }`
-      : `Főoldali konzultáció- vagy látványterv-kérés\nIgény: ${ needLabel }${ about ? `\nVállalkozás: ${ about }` : '' }\nKapcsolati e-mail: ${ email }`;
+      ? `${ fromContact ? 'Kontaktseiten' : 'Homepage' }-Anfrage für Beratung oder Entwurf\nBedarf: ${ needLabel }${ about ? `\nUnternehmen: ${ about }` : '' }\nBevorzugter Kontakt: ${ email }`
+      : `${ fromContact ? 'Kapcsolat oldali' : 'Főoldali' } konzultáció- vagy látványterv-kérés\nIgény: ${ needLabel }${ about ? `\nVállalkozás: ${ about }` : '' }\nKapcsolati e-mail: ${ email }`;
+}
+
+export function whatsappHref(language: string): string {
+  return (
+    'https://wa.me/36304291227?text=' +
+    encodeURIComponent(
+      language === 'en'
+        ? 'Hello! I would like to book a free consultation for my business.'
+        : language === 'de'
+          ? 'Guten Tag! Ich möchte eine kostenlose Beratung für mein Unternehmen anfragen.'
+          : 'Jó napot! Ingyenes konzultációt szeretnék kérni a vállalkozásomhoz.'
+    )
+  );
 }
 
 export function buildContactPayload(language: QuoteLanguage, input: QuoteInput): ContactPayload {

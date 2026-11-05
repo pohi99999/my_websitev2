@@ -63,6 +63,13 @@ test.describe('configurator on the homepage', () => {
     await expect(page.locator('#home-contact-challenge')).toHaveValue('lead');
     await expect(page.locator('#home-contact-business')).toHaveValue(/bankkártyás előleget.*\n\nJavasolt csomag:\n- Alapcsomag/s);
     await expect(page.locator('#home-contact-name')).toBeFocused();
+    // the button keeps the promise the visitor just clicked on
+    await expect(page.locator('#contact-form button[type="submit"]')).toHaveText('Kérem a látványtervet');
+  });
+
+  test('without the configurator the home form keeps its own button', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#contact-form button[type="submit"]')).toHaveText('Kérek ingyenes konzultációt');
   });
 
   test('a schema answer from the endpoint wins over the keywords; a price in it never shows', async ({ page }) => {

@@ -18,6 +18,7 @@ export const CTA_LOCATIONS = {
   AiWorkflowServicesHu: "ai_workflow_services_hu",
   AiWorkflowContactHu: "ai_workflow_contact_hu",
   RoiPrimary: "roi_primary",
+  ContactPageWhatsapp: "contact_page_whatsapp",
   HomepageContactWhatsapp: "homepage_contact_whatsapp",
   HeaderNavDesktop: "header_nav_desktop",
   HeaderNavMobile: "header_nav_mobile",

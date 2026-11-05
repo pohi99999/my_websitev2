@@ -41,7 +41,7 @@ export function SmartContactForm() {
       // /api/contact takes name, email and message: the budget and the description go into the message
       const message = [
         'Projekt Egyeztetés (Szolgáltatások oldal)',
-        `Tervezett büdzsé: ${formData.budget}`,
+        `Tervezett büdzsé: ${formData.budget || 'nincs megadva'}`,
         '',
         formData.project_description,
       ].join('\n');
@@ -136,17 +136,15 @@ export function SmartContactForm() {
           </div>
 
           <div>
-            <label htmlFor="budget" className="block text-sm font-medium text-gray-300 mb-1">Tervezett büdzsé</label>
+            <label htmlFor="budget" className="block text-sm font-medium text-gray-300 mb-1">Tervezett büdzsé (nem kötelező)</label>
             <select
               id="budget"
               name="budget"
-              required
               value={formData.budget}
               onChange={handleChange}
               className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all [&>option]:bg-gray-900"
             >
-              <option value="" disabled>Válasszon...</option>
-              <option value="Azonnali demó (Ingyenes)">Azonnali demó (Ingyenes)</option>
+              <option value="">Válasszon...</option>
               <option value="100.000 - 300.000 Ft">100.000 - 300.000 Ft (Alap)</option>
               <option value="300.000 - 1.000.000 Ft">300.000 - 1.000.000 Ft (Komplex)</option>
               <option value="1.000.000 Ft felett">1.000.000 Ft felett (Vállalati)</option>

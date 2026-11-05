@@ -59,7 +59,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function AuditPage() {
+const HERO = {
+  hu: { h1: 'Digitális Hatékonysági', audit: 'Audit', lead: 'Tudja meg 3 perc alatt, hol veszít a cég munkaórákat a kézi folyamatokon, és hogyan állíthatja meg ezt az MI segítségével!' },
+  en: { h1: 'Digital Efficiency', audit: 'Audit', lead: 'Find out in 3 minutes where your company loses working hours on manual processes, and how to stop it with AI!' },
+  de: { h1: 'Digitales Effizienz-', audit: 'Audit', lead: 'Finden Sie in 3 Minuten heraus, wo Ihr Unternehmen Arbeitsstunden durch manuelle Prozesse verliert und wie Sie das mit KI stoppen!' },
+};
+
+export default async function AuditPage() {
+  const headerLang = (await headers()).get('x-site-language');
+  const hero = headerLang === 'en' || headerLang === 'de' ? HERO[headerLang] : HERO.hu;
+
   return (
     <div className="min-h-screen bg-black text-white pt-32 pb-20 px-4 relative overflow-hidden">
       {/* Background glow effects */}
@@ -68,10 +77,10 @@ export default function AuditPage() {
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-syne font-bold mb-6">
-            Digitális Hatékonysági <span className="text-[#00ff9d]">Audit</span>
+            {hero.h1}{hero.h1.endsWith('-') ? '' : ' '}<span className="text-[#00ff9d]">{hero.audit}</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
-            Tudja meg 3 perc alatt, hol veszít a cég munkaórákat a kézi folyamatokon, és hogyan állíthatja meg ezt az MI segítségével!
+            {hero.lead}
           </p>
         </div>
 
