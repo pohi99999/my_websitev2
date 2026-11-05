@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Bot, BrainCircuit, ArrowRight } from "lucide-react";
-import VideoShowcase from "./components/VideoShowcase";
 import { headers } from "next/headers";
 
 export const revalidate = 3600;
@@ -191,8 +190,6 @@ export default async function TermekekPage() {
             </Link>
           </div>
         </div>
-
-        <VideoShowcase />
 
         <section className="mt-20">
           <div className="max-w-4xl mx-auto">
