@@ -1,6 +1,7 @@
 import React from 'react';
 import { Bot, Zap, Clock, ShieldCheck, Target, MessageSquare, Calendar, Search, TrendingUp, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import productData from '../../../lib/data/dynamic_products.json';
 
 const iconMap: Record<string, any> = {
@@ -37,9 +38,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default function DynamicProductPage({ params }: { params: { slug: string } }) {
   const product = productMap[params.slug];
 
-  if (!product) {
-    return <div className="min-h-screen flex items-center justify-center text-white">Termék nem található.</div>;
-  }
+  // params is a Promise in Next 16, so product is undefined here for every slug: the route renders nothing.
+  // It stays that way on purpose: awaiting params would publish two unlinked product pages with their prices.
+  if (!product) notFound();
 
   return (
     <div className="bg-slate-950 min-h-screen text-white pt-32 pb-24">
