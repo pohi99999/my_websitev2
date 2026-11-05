@@ -1,89 +1,90 @@
 "use client";
 
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, MessageCircle, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { FORM_STATUSES, FORMS, PAGE_NAMES, trackFormSubmit } from "../lib/analytics";
-
-// /api/contact rejects a message above 6000 characters with a generic error. The visitor sees what is left
-// from 300 characters before the cap, like on the /szolgaltatasok form.
-const MESSAGE_MAX = 6000;
-const MESSAGE_WARN_FROM = 300;
+import { CTA_LOCATIONS, FORM_STATUSES, FORMS, PAGE_NAMES, trackCtaClick, trackFormSubmit } from "../lib/analytics";
+import { buildQuoteMessage, QUOTE_LIMITS, QUOTE_NEED_LABELS, whatsappHref } from "../lib/quoteRequest";
 
 export default function KapcsolatClient() {
   const { language } = useLanguage();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [need, setNeed] = useState("lead");
+  const [business, setBusiness] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState({ state: "idle", message: "" });
 
   const ui =
     language === "en"
       ? {
-          title: "Get in Touch",
+          title: "Request a free design preview or consultation",
+          subtitle: "Tell us in one sentence what your business does. No obligation.",
+          whatsapp: "Write on WhatsApp",
           contactTitle: "Contact Details",
-          formTitle: "Send Message",
+          formTitle: "Request the design preview",
           name: "Name",
           email: "Email",
           location: "Office",
           phone: "Phone",
-          message: "Message",
+          need: "What do you need?",
+          business: "What does your business do? (optional)",
           namePlaceholder: "Enter your name",
           emailPlaceholder: "Enter your email address",
-          messagePlaceholder: "Tell us how we can help...",
-          charsLeft: (n) => `${n} characters left.`,
           sending: "Sending in progress…",
           sendingBtn: "Sending...",
-          submitBtn: "Send Message",
+          submitBtn: "Request the design preview",
           success: "Thank you! Your message has been sent.",
           fail: "Sending failed. Please email us directly: info@pohankaestarsa.com (or try again in a few minutes).",
           country: "Hungary",
         }
       : language === "de"
         ? {
-            title: "Kontakt aufnehmen",
+            title: "Fordern Sie einen kostenlosen Entwurf oder eine Beratung an",
+            subtitle: "Schreiben Sie uns in einem Satz, womit sich Ihr Unternehmen beschäftigt. Unverbindlich.",
+            whatsapp: "Per WhatsApp schreiben",
             contactTitle: "Kontaktinformationen",
-            formTitle: "Nachricht senden",
+            formTitle: "Entwurf anfordern",
             name: "Name",
             email: "E-Mail",
             location: "Büro",
             phone: "Telefon",
-            message: "Nachricht",
+            need: "Was brauchen Sie?",
+            business: "Womit beschäftigt sich Ihr Unternehmen? (optional)",
             namePlaceholder: "Geben Sie Ihren Namen ein",
             emailPlaceholder: "Geben Sie Ihre E-Mail-Adresse ein",
-            messagePlaceholder: "Beschreiben Sie kurz, wobei wir helfen können...",
-            charsLeft: (n) => `Noch ${n} Zeichen möglich.`,
             sending: "Wird gesendet…",
             sendingBtn: "Senden...",
-            submitBtn: "Nachricht senden",
+            submitBtn: "Entwurf anfordern",
             success: "Danke! Ihre Nachricht wurde gesendet.",
             fail: "Senden fehlgeschlagen. Schreiben Sie direkt an: info@pohankaestarsa.com (oder versuchen Sie es in ein paar Minuten erneut).",
             country: "Ungarn",
           }
         : {
-            title: "Lépjen velünk kapcsolatba",
+            title: "Kérjen ingyenes látványtervet vagy konzultációt",
+            subtitle: "Írja le egy mondatban, mivel foglalkozik. Kötelezettség nélkül.",
+            whatsapp: "Írok WhatsAppon",
             contactTitle: "Elérhetőségek",
-            formTitle: "Üzenet Küldése",
+            formTitle: "Kérem a látványtervet",
             name: "Név",
             email: "Email",
             location: "Iroda",
             phone: "Telefon",
-            message: "Üzenet",
+            need: "Mire van szüksége?",
+            business: "Mivel foglalkozik a vállalkozása? (nem kötelező)",
             namePlaceholder: "Az Ön neve",
             emailPlaceholder: "Az Ön e-mail-címe",
-            messagePlaceholder: "Írja le, miben segíthetünk...",
-            charsLeft: (n) => `Még ${n} karakter írható.`,
             sending: "Küldés folyamatban…",
             sendingBtn: "Küldés...",
-            submitBtn: "Üzenet Küldése",
+            submitBtn: "Kérem a látványtervet",
             success: "Köszönjük! Az üzenet elküldve.",
             fail: "Nem sikerült elküldeni. Írjon közvetlenül: info@pohankaestarsa.com (vagy próbálja újra pár perc múlva).",
             country: "Magyarország",
           };
 
   const isSending = status.state === "sending";
-  const messageLeft = MESSAGE_MAX - message.length;
+  const needLabels = QUOTE_NEED_LABELS[language] ?? QUOTE_NEED_LABELS.hu;
+  const whatsapp = whatsappHref(language);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -97,6 +98,7 @@ export default function KapcsolatClient() {
         ? `${externalApiBase.replace(/\/$/, "")}/api/contact`
         : "/api/contact";
 
+      const message = buildQuoteMessage(language, needLabels[need], business, email, "contact");
       const res = await fetch(contactUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -118,7 +120,8 @@ export default function KapcsolatClient() {
       }
       setName("");
       setEmail("");
-      setMessage("");
+      setNeed("lead");
+      setBusiness("");
       setWebsite("");
     } catch (err) {
       trackFormSubmit({ form: FORMS.ContactMain, status: FORM_STATUSES.ErrorException, language, page: PAGE_NAMES.Contact });
@@ -133,9 +136,10 @@ export default function KapcsolatClient() {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center">
       <div className="relative z-10 container mx-auto px-4 py-20 text-white">
-        <h1 className="text-5xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
           {ui.title}
         </h1>
+        <p className="mb-12 text-center text-lg text-gray-300">{ui.subtitle}</p>
 
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="glass-panel p-8 rounded-2xl backdrop-blur-md bg-black/40 border border-white/10">
@@ -149,7 +153,7 @@ export default function KapcsolatClient() {
                 <div>
                   <p className="text-gray-400 text-sm">{ui.email}</p>
                   {/* break-all: the address has no break point and widened the 360 px layout to 392 px */}
-                  <p className="font-semibold break-all">info@pohankaestarsa.com</p>
+                  <a href="mailto:info@pohankaestarsa.com" className="font-semibold break-all hover:underline">info@pohankaestarsa.com</a>
                 </div>
               </div>
 
@@ -159,7 +163,7 @@ export default function KapcsolatClient() {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">{ui.phone}</p>
-                  <p className="font-semibold">+36 30 429 1227</p>
+                  <a href="tel:+36304291227" className="font-semibold hover:underline">+36 30 429 1227</a>
                 </div>
               </div>
 
@@ -172,6 +176,19 @@ export default function KapcsolatClient() {
                   <p className="font-semibold">Zalaegerszeg, Kossuth Lajos u. 39, 8900</p>
                 </div>
               </div>
+
+              <a
+                href={whatsapp}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-5 py-4 text-sm font-semibold text-black"
+                onClick={() =>
+                  trackCtaClick({ location: CTA_LOCATIONS.ContactPageWhatsapp, language, target: whatsapp, page: PAGE_NAMES.Contact })
+                }
+              >
+                <MessageCircle size={20} />
+                {ui.whatsapp}
+              </a>
             </div>
           </div>
 
@@ -225,24 +242,31 @@ export default function KapcsolatClient() {
               </div>
 
               <div>
-                <label htmlFor="contact-message" className="block text-gray-300 mb-2">{ui.message}</label>
+                <label htmlFor="contact-need" className="block text-gray-300 mb-2">{ui.need}</label>
+                <select
+                  id="contact-need"
+                  name="need"
+                  value={need}
+                  onChange={(e) => setNeed(e.target.value)}
+                  className="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/10 text-white focus:border-purple-500/50 focus:outline-none"
+                >
+                  {Object.entries(needLabels).map(([value, label]) => (
+                    <option key={value} value={value} className="bg-slate-900">{label}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="contact-business" className="block text-gray-300 mb-2">{ui.business}</label>
                 <textarea
-                  id="contact-message"
-                  name="message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  required
-                  rows={6}
-                  maxLength={MESSAGE_MAX}
-                  aria-describedby="contact-message-left"
-                  className="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none resize-none"
-                  placeholder={ui.messagePlaceholder}
+                  id="contact-business"
+                  name="business"
+                  value={business}
+                  onChange={(e) => setBusiness(e.target.value)}
+                  rows={3}
+                  maxLength={QUOTE_LIMITS.businessMax}
+                  className="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/10 text-white focus:border-purple-500/50 focus:outline-none"
                 />
-                <div id="contact-message-left" aria-live="polite">
-                  {messageLeft <= MESSAGE_WARN_FROM && (
-                    <p className="mt-1 text-xs text-gray-400">{ui.charsLeft(messageLeft)}</p>
-                  )}
-                </div>
               </div>
 
               {status.state !== "idle" && (

@@ -12,7 +12,7 @@ import
   trackFormSubmit,
 } from '../lib/analytics';
 import { useLanguage } from '../context/LanguageContext';
-import { buildQuoteMessage, QUOTE_LIMITS, QUOTE_NEED_LABELS, QUOTE_NEEDS } from '../lib/quoteRequest';
+import { buildQuoteMessage, QUOTE_LIMITS, QUOTE_NEED_LABELS, QUOTE_NEEDS, whatsappHref } from '../lib/quoteRequest';
 import { CONFIGURATOR_PREFILL_EVENT, type ConfiguratorPrefill } from '../lib/configuratorUi';
 import WebMcpQuoteTool from './WebMcpQuoteTool';
 
@@ -111,15 +111,7 @@ export default function ContactCapture ()
 
   const formName = fromConfigurator ? FORMS.Configurator : FORMS.ContactHomeQuick;
   const isSending = status.state === 'sending';
-  const whatsappHref =
-    'https://wa.me/36304291227?text=' +
-    encodeURIComponent(
-      language === 'en'
-        ? 'Hello! I would like to book a free consultation for my business.'
-        : language === 'de'
-          ? 'Guten Tag! Ich möchte eine kostenlose Beratung für mein Unternehmen anfragen.'
-          : 'Jó napot! Ingyenes konzultációt szeretnék kérni a vállalkozásomhoz.'
-    );
+  const whatsapp = whatsappHref( language );
 
   async function handleSubmit ( event: React.FormEvent<HTMLFormElement> )
   {
@@ -211,7 +203,7 @@ export default function ContactCapture ()
               <span className="text-sm text-white">info@pohankaestarsa.com</span>
             </div>
             <a
-              href={whatsappHref}
+              href={whatsapp}
               target="_blank"
               rel="noreferrer"
               className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-5 py-4 text-sm font-bold uppercase tracking-[0.18em] text-[#04140b] transition duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(37,211,102,0.35)]"
@@ -219,7 +211,7 @@ export default function ContactCapture ()
                 trackCtaClick( {
                   location: CTA_LOCATIONS.HomepageContactWhatsapp,
                   language,
-                  target: whatsappHref,
+                  target: whatsapp,
                   page: PAGE_NAMES.Home,
                 } )
               }

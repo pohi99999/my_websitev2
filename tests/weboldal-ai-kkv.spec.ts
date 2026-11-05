@@ -30,7 +30,7 @@ test.describe('/weboldal-ai-kkv landing page', () => {
     await page.getByRole('link', { name: /Kérek ingyenes látványtervet/ }).click();
     await expect(page).toHaveURL(/\/kapcsolat$/);
     await expect(page.locator('form #contact-email')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Üzenet Küldése' })).toBeEnabled();
+    await expect(page.getByRole('button', { name: 'Kérem a látványtervet' })).toBeEnabled();
   });
 
   test('the closing CTA reaches the contact form', async ({ page }) => {

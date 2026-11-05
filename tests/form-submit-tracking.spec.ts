@@ -51,7 +51,7 @@ const CASES: FormCase[] = [
     fill: async (page) => {
       await page.fill('input[name="name"]', 'Test User');
       await page.fill('input[name="email"]', 'test@example.com');
-      await page.fill('textarea[name="message"]', 'Test message');
+      await page.fill('textarea[name="business"]', 'Test business');
     },
     submit: 'form button[type="submit"]',
   },
@@ -153,7 +153,7 @@ test('a filled honeypot on the contact page is not counted as a lead', async ({ 
   );
   await page.fill('input[name="name"]', 'Bot');
   await page.fill('input[name="email"]', 'bot@example.com');
-  await page.fill('textarea[name="message"]', 'spam');
+  await page.fill('textarea[name="business"]', 'spam');
   // The field is display:none, so fill it the way a bot script does (Playwright's fill skips hidden inputs).
   await page.evaluate(() => {
     const el = document.querySelector('input[name="website"]') as HTMLInputElement;
