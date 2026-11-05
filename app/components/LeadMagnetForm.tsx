@@ -24,9 +24,85 @@ const RESULT_TEXT = {
   },
 } as const;
 
+// The option values stay Hungarian in every language: they go to the n8n workflow, which saves them as they are.
+const INDUSTRIES = ['E-kereskedelem', 'Szolgáltatás', 'Logisztika', 'Gyártás', 'Egyéb'] as const;
+const SIZES = ['1-5 fő', '6-20 fő', '21-50 fő', '50+ fő'] as const;
+const PAIN_POINTS = ['Ajánlatadás és számlázás', 'Ügyfélszolgálat és GYIK', 'Adatrögzítés (pl. CRM, táblázatok)', 'Marketing és posztolás', 'Mindenből egy kicsi'] as const;
+const GOALS = ['Költségek optimalizálása', 'Cég skálázása (növekedés)', 'Vezetői idő felszabadítása', 'Versenyelőny megszerzése'] as const;
+
+const FORM_TEXT = {
+  hu: {
+    heading: 'Digitális Hatékonysági Audit',
+    step: 'Lépés',
+    industryQ: '1. Melyik iparágban tevékenykedik a cég?',
+    industryPick: 'Válasszon iparágat...',
+    industries: ['E-kereskedelem (Webshop)', 'Szolgáltató szektor', 'Logisztika & Szállítmányozás', 'Gyártás & Termelés', 'Egyéb'],
+    sizeQ: '2. Mekkora a cég létszáma?',
+    sizes: ['1-5 fő', '6-20 fő', '21-50 fő', '50+ fő'],
+    painQ: '3. Melyik terület veszi el a legtöbb időt a felesleges adminisztrációval?',
+    painPick: 'Válasszon egyet...',
+    pains: ['Ajánlatadás és számlázás', 'Ügyfélszolgálat és GYIK', 'Manuális adatrögzítés', 'Marketing és posztolás', 'Mindenből egy kicsi'],
+    goalQ: '4. Mi a legfőbb üzleti célja a következő 6 hónapban?',
+    goals: ['Költségek optimalizálása', 'Cég skálázása (növekedés)', 'Vezetői idő felszabadítása', 'Versenyelőny megszerzése'],
+    nameQ: '5. Hogyan szólíthatjuk?',
+    namePh: 'Pl. Nagy Péter',
+    emailQ: '6. Hova küldjük a személyre szabott Audit PDF-et?',
+    emailPh: 'ceges.email@vallalkozas.hu',
+    next: 'Tovább',
+    back: 'Vissza',
+    sending: 'Generálás és küldés...',
+    submit: 'Audit Kérése',
+  },
+  en: {
+    heading: 'Digital Efficiency Audit',
+    step: 'Step',
+    industryQ: '1. Which industry does the company work in?',
+    industryPick: 'Choose an industry...',
+    industries: ['E-commerce (online shop)', 'Services', 'Logistics & shipping', 'Manufacturing & production', 'Other'],
+    sizeQ: '2. How many people work at the company?',
+    sizes: ['1-5 people', '6-20 people', '21-50 people', '50+ people'],
+    painQ: '3. Which area takes up the most time with unnecessary admin?',
+    painPick: 'Choose one...',
+    pains: ['Quoting and invoicing', 'Customer service and FAQ', 'Manual data entry', 'Marketing and posting', 'A little of everything'],
+    goalQ: '4. What is your main business goal for the next 6 months?',
+    goals: ['Optimising costs', 'Scaling the company (growth)', 'Freeing up management time', 'Gaining a competitive edge'],
+    nameQ: '5. How should we address you?',
+    namePh: 'E.g. Peter Nagy',
+    emailQ: '6. Where should we send your personalised Audit PDF?',
+    emailPh: 'company.email@business.com',
+    next: 'Next',
+    back: 'Back',
+    sending: 'Generating and sending...',
+    submit: 'Request the audit',
+  },
+  de: {
+    heading: 'Digitales Effizienz-Audit',
+    step: 'Schritt',
+    industryQ: '1. In welcher Branche ist das Unternehmen tätig?',
+    industryPick: 'Branche wählen...',
+    industries: ['E-Commerce (Webshop)', 'Dienstleistungen', 'Logistik & Spedition', 'Fertigung & Produktion', 'Sonstiges'],
+    sizeQ: '2. Wie viele Mitarbeitende hat das Unternehmen?',
+    sizes: ['1-5 Personen', '6-20 Personen', '21-50 Personen', '50+ Personen'],
+    painQ: '3. Welcher Bereich kostet die meiste Zeit mit unnötiger Verwaltung?',
+    painPick: 'Bitte wählen...',
+    pains: ['Angebote und Rechnungen', 'Kundenservice und FAQ', 'Manuelle Datenerfassung', 'Marketing und Posts', 'Von allem ein wenig'],
+    goalQ: '4. Was ist Ihr wichtigstes Geschäftsziel für die nächsten 6 Monate?',
+    goals: ['Kosten optimieren', 'Unternehmen skalieren (Wachstum)', 'Zeit der Führung freimachen', 'Wettbewerbsvorteil gewinnen'],
+    nameQ: '5. Wie dürfen wir Sie ansprechen?',
+    namePh: 'Z. B. Peter Nagy',
+    emailQ: '6. Wohin sollen wir Ihr personalisiertes Audit-PDF senden?',
+    emailPh: 'firmen.email@unternehmen.de',
+    next: 'Weiter',
+    back: 'Zurück',
+    sending: 'Wird erstellt und gesendet...',
+    submit: 'Audit anfordern',
+  },
+} as const;
+
 export default function LeadMagnetForm() {
   const { language } = useLanguage();
   const resultText = RESULT_TEXT[language as keyof typeof RESULT_TEXT] ?? RESULT_TEXT.hu;
+  const t = FORM_TEXT[language as keyof typeof FORM_TEXT] ?? FORM_TEXT.hu;
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     industry: '',
@@ -94,7 +170,7 @@ export default function LeadMagnetForm() {
     <div className="max-w-2xl mx-auto p-8 bg-black/50 border border-gray-800 rounded-2xl backdrop-blur-sm shadow-2xl" role="region" aria-labelledby="form-title">
       <div className="flex justify-between items-center mb-8">
         <h2 id="form-title" className="text-2xl font-syne font-bold text-white">
-          Digitális Hatékonysági Audit <span className="text-[#00ff9d]" aria-live="polite">Lépés {step}/3</span>
+          {t.heading} <span className="text-[#00ff9d]" aria-live="polite">{t.step} {step}/3</span>
         </h2>
         <div className="w-1/3 bg-gray-800 h-2 rounded-full overflow-hidden" role="progressbar" aria-valuenow={(step/3)*100} aria-valuemin={0} aria-valuemax={100}>
           <div className="bg-[#00ff9d] h-full transition-all duration-300" style={{ width: `${(step / 3) * 100}%` }}></div>
@@ -105,7 +181,7 @@ export default function LeadMagnetForm() {
         {step === 1 && (
           <div className="space-y-6">
             <div>
-              <label htmlFor="industry" className="block text-gray-400 mb-2 font-medium">1. Melyik iparágban tevékenykedik a cég?</label>
+              <label htmlFor="industry" className="block text-gray-400 mb-2 font-medium">{t.industryQ}</label>
               <select 
                 id="industry"
                 name="industry" 
@@ -114,19 +190,15 @@ export default function LeadMagnetForm() {
                 required
                 className={inputClass}
               >
-                <option value="" disabled>Válasszon iparágat...</option>
-                <option value="E-kereskedelem">E-kereskedelem (Webshop)</option>
-                <option value="Szolgáltatás">Szolgáltató szektor</option>
-                <option value="Logisztika">Logisztika & Szállítmányozás</option>
-                <option value="Gyártás">Gyártás & Termelés</option>
-                <option value="Egyéb">Egyéb</option>
+                <option value="" disabled>{t.industryPick}</option>
+                {INDUSTRIES.map((value, i) => <option key={value} value={value}>{t.industries[i]}</option>)}
               </select>
             </div>
             
             <fieldset>
-              <legend className="block text-gray-400 mb-2 font-medium">2. Mekkora a cég létszáma?</legend>
+              <legend className="block text-gray-400 mb-2 font-medium">{t.sizeQ}</legend>
               <div className="grid grid-cols-2 gap-4">
-                {['1-5 fő', '6-20 fő', '21-50 fő', '50+ fő'].map(size => (
+                {SIZES.map((size, i) => (
                   <label key={size} className={`border p-4 rounded-lg cursor-pointer transition-colors flex items-center ${formData.size === size ? 'border-[#00ff9d] bg-[#00ff9d]/10' : 'border-gray-700 bg-gray-900 hover:border-gray-500'}`}>
                     <input 
                       type="radio" 
@@ -137,14 +209,14 @@ export default function LeadMagnetForm() {
                       required
                       checked={formData.size === size}
                     />
-                    <span className="text-white">{size}</span>
+                    <span className="text-white">{t.sizes[i]}</span>
                   </label>
                 ))}
               </div>
             </fieldset>
             
             <div className="flex justify-end pt-4">
-              <button type="submit" className={btnClass}>Tovább</button>
+              <button type="submit" className={btnClass}>{t.next}</button>
             </div>
           </div>
         )}
@@ -152,7 +224,7 @@ export default function LeadMagnetForm() {
         {step === 2 && (
           <div className="space-y-6">
             <div>
-              <label htmlFor="pain_points" className="block text-gray-400 mb-2 font-medium">3. Melyik terület veszi el a legtöbb időt a felesleges adminisztrációval?</label>
+              <label htmlFor="pain_points" className="block text-gray-400 mb-2 font-medium">{t.painQ}</label>
               <select 
                 id="pain_points"
                 name="pain_points" 
@@ -161,24 +233,15 @@ export default function LeadMagnetForm() {
                 required
                 className={inputClass}
               >
-                <option value="" disabled>Válasszon egyet...</option>
-                <option value="Ajánlatadás és számlázás">Ajánlatadás és számlázás</option>
-                <option value="Ügyfélszolgálat és GYIK">Ügyfélszolgálat és GYIK</option>
-                <option value="Adatrögzítés (pl. CRM, táblázatok)">Manuális adatrögzítés</option>
-                <option value="Marketing és posztolás">Marketing és posztolás</option>
-                <option value="Mindenből egy kicsi">Mindenből egy kicsi</option>
+                <option value="" disabled>{t.painPick}</option>
+                {PAIN_POINTS.map((value, i) => <option key={value} value={value}>{t.pains[i]}</option>)}
               </select>
             </div>
 
             <fieldset>
-              <legend className="block text-gray-400 mb-2 font-medium">4. Mi a legfőbb üzleti célja a következő 6 hónapban?</legend>
+              <legend className="block text-gray-400 mb-2 font-medium">{t.goalQ}</legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  'Költségek optimalizálása', 
-                  'Cég skálázása (növekedés)', 
-                  'Vezetői idő felszabadítása', 
-                  'Versenyelőny megszerzése'
-                ].map(goal => (
+                {GOALS.map((goal, i) => (
                   <label key={goal} className={`border p-4 rounded-lg cursor-pointer transition-colors flex items-center ${formData.goals === goal ? 'border-[#00ff9d] bg-[#00ff9d]/10' : 'border-gray-700 bg-gray-900 hover:border-gray-500'}`}>
                     <input 
                       type="radio" 
@@ -189,15 +252,15 @@ export default function LeadMagnetForm() {
                       required
                       checked={formData.goals === goal}
                     />
-                    <span className="text-white text-sm">{goal}</span>
+                    <span className="text-white text-sm">{t.goals[i]}</span>
                   </label>
                 ))}
               </div>
             </fieldset>
 
             <div className="flex justify-between pt-4">
-              <button type="button" onClick={prevStep} className={btnSecondaryClass}>Vissza</button>
-              <button type="submit" className={btnClass}>Tovább</button>
+              <button type="button" onClick={prevStep} className={btnSecondaryClass}>{t.back}</button>
+              <button type="submit" className={btnClass}>{t.next}</button>
             </div>
           </div>
         )}
@@ -205,28 +268,28 @@ export default function LeadMagnetForm() {
         {step === 3 && (
           <div className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-gray-400 mb-2 font-medium">5. Hogyan szólíthatjuk?</label>
+              <label htmlFor="name" className="block text-gray-400 mb-2 font-medium">{t.nameQ}</label>
               <input 
                 id="name"
                 type="text" 
                 name="name" 
                 value={formData.name} 
                 onChange={handleChange} 
-                placeholder="Pl. Nagy Péter"
+                placeholder={t.namePh}
                 required
                 className={inputClass}
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-gray-400 mb-2 font-medium">6. Hova küldjük a személyre szabott Audit PDF-et?</label>
+              <label htmlFor="email" className="block text-gray-400 mb-2 font-medium">{t.emailQ}</label>
               <input 
                 id="email"
                 type="email" 
                 name="email" 
                 value={formData.email} 
                 onChange={handleChange} 
-                placeholder="ceges.email@vallalkozas.hu"
+                placeholder={t.emailPh}
                 required
                 className={inputClass}
               />
@@ -239,13 +302,13 @@ export default function LeadMagnetForm() {
             )}
 
             <div className="flex justify-between pt-4">
-              <button type="button" onClick={prevStep} className={btnSecondaryClass}>Vissza</button>
+              <button type="button" onClick={prevStep} className={btnSecondaryClass}>{t.back}</button>
               <button 
                 type="submit" 
                 disabled={status === 'submitting'}
                 className={`${btnClass} ${status === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
-                {status === 'submitting' ? 'Generálás és küldés...' : 'Audit Kérése'}
+                {status === 'submitting' ? t.sending : t.submit}
               </button>
             </div>
           </div>
