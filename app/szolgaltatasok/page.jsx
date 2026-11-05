@@ -16,6 +16,15 @@ const WEB_CARD = {
   de: { title: "Website mit Buchung oder Anfrageformular", desc: `Ab ${BASE_PRICE.de} zzgl. MwSt., in zwei Wochen.`, cta: "Ansehen", href: "/de/weboldal-ai-kkv" },
 };
 
+// Péter's decision (13535): what cannot be handed over today carries this label.
+function InDevelopment() {
+  return (
+    <span className="inline-flex shrink-0 items-center rounded-full border border-orange-500/30 bg-orange-500/20 px-3 py-1 text-xs font-semibold text-orange-300">
+      Fejlesztés alatt
+    </span>
+  );
+}
+
 function WebCard({ language }) {
   const t = WEB_CARD[language];
   return (
@@ -146,6 +155,7 @@ const categories = [
   },
   {
     id: "nova",
+    inDevelopment: true,
     icon: Bot,
     title: "Nova: Intelligens Digitális Munkatárs",
     subtitle: "Virtuális asszisztens, amely megismeri a vállalkozása szabályait, és átvesz egy részt a napi teendőkből.",
@@ -169,6 +179,7 @@ const categories = [
   },
   {
     id: "psales",
+    inDevelopment: true,
     icon: FileSearch,
     title: "P-Sales: Ingatlan Értékesítő Platform",
     subtitle: "Dokumentumfelmérés és piackutatás egy összehangolt robotcsapattal, amely Ön helyett dolgozik.",
@@ -200,9 +211,11 @@ const categories = [
         name: "Automatikus pályázatfigyelés",
         desc: "Nem kell hírleveleket böngésznie. A rendszerünk napi szinten figyeli az EU-s és hazai forrásokat, és csak az Önnek relevánsat küldi el.",
         bullets: ["Napi automatikus keresés a háttérben", "Csak a cége profiljába vágó találatok", "Azonnali értesítés új kiírásról"],
+        bulletsInDevelopment: ["Azonnali értesítés új kiírásról"],
       },
       {
         name: "Hitelkereső & ajánlategyeztetés",
+        inDevelopment: true,
         desc: "Piaci banki konstrukciók automatikus összehasonlítása, hogy a legkedvezőbb finanszírozást találja meg.",
         bullets: ["Banki ajánlatok azonnali összehasonlítása", "Rejtett költségek kiszűrése", "Személyre szabott javaslatok"],
       },
@@ -493,6 +506,7 @@ export default async function SzolgaltatasokPage() {
                     <h2 className="text-2xl md:text-3xl font-bold text-[#00e5ff]">
                       {catIdx + 1}. {cat.title}
                     </h2>
+                    {cat.inDevelopment && <p className="mt-2"><InDevelopment /></p>}
                     <p className="text-gray-400 mt-1 text-lg">{cat.subtitle}</p>
                   </div>
                 </div>
@@ -504,12 +518,13 @@ export default async function SzolgaltatasokPage() {
                       className="glass-panel p-7 rounded-2xl border border-white/8 bg-white/2 hover:border-[#00e5ff]/30 transition-all duration-300 backdrop-blur-md"
                     >
                       <h3 className="text-xl font-bold mb-3 text-white">{svc.name}</h3>
+                      {svc.inDevelopment && <p className="mb-3"><InDevelopment /></p>}
                       <p className="text-gray-300 text-sm leading-relaxed mb-5">{svc.desc}</p>
                       <ul className="space-y-2 mb-5">
                         {svc.bullets.map((b) => (
                           <li key={b} className="flex items-start gap-2 text-sm text-gray-200">
                             <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 bg-[#00e5ff]" />
-                            {b}
+                            <span>{b}{svc.bulletsInDevelopment?.includes(b) && <> <InDevelopment /></>}</span>
                           </li>
                         ))}
                       </ul>
@@ -585,7 +600,7 @@ export default async function SzolgaltatasokPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               { icon: Clock,     title: "Mért eredmény", desc: "Minden fejlesztés előtt rögzítjük, mit mérünk: hány munkaórát és mennyi költséget takarít meg a cégének." },
-              { icon: Zap,       title: "Nem tanácsadunk. Megcsináljuk.", desc: "A felsorolt megoldásokat a saját működésünkben is használjuk, vagy ügyfélnél már átadtuk. Nem bemutató, hanem működő rendszer." },
+              { icon: Zap,       title: "Nem tanácsadunk. Megcsináljuk.", desc: "A felsorolt megoldásokat, a „Fejlesztés alatt” jelölésűek kivételével, a saját működésünkben is használjuk, vagy ügyfélnél már átadtuk. Nem bemutató, hanem működő rendszer." },
               { icon: Truck,     title: "Kevesebb kézi adatrögzítés", desc: "A rendszerek összekötése megszünteti a dupla adatrögzítést és a felesleges Excel-másolgatást." },
               { icon: Shield,    title: "Átlátható működés", desc: "A rendszer dolgozik, de a döntés az Öné. Minden folyamatot lát a feladattáblán." },
             ].map((item) => {
