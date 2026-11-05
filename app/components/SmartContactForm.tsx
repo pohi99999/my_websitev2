@@ -80,7 +80,7 @@ export function SmartContactForm() {
       {status === 'success' ? (
         <div className="p-4 rounded-xl bg-green-500/20 border border-green-500/50 text-green-200">
           <p className="font-semibold text-lg">Köszönjük a megkeresést!</p>
-          <p>Munkatársunk (vagy MI asszisztensünk) hamarosan felveszi Önnel a kapcsolatot.</p>
+          <p>Munkatársunk (vagy MI asszisztensünk) 1 munkanapon belül felveszi Önnel a kapcsolatot.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} aria-label="Projekt egyeztetés" className="space-y-5">

@@ -40,7 +40,7 @@ export default function ContactCapture ()
         badge: 'Free consultation',
         title: 'Request a free, no-obligation consultation or design preview',
         subtitle:
-          'Tell us what your business does and what you need, and we will get back to you shortly.',
+          'Tell us what your business does and what you need, and we will get back to you within 1 working day.',
         name: 'Name',
         email: 'Email',
         challenge: 'What do you need?',
@@ -48,7 +48,7 @@ export default function ContactCapture ()
         submit: 'Book a free consultation',
         submitPreview: 'Request the design preview',
         sending: 'Sending...',
-        success: 'Thank you! We saved your request and will get back to you shortly.',
+        success: 'Thank you! We saved your request and will get back to you within 1 working day.',
         error:
           'We could not send your request right now. Please email us directly at info@pohankaestarsa.com.',
         whatsapp: 'Write on WhatsApp',
@@ -62,7 +62,7 @@ export default function ContactCapture ()
         badge: 'Kostenlose Beratung',
         title: 'Fordern Sie eine kostenlose, unverbindliche Beratung oder einen Entwurf an',
         subtitle:
-          'Schreiben Sie uns, womit sich Ihr Unternehmen beschäftigt und was Sie brauchen, wir melden uns in Kürze.',
+          'Schreiben Sie uns, womit sich Ihr Unternehmen beschäftigt und was Sie brauchen, wir melden uns innerhalb von 1 Arbeitstag.',
         name: 'Name',
         email: 'E-Mail',
         challenge: 'Was brauchen Sie?',
@@ -70,7 +70,7 @@ export default function ContactCapture ()
         submit: 'Kostenlose Beratung anfragen',
         submitPreview: 'Entwurf anfordern',
         sending: 'Wird gesendet...',
-        success: 'Danke! Ihre Anfrage wurde gespeichert und wir melden uns in Kürze.',
+        success: 'Danke! Ihre Anfrage wurde gespeichert und wir melden uns innerhalb von 1 Arbeitstag.',
         error:
           'Ihre Anfrage konnte gerade nicht gesendet werden. Bitte schreiben Sie direkt an info@pohankaestarsa.com.',
         whatsapp: 'Per WhatsApp schreiben',
@@ -82,7 +82,7 @@ export default function ContactCapture ()
       badge: 'Ingyenes konzultáció',
       title: 'Kérjen ingyenes, kötelezettségmentes konzultációt vagy látványtervet',
       subtitle:
-        'Írja meg, mivel foglalkozik a vállalkozása és mire van szüksége, és hamarosan jelentkezünk.',
+        'Írja meg, mivel foglalkozik a vállalkozása és mire van szüksége, és 1 munkanapon belül jelentkezünk.',
       name: 'Név',
       email: 'E-mail',
       challenge: 'Mire van szüksége?',
@@ -90,7 +90,7 @@ export default function ContactCapture ()
       submit: 'Kérek ingyenes konzultációt',
       submitPreview: 'Kérem a látványtervet',
       sending: 'Küldés...',
-      success: 'Köszönjük! Elmentettük az érdeklődést, hamarosan jelentkezünk.',
+      success: 'Köszönjük! Elmentettük az érdeklődést, 1 munkanapon belül jelentkezünk.',
       error:
         'Most nem sikerült elküldeni az érdeklődést. Kérjük, írjon közvetlenül: info@pohankaestarsa.com.',
       whatsapp: 'Írok WhatsAppon',

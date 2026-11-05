@@ -33,7 +33,7 @@ type RateWindow = { count: number; resetAtMs: number };
 const RATE_LIMIT_WINDOW_MS = 2 * 60 * 1000; // 2 perc
 const RATE_LIMIT_MAX = 2; // 2 kérés / 2 perc / IP
 const DAILY_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000; // 1 nap
-const DAILY_LIMIT_MAX = 10; // 10 email / nap (összesen)
+const DAILY_LIMIT_MAX = 50; // 50 email / nap (összesen)
 export const rateMemory = new Map<string, RateWindow>();
 
 type ContactLimiters = { burst: Ratelimit | null; daily: Ratelimit | null };

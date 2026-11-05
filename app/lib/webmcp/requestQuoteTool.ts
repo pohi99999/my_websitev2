@@ -138,7 +138,7 @@ export function createRequestQuoteExecute(deps: RequestQuoteToolDeps) {
     } catch {
       return textResult('The request could not be sent (network error). / A kérést nem sikerült elküldeni (hálózati hiba).', true);
     }
-    return textResult('The quote request was sent. We will get back to you shortly. / Az ajánlatkérés elküldve, hamarosan jelentkezünk.');
+    return textResult('The quote request was sent. We will get back to you within 1 working day. / Az ajánlatkérés elküldve, 1 munkanapon belül jelentkezünk.');
   };
 }
 

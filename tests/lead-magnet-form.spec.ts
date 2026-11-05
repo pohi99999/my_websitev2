@@ -32,7 +32,7 @@ test.describe('LeadMagnetForm Component', () => {
 
     const postData = request.postDataJSON();
 
-    await expect(page.locator('text=Megkaptuk az adatait, hamarosan felvesszük Önnel a kapcsolatot.')).toBeVisible();
+    await expect(page.locator('text=Átnézzük az adatait, és 1 munkanapon belül visszaírunk.')).toBeVisible();
     // The old promise of an automatic BAS audit must not come back.
     await expect(page.locator('text=BAS MI ügynökeink')).toHaveCount(0);
 
