@@ -63,13 +63,13 @@ export default async function ImpresszumPage() {
             <div>{c.reg}: 20-09-069482 ({c.court})</div>
             <div>{c.tax}: 14728864-2-20</div>
             <div>{c.vat}: HU14728864</div>
-            <div>{c.email}: info@pohankaestarsa.com</div>
+            <div>{c.email}: <span>info@pohankaestarsa.com</span></div>
             <div>{c.phone}: +36 30 429 1227</div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <h2 className="text-white font-semibold">{c.host}</h2>
             <div>Vercel Inc., {c.hostAddr}</div>
-            <div>{c.email}: privacy@vercel.com</div>
+            <div>{c.email}: <span>privacy@vercel.com</span></div>
             <div>{c.web}: https://vercel.com</div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
@@ -77,7 +77,7 @@ export default async function ImpresszumPage() {
             <div>Győr-Moson-Sopron Vármegyei Békéltető Testület</div>
             <div>{c.adrAddr}</div>
             <div>{c.phone}: +36 96 520 200</div>
-            <div>{c.email}: bekelteto.testulet@gymsmkik.hu</div>
+            <div>{c.email}: <span>bekelteto.testulet@gymsmkik.hu</span></div>
             <div>{c.web}: https://bekeltetesgyor.hu</div>
           </div>
         </div>
