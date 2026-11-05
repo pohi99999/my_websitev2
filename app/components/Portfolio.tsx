@@ -556,7 +556,7 @@ const Portfolio = () =>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Tailwind CSS</span>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Időpontfoglaló</span>
                 </div>
-                <a href="https://hetenyirenata.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://hetenyirenata.vercel.app/', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
+                <a href="https://hetenyirenata.com/" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://hetenyirenata.vercel.app/', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
                   { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
@@ -578,7 +578,7 @@ const Portfolio = () =>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Tailwind CSS</span>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Reszponzív</span>
                 </div>
-                <a href="https://homolamentor.vercel.app/hu" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://homolamentor.vercel.app/hu', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
+                <a href="https://homlamentor.com/hu" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://homolamentor.vercel.app/hu', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
                   { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
@@ -599,7 +599,7 @@ const Portfolio = () =>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Tailwind CSS</span>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Interaktív</span>
                 </div>
-                <a href="https://cars-sr99.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://cars-sr99.vercel.app/', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
+                <a href="https://www.cars-sr99.com/" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://cars-sr99.vercel.app/', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
                   { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>
