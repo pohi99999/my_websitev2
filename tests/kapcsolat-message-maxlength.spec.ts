@@ -37,6 +37,21 @@ test.describe('/kapcsolat message length', () => {
     });
   }
 
+  for (const [path, one, two] of [
+    ['/en/kapcsolat', '1 character left.', '2 characters left.'],
+    ['/de/kapcsolat', 'Noch 1 Zeichen möglich.', 'Noch 2 Zeichen möglich.'],
+    ['/kapcsolat', 'Még 1 karakter írható.', 'Még 2 karakter írható.'],
+  ]) {
+    test(`the count reads right at 1 and at 2 on ${path}`, async ({ page }) => {
+      await page.goto(path);
+      const textarea = page.locator(TEXTAREA);
+      await textarea.fill('a'.repeat(LIMIT - 1));
+      await expect(page.getByText(one, { exact: true })).toBeVisible();
+      await textarea.fill('a'.repeat(LIMIT - 2));
+      await expect(page.getByText(two, { exact: true })).toBeVisible();
+    });
+  }
+
   test('a message of exactly 6000 characters is sent whole', async ({ page }) => {
     let sent: string | undefined;
     await page.route('**/api/contact', (route) => {

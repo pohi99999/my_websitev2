@@ -32,7 +32,7 @@ export default function KapcsolatClient() {
           namePlaceholder: "Enter your name",
           emailPlaceholder: "Enter your email address",
           messagePlaceholder: "Tell us how we can help...",
-          charsLeft: (n) => `${n} characters left.`,
+          charsLeft: (n) => `${n} ${n === 1 ? "character" : "characters"} left.`,
           sending: "Sending in progress…",
           sendingBtn: "Sending...",
           submitBtn: "Send Message",
