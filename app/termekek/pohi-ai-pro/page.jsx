@@ -55,6 +55,7 @@ export async function generateMetadata() {
       title: meta.title,
       description: meta.description,
       url: meta.canonical,
+      type: 'website',
       locale: meta.locale,
       images: [{ url: ogImageFor(language, '/termekek/pohi-ai-pro'), width: 1200, height: 630, alt: meta.title }],
     },

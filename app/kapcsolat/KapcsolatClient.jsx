@@ -5,6 +5,11 @@ import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { FORM_STATUSES, FORMS, PAGE_NAMES, trackFormSubmit } from "../lib/analytics";
 
+// /api/contact rejects a message above 6000 characters with a generic error. The visitor sees what is left
+// from 300 characters before the cap, like on the /szolgaltatasok form.
+const MESSAGE_MAX = 6000;
+const MESSAGE_WARN_FROM = 300;
+
 export default function KapcsolatClient() {
   const { language } = useLanguage();
   const [name, setName] = useState("");
@@ -27,6 +32,7 @@ export default function KapcsolatClient() {
           namePlaceholder: "Enter your name",
           emailPlaceholder: "Enter your email address",
           messagePlaceholder: "Tell us how we can help...",
+          charsLeft: (n) => `${n} ${n === 1 ? "character" : "characters"} left.`,
           sending: "Sending in progress…",
           sendingBtn: "Sending...",
           submitBtn: "Send Message",
@@ -47,6 +53,7 @@ export default function KapcsolatClient() {
             namePlaceholder: "Geben Sie Ihren Namen ein",
             emailPlaceholder: "Geben Sie Ihre E-Mail-Adresse ein",
             messagePlaceholder: "Beschreiben Sie kurz, wobei wir helfen können...",
+            charsLeft: (n) => `Noch ${n} Zeichen möglich.`,
             sending: "Wird gesendet…",
             sendingBtn: "Senden...",
             submitBtn: "Nachricht senden",
@@ -66,6 +73,7 @@ export default function KapcsolatClient() {
             namePlaceholder: "Az Ön neve",
             emailPlaceholder: "Az Ön e-mail-címe",
             messagePlaceholder: "Írja le, miben segíthetünk...",
+            charsLeft: (n) => `Még ${n} karakter írható.`,
             sending: "Küldés folyamatban…",
             sendingBtn: "Küldés...",
             submitBtn: "Üzenet Küldése",
@@ -75,6 +83,7 @@ export default function KapcsolatClient() {
           };
 
   const isSending = status.state === "sending";
+  const messageLeft = MESSAGE_MAX - message.length;
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -176,6 +185,7 @@ export default function KapcsolatClient() {
                   id="contact-name"
                   name="name"
                   type="text"
+                  autoComplete="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -190,6 +200,7 @@ export default function KapcsolatClient() {
                   id="contact-email"
                   name="email"
                   type="email"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -222,9 +233,16 @@ export default function KapcsolatClient() {
                   onChange={(e) => setMessage(e.target.value)}
                   required
                   rows={6}
+                  maxLength={MESSAGE_MAX}
+                  aria-describedby="contact-message-left"
                   className="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none resize-none"
                   placeholder={ui.messagePlaceholder}
                 />
+                <div id="contact-message-left" aria-live="polite">
+                  {messageLeft <= MESSAGE_WARN_FROM && (
+                    <p className="mt-1 text-xs text-gray-400">{ui.charsLeft(messageLeft)}</p>
+                  )}
+                </div>
               </div>
 
               {status.state !== "idle" && (
