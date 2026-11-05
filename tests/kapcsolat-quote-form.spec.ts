@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test';
 // 2026-11-05 (Stratega, Peter 13528): every "ingyenes latvanyterv" button lands on /kapcsolat, which offered only a
 // free-text message under "Lepjen velunk kapcsolatba". It now asks what the home page form asks, the phone and the
 // address are links, and WhatsApp is one tap away. /api/contact is always mocked (it sends real mail).
+// The reply time is Peter's decision (13530).
 
 const CASES = [
   { path: '/kapcsolat', h1: 'Kérjen ingyenes látványtervet vagy konzultációt', button: 'Kérem a látványtervet', need: 'Ajánlatkérő weboldal', head: 'Kapcsolat oldali konzultáció- vagy látványterv-kérés', whatsapp: 'Írok WhatsAppon' },
@@ -43,10 +44,10 @@ for (const c of CASES) {
   });
 }
 
-test('/kapcsolat: the business line is optional and capped, and no placeholder sentence is left', async ({ page }) => {
+test('/kapcsolat: the business line is optional and capped, and the reply time is the decided one', async ({ page }) => {
   await page.goto('/kapcsolat');
   await expect(page.locator('#contact-business')).not.toHaveAttribute('required', /.*/);
   await expect(page.locator('#contact-business')).toHaveAttribute('maxlength', '1000');
   await expect(page.locator('main')).not.toContainText('[X');
-  await expect(page.locator('main')).not.toContainText('időn belül');
+  await expect(page.locator('main')).toContainText('Írja le egy mondatban, mivel foglalkozik. Kötelezettség nélkül, és 1 munkanapon belül válaszolunk.');
 });

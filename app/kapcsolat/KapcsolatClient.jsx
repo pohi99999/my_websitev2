@@ -19,7 +19,7 @@ export default function KapcsolatClient() {
     language === "en"
       ? {
           title: "Request a free design preview or consultation",
-          subtitle: "Tell us in one sentence what your business does. No obligation.",
+          subtitle: "Tell us in one sentence what your business does. No obligation, and we reply within 1 working day.",
           whatsapp: "Write on WhatsApp",
           contactTitle: "Contact Details",
           formTitle: "Request the design preview",
@@ -41,7 +41,7 @@ export default function KapcsolatClient() {
       : language === "de"
         ? {
             title: "Fordern Sie einen kostenlosen Entwurf oder eine Beratung an",
-            subtitle: "Schreiben Sie uns in einem Satz, womit sich Ihr Unternehmen beschäftigt. Unverbindlich.",
+            subtitle: "Schreiben Sie uns in einem Satz, womit sich Ihr Unternehmen beschäftigt. Unverbindlich, und wir antworten innerhalb von 1 Arbeitstag.",
             whatsapp: "Per WhatsApp schreiben",
             contactTitle: "Kontaktinformationen",
             formTitle: "Entwurf anfordern",
@@ -62,7 +62,7 @@ export default function KapcsolatClient() {
           }
         : {
             title: "Kérjen ingyenes látványtervet vagy konzultációt",
-            subtitle: "Írja le egy mondatban, mivel foglalkozik. Kötelezettség nélkül.",
+            subtitle: "Írja le egy mondatban, mivel foglalkozik. Kötelezettség nélkül, és 1 munkanapon belül válaszolunk.",
             whatsapp: "Írok WhatsAppon",
             contactTitle: "Elérhetőségek",
             formTitle: "Kérem a látványtervet",
