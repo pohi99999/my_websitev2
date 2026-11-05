@@ -51,3 +51,25 @@ test('/kapcsolat: the business line is optional and capped, and the reply time i
   await expect(page.locator('main')).not.toContainText('[X');
   await expect(page.locator('main')).toContainText('Írja le egy mondatban, mivel foglalkozik. Kötelezettség nélkül, és 1 munkanapon belül válaszolunk.');
 });
+
+// Lumen 6323: the button text sat to the left (33 and 111 px gaps at 1280 px on /de/kapcsolat, the home page has 51 and 51).
+for (const [path, name, width] of [
+  ['/de/kapcsolat', 'Entwurf anfordern', 1280],
+  ['/kapcsolat', 'Kérem a látványtervet', 375],
+  ['/en/kapcsolat', 'Request the design preview', 1024],
+] as const) {
+  test(`${path} at ${width} px: the button text is centred`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(path);
+    const button = page.getByRole('button', { name });
+    await expect(button).toBeVisible();
+    const gaps = await button.evaluate((el) => {
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      const text = range.getBoundingClientRect();
+      const box = el.getBoundingClientRect();
+      return { left: text.left - box.left, right: box.right - text.right };
+    });
+    expect(Math.abs(gaps.left - gaps.right)).toBeLessThanOrEqual(2);
+  });
+}

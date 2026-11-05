@@ -286,7 +286,7 @@ export default function KapcsolatClient() {
               <button
                 type="submit"
                 disabled={isSending}
-                className="btn-primary w-full text-lg disabled:opacity-60 disabled:cursor-not-allowed"
+                className="btn-primary w-full justify-center text-lg disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isSending ? ui.sendingBtn : ui.submitBtn}
               </button>
