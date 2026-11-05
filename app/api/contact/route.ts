@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { Redis } from '@upstash/redis';
+import { budgetStore } from '../chat/budget';
 import { Ratelimit } from '@upstash/ratelimit';
 import { isAllowedOrigin } from '../../lib/allowedOrigin';
 
@@ -35,29 +36,31 @@ const DAILY_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000; // 1 nap
 const DAILY_LIMIT_MAX = 10; // 10 email / nap (összesen)
 export const rateMemory = new Map<string, RateWindow>();
 
-const upstashUrl = process.env.UPSTASH_REDIS_REST_URL;
-const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+type ContactLimiters = { burst: Ratelimit | null; daily: Ratelimit | null };
 
-const upstashRedis =
-  upstashUrl && upstashToken ? new Redis({ url: upstashUrl, token: upstashToken }) : null;
+// The same store and the same two env spellings as the chat ceilings (budgetStore): the Vercel integration creates
+// KV_REST_API_*, and until 2026-11-05 this route read only UPSTASH_REDIS_REST_*, so in production the limits lived in
+// each instance's memory. Preview and Production share the store, so the keys carry VERCEL_ENV.
+export function contactLimiters(env: NodeJS.ProcessEnv = process.env): ContactLimiters {
+  const store = budgetStore(env);
+  if (!store) return { burst: null, daily: null };
+  // a failing store answers within a second instead of retrying for seconds
+  const redis = new Redis({ url: store.url, token: store.token, retry: { retries: 1, backoff: () => 100 } });
+  return {
+    burst: new Ratelimit({
+      redis,
+      limiter: Ratelimit.fixedWindow(RATE_LIMIT_MAX, `${Math.ceil(RATE_LIMIT_WINDOW_MS / 1000)} s`),
+      prefix: `contact:${store.scope}:burst`,
+    }),
+    daily: new Ratelimit({
+      redis,
+      limiter: Ratelimit.fixedWindow(DAILY_LIMIT_MAX, `${Math.ceil(DAILY_LIMIT_WINDOW_MS / 1000)} s`),
+      prefix: `contact:${store.scope}:daily`,
+    }),
+  };
+}
 
-const upstashRatelimitBurst =
-  upstashRedis
-    ? new Ratelimit({
-        redis: upstashRedis,
-        limiter: Ratelimit.fixedWindow(RATE_LIMIT_MAX, `${Math.ceil(RATE_LIMIT_WINDOW_MS / 1000)} s`),
-        prefix: 'contact:burst'
-      })
-    : null;
-
-const upstashRatelimitDaily =
-  upstashRedis
-    ? new Ratelimit({
-        redis: upstashRedis,
-        limiter: Ratelimit.fixedWindow(DAILY_LIMIT_MAX, `${Math.ceil(DAILY_LIMIT_WINDOW_MS / 1000)} s`),
-        prefix: 'contact:daily'
-      })
-    : null;
+const limiters = contactLimiters();
 
 function asNonEmptyString(value: unknown): string | null {
   if (typeof value !== 'string') return null;
@@ -107,26 +110,27 @@ function ratelimitRetryAfterSec(reset: unknown, fallbackWindowMs: number): numbe
   return Math.max(1, Math.ceil((resetMs - Date.now()) / 1000));
 }
 
-async function checkBurstLimit(clientIp: string): Promise<{ ok: true } | { ok: false; retryAfterSec: number }> {
-  const key = `ip:${clientIp}`;
-  if (!upstashRatelimitBurst) {
-    return checkRateLimitFixed(`contact:burst:${key}`, RATE_LIMIT_WINDOW_MS, RATE_LIMIT_MAX);
+// A store that does not answer must not cost a visitor the message: the limit falls back to this instance's memory.
+async function storeLimit(limiter: Ratelimit, key: string, fallbackWindowMs: number): Promise<{ ok: true } | { ok: false; retryAfterSec: number } | null> {
+  try {
+    const result = await limiter.limit(key);
+    if (result.success) return { ok: true };
+    return { ok: false, retryAfterSec: ratelimitRetryAfterSec(result.reset, fallbackWindowMs) };
+  } catch (err) {
+    console.error('contact rate limit: store unavailable, using memory', err instanceof Error ? err.message : 'unknown');
+    return null;
   }
-
-  const result = await upstashRatelimitBurst.limit(key);
-  if (result.success) return { ok: true };
-  return { ok: false, retryAfterSec: ratelimitRetryAfterSec(result.reset, RATE_LIMIT_WINDOW_MS) };
 }
 
-async function checkDailyLimit(): Promise<{ ok: true } | { ok: false; retryAfterSec: number }> {
-  const key = 'global';
-  if (!upstashRatelimitDaily) {
-    return checkRateLimitFixed('contact:daily:global', DAILY_LIMIT_WINDOW_MS, DAILY_LIMIT_MAX);
-  }
+export async function checkBurstLimit(clientIp: string, l: ContactLimiters = limiters): Promise<{ ok: true } | { ok: false; retryAfterSec: number }> {
+  const key = `ip:${clientIp}`;
+  const fromStore = l.burst && (await storeLimit(l.burst, key, RATE_LIMIT_WINDOW_MS));
+  return fromStore ?? checkRateLimitFixed(`contact:burst:${key}`, RATE_LIMIT_WINDOW_MS, RATE_LIMIT_MAX);
+}
 
-  const result = await upstashRatelimitDaily.limit(key);
-  if (result.success) return { ok: true };
-  return { ok: false, retryAfterSec: ratelimitRetryAfterSec(result.reset, DAILY_LIMIT_WINDOW_MS) };
+export async function checkDailyLimit(l: ContactLimiters = limiters): Promise<{ ok: true } | { ok: false; retryAfterSec: number }> {
+  const fromStore = l.daily && (await storeLimit(l.daily, 'global', DAILY_LIMIT_WINDOW_MS));
+  return fromStore ?? checkRateLimitFixed('contact:daily:global', DAILY_LIMIT_WINDOW_MS, DAILY_LIMIT_MAX);
 }
 
 export async function POST(req: Request) {
