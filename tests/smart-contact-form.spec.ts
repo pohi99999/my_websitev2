@@ -37,9 +37,23 @@ test.describe('SmartContactForm Component', () => {
     });
   });
 
+  test('the budget is optional: the form goes out without it, and says so', async ({ page }) => {
+    await page.fill('input[name="name"]', 'Test User');
+    await page.fill('input[name="email"]', 'test@example.com');
+    await page.fill('textarea[name="project_description"]', 'Test project');
+    await expect(page.locator('select[name="budget"]')).not.toHaveAttribute('required', /.*/);
+    await page.route('**/api/contact', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ ok: true }) }));
+    const [request] = await Promise.all([page.waitForRequest((req) => req.url().endsWith('/api/contact')), page.click(SUBMIT)]);
+    expect(request.postDataJSON().message).toContain('Tervezett büdzsé: nincs megadva');
+  });
+
+  test('the "free instant demo" option is gone', async ({ page }) => {
+    await expect(page.locator('select[name="budget"] option', { hasText: 'Azonnali demó' })).toHaveCount(0);
+  });
+
   test('shows the error, not the success, when the server fails', async ({ page }) => {
     await page.route('**/api/contact', (route) => route.fulfill({ status: 500, contentType: 'application/json', body: JSON.stringify({ ok: false, error: 'Unexpected error' }) }));
-    await fill(page, 'Test failure project', 'Azonnali demó (Ingyenes)');
+    await fill(page, 'Test failure project', '100.000 - 300.000 Ft');
     await page.click(SUBMIT);
 
     await expect(page.locator(`text=${ERROR}`)).toBeVisible();

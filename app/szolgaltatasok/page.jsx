@@ -8,6 +8,33 @@ import {
   Bot, FileSearch, Award, Clock, DollarSign
 } from "lucide-react";
 import { SmartContactForm } from "../components/SmartContactForm";
+import { BASE_PRICE } from "../lib/basePrice";
+
+const WEB_CARD = {
+  hu: { title: "Weboldal foglalással vagy ajánlatkéréssel", desc: `${BASE_PRICE.hu} + áfa-tól, két hét.`, cta: "Megnézem", href: "/weboldal-ai-kkv" },
+  en: { title: "Website with booking or quote requests", desc: `From ${BASE_PRICE.en} + VAT, in two weeks.`, cta: "Take a look", href: "/en/weboldal-ai-kkv" },
+  de: { title: "Website mit Buchung oder Anfrageformular", desc: `Ab ${BASE_PRICE.de} zzgl. MwSt., in zwei Wochen.`, cta: "Ansehen", href: "/de/weboldal-ai-kkv" },
+};
+
+function WebCard({ language }) {
+  const t = WEB_CARD[language];
+  return (
+    <a
+      href={t.href}
+      data-testid="web-card"
+      className="glass-panel mx-auto mb-16 flex max-w-4xl flex-col items-start justify-between gap-4 rounded-2xl border border-[#00e5ff]/40 bg-black/40 p-7 backdrop-blur-md sm:flex-row sm:items-center"
+    >
+      <span>
+        <span className="block text-xl font-bold text-white">{t.title}</span>
+        <span className="mt-1 block text-gray-300">{t.desc}</span>
+      </span>
+      <span className="inline-flex min-h-11 shrink-0 items-center gap-2 font-semibold text-[#00e5ff]">
+        {t.cta}
+        <ArrowRight size={18} />
+      </span>
+    </a>
+  );
+}
 
 export async function generateMetadata() {
   const headerStore = await headers();
@@ -65,6 +92,25 @@ export async function generateMetadata() {
 }
 
 const categories = [
+  {
+    id: "web",
+    icon: Globe,
+    title: "Modern Weboldal & Webes Alkalmazás",
+    subtitle: "Weboldal, amelyen a vevő foglal vagy ajánlatot kér.",
+    services: [
+      {
+        name: "Bevételtermelő Weboldalak",
+        desc:
+          "Egy gyors, mobilbarát weboldal önmagában kevés. Mi beépítjük azokat az érdeklődő-mágneseket (webhookokat) és automata időpontfoglalókat, amelyek rögtön a naptárába teszik a vevőt.",
+        bullets: [
+          "Weboldal Egészségügyi és Gyorsasági Teszt (Kiváló Google pontszám)",
+          "Beépített digitális munkatárs (chatbot), amely munkaidőn túl is válaszol a vevőknek",
+          "Kevesebb kézi adatrögzítés: az űrlap adatai közvetlenül a nyilvántartásba kerülnek",
+        ],
+        forWho: "Aki a weboldalától azonnali bevételt vár, nem csak egy digitális névjegyet",
+      },
+    ],
+  },
   {
     id: "ai-rendszerek",
     icon: Brain,
@@ -270,25 +316,6 @@ const categories = [
       },
     ],
   },
-  {
-    id: "web",
-    icon: Globe,
-    title: "Modern Weboldal & Webes Alkalmazás",
-    subtitle: "Olyan weboldalt építünk, ami konkrétan elad és automatikusan hozza az ügyfelet.",
-    services: [
-      {
-        name: "Bevételtermelő Weboldalak",
-        desc:
-          "Egy gyors, mobilbarát weboldal önmagában kevés. Mi beépítjük azokat az érdeklődő-mágneseket (webhookokat) és automata időpontfoglalókat, amelyek rögtön a naptárába teszik a vevőt.",
-        bullets: [
-          "Weboldal Egészségügyi és Gyorsasági Teszt (Kiváló Google pontszám)",
-          "Beépített digitális munkatárs (chatbot), amely munkaidőn túl is válaszol a vevőknek",
-          "Kevesebb kézi adatrögzítés: az űrlap adatai közvetlenül a nyilvántartásba kerülnek",
-        ],
-        forWho: "Aki a weboldalától azonnali bevételt vár, nem csak egy digitális névjegyet",
-      },
-    ],
-  },
 ];
 
 export default async function SzolgaltatasokPage() {
@@ -369,6 +396,8 @@ export default async function SzolgaltatasokPage() {
             </div>
           </div>
 
+          <WebCard language={language} />
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
             {ui.cards.map((card) => (
               <div key={card.title} className="glass-panel p-7 rounded-2xl border border-white/10 backdrop-blur-md bg-black/30">
@@ -415,7 +444,7 @@ export default async function SzolgaltatasokPage() {
         {/* Hero */}
         <div className="text-center mb-20 max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-[#00e5ff]">
-            Automatizáció, ami Profitot Termel
+            Automatizálás és AI, ami átveszi a kézi munkát
           </h1>
           <p className="text-xl text-gray-300 leading-relaxed">
             Mi nem szoftvert árulunk, hanem <span className="text-white font-semibold">időt és megtakarítást.</span>{" "}
@@ -430,6 +459,8 @@ export default async function SzolgaltatasokPage() {
             ))}
           </div>
         </div>
+
+        <WebCard language="hu" />
 
         {/* Gyors navigáció */}
         <div className="flex flex-wrap justify-center gap-3 mb-16">
