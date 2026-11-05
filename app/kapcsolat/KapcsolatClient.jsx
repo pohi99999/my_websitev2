@@ -185,6 +185,7 @@ export default function KapcsolatClient() {
                   id="contact-name"
                   name="name"
                   type="text"
+                  autoComplete="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -199,6 +200,7 @@ export default function KapcsolatClient() {
                   id="contact-email"
                   name="email"
                   type="email"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
