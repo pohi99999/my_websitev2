@@ -9,7 +9,7 @@ type Card = { icon: string; title: string; text: string };
 
 const copy: Record<Lang, { heading: string; lead: string; original?: string; frameTitle: string; cards: Card[] }> = {
   hu: {
-    heading: 'Interjú pár elégedett ügyfelünkkel',
+    heading: 'Egy kis humor: mit szólna az automatizáláshoz az állatvilág?',
     lead: 'Nézze meg, mit gondolnak rólunk azok, akik már bevezették az MI automatizációt. (Figyelem: a videó nyomokban humort tartalmaz!)',
     frameTitle: 'Pohánka és Társa - Ügyfél interjúk',
     cards: [
@@ -19,7 +19,7 @@ const copy: Record<Lang, { heading: string; lead: string; original?: string; fra
     ],
   },
   en: {
-    heading: 'Interviews with a few happy clients',
+    heading: 'A bit of humour: what would the animal kingdom say about automation?',
     lead: 'See what people who have already introduced AI automation think of us. (Warning: the video contains traces of humor!)',
     original: 'Original video, in Hungarian.',
     frameTitle: 'Pohánka és Társa - client interviews',
@@ -30,7 +30,7 @@ const copy: Record<Lang, { heading: string; lead: string; original?: string; fra
     ],
   },
   de: {
-    heading: 'Interviews mit einigen zufriedenen Kunden',
+    heading: 'Ein wenig Humor: Was würde die Tierwelt zur Automatisierung sagen?',
     lead: 'Sehen Sie, was Kunden über uns sagen, die KI-Automatisierung bereits eingeführt haben. (Achtung: Das Video enthält Spuren von Humor!)',
     original: 'Originalvideo auf Ungarisch.',
     frameTitle: 'Pohánka és Társa - Kundeninterviews',
