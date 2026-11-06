@@ -45,6 +45,16 @@ test('the sample does not claim a finished Business Profile (Péter 13854)', asy
   expect(text).not.toContain('és Google Cégprofilt');
 });
 
+test('the first step does not ask for a photo the contact form cannot take (Péter 13856)', async ({ page }) => {
+  await page.goto(PATH);
+  const first = norm(await page.locator('ol').nth(1).locator('li').first().innerText());
+  expect(first).toBe('Ön kitölti az ajánlatkérőt, és az első egyeztetésen megbeszéljük, hogyan küldje el a fotókat.');
+  const text = norm(await page.locator('main').innerText());
+  expect(text).not.toContain('küld pár fotót');
+  // "Mit kérünk Öntől?" stays as it was
+  expect(text).toContain('Alapadatok (név, cím, adószám, elérhetőség), 10-20 fotó a munkáiról, és a hozzájárulását ahhoz, hogy a képei megjelenjenek.');
+});
+
 test('no promise from the other offers, no phone number, no dash', async ({ page }) => {
   await page.goto(PATH);
   const own = norm(await page.locator('main > div').first().innerText());

@@ -10,7 +10,7 @@ export { metadata } from './meta';
 
 // The "Online jelenlét induló csomag" page (Péter 13785/13787). Hungarian only for now. The copy is part A
 // of Stratéga's ONLINE-JELENLET-EGYOLDALAS.md word for word, except the sample's state (Péter 13854: its
-// Business Profile is not verified yet); the price and the 5 working days are Péter's decisions (13779,
+// Business Profile is not verified yet) and the first step (13856: the contact form takes no photos); the price and the 5 working days are Péter's decisions (13779,
 // 13783), the sample is named with the client's consent (13781). The reviews are the
 // homepage's block: the texts live in googleReviews.ts only. Its own route, not a case of the [[...slug]]
 // catch-all, and its styling in a CSS module: nothing of this page reaches the /en and /de homepage JS or
@@ -118,7 +118,9 @@ export default function OnlineJelenletPage() {
         <section aria-labelledby="hogyan-megy" className={styles.section}>
           <h2 id="hogyan-megy" className={`heading-display ${styles.sectionTitle}`}>Hogyan megy?</h2>
           <ol className={styles.steps}>
-            <li className={styles.step}>Ön kitölti az ajánlatkérőt, és küld pár fotót a munkáiról.</li>
+            <li className={styles.step}>
+              Ön kitölti az ajánlatkérőt, és az első egyeztetésen megbeszéljük, hogyan küldje el a fotókat.
+            </li>
             <li className={styles.step}>
               Egyeztetjük, mit szeretne a weboldalon látni. Az első verziót az anyagok megérkezése után 5 munkanapon belül
               megmutatjuk. Az anyagot (szöveg, képek) Ön hagyja jóvá, mielőtt bármi kikerül.
