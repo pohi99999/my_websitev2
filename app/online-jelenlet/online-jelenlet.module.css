@@ -1,0 +1,300 @@
+/* /online-jelenlet only. Every rule of the page is here (a CSS module, loaded with this route), so the shared
+   stylesheet the homepage blocks on stays byte-for-byte the same. */
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  padding: 7rem 0 5rem;
+  background: #000;
+  color: #fff;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ---- hero ---- */
+
+.kicker {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.title {
+  margin-top: 1.5rem;
+  font-size: clamp(2rem, 8vw, 4.25rem);
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+/* the longest word: on its own line, at the size that fits a phone without breaking it */
+.accent {
+  display: block;
+  font-size: min(1em, 6.4vw);
+  color: #00e5ff;
+}
+
+.leadTitle {
+  margin-top: 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.lead {
+  max-width: 44rem;
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.55;
+  color: #d1d5db;
+}
+
+/* ---- buttons and links ---- */
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 48px;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: #00e5ff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000;
+  transition: background-color 0.2s ease;
+}
+
+.cta:hover {
+  background: #fff;
+}
+
+.cta:focus-visible,
+.link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 24px;
+  color: #00e5ff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.linkIcon {
+  flex: none;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* ---- sections ---- */
+
+.section {
+  margin-top: 4.5rem;
+}
+
+.sectionTitle {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.body {
+  margin-top: 1rem;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: #d1d5db;
+}
+
+/* ---- what you get ---- */
+
+.cards {
+  display: grid;
+  gap: 1rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  background: #0c0c10;
+}
+
+.index {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: #00e5ff;
+}
+
+.cardTitle {
+  margin-top: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.card .body {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+/* ---- sample ---- */
+
+.sample {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 1.5rem;
+  background: #0c0c10;
+}
+
+.sampleImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---- price ---- */
+
+.prices {
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.price {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.priceName {
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.priceValue {
+  color: #d1d5db;
+  line-height: 1.5;
+}
+
+.priceValue b {
+  font-family: var(--font-syne, var(--font-inter, sans-serif));
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- steps ---- */
+
+.steps {
+  display: grid;
+  gap: 1.25rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  padding-left: 3.25rem;
+  min-height: 2.25rem;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: #d1d5db;
+  counter-increment: step;
+}
+
+.step::before {
+  content: counter(step);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #00e5ff;
+}
+
+.step b {
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ---- reviews (the homepage block, full width) ---- */
+
+.reviews {
+  margin: 4.5rem 0;
+}
+
+/* ---- closing ---- */
+
+.closing {
+  padding: 2rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  background: #0c0c10;
+}
+
+@media (min-width: 768px) {
+  .wrap {
+    padding: 0 2rem;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sample {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .price {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: baseline;
+    gap: 2rem;
+  }
+
+  .closing {
+    padding: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+}
