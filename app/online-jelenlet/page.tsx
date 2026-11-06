@@ -9,8 +9,9 @@ import styles from './online-jelenlet.module.css';
 export { metadata } from './meta';
 
 // The "Online jelenlét induló csomag" page (Péter 13785/13787). Hungarian only for now. The copy is part A
-// of Stratéga's ONLINE-JELENLET-EGYOLDALAS.md word for word; the price and the 5 working days are Péter's
-// decisions (13779, 13783), the sample is named with the client's consent (13781). The reviews are the
+// of Stratéga's ONLINE-JELENLET-EGYOLDALAS.md word for word, except the sample's state (Péter 13854: its
+// Business Profile is not verified yet); the price and the 5 working days are Péter's decisions (13779,
+// 13783), the sample is named with the client's consent (13781). The reviews are the
 // homepage's block: the texts live in googleReviews.ts only. Its own route, not a case of the [[...slug]]
 // catch-all, and its styling in a CSS module: nothing of this page reaches the /en and /de homepage JS or
 // the shared stylesheet.
@@ -73,9 +74,9 @@ export default function OnlineJelenletPage() {
           <div className={styles.sampleText}>
             <h2 id="minta" className={`heading-display ${styles.sectionTitle}`}>Minta</h2>
             <p className={styles.body}>
-              Egy zalai térkő-, aszfalt- és támfalépítő vállalkozásnak pontosan ezt készítettük el: weboldalt
-              ajánlatkérővel, Facebook-oldalt öt munkatípus szerinti albummal, és Google Cégprofilt. A weboldal itt
-              megnézhető:{' '}
+              Egy zalai térkő-, aszfalt- és támfalépítő vállalkozásnak ezt a csomagot készítjük: elkészült a weboldal
+              ajánlatkérővel és a Facebook-oldal öt munkatípus szerinti albummal, a Google Cégprofil igazolása
+              folyamatban. A weboldal itt megnézhető:{' '}
               <a href={SAMPLE_URL} target="_blank" rel="noopener noreferrer" className={styles.link}>
                 hari-attila-web.vercel.app
                 <ExternalLink className={styles.linkIcon} aria-hidden="true" />

@@ -37,6 +37,14 @@ test('the price and the terms, word for word', async ({ page }) => {
   ]) expect(text, sentence).toContain(sentence);
 });
 
+test('the sample does not claim a finished Business Profile (Péter 13854)', async ({ page }) => {
+  await page.goto(PATH);
+  const text = norm(await page.locator('main').innerText());
+  expect(text).toContain('a Google Cégprofil igazolása folyamatban');
+  expect(text).not.toContain('pontosan ezt készítettük el');
+  expect(text).not.toContain('és Google Cégprofilt');
+});
+
 test('no promise from the other offers, no phone number, no dash', async ({ page }) => {
   await page.goto(PATH);
   const own = norm(await page.locator('main > div').first().innerText());
