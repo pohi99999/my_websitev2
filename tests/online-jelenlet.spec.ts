@@ -95,18 +95,42 @@ test('Hungarian only: /en and /de are 404, the language switch goes to that home
   await expect(page).toHaveURL(/\/en$/);
 });
 
-test('the homepage scripts carry nothing of this page (/, /en, /de)', async ({ request }) => {
+test('the homepage scripts carry nothing of this page beyond the footer link (/, /en, /de)', async ({ request }) => {
   for (const path of ['/', '/en', '/de']) {
     const html = await (await request.get(path)).text();
     const srcs = [...new Set([...html.matchAll(/\/_next\/static\/[^"'\\\s]+?\.js/g)].map((m) => m[0]))];
     expect(srcs.length, path).toBeGreaterThan(0);
     for (const s of srcs) {
       const body = await (await request.get(s)).text();
-      expect(body.includes('Online jelenlét induló'), `${path} ${s}`).toBe(false);
-      expect(body.includes('hari-attila-web.vercel.app/onl'), `${path} ${s}`).toBe(false);
+      for (const copy of ['Térkövező, klímaszerelő', 'igazolása folyamatban', 'Havi díj nincs']) expect(body.includes(copy), `${path} ${s}: ${copy}`).toBe(false);
     }
-    expect(html, path).not.toContain('Online jelenlét induló');
   }
+});
+
+test('linked from the Hungarian footer only, and not from the main menu', async ({ page }) => {
+  for (const path of ['/', '/szolgaltatasok', PATH]) {
+    await page.goto(path);
+    await expect(page.locator('footer a[href="/online-jelenlet"]'), path).toHaveText('Online jelenlét induló csomag');
+    await expect(page.locator('header a[href*="online-jelenlet"]'), path).toHaveCount(0);
+  }
+  for (const path of ['/en', '/de']) {
+    await page.goto(path);
+    await expect(page.locator('footer')).toBeVisible();
+    await expect(page.locator('a[href*="online-jelenlet"]'), path).toHaveCount(0);
+  }
+});
+
+test('linked under the price block of /weboldal-ai-kkv, in Hungarian only', async ({ page, request }) => {
+  await page.goto('/weboldal-ai-kkv');
+  const link = page.locator('main a[href="/online-jelenlet"]');
+  await expect(link).toHaveCount(1);
+  await expect(link).toHaveText('Online jelenlét induló csomag');
+  const y = (l: import('@playwright/test').Locator) => l.evaluate((e) => e.getBoundingClientRect().top + window.scrollY);
+  const price = page.locator('#arcsomag');
+  const bottom = await price.evaluate((e) => e.getBoundingClientRect().bottom + window.scrollY);
+  expect(await y(link)).toBeGreaterThan(bottom - 100);
+  expect(await y(link)).toBeLessThan(bottom + 100);
+  for (const p of ['/en/weboldal-ai-kkv', '/de/weboldal-ai-kkv']) expect(await (await request.get(p)).text(), p).not.toContain('online-jelenlet');
 });
 
 test('no background video: the page is solid black, a phone would download it for nothing', async ({ page }) => {

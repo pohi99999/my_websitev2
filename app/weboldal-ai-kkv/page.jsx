@@ -66,6 +66,24 @@ export async function generateMetadata() {
   };
 }
 
+// Under the price block, Hungarian only: the package page exists in Hungarian alone (Péter 13860). A server
+// component with the classes the price block already uses, so nothing reaches the client JS or the shared CSS.
+async function OnlineJelenletLink() {
+  const lang = (await headers()).get('x-site-language');
+  if (lang === 'en' || lang === 'de') return null;
+  return (
+    <p
+      className="text-center text-gray-400 text-sm"
+      style={{ position: 'relative', margin: '-3rem 0 0', padding: '0 1rem 3rem', background: 'rgba(0,0,0,0.82)' }}
+    >
+      Google Cégprofil és Facebook-oldal is kell a weboldal mellé?{' '}
+      <a href="/online-jelenlet" className="text-[#00e5ff] hover:underline">
+        Online jelenlét induló csomag
+      </a>
+    </p>
+  );
+}
+
 export default function WeboldalAiKkvPage() {
   return (
     <>
@@ -75,6 +93,7 @@ export default function WeboldalAiKkvPage() {
       <Modulok />
       {/* the home page's price block, the single source (Péter 6312), in HU/EN/DE */}
       <Arcsomag contactHref="/kapcsolat" />
+      <OnlineJelenletLink />
       <HogyanDolgozunk />
       <Referenciak />
       <FAQ />

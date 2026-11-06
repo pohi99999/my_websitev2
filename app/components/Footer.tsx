@@ -77,6 +77,14 @@ const Footer = () =>
                   </a>
                 </li>
               )}
+              {/* Az Online jelenlét csomag oldala is csak magyarul létezik (Péter 13860). */}
+              {language === 'hu' && (
+                <li>
+                  <a href="/online-jelenlet" className="text-gray-400 hover:text-white transition-colors">
+                    Online jelenlét induló csomag
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
 
