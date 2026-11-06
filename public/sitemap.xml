@@ -33,6 +33,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.pohankaestarsa.com/online-jelenlet</loc>
+    <lastmod>2026-11-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.pohankaestarsa.com/szolgaltatasok</loc>
     <lastmod>2026-10-24</lastmod>
     <priority>0.9</priority>
@@ -115,7 +120,7 @@
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/weboldal-ai-kkv</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/weboldal-ai-kkv" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/weboldal-ai-kkv" />
@@ -124,7 +129,7 @@
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/en/weboldal-ai-kkv</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/weboldal-ai-kkv" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/weboldal-ai-kkv" />
@@ -133,7 +138,7 @@
   </url>
   <url>
     <loc>https://www.pohankaestarsa.com/de/weboldal-ai-kkv</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="hu" href="https://www.pohankaestarsa.com/weboldal-ai-kkv" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.pohankaestarsa.com/en/weboldal-ai-kkv" />

@@ -44,8 +44,9 @@ const SequentialVideoBackground: React.FC = () =>
   const video0Ref = useRef<HTMLVideoElement>( null );
   const video1Ref = useRef<HTMLVideoElement>( null );
   const normalizedPath = pathname.replace( /^\/(en|de)(?=\/|$)/, '' ) || '/';
-  // /labor draws its own 3D scene and poster behind the page: no video there, not even a download
-  const noVideo = normalizedPath === '/labor';
+  // /labor draws its own 3D scene and poster behind the page: no video there, not even a download.
+  // /online-jelenlet has a solid black page: the video would never show (measured: 4 MB on a phone).
+  const noVideo = normalizedPath === '/labor' || normalizedPath === '/online-jelenlet';
   // /portfolio and its subpages on a phone: the static gradient, not the 4.7 MB portfolio.mp4 (on /portfolio
   // the page's own section shows a still)
   const [phone] = useState( () => window.matchMedia( '(max-width: 767.98px)' ).matches );

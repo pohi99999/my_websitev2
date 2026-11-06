@@ -5,8 +5,8 @@ import { Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { usePathname, useRouter } from 'next/navigation';
 
-// Pages that exist only in Hungarian (local SEO landing pages).
-const HU_ONLY_PATHS = new Set(['/weboldal-keszites-zalaegerszeg']);
+// Pages that exist only in Hungarian (local SEO landing pages, the package page).
+const HU_ONLY_PATHS = new Set(['/weboldal-keszites-zalaegerszeg', '/online-jelenlet']);
 
 export default function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
