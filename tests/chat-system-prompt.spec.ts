@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { SYSTEM_PROMPT } from "../app/api/chat/system-prompt";
+import { systemPromptFor } from "../app/api/chat/site-lang";
 import { BASE_PRICE } from "../app/lib/basePrice";
 
 // Card 780eb834 (2026-10-09): asked "how much is a website?", the chat answered that the company does not
@@ -55,5 +56,47 @@ test.describe("Brunella chat system prompt", () => {
       expect(faq).toContain("${BASE_PRICE." + lang + "}");
     }
     expect(card).toContain("hetenyirenata.com");
+  });
+
+  // Péter 13925 (2026-11-07): asked about the online presence package, the chat only knew the base package.
+  test.describe("online presence starter package", () => {
+    const page = readFileSync(join(__dirname, "..", "app", "online-jelenlet", "page.tsx"), "utf-8");
+
+    test("carries the facts of the live page", () => {
+      for (const fact of [
+        "Online jelenlét induló csomag", "30 000 Ft + VAT", "HUF 30,000 + VAT", "no monthly fee", "price calculator",
+        "5 working days", "client's OWN account", "Google may require verification", "not part of the 5 working days",
+        "10-20 photos", "https://www.pohankaestarsa.com/online-jelenlet",
+      ]) expect(SYSTEM_PROMPT, fact).toContain(fact);
+      expect(SYSTEM_PROMPT).toMatch(/Website 150 000 Ft \+ VAT, one-off fee/);
+    });
+
+    test("drift guard: the setup price and the 5 working days are the ones on the page", () => {
+      expect(page).toContain("const SETUP_PRICE = `30${NBSP}000${NBSP}Ft`;");
+      expect(page).toContain("{BASE_PRICE.hu} + áfa");
+      expect(page).toContain("5 munkanapon belül");
+      expect(page).toContain("Havi díj nincs");
+    });
+
+    test("no gross price, no VAT rate, no review numbers, no invented language version of the page", () => {
+      expect(SYSTEM_PROMPT).toMatch(/never a gross total or a VAT rate, VAT is added on top of both/);
+      expect(SYSTEM_PROMPT).not.toMatch(/27\s?%|38 100|190 500|228 600|bruttó|\b5,0\b|10 (reviews|vélemény)/i);
+      expect(SYSTEM_PROMPT).not.toMatch(/pohankaestarsa\.com\/(en|de)\/online-jelenlet/);
+      expect(SYSTEM_PROMPT).toMatch(/Never write an \/en or \/de version of\s+this link/);
+    });
+
+    test("is only offered when asked about, and stays apart from the Weboldal + AI package", () => {
+      expect(SYSTEM_PROMPT).toMatch(/Do not offer it in an answer about anything else, including AI automation and\s+the price of a website/);
+      expect(SYSTEM_PROMPT).toMatch(/the two weeks, the free design preview and the optional modules belong to the\s+Weboldal \+ AI package/);
+    });
+
+    test("the site-language line at the end of the prompt does not forbid this package's link", () => {
+      for (const lang of ["hu", "en", "de"] as const) {
+        const full = systemPromptFor(lang);
+        expect(full).toContain("https://www.pohankaestarsa.com/online-jelenlet");
+        expect(full).toMatch(/When you give the Weboldal \+ AI page link, use exactly this one and no other:/);
+        expect(full).not.toMatch(/When you give the page link/);
+      }
+    });
   });
 });

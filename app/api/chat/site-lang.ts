@@ -28,7 +28,7 @@ const SITE_NAME: Record<SiteLang, string> = { hu: 'HUNGARIAN', en: 'ENGLISH', de
 export function systemPromptFor(lang: SiteLang): string {
   return `${SYSTEM_PROMPT}
 
-THIS VISITOR IS ON THE ${SITE_NAME[lang]} SITE. When you give the page link, use exactly this one and no other:
+THIS VISITOR IS ON THE ${SITE_NAME[lang]} SITE. When you give the Weboldal + AI page link, use exactly this one and no other:
 ${PAGE_LINK[lang]}`;
 }
 
