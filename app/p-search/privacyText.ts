@@ -1,3 +1,5 @@
+import type { PrivacyMeta } from '../components/privacy/PrivacyNotice';
+
 // P-Search privacy notice (hu + en), shown at /p-search/adatvedelem and /en/p-search/privacy.
 // The text is copied VERBATIM by a script from the P-Search app repo:
 //   pohi99999/p-search-mobil, docs/legal/adatvedelmi-tajekoztato.md @ 8d5f049 (1.3, 2026-10-25)
@@ -7,7 +9,7 @@
 // To update the text, regenerate from the source file instead of editing it by hand.
 
 // null = not given yet; the page shows a clearly marked placeholder until it is filled in.
-export const PSEARCH_PRIVACY_META: { effective: { hu: string; en: string } | null; version: string | null } = {
+export const PSEARCH_PRIVACY_META: PrivacyMeta = {
   // 1.3 (2026-10-25, owner GO Telegram 10617, p-search-mobil #226): Anthropic Claude for every text AI task, and the usage events.
   // Not 1.2: the 2026-10-12 notice (Copilot chat only on Anthropic) was already published as 1.2 (Marveen 4981).
   effective: { hu: '2026. október 25.', en: 'October 25, 2026' },
