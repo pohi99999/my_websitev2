@@ -2,12 +2,15 @@ import type { PrivacyMeta } from '../components/privacy/PrivacyNotice';
 
 // P-Szakrajz privacy notice (hu), shown at /p-szakrajz/adatvedelem; the Google Play listing links here.
 // Every statement is read from the app's code: pohi99999/P-szakrajz main @ 6fc05b4 (2026-11-12).
-// The source lines are listed in the PR description. [[...]] marks an owner decision that the code
-// cannot answer (the data controller); the page shows it as a loud placeholder until it is filled in.
+// The source lines are listed in the PR description. The data controller block is copied verbatim from
+// app/p-search/privacyText.ts (owner decision, Telegram 15139: the same controller as P-Search).
 // The app's own UI is Hungarian only, so there is no English page yet.
 
-// null = not decided yet: the effective date and the version are set when the owner approves the text.
-export const PSZAKRAJZ_PRIVACY_META: PrivacyMeta = { effective: null, version: null };
+export const PSZAKRAJZ_PRIVACY_META: PrivacyMeta = {
+  // 1.0, owner decision (Telegram 15139, 2026-11-12). If the merge lands later, the date moves to the merge day.
+  effective: { hu: '2026. november 12.', en: 'November 12, 2026' },
+  version: '1.0',
+};
 
 export const PSZAKRAJZ_PRIVACY = {
   title: 'P-Szakrajz: adatvédelmi tájékoztató',
@@ -16,9 +19,9 @@ export const PSZAKRAJZ_PRIVACY = {
     '',
     '## 1. Az adatkezelő',
     '',
-    '- **Név:** [[az adatkezelő neve]]',
-    '- **Kapcsolat:** [[e-mail cím, telefonszám]]',
-    '- **Postacím:** [[postacím]]',
+    '- **Név:** Pohánka József Péter (magánszemély, az alkalmazás fejlesztője)',
+    '- **Kapcsolat:** peterpohankapersonal@gmail.com · +36 30 429 1227',
+    '- **Postacím:** 8900 Zalaegerszeg, Berek utca 38.',
     '',
     '## 2. Röviden',
     '',
