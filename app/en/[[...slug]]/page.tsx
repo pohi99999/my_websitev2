@@ -8,7 +8,6 @@ import TermekekPage from '../../termekek/page';
 import KapcsolatPage from '../../kapcsolat/page';
 import SzolgaltatasokPage from '../../szolgaltatasok/page';
 import PortfolioPage from '../../portfolio/page';
-import PortfolioDetailPage from '../../portfolio/[id]/page';
 import BlogPage from '../../blog/page';
 import BlogPostPage from '../../blog/[slug]/page';
 import RolunkPage from '../../rolunk/page';
@@ -298,7 +297,7 @@ export default async function EnCatchAllPage({ params }: { params: Promise<Param
       case 'palyazat-radar':
         return <PalyazatRadarPage />;
       default:
-        return <PortfolioDetailPage params={{ id: slug[1] }} />;
+        return notFound();
     }
   }
 

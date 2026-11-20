@@ -10,7 +10,6 @@ import { generateMetadata as termekekMeta } from '../termekek/page';
 import { generateMetadata as kapcsolatMeta } from '../kapcsolat/page';
 import { generateMetadata as szolgaltatasokMeta } from '../szolgaltatasok/page';
 import { generateMetadata as portfolioMeta } from '../portfolio/page';
-import { generateMetadata as portfolioIdMeta } from '../portfolio/[id]/page';
 import { generateMetadata as blogMeta } from '../blog/page';
 import { generateMetadata as blogPostMeta } from '../blog/[slug]/page';
 import { generateMetadata as rolunkMeta } from '../rolunk/page';
@@ -63,7 +62,7 @@ function targetFor(slug: string[]): { fn: MetaFn; params: Record<string, string>
     if (slug[0] === 'blog') return { fn: blogPostMeta, params: { slug: slug[1] } };
     if (slug[0] === 'portfolio') {
       const fixed = PORTFOLIO_PAGES[slug[1]];
-      return fixed ? { fn: fixed, params: {} } : { fn: portfolioIdMeta, params: { id: slug[1] } };
+      return fixed ? { fn: fixed, params: {} } : null;
     }
   }
   return null;

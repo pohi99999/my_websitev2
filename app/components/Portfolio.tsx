@@ -76,7 +76,38 @@ const Portfolio = () =>
 
   // Newest web references (2026-10), localized: the older cards below are Hungarian-only.
   type Lang = 'hu' | 'en' | 'de';
-  const newWebRefs: { id: string; img: string; href: string; ownProduct?: boolean; title: Record<Lang, string>; alt: Record<Lang, string>; desc: Record<Lang, string>; tags: Record<Lang, string[]> }[] = [
+  const newWebRefs: { id: string; img: string; href: string; ownProduct?: boolean; imgLeft?: boolean; title: Record<Lang, string>; alt: Record<Lang, string>; desc: Record<Lang, string>; tags: Record<Lang, string[]> }[] = [
+    // 2026-11: the descriptions name only what the live sites show (measured 11-20), no figures or results.
+    {
+      id: 'homlamentor',
+      img: '/homolamentor.webp',
+      // homolamentor.vercel.app redirects here (measured 2026-11-20)
+      href: 'https://homlamentor.com/hu',
+      title: { hu: 'HOMLAMENTOR Kft.', en: 'HOMLAMENTOR Kft.', de: 'HOMLAMENTOR Kft.' },
+      alt: { hu: 'A HOMLAMENTOR Kft. weboldalának nyitóképe', en: 'Home page of the HOMLAMENTOR Kft. website', de: 'Startseite der Website der HOMLAMENTOR Kft.' },
+      desc: {
+        hu: 'Tanácsadó cég hatnyelvű weboldala (magyar, angol, német, francia, kínai, orosz): nemzetközi üzleti inkubátor, partnereknek szóló zárt hozzáférésű ingatlan-portál, és baleseti kártérítési tájékoztató rövid kapcsolatfelvételi űrlappal.',
+        en: 'Website of a consulting company in six languages (Hungarian, English, German, French, Chinese, Russian): an international business incubator, a closed-access real-estate portal for partners, and accident-compensation information with a short contact form.',
+        de: 'Website eines Beratungsunternehmens in sechs Sprachen (Ungarisch, Englisch, Deutsch, Französisch, Chinesisch, Russisch): internationaler Business-Inkubator, ein geschlossenes Immobilienportal für Partner und Informationen zur Unfallentschädigung mit kurzem Kontaktformular.',
+      },
+      tags: { hu: [ 'Hat nyelv', 'Zárt partneri portál', 'Kapcsolatfelvételi űrlap' ], en: [ 'Six languages', 'Closed partner portal', 'Contact form' ], de: [ 'Sechs Sprachen', 'Geschlossenes Partnerportal', 'Kontaktformular' ] },
+    },
+    {
+      id: 'pontmas',
+      img: '/pontmas.webp',
+      // the headline sits on the left of the screenshot: a narrow card keeps that side, not the middle
+      imgLeft: true,
+      href: 'https://pontmas.vercel.app/',
+      title: { hu: 'PontMás Alapítvány', en: 'PontMás Foundation', de: 'PontMás Stiftung' },
+      // the children's photo in the site's hero is blurred in this screenshot on purpose
+      alt: { hu: 'A PontMás Alapítvány weboldalának nyitóképe', en: 'Home page of the PontMás Foundation website', de: 'Startseite der Website der PontMás Stiftung' },
+      desc: {
+        hu: 'A Vas vármegyei autista gyermekeket és családjaikat segítő alapítvány weboldala: ismeretanyag az autizmusról, kisfilmek, hírek és programok, dokumentumtár, és az adó 1%-ának felajánlása egy kattintással másolható adószámmal. Sötét téma és lágy mód is választható.',
+        en: 'Website of a foundation supporting autistic children and their families in Vas County: information about autism, short films, news and programmes, a document library, and the 1% personal income tax donation with a tax number copied in one click. Visitors can switch to a dark theme or a soft mode.',
+        de: 'Website einer Stiftung für autistische Kinder und ihre Familien im Komitat Vas: Wissen über Autismus, Kurzfilme, Neuigkeiten und Programme, eine Dokumentensammlung und die Widmung von 1 % der Einkommensteuer mit einer per Klick kopierbaren Steuernummer. Ein dunkles Design und ein sanfter Modus sind wählbar.',
+      },
+      tags: { hu: [ 'Alapítvány', 'Sötét téma és lágy mód', 'Adó 1%' ], en: [ 'Foundation', 'Dark theme and soft mode', '1% tax donation' ], de: [ 'Stiftung', 'Dunkles Design und sanfter Modus', '1-%-Steuerwidmung' ] },
+    },
     {
       id: 'bdklima',
       img: '/bdklima.webp',
@@ -406,11 +437,11 @@ const Portfolio = () =>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Newest references (localized): Bé-Da Klíma, P-Szakrajz, Hári Attila */ }
+            {/* Newest references (localized): HOMLAMENTOR, PontMás, Bé-Da Klíma, P-Szakrajz, Hári Attila */ }
             { newWebRefs.map( ( ref ) => (
               <div key={ ref.id } className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
                 <div className="relative h-48 overflow-hidden">
-                  <Image src={ ref.img } alt={ ref.alt[ lang ] } fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
+                  <Image src={ ref.img } alt={ ref.alt[ lang ] } fill sizes="(max-width: 767px) 100vw, 33vw" className={ ref.imgLeft ? 'object-cover object-left-top' : 'object-cover object-top' } />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-white mb-2">{ ref.title[ lang ] }</h3>
@@ -557,28 +588,6 @@ const Portfolio = () =>
                   <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Időpontfoglaló</span>
                 </div>
                 <a href="https://hetenyirenata.com/" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://hetenyirenata.vercel.app/', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
-                  { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
-                </a>
-              </div>
-            </div>
-
-            {/* HomolaMentor KFT */}
-            <div className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#00e5ff]/50 transition-all duration-300 hover:-translate-y-2">
-              <div className="relative h-48 overflow-hidden">
-                <Image src="/homola.jpg" alt="HomolaMentor KFT" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">HomolaMentor KFT</h3>
-                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  Professzionális mentori és tanácsadói bemutatkozó oldal: bizalomépítő arculat, letisztult
-                  szolgáltatásbemutatás és közvetlen kapcsolatfelvételi lehetőség az ügyfelek számára.
-                </p>
-                <div className="flex flex-wrap items-center gap-2 mb-5">
-                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Next.js</span>
-                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Tailwind CSS</span>
-                  <span className="bg-[#00e5ff]/10 text-[#00e5ff] text-xs px-2 py-1 rounded border border-[#00e5ff]/20">Reszponzív</span>
-                </div>
-                <a href="https://homlamentor.com/hu" target="_blank" rel="noopener noreferrer" onClick={ () => trackCtaClick( { location: CTA_LOCATIONS.PortfolioReferenceExternal, language, target: 'https://homolamentor.vercel.app/hu', page: PAGE_NAMES.Home } ) } className="inline-flex items-center text-[#00e5ff] hover:text-white font-medium transition-colors text-sm">
                   { ui.view } <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
               </div>

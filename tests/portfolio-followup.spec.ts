@@ -1,10 +1,9 @@
 import { test, expect, type APIRequestContext } from '@playwright/test';
 
 // Follow-up to #174 (card 0c1060b6, Marveen 5839/5845): the portfolio subpages keep the 4.7 MB video off
-// phones too; the /portfolio/[id] share images read their id (a Promise in Next 16); no "Details" link
-// points to "#"; and no page puts a second <main> inside the layout's #main-content.
+// phones too; no "Details" link points to "#"; and no page puts a second <main> inside the layout's #main-content.
 
-const SUBPAGES = ['/portfolio/brunella-bas', '/portfolio/pohi-ai-pro', '/portfolio/web-robotpilota', '/en/portfolio/palyazat-radar', '/de/portfolio/tartalom-gyartas', '/portfolio/1'];
+const SUBPAGES = ['/portfolio/brunella-bas', '/portfolio/pohi-ai-pro', '/portfolio/web-robotpilota', '/en/portfolio/palyazat-radar', '/de/portfolio/tartalom-gyartas'];
 
 for (const path of SUBPAGES) {
   test(`phone: ${path} downloads no video`, async ({ browser }) => {
@@ -29,14 +28,22 @@ test('desktop: a portfolio subpage keeps its background video', async ({ browser
   await ctx.close();
 });
 
-test('the /portfolio/[id] share images draw their own project, not the fallback', async ({ request }) => {
-  for (const kind of ['opengraph-image', 'twitter-image']) {
-    const [a, b] = await Promise.all(['1', '2'].map(async (id) => {
-      const res = await request.get(`/portfolio/${id}/${kind}`);
-      expect(res.status(), `${id} ${kind}`).toBe(200);
-      return res.body();
-    }));
-    expect(Buffer.compare(a, b), kind).not.toBe(0);
+// The invented case studies (/portfolio/1, 2, 3) are gone (Marveen 8389, Péter 17433): they answer 404 in
+// every language, their share images too, and no page links to them.
+test('the removed case studies answer 404', async ({ request }) => {
+  const paths = ['1', '2', '3'].flatMap((id) => [`/portfolio/${id}`, `/en/portfolio/${id}`, `/de/portfolio/${id}`,
+    `/portfolio/${id}/opengraph-image`, `/portfolio/${id}/twitter-image`]);
+  const bad: string[] = [];
+  for (const path of paths) {
+    const res = await request.get(path, { maxRedirects: 0 });
+    if (res.status() !== 404) bad.push(`${path}: ${res.status()}`);
+  }
+  expect(bad).toEqual([]);
+});
+
+test('the real case studies still answer 200', async ({ request }) => {
+  for (const path of ['/portfolio/web-robotpilota', '/en/portfolio/palyazat-radar', '/de/portfolio/tartalom-gyartas']) {
+    expect((await request.get(path, { maxRedirects: 0 })).status(), path).toBe(200);
   }
 });
 
